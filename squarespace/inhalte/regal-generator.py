@@ -1,0 +1,185 @@
+import sys
+LOGO="https://images.squarespace-cdn.com/content/v1/6869717aa7c996116c8c8a56/6eba18b8-d3f1-4d4c-8d9b-3112089b73b7/Transparent.png?format=500w"
+ARROW='<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>'
+EXT='<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>'
+CSS = r'''<style>
+  .ts-shelf { position: relative; isolation: isolate; overflow: hidden; overflow: clip; background: var(--ts-bg); }
+  .ts-shelf__orb { position: absolute; z-index: -1; border-radius: 50%; filter: blur(110px); pointer-events: none; }
+  .ts-shelf__orb--a { right: -10%; top: -6%; width: 55vw; height: 55vw; max-width: 860px; max-height: 860px; background: radial-gradient(circle, rgba(46, 140, 108, .34), transparent 66%); }
+  .ts-shelf__orb--b { left: -14%; top: 55%; width: 40vw; height: 40vw; max-width: 640px; max-height: 640px; background: radial-gradient(circle, rgba(74, 222, 128, .1), transparent 66%); }
+
+  .ts-shelf__intro { padding-top: clamp(8.5rem, 14vw, 12rem); }
+  .ts-shelf__meta { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem; padding-bottom: 1.25rem; border-bottom: 1px solid var(--ts-line); }
+  .ts .ts-shelf__back { display: inline-flex; align-items: center; gap: .6rem; color: var(--ts-muted); transition: color .3s, gap .4s var(--ts-ease-out); }
+  .ts .ts-shelf__back:hover { color: var(--ts-mint); gap: .9rem; }
+  .ts-shelf__head { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: 1.5rem; row-gap: 2.5rem; align-items: end; padding-top: clamp(3rem, 6vw, 5rem); }
+  .ts-shelf__title-wrap, .ts-shelf__logo-wrap { grid-column: 1 / -1; }
+  .ts-shelf .ts-line { padding-bottom: .16em; margin-bottom: -.16em; }
+  .ts .ts-shelf__title { font-family: var(--ts-font-display); font-weight: 800; font-size: clamp(2.2rem, 8vw, 7.5rem); line-height: .92; letter-spacing: -0.03em; }
+  .ts .ts-shelf__lead { margin-top: 1.75rem; max-width: 38rem; font-size: clamp(17px, 1.5vw, 20px); line-height: 1.7; color: var(--ts-muted); }
+  .ts-shelf__logo { position: relative; width: clamp(96px, 22vw, 150px); aspect-ratio: 1; animation: ts-shelf-float 7s ease-in-out infinite; }
+  .ts-shelf__logo::before { content: ""; position: absolute; inset: -18%; z-index: -1; border-radius: 50%; background: radial-gradient(circle, rgba(110, 231, 183, .28), transparent 65%); filter: blur(20px); }
+  .ts-shelf__logo::after { content: ""; position: absolute; inset: -10px; border-radius: 50%; border: 1px dashed rgba(110, 231, 183, .3); animation: ts-shelf-spin 40s linear infinite; }
+  .ts-shelf__logo img { display: block; width: 100% !important; height: 100% !important; object-fit: contain; }
+  @keyframes ts-shelf-float { 0%, 100% { transform: translateY(0) rotate(-2deg); } 50% { transform: translateY(-10px) rotate(2deg); } }
+  @keyframes ts-shelf-spin { to { transform: rotate(360deg); } }
+
+  .ts-shelf__list { padding-top: clamp(4rem, 8vw, 6.5rem); padding-bottom: clamp(6rem, 11vw, 10rem); }
+  .ts-shelf__list-head { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; padding-bottom: 1.25rem; border-bottom: 1px solid var(--ts-line); }
+  .ts .ts-shelf__grid { display: grid; gap: 1rem; margin-top: clamp(2rem, 4vw, 3rem); }
+
+  .ts .ts-prod { position: relative; display: flex; flex-direction: column; height: 100%; border-radius: 26px; overflow: hidden; transform-style: preserve-3d; transition: transform .6s var(--ts-ease-out), border-color .4s, box-shadow .6s var(--ts-ease-out); }
+  .ts-prod::before { content: ""; position: absolute; inset: 0; z-index: 2; pointer-events: none; opacity: 0; transition: opacity .5s; background: radial-gradient(520px circle at var(--mx, 50%) var(--my, 50%), rgba(110, 231, 183, .12), transparent 45%); }
+  .ts .ts-prod:hover { border-color: rgba(255, 255, 255, .16); box-shadow: 0 40px 90px -40px rgba(0, 0, 0, .9), 0 0 70px -35px rgba(46, 140, 108, .8); }
+  .ts-prod:hover::before { opacity: 1; }
+  .ts-prod__stage { position: relative; display: flex; align-items: center; justify-content: center; height: clamp(260px, 42vw, 400px); overflow: hidden; border-bottom: 1px solid var(--ts-line); background: radial-gradient(70% 80% at 50% 100%, rgba(46, 140, 108, .35), transparent 70%), linear-gradient(180deg, rgba(29, 77, 63, .25), rgba(12, 17, 15, .4)); }
+  .ts-prod__stage::after { content: ""; position: absolute; left: 12%; right: 12%; bottom: 12%; height: 1px; background: linear-gradient(90deg, transparent, rgba(110, 231, 183, .35), transparent); }
+  .ts-prod__stage img { position: relative; z-index: 1; display: block; max-width: 84% !important; max-height: 76% !important; width: auto !important; height: auto !important; object-fit: contain; transition: transform .8s var(--ts-ease-out); }
+  .ts-prod__stage--wide img { border-radius: 14px; filter: drop-shadow(0 30px 40px rgba(0, 0, 0, .55)); }
+  .ts-prod:hover .ts-prod__stage--wide img { transform: scale(1.04) rotate(-1deg); }
+  .ts-prod__stage--cover img { max-height: 78% !important; border-radius: 3px 8px 8px 3px; transform: perspective(900px) rotateY(-16deg) rotateZ(-1deg); box-shadow: 0 30px 60px -20px rgba(0, 0, 0, .9), 0 0 0 1px rgba(255, 255, 255, .06); }
+  .ts-prod:hover .ts-prod__stage--cover img { transform: perspective(900px) rotateY(-4deg) translateY(-6px); }
+  .ts .ts-prod__num { position: absolute; left: 1.5rem; top: 1.25rem; z-index: 1; color: var(--ts-muted); }
+  .ts .ts-prod__tag { position: absolute; right: 1.25rem; top: 1.1rem; z-index: 1; padding: 6px 12px; border-radius: 999px; border: 1px solid rgba(110, 231, 183, .25); background: rgba(29, 77, 63, .45); color: var(--ts-mint); }
+  .ts-prod__body { display: flex; flex-direction: column; flex: 1; padding: 1.5rem; }
+  .ts .ts-prod__kicker { color: var(--ts-mint); }
+  .ts .ts-prod__title { margin-top: .75rem; font-family: var(--ts-font-display); font-weight: 700; font-size: clamp(1.5rem, 2.4vw, 2.1rem); line-height: 1.08; letter-spacing: -0.03em; }
+  .ts .ts-prod__text { margin-top: .75rem; max-width: 32rem; font-size: 15px; line-height: 1.7; color: var(--ts-muted); }
+  .ts .ts-prod__chips { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1.25rem; }
+  .ts .ts-prod__chips li { display: inline-flex; align-items: center; gap: 7px; padding: 7px 12px; border-radius: 999px; border: 1px solid var(--ts-line); color: var(--ts-text); font-size: 10.5px; }
+  .ts-prod__chips svg { color: var(--ts-mint); }
+  .ts-prod__foot { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-top: auto; padding-top: 1.75rem; }
+  .ts-prod__more { display: inline-flex; align-items: center; gap: .6rem; font-size: 15px; font-weight: 500; }
+  .ts-prod__go { display: grid; place-items: center; width: 46px; height: 46px; border-radius: 50%; border: 1px solid var(--ts-line-strong); transition: transform .5s var(--ts-ease-out), background-color .4s, color .4s, border-color .4s; }
+  .ts-prod:hover .ts-prod__go { transform: rotate(-45deg); background: var(--ts-text); color: var(--ts-bg); border-color: var(--ts-text); }
+  .ts-prod--ext:hover .ts-prod__go { transform: none; }
+
+  @media (min-width: 640px) { .ts-prod__body { padding: 1.75rem 2rem 2rem; } }
+  @media (min-width: 768px) { .ts .ts-shelf__grid:not(.ts-shelf__grid--single) { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (min-width: 1024px) {
+    .ts-shelf__title-wrap { grid-column: 1 / span 9; grid-row: 1; }
+    .ts-shelf__logo-wrap { grid-column: 10 / span 3; grid-row: 1; justify-self: end; }
+    .ts .ts-shelf__grid--single { grid-template-columns: 1fr; }
+    .ts .ts-shelf__grid--single .ts-prod { flex-direction: row; }
+    .ts-shelf__grid--single .ts-prod__stage { flex: 0 0 52%; height: auto; min-height: 520px; border-bottom: 0; border-right: 1px solid var(--ts-line); }
+    .ts-shelf__grid--single .ts-prod__body { justify-content: center; padding: 3rem; }
+    .ts .ts-shelf__grid--single .ts-prod__title { font-size: clamp(2rem, 3.2vw, 3rem); }
+  }
+  @media (prefers-reduced-motion: reduce) { .ts-shelf__logo, .ts-shelf__logo::after { animation: none; } }
+</style>
+'''
+def page(header, label_right, title_lines, lead, list_label, list_right, cards, single=False):
+    lines = '\n'.join(f'          <span class="ts-line"><span{" class=\"ts-gradient-text\"" if i==len(title_lines)-1 else ""} style="transition-delay:{.1+i*.12:.2f}s">{t}</span></span>' for i,t in enumerate(title_lines))
+    return f'''{header}{CSS}
+<div class="ts ts-shelf ts-bleed">
+  <div class="ts-shelf__orb ts-shelf__orb--a" data-ts-parallax="0.03" aria-hidden="true"></div>
+  <div class="ts-shelf__orb ts-shelf__orb--b" data-ts-parallax="-0.04" aria-hidden="true"></div>
+
+  <!-- ============ INTRO ============ -->
+  <section class="ts-container ts-shelf__intro" aria-labelledby="ts-shelf-title">
+    <div class="ts-shelf__meta ts-reveal">
+      <a href="/kreativhafen" class="ts-shelf__back ts-label"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>Kreativhafen</a>
+      <p class="ts-label ts-muted">{label_right}</p>
+    </div>
+    <div class="ts-shelf__head">
+      <div class="ts-shelf__title-wrap">
+        <h1 id="ts-shelf-title" class="ts-shelf__title" data-ts-fit>
+{lines}
+        </h1>
+        <p class="ts-shelf__lead ts-reveal">{lead}</p>
+      </div>
+      <div class="ts-shelf__logo-wrap ts-reveal">
+        <div class="ts-shelf__logo"><img src="{LOGO}" alt="Logo des Kreativhafens"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ REGAL ============ -->
+  <section class="ts-container ts-shelf__list" aria-label="{list_label}">
+    <div class="ts-shelf__list-head ts-reveal">
+      <p class="ts-label ts-muted">[ {list_label} ]</p>
+      <p class="ts-label ts-muted">{list_right}</p>
+    </div>
+    <ul class="ts-shelf__grid{" ts-shelf__grid--single" if single else ""}">
+{cards}
+    </ul>
+  </section>
+</div>
+'''
+def chip(icon, text):
+    icons = {
+      'age': '<circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/>',
+      'pin': '<path d="M12 22s7-6.2 7-12a7 7 0 0 0-14 0c0 5.8 7 12 7 12Z"/><circle cx="12" cy="10" r="2.5"/>',
+      'book': '<path d="M4 19.5V5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2Zm0 0A2 2 0 0 0 6 22h13"/>',
+      'pen': '<path d="m15 5 4 4L8 20H4v-4L15 5Z"/>',
+      'spark': '<path d="m12 3 1.8 4.6L18.5 9l-4.7 1.4L12 15l-1.8-4.6L5.5 9l4.7-1.4L12 3Z"/>',
+      'hand': '<path d="M8 13V5.5a1.5 1.5 0 0 1 3 0V12M11 11.5v-2a1.5 1.5 0 0 1 3 0V12M14 10.5a1.5 1.5 0 0 1 3 0V12M17 11.5a1.5 1.5 0 0 1 3 0V15a7 7 0 0 1-7 7h-1a7 7 0 0 1-5.6-2.8L4 16.5a1.6 1.6 0 0 1 2.5-2L8 16"/>',
+    }
+    return f'<li class="ts-label"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">{icons[icon]}</svg>{text}</li>'
+def card(num, tag, href, img, alt, stage, kicker, title, text, chips, more, ext=False):
+    target = ' target="_blank" rel="noopener"' if ext else ''
+    return f'''      <li class="ts-reveal">
+        <a href="{href}"{target} class="ts-prod ts-glass ts-tilt{" ts-prod--ext" if ext else ""}">
+          <div class="ts-prod__stage ts-prod__stage--{stage}">
+            <span class="ts-label ts-prod__num">{num}</span>
+            <span class="ts-label ts-prod__tag">{tag}</span>
+            <img src="{img}" alt="{alt}" loading="lazy">
+          </div>
+          <div class="ts-prod__body">
+            <p class="ts-label ts-prod__kicker">{kicker}</p>
+            <h2 class="ts-prod__title" data-ts-fit>{title}</h2>
+            <p class="ts-prod__text">{text}</p>
+            <ul class="ts-prod__chips">{''.join(chip(*c) for c in chips)}</ul>
+            <div class="ts-prod__foot">
+              <span class="ts-prod__more">{more}</span>
+              <span class="ts-prod__go">{EXT if ext else ARROW}</span>
+            </div>
+          </div>
+        </a>
+      </li>'''
+
+out = sys.argv[1]
+romane = page(
+ '''<!-- ==================================================================
+     TRUTZ STÄHLER · SEITE „KINDERROMANE“
+     Einfügen in: Seite /romane → einzige Sektion → Code-Block (volle Breite)
+     Neues Buch: im Regal eine weitere <li>-Karte ergänzen.
+=================================================================== -->
+''', 'Kreativhafen · Romane', ['Kinderromane.'],
+ 'Ein fantasievolles Abenteuer voller Magie, Freundschaft und Mut – geschrieben, um Kinder in eine Welt eintauchen zu lassen, in der alles möglich ist.',
+ 'Das Regal', '1 Buch',
+ card('01','Neu erschienen','/maria-holm-und-das-geheimnis-der-verschwundenen-perle',
+      'https://m.media-amazon.com/images/I/613IuTeT+2L._SL1491_.jpg','Buchcover: Maria Holm und das Geheimnis der verschwundenen Perle','cover',
+      'Ein Abenteuer der Loki-Detektive','Maria Holm und das Geheimnis der verschwundenen Perle',
+      'Maria Holm ist klug, mutig und extrem aufmerksam – kein noch so kleines Detail entgeht ihr. Zusammen mit ihren besten Freunden Paul, Bhavana und Eugenia gründet sie im Niendorfer Gehege das Detektivbüro „Die Loki-Detektive“.',
+      [('book','Buch &amp; Kindle eBook'),('age','Ab 8 Jahren'),('pin','Tatort Hamburg')], 'Zum Buch'),
+ single=True)
+malbuch = page(
+ '''<!-- ==================================================================
+     TRUTZ STÄHLER · SEITE „MALBÜCHER“
+     Einfügen in: Seite /malbuecher → einzige Sektion → Code-Block (volle Breite)
+     Neues Malbuch: im Regal eine weitere <li>-Karte ergänzen.
+=================================================================== -->
+''', 'Kreativhafen · Malbücher', ['Kritzelspaß &amp;', 'Malfreude.'],
+ 'Unsere Mal- und Kritzelbücher fördern spielerisch Fantasie, Motorik und Konzentration – mit liebevollen Motiven aus Alltag, Natur und Tierwelt.',
+ 'Das Regal', '2 Malbücher · ab 1 Jahr',
+ card('01','Tiere','https://www.amazon.de/dp/B0HFC3LDZM',
+      'https://images.squarespace-cdn.com/content/v1/6869717aa7c996116c8c8a56/ed4546f0-e46a-4af1-a52e-a880ce697147/Malbuch+Mein+erstes+Tiere-Kritzelbuch++Cover+%281%29.png?format=1000w',
+      'Malbuch „Mein Tiere-Kritzelbuch ab 1 Jahr“, aufgeschlagen mit Wachsmalstiften','wide',
+      'Malbuch ab 1 Jahr','Mein Tiere-Kritzelbuch',
+      'Liebevoll gestaltetes Malbuch für Kleinkinder: Erstes Ausmalbuch mit großen Motiven zum Ausmalen – zur Förderung von Kreativität und Motorik.',
+      [('age','Ab 1 Jahr'),('pen','Große Motive'),('hand','Kreativität &amp; Motorik')], 'Zum Malbuch auf Amazon', ext=True)
+ + '\n' +
+ card('02','Dinos','https://www.amazon.de/dp/B0HFC3RF56',
+      'https://images.squarespace-cdn.com/content/v1/6869717aa7c996116c8c8a56/03265d54-7284-481a-908a-2941deae8c19/Malbuch+Gro%C3%9Fe+Dinomotive+zum+Ausmalen+-+Cover+%282%29.png?format=1000w',
+      'Malbuch „Mein Dino-Kritzelbuch ab 1 Jahr“, aufgeschlagen mit Wachsmalstiften','wide',
+      'Malbuch ab 1 Jahr','Mein Dino-Kritzelbuch',
+      'Liebevoll gestaltetes Malbuch für Kleinkinder: Erstes Ausmalbuch mit großen Motiven zum Ausmalen – zur Förderung von Kreativität und Motorik.',
+      [('age','Ab 1 Jahr'),('pen','Große Motive'),('hand','Kreativität &amp; Motorik')], 'Zum Malbuch auf Amazon', ext=True))
+import re as _re
+B='https://m.media-amazon.com/images/I/613IuTeT+2L.'
+_cov=lambda h: h.replace(f'src="{B}_SL1491_.jpg"', f'src="{B}_SL900_.jpg" srcset="{B}_SL600_.jpg 400w, {B}_SL900_.jpg 600w, {B}_SL1491_.jpg 994w" sizes="(min-width: 1024px) 460px, 80vw"')
+_d=lambda h: _re.sub(r'style="transition-delay:([0-9.]+s)"', r'style="--d:\1;transition-delay:\1"', h)
+romane=_d(_cov(romane)); malbuch=_d(_cov(malbuch))
+open(out+'/09-romane-codeblock.html','w').write(romane)
+open(out+'/11-malbuecher-codeblock.html','w').write(malbuch)

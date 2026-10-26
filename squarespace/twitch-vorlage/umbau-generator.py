@@ -33,7 +33,7 @@ def title_lines(lines):
     out=[]
     for i,t in enumerate(lines):
         cls = ' class="ts-gradient-text"' if i==len(lines)-1 else ''
-        out.append(f'          <span class="ts-line"><span{cls} style="transition-delay:{.1+i*.12:.2f}s">{t}</span></span>')
+        out.append(f'          <span class="ts-line"><span{cls} style="--d:{.1+i*.12:.2f}s;transition-delay:{.1+i*.12:.2f}s">{t}</span></span>')
     return '\n'.join(out)
 
 def sec_head(label, title, note=''):

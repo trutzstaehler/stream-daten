@@ -60,7 +60,7 @@ LEGAL_JS = r'''<script>
 '''
 
 def legal_page(comment, label, right, title_lines, lead, secs):
-    lines = '\n'.join(f'      <span class="ts-line"><span{" class=\"ts-gradient-text\"" if i==len(title_lines)-1 else ""} style="transition-delay:{.1+i*.12:.2f}s">{t}</span></span>' for i,t in enumerate(title_lines))
+    lines = '\n'.join(f'      <span class="ts-line"><span{" class=\"ts-gradient-text\"" if i==len(title_lines)-1 else ""} style="--d:{.1+i*.12:.2f}s;transition-delay:{.1+i*.12:.2f}s">{t}</span></span>' for i,t in enumerate(title_lines))
     toc = '\n'.join(f'        <li><a href="#{sid}">{t}</a></li>' for sid,t,_ in secs)
     body = '\n'.join(f'''      <section class="ts-legal-sec ts-reveal" id="{sid}" aria-labelledby="{sid}-h">
         <h2 id="{sid}-h"><span>{i+1:02d}</span>{t}</h2>
@@ -245,8 +245,8 @@ kontakt = '''<!-- ==============================================================
     <div class="ts-contact__grid">
       <div>
         <h1 id="ts-contact-title" class="ts-contact__title" data-ts-fit>
-          <span class="ts-line"><span style="transition-delay:.1s">Melde dich</span></span>
-          <span class="ts-line"><span class="ts-gradient-text" style="transition-delay:.22s">bei mir.</span></span>
+          <span class="ts-line"><span style="--d:.1s;transition-delay:.1s">Melde dich</span></span>
+          <span class="ts-line"><span class="ts-gradient-text" style="--d:.22s;transition-delay:.22s">bei mir.</span></span>
         </h1>
         <div class="ts-contact__text" style="margin-top:2rem">
           <p class="ts-reveal">Moin! Hast du Fragen, Anregungen oder willst mir einfach mal 'n netten Gruß dalassen?</p>

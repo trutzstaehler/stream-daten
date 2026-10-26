@@ -51,6 +51,78 @@ def frame_css(rid, prefix):
   #{rid}.tsw {{ --{prefix}-panel: var(--tsw-panel); --{prefix}-line: rgba(199, 156, 56, 0.22); }}
 '''
 
+# Zwei-Klick-Lösung: Twitch-Player und -Chat laden erst nach Zustimmung
+CONSENT = r'''<!-- Twitch erst nach Klick laden (Datenschutz) -->
+<style>
+  .tsw-consent-host { position: relative; }
+  .tsw-consent { position: absolute; inset: 0; z-index: 2; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; padding: 24px; text-align: center; color: #f3eee2; font-family: 'Asul', Georgia, serif;
+    background: radial-gradient(ellipse at 50% 40%, rgba(255, 209, 0, .10), transparent 60%), linear-gradient(180deg, #17110c, #0b0806); }
+  .tsw-consent svg { width: 34px; height: 34px; fill: #ffd100; filter: drop-shadow(0 0 18px rgba(255, 209, 0, .35)); }
+  .tsw .tsw-consent__title { font-family: 'Cinzel', Georgia, serif; font-size: clamp(1rem, 1.6vw, 1.3rem); letter-spacing: .06em; color: #ffd100; margin: 0; }
+  .tsw .tsw-consent__text { max-width: 44ch; font-size: .92rem; line-height: 1.55; color: #b8ad94; margin: 0; }
+  .tsw .tsw-consent__text a { color: #ffd100; text-decoration: underline; text-underline-offset: 3px; }
+  .tsw-consent__btns { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
+  .tsw-consent button { font-family: 'Cinzel', Georgia, serif; font-size: .85rem; letter-spacing: .08em; padding: 11px 20px; border-radius: 999px; cursor: pointer; transition: transform .2s, background .2s, color .2s; }
+  .tsw-consent button[data-ts-consent="once"] { background: #ffd100; color: #120e0b; border: 1px solid #ffd100; }
+  .tsw-consent button[data-ts-consent="always"] { background: transparent; color: #f3eee2; border: 1px solid rgba(255, 209, 0, .45); }
+  .tsw-consent button:hover { transform: translateY(-2px); }
+  .tsw-consent button[data-ts-consent="always"]:hover { background: rgba(255, 209, 0, .12); }
+  @media (max-width: 640px) {
+    .tsw-consent { gap: 8px; padding: 12px; }
+    .tsw-consent svg { display: none; }
+    .tsw .tsw-consent__text { font-size: .78rem; line-height: 1.4; }
+    .tsw-consent button { font-size: .75rem; padding: 8px 14px; }
+  }
+</style>
+<script>
+(function () {
+  var KEY = 'ts-twitch-ok';
+  var ICON = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.3 3 3 6.4v13.4h4.6V22h2.6l2.2-2.2h3.6L21 15V3H4.3Zm15 11.2-2.8 2.8H12l-2.2 2.2V17H6V4.7h13.3v9.5ZM16.4 7.6v4.9h-1.7V7.6h1.7Zm-4.6 0v4.9h-1.7V7.6h1.7Z"/></svg>';
+  function ok() { try { return localStorage.getItem(KEY) === '1'; } catch (e) { return false; } }
+  function load() {
+    document.querySelectorAll('iframe[data-ts-consent-src]').forEach(function (f) {
+      f.src = f.getAttribute('data-ts-consent-src');
+      f.removeAttribute('data-ts-consent-src');
+    });
+    document.querySelectorAll('.tsw-consent').forEach(function (o) { o.remove(); });
+  }
+  function scan() {
+    var frames = document.querySelectorAll('iframe[data-ts-consent-src]');
+    if (!frames.length) return;
+    if (ok()) return load();
+    frames.forEach(function (f) {
+      var host = f.parentNode;
+      if (!host || host.querySelector('.tsw-consent')) return;
+      var chat = /\/chat/.test(f.getAttribute('data-ts-consent-src'));
+      host.classList.add('tsw-consent-host');
+      var o = document.createElement('div');
+      o.className = 'tsw-consent';
+      o.innerHTML = ICON +
+        '<p class="tsw-consent__title">' + (chat ? 'Twitch-Chat' : 'Stream auf Twitch') + '</p>' +
+        '<p class="tsw-consent__text">Beim Laden überträgt Twitch Daten wie deine IP-Adresse und setzt Cookies. Mehr dazu in der <a href="/datenschutz">Datenschutzerklärung</a>.</p>' +
+        '<div class="tsw-consent__btns"><button type="button" data-ts-consent="once">' + (chat ? 'Chat laden' : 'Stream laden') + '</button>' +
+        '<button type="button" data-ts-consent="always">Immer laden</button></div>';
+      host.appendChild(o);
+    });
+  }
+  document.addEventListener('click', function (e) {
+    var b = e.target.closest && e.target.closest('[data-ts-consent]');
+    if (!b) return;
+    e.preventDefault();
+    if (b.getAttribute('data-ts-consent') === 'always') { try { localStorage.setItem(KEY, '1'); } catch (err) {} }
+    load();
+  });
+  scan();
+  new MutationObserver(scan).observe(document.documentElement, { childList: true, subtree: true });
+})();
+</script>'''
+
+def consentify(script):
+    out = script.replace('<iframe src="https://player.twitch.tv', '<iframe data-ts-consent-src="https://player.twitch.tv')
+    out = out.replace('<iframe src="https://www.twitch.tv/embed', '<iframe data-ts-consent-src="https://www.twitch.tv/embed')
+    return out
+
+
 pages = {}
 
 # ---------------------------------------------------------------- STARTSEITE
@@ -164,7 +236,7 @@ override = '''<style>
 head_scripts = '''<script>window.whTooltips = { colorLinks: false, iconizeLinks: false, renameLinks: false }; // Tooltips aus dem Spiel – die Symbole zeichnet der Block selbst</script>
 <script src="https://wow.zamimg.com/js/tooltips.js" async></script>
 '''
-pages['12-twitch-startseite-codeblock.html'] = header('STARTSEITE', '/twitch-startseite') + FONTS + '\n' + head_scripts + '\n' + markup + '\n' + style + '\n' + override + '\n' + script + '\n'
+pages['12-twitch-startseite-codeblock.html'] = header('STARTSEITE', '/twitch-startseite') + FONTS + '\n' + head_scripts + '\n' + markup + '\n' + style + '\n' + override + '\n' + consentify(script) + '\n' + CONSENT + '\n'
 
 # ---------------------------------------------------------------- LIVE & STREAM-PLAN
 html = open(SRC+'streamplan-codeblock.html').read()
@@ -218,7 +290,7 @@ override = '''<style>
   @media (max-width: 640px) { #tsz-plan .tl-next { width: 100%; } }
 </style>
 '''
-pages['13-live-codeblock.html'] = header('LIVE & STREAM-PLAN', '/live', '\n     Den Wochenplan trägst du wie bisher im Skript bei CONFIG.schedule ein.') + FONTS + '\n\n' + markup + '\n' + style + '\n' + override + '\n' + script + '\n'
+pages['13-live-codeblock.html'] = header('LIVE & STREAM-PLAN', '/live', '\n     Den Wochenplan trägst du wie bisher im Skript bei CONFIG.schedule ein.') + FONTS + '\n\n' + markup + '\n' + style + '\n' + override + '\n' + consentify(script) + '\n' + CONSENT + '\n'
 
 # ---------------------------------------------------------------- MITSPIELEN (Themen-Reiter)
 html = open(SRC+'mitspielen-codeblock.html').read()

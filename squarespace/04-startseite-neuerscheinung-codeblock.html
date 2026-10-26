@@ -77,6 +77,11 @@
   .ts .ts-price__note { margin-top: .5rem; font-size: 12.5px; line-height: 1.5; color: var(--ts-muted); }
 
   .ts-book__ctas { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 2rem; }
+  .ts .ts-book__more { display: inline-flex; align-items: center; gap: .5rem; margin-top: 1.25rem; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: .78rem; letter-spacing: .14em; text-transform: uppercase; color: var(--ts-mint); text-decoration: none; }
+  .ts .ts-book__more span { background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat; transition: background-size .4s cubic-bezier(.2,.8,.2,1); padding-bottom: 2px; }
+  .ts .ts-book__more:hover span { background-size: 100% 1px; }
+  .ts .ts-book__more svg { transition: transform .3s; }
+  .ts .ts-book__more:hover svg { transform: translateX(4px); }
 
   @media (min-width: 640px) {
     .ts-features { grid-template-columns: 1fr 1fr; }
@@ -193,6 +198,9 @@
             <span class="ts-btn__inner"><span class="ts-roll"><span data-text="Leseprobe">Leseprobe</span></span></span>
           </a>
         </div>
+        <a href="/maria-holm-und-das-geheimnis-der-verschwundenen-perle" class="ts-book__more ts-reveal"><span>Mehr zum Buch</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
       </div>
     </div>
   </div>

@@ -23,10 +23,11 @@ Design: Dark Editorial · Hintergrund `#060608` · Nebenfarbe Markengrün `#1d4d
 | `18-kontakt-codeblock.html` | Seite `/kontakt` → einzige Sektion → Code-Block (ohne Formular: E-Mail, 2× Instagram, LinkedIn) |
 | `19-impressum-codeblock.html` | Seite `/impressum` → einzige Sektion → Code-Block |
 | `20-datenschutz-codeblock.html` | Seite Datenschutzerklärung → einzige Sektion → Code-Block (Abschnitt „Cookies & Statistik“ mit den Squarespace-Einstellungen abgleichen) |
+| `21-404-codeblock.html` | neue Seite „404“ unter „Nicht verlinkt“ → Code-Block; danach als 404-Seite festlegen (siehe `ANLEITUNG-einstellungen.md`) |
 
 ### Twitch-Bereich (World of Warcraft Forever)
 
-Alle Seiten tragen die Klasse `tsw`: Navigation, Buttons und Footer werden dort automatisch golden, unter der Navigation erscheint die Twitch-Unternavigation mit „← Homepage“. Die Daten kommen weiter aus `helden.json` (Stream-Zentrale); die Skripte sind unverändert übernommen.
+Alle Seiten tragen die Klasse `tsw`: Navigation, Buttons und Footer werden dort automatisch golden, unter der Navigation erscheint die Twitch-Unternavigation mit „← Homepage“. Die Daten kommen weiter aus `helden.json` (Stream-Zentrale); die Skripte sind unverändert übernommen. Twitch-Player und -Chat (Startseite, Live) laden erst nach Klick auf „Stream laden“ / „Chat laden“ (Zwei-Klick-Lösung, „Immer laden“ merkt sich der Browser).
 
 | Datei | Wohin in Squarespace |
 |---|---|
@@ -45,3 +46,5 @@ Jede neue Sektion kommt später als eigener Code-Block dazu.
 
 Seiten-URLs in der Navigation (in Datei 02 und 03 anpassen, falls deine anders lauten):
 `/ueber-mich`, `/kreativhafen`, `/running`, `/twitch-startseite`, `/kontakt`
+
+Einstellungen, die nur im Squarespace-Backend gehen (Weiterleitungen, 404-Seite, SEO, Favicon, Sprache, Cookie-Banner, Schriften): siehe `ANLEITUNG-einstellungen.md`.

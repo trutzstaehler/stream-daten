@@ -1,0 +1,215 @@
+<!-- ==================================================================
+     TRUTZ STÄHLER · SEITE „RUNNING“
+     Einfügen in: Seite /running → einzige Sektion → Code-Block (volle Breite)
+     Neue Laufgeschichten: im Abschnitt „Laufgeschichten“ eine weitere Karte (<a class="ts-run-feature"> … </a>) ergänzen.
+=================================================================== -->
+<style>
+  /* ---------- Running-Übersicht ---------- */
+  .ts-run { position: relative; isolation: isolate; overflow: hidden; overflow: clip; background: var(--ts-bg); }
+  .ts-run .ts-line { padding-bottom: .18em; margin-bottom: -.18em; }
+
+  .ts-run__hero { position: relative; min-height: 92vh; min-height: 92svh; display: flex; flex-direction: column; justify-content: flex-end; overflow: hidden; }
+  .ts-run__hero-img { position: absolute; inset: 0; z-index: -2; }
+  .ts-run__hero-img img { width: 100% !important; height: 100% !important; object-fit: cover; object-position: 50% 45%; display: block; transform: scale(1.08); animation: ts-run-zoom 18s ease-out forwards; filter: saturate(.75) contrast(1.05); }
+  @keyframes ts-run-zoom { to { transform: scale(1); } }
+  .ts-run__hero::before { content: ""; position: absolute; inset: 0; z-index: -1; background:
+      linear-gradient(180deg, rgba(6, 6, 8, .82) 0%, rgba(6, 6, 8, .35) 35%, rgba(6, 6, 8, .55) 65%, var(--ts-bg) 100%),
+      linear-gradient(90deg, rgba(6, 6, 8, .85), rgba(6, 6, 8, .1) 70%),
+      radial-gradient(80% 60% at 20% 100%, rgba(46, 140, 108, .45), transparent 70%); }
+  .ts-run__route { position: absolute; left: 0; right: 0; bottom: 12%; z-index: -1; width: 100%; height: 40%; pointer-events: none; opacity: .9; }
+  .ts-run__route path { fill: none; stroke: url(#ts-run-route-grad); stroke-width: 2; stroke-linecap: round; stroke-dasharray: 2400; stroke-dashoffset: 2400; animation: ts-run-draw 4.5s var(--ts-ease-in-out) .6s forwards; filter: drop-shadow(0 0 8px rgba(74, 222, 128, .6)); }
+  .ts-run__route circle { fill: var(--ts-leaf); opacity: 0; animation: ts-run-dot .4s ease 5s forwards; filter: drop-shadow(0 0 10px rgba(74, 222, 128, .9)); }
+  @keyframes ts-run-draw { to { stroke-dashoffset: 0; } }
+  @keyframes ts-run-dot { to { opacity: 1; } }
+
+  .ts-run__hero-inner { padding-top: clamp(8rem, 14vw, 11rem); padding-bottom: clamp(3rem, 6vw, 5rem); }
+  .ts-run__meta { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem; padding-bottom: 1.25rem; border-bottom: 1px solid rgba(255, 255, 255, .12); }
+  .ts .ts-run__title { margin-top: clamp(4rem, 14vh, 9rem); font-family: var(--ts-font-display); font-weight: 800; font-size: clamp(3.2rem, 15vw, 15rem); line-height: .85; letter-spacing: -0.04em; }
+  .ts .ts-run__sub { margin-top: 1.25rem; font-family: var(--ts-font-display); font-weight: 700; font-size: clamp(1.25rem, 2.8vw, 2.3rem); line-height: 1.1; letter-spacing: -0.03em; color: transparent; -webkit-text-stroke: 1px rgba(110, 231, 183, .85); }
+  .ts-run__row { display: grid; gap: 2rem; margin-top: clamp(2rem, 4vw, 3rem); align-items: end; }
+  .ts .ts-run__lead { max-width: 34rem; font-size: 17px; line-height: 1.75; color: rgba(246, 250, 247, .78); }
+  .ts .ts-run__spots { display: flex; flex-wrap: wrap; gap: .5rem; }
+  .ts .ts-run__spot { display: inline-flex; align-items: center; gap: 8px; padding: 9px 14px; border-radius: 999px; font-size: 10.5px; color: var(--ts-text); }
+  .ts-run__spot svg { color: var(--ts-mint); }
+
+  /* Zahlen */
+  .ts-run__stats { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border-top: 1px solid var(--ts-line); border-left: 1px solid var(--ts-line); margin-top: clamp(1rem, 3vw, 2rem); }
+  .ts-run-stat { position: relative; padding: 1.5rem 1.25rem 1.6rem; border-right: 1px solid var(--ts-line); border-bottom: 1px solid var(--ts-line); overflow: hidden; }
+  .ts-run-stat::after { content: ""; position: absolute; left: 0; bottom: 0; height: 2px; width: 0; background: linear-gradient(90deg, var(--ts-mint), var(--ts-leaf)); transition: width 1.2s var(--ts-ease-out); }
+  .ts-run-stat.is-in::after, .is-in .ts-run-stat::after { width: 100%; }
+  .ts .ts-run-stat__label { color: var(--ts-muted); font-size: 10.5px; }
+  .ts .ts-run-stat__value { margin-top: .6rem; font-family: var(--ts-font-display); font-weight: 800; font-size: clamp(1.8rem, 4vw, 3.4rem); line-height: 1; letter-spacing: -0.03em; }
+  .ts .ts-run-stat__value small { font-size: .4em; font-weight: 700; color: var(--ts-mint); margin-left: .25em; letter-spacing: 0; }
+  .ts .ts-run-stat__note { margin-top: .5rem; font-size: 13.5px; line-height: 1.5; color: var(--ts-muted); }
+  .ts-run__stats-head { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; margin-top: clamp(4rem, 8vw, 6rem); }
+
+  /* Motto */
+  .ts-run__motto { padding-top: clamp(6rem, 12vw, 10rem); padding-bottom: clamp(6rem, 12vw, 10rem); }
+  .ts .ts-run__motto-title { margin-top: 1.5rem; font-family: var(--ts-font-display); font-weight: 800; font-size: clamp(2.6rem, 9vw, 9rem); line-height: .9; letter-spacing: -0.04em; }
+  .ts-run__motto-grid { display: grid; gap: 2rem; margin-top: clamp(2rem, 4vw, 3rem); }
+  .ts .ts-run__motto-text { max-width: 36rem; font-size: 17px; line-height: 1.75; color: var(--ts-muted); }
+  .ts-run__motto-text strong { color: var(--ts-text); font-weight: 500; }
+
+  /* Neueste Story */
+  .ts-run__feature-wrap { padding-bottom: clamp(6rem, 11vw, 10rem); }
+  .ts .ts-run-feature { display: grid; border-radius: 28px; overflow: hidden; transition: border-color .4s, box-shadow .6s var(--ts-ease-out); }
+  .ts .ts-run-feature:hover { border-color: rgba(255, 255, 255, .16); box-shadow: 0 40px 100px -45px rgba(0, 0, 0, .9), 0 0 80px -40px rgba(46, 140, 108, .9); }
+  .ts-run-feature__media { position: relative; min-height: 340px; overflow: hidden; }
+  .ts-run-feature__media img { position: absolute; inset: 0; width: 100% !important; height: 100% !important; object-fit: cover; object-position: 50% 30%; transition: transform 1.2s var(--ts-ease-out); }
+  .ts-run-feature:hover .ts-run-feature__media img { transform: scale(1.05); }
+  .ts-run-feature__media::after { content: ""; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(6, 6, 8, .55), transparent 45%); }
+  .ts .ts-run-feature__badge { position: absolute; left: 1.25rem; top: 1.25rem; z-index: 1; display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px; border-radius: 999px; background: rgba(6, 6, 8, .6); border: 1px solid rgba(110, 231, 183, .3); color: var(--ts-mint); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); }
+  .ts-run-feature__badge .ts-pulse { background: var(--ts-mint); }
+  .ts-run-feature__badge .ts-pulse::after { border-color: var(--ts-mint); }
+  .ts-run-feature__body { display: flex; flex-direction: column; padding: 1.75rem; }
+  .ts .ts-run-feature__kicker { color: var(--ts-mint); }
+  .ts .ts-run-feature__title { margin-top: 1rem; font-family: var(--ts-font-display); font-weight: 800; font-size: clamp(1.9rem, 3.6vw, 3.4rem); line-height: 1; letter-spacing: -0.03em; }
+  .ts .ts-run-feature__title span { display: block; margin-top: .5rem; font-size: .5em; font-weight: 700; line-height: 1.15; color: transparent; -webkit-text-stroke: 1px rgba(246, 250, 247, .7); }
+  .ts .ts-run-feature__teaser { margin-top: 1.5rem; font-size: 16px; line-height: 1.75; color: var(--ts-muted); }
+  .ts-run-feature__teaser strong { color: var(--ts-text); font-weight: 500; }
+  .ts .ts-run-feature__chips { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1.5rem; }
+  .ts .ts-run-feature__chips li { padding: 7px 12px; border-radius: 999px; border: 1px solid var(--ts-line); color: var(--ts-text); font-size: 10.5px; }
+  .ts-run-feature__chips li b { color: var(--ts-mint); font-weight: 500; }
+  .ts-run-feature__foot { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-top: auto; padding-top: 2rem; }
+  .ts-run-feature__go { display: grid; place-items: center; width: 48px; height: 48px; border-radius: 50%; border: 1px solid var(--ts-line-strong); transition: transform .5s var(--ts-ease-out), background-color .4s, color .4s, border-color .4s; }
+  .ts-run-feature:hover .ts-run-feature__go { transform: rotate(-45deg); background: var(--ts-text); color: var(--ts-bg); border-color: var(--ts-text); }
+
+  /* Laufgeschichten */
+  .ts-run__stories { display: grid; gap: 1rem; margin-top: clamp(2rem, 4vw, 3rem); }
+  .ts-run__log-head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 1.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--ts-line); }
+  .ts .ts-run__h2 { margin-top: .75rem; font-family: var(--ts-font-display); font-weight: 800; font-size: clamp(2.2rem, 6vw, 5.5rem); line-height: .92; letter-spacing: -0.03em; }
+  .ts .ts-run__log-note { max-width: 22rem; font-size: 15px; line-height: 1.7; color: var(--ts-muted); }
+
+  @media (min-width: 768px) {
+    .ts-run__stats { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .ts-run-stat { padding: 1.75rem 1.5rem 2rem; }
+    .ts-run__row { grid-template-columns: 1fr auto; }
+    .ts-run__motto-grid { grid-template-columns: repeat(12, minmax(0, 1fr)); }
+    .ts-run__motto-text { grid-column: 6 / span 7; }
+  }
+  @media (min-width: 1024px) {
+    .ts .ts-run-feature { grid-template-columns: 1.15fr 1fr; }
+    .ts-run-feature__media { min-height: 560px; }
+    .ts-run-feature__body { padding: 2.75rem; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .ts-run__hero-img img { animation: none; transform: none; }
+    .ts-run__route path { animation: none; stroke-dashoffset: 0; }
+    .ts-run__route circle { animation: none; opacity: 1; }
+  }
+</style>
+
+  <div class="ts ts-run ts-bleed">
+
+    <!-- ============ HERO ============ -->
+    <section class="ts-run__hero" aria-labelledby="ts-run-title">
+      <div class="ts-run__hero-img" aria-hidden="true">
+        <img src="https://images.squarespace-cdn.com/content/6869717aa7c996116c8c8a56/f72440a5-1948-41d8-84dd-05fe1013c48b/IMG_7549.PNG?content-type=image%2Fjpeg" alt="">
+      </div>
+      <svg class="ts-run__route" viewBox="0 0 1440 300" preserveAspectRatio="none" aria-hidden="true">
+        <defs>
+          <linearGradient id="ts-run-route-grad" x1="0" x2="1">
+            <stop offset="0" stop-color="#6ee7b7" stop-opacity="0"/>
+            <stop offset=".25" stop-color="#6ee7b7"/>
+            <stop offset="1" stop-color="#4ade80"/>
+          </linearGradient>
+        </defs>
+        <path d="M-20 240 C 140 230, 220 150, 360 170 S 560 260, 720 200 S 930 70, 1080 110 S 1300 210, 1460 60"/>
+        <circle cx="1440" cy="64" r="6"/>
+      </svg>
+
+      <div class="ts-container ts-run__hero-inner">
+        <div class="ts-run__meta">
+          <p class="ts-label" style="color:rgba(246,250,247,.8)">[ 03 — Running ]</p>
+          <p class="ts-label" style="color:rgba(246,250,247,.8)">Alster · Niendorfer Gehege · Hamburg</p>
+        </div>
+        <h1 id="ts-run-title" class="ts-run__title" data-ts-fit>
+          <span class="ts-line"><span class="ts-gradient-text" style="transition-delay:.15s">Running.</span></span>
+        </h1>
+        <p class="ts-run__sub">Kilometer, Puls &amp; ganz viel Herz</p>
+        <div class="ts-run__row">
+          <p class="ts-run__lead">Meine Leidenschaft fürs Laufen. Ob an der Alster, im Niendorfer Gehege oder beim nächsten Marathon – hier teile ich Laufabenteuer, Motivation und erprobte Tipps.</p>
+          <ul class="ts-run__spots" aria-label="Meine Laufwelt">
+            <li class="ts-run__spot ts-glass ts-label"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M2 16c2.5 0 2.5-2 5-2s2.5 2 5 2 2.5-2 5-2 2.5 2 5 2M2 20c2.5 0 2.5-2 5-2s2.5 2 5 2 2.5-2 5-2 2.5 2 5 2"/></svg>Alster</li>
+            <li class="ts-run__spot ts-glass ts-label"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 22V12M12 12c0-5 3-8 8-9-1 5-3.5 8-8 9ZM12 15c0-4-2.5-6.5-7-7 .5 4 2.8 6.5 7 7Z"/></svg>Niendorfer Gehege</li>
+            <li class="ts-run__spot ts-glass ts-label"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="9" cy="8" r="3.2"/><circle cx="17" cy="9" r="2.6"/><path d="M3 20a6 6 0 0 1 12 0M14.5 14.2A5 5 0 0 1 21 19"/></svg>Adidas Runners Hamburg</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ ZAHLEN ============ -->
+    <section class="ts-container" aria-labelledby="ts-run-stats">
+      <div class="ts-run__stats-head ts-reveal">
+        <p id="ts-run-stats" class="ts-label ts-muted">[ Letzter Lauf in Zahlen ]</p>
+        <p class="ts-label ts-muted">Hella Half Marathon · 29.06.2025</p>
+      </div>
+      <div class="ts-run__stats ts-reveal">
+        <div class="ts-run-stat">
+          <p class="ts-label ts-run-stat__label">Zielzeit</p>
+          <p class="ts-run-stat__value" data-ts-fit>1:31:49</p>
+          <p class="ts-run-stat__note">Unter 1:32 – total stolz.</p>
+        </div>
+        <div class="ts-run-stat">
+          <p class="ts-label ts-run-stat__label">Erste 5 km</p>
+          <p class="ts-run-stat__value" data-ts-fit>4:09<small>/km</small></p>
+          <p class="ts-run-stat__note">20:50 Minuten – Kopf bei 100 %.</p>
+        </div>
+        <div class="ts-run-stat">
+          <p class="ts-label ts-run-stat__label">Die Wand · km 14</p>
+          <p class="ts-run-stat__value" data-ts-fit>201<small>bpm</small></p>
+          <p class="ts-run-stat__note">Ab 200 wird's kritisch.</p>
+        </div>
+        <div class="ts-run-stat">
+          <p class="ts-label ts-run-stat__label">Race-Day-Wecker</p>
+          <p class="ts-run-stat__value" data-ts-fit>5:30</p>
+          <p class="ts-run-stat__note">3 Stunden 30 vor dem Start.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ MOTTO ============ -->
+    <section class="ts-container ts-run__motto" aria-labelledby="ts-run-motto">
+      <p class="ts-label ts-muted ts-reveal">[ Motto ]</p>
+      <h2 id="ts-run-motto" class="ts-run__motto-title" data-ts-fit>
+        <span class="ts-line"><span>Every Pace</span></span>
+        <span class="ts-line"><span class="ts-gradient-text">has a Place.</span></span>
+      </h2>
+      <div class="ts-run__motto-grid">
+        <p class="ts-run__motto-text ts-reveal">Wir alle lieben das Laufen, aber wir sind total unterschiedlich – und genau das ist das Wundervolle daran! Ob PB jagen, einfach Spaß haben oder als Pacemaker unterstützen: <strong>Jeder hat seine eigene Motivation.</strong></p>
+      </div>
+    </section>
+
+    <!-- ============ LAUFGESCHICHTEN ============ -->
+    <section class="ts-container ts-run__feature-wrap" aria-labelledby="ts-run-log">
+      <div class="ts-run__log-head ts-reveal">
+        <div>
+          <p class="ts-label ts-muted">[ Logbuch ]</p>
+          <h2 id="ts-run-log" class="ts-run__h2" data-ts-fit>Laufgeschichten</h2>
+        </div>
+        <p class="ts-run__log-note">Laufabenteuer, Motivation und ehrliche Einblicke – Kilometer für Kilometer.</p>
+      </div>
+      <div class="ts-run__stories">
+      <a href="/hella-half-marathon-2025" class="ts-run-feature ts-glass ts-reveal">
+        <div class="ts-run-feature__media">
+          <img src="https://images.squarespace-cdn.com/content/v1/6869717aa7c996116c8c8a56/f5baa7a7-26a7-4829-9f84-e0b05d648fda/IMG_7542.PNG?format=1000w" alt="Trutz beim Zieleinlauf des Hella Half Marathon 2025" loading="lazy">
+          <span class="ts-label ts-run-feature__badge"><span class="ts-pulse"></span>Neueste Story</span>
+        </div>
+        <div class="ts-run-feature__body">
+          <p class="ts-label ts-run-feature__kicker">Halbmarathon · 29. Juni 2025</p>
+          <h2 class="ts-run-feature__title" data-ts-fit>Hella Half Marathon 2025<span>Party, Kampf &amp; großes Herz</span></h2>
+          <p class="ts-run-feature__teaser">Ein Lauf, der wieder alles hatte: starke Beine, einen Kopf, der ab km 14 übernehmen musste, und am Ende meine Tochter, die mir stolz die Medaille umhängte. <strong>SUB90? Diesmal nicht.</strong> Aber dafür ganz viel Herz, Gemeinschaft und ein Franzbrötchen im Ziel.</p>
+          <ul class="ts-run-feature__chips" aria-label="Eckdaten">
+            <li class="ts-label"><b>21,1 km</b> Halbmarathon</li>
+            <li class="ts-label"><b>1:31:49</b> Zielzeit</li>
+            <li class="ts-label"><b>22 °C</b> beim Start</li>
+          </ul>
+          <div class="ts-run-feature__foot">
+            <span class="ts-label">Story lesen</span>
+            <span class="ts-run-feature__go"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          </div>
+        </div>
+      </a>
+    </section>
+
+  </div>

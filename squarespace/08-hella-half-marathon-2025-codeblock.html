@@ -1,0 +1,443 @@
+<!-- ==================================================================
+     TRUTZ STÄHLER · SEITE „MEIN HELLA HALF MARATHON 2025“
+     Einfügen in: Seite /hella-half-marathon-2025 → einzige Sektion → Code-Block (volle Breite)
+     Seite nicht in die Navigation aufnehmen (Bereich „Nicht verlinkt“); verlinkt wird sie von /running.
+=================================================================== -->
+<style>
+  /* ---------- Beitrag ---------- */
+  .ts-post { position: relative; isolation: isolate; overflow: hidden; overflow: clip; background: var(--ts-bg); }
+  .ts-post__orb { position: absolute; z-index: -1; border-radius: 50%; filter: blur(110px); pointer-events: none; }
+  .ts-post__orb--a { left: -14%; top: 90vh; width: 50vw; height: 50vw; max-width: 760px; max-height: 760px; background: radial-gradient(circle, rgba(46, 140, 108, .28), transparent 66%); }
+  .ts-post__orb--b { right: -16%; top: 45%; width: 46vw; height: 46vw; max-width: 720px; max-height: 720px; background: radial-gradient(circle, rgba(74, 222, 128, .1), transparent 66%); }
+
+  /* Hero */
+  .ts-post__hero { position: relative; min-height: 94vh; min-height: 94svh; display: flex; flex-direction: column; justify-content: flex-end; overflow: hidden; }
+  .ts-post__hero-img { position: absolute; inset: 0; z-index: -2; }
+  .ts-post__hero-img img { width: 100% !important; height: 100% !important; object-fit: cover; object-position: 50% 30%; transform: scale(1.06); animation: ts-post-zoom 16s ease-out forwards; }
+  @keyframes ts-post-zoom { to { transform: scale(1); } }
+  .ts-post__hero::before { content: ""; position: absolute; inset: 0; z-index: -1; background:
+      linear-gradient(180deg, rgba(6, 6, 8, .8) 0%, rgba(6, 6, 8, .2) 30%, rgba(6, 6, 8, .55) 62%, var(--ts-bg) 100%),
+      linear-gradient(90deg, rgba(6, 6, 8, .8), transparent 70%),
+      radial-gradient(70% 55% at 15% 100%, rgba(46, 140, 108, .45), transparent 70%); }
+  .ts-post__hero-inner { padding-top: clamp(7.5rem, 13vw, 10rem); padding-bottom: clamp(2.5rem, 5vw, 4rem); }
+  .ts-post__back { display: inline-flex; align-items: center; gap: .6rem; color: rgba(246, 250, 247, .85); transition: color .3s, gap .4s var(--ts-ease-out); }
+  .ts-post__back:hover { color: var(--ts-mint); gap: .9rem; }
+  .ts .ts-post__tags { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: clamp(5rem, 22vh, 14rem); }
+  .ts .ts-post__tags li { padding: 7px 12px; border-radius: 999px; border: 1px solid rgba(255, 255, 255, .18); background: rgba(6, 6, 8, .45); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); color: var(--ts-text); font-size: 10.5px; }
+  .ts .ts-post__title { margin-top: 1.5rem; max-width: 15ch; font-family: var(--ts-font-display); font-weight: 800; font-size: clamp(2.3rem, 6.4vw, 6.6rem); line-height: .95; letter-spacing: -0.035em; }
+  .ts .ts-post__sub { margin-top: 1.25rem; font-family: var(--ts-font-display); font-weight: 700; font-size: clamp(1.25rem, 2.6vw, 2.2rem); line-height: 1.1; letter-spacing: -0.03em; color: transparent; -webkit-text-stroke: 1px rgba(110, 231, 183, .9); }
+
+  /* Eckdaten */
+  .ts-post__facts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border-top: 1px solid var(--ts-line); border-left: 1px solid var(--ts-line); }
+  .ts-post-fact { padding: 1.25rem; border-right: 1px solid var(--ts-line); border-bottom: 1px solid var(--ts-line); }
+  .ts .ts-post-fact__label { color: var(--ts-muted); font-size: 10.5px; }
+  .ts .ts-post-fact__value { margin-top: .5rem; font-family: var(--ts-font-display); font-weight: 800; font-size: clamp(1.4rem, 2.8vw, 2.4rem); line-height: 1.05; letter-spacing: -0.03em; }
+  .ts .ts-post-fact__value s { text-decoration-color: var(--ts-mint); text-decoration-thickness: 2px; color: var(--ts-muted); }
+
+  /* Kapitel */
+  .ts-post__intro { padding-top: clamp(4rem, 8vw, 7rem); }
+  .ts .ts-post__intro-text { max-width: 46rem; font-size: clamp(18px, 1.7vw, 22px); line-height: 1.7; color: var(--ts-muted); }
+  .ts .ts-post__intro-text + .ts-post__intro-text { margin-top: 1.25rem; }
+  .ts-post strong { color: var(--ts-text); font-weight: 600; }
+
+  .ts-chapter { padding-top: clamp(5rem, 10vw, 8.5rem); }
+  .ts-chapter__head { display: flex; align-items: baseline; gap: 1.25rem; padding-bottom: 1.25rem; border-bottom: 1px solid var(--ts-line); }
+  .ts .ts-chapter__num { font-family: var(--ts-font-display); font-weight: 800; font-size: clamp(2.6rem, 6vw, 5rem); line-height: .8; letter-spacing: -0.04em; color: transparent; -webkit-text-stroke: 1px rgba(110, 231, 183, .7); }
+  .ts .ts-chapter__title { font-family: var(--ts-font-display); font-weight: 800; font-size: clamp(1.6rem, 3.6vw, 3.2rem); line-height: 1; letter-spacing: -0.03em; }
+  .ts-chapter__grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: 1.5rem; row-gap: 2.5rem; padding-top: clamp(2rem, 4vw, 3.5rem); }
+  .ts-chapter__text, .ts-chapter__media { grid-column: 1 / -1; }
+  .ts .ts-chapter__text > p:not(.ts-post__outro-big) { font-size: 17px; line-height: 1.8; color: var(--ts-muted); }
+  .ts .ts-chapter__text > p + p, .ts .ts-chapter__text > p + div, .ts .ts-chapter__text > div + p { margin-top: 1.35rem; }
+
+  .ts-post__quote { margin: 2rem 0 0 !important; padding: 1.75rem 1.75rem 1.75rem 2rem; border-radius: 22px; position: relative; }
+  .ts-post__quote::before { content: "“"; position: absolute; left: 1.25rem; top: -.15em; font-family: var(--ts-font-display); font-size: 6rem; line-height: 1; color: rgba(110, 231, 183, .35); }
+  .ts .ts-post__quote blockquote { margin: 0; padding: 0; border: 0; position: relative; font-family: var(--ts-font-display); font-weight: 700; font-size: clamp(1.35rem, 2.4vw, 2rem); line-height: 1.2; letter-spacing: -0.02em; color: var(--ts-text); white-space: normal; }
+  .ts .ts-post__quote figcaption { margin-top: 1rem; color: var(--ts-mint); }
+
+  .ts .ts-post__highlight { display: inline; padding: .05em .3em; border-radius: 6px; background: rgba(29, 77, 63, .55); color: var(--ts-mint); font-weight: 600; }
+
+  /* Bilder */
+  .ts-shot { position: relative; display: block; margin: 0; border-radius: 20px; overflow: hidden; background: var(--ts-bg-2); cursor: zoom-in; }
+  .ts-shot img { display: block; width: 100% !important; height: 100% !important; object-fit: cover; transition: transform 1.1s var(--ts-ease-out), filter .6s; }
+  .ts-shot:hover img { transform: scale(1.05); }
+  .ts-shot::after { content: ""; position: absolute; inset: 0; border-radius: inherit; box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .07); pointer-events: none; }
+  .ts .ts-shot figcaption { position: absolute; left: .9rem; bottom: .8rem; z-index: 1; padding: 5px 10px; border-radius: 999px; background: rgba(6, 6, 8, .6); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); color: rgba(246, 250, 247, .85); font-size: 9.5px; }
+  .ts-shot--tall { aspect-ratio: 4 / 5; }
+  .ts-shot--wide { aspect-ratio: 4 / 3; }
+  .ts-shot--slant { clip-path: polygon(8% 0, 100% 0, 92% 100%, 0 100%); border-radius: 0; }
+  .ts-shot--soft { border-radius: 42% 58% 48% 52% / 22% 26% 74% 78%; }
+  .ts-gallery { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .75rem; margin-top: clamp(1.5rem, 3vw, 2.5rem); }
+  .ts-gallery .ts-shot { aspect-ratio: 3 / 4; }
+  .ts-gallery--3 .ts-shot:first-child { grid-column: 1 / -1; aspect-ratio: 16 / 10; }
+
+  /* Zwischenzeiten */
+  .ts-splits { margin-top: 2rem; border-radius: 22px; padding: 1.5rem; }
+  .ts-splits__head { display: flex; justify-content: space-between; gap: 1rem; color: var(--ts-mint); }
+  .ts .ts-splits__list { margin-top: 1.25rem; }
+  .ts .ts-split { display: grid; grid-template-columns: 4.2rem 1fr auto; align-items: center; gap: 1rem; padding: .7rem 0; border-top: 1px solid var(--ts-line); }
+  .ts .ts-split__km { color: var(--ts-muted); font-size: 10.5px; }
+  .ts-split__bar { position: relative; height: 6px; border-radius: 999px; background: rgba(255, 255, 255, .06); overflow: hidden; }
+  .ts-split__bar i { position: absolute; left: 0; top: 0; bottom: 0; width: 0; border-radius: inherit; background: linear-gradient(90deg, var(--ts-green-glow), var(--ts-leaf)); transition: width 1.4s var(--ts-ease-out); }
+  .is-in .ts-split__bar i { width: var(--w); }
+  .ts .ts-split__time { font-family: var(--ts-font-display); font-weight: 700; font-size: 16px; letter-spacing: -0.02em; text-align: right; white-space: nowrap; }
+  .ts-split__time small { display: block; font-family: var(--ts-font-mono); font-weight: 400; font-size: 10px; letter-spacing: .12em; color: var(--ts-mint); }
+
+  /* Puls */
+  .ts-pulse-meter { margin-top: 2rem; border-radius: 22px; padding: 1.5rem; }
+  .ts-pulse-meter__scale { position: relative; height: 12px; margin-top: 2.6rem; border-radius: 999px; background: linear-gradient(90deg, rgba(46, 140, 108, .5) 0%, rgba(74, 222, 128, .8) 66%, #d9f99d 83%, #fde68a 100%); }
+  .ts-pulse-meter__mark { position: absolute; top: 50%; width: 2px; height: 26px; transform: translate(-50%, -50%); background: var(--ts-text); }
+  .ts .ts-pulse-meter__mark span { position: absolute; bottom: calc(100% + 6px); left: 50%; transform: translateX(-50%); white-space: nowrap; font-size: 10px; color: var(--ts-text); }
+  .ts .ts-pulse-meter__mark--below span { bottom: auto; top: calc(100% + 6px); }
+  .ts-pulse-meter__dot { position: absolute; top: 50%; left: 85%; width: 20px; height: 20px; border-radius: 50%; transform: translate(-50%, -50%); background: var(--ts-text); box-shadow: 0 0 0 6px rgba(246, 250, 247, .15), 0 0 24px rgba(246, 250, 247, .7); animation: ts-heart 1s ease-in-out infinite; }
+  @keyframes ts-heart { 0%, 100% { transform: translate(-50%, -50%) scale(1); } 15% { transform: translate(-50%, -50%) scale(1.25); } 30% { transform: translate(-50%, -50%) scale(1); } 45% { transform: translate(-50%, -50%) scale(1.15); } }
+  .ts .ts-pulse-meter__legend { display: flex; justify-content: space-between; margin-top: 2.4rem; color: var(--ts-muted); }
+
+  /* Zielzeit */
+  .ts-finish { margin-top: 2rem; border-radius: 26px; padding: 1.75rem; text-align: left; background: radial-gradient(120% 120% at 0% 0%, rgba(46, 140, 108, .45), rgba(12, 17, 15, .6) 60%); border: 1px solid rgba(110, 231, 183, .25); }
+  .ts .ts-finish__time { margin-top: .5rem; font-family: var(--ts-font-display); font-weight: 800; font-size: clamp(3rem, 8vw, 6rem); line-height: .9; letter-spacing: -0.04em; }
+  .ts .ts-finish__note { margin-top: .75rem; font-family: var(--ts-font-display); font-weight: 700; font-size: clamp(1.1rem, 2vw, 1.5rem); color: var(--ts-mint); }
+  .ts .ts-finish__list { display: flex; flex-wrap: wrap; gap: .5rem 1.5rem; margin-top: 1.25rem; color: var(--ts-muted); }
+  .ts-finish__list s { text-decoration-color: var(--ts-mint); }
+
+  /* Fazit */
+  .ts-post__outro { padding-top: clamp(5rem, 10vw, 8.5rem); padding-bottom: clamp(6rem, 11vw, 10rem); }
+  .ts .ts-post__outro-big { font-family: var(--ts-font-display); font-weight: 800; font-size: clamp(2rem, 5vw, 4.6rem); line-height: 1; letter-spacing: -0.035em; }
+  .ts-post__outro-big em { font-style: normal; color: var(--ts-mint); }
+  .ts-post__nav { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: clamp(2.5rem, 5vw, 3.5rem); }
+
+  /* Lightbox */
+  .ts-lightbox { position: fixed; inset: 0; z-index: 9500; display: grid; place-items: center; padding: 4vh 4vw; background: rgba(6, 6, 8, .92); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); opacity: 0; visibility: hidden; transition: opacity .4s, visibility 0s linear .4s; cursor: zoom-out; }
+  .ts-lightbox.is-open { opacity: 1; visibility: visible; transition: opacity .4s; }
+  .ts-lightbox img { max-width: 100%; max-height: 86vh; width: auto !important; height: auto !important; border-radius: 14px; box-shadow: 0 40px 120px -30px rgba(0, 0, 0, .9); transform: scale(.96); transition: transform .5s var(--ts-ease-out); }
+  .ts-lightbox.is-open img { transform: none; }
+  .ts-lightbox__close { position: absolute; right: 1.25rem; top: 1.25rem; width: 48px; height: 48px; border-radius: 50%; border: 1px solid var(--ts-line-strong); background: rgba(13, 17, 15, .7); color: var(--ts-text); font-size: 22px; line-height: 1; cursor: pointer; }
+  .ts .ts-lightbox__cap { position: absolute; left: 50%; bottom: 1.5rem; transform: translateX(-50%); color: var(--ts-muted); }
+
+  @media (min-width: 640px) {
+    .ts-post__facts { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .ts-post-fact { padding: 1.5rem; }
+    .ts-gallery { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .ts-gallery--3 .ts-shot:first-child { grid-column: auto; aspect-ratio: 3 / 4; }
+    .ts-gallery--4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .ts-splits, .ts-pulse-meter { padding: 1.75rem 2rem; }
+    .ts-finish { padding: 2.25rem 2.5rem; }
+  }
+  @media (min-width: 1024px) {
+    .ts-chapter__text { grid-column: 1 / span 6; }
+    .ts-chapter__media { grid-column: 8 / span 5; align-self: start; position: sticky; top: 110px; }
+    .ts-chapter--flip .ts-chapter__text { grid-column: 7 / span 6; grid-row: 1; }
+    .ts-chapter--flip .ts-chapter__media { grid-column: 1 / span 5; grid-row: 1; }
+    .ts .ts-chapter__text > p:not(.ts-post__outro-big) { font-size: 18px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .ts-post__hero-img img, .ts-pulse-meter__dot { animation: none; transform: none; }
+    .ts-pulse-meter__dot { transform: translate(-50%, -50%); }
+  }
+</style>
+
+<article class="ts ts-post ts-bleed">
+  <div class="ts-post__orb ts-post__orb--a" aria-hidden="true"></div>
+  <div class="ts-post__orb ts-post__orb--b" aria-hidden="true"></div>
+
+  <!-- ============ HERO ============ -->
+  <header class="ts-post__hero">
+    <div class="ts-post__hero-img" aria-hidden="true">
+      <img src="https://images.squarespace-cdn.com/content/v1/6869717aa7c996116c8c8a56/4b6f0667-0b2c-47d7-8321-2e51110bc466/IMG_7046.JPG?format=1500w" alt="">
+    </div>
+    <div class="ts-container ts-post__hero-inner">
+      <a href="/running" class="ts-post__back ts-label">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>Alle Laufgeschichten
+      </a>
+      <ul class="ts-post__tags" aria-label="Kategorien">
+        <li class="ts-label">Halbmarathon</li>
+        <li class="ts-label">Laufevent</li>
+        <li class="ts-label">Hella Half Marathon</li>
+        <li class="ts-label">29. Juni 2025</li>
+      </ul>
+      <h1 class="ts-post__title" data-ts-fit>
+        <span class="ts-line"><span style="transition-delay:.1s">Mein Hella Half</span></span>
+        <span class="ts-line"><span class="ts-gradient-text" style="transition-delay:.22s">Marathon 2025</span></span>
+      </h1>
+      <p class="ts-post__sub">Party, Kampf &amp; großes Herz</p>
+    </div>
+  </header>
+
+  <!-- ============ ECKDATEN ============ -->
+  <div class="ts-container">
+    <div class="ts-post__facts ts-reveal">
+      <div class="ts-post-fact"><p class="ts-label ts-post-fact__label">Datum</p><p class="ts-post-fact__value" data-ts-fit>29.06.2025</p></div>
+      <div class="ts-post-fact"><p class="ts-label ts-post-fact__label">Distanz</p><p class="ts-post-fact__value" data-ts-fit>21,1 km</p></div>
+      <div class="ts-post-fact"><p class="ts-label ts-post-fact__label">Zielzeit</p><p class="ts-post-fact__value" data-ts-fit>1:31:49</p></div>
+      <div class="ts-post-fact"><p class="ts-label ts-post-fact__label">Ziel</p><p class="ts-post-fact__value" data-ts-fit><s>SUB90</s> okay</p></div>
+    </div>
+  </div>
+
+  <!-- ============ EINLEITUNG ============ -->
+  <section class="ts-container ts-post__intro">
+    <p class="ts-post__intro-text ts-reveal">Der diesjährige <strong>Hella Half Marathon</strong> fand am <strong>29. Juni 2025</strong> statt. Mein großes Ziel war eigentlich klar: <strong>SUB90</strong>. Dieses Ziel habe ich zwar immer noch nicht geknackt, aber das war auch kein Muss.</p>
+    <p class="ts-post__intro-text ts-reveal">Der Hella Halbmarathon ist dafür bekannt, oft bei höheren Temperaturen stattzufinden – so auch in diesem Jahr. Zwar waren es „nur“ <strong>22 Grad</strong> zum Start, aber die Luft fühlte sich irgendwie schwer und eigenartig an. Das sollte noch spannend werden.</p>
+  </section>
+
+  <!-- ============ 01 MORGENROUTINE ============ -->
+  <section class="ts-container ts-chapter" aria-labelledby="ts-ch1">
+    <div class="ts-chapter__head ts-reveal">
+      <span class="ts-chapter__num" aria-hidden="true">01</span>
+      <h2 id="ts-ch1" class="ts-chapter__title" data-ts-fit>Race Day Morgenroutine &amp; kleine große Liebe</h2>
+    </div>
+    <div class="ts-chapter__grid">
+      <div class="ts-chapter__text">
+        <p class="ts-reveal">Der Tag begann früh: <strong>5:30 Uhr aufstehen</strong>, so wie immer, wenn Race Day ist. Ich stehe grundsätzlich <strong>3 Stunden und 30 Minuten vor dem Start</strong> auf, damit ich entspannt frühstücken kann: Kefir, Haferflocken, Proteinpulver und Nüsse. Danach eine warme Dusche und ein bisschen Körperpflege.</p>
+        <p class="ts-reveal">Meistens wacht dann auch schon meine kleine Tochter auf. Sie merkt genau, dass etwas Besonderes ansteht. Dann holt sie Papas Sachen und ihre eigenen raus, wir ziehen uns zusammen an, putzen die Zähne – und dann heißt es langsam <strong>„Tschüss“</strong> sagen. Ein Kuss und dieser wichtige Satz:</p>
+        <figure class="ts-post__quote ts-glass ts-reveal">
+          <blockquote>Papa ist immer bei dir – wie du bei mir. Im Herzen und im Kopf.</blockquote>
+          <figcaption class="ts-label">— Race-Day-Ritual</figcaption>
+        </figure>
+      </div>
+      <div class="ts-chapter__media ts-reveal">
+        <figure class="ts-shot ts-shot--tall" data-ts-zoom="https://images.squarespace-cdn.com/content/v1/6869717aa7c996116c8c8a56/d623b49c-c8a7-4ba5-b7d0-22bdc01cefe8/IMG_6978.PNG?format=1500w">
+          <img src="https://images.squarespace-cdn.com/content/v1/6869717aa7c996116c8c8a56/d623b49c-c8a7-4ba5-b7d0-22bdc01cefe8/IMG_6978.PNG?format=1000w" alt="Selfie mit Startnummer 7272" loading="lazy">
+        </figure>
+      </div>
+    </div>
+    <div class="ts-gallery ts-gallery--2 ts-reveal" style="grid-template-columns:repeat(2,minmax(0,1fr))">
+      <figure class="ts-shot" data-ts-zoom="https://images.squarespace-cdn.com/content/v1/6869717aa7c996116c8c8a56/d1a4324d-77f1-4fd0-b682-dbab4301fb06/IMG_6990.PNG?format=1500w">
+        <img src="https://images.squarespace-cdn.com/content/v1/6869717aa7c996116c8c8a56/d1a4324d-77f1-4fd0-b682-dbab4301fb06/IMG_6990.PNG?format=750w" alt="Laufoutfit mit Startnummer, Gels und Schuhen auf dem Rasen" loading="lazy">
+      </figure>
+      <figure class="ts-shot" data-ts-zoom="https://images.squarespace-cdn.com/content/v1/6869717aa7c996116c8c8a56/9847f06f-bc24-4596-a2ee-73fae465d9ce/IMG_6999.PNG?format=1500w">
+        <img src="https://images.squarespace-cdn.com/content/v1/6869717aa7c996116c8c8a56/9847f06f-bc24-4596-a2ee-73fae465d9ce/IMG_6999.PNG?format=750w" alt="Spiegel-Selfie vor dem Aufbruch" loading="lazy">
+      </figure>
+    </div>
+  </section>
+
+  <!-- ============ 02 ADIDAS RUNNERS ============ -->
+  <section class="ts-container ts-chapter ts-chapter--flip" aria-labelledby="ts-ch2">
+    <div class="ts-chapter__head ts-reveal">
+      <span class="ts-chapter__num" aria-hidden="true">02</span>
+      <h2 id="ts-ch2" class="ts-chapter__title" data-ts-fit>Adidas Runners, Community &amp; Start</h2>
+    </div>
+    <div class="ts-chapter__grid">
+      <div class="ts-chapter__text">
+        <p class="ts-reveal">Danach ging's mit der Bahn zum <strong>Adidas Runners Hub</strong>, wo schon alle heiß waren auf das Event. Es ist immer wieder wunderschön zu sehen, wie viele dieselbe Leidenschaft teilen. Ganz bewusst hatte ich mein Shirt mit dem Aufdruck <span class="ts-post__highlight">„Every Pace has a Place“</span> gewählt. Wir alle lieben das Laufen, aber wir sind total unterschiedlich – und genau das ist das Wundervolle daran!</p>
+        <p class="ts-reveal">Wir haben gequatscht, gelacht und unsere Ziele geteilt: PB jagen, einfach Spaß haben oder als Pacemaker unterstützen. Jeder hatte seine eigene Motivation, warum er heute auf dieser Party war.</p>
+      </div>
+      <div class="ts-chapter__media ts-reveal">
+        <figure class="ts-shot ts-shot--soft ts-shot--wide" data-ts-zoom="https://images.squarespace-cdn.com/content/v1/6869717aa7c996116c8c8a56/0506fddb-6550-4c4b-a94f-07fbc943b162/by+pascal+lieleg?format=1500w" data-ts-credit="by Pascal Lieleg">
+          <img src="https://images.squarespace-cdn.com/content/v1/6869717aa7c996116c8c8a56/0506fddb-6550-4c4b-a94f-07fbc943b162/by+pascal+lieleg?format=1000w" alt="Adidas Runners Hub Hamburg vor dem Start" loading="lazy">
+        </figure>
+      </div>
+    </div>
+    <div class="ts-gallery ts-gallery--3 ts-reveal">
+      <figure class="ts-shot" data-ts-zoom="https://images.squarespace-cdn.com/content/v1/6869717aa7c996116c8c8a56/fa3e09a2-9f66-401f-885d-49bb33ae08fc/IMG_7080.JPG?format=1500w" data-ts-credit="by Pascal Lieleg">
+        <img src="https://images.squarespace-cdn.com/content/v1/6869717aa7c996116c8c8a56/fa3e09a2-9f66-401f-885d-49bb33ae08fc/IMG_7080.JPG?format=750w" alt="Läuferinnen und Läufer vor dem Adidas Runners Hub" loading="lazy">
+        <figcaption class="ts-label">by Pascal Lieleg</figcaption>
+      </figure>
+      <figure class="ts-shot" data-ts-zoom="https://images.squarespace-cdn.com/content/v1/6869717aa7c996116c8c8a56/f7f88455-529b-480e-8ddf-353ea048ab93/IMG_7367.JPG?format=1500w" data-ts-credit="by Pascal Lieleg">
+        <img src="https://images.squarespace-cdn.com/content/v1/6869717aa7c996116c8c8a56/f7f88455-529b-480e-8ddf-353ea048ab93/IMG_7367.JPG?format=750w" alt="Gruppenfoto der Adidas Runners Hamburg auf der Straße" loading="lazy">
+        <figcaption class="ts-label">by Pascal Lieleg</figcaption>
+      </figure>
+      <figure class="ts-shot" data-ts-zoom="https://images.squarespace-cdn.com/content/v1/6869717aa7c996116c8c8a56/e62488e8-347c-47d6-96b6-55f693e3899b/IMG_7391.JPG?format=1500w" data-ts-credit="by Pascal Lieleg">
+        <img src="https://images.squarespace-cdn.com/content/v1/6869717aa7c996116c8c8a56/e62488e8-347c-47d6-96b6-55f693e3899b/IMG_7391.JPG?format=750w" alt="Adidas-Runners-Hamburg-Shirt im Detail" loading="lazy">
+        <figcaption class="ts-label">by Pascal Lieleg</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ============ 03 DAS RENNEN ============ -->
+  <section class="ts-container ts-chapter" aria-labelledby="ts-ch3">
+    <div class="ts-chapter__head ts-reveal">
+      <span class="ts-chapter__num" aria-hidden="true">03</span>
+      <h2 id="ts-ch3" class="ts-chapter__title" data-ts-fit>Das Rennen: Kopf, Körper &amp; Community</h2>
+    </div>
+    <div class="ts-chapter__grid">
+      <div class="ts-chapter__text">
+        <p class="ts-reveal"><strong>9 Uhr Startschuss.</strong> Von Anfang an war mein Kopf bei <strong>100 %</strong>, aber der Körper kam irgendwie nicht so richtig in den Tunnel, was für mich sehr ungewohnt war. Trotzdem lag ich nach den ersten 5 Kilometern bei <strong>20:50 Minuten (4:09 min/km)</strong>.</p>
+        <p class="ts-reveal">Die nächsten 5 Kilometer änderten daran leider wenig. In der Sonne fühlten sich die <strong>22 Grad eher wie 35</strong> an, Schatten war rar. Dann kam endlich der Wallringtunnel – die Hälfte war geschafft und mein Kopf wollte immer noch nicht nach Hause, sondern noch ein wenig tanzen. Nach <strong>10 km stand die Uhr bei 41:49 (4:11 min/km)</strong>, also immer noch alles voll im Soll.</p>
+        <p class="ts-reveal">Die Stimmung an der Strecke war wie immer Weltklasse. Sie gibt Power, auch wenn der Körper schon richtig kämpfen muss. Überall sah man Mitläufer, die langsamer wurden oder sogar am Boden lagen. Da bin ich jedes Mal dankbar für meine <strong>Garmin-Uhr und den Pulsgurt</strong>, die mir helfen, meinen Körper zu lesen.</p>
+        <p class="ts-reveal">Ich weiß genau: <strong>Bis Puls 190 läuft alles</strong>, ab <strong>200</strong> wird's kritisch. Und so kam es bei Kilometer <strong>14</strong> dann auch (die Wand) – Puls <strong>201</strong>, der Körper rief <strong>„Stopp!“</strong>.</p>
+        <div class="ts-pulse-meter ts-glass ts-reveal" role="img" aria-label="Pulsskala: bis 190 läuft alles, ab 200 kritisch, bei Kilometer 14 Puls 201">
+          <p class="ts-label" style="display:flex;justify-content:space-between;gap:1rem;color:var(--ts-mint)"><span>Puls bei km 14</span><span>201 bpm</span></p>
+          <div class="ts-pulse-meter__scale">
+            <span class="ts-pulse-meter__mark" style="left:66.6%"><span class="ts-label">190 · alles gut</span></span>
+            <span class="ts-pulse-meter__mark ts-pulse-meter__mark--below" style="left:83.3%"><span class="ts-label">200 · kritisch</span></span>
+            <span class="ts-pulse-meter__dot" style="left:85%"></span>
+          </div>
+          <p class="ts-label ts-pulse-meter__legend" style="font-size:10px"><span>150</span><span>210</span></p>
+        </div>
+        <p class="ts-reveal">Ich trank etwas, wurde langsamer und überlegte schon im Kopf – aufhören? Doch dann kamen zwei andere Adidas Runners, sahen mich gehen, riefen mir zu: <strong>Go Trutz!</strong>, lachend kam von mir ein liebevolles <strong>„Arschl*cher“</strong> hinterher – doch deren Ruf reichte. <span class="ts-post__highlight">Aufgeben war keine Option.</span></p>
+      </div>
+      <div class="ts-chapter__media ts-reveal">
+        <div class="ts-splits ts-glass ts-reveal">
+          <p class="ts-label ts-splits__head"><span>Zwischenzeiten</span><span>min/km</span></p>
+          <ol class="ts-splits__list" style="list-style:none;padding:0">
+            <li class="ts-split"><span class="ts-label ts-split__km">5 km</span><span class="ts-split__bar"><i style="--w:23.7%"></i></span><span class="ts-split__time">20:50<small>4:09</small></span></li>
+            <li class="ts-split"><span class="ts-label ts-split__km">10 km</span><span class="ts-split__bar"><i style="--w:47.4%"></i></span><span class="ts-split__time">41:49<small>4:11</small></span></li>
+            <li class="ts-split"><span class="ts-label ts-split__km">15 km</span><span class="ts-split__bar"><i style="--w:71.1%"></i></span><span class="ts-split__time">1:03:43<small>4:23</small></span></li>
+            <li class="ts-split"><span class="ts-label ts-split__km">20 km</span><span class="ts-split__bar"><i style="--w:94.8%"></i></span><span class="ts-split__time">1:26:43<small>4:35</small></span></li>
+            <li class="ts-split"><span class="ts-label ts-split__km">Ziel</span><span class="ts-split__bar"><i style="--w:100%"></i></span><span class="ts-split__time">1:31:49<small>21,1 km</small></span></li>
+          </ol>
+        </div>
+      </div>
+    </div>
+    <div class="ts-gallery ts-gallery--3 ts-reveal">
+      <figure class="ts-shot" data-ts-zoom="https://images.squarespace-cdn.com/content/v1/6869717aa7c996116c8c8a56/84d4dcb5-0836-48db-88cb-23e0e704cacc/IMG_7423.JPG?format=1500w" data-ts-credit="by Pascal Lieleg">
+        <img src="https://images.squarespace-cdn.com/content/v1/6869717aa7c996116c8c8a56/84d4dcb5-0836-48db-88cb-23e0e704cacc/IMG_7423.JPG?format=750w" alt="Läuferfeld im Park" loading="lazy">
+        <figcaption class="ts-label">by Pascal Lieleg</figcaption>
+      </figure>
+      <figure class="ts-shot" data-ts-zoom="https://images.squarespace-cdn.com/content/v1/6869717aa7c996116c8c8a56/f72440a5-1948-41d8-84dd-05fe1013c48b/IMG_7549.PNG?format=1500w">
+        <img src="https://images.squarespace-cdn.com/content/v1/6869717aa7c996116c8c8a56/f72440a5-1948-41d8-84dd-05fe1013c48b/IMG_7549.PNG?format=750w" alt="Trutz auf der Strecke" loading="lazy">
+      </figure>
+      <figure class="ts-shot" data-ts-zoom="https://images.squarespace-cdn.com/content/v1/6869717aa7c996116c8c8a56/05f1d7d3-43db-4d8d-a2a9-df42bc5cfe00/IMG_7400.JPG?format=1500w" data-ts-credit="by Pascal Lieleg">
+        <img src="https://images.squarespace-cdn.com/content/v1/6869717aa7c996116c8c8a56/05f1d7d3-43db-4d8d-a2a9-df42bc5cfe00/IMG_7400.JPG?format=750w" alt="Läuferfeld auf der Brücke" loading="lazy">
+        <figcaption class="ts-label">by Pascal Lieleg</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ============ 04 KOPF ÜBERNIMMT ============ -->
+  <section class="ts-container ts-chapter ts-chapter--flip" aria-labelledby="ts-ch4">
+    <div class="ts-chapter__head ts-reveal">
+      <span class="ts-chapter__num" aria-hidden="true">04</span>
+      <h2 id="ts-ch4" class="ts-chapter__title" data-ts-fit>Kopf übernimmt &amp; Ziele neu sortieren</h2>
+    </div>
+    <div class="ts-chapter__grid">
+      <div class="ts-chapter__text">
+        <p class="ts-reveal">Also ging's weiter: Puls zwischen <strong>190 und 195</strong>, bei <strong>15 km 1:03:43</strong>, die letzten 5 km dann in <strong>4:23 min/km</strong>. Klar war: <strong>SUB90 wird das heute nicht</strong> – und das war okay.</p>
+        <p class="ts-reveal">Ab hier lief nur noch der Kopf, der Körper hatte längst abgeschlossen. Hauptsache gesund ins Ziel und eine neue persönliche Hella-Bestzeit – das war das Ziel.</p>
+        <p class="ts-reveal">Die nächsten 5 Kilometer zogen sich, fühlten sich langsamer an als sie waren, denn tatsächlich lief ich immer noch <strong>4:35 min/km</strong>. Bei <strong>20 km stand die Uhr bei 1:26:43</strong>. Die Stimmung war weiterhin mega, der Adidas Runners Cheering Point haben nochmal richtig getragen und ein Lächeln auf mein Gesicht gezaubert.</p>
+        <p class="ts-reveal">Kurz kam noch die verrückte Idee, alles reinzulegen, doch die letzten kleinen Steigungen und mein Körper haben schnell klar gemacht: <span class="ts-post__highlight">„Du bist schon bei 100 %.“</span></p>
+      </div>
+      <div class="ts-chapter__media ts-reveal">
+        <figure class="ts-shot ts-shot--soft ts-shot--tall" data-ts-zoom="https://images.squarespace-cdn.com/content/v1/6869717aa7c996116c8c8a56/5275d4f4-85d1-4894-a70f-ea7d9dc7baeb/IMG_7540.PNG?format=1500w">
+          <img src="https://images.squarespace-cdn.com/content/v1/6869717aa7c996116c8c8a56/5275d4f4-85d1-4894-a70f-ea7d9dc7baeb/IMG_7540.PNG?format=1000w" alt="Trutz mit Startnummer 7272 in einer Gruppe von Läufern" loading="lazy">
+        </figure>
+      </div>
+    </div>
+    <div class="ts-gallery ts-gallery--4 ts-reveal">
+      <figure class="ts-shot" data-ts-zoom="https://images.squarespace-cdn.com/content/v1/6869717aa7c996116c8c8a56/c99bb824-5f2a-45d9-8cfa-acaae20c0fad/IMG_7142.JPG?format=1500w" data-ts-credit="by Pascal Lieleg">
+        <img src="https://images.squarespace-cdn.com/content/v1/6869717aa7c996116c8c8a56/c99bb824-5f2a-45d9-8cfa-acaae20c0fad/IMG_7142.JPG?format=750w" alt="Läufer über dem Adidas-Runners-Logo auf der Straße" loading="lazy">
+        <figcaption class="ts-label">by Pascal Lieleg</figcaption>
+      </figure>
+      <figure class="ts-shot" data-ts-zoom="https://images.squarespace-cdn.com/content/v1/6869717aa7c996116c8c8a56/c83b0c5a-27f0-4d03-9077-b6e13ba9b413/IMG_7072.JPG?format=1500w" data-ts-credit="by Pascal Lieleg">
+        <img src="https://images.squarespace-cdn.com/content/v1/6869717aa7c996116c8c8a56/c83b0c5a-27f0-4d03-9077-b6e13ba9b413/IMG_7072.JPG?format=750w" alt="Anfeuern am Adidas Runners Cheering Point" loading="lazy">
+        <figcaption class="ts-label">by Pascal Lieleg</figcaption>
+      </figure>
+      <figure class="ts-shot" data-ts-zoom="https://images.squarespace-cdn.com/content/v1/6869717aa7c996116c8c8a56/e4c08d0b-fabc-49cb-ab7c-d2a586a67000/IMG_7113.JPG?format=1500w" data-ts-credit="by Pascal Lieleg">
+        <img src="https://images.squarespace-cdn.com/content/v1/6869717aa7c996116c8c8a56/e4c08d0b-fabc-49cb-ab7c-d2a586a67000/IMG_7113.JPG?format=750w" alt="Zuschauer an der Strecke" loading="lazy">
+        <figcaption class="ts-label">by Pascal Lieleg</figcaption>
+      </figure>
+      <figure class="ts-shot" data-ts-zoom="https://images.squarespace-cdn.com/content/v1/6869717aa7c996116c8c8a56/5c1afcf0-a35c-48e1-8f66-cf9653fe9469/IMG_7347.JPG?format=1500w" data-ts-credit="by Pascal Lieleg">
+        <img src="https://images.squarespace-cdn.com/content/v1/6869717aa7c996116c8c8a56/5c1afcf0-a35c-48e1-8f66-cf9653fe9469/IMG_7347.JPG?format=750w" alt="Läufer in Bewegung, verwischt" loading="lazy">
+        <figcaption class="ts-label">by Pascal Lieleg</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ============ 05 FINISHLINE ============ -->
+  <section class="ts-container ts-chapter" aria-labelledby="ts-ch5">
+    <div class="ts-chapter__head ts-reveal">
+      <span class="ts-chapter__num" aria-hidden="true">05</span>
+      <h2 id="ts-ch5" class="ts-chapter__title" data-ts-fit>Finishline, Franzbrötchen &amp; kleine Heldin</h2>
+    </div>
+    <div class="ts-chapter__grid">
+      <div class="ts-chapter__text">
+        <p class="ts-reveal">Dann die Ziellinie: Meine Garmin zeigte <strong>1:31:50</strong>. Kein SUB90, aber erst mal egal – Franzbrötchen, Wasser und Medaille abholen.</p>
+        <p class="ts-reveal">Kleiner Dämpfer dann bei der Gravur: Dort wurde <strong>1:32:20</strong> eingraviert – die Bruttozeit. Also nochmal zurück und die richtige Gravur geholt:</p>
+        <div class="ts-finish ts-reveal">
+          <p class="ts-label" style="color:var(--ts-mint)">Offizielle Zielzeit</p>
+          <p class="ts-finish__time" data-ts-fit>1:31:49</p>
+          <p class="ts-finish__note">Unter 1:32! Total stolz.</p>
+          <p class="ts-label ts-finish__list"><span>Garmin 1:31:50</span><span><s>Gravur 1:32:20</s> brutto</span></p>
+        </div>
+        <p class="ts-reveal">Mit meiner persönlichen Geschichte im Rücken überhaupt so laufen zu können, ist für mich ein riesiges Geschenk. Danke an alle, die mich dabei unterstützen, besonders an die <strong>Adidas Runners Hamburg &amp; die Familie</strong>, danach noch bis <strong>15 Uhr</strong> gequatscht und das Leben gefeiert haben.</p>
+        <p class="ts-reveal">Dann ging's heim, wo mein kleiner Schatz schon wartete. Sie nahm mich in den Arm, hängte sich voller Stolz die Medaille selbst um – und dann mir. <span class="ts-post__highlight">Ein Moment, der mehr zählt als jede Zeit.</span></p>
+      </div>
+      <div class="ts-chapter__media ts-reveal">
+        <figure class="ts-shot ts-shot--soft ts-shot--tall" data-ts-zoom="https://images.squarespace-cdn.com/content/v1/6869717aa7c996116c8c8a56/59083b12-9389-497a-a477-2d40e49c692e/IMG_7612.PNG?format=1500w">
+          <img src="https://images.squarespace-cdn.com/content/v1/6869717aa7c996116c8c8a56/59083b12-9389-497a-a477-2d40e49c692e/IMG_7612.PNG?format=1000w" alt="Trutz mit Startnummer 7272 auf der Zielgeraden" loading="lazy">
+        </figure>
+      </div>
+    </div>
+    <div class="ts-gallery ts-gallery--4 ts-reveal">
+      <figure class="ts-shot" data-ts-zoom="https://images.squarespace-cdn.com/content/v1/6869717aa7c996116c8c8a56/7a5daca3-43b9-4970-aed0-8ed1149d06c3/IMG_7313.jpg?format=1500w" data-ts-credit="by Pascal Lieleg">
+        <img src="https://images.squarespace-cdn.com/content/v1/6869717aa7c996116c8c8a56/7a5daca3-43b9-4970-aed0-8ed1149d06c3/IMG_7313.jpg?format=750w" alt="Feiern mit den Adidas Runners nach dem Rennen" loading="lazy">
+        <figcaption class="ts-label">by Pascal Lieleg</figcaption>
+      </figure>
+      <figure class="ts-shot" data-ts-zoom="https://images.squarespace-cdn.com/content/v1/6869717aa7c996116c8c8a56/962eab18-2e44-47fc-bd31-77b326c02044/IMG_7264.JPG?format=1500w" data-ts-credit="by Pascal Lieleg">
+        <img src="https://images.squarespace-cdn.com/content/v1/6869717aa7c996116c8c8a56/962eab18-2e44-47fc-bd31-77b326c02044/IMG_7264.JPG?format=750w" alt="Finisher-Medaille des Hella Half Marathon 2025" loading="lazy">
+        <figcaption class="ts-label">by Pascal Lieleg</figcaption>
+      </figure>
+      <figure class="ts-shot" data-ts-zoom="https://images.squarespace-cdn.com/content/v1/6869717aa7c996116c8c8a56/8c060c2b-97e1-4a9f-83d5-c40b06bf5437/IMG_7101.JPG?format=1500w" data-ts-credit="by Pascal Lieleg">
+        <img src="https://images.squarespace-cdn.com/content/v1/6869717aa7c996116c8c8a56/8c060c2b-97e1-4a9f-83d5-c40b06bf5437/IMG_7101.JPG?format=750w" alt="Pizza nach dem Rennen" loading="lazy">
+        <figcaption class="ts-label">by Pascal Lieleg</figcaption>
+      </figure>
+      <figure class="ts-shot" data-ts-zoom="https://images.squarespace-cdn.com/content/v1/6869717aa7c996116c8c8a56/6707864f-21ca-46a7-990e-e21b8ae51a7d/IMG_7323.JPG?format=1500w" data-ts-credit="by Pascal Lieleg">
+        <img src="https://images.squarespace-cdn.com/content/v1/6869717aa7c996116c8c8a56/6707864f-21ca-46a7-990e-e21b8ae51a7d/IMG_7323.JPG?format=750w" alt="Finisher-Beutel Hella Half Marathon, 29. Juni" loading="lazy">
+        <figcaption class="ts-label">by Pascal Lieleg</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ============ 06 WAS BLEIBT ============ -->
+  <section class="ts-container ts-chapter ts-chapter--flip ts-post__outro" aria-labelledby="ts-ch6">
+    <div class="ts-chapter__head ts-reveal">
+      <span class="ts-chapter__num" aria-hidden="true">06</span>
+      <h2 id="ts-ch6" class="ts-chapter__title" data-ts-fit>Was bleibt</h2>
+    </div>
+    <div class="ts-chapter__grid">
+      <div class="ts-chapter__text">
+        <p class="ts-post__outro-big ts-reveal">Eine Party, ein Kampf, ein großer Beweis für <em>Kopf</em> und <em>Herz</em>.</p>
+        <p class="ts-reveal">Der <strong>Hella Half Marathon 2025</strong> war für mich eine Party, ein Kampf, ein großer Beweis für <strong>Kopf</strong> und <strong>Herz</strong>. Es geht nicht immer nur um PBs – manchmal ist das größte Ziel, gesund ins Ziel zu kommen, dabei Spaß zu haben und am Ende ein Lächeln zu tragen.</p>
+        <div class="ts-post__nav ts-reveal">
+          <a href="/running" class="ts-btn ts-btn--primary ts-magnetic">
+            <span class="ts-btn__inner"><span class="ts-roll"><span data-text="Alle Laufgeschichten">Alle Laufgeschichten</span></span>
+              <svg class="ts-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </span>
+          </a>
+          <a href="/ueber-mich" class="ts-btn ts-btn--ghost ts-magnetic">
+            <span class="ts-btn__inner"><span class="ts-roll"><span data-text="Mehr über mich">Mehr über mich</span></span></span>
+          </a>
+        </div>
+      </div>
+      <div class="ts-chapter__media ts-reveal">
+        <figure class="ts-shot ts-shot--slant ts-shot--tall" data-ts-zoom="https://images.squarespace-cdn.com/content/v1/6869717aa7c996116c8c8a56/f5baa7a7-26a7-4829-9f84-e0b05d648fda/IMG_7542.PNG?format=1500w">
+          <img src="https://images.squarespace-cdn.com/content/v1/6869717aa7c996116c8c8a56/f5baa7a7-26a7-4829-9f84-e0b05d648fda/IMG_7542.PNG?format=1000w" alt="Zieleinlauf auf dem blauen Teppich" loading="lazy">
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- Lightbox -->
+  <div class="ts-lightbox" role="dialog" aria-modal="true" aria-label="Bildansicht" data-ts-lightbox>
+    <button type="button" class="ts-lightbox__close" aria-label="Bild schließen">×</button>
+    <img alt="">
+    <p class="ts-label ts-lightbox__cap"></p>
+  </div>
+</article>
+
+<script>
+(() => {
+  const box = document.querySelector('[data-ts-lightbox]');
+  if (!box) return;
+  const img = box.querySelector('img'), cap = box.querySelector('.ts-lightbox__cap');
+  let last = null;
+  const close = () => { box.classList.remove('is-open'); document.body.style.overflow = ''; if (last) last.focus(); };
+  document.querySelectorAll('[data-ts-zoom]').forEach(fig => {
+    fig.setAttribute('tabindex', '0');
+    fig.setAttribute('role', 'button');
+    fig.setAttribute('aria-label', 'Bild vergrößern: ' + (fig.querySelector('img')?.alt || ''));
+    const open = () => {
+      last = fig;
+      img.src = fig.dataset.tsZoom;
+      img.alt = fig.querySelector('img')?.alt || '';
+      cap.textContent = fig.dataset.tsCredit || '';
+      box.classList.add('is-open');
+      document.body.style.overflow = 'hidden';
+      box.querySelector('button').focus();
+    };
+    fig.addEventListener('click', open);
+    fig.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); } });
+  });
+  box.addEventListener('click', close);
+  addEventListener('keydown', e => { if (e.key === 'Escape' && box.classList.contains('is-open')) close(); });
+})();
+</script>

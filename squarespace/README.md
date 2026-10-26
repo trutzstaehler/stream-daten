@@ -10,6 +10,8 @@ Design: Dark Editorial · Hintergrund `#060608` · Nebenfarbe Markengrün `#1d4d
 | `04-startseite-neuerscheinung-codeblock.html` | Startseite → Sektion unter der Hero → **Code-Block** über die volle Rasterbreite |
 | `05-kreativhafen-codeblock.html` | Seite `/kreativhafen` → einzige Sektion → **Code-Block** über die volle Rasterbreite |
 | `06-ueber-mich-codeblock.html` | Seite `/ueber-mich` → einzige Sektion → **Code-Block** über die volle Rasterbreite |
+| `07-running-codeblock.html` | Seite `/running` → einzige Sektion → **Code-Block** über die volle Rasterbreite |
+| `08-hella-half-marathon-2025-codeblock.html` | Seite `/hella-half-marathon-2025` (nicht verlinkt) → einzige Sektion → **Code-Block** über die volle Rasterbreite |
 
 Die Datei 01 ist das globale Design-System und wird nur einmal eingefügt. Die Datei 02 enthält Navigation und JavaScript für alle Seiten.
 Jede neue Sektion kommt später als eigener Code-Block dazu.

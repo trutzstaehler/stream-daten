@@ -1,18 +1,23 @@
 import numpy as np
-m=np.load('alster-mask.npy'); H,W=m.shape
+from PIL import Image, ImageFilter
+m=np.load('alster-mask.npy')
+m=np.array(Image.fromarray((m*255).astype(np.uint8)).filter(ImageFilter.MinFilter(3)).filter(ImageFilter.MaxFilter(3)))>127
+H,W=m.shape
 m=np.pad(m,1)
-# Moore-Nachbarschaft: Rand nachziehen
-ys,xs=np.nonzero(m); i=np.argmin(ys*10000+xs); start=(ys[i],xs[i])
-nb=[(-1,0),(-1,1),(0,1),(1,1),(1,0),(1,-1),(0,-1),(-1,-1)]
-cur=start; prev_dir=6; pts=[cur]
-for _ in range(20000):
-    for k in range(8):
-        d=(prev_dir+6+k)%8   # links drehen
-        ny,nx=cur[0]+nb[d][0],cur[1]+nb[d][1]
-        if m[ny,nx]:
-            cur=(ny,nx); prev_dir=d; break
-    if cur==start: break
-    pts.append(cur)
+# Rand Kante für Kante ablaufen (gefüllte Fläche immer rechts)
+ys,xs=np.nonzero(m); i=np.argmin(ys*100000+xs); r0,c0=int(ys[i]),int(xs[i])
+D={'E':(0,1),'S':(1,0),'W':(0,-1),'N':(-1,0)}
+L={'E':'N','N':'W','W':'S','S':'E'}; R={v:k for k,v in L.items()}
+def la(y,x,d): return {'E':(y-1,x),'S':(y,x),'W':(y,x-1),'N':(y-1,x-1)}[d]
+def ra(y,x,d): return {'E':(y,x),'S':(y,x-1),'W':(y-1,x-1),'N':(y-1,x)}[d]
+f=lambda p: m[p]
+y,x,d=r0,c0,'E'; pts=[]
+for _ in range(200000):
+    if f(la(y,x,d)): d=L[d]
+    elif f(ra(y,x,d)): pass
+    else: d=R[d]
+    y,x=y+D[d][0],x+D[d][1]; pts.append((y,x))
+    if (y,x)==(r0,c0) and len(pts)>4: break
 P=np.array([(x-1,y-1) for y,x in pts],float); print('Randpunkte',len(P))
 def rdp(p,eps):
     if len(p)<3: return p
@@ -20,7 +25,7 @@ def rdp(p,eps):
     v=p-a; d=np.abs(ab[0]*v[:,1]-ab[1]*v[:,0])/n; i=np.argmax(d)
     if d[i]>eps: return np.vstack([rdp(p[:i+1],eps)[:-1],rdp(p[i:],eps)])
     return np.array([a,b])
-k=np.argmax(np.hypot(*(P-P[0]).T)); S=np.vstack([rdp(P[:k+1],1.7)[:-1], rdp(np.vstack([P[k:],P[:1]]),1.7)[:-1]])
+k=np.argmax(np.hypot(*(P-P[0]).T)); S=np.vstack([rdp(P[:k+1],1.3)[:-1], rdp(np.vstack([P[k:],P[:1]]),1.3)[:-1]])
 # Chaikin-Glättung
 for _ in range(3):
     Q=[]

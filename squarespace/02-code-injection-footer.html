@@ -202,18 +202,27 @@
   /* ---------- Cookie-Einstellungen von Squarespace: statt schwebend über dem Footer als Link in der Footer-Leiste ---------- */
   const cookieLink = document.querySelector('[data-ts-cookie]');
   let cookieFloat = null;
+  const textOf = (el) => ((el.shadowRoot ? el.shadowRoot.textContent : '') + ' ' + (el.textContent || '')).replace(/\s+/g, ' ').trim();
+  const parentOf = (a) => a.parentElement || (a.getRootNode && a.getRootNode().host) || null;
+  const fixedAncestor = (el) => { for (let a = el; a && a !== document.body; a = parentOf(a)) { if (getComputedStyle(a).position === 'fixed') return a; } return null; };
+  const shown = (d) => { const r = d.getBoundingClientRect(); const cs = getComputedStyle(d); return r.height > 0 && r.width > 0 && cs.visibility !== 'hidden' && cs.opacity !== '0'; };
+  // Ist im selben festen Rahmen gerade ein Banner mit längerem Text sichtbar? Dann nichts anfassen.
+  const bannerVisible = (root) => [...root.querySelectorAll('*'), ...(root.shadowRoot ? root.shadowRoot.querySelectorAll('*') : [])].some(d => {
+    const own = [...d.childNodes].filter(n => n.nodeType === 3).map(n => n.textContent).join('').trim();
+    return own.length > 60 && shown(d);
+  });
   const findCookieFloat = () => {
-    if (cookieFloat && document.contains(cookieFloat)) return;
-    // kleines, fest positioniertes Element mit kurzem „Cookie“-Text, das nicht zu dieser Website gehört
-    // (das große Banner beim ersten Besuch bleibt bewusst unangetastet)
-    const hit = [...document.body.querySelectorAll('div, button, a, aside, section')].find(el => {
-      if (el.closest('.ts, .tsw')) return false;
-      const t = (el.textContent || '').trim();
+    if (cookieFloat && document.contains(cookieFloat) && cookieFloat.hasAttribute('data-ts-cookie-float')) return;
+    // kleiner, sichtbarer Knopf mit kurzem „Cookie“-Text, der selbst oder über einen Rahmen fest auf dem Bildschirm sitzt.
+    // Das große Banner beim ersten Besuch hat viel Text und bleibt deshalb unangetastet.
+    const hit = [...document.body.querySelectorAll('*')].find(el => {
+      if (el.closest('.ts, .tsw') || /^(SCRIPT|STYLE|svg|path)$/i.test(el.tagName)) return false;
+      const t = textOf(el);
       if (!/cookie/i.test(t) || t.length > 40) return false;
-      const cs = getComputedStyle(el);
-      if (cs.position !== 'fixed') return false;
       const r = el.getBoundingClientRect();
-      return r.height > 0 && r.height < 90 && r.width < 420;
+      if (r.height <= 0 || r.height > 90 || r.width <= 0 || r.width > 420) return false;
+      const fa = fixedAncestor(el);
+      return !!fa && !bannerVisible(fa);
     });
     if (!hit) return;
     cookieFloat = hit;
@@ -223,10 +232,12 @@
   if (cookieLink) {
     cookieLink.addEventListener('click', () => {
       if (!cookieFloat) return;
-      const target = cookieFloat.matches('button, a') ? cookieFloat : (cookieFloat.querySelector('button, a') || cookieFloat);
+      cookieFloat.removeAttribute('data-ts-cookie-float');
+      const inner = cookieFloat.shadowRoot ? cookieFloat.shadowRoot.querySelector('button, a') : null;
+      const target = cookieFloat.matches('button, a') ? cookieFloat : (inner || cookieFloat.querySelector('button, a') || cookieFloat);
       target.click();
     });
-    [300, 1500, 4000, 8000].forEach(ms => setTimeout(findCookieFloat, ms));
+    [300, 1500, 4000, 8000, 15000].forEach(ms => setTimeout(findCookieFloat, ms));
     // nach „Akzeptieren“ im Banner erscheint der Knopf neu
     document.addEventListener('click', () => setTimeout(findCookieFloat, 600), true);
   }

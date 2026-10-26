@@ -16,6 +16,14 @@ Design: Dark Editorial · Hintergrund `#060608` · Nebenfarbe Markengrün `#1d4d
 | `10-maria-holm-codeblock.html` | Seite `/maria-holm-und-das-geheimnis-der-verschwundenen-perle` → einzige Sektion → **Code-Block** über die volle Rasterbreite |
 | `11-malbuecher-codeblock.html` | Seite `/malbuecher` → einzige Sektion → **Code-Block** über die volle Rasterbreite |
 
+### Kontakt & Rechtliches
+
+| Datei | Wohin in Squarespace |
+|---|---|
+| `18-kontakt-codeblock.html` | Seite `/kontakt` → **oberste** Sektion → Code-Block; das Squarespace-Formular bleibt in einer Sektion darunter und wird automatisch dunkel gestaltet |
+| `19-impressum-codeblock.html` | Seite `/impressum` → einzige Sektion → Code-Block |
+| `20-datenschutz-codeblock.html` | Seite Datenschutzerklärung → einzige Sektion → Code-Block (Abschnitt „Cookies & Statistik“ mit den Squarespace-Einstellungen abgleichen) |
+
 ### Twitch-Bereich (World of Warcraft Forever)
 
 Alle Seiten tragen die Klasse `tsw`: Navigation, Buttons und Footer werden dort automatisch golden, unter der Navigation erscheint die Twitch-Unternavigation mit „← Homepage“. Die Daten kommen weiter aus `helden.json` (Stream-Zentrale); die Skripte sind unverändert übernommen.

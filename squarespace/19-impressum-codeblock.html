@@ -1,0 +1,126 @@
+<!-- ==================================================================
+     TRUTZ STÄHLER · SEITE „IMPRESSUM“
+     Einfügen in: Seite /impressum → einzige Sektion → Code-Block (volle Breite)
+     Alle anderen Blöcke dieser Seite können gelöscht werden.
+=================================================================== -->
+<style>
+  .ts-legal { position: relative; isolation: isolate; overflow: hidden; overflow: clip; background: var(--ts-bg); }
+  .ts-legal__orb { position: absolute; z-index: -1; right: -12%; top: -8%; width: 50vw; height: 50vw; max-width: 760px; max-height: 760px; border-radius: 50%; filter: blur(110px); background: radial-gradient(circle, rgba(46, 140, 108, .26), transparent 66%); pointer-events: none; }
+  .ts-legal__intro { padding-top: clamp(8.5rem, 14vw, 12rem); padding-bottom: clamp(3rem, 6vw, 5rem); }
+  .ts-legal__meta { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem; padding-bottom: 1.25rem; border-bottom: 1px solid var(--ts-line); }
+  .ts-legal .ts-line { padding-bottom: .16em; margin-bottom: -.16em; }
+  .ts .ts-legal__title { margin-top: clamp(2.5rem, 5vw, 4rem); font-family: var(--ts-font-display); font-weight: 800; font-size: clamp(2.2rem, 7.4vw, 7rem); line-height: .95; letter-spacing: -0.03em; }
+  .ts .ts-legal__lead { margin-top: 1.5rem; max-width: 40rem; font-size: clamp(17px, 1.5vw, 19px); line-height: 1.7; color: var(--ts-muted); }
+
+  .ts-legal__grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 3rem; padding-bottom: clamp(6rem, 11vw, 10rem); }
+  .ts-legal__toc { display: none; }
+  .ts .ts-legal__toc ol { list-style: none; counter-reset: toc; }
+  .ts .ts-legal__toc li { counter-increment: toc; }
+  .ts .ts-legal__toc a { display: flex; gap: .75rem; padding: .55rem 0; border-bottom: 1px solid var(--ts-line); color: var(--ts-muted); font-size: 14px; line-height: 1.4; transition: color .3s; }
+  .ts .ts-legal__toc a::before { content: counter(toc, decimal-leading-zero); font-family: var(--ts-font-mono); font-size: 11px; letter-spacing: .1em; color: var(--ts-mint); padding-top: .15em; }
+  .ts .ts-legal__toc a:hover, .ts .ts-legal__toc a.is-active { color: var(--ts-text); }
+
+  .ts-legal__body { max-width: 50rem; }
+  .ts-legal-sec { padding: clamp(2rem, 4vw, 2.75rem) 0; border-top: 1px solid var(--ts-line); scroll-margin-top: 110px; }
+  .ts-legal-sec:first-child { border-top: 0; padding-top: 0; }
+  .ts .ts-legal-sec h2 { display: flex; align-items: baseline; gap: 1rem; font-family: var(--ts-font-display); font-weight: 700; font-size: clamp(1.4rem, 2.4vw, 2rem); line-height: 1.15; letter-spacing: -0.02em; }
+  .ts .ts-legal-sec h2 span { flex: none; font-family: var(--ts-font-mono); font-size: 12px; letter-spacing: .14em; color: var(--ts-mint); font-weight: 400; }
+  .ts .ts-legal-sec h3 { margin-top: 1.5rem; font-family: var(--ts-font-display); font-weight: 700; font-size: 18px; letter-spacing: -0.01em; }
+  .ts .ts-legal-sec p, .ts .ts-legal-sec li { font-size: 16px; line-height: 1.75; color: var(--ts-muted); }
+  .ts .ts-legal-sec p { margin-top: 1rem; }
+  .ts .ts-legal-sec ul { margin-top: 1rem; display: grid; gap: .4rem; }
+  .ts .ts-legal-sec li { position: relative; padding-left: 1.25rem; }
+  .ts .ts-legal-sec li::before { content: ""; position: absolute; left: 0; top: .75em; width: 6px; height: 6px; border-radius: 50%; background: var(--ts-mint); }
+  .ts .ts-legal-sec strong { color: var(--ts-text); font-weight: 500; }
+  .ts .ts-legal-sec a { color: var(--ts-mint); border-bottom: 1px solid rgba(110, 231, 183, .35); transition: border-color .3s; }
+  .ts .ts-legal-sec a:hover { border-color: var(--ts-mint); }
+  .ts .ts-legal-card { margin-top: 1.25rem; padding: 1.5rem 1.75rem; border-radius: 20px; font-size: 17px; line-height: 1.75; color: var(--ts-text); }
+  .ts .ts-legal-card p { margin-top: 0; color: var(--ts-text); }
+  .ts .ts-legal-card p + p { margin-top: .75rem; }
+
+  @media (min-width: 1024px) {
+    .ts-legal__grid { grid-template-columns: minmax(0, 3fr) minmax(0, 8fr); column-gap: clamp(3rem, 6vw, 6rem); }
+    .ts-legal__toc { display: block; position: sticky; top: 120px; align-self: start; }
+  }
+</style>
+
+<div class="ts ts-legal ts-bleed">
+  <div class="ts-legal__orb" aria-hidden="true"></div>
+  <section class="ts-container ts-legal__intro" aria-labelledby="ts-legal-title">
+    <div class="ts-legal__meta ts-reveal">
+      <p class="ts-label ts-muted">[ Rechtliches ]</p>
+      <p class="ts-label ts-muted">Stand: Oktober 2026</p>
+    </div>
+    <h1 id="ts-legal-title" class="ts-legal__title" data-ts-fit>
+      <span class="ts-line"><span class="ts-gradient-text" style="transition-delay:0.10s">Impressum.</span></span>
+    </h1>
+    <p class="ts-legal__lead ts-reveal">Wer hinter trutzstaehler.de steht – und wie du mich erreichst.</p>
+  </section>
+  <div class="ts-container ts-legal__grid">
+    <nav class="ts-legal__toc" aria-label="Inhalt">
+      <p class="ts-label ts-muted" style="margin-bottom:1rem">Inhalt</p>
+      <ol>
+        <li><a href="#anbieter">Angaben gemäß § 5 DDG</a></li>
+        <li><a href="#kontakt">Kontakt</a></li>
+        <li><a href="#verantwortlich">Verantwortlich für den Inhalt</a></li>
+        <li><a href="#bilder">Bildnachweise</a></li>
+        <li><a href="#fanprojekt">Hinweis zum Twitch-Bereich</a></li>
+        <li><a href="#haftung">Haftung für Inhalte und Links</a></li>
+        <li><a href="#urheberrecht">Urheberrecht</a></li>
+      </ol>
+    </nav>
+    <div class="ts-legal__body">
+      <section class="ts-legal-sec ts-reveal" id="anbieter" aria-labelledby="anbieter-h">
+        <h2 id="anbieter-h"><span>01</span>Angaben gemäß § 5 DDG</h2>
+        <div class="ts-legal-card ts-glass">
+          <p>Trutz Stähler<br>Vizelinstraße 45<br>22529 Hamburg<br>Deutschland</p>
+        </div>
+      </section>
+      <section class="ts-legal-sec ts-reveal" id="kontakt" aria-labelledby="kontakt-h">
+        <h2 id="kontakt-h"><span>02</span>Kontakt</h2>
+        <p>E-Mail: <a href="mailto:trutz.staehler@googlemail.com">trutz.staehler@googlemail.com</a><br>Kontaktformular: <a href="/kontakt">trutzstaehler.de/kontakt</a></p>
+      </section>
+      <section class="ts-legal-sec ts-reveal" id="verantwortlich" aria-labelledby="verantwortlich-h">
+        <h2 id="verantwortlich-h"><span>03</span>Verantwortlich für den Inhalt</h2>
+        <p>Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV:</p>
+        <p>Trutz Stähler<br>Vizelinstraße 45<br>22529 Hamburg<br>Deutschland</p>
+      </section>
+      <section class="ts-legal-sec ts-reveal" id="bilder" aria-labelledby="bilder-h">
+        <h2 id="bilder-h"><span>04</span>Bildnachweise</h2>
+        <ul>
+          <li>Fotos vom Hella Half Marathon 2025, gekennzeichnet mit „by Pascal Lieleg“: © Pascal Lieleg</li>
+          <li>Alle übrigen Fotos und Texte: © Trutz Stähler</li>
+          <li>Buchcover: © Trutz Stähler, Darstellung über Amazon</li>
+          <li>Symbole aus World of Warcraft im Twitch-Bereich: © Blizzard Entertainment, eingebunden über Wowhead</li>
+        </ul>
+      </section>
+      <section class="ts-legal-sec ts-reveal" id="fanprojekt" aria-labelledby="fanprojekt-h">
+        <h2 id="fanprojekt-h"><span>05</span>Hinweis zum Twitch-Bereich</h2>
+        <p>World of Warcraft ist eine Marke von Blizzard Entertainment, Inc. Der Twitch-Bereich dieser Website ist ein Fan-Projekt und steht in keiner Verbindung zu Blizzard Entertainment.</p>
+      </section>
+      <section class="ts-legal-sec ts-reveal" id="haftung" aria-labelledby="haftung-h">
+        <h2 id="haftung-h"><span>06</span>Haftung für Inhalte und Links</h2>
+        <p>Die Inhalte dieser Seiten wurden mit Sorgfalt erstellt. Für die Richtigkeit, Vollständigkeit und Aktualität kann ich jedoch keine Gewähr übernehmen. Als Diensteanbieter bin ich nach den allgemeinen Gesetzen für eigene Inhalte verantwortlich.</p>
+        <p>Diese Website enthält Links zu externen Websites Dritter, zum Beispiel Amazon, Twitch, Instagram und LinkedIn. Auf deren Inhalte habe ich keinen Einfluss; verantwortlich ist stets der jeweilige Anbieter. Werden mir Rechtsverletzungen bekannt, entferne ich entsprechende Links umgehend.</p>
+      </section>
+      <section class="ts-legal-sec ts-reveal" id="urheberrecht" aria-labelledby="urheberrecht-h">
+        <h2 id="urheberrecht-h"><span>07</span>Urheberrecht</h2>
+        <p>Die Texte, Fotos und Bücher auf dieser Website unterliegen dem deutschen Urheberrecht. Vervielfältigung, Bearbeitung und Verbreitung außerhalb der Grenzen des Urheberrechts bedürfen meiner schriftlichen Zustimmung bzw. der des jeweiligen Urhebers.</p>
+      </section>
+    </div>
+  </div>
+</div>
+<script>
+(() => {
+  /* Inhaltsverzeichnis: aktiven Abschnitt markieren */
+  const links = [...document.querySelectorAll('.ts-legal__toc a')];
+  if (!links.length || !('IntersectionObserver' in window)) return;
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(en => {
+      if (!en.isIntersecting) return;
+      links.forEach(a => a.classList.toggle('is-active', a.getAttribute('href') === '#' + en.target.id));
+    });
+  }, { rootMargin: '-30% 0px -60% 0px' });
+  document.querySelectorAll('.ts-legal-sec[id]').forEach(s => io.observe(s));
+})();
+</script>

@@ -302,9 +302,10 @@
 
   /* ---------- Große Headlines in ihre Spalte einpassen ---------- */
   const fitOne = el => {
+    const before = el.style.getPropertyValue('font-size');
     el.style.removeProperty('font-size');
     const avail = el.clientWidth;
-    if (!avail) return;
+    if (!avail) { if (before) el.style.setProperty('font-size', before, 'important'); return; }
     const left = el.getBoundingClientRect().left;
     const lines = el.querySelectorAll('.ts-line > span');
     const need = lines.length
@@ -312,27 +313,35 @@
       : el.scrollWidth;
     if (need > avail + 1) {
       const size = parseFloat(getComputedStyle(el).fontSize) * (avail / need) * 0.98;
-      el.style.setProperty('font-size', `${size}px`, 'important');
+      /* Winzige Abweichungen ignorieren, damit nichts zuckt */
+      const keep = before && Math.abs(parseFloat(before) - size) < 0.75;
+      el.style.setProperty('font-size', keep ? before : `${size}px`, 'important');
     }
   };
   const fitEls = [...document.querySelectorAll('[data-ts-fit]')];
   const fitAll = () => fitEls.forEach(fitOne);
   fitAll();
-  /* Neu einpassen, sobald sich Breite oder Schrift ändert (Webfont lädt nach, Fenster, Drehen) */
+  /* Während des Ladens auf jede Größenänderung reagieren – danach ist Ruhe: nur noch, wenn eine Schrift
+     ankommt oder sich die Breite wirklich ändert (Drehen, Fenster), nie beim Scrollen */
+  let ro = null, fitDelay;
   if ('ResizeObserver' in window && fitEls.length) {
-    let fitDelay;
-    const ro = new ResizeObserver(() => { clearTimeout(fitDelay); fitDelay = setTimeout(fitAll, 30); });
+    ro = new ResizeObserver(() => { clearTimeout(fitDelay); fitDelay = setTimeout(fitAll, 30); });
     fitEls.forEach(el => { ro.observe(el); el.querySelectorAll('.ts-line > span').forEach(s => ro.observe(s)); });
   }
+  const onFonts = () => fitAll();
   if (document.fonts) {
-    document.fonts.addEventListener('loadingdone', fitAll);
+    document.fonts.addEventListener('loadingdone', onFonts);
     if (document.fonts.ready) document.fonts.ready.then(fitAll);
   }
-  addEventListener('load', fitAll);
+  const settle = () => setTimeout(() => {
+    fitAll();
+    if (ro) { ro.disconnect(); ro = null; }
+  }, 1500);
+  if (document.readyState === 'complete') settle(); else addEventListener('load', () => { fitAll(); settle(); }, { once: true });
   let fitTimer;
   /* Nur bei echter Breitenänderung neu einpassen – am Handy feuert „resize“ auch, wenn beim Scrollen die Adressleiste ein- und ausfährt */
   let fitW = innerWidth;
-  addEventListener('resize', () => { if (innerWidth === fitW) return; fitW = innerWidth; clearTimeout(fitTimer); fitTimer = setTimeout(fitAll, 120); });
+  addEventListener('resize', () => { if (Math.abs(innerWidth - fitW) < 2) return; fitW = innerWidth; clearTimeout(fitTimer); fitTimer = setTimeout(fitAll, 120); });
 
   /* ---------- Aktiver Navigationspunkt ---------- */
   const path = location.pathname.replace(/\/$/, '') || '/';

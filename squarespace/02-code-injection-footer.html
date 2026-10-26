@@ -62,7 +62,7 @@
 
   .ts-footer { position: relative; isolation: isolate; overflow: hidden; padding-top: clamp(5rem, 10vw, 9rem); background: var(--ts-bg); border-top: 1px solid var(--ts-line); }
   .ts-in-editor .ts-footer { display: none; }
-  .ts-footer__glow { position: absolute; left: 50%; bottom: -30%; z-index: -1; width: 90vw; height: 60vw; max-height: 900px; transform: translateX(-50%); border-radius: 50%; filter: blur(110px); pointer-events: none; background: radial-gradient(ellipse, rgba(46, 140, 108, .38), rgba(29, 77, 63, .15) 45%, transparent 70%); }
+  .ts-footer__glow { position: absolute; left: 50%; bottom: -30%; z-index: -1; width: 90vw; height: 60vw; max-height: 900px; transform: translateX(-50%); border-radius: 50%; pointer-events: none; background: radial-gradient(ellipse, rgba(46, 140, 108, .38), rgba(29, 77, 63, .15) 45%, transparent 70%); }
 
   .ts-footer__cta { display: grid; gap: 2.5rem; padding-bottom: clamp(4rem, 8vw, 7rem); border-bottom: 1px solid var(--ts-line); }
   .ts .ts-footer__title { margin-top: 1.25rem; font-family: var(--ts-font-display); font-weight: 800; font-size: clamp(2.5rem, 6.5vw, 6.5rem); line-height: .92; letter-spacing: -0.03em; }
@@ -441,7 +441,7 @@
     const ctx = canvas.getContext('2d');
     const hero = canvas.closest('.ts-hero');
     const animate = !reduceMotion;
-    let w = 0, h = 0, points = [], running = true;
+    let w = 0, h = 0, points = [], running = false, ready = false;
     const mouse = { x: -9999, y: -9999 };
 
     const build = () => {
@@ -483,9 +483,12 @@
     };
 
     const tick = () => { if (!running) return; draw(); if (animate) requestAnimationFrame(tick); };
-    const resume = () => { if (!running) { running = true; if (animate) tick(); } };
+    const resume = () => { if (ready && !running) { running = true; if (animate) tick(); } };
 
-    build(); tick();
+    /* Erst ein ruhiges Bild, die Bewegung startet nach dem Laden – so bleibt der Seitenaufbau flott */
+    build(); draw();
+    const go = () => setTimeout(() => { ready = true; if (!document.hidden && canvas.getBoundingClientRect().bottom > 0) resume(); }, 400);
+    if (document.readyState === 'complete') go(); else addEventListener('load', go, { once: true });
     let rt;
     addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(() => { build(); if (!animate) draw(); }, 150); });
     hero.addEventListener('pointermove', e => { const r = canvas.getBoundingClientRect(); mouse.x = e.clientX - r.left; mouse.y = e.clientY - r.top; });

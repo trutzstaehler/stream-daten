@@ -6,9 +6,9 @@
 <style>
   .ts-me { position: relative; isolation: isolate; overflow: hidden; overflow: clip; background: var(--ts-bg); }
   .ts-me__bg { position: absolute; inset: 0; z-index: -1; pointer-events: none; }
-  .ts-me__orb { position: absolute; border-radius: 50%; filter: blur(110px); }
-  .ts-me__orb--a { left: -12%; top: 18%; width: 55vw; height: 55vw; max-width: 860px; max-height: 860px; background: radial-gradient(circle, rgba(46, 140, 108, .32), transparent 66%); }
-  .ts-me__orb--b { right: -14%; bottom: 10%; width: 42vw; height: 42vw; max-width: 680px; max-height: 680px; background: radial-gradient(circle, rgba(74, 222, 128, .1), transparent 66%); }
+  .ts-me__orb { position: absolute; border-radius: 50%; }
+  .ts-me__orb--a { left: -12%; top: 18%; width: 55vw; height: 55vw; max-width: 860px; max-height: 860px; background: radial-gradient(circle, rgba(46, 140, 108, 0.272) 0%, rgba(46, 140, 108, 0.192) 22%, rgba(46, 140, 108, 0.096) 42%, rgba(46, 140, 108, 0.032) 58%, rgba(46, 140, 108, 0) 72%); }
+  .ts-me__orb--b { right: -14%; bottom: 10%; width: 42vw; height: 42vw; max-width: 680px; max-height: 680px; background: radial-gradient(circle, rgba(74, 222, 128, 0.085) 0%, rgba(74, 222, 128, 0.06) 22%, rgba(74, 222, 128, 0.03) 42%, rgba(74, 222, 128, 0.01) 58%, rgba(74, 222, 128, 0) 72%); }
 
   .ts-me__intro { padding-top: clamp(8.5rem, 14vw, 12rem); }
   .ts-me__meta { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem; padding-bottom: 1.25rem; border-bottom: 1px solid var(--ts-line); }
@@ -29,7 +29,7 @@
   .ts-me__frame img { position: absolute; inset: 0; width: 100% !important; height: 100% !important; object-fit: cover; object-position: 50% 28%; display: block; transform: scale(1.04); transition: transform 1.2s var(--ts-ease-out), filter .8s; filter: saturate(.92) contrast(1.04); }
   .ts-me__portrait:hover .ts-me__frame img { transform: scale(1.08); filter: saturate(1.05) contrast(1.04); }
   .ts-me__frame::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 55%, rgba(6, 6, 8, .65)), linear-gradient(120deg, rgba(46, 140, 108, .18), transparent 40%); pointer-events: none; }
-  .ts-me__portrait::before { content: ""; position: absolute; inset: 8% -6% -6% 8%; z-index: -1; border-radius: 32px; background: radial-gradient(circle at 60% 60%, rgba(46, 140, 108, .55), transparent 70%); filter: blur(40px); }
+  .ts-me__portrait::before { content: ""; position: absolute; inset: 8% -6% -6% 8%; z-index: -1; border-radius: 32px; background: radial-gradient(circle at 60% 60%, rgba(46, 140, 108, 0.468) 0%, rgba(46, 140, 108, 0.33) 22%, rgba(46, 140, 108, 0.165) 42%, rgba(46, 140, 108, 0.055) 58%, rgba(46, 140, 108, 0) 76%); }
   .ts-me__caption { position: absolute; left: 1.5rem; right: 1.5rem; bottom: 1.5rem; z-index: 1; display: flex; justify-content: space-between; gap: 1rem; color: rgba(246, 250, 247, .85); }
 
   .ts-me__chips { position: absolute; inset: 0; pointer-events: none; }

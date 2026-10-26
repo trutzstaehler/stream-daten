@@ -57,6 +57,7 @@
   html:not(.ts-in-editor) #footer-sections { display: none !important; }
   /* Eingepasste Headlines dürfen ihre Spalte nie aufdehnen */
   .ts [data-ts-fit], .ts :has(> [data-ts-fit]) { min-width: 0; max-width: 100%; }
+  .ts [data-ts-fit], .ts [data-ts-fit] * { overflow-wrap: normal !important; word-break: normal !important; hyphens: manual !important; }
   .ts [data-ts-fit] .ts-line > span { white-space: nowrap; width: max-content; max-width: none; }
 
   .ts-footer { position: relative; isolation: isolate; overflow: hidden; padding-top: clamp(5rem, 10vw, 9rem); background: var(--ts-bg); border-top: 1px solid var(--ts-line); }
@@ -64,7 +65,7 @@
   .ts-footer__glow { position: absolute; left: 50%; bottom: -30%; z-index: -1; width: 90vw; height: 60vw; max-height: 900px; transform: translateX(-50%); border-radius: 50%; filter: blur(110px); pointer-events: none; background: radial-gradient(ellipse, rgba(46, 140, 108, .38), rgba(29, 77, 63, .15) 45%, transparent 70%); }
 
   .ts-footer__cta { display: grid; gap: 2.5rem; padding-bottom: clamp(4rem, 8vw, 7rem); border-bottom: 1px solid var(--ts-line); }
-  .ts .ts-footer__title { margin-top: 1.25rem; font-family: var(--ts-font-display); font-weight: 800; font-size: clamp(2.75rem, 8vw, 7.5rem); line-height: .92; letter-spacing: -0.03em; }
+  .ts .ts-footer__title { margin-top: 1.25rem; font-family: var(--ts-font-display); font-weight: 800; font-size: clamp(2.5rem, 6.5vw, 6.5rem); line-height: .92; letter-spacing: -0.03em; }
   .ts-footer__title .ts-outline { -webkit-text-stroke-color: rgba(110, 231, 183, .7); }
   .ts-footer__actions { display: flex; flex-wrap: wrap; align-items: center; gap: .75rem; }
 
@@ -203,7 +204,7 @@
   requestAnimationFrame(() => requestAnimationFrame(() => body.classList.add('ts-loaded')));
 
   /* ---------- Große Headlines in ihre Spalte einpassen ---------- */
-  const fitHeadlines = () => document.querySelectorAll('[data-ts-fit]').forEach(el => {
+  const fitOne = el => {
     el.style.removeProperty('font-size');
     const avail = el.clientWidth;
     if (!avail) return;
@@ -216,12 +217,23 @@
       const size = parseFloat(getComputedStyle(el).fontSize) * (avail / need) * 0.98;
       el.style.setProperty('font-size', `${size}px`, 'important');
     }
-  });
-  fitHeadlines();
-  if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitHeadlines);
-  addEventListener('load', fitHeadlines);
+  };
+  const fitEls = [...document.querySelectorAll('[data-ts-fit]')];
+  const fitAll = () => fitEls.forEach(fitOne);
+  fitAll();
+  /* Neu einpassen, sobald sich Breite oder Schrift ändert (Webfont lädt nach, Fenster, Drehen) */
+  if ('ResizeObserver' in window && fitEls.length) {
+    let fitDelay;
+    const ro = new ResizeObserver(() => { clearTimeout(fitDelay); fitDelay = setTimeout(fitAll, 30); });
+    fitEls.forEach(el => { ro.observe(el); el.querySelectorAll('.ts-line > span').forEach(s => ro.observe(s)); });
+  }
+  if (document.fonts) {
+    document.fonts.addEventListener('loadingdone', fitAll);
+    if (document.fonts.ready) document.fonts.ready.then(fitAll);
+  }
+  addEventListener('load', fitAll);
   let fitTimer;
-  addEventListener('resize', () => { clearTimeout(fitTimer); fitTimer = setTimeout(fitHeadlines, 120); });
+  addEventListener('resize', () => { clearTimeout(fitTimer); fitTimer = setTimeout(fitAll, 120); });
 
   /* ---------- Aktiver Navigationspunkt ---------- */
   const path = location.pathname.replace(/\/$/, '') || '/';

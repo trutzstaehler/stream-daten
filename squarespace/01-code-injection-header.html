@@ -52,10 +52,10 @@
   html:not(.ts-in-editor) body:not(:has(.ts-hero)) #page { padding-top: var(--ts-header-space); }
   .ts-in-editor .ts-header, .ts-in-editor .ts-menu, .ts-in-editor .ts-cursor-dot, .ts-in-editor .ts-cursor-ring { display: none !important; }
 
-  /* Sektion mit Hero: Squarespace-Abstände entfernen, Hero läuft randlos */
-  .page-section:has(.ts-hero) { padding: 0 !important; min-height: 0 !important; }
-  .page-section:has(.ts-hero) .content-wrapper { padding: 0 !important; max-width: none !important; }
-  .page-section:has(.ts-hero) .sqs-block { padding: 0 !important; }
+  /* Sektionen mit eigenem Code-Block (.ts-bleed): Squarespace-Abstände entfernen, Inhalt läuft randlos */
+  .page-section:has(.ts-bleed) { padding: 0 !important; min-height: 0 !important; }
+  .page-section:has(.ts-bleed) .content-wrapper { padding: 0 !important; max-width: none !important; }
+  .page-section:has(.ts-bleed) .sqs-block { padding: 0 !important; }
   .ts-bleed { position: relative; width: 100vw; margin-left: calc(50% - 50vw); }
 
   /* ============ 3. BASIS FÜR EIGENE KOMPONENTEN ============ */
@@ -63,6 +63,7 @@
   .ts { color: var(--ts-text); font-family: var(--ts-font-body); font-size: 16px; line-height: 1.7; }
   .ts h1, .ts h2, .ts h3, .ts p, .ts ul, .ts li { margin: 0; padding: 0; white-space: normal; }
   .ts h1, .ts h2, .ts h3 { color: var(--ts-text); text-transform: none; }
+  .ts p, .ts li, .ts ol { color: inherit; font-family: inherit; text-transform: none; }
   .ts ul { list-style: none; }
   .ts a { color: inherit; text-decoration: none; border: 0; background-image: none; }
   .ts button { font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; }

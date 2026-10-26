@@ -94,7 +94,7 @@ def legal_page(comment, label, right, title_lines, lead, secs):
 {LEGAL_JS}'''
 
 ADDR = '<p>Trutz Stähler<br>Vizelinstraße 45<br>22529 Hamburg<br>Deutschland</p>'
-MAIL = '<a href="mailto:trutz.staehler@googlemail.com">trutz.staehler@googlemail.com</a>'
+MAIL = '<a href="mailto:moin@trutzstaehler.de">moin@trutzstaehler.de</a>'
 
 # ------------------------------------------------------------------ IMPRESSUM
 impressum = legal_page('''<!-- ==================================================================
@@ -281,9 +281,9 @@ kontakt = '''<!-- ==============================================================
 
       <div class="ts-contact__ways ts-reveal" aria-label="Weitere Wege">
         <p class="ts-label ts-muted" style="margin-bottom:.25rem">Oder direkt</p>
-        <a class="ts-way ts-glass" href="mailto:trutz.staehler@googlemail.com">
+        <a class="ts-way ts-glass" href="mailto:moin@trutzstaehler.de">
           <span class="ts-way__icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m4 7 8 6 8-6"/></svg></span>
-          <span class="ts-way__txt"><span class="ts-label ts-way__label">E-Mail</span><span class="ts-way__value">trutz.staehler@googlemail.com</span></span>
+          <span class="ts-way__txt"><span class="ts-label ts-way__label">E-Mail</span><span class="ts-way__value">moin@trutzstaehler.de</span></span>
           <svg class="ts-way__go" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
         </a>
         <a class="ts-way ts-glass" href="https://www.instagram.com/trutzstaehler/" target="_blank" rel="noopener">

@@ -57,7 +57,7 @@
   html:not(.ts-in-editor) #footer-sections { display: none !important; }
   /* Eingepasste Headlines dürfen ihre Spalte nie aufdehnen */
   .ts [data-ts-fit], .ts :has(> [data-ts-fit]) { min-width: 0; max-width: 100%; }
-  .ts [data-ts-fit] .ts-line > span { white-space: nowrap; }
+  .ts [data-ts-fit] .ts-line > span { white-space: nowrap; width: max-content; max-width: none; }
 
   .ts-footer { position: relative; isolation: isolate; overflow: hidden; padding-top: clamp(5rem, 10vw, 9rem); background: var(--ts-bg); border-top: 1px solid var(--ts-line); }
   .ts-in-editor .ts-footer { display: none; }
@@ -210,7 +210,7 @@
     const left = el.getBoundingClientRect().left;
     const lines = el.querySelectorAll('.ts-line > span');
     const need = lines.length
-      ? Math.max(...[...lines].map(s => s.getBoundingClientRect().right - left))
+      ? Math.max(...[...lines].map(s => { const r = s.getBoundingClientRect(); return r.left - left + Math.max(r.width, s.scrollWidth); }))
       : el.scrollWidth;
     if (need > avail + 1) {
       const size = parseFloat(getComputedStyle(el).fontSize) * (avail / need) * 0.98;

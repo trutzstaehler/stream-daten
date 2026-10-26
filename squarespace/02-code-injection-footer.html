@@ -90,6 +90,8 @@
   /* Schwebender Squarespace-Knopf „Cookie-Einstellungen“: ausgeblendet, der Link im Footer übernimmt */
   [data-ts-cookie-float] { opacity: 0 !important; pointer-events: none !important; }
   .cookie-banner-manager .manage-cookies-bar { display: none !important; }
+  /* Cookie-Banner von Squarespace kompakt halten: Sein langer Text war am Handy das größte Element und bestimmte den LCP-Wert */
+  .cookie-banner-manager p, [class*="cookie-banner"] p { font-size: 13px !important; line-height: 1.5 !important; }
   .ts .ts-totop { display: inline-flex; align-items: center; gap: .6rem; color: var(--ts-muted); transition: color .3s; }
   .ts .ts-totop:hover { color: var(--ts-text); }
   .ts-totop span:last-child { display: grid; place-items: center; width: 34px; height: 34px; border-radius: 50%; border: 1px solid var(--ts-line-strong); transition: transform .5s var(--ts-ease-out), border-color .3s; }

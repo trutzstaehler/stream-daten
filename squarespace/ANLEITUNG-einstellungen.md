@@ -115,6 +115,10 @@ Damit kennzeichnet der Browser die Seite als deutsch. Das hilft bei Google und V
 2. **Banner-Typ:** „Opt-in und Opt-out“. Dann ist erst einmal nichts erlaubt, und Besucher wählen selbst.
 3. **„Nicht notwendige Cookies einschränken“ / „Restrict non-essential cookies“** aktivieren. Das ist der wichtigste Haken: Analyse-Cookies laufen erst nach Zustimmung.
 4. Texte und Buttons auf Deutsch prüfen. Der Link zur Datenschutzerklärung im Banner sollte auf deine Datenschutzseite zeigen.
+5. **Bannertext kürzen** (wichtig für die Ladezeit-Wertung am Handy). Der lange Standardtext ist dort das größte Element und bestimmt den LCP-Wert. Vorschlag:
+   > Ich nutze Cookies für eine anonyme Besucherstatistik – nur, wenn du zustimmst. Mehr in der Datenschutzerklärung.
+
+   „Datenschutzerklärung“ gerne mit `/datenschutzerklaerung` verlinken.
 
 Testen:
 1. Seite in einem privaten Fenster öffnen.

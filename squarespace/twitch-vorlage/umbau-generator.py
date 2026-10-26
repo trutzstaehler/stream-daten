@@ -106,6 +106,9 @@ CONSENT = r'''<!-- Twitch erst nach Klick laden (Datenschutz) -->
     });
   }
   document.addEventListener('click', function (e) {
+    /* Datenschutz-Link: auf die echte Adresse der Datenschutzseite aus dem Footer zeigen */
+    var priv = e.target.closest && e.target.closest('.tsw-consent__text a');
+    if (priv) { var f = document.querySelector('.ts-footer [data-ts-native="Datenschutz"]'); if (f) priv.href = f.href; return; }
     var b = e.target.closest && e.target.closest('[data-ts-consent]');
     if (!b) return;
     e.preventDefault();

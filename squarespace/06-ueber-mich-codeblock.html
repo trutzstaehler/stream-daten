@@ -1,0 +1,232 @@
+<!-- ==================================================================
+     TRUTZ STÄHLER · SEITE „ÜBER MICH“
+     Einfügen in: Seite /ueber-mich → einzige Sektion → Code-Block (volle Breite)
+     Alle anderen Blöcke und Sektionen dieser Seite können gelöscht werden.
+=================================================================== -->
+<style>
+  .ts-me { position: relative; isolation: isolate; overflow: hidden; overflow: clip; background: var(--ts-bg); }
+  .ts-me__bg { position: absolute; inset: 0; z-index: -1; pointer-events: none; }
+  .ts-me__orb { position: absolute; border-radius: 50%; filter: blur(110px); }
+  .ts-me__orb--a { left: -12%; top: 18%; width: 55vw; height: 55vw; max-width: 860px; max-height: 860px; background: radial-gradient(circle, rgba(46, 140, 108, .32), transparent 66%); }
+  .ts-me__orb--b { right: -14%; bottom: 10%; width: 42vw; height: 42vw; max-width: 680px; max-height: 680px; background: radial-gradient(circle, rgba(74, 222, 128, .1), transparent 66%); }
+
+  .ts-me__intro { padding-top: clamp(8.5rem, 14vw, 12rem); }
+  .ts-me__meta { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem; padding-bottom: 1.25rem; border-bottom: 1px solid var(--ts-line); }
+  .ts .ts-me__title { margin-top: clamp(2.5rem, 5vw, 4rem); font-family: var(--ts-font-display); font-weight: 800; font-size: clamp(2.1rem, 8.6vw, 10rem); line-height: .92; letter-spacing: -0.03em; }
+  .ts .ts-me__lead { margin-top: 1.75rem; max-width: 40rem; font-size: clamp(18px, 1.6vw, 22px); line-height: 1.6; color: var(--ts-muted); }
+  .ts-me__lead strong { color: var(--ts-text); font-weight: 500; }
+
+  /* Porträt + Text */
+  .ts-me__grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: 1.5rem; row-gap: 4rem; padding-top: clamp(4rem, 8vw, 7rem); padding-bottom: clamp(4rem, 8vw, 7rem); }
+  .ts-me__visual, .ts-me__story { grid-column: 1 / -1; }
+
+  .ts-me__portrait { position: relative; max-width: 520px; margin: 0 auto; }
+  .ts-me__frame {
+    position: relative; aspect-ratio: 4 / 5; border-radius: 28px; overflow: hidden;
+    clip-path: polygon(0 3%, 52% 0, 100% 4%, 98% 96%, 50% 100%, 2% 97%);
+    background: var(--ts-bg-2); transition: transform .8s var(--ts-ease-out);
+  }
+  .ts-me__frame img { position: absolute; inset: 0; width: 100% !important; height: 100% !important; object-fit: cover; object-position: 50% 28%; display: block; transform: scale(1.04); transition: transform 1.2s var(--ts-ease-out), filter .8s; filter: saturate(.92) contrast(1.04); }
+  .ts-me__portrait:hover .ts-me__frame img { transform: scale(1.08); filter: saturate(1.05) contrast(1.04); }
+  .ts-me__frame::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 55%, rgba(6, 6, 8, .65)), linear-gradient(120deg, rgba(46, 140, 108, .18), transparent 40%); pointer-events: none; }
+  .ts-me__portrait::before { content: ""; position: absolute; inset: 8% -6% -6% 8%; z-index: -1; border-radius: 32px; background: radial-gradient(circle at 60% 60%, rgba(46, 140, 108, .55), transparent 70%); filter: blur(40px); }
+  .ts-me__caption { position: absolute; left: 1.5rem; right: 1.5rem; bottom: 1.5rem; z-index: 1; display: flex; justify-content: space-between; gap: 1rem; color: rgba(246, 250, 247, .85); }
+
+  .ts-me__chips { position: absolute; inset: 0; pointer-events: none; }
+  .ts .ts-me-chip { position: absolute; display: inline-flex; align-items: center; gap: 8px; padding: 9px 14px; border-radius: 999px; font-size: 10.5px; color: var(--ts-text); white-space: nowrap; animation: ts-me-bob 6s ease-in-out infinite; }
+  .ts-me-chip svg { color: var(--ts-mint); }
+  .ts-me-chip--1 { left: -4%; top: 12%; }
+  .ts-me-chip--2 { right: -5%; top: 34%; animation-delay: -2s; }
+  .ts-me-chip--3 { left: -2%; bottom: 22%; animation-delay: -4s; }
+  @keyframes ts-me-bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+
+  .ts .ts-me__story p { font-size: 17px; line-height: 1.8; color: var(--ts-muted); }
+  .ts .ts-me__story p + p { margin-top: 1.4rem; }
+  .ts-me__story strong { color: var(--ts-text); font-weight: 500; }
+  .ts .ts-me__story a { color: var(--ts-mint); border-bottom: 1px solid rgba(110, 231, 183, .35); transition: border-color .3s; }
+  .ts .ts-me__story a:hover { border-color: var(--ts-mint); }
+
+  .ts .ts-me__quote { margin: 2.75rem 0 !important; padding: 0 0 0 1.5rem; border-left: 2px solid var(--ts-mint); }
+  .ts .ts-me__quote blockquote { margin: 0; padding: 0; border: 0; font-family: var(--ts-font-display); font-weight: 700; font-size: clamp(1.5rem, 2.6vw, 2.3rem); line-height: 1.15; letter-spacing: -0.03em; color: var(--ts-text); white-space: normal; }
+  .ts-me__quote em { font-style: normal; color: var(--ts-mint); }
+
+  /* Steckbrief */
+  .ts-me__facts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border-top: 1px solid var(--ts-line); border-left: 1px solid var(--ts-line); }
+  .ts-fact { padding: 1.5rem 1.25rem; border-right: 1px solid var(--ts-line); border-bottom: 1px solid var(--ts-line); transition: background-color .4s; }
+  .ts-fact:hover { background: rgba(29, 77, 63, .18); }
+  .ts .ts-fact__label { color: var(--ts-muted); font-size: 10.5px; }
+  .ts .ts-fact__value { margin-top: .6rem; font-family: var(--ts-font-display); font-weight: 700; font-size: clamp(1.2rem, 1.8vw, 1.6rem); line-height: 1.1; letter-spacing: -0.03em; }
+  .ts .ts-fact__note { margin-top: .4rem; font-size: 13.5px; line-height: 1.5; color: var(--ts-muted); }
+
+  /* Was mich antreibt */
+  .ts-me__values { padding-top: clamp(5rem, 10vw, 8rem); }
+  .ts-me__values-head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 1.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--ts-line); }
+  .ts .ts-me__h2 { margin-top: .75rem; font-family: var(--ts-font-display); font-weight: 800; font-size: clamp(2rem, 5.4vw, 5rem); line-height: .95; letter-spacing: -0.03em; }
+  .ts .ts-me__values-list { display: grid; gap: .75rem; margin-top: clamp(2rem, 4vw, 3rem); }
+  .ts .ts-value { position: relative; display: flex; flex-direction: column; height: 100%; padding: 1.5rem; border-radius: 22px; overflow: hidden; transition: transform .6s var(--ts-ease-out), border-color .4s; }
+  .ts .ts-value:hover { transform: translateY(-4px); border-color: rgba(255, 255, 255, .16); }
+  .ts-value__icon { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 14px; border: 1px solid var(--ts-line); background: rgba(29, 77, 63, .45); color: var(--ts-mint); }
+  .ts .ts-value__num { position: absolute; right: 1.5rem; top: 1.5rem; color: rgba(154, 171, 163, .6); }
+  .ts .ts-value h3 { margin-top: 1.5rem; font-family: var(--ts-font-display); font-weight: 700; font-size: 22px; line-height: 1.2; letter-spacing: -0.03em; }
+  .ts .ts-value p { margin-top: .4rem; font-size: 14.5px; line-height: 1.65; color: var(--ts-muted); }
+
+  /* Abschluss */
+  .ts-me__outro { padding-top: clamp(5rem, 10vw, 9rem); padding-bottom: clamp(6rem, 11vw, 10rem); }
+  .ts-me__outro-inner { display: grid; gap: 2.5rem; padding-top: clamp(2.5rem, 5vw, 4rem); border-top: 1px solid var(--ts-line); }
+  .ts .ts-me__outro-text { font-family: var(--ts-font-display); font-weight: 700; font-size: clamp(1.7rem, 3.6vw, 3.2rem); line-height: 1.1; letter-spacing: -0.03em; }
+  .ts-me__outro-text span { color: var(--ts-mint); }
+  .ts-me__ctas { display: flex; flex-wrap: wrap; gap: .75rem; align-items: center; }
+
+  @media (min-width: 640px) {
+    .ts .ts-me__values-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .ts-fact { padding: 1.75rem 1.5rem; }
+  }
+  @media (min-width: 1024px) {
+    .ts-me__visual { grid-column: 1 / span 5; position: sticky; top: 120px; align-self: start; }
+    .ts-me__story { grid-column: 7 / span 6; }
+    .ts .ts-me__story p { font-size: 18px; }
+    .ts-me__facts { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .ts .ts-me__values-list { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .ts-me__outro-inner { grid-template-columns: 1fr auto; align-items: end; }
+  }
+  @media (max-width: 639px) {
+    .ts-me-chip--1 { left: 2%; } .ts-me-chip--2 { right: 2%; } .ts-me-chip--3 { left: 4%; }
+  }
+  @media (prefers-reduced-motion: reduce) { .ts-me-chip { animation: none; } }
+</style>
+
+<div class="ts ts-me ts-bleed">
+  <div class="ts-me__bg" aria-hidden="true">
+    <div class="ts-me__orb ts-me__orb--a" data-ts-parallax="0.03"></div>
+    <div class="ts-me__orb ts-me__orb--b" data-ts-parallax="-0.04"></div>
+  </div>
+
+  <!-- ============ INTRO ============ -->
+  <section class="ts-container ts-me__intro" aria-labelledby="ts-me-title">
+    <div class="ts-me__meta ts-reveal">
+      <p class="ts-label ts-muted">[ 01 — Über mich ]</p>
+      <p class="ts-label ts-muted">Hamburg · Jahrgang 1988</p>
+    </div>
+    <h1 id="ts-me-title" class="ts-me__title" data-ts-fit>
+      <span class="ts-line"><span style="transition-delay:.1s">Moin, ich bin</span></span>
+      <span class="ts-line"><span class="ts-gradient-text" style="transition-delay:.22s">Trutz.</span></span>
+    </h1>
+    <p class="ts-me__lead ts-reveal">Jahrgang 1988 und tief verwurzelt in meiner Heimatstadt <strong>Hamburg</strong>.</p>
+  </section>
+
+  <!-- ============ PORTRÄT + GESCHICHTE ============ -->
+  <section class="ts-container ts-me__grid" aria-label="Meine Geschichte">
+    <div class="ts-me__visual ts-reveal">
+      <figure class="ts-me__portrait" style="margin:0 auto">
+        <div class="ts-me__frame">
+          <img src="https://images.squarespace-cdn.com/content/v1/6869717aa7c996116c8c8a56/ffc25dc6-15ea-4d07-ab0d-6173fde95edf/IMG_3686.jpeg?format=1500w" alt="Porträt von Trutz Stähler vor einer grünen Hecke">
+          <figcaption class="ts-me__caption ts-label"><span>Trutz Stähler</span><span>Hamburg</span></figcaption>
+        </div>
+        <div class="ts-me__chips" aria-hidden="true">
+          <span class="ts-me-chip ts-me-chip--1 ts-glass ts-label"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="5" r="2"/><path d="M12 7v14M5 12H3a9 9 0 0 0 18 0h-2M8 10h8"/></svg>Heimathafen Hamburg</span>
+          <span class="ts-me-chip ts-me-chip--2 ts-glass ts-label"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="14" cy="4" r="2"/><path d="m6 21 3-6 3 2v4M8.5 10.5 11 7l4 2 2 4h3M11 7l-2 7"/></svg>Läufer</span>
+          <span class="ts-me-chip ts-me-chip--3 ts-glass ts-label"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s-7-4.4-9.3-9A5.3 5.3 0 0 1 12 6.6 5.3 5.3 0 0 1 21.3 12C19 16.6 12 21 12 21Z"/></svg>Stolzer Papa</span>
+        </div>
+      </figure>
+    </div>
+
+    <div class="ts-me__story">
+      <p class="ts-reveal">Ich bin stolzer Papa einer wundervollen Tochter, leidenschaftlicher Läufer und Genießer – ja, auch <strong>Franzbrötchen</strong> gehören zu meinen absoluten Glücksmomenten.</p>
+      <p class="ts-reveal">Nach einigen turbulenten Jahren habe ich meinen festen Anker wiedergefunden. Heute blicke ich voller Dankbarkeit auf mein Leben: auf die wertvolle Zeit mit meiner Tochter, das Glück, eine wunderbare Partnerin an meiner Seite zu haben, und die Energie, die mir das Laufen in der Natur gibt.</p>
+
+      <figure class="ts-me__quote ts-reveal">
+        <blockquote>Den Blick nach vorne richten und das Leben jeden Tag mit einem <em>Lächeln</em> gestalten.</blockquote>
+      </figure>
+
+      <p class="ts-reveal">Wenn ich nicht gerade an der Alster, im Niendorfer Gehege oder auf der nächsten Laufstrecke unterwegs bin – oft auch gemeinsam mit meiner Freundin oder der kleinen Familie im Camper –, findest du mich im <a href="/kreativhafen">Kreativhafen</a>.</p>
+      <p class="ts-reveal">Der Kreativhafen ist mein Herzensprojekt. Dort erschaffe ich Geschichten, Malbücher und Lernhelfer, die Kinderaugen zum Strahlen bringen und Eltern ein Stück Leichtigkeit schenken. Er ist mehr als nur ein Name: Ein Ort der Fantasie, der Kreativität und der Geborgenheit – genau wie ein echter Hafen, an dem man zusammen ankommt.</p>
+    </div>
+  </section>
+
+  <!-- ============ STECKBRIEF ============ -->
+  <section class="ts-container" aria-label="Steckbrief">
+    <div class="ts-me__facts ts-reveal">
+      <div class="ts-fact">
+        <p class="ts-label ts-fact__label">Jahrgang</p>
+        <p class="ts-fact__value" data-ts-fit>1988</p>
+        <p class="ts-fact__note">Tief verwurzelt in Hamburg.</p>
+      </div>
+      <div class="ts-fact">
+        <p class="ts-label ts-fact__label">Heimathafen</p>
+        <p class="ts-fact__value" data-ts-fit>Hamburg</p>
+        <p class="ts-fact__note">Meine Heimatstadt.</p>
+      </div>
+      <div class="ts-fact">
+        <p class="ts-label ts-fact__label">Laufstrecken</p>
+        <p class="ts-fact__value" data-ts-fit>Alster &amp; Gehege</p>
+        <p class="ts-fact__note">Alster, Niendorfer Gehege und die nächste Strecke.</p>
+      </div>
+      <div class="ts-fact">
+        <p class="ts-label ts-fact__label">Glücksmoment</p>
+        <p class="ts-fact__value" data-ts-fit>Franzbrötchen</p>
+        <p class="ts-fact__note">Läufer und Genießer.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ WAS MICH ANTREIBT ============ -->
+  <section class="ts-container ts-me__values" aria-labelledby="ts-me-values">
+    <div class="ts-me__values-head ts-reveal">
+      <div>
+        <p class="ts-label ts-muted">[ Werte ]</p>
+        <h2 id="ts-me-values" class="ts-me__h2" data-ts-fit>Was mich antreibt</h2>
+      </div>
+    </div>
+    <ul class="ts-me__values-list">
+      <li class="ts-reveal">
+        <div class="ts-value ts-glass">
+          <span class="ts-label ts-value__num">01</span>
+          <span class="ts-value__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 21s-7-4.4-9.3-9A5.3 5.3 0 0 1 12 6.6 5.3 5.3 0 0 1 21.3 12C19 16.6 12 21 12 21Z"/></svg></span>
+          <h3 data-ts-fit>Familie</h3>
+          <p>Wertvolle Zeit mit meiner Tochter, meiner Partnerin und der kleinen Familie im Camper.</p>
+        </div>
+      </li>
+      <li class="ts-reveal">
+        <div class="ts-value ts-glass">
+          <span class="ts-label ts-value__num">02</span>
+          <span class="ts-value__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 22V12M12 12c0-5 3-8 8-9-1 5-3.5 8-8 9ZM12 15c0-4-2.5-6.5-7-7 .5 4 2.8 6.5 7 7Z"/></svg></span>
+          <h3 data-ts-fit>Natur</h3>
+          <p>Die Energie, die mir das Laufen draußen gibt – an der Alster und im Niendorfer Gehege.</p>
+        </div>
+      </li>
+      <li class="ts-reveal">
+        <div class="ts-value ts-glass">
+          <span class="ts-label ts-value__num">03</span>
+          <span class="ts-value__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8.5 14.5s1.2 1.8 3.5 1.8 3.5-1.8 3.5-1.8M9 9.5h.01M15 9.5h.01"/></svg></span>
+          <h3 data-ts-fit>Authentizität</h3>
+          <p>Echt sein statt perfekt wirken.</p>
+        </div>
+      </li>
+      <li class="ts-reveal">
+        <div class="ts-value ts-glass">
+          <span class="ts-label ts-value__num">04</span>
+          <span class="ts-value__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m12 3 1.8 4.6L18.5 9l-4.7 1.4L12 15l-1.8-4.6L5.5 9l4.7-1.4L12 3ZM19 15l.8 2 2 .8-2 .8-.8 2-.8-2-2-.8 2-.8.8-2Z"/></svg></span>
+          <h3 data-ts-fit>Freude am Erschaffen</h3>
+          <p>Geschichten, Malbücher und Lernhelfer, die Kinderaugen zum Strahlen bringen.</p>
+        </div>
+      </li>
+    </ul>
+  </section>
+
+  <!-- ============ ABSCHLUSS ============ -->
+  <section class="ts-container ts-me__outro" aria-label="Zum Schluss">
+    <div class="ts-me__outro-inner ts-reveal">
+      <p class="ts-me__outro-text">Vielleicht laufen wir uns ja mal über den Weg – draußen in der Natur oder hier im Kreativhafen. <span>Ich freue mich, dass du da bist!</span></p>
+      <div class="ts-me__ctas">
+        <a href="/kreativhafen" class="ts-btn ts-btn--primary ts-magnetic">
+          <span class="ts-btn__inner"><span class="ts-roll"><span data-text="Zum Kreativhafen">Zum Kreativhafen</span></span>
+            <svg class="ts-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </span>
+        </a>
+        <a href="/running" class="ts-btn ts-btn--ghost ts-magnetic">
+          <span class="ts-btn__inner"><span class="ts-roll"><span data-text="Laufgeschichten">Laufgeschichten</span></span></span>
+        </a>
+      </div>
+    </div>
+  </section>
+</div>

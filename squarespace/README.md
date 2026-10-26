@@ -9,6 +9,7 @@ Design: Dark Editorial · Hintergrund `#060608` · Nebenfarbe Markengrün `#1d4d
 | `03-startseite-hero-codeblock.html` | Startseite → oberste Sektion → **Code-Block** über die volle Rasterbreite |
 | `04-startseite-neuerscheinung-codeblock.html` | Startseite → Sektion unter der Hero → **Code-Block** über die volle Rasterbreite |
 | `05-kreativhafen-codeblock.html` | Seite `/kreativhafen` → einzige Sektion → **Code-Block** über die volle Rasterbreite |
+| `06-ueber-mich-codeblock.html` | Seite `/ueber-mich` → einzige Sektion → **Code-Block** über die volle Rasterbreite |
 
 Die Datei 01 ist das globale Design-System und wird nur einmal eingefügt. Die Datei 02 enthält Navigation und JavaScript für alle Seiten.
 Jede neue Sektion kommt später als eigener Code-Block dazu.

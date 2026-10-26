@@ -171,3 +171,16 @@ Alle Schriften stehen unter der SIL Open Font License und dürfen frei verwendet
 3. Das am besten für die Startseite, `/running` und `/twitch-startseite` machen.
 
 Squarespace selbst bringt eigene Skripte mit, die ich nicht entfernen kann. Alles aus den Code-Blöcken kann ich aber gezielt verbessern.
+
+---
+
+## 9. Buch-Illustrationen hochladen (für „Blick ins Buch“ auf der Maria-Holm-Seite)
+
+Die 6 Illustrationen liegen fertig in `bilder/buch/`, als dunkle Tusche auf transparentem Grund:
+
+`maria-detektivin.png` · `kapitel-01-fahrrad.png` · `kapitel-02-spurensuche.png` · `kapitel-05-lagebesprechung.png` · `kapitel-06-speicherstadt.png` · `kapitel-09-anker.png`
+
+1. Wie bei den Schriften: **Website-Werkzeuge → Benutzerdefiniertes CSS → „Benutzerdefinierte Dateien verwalten“** → die 6 Bilder hochladen.
+2. Nacheinander anklicken, damit Squarespace die Adressen ins CSS-Feld schreibt.
+3. **Die 6 Adressen schicken.** Danach das CSS-Feld wieder leeren und speichern. Die Dateien selbst bleiben hochgeladen.
+4. Ich baue daraus die fertige Datei 10 (`inhalte/buch-einblick-einbauen.py`).

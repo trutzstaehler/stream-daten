@@ -92,6 +92,25 @@
   .cookie-banner-manager .manage-cookies-bar { display: none !important; }
   /* Cookie-Banner von Squarespace kompakt halten: Sein langer Text war am Handy das größte Element und bestimmte den LCP-Wert */
   .cookie-banner-manager p, [class*="cookie-banner"] p { font-size: 13px !important; line-height: 1.5 !important; }
+  /* … und im Design der Seite: dunkles Glas, abgerundet, eigene Schrift und Buttons */
+  .sqs-cookie-banner-v2 {
+    margin: 12px !important; max-width: 760px; border-radius: 22px !important; padding: 18px 20px !important;
+    background: rgba(12, 17, 15, .94) !important; color: var(--ts-text) !important; border: 1px solid rgba(255, 255, 255, .1) !important;
+    box-shadow: 0 30px 80px -30px rgba(0, 0, 0, .9), 0 0 0 1px rgba(110, 231, 183, .06) !important;
+    font-family: var(--ts-font-body) !important;
+  }
+  @media (min-width: 800px) { .sqs-cookie-banner-v2 { margin: 0 auto 20px !important; } }
+  .sqs-cookie-banner-v2 p, .sqs-cookie-banner-v2-text { color: var(--ts-muted) !important; font-family: var(--ts-font-body) !important; }
+  .sqs-cookie-banner-v2 a { color: var(--ts-mint) !important; }
+  .sqs-cookie-banner-v2 button, [class*="cookie-banner"] button {
+    font-family: var(--ts-font-body) !important; font-size: 13px !important; font-weight: 500 !important; letter-spacing: 0 !important; text-transform: none !important;
+    border-radius: 999px !important; padding: 10px 18px !important; transition: background .3s, color .3s, border-color .3s !important;
+  }
+  .sqs-cookie-banner-v2-accept { background: var(--ts-text) !important; color: #060608 !important; border: 1px solid var(--ts-text) !important; }
+  .sqs-cookie-banner-v2-accept:hover { background: var(--ts-mint) !important; border-color: var(--ts-mint) !important; }
+  .sqs-cookie-banner-v2-deny, .sqs-cookie-banner-v2-cta:not(.sqs-cookie-banner-v2-accept) { background: transparent !important; color: var(--ts-text) !important; border: 1px solid rgba(255, 255, 255, .16) !important; }
+  body:has(.tsw) .sqs-cookie-banner-v2-accept { background: #ffd100 !important; border-color: #ffd100 !important; color: #120e0b !important; }
+  body:has(.tsw) .sqs-cookie-banner-v2 a { color: #ffd100 !important; }
   .ts .ts-totop { display: inline-flex; align-items: center; gap: .6rem; color: var(--ts-muted); transition: color .3s; }
   .ts .ts-totop:hover { color: var(--ts-text); }
   .ts-totop span:last-child { display: grid; place-items: center; width: 34px; height: 34px; border-radius: 50%; border: 1px solid var(--ts-line-strong); transition: transform .5s var(--ts-ease-out), border-color .3s; }
@@ -198,6 +217,12 @@
   const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const finePointer = matchMedia('(hover: hover) and (pointer: fine)').matches;
   const fx = finePointer && !reduceMotion && !inEditor;
+
+  /* ---------- Hallo an alle, die in den Code schauen ---------- */
+  try {
+    console.log('%cMoin! 👋', 'font: 800 28px Syne, system-ui, sans-serif; color: #6ee7b7;');
+    console.log('%cEcht sein statt perfekt wirken – auch im Quelltext.\nDu schaust gern unter die Haube? Schreib mir: moin@trutzstaehler.de', 'font: 13px/1.6 Inter, system-ui, sans-serif; color: #9aaba3;');
+  } catch (e) {}
 
   /* ---------- Intro-Animation (nach einem Seitenübergang erst, wenn der Vorhang aufgeht) ---------- */
   const introDelay = html.classList.contains('ts-trans-in') ? 420 : 0;

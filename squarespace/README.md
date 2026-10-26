@@ -50,7 +50,10 @@ Seiten-URLs in der Navigation (in Datei 02 und 03 anpassen, falls deine anders l
 Einstellungen, die nur im Squarespace-Backend gehen (Weiterleitungen, 404-Seite, SEO, Favicon, Sprache, Cookie-Banner, Schriften): siehe `ANLEITUNG-einstellungen.md`.
 
 Weitere Ordner:
-- `bilder/`: Vorschaubilder fürs Teilen (allgemein und Twitch) sowie das Browser-Symbol (Favicon)
+- `bilder/`: Vorschaubilder fürs Teilen (allgemein und Twitch) sowie das Browser-Symbol (Favicon); `bilder/buch/`: 6 Illustrationen aus dem Maria-Holm-Buch
 - `schriften/`: die 6 Schriftdateien zum Selbst-Hosten, mit Lizenzen
 
 Seitenübergänge (grüner Vorhang, im Twitch-Bereich gold) stecken in Datei 01 und 02. Die Rennverlauf-Grafik, die sich beim Scrollen zeichnet, steckt in Datei 08.
+
+Startseite: Datei 03 enthält zusätzlich die Scroll-Sequenz „Drei Welten“ (Bücher → Laufen → Twitch).
+Maria-Holm-Seite: Der Bereich „Blick ins Buch“ liegt als Vorlage in `inhalte/maria-holm-einblick.html` und wird mit `inhalte/buch-einblick-einbauen.py` und den Bild-Adressen in Datei 10 eingebaut. Die Buchinhalte sind in `inhalte/maria-holm-buch.md` festgehalten.

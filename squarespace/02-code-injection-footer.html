@@ -89,6 +89,7 @@
   .ts .ts-cookie-link[hidden] { display: none; }
   /* Schwebender Squarespace-Knopf „Cookie-Einstellungen“: ausgeblendet, der Link im Footer übernimmt */
   [data-ts-cookie-float] { opacity: 0 !important; pointer-events: none !important; }
+  .cookie-banner-manager .manage-cookies-bar { display: none !important; }
   .ts .ts-totop { display: inline-flex; align-items: center; gap: .6rem; color: var(--ts-muted); transition: color .3s; }
   .ts .ts-totop:hover { color: var(--ts-text); }
   .ts-totop span:last-child { display: grid; place-items: center; width: 34px; height: 34px; border-radius: 50%; border: 1px solid var(--ts-line-strong); transition: transform .5s var(--ts-ease-out), border-color .3s; }
@@ -212,6 +213,10 @@
     return own.length > 60 && shown(d);
   });
   const findCookieFloat = () => {
+    // 1. Squarespace: <div class="cookie-banner-manager"><section class="manage-cookies-bar …"><button class="manage-bar-action">
+    const sq = document.querySelector('.cookie-banner-manager .manage-cookies-bar');
+    if (sq) { cookieFloat = sq.querySelector('.manage-bar-action, button') || sq; if (cookieLink) cookieLink.hidden = false; return; }
+    // 2. Reserve, falls Squarespace den Aufbau ändert: kleiner fester Knopf mit kurzem „Cookie“-Text
     if (cookieFloat && document.contains(cookieFloat) && cookieFloat.hasAttribute('data-ts-cookie-float')) return;
     // kleiner, sichtbarer Knopf mit kurzem „Cookie“-Text, der selbst oder über einen Rahmen fest auf dem Bildschirm sitzt.
     // Das große Banner beim ersten Besuch hat viel Text und bleibt deshalb unangetastet.
@@ -231,6 +236,7 @@
   };
   if (cookieLink) {
     cookieLink.addEventListener('click', () => {
+      findCookieFloat();
       if (!cookieFloat) return;
       cookieFloat.removeAttribute('data-ts-cookie-float');
       const inner = cookieFloat.shadowRoot ? cookieFloat.shadowRoot.querySelector('button, a') : null;

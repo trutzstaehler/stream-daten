@@ -4,15 +4,26 @@
      Enthält: Schriften (selbst gehostet), Design-Tokens, Squarespace-Anpassungen, alle Komponenten
      Alle eigenen Klassen beginnen mit "ts-" und kollidieren nicht mit Squarespace.
 =================================================================== -->
+<!-- Schriften: selbst gehostet bei Squarespace (keine Verbindung zu Google) -->
+<script>
+  /* Die wichtigsten Schriften sofort laden – sonst springt der Text, wenn sie spät ankommen */
+  (function () {
+    var tsw = ['/twitch-startseite', '/live', '/mitspielen', '/charakter', '/bestenliste', '/statistiken'].indexOf(location.pathname.replace(/\/$/, '')) > -1;
+    (tsw ? ['https://static1.squarespace.com/static/6869717aa7c996116c8c8a56/t/6adf502e069df975516b9b5b/1793019950535/cinzel-latin-wght-normal.woff2', 'https://static1.squarespace.com/static/6869717aa7c996116c8c8a56/t/6adf502e499ff6311ccf5c23/1793019950544/asul-latin-400-normal.woff2'] : ['https://static1.squarespace.com/static/6869717aa7c996116c8c8a56/t/6adf502e13aeb739ef55f134/1793019950546/syne-latin-wght-normal.woff2', 'https://static1.squarespace.com/static/6869717aa7c996116c8c8a56/t/6adf502e666c682c5dbbc34a/1793019950565/inter-latin-wght-normal.woff2']).forEach(function (u) {
+      var l = document.createElement('link'); l.rel = 'preload'; l.as = 'font'; l.type = 'font/woff2'; l.crossOrigin = 'anonymous'; l.href = u; document.head.appendChild(l);
+    });
+  })();
+</script>
 <style>
-  /* Schriften – selbst gehostet bei Squarespace (keine Verbindung zu Google) */
+  /* Überschriften (Syne, Cinzel) tauschen sichtbar ein; Fließtext (Inter, Asul, Mono) nur, wenn er rechtzeitig da ist – kein Springen */
   @font-face { font-family: 'Syne'; font-style: normal; font-weight: 400 800; font-display: swap; src: url('https://static1.squarespace.com/static/6869717aa7c996116c8c8a56/t/6adf502e13aeb739ef55f134/1793019950546/syne-latin-wght-normal.woff2') format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
-  @font-face { font-family: 'Inter'; font-style: normal; font-weight: 100 900; font-display: swap; src: url('https://static1.squarespace.com/static/6869717aa7c996116c8c8a56/t/6adf502e666c682c5dbbc34a/1793019950565/inter-latin-wght-normal.woff2') format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
-  @font-face { font-family: 'JetBrains Mono'; font-style: normal; font-weight: 100 800; font-display: swap; src: url('https://static1.squarespace.com/static/6869717aa7c996116c8c8a56/t/6adf502e95c9a8434ebfef8d/1793019950556/jetbrains-mono-latin-wght-normal.woff2') format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+  @font-face { font-family: 'Inter'; font-style: normal; font-weight: 100 900; font-display: optional; src: url('https://static1.squarespace.com/static/6869717aa7c996116c8c8a56/t/6adf502e666c682c5dbbc34a/1793019950565/inter-latin-wght-normal.woff2') format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+  @font-face { font-family: 'JetBrains Mono'; font-style: normal; font-weight: 100 800; font-display: optional; src: url('https://static1.squarespace.com/static/6869717aa7c996116c8c8a56/t/6adf502e95c9a8434ebfef8d/1793019950556/jetbrains-mono-latin-wght-normal.woff2') format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
   @font-face { font-family: 'Cinzel'; font-style: normal; font-weight: 400 900; font-display: swap; src: url('https://static1.squarespace.com/static/6869717aa7c996116c8c8a56/t/6adf502e069df975516b9b5b/1793019950535/cinzel-latin-wght-normal.woff2') format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
-  @font-face { font-family: 'Asul'; font-style: normal; font-weight: 400; font-display: swap; src: url('https://static1.squarespace.com/static/6869717aa7c996116c8c8a56/t/6adf502e499ff6311ccf5c23/1793019950544/asul-latin-400-normal.woff2') format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
-  @font-face { font-family: 'Asul'; font-style: normal; font-weight: 700; font-display: swap; src: url('https://static1.squarespace.com/static/6869717aa7c996116c8c8a56/t/6adf502e4871e13d1ed65d30/1793019950542/asul-latin-700-normal.woff2') format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+  @font-face { font-family: 'Asul'; font-style: normal; font-weight: 400; font-display: optional; src: url('https://static1.squarespace.com/static/6869717aa7c996116c8c8a56/t/6adf502e499ff6311ccf5c23/1793019950544/asul-latin-400-normal.woff2') format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+  @font-face { font-family: 'Asul'; font-style: normal; font-weight: 700; font-display: optional; src: url('https://static1.squarespace.com/static/6869717aa7c996116c8c8a56/t/6adf502e4871e13d1ed65d30/1793019950542/asul-latin-700-normal.woff2') format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
 </style>
+<!-- /Schriften -->
 <meta name="theme-color" content="#060608">
 
 <script>
@@ -36,6 +47,8 @@
 
 <style>
   /* ============ 1. DESIGN TOKENS ============ */
+  /* Ersatzschrift für Überschriften, bis Syne geladen ist: auf Syne-Breite skaliert, damit nichts springt */
+  @font-face { font-family: 'Syne Fallback'; src: local('Arial'), local('Helvetica Neue'), local('Helvetica'), local('Roboto'); size-adjust: 92%; }
   :root {
     --ts-bg: #060608;
     --ts-bg-2: #0c110f;
@@ -48,7 +61,7 @@
     --ts-twitch: #a7f3d0;       /* blasses Grün für die Twitch-Karte */
     --ts-text: #f6faf7;
     --ts-muted: #9aaba3;
-    --ts-font-display: 'Syne', 'Space Grotesk', system-ui, sans-serif;
+    --ts-font-display: 'Syne', 'Syne Fallback', system-ui, sans-serif;
     --ts-font-body: 'Inter', 'Plus Jakarta Sans', system-ui, sans-serif;
     --ts-font-mono: 'JetBrains Mono', 'Space Mono', ui-monospace, monospace;
     --ts-ease-out: cubic-bezier(0.16, 1, 0.3, 1);

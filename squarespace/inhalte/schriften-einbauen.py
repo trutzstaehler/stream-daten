@@ -9,13 +9,15 @@ import os, re, subprocess, sys
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
 FILES = {
-    'syne-latin-wght-normal.woff2': ("'Syne'", '400 800'),
-    'inter-latin-wght-normal.woff2': ("'Inter'", '100 900'),
-    'jetbrains-mono-latin-wght-normal.woff2': ("'JetBrains Mono'", '100 800'),
-    'cinzel-latin-wght-normal.woff2': ("'Cinzel'", '400 900'),
-    'asul-latin-400-normal.woff2': ("'Asul'", '400'),
-    'asul-latin-700-normal.woff2': ("'Asul'", '700'),
+    # Datei: (Familie, Stärken, font-display, vorladen auf: 'main' = übrige Seiten, 'tsw' = Twitch-Seiten)
+    'syne-latin-wght-normal.woff2': ("'Syne'", '400 800', 'swap', 'main'),
+    'inter-latin-wght-normal.woff2': ("'Inter'", '100 900', 'optional', 'main'),
+    'jetbrains-mono-latin-wght-normal.woff2': ("'JetBrains Mono'", '100 800', 'optional', ''),
+    'cinzel-latin-wght-normal.woff2': ("'Cinzel'", '400 900', 'swap', 'tsw'),
+    'asul-latin-400-normal.woff2': ("'Asul'", '400', 'optional', 'tsw'),
+    'asul-latin-700-normal.woff2': ("'Asul'", '700', 'optional', ''),
 }
+TSW_PATHS = ['/twitch-startseite', '/live', '/mitspielen', '/charakter', '/bestenliste', '/statistiken']
 URANGE = 'U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD'
 
 urls = {}
@@ -29,10 +31,22 @@ if missing:
     sys.exit('Es fehlen Adressen für: ' + ', '.join(missing))
 
 faces = '\n'.join(
-    f"  @font-face {{ font-family: {fam}; font-style: normal; font-weight: {w}; font-display: swap; src: url('{urls[n]}') format('woff2'); unicode-range: {URANGE}; }}"
-    for n, (fam, w) in FILES.items())
-block = ('<style>\n  /* Schriften – selbst gehostet bei Squarespace (keine Verbindung zu Google) */\n'
-         + faces + '\n</style>')
+    f"  @font-face {{ font-family: {fam}; font-style: normal; font-weight: {w}; font-display: {disp}; src: url('{urls[n]}') format('woff2'); unicode-range: {URANGE}; }}"
+    for n, (fam, w, disp, _) in FILES.items())
+pre = lambda grp: ', '.join(f"'{urls[n]}'" for n, v in FILES.items() if v[3] == grp)
+block = ('<!-- Schriften: selbst gehostet bei Squarespace (keine Verbindung zu Google) -->\n'
+         '<script>\n'
+         '  /* Die wichtigsten Schriften sofort laden – sonst springt der Text, wenn sie spät ankommen */\n'
+         '  (function () {\n'
+         f"    var tsw = {TSW_PATHS!r}.indexOf(location.pathname.replace(/\\/$/, '')) > -1;\n"
+         f"    (tsw ? [{pre('tsw')}] : [{pre('main')}]).forEach(function (u) {{\n"
+         "      var l = document.createElement('link'); l.rel = 'preload'; l.as = 'font'; l.type = 'font/woff2'; l.crossOrigin = 'anonymous'; l.href = u; document.head.appendChild(l);\n"
+         '    });\n'
+         '  })();\n'
+         '</script>\n'
+         '<style>\n'
+         '  /* Überschriften (Syne, Cinzel) tauschen sichtbar ein; Fließtext (Inter, Asul, Mono) nur, wenn er rechtzeitig da ist – kein Springen */\n'
+         + faces + '\n</style>\n<!-- /Schriften -->')
 
 # 1) Header 01: Google-Links durch @font-face ersetzen
 p = os.path.join(ROOT, '01-code-injection-header.html')
@@ -41,7 +55,9 @@ old = re.search(r'<link rel="preconnect" href="https://fonts\.googleapis\.com">\
 if old:
     s = s.replace(old.group(0), block)
 else:
-    s, n = re.subn(r'<style>\n  /\* Schriften – selbst gehostet.*?</style>', lambda m: block, s, count=1, flags=re.S)
+    s, n = re.subn(r'<!-- Schriften: selbst gehostet.*?<!-- /Schriften -->', lambda m: block, s, count=1, flags=re.S)
+    if not n:
+        s, n = re.subn(r'<style>\n  /\* Schriften – selbst gehostet.*?</style>', lambda m: block, s, count=1, flags=re.S)
     if not n:
         sys.exit('01: Schrift-Bereich nicht gefunden')
 s = s.replace('Enthält: Fonts, Design-Tokens', 'Enthält: Schriften (selbst gehostet), Design-Tokens')

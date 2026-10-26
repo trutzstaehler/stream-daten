@@ -328,7 +328,9 @@
   }
   addEventListener('load', fitAll);
   let fitTimer;
-  addEventListener('resize', () => { clearTimeout(fitTimer); fitTimer = setTimeout(fitAll, 120); });
+  /* Nur bei echter Breitenänderung neu einpassen – am Handy feuert „resize“ auch, wenn beim Scrollen die Adressleiste ein- und ausfährt */
+  let fitW = innerWidth;
+  addEventListener('resize', () => { if (innerWidth === fitW) return; fitW = innerWidth; clearTimeout(fitTimer); fitTimer = setTimeout(fitAll, 120); });
 
   /* ---------- Aktiver Navigationspunkt ---------- */
   const path = location.pathname.replace(/\/$/, '') || '/';
@@ -446,7 +448,10 @@
 
     const build = () => {
       const dpr = Math.min(devicePixelRatio || 1, 2);
-      w = canvas.clientWidth; h = canvas.clientHeight;
+      const nw = canvas.clientWidth, nh = canvas.clientHeight;
+      /* Nur die Höhe geändert (Adressleiste am Handy)? Sterne behalten, nicht neu würfeln */
+      if (points.length && nw === w && Math.abs(nh - h) < 160) { h = nh; canvas.height = h * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0); return; }
+      w = nw; h = nh;
       canvas.width = w * dpr; canvas.height = h * dpr;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       const count = Math.round(Math.min(110, (w * h) / 14000));
@@ -490,7 +495,7 @@
     const go = () => setTimeout(() => { ready = true; if (!document.hidden && canvas.getBoundingClientRect().bottom > 0) resume(); }, 400);
     if (document.readyState === 'complete') go(); else addEventListener('load', go, { once: true });
     let rt;
-    addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(() => { build(); if (!animate) draw(); }, 150); });
+    addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(() => { build(); draw(); }, 150); });
     hero.addEventListener('pointermove', e => { const r = canvas.getBoundingClientRect(); mouse.x = e.clientX - r.left; mouse.y = e.clientY - r.top; });
     hero.addEventListener('pointerleave', () => { mouse.x = mouse.y = -9999; });
     new IntersectionObserver(([en]) => { if (en.isIntersecting && !document.hidden) resume(); else running = false; }).observe(canvas);

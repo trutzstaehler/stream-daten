@@ -16,12 +16,12 @@
         <li><a class="ts-nav-link" href="/ueber-mich"><span class="ts-idx ts-label">01</span>Über mich</a></li>
         <li><a class="ts-nav-link" href="/kreativhafen"><span class="ts-idx ts-label">02</span>Kreativhafen</a></li>
         <li><a class="ts-nav-link" href="/running"><span class="ts-idx ts-label">03</span>Running</a></li>
-        <li><a class="ts-nav-link" href="/twitch"><span class="ts-idx ts-label">04</span>Twitch</a></li>
+        <li><a class="ts-nav-link" href="/twitch-startseite"><span class="ts-idx ts-label">04</span>Twitch</a></li>
       </ul>
     </nav>
 
     <div class="ts-header__actions">
-      <a href="https://www.twitch.tv/einfach_trutz" target="_blank" rel="noopener" class="ts-live ts-label">
+      <a href="/twitch-startseite" class="ts-live ts-label">
         <span class="ts-pulse"></span>einfach_trutz
       </a>
       <a href="/kontakt" class="ts-btn ts-btn--primary ts-btn--sm ts-magnetic">
@@ -43,11 +43,11 @@
     <li class="ts-m-item" style="transition-delay:.30s"><a href="/ueber-mich" class="ts-menu__link ts-display">Über mich <span class="ts-label ts-muted">01</span></a></li>
     <li class="ts-m-item" style="transition-delay:.36s"><a href="/kreativhafen" class="ts-menu__link ts-display">Kreativhafen <span class="ts-label ts-muted">02</span></a></li>
     <li class="ts-m-item" style="transition-delay:.42s"><a href="/running" class="ts-menu__link ts-display">Running <span class="ts-label ts-muted">03</span></a></li>
-    <li class="ts-m-item" style="transition-delay:.48s"><a href="/twitch" class="ts-menu__link ts-display">Twitch <span class="ts-label ts-muted">04</span></a></li>
+    <li class="ts-m-item" style="transition-delay:.48s"><a href="/twitch-startseite" class="ts-menu__link ts-display">Twitch <span class="ts-label ts-muted">04</span></a></li>
     <li class="ts-m-item" style="transition-delay:.54s"><a href="/kontakt" class="ts-menu__link ts-display">Kontakt <span class="ts-label ts-muted">05</span></a></li>
   </ul>
   <div class="ts-menu__footer ts-m-item" style="transition-delay:.62s">
-    <a href="https://www.twitch.tv/einfach_trutz" target="_blank" rel="noopener" class="ts-label" style="display:inline-flex;align-items:center;gap:10px"><span class="ts-pulse"></span>twitch.tv/einfach_trutz</a>
+    <a href="/twitch-startseite" class="ts-label" style="display:inline-flex;align-items:center;gap:10px"><span class="ts-pulse"></span>Twitch · einfach_trutz</a>
     <span class="ts-label ts-muted">Echt sein statt perfekt wirken</span>
   </div>
 </div>
@@ -68,7 +68,7 @@
   .ts-footer__cols { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 3rem 1.5rem; padding: clamp(3rem, 6vw, 5rem) 0; }
   .ts-footer__brand { grid-column: 1 / -1; }
   .ts .ts-footer__about { margin-top: 1.25rem; max-width: 22rem; font-size: 15px; line-height: 1.7; color: var(--ts-muted); }
-  .ts .ts-footer__head { margin-bottom: 1.25rem; color: rgba(148, 163, 184, .6); }
+  .ts .ts-footer__head { margin-bottom: 1.25rem; color: rgba(154, 171, 163, .6); }
   .ts-footer__list li + li { margin-top: .8rem; }
   .ts .ts-footer__link { position: relative; display: inline-flex; align-items: center; gap: .6rem; font-size: 15px; color: var(--ts-text); transition: color .3s; }
   .ts .ts-footer__link:hover { color: var(--ts-mint); }
@@ -107,12 +107,12 @@
         <h2 class="ts-footer__title">Lust auf ein<br><span class="ts-outline">echtes</span> Gespräch?</h2>
       </div>
       <div class="ts-footer__actions">
-        <a href="/kontakt" class="ts-btn ts-btn--primary ts-magnetic" data-ts-native="Kontakt">
+        <a href="/kontakt" class="ts-btn ts-btn--primary ts-magnetic">
           <span class="ts-btn__inner"><span class="ts-roll"><span data-text="Kontakt aufnehmen">Kontakt aufnehmen</span></span>
             <svg class="ts-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
           </span>
         </a>
-        <a href="https://www.twitch.tv/einfach_trutz" target="_blank" rel="noopener" class="ts-btn ts-btn--ghost ts-magnetic">
+        <a href="/twitch-startseite" class="ts-btn ts-btn--ghost ts-magnetic">
           <span class="ts-btn__inner"><span class="ts-pulse"></span><span class="ts-roll"><span data-text="Streams schauen">Streams schauen</span></span></span>
         </a>
       </div>
@@ -133,7 +133,7 @@
           <li><a class="ts-footer__link" href="/ueber-mich">Über mich</a></li>
           <li><a class="ts-footer__link" href="/kreativhafen">Kreativhafen</a></li>
           <li><a class="ts-footer__link" href="/running">Running</a></li>
-          <li><a class="ts-footer__link" href="/twitch">Twitch</a></li>
+          <li><a class="ts-footer__link" href="/twitch-startseite">Twitch</a></li>
         </ul>
       </nav>
 
@@ -146,7 +146,7 @@
           <li><a class="ts-footer__link" href="https://www.linkedin.com/in/trutz-st%C3%A4hler" target="_blank" rel="noopener">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 10v7M8 7v.01M12 17v-4a2 2 0 0 1 4 0v4M12 10v7"/></svg>LinkedIn
             <svg class="ts-ext" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a></li>
-          <li><a class="ts-footer__link" href="https://www.twitch.tv/einfach_trutz" target="_blank" rel="noopener">
+          <li><a class="ts-footer__link" href="/twitch-startseite">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 3h17v11l-5 5h-4l-3 3H7v-3H4V3Z"/><path d="M11 8v4M16 8v4"/></svg>Twitch
             <svg class="ts-ext" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a></li>
         </ul>
@@ -155,7 +155,7 @@
       <nav class="ts-footer__col--legal" aria-label="Rechtliches">
         <p class="ts-label ts-footer__head">Rechtliches</p>
         <ul class="ts-footer__list">
-          <li><a class="ts-footer__link" href="/kontakt" data-ts-native="Kontakt">Kontakt</a></li>
+          <li><a class="ts-footer__link" href="/kontakt">Kontakt</a></li>
           <li><a class="ts-footer__link" href="/impressum" data-ts-native="Impressum">Impressum</a></li>
           <li><a class="ts-footer__link" href="/datenschutz" data-ts-native="Datenschutz">Datenschutzerklärung</a></li>
         </ul>
@@ -166,7 +166,7 @@
   <svg class="ts-footer__mark" viewBox="0 0 1000 150" aria-hidden="true" focusable="false">
     <defs>
       <linearGradient id="ts-mark-grad" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0" stop-color="#f8fafc" stop-opacity=".9"/>
+        <stop offset="0" stop-color="#f6faf7" stop-opacity=".9"/>
         <stop offset=".55" stop-color="#6ee7b7" stop-opacity=".35"/>
         <stop offset="1" stop-color="#1d4d3f" stop-opacity="0"/>
       </linearGradient>
@@ -321,7 +321,7 @@
         x: Math.random() * w, y: Math.random() * h,
         vx: (Math.random() - 0.5) * 0.18, vy: (Math.random() - 0.5) * 0.18,
         r: Math.random() * 1.3 + 0.3,
-        c: Math.random() > 0.7 ? '34,211,238' : (Math.random() > 0.5 ? '110,231,183' : '248,250,252'),
+        c: Math.random() > 0.7 ? '74,222,128' : (Math.random() > 0.5 ? '110,231,183' : '246,250,247'),
       }));
     };
 
@@ -339,7 +339,7 @@
         for (let j = i + 1; j < points.length; j++) {
           const q = points[j], d = Math.hypot(p.x - q.x, p.y - q.y);
           if (d < 130) {
-            ctx.strokeStyle = `rgba(148,163,184,${(1 - d / 130) * 0.12})`;
+            ctx.strokeStyle = `rgba(154,171,163,${(1 - d / 130) * 0.12})`;
             ctx.lineWidth = 0.6;
             ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(q.x, q.y); ctx.stroke();
           }

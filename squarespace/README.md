@@ -1,6 +1,6 @@
 # Squarespace-Einbau · trutzstaehler.de
 
-Design: Dark Editorial · Hintergrund `#060608` · Nebenfarbe Markengrün `#1d4d3f` · Akzente Mint `#6ee7b7` und Cyan `#22d3ee`.
+Design: Dark Editorial · Hintergrund `#060608` · Nebenfarbe Markengrün `#1d4d3f` · Akzente in Grüntönen: Mint `#6ee7b7`, Hellgrün `#4ade80`, Blassgrün `#a7f3d0` · Text `#f6faf7`, Muted `#9aaba3`.
 
 | Datei | Wohin in Squarespace |
 |---|---|

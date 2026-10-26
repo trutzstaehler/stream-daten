@@ -344,14 +344,22 @@
   /* ---------- Header: Glas beim Scrollen, aus- und einblenden ---------- */
   const header = document.querySelector('[data-ts-header]');
   if (!document.querySelector('.ts-hero')) header.classList.add('is-solid');
-  let lastY = scrollY;
+  /* Erst nach einer deutlichen Bewegung aus- bzw. einblenden – am Handy wackelt scrollY beim Schwung-Scrollen,
+     Nachfedern und Ein-/Ausfahren der Adressleiste ständig um ein paar Pixel, sonst springt der Header */
+  let lastY = Math.max(0, scrollY), acc = 0, headTick = false;
   const onScroll = () => {
-    const y = scrollY;
-    header.classList.toggle('is-scrolled', y > 24);
-    header.classList.toggle('is-hidden', y > 240 && y > lastY && !body.classList.contains('ts-menu-open'));
+    headTick = false;
+    const y = Math.max(0, scrollY), dy = y - lastY;
     lastY = y;
+    header.classList.toggle('is-scrolled', y > 24);
+    if (y < 240 || body.classList.contains('ts-menu-open')) { acc = 0; header.classList.remove('is-hidden'); return; }
+    if (y >= document.documentElement.scrollHeight - innerHeight - 2 || !dy) return; // Gummiband am Seitenende ignorieren
+    if ((dy > 0) !== (acc > 0)) acc = 0;
+    acc += dy;
+    if (acc > 16) header.classList.add('is-hidden');
+    else if (acc < -48) header.classList.remove('is-hidden');
   };
-  addEventListener('scroll', onScroll, { passive: true });
+  addEventListener('scroll', () => { if (!headTick) { headTick = true; requestAnimationFrame(onScroll); } }, { passive: true });
   onScroll();
 
   /* ---------- Mobile-Menü ---------- */

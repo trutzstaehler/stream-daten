@@ -290,6 +290,11 @@
   .ts-line > span { display: inline-block; transition: none; animation: ts-rise 1.3s var(--ts-ease-out) var(--d, .1s) backwards; }
   @keyframes ts-rise { from { transform: translateY(110%); } to { transform: translateY(0); } }
   html.ts-font-wait .ts-line > span { animation-play-state: paused; }
+  /* Handy/Touch: sanft einblenden statt von unten hochschießen – wirkt auf kleinen Bildschirmen sonst wie ein Sprung */
+  @keyframes ts-rise-soft { from { opacity: 0; transform: translateY(14%); } to { opacity: 1; transform: none; } }
+  @media (max-width: 767px), (hover: none) {
+    .ts-line > span { animation-name: ts-rise-soft; animation-duration: .9s; animation-timing-function: cubic-bezier(.33, 0, .2, 1); }
+  }
   .ts-outline { color: transparent !important; -webkit-text-stroke: 1.5px rgba(246, 250, 247, .55); }
   .ts-strike { position: relative; display: inline-block; }
   .ts-strike::after {

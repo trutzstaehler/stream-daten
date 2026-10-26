@@ -29,6 +29,16 @@
 <script>
   /* Im Squarespace-Editor (iframe) eigene Navigation/Cursor aus, native Navigation an */
   try { if (window.top !== window.self) document.documentElement.classList.add('ts-in-editor'); } catch (e) { document.documentElement.classList.add('ts-in-editor'); }
+  /* Überschriften erst hereingleiten lassen, wenn ihre Schrift da ist (höchstens 1,2 s) – sonst hüpfen sie beim Schrift-Tausch */
+  (function () {
+    var d = document.documentElement;
+    if (!document.fonts || !document.fonts.load) return;
+    d.classList.add('ts-font-wait');
+    var tsw = ['/twitch-startseite', '/live', '/mitspielen', '/charakter', '/bestenliste', '/statistiken'].indexOf(location.pathname.replace(/\/$/, '')) > -1;
+    var done = function () { requestAnimationFrame(function () { requestAnimationFrame(function () { d.classList.remove('ts-font-wait'); }); }); };
+    var t = setTimeout(done, 1200);
+    document.fonts.load(tsw ? '700 1em Cinzel' : '800 1em Syne').then(function () { clearTimeout(t); done(); }, done);
+  })();
   /* Seitenübergang: kam der Besuch über einen internen Link, startet die Seite hinter dem Vorhang */
   try { if (sessionStorage.getItem('ts-trans') === '1') { sessionStorage.removeItem('ts-trans'); if (!document.documentElement.classList.contains('ts-in-editor') && !matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('ts-trans-in'); } } catch (e) {}
 </script>
@@ -279,6 +289,7 @@
      „backwards“: Nach dem Ende bleibt kein Animationszustand hängen – sonst kann Text am Handy beim Scrollen zucken */
   .ts-line > span { display: inline-block; transition: none; animation: ts-rise 1.3s var(--ts-ease-out) var(--d, .1s) backwards; }
   @keyframes ts-rise { from { transform: translateY(110%); } to { transform: translateY(0); } }
+  html.ts-font-wait .ts-line > span { animation-play-state: paused; }
   .ts-outline { color: transparent !important; -webkit-text-stroke: 1.5px rgba(246, 250, 247, .55); }
   .ts-strike { position: relative; display: inline-block; }
   .ts-strike::after {

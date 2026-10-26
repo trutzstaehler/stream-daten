@@ -12,7 +12,8 @@
   .ts-404__meta { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem; padding-bottom: 1.25rem; border-bottom: 1px solid var(--ts-line); }
   .ts-404 .ts-line { padding-bottom: .16em; margin-bottom: -.16em; }
   .ts-404__grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 3rem; padding-top: clamp(2.5rem, 5vw, 4rem); }
-  .ts .ts-404__num { font-family: var(--ts-font-display); font-weight: 800; font-size: clamp(6rem, 22vw, 18rem); line-height: .85; letter-spacing: -0.05em; }
+  .ts .ts-404__num { font-family: var(--ts-font-display); font-weight: 800; font-size: clamp(5rem, 20vw, 15rem); line-height: 1; letter-spacing: -0.04em; min-width: 0; overflow-wrap: normal !important; }
+  .ts-404 .ts-404__num .ts-line { padding: .06em .08em .14em 0; margin-bottom: -.14em; }
   .ts .ts-404__title { margin-top: 1.5rem; font-family: var(--ts-font-display); font-weight: 700; font-size: clamp(1.7rem, 3.4vw, 3rem); line-height: 1.05; letter-spacing: -0.02em; }
   .ts .ts-404__text { margin-top: 1.25rem; max-width: 34rem; font-size: clamp(17px, 1.5vw, 19px); line-height: 1.75; color: var(--ts-muted); }
   .ts .ts-404__links { display: grid; grid-template-columns: minmax(0, 1fr); gap: .75rem; align-content: start; }
@@ -42,8 +43,8 @@
     </div>
 
     <div class="ts-404__grid">
-      <div>
-        <p class="ts-404__num" aria-hidden="true">
+      <div style="min-width:0">
+        <p class="ts-404__num" aria-hidden="true" data-ts-fit>
           <span class="ts-line"><span class="ts-gradient-text" style="transition-delay:.1s">404.</span></span>
         </p>
         <h1 id="ts-404-title" class="ts-404__title ts-reveal">Hier ist nichts – aber vielleicht hier …</h1>

@@ -1,10 +1,12 @@
 <!-- =====================================================================
-     Kopfzeile (Navigation) für trutzstaehler.de (Squarespace, Code-Block)
-     Ganz oben auf jeder Seite einfügen: Seite bearbeiten → ganz oben einen
-     Abschnitt bzw. Block hinzufügen → Code → alles hier einfügen
-     („Quelltext anzeigen“ aus). Alle Seiten sind direkt anklickbar, die
-     aktuelle Seite ist golden markiert. Auf dem Handy klappt das Menü über
-     den Knopf „Menü“ auf.
+     Kopfzeile (Navigation) für die Twitch-Seiten auf trutzstaehler.de
+     (Squarespace, Code-Block). Ganz oben auf jeder Twitch-Seite einfügen:
+     Seite bearbeiten → ganz oben Block hinzufügen → Code → alles hier
+     einfügen („Quelltext anzeigen“ aus). Alle Twitch-Seiten sind direkt
+     anklickbar, die aktuelle ist golden markiert. Auf dem Handy klappt das
+     Menü über den Knopf „Menü“ auf.
+     Bringt auch das dunkle WoW-Design für die ganze Seite mit – nur dort, wo
+     diese Kopfzeile steht. Laufen, Kinderbücher & Co. bleiben unberührt.
      Seiten ändern: unten in der Liste <ul> – Name und Adresse je Zeile.
      ===================================================================== -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -12,21 +14,20 @@
 
 <header id="tsz-header" class="tsh">
   <div class="tsh-bar">
-    <a class="tsh-brand" href="/">
+    <a class="tsh-brand" href="/twitch-startseite">
       <img class="tsh-emblem" src="https://wow.zamimg.com/images/wow/icons/large/inv_shield_06.jpg" alt="">
       <span class="tsh-brand-txt"><b class="tsh-name">Trutz Stahl</b><small>World of Warcraft Forever · live auf Twitch</small></span>
     </a>
     <nav class="tsh-nav" id="tsh-nav" aria-label="Hauptmenü">
       <ul>
-        <li><a href="/">Start</a></li>
-        <li><a href="/live">Live</a></li>
+        <li><a href="/twitch-startseite">Start</a></li>
         <li><a href="/mitspielen">Mitspielen</a></li>
         <li><a href="/charakter">Charakter</a></li>
         <li><a href="/bestenliste">Bestenliste</a></li>
         <li><a href="/statistiken">Statistiken</a></li>
       </ul>
     </nav>
-    <a class="tsh-cta" href="https://www.twitch.tv/einfach_trutz" target="_blank" rel="noopener">
+    <a class="tsh-cta" href="https://www.twitch.tv/einfach_trutz" target="_blank" rel="noopener" aria-label="Zum Stream auf Twitch">
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.3 2 2.5 6.6v13.9h5V23h2.8l2.7-2.5h4.1L22.5 15V2H4.3zm16.3 12.1-3.3 3.1h-5.1l-2.8 2.6v-2.6H5.2V3.9h15.4v10.2zM17.5 6.9h-1.9v5.4h1.9V6.9zm-5.1 0h-1.9v5.4h1.9V6.9z"/></svg>
       <span>Zum Stream</span>
     </a>
@@ -118,12 +119,33 @@
   }
 </style>
 
+<style>
+  /* ===== Design der ganzen Seite – gilt nur auf Seiten mit dieser Kopfzeile ===== */
+  body, .site-wrapper, #siteWrapper { background: #0b0806 !important; color: #f3eee2; font-family: Asul, Georgia, serif; }
+  .page-section, .page-section .section-background { background-color: #0b0806 !important; }
+  .sqs-block-html p, .sqs-block-html li, .sqs-block-html blockquote { font-family: Asul, Georgia, serif; color: #f3eee2; }
+  .sqs-block-html h1, .sqs-block-html h2, .sqs-block-html h3 {
+    font-family: Cinzel, Georgia, serif !important; font-weight: 700 !important; letter-spacing: 0.5px; text-transform: none !important;
+    color: #ffd100 !important; text-shadow: 1px 1px 0 #000, 0 1px 3px rgba(0, 0, 0, 0.8);
+  }
+  .sqs-block-html h4 { font-family: Asul, Georgia, serif !important; font-weight: 700 !important; text-transform: none !important; color: #ffd100 !important; }
+  .sqs-block-html a { color: #ffd100; text-decoration: none; border-bottom: 1px solid rgba(255, 209, 0, 0.35); }
+  .sqs-block-html a:hover { border-bottom-color: #ffd100; }
+  .sqs-block-button-element, .sqs-button-element--primary {
+    font-family: Asul, Georgia, serif !important; font-weight: 700 !important; text-transform: none !important; letter-spacing: 0.3px !important;
+    border-radius: 4px !important; border: 1px solid #c79c38 !important; background: linear-gradient(180deg, #8b1a10, #5a0d07) !important; color: #ffe9a8 !important;
+  }
+  .sqs-block-image img, .image-block-wrapper img { border-radius: 4px; }
+  .sqs-block-horizontalrule hr { border: none; height: 1px; background: linear-gradient(90deg, transparent, #8c713c, transparent); }
+  @media (max-width: 640px) { .sqs-block-code .sqs-block-content > div[id^="tsz-"], .sqs-block-code .sqs-block-content > header[id^="tsz-"], .sqs-block-code .sqs-block-content > footer[id^="tsz-"] { border-radius: 0; } }
+</style>
+
 <script>
 (function () {
   const root = document.getElementById('tsz-header');
   if (!root) return;
-  // Aktuelle Seite golden markieren (/home zählt als Startseite)
-  const norm = (p) => { const x = (decodeURIComponent(p).replace(/\/+$/, '') || '/').toLowerCase(); return x === '/home' ? '/' : x; };
+  // Aktuelle Seite golden markieren
+  const norm = (p) => { try { p = decodeURIComponent(p); } catch (e) { /* so lassen */ } return (p.replace(/\/+$/, '') || '/').toLowerCase(); };
   const here = norm(location.pathname);
   root.querySelectorAll('.tsh-nav a').forEach((a) => {
     let path = a.getAttribute('href');

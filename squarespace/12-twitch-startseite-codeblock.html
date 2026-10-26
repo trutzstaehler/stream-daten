@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Asul:wght@400;700&family=Cinzel:wght@700&display=swap" rel="stylesheet">
 <script>window.whTooltips = { colorLinks: false, iconizeLinks: false, renameLinks: false }; // Tooltips aus dem Spiel – die Symbole zeichnet der Block selbst</script>
-<script src="https://wow.zamimg.com/js/tooltips.js"></script>
+<script src="https://wow.zamimg.com/js/tooltips.js" async></script>
 
 <div id="tsz-home" class="th tsw ts-bleed">
   <section class="ts tsw-hero ts-container">
@@ -24,7 +24,7 @@
         <div class="th-btns">
           <a class="ts-btn ts-btn--primary ts-magnetic th-twitch" href="https://www.twitch.tv/einfach_trutz" target="_blank" rel="noopener"><span class="ts-btn__inner"><span class="ts-roll"><span data-text="Zum Stream">Zum Stream</span></span><svg class="ts-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></span></a>
           <a class="ts-btn ts-btn--ghost ts-magnetic" href="/mitspielen"><span class="ts-btn__inner"><span class="ts-roll"><span data-text="Mitspielen">Mitspielen</span></span></span></a>
-          <a class="ts-btn ts-btn--ghost ts-magnetic" href="/charakter"><span class="ts-btn__inner"><span class="ts-roll"><span data-text="Charaktere">Charaktere</span></span></span></a>
+          <a class="ts-btn ts-btn--ghost ts-magnetic" href="/charakter"><span class="ts-btn__inner"><span class="ts-roll"><span data-text="Charakter suchen">Charakter suchen</span></span></span></a>
         </div>
       </div>
       <div class="tsw-hero__aside">
@@ -56,7 +56,7 @@
       <section class="th-card">
         <div class="tsw-sec-head th-card-head">
           <div><p class="tsw-label">[ Beute ]</p><h2 class="tsw-sec-title">Zuletzt erbeutet</h2></div>
-          <a class="tsw-more" href="/charakter">Alle Charaktere →</a>
+          <a class="tsw-more" href="/charakter">Charakter suchen →</a>
         </div>
         <div class="th-loot"></div>
       </section>
@@ -136,7 +136,7 @@
   #tsz-home .th-ic.epic { box-shadow: 0 0 0 1px #a335ee; } #tsz-home .th-ic.legendary { box-shadow: 0 0 0 1px #ff8000; }
   #tsz-home .th-pic { flex: 0 0 auto; width: 36px; height: 36px; border-radius: 50%; border: 2px solid #6b5a33; object-fit: cover; }
   #tsz-home .th-row .th-main { flex: 1 1 auto; min-width: 0; }
-  #tsz-home .th-row .th-main a, #tsz-home .th-row .th-main b { font-weight: 700; }
+  #tsz-home .th-row .th-main a, #tsz-home .th-row .th-main b { font-weight: 700; overflow-wrap: anywhere; }
   #tsz-home .th-sub { display: block; color: var(--th-muted); font-size: 14px; }
   #tsz-home .th-val { color: var(--th-gold); font-weight: 700; white-space: nowrap; }
   #tsz-home .q-poor { color: #9d9d9d !important; } #tsz-home .q-common { color: #ffffff !important; } #tsz-home .q-uncommon { color: #1eff00 !important; }
@@ -273,7 +273,7 @@
       [num(t.heroes != null ? t.heroes : all.length), 'Helden im Chat'],
       [num(t.bosses != null ? t.bosses : 0), 'Bosse besiegt'],
       [num(t.foes != null ? t.foes : 0), 'Gegner besiegt'],
-      [best ? `Stufe ${best}` : '–', 'höchste Stufe']
+      [best || '–', 'höchste Stufe'] // nur die Zahl – „Stufe“ in Cinzel sähe wie Großbuchstaben aus
     ].map(([v, l]) => `<div class="th-total"><b>${esc(v)}</b><span>${esc(l)}</span></div>`).join('');
 
     // Zuletzt erbeutet: die neuesten Einträge aller Helden
@@ -281,7 +281,7 @@
     all.forEach(([login, c]) => (c.loot || []).forEach(r => { if (r.at) loot.push({ login, c, r }); }));
     loot.sort((a, b) => b.r.at - a.r.at);
     $('.th-loot').innerHTML = loot.length ? loot.slice(0, 8).map(({ login, c, r }) => {
-      const it = (data.items || {})[r.id] || {};
+      const it = Object.assign({}, r, (data.items || {})[r.id]); // ältere Dateien: Name & Symbol stehen noch im Eintrag
       const q = QUALITIES.includes(it.q) ? it.q : 'common';
       return `<div class="th-row">${it.icon ? `<img class="th-ic ${q}" src="${icon(it.icon)}" alt="" loading="lazy">` : ''}
         <span class="th-main"><a class="q-${q}" href="${itemHref(r.id)}" target="_blank" rel="noopener">${esc(it.name || 'Gegenstand')}</a>
@@ -326,9 +326,9 @@
 
   render(SAMPLE);
   if (!CONFIG.dataUrl) return;
-  fetch(CONFIG.dataUrl + (CONFIG.dataUrl.includes('?') ? '&' : '?') + 't=' + Math.floor(Date.now() / 60000), { cache: 'no-store' })
+  fetch(CONFIG.dataUrl + (CONFIG.dataUrl.includes('?') ? '&' : '?') + 't=' + Math.floor(Date.now() / 60000)) // der Minuten-Zusatz hält die Daten frisch, der Browser darf sie innerhalb der Minute wiederverwenden
     .then(r => (r.ok ? r.json() : null))
     .then(d => { if (d && d.characters) render(d); })
-    .catch(() => { /* Beispieldaten bleiben stehen */ });
+    .catch(() => { $('.th-foot').textContent = 'Die Daten konnten gerade nicht geladen werden – bitte später noch einmal versuchen. (Bis dahin: Beispieldaten)'; });
 })();
 </script>

@@ -54,7 +54,7 @@ def frame_css(rid, prefix):
 pages = {}
 
 # ---------------------------------------------------------------- STARTSEITE
-html = open(UP+'789744b2-startseite-codeblock.html').read()
+html = open(SRC+'startseite-codeblock.html').read()
 style, script = parts(html)
 markup = '''<div id="tsz-home" class="th tsw ts-bleed">
   <section class="ts tsw-hero ts-container">
@@ -67,7 +67,7 @@ markup = '''<div id="tsz-home" class="th tsw ts-bleed">
         <div class="th-btns">
           <a class="ts-btn ts-btn--primary ts-magnetic th-twitch" href="https://www.twitch.tv/einfach_trutz" target="_blank" rel="noopener"><span class="ts-btn__inner"><span class="ts-roll"><span data-text="Zum Stream">Zum Stream</span></span><svg class="ts-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></span></a>
           <a class="ts-btn ts-btn--ghost ts-magnetic" href="/mitspielen"><span class="ts-btn__inner"><span class="ts-roll"><span data-text="Mitspielen">Mitspielen</span></span></span></a>
-          <a class="ts-btn ts-btn--ghost ts-magnetic" href="/charakter"><span class="ts-btn__inner"><span class="ts-roll"><span data-text="Charaktere">Charaktere</span></span></span></a>
+          <a class="ts-btn ts-btn--ghost ts-magnetic" href="/charakter"><span class="ts-btn__inner"><span class="ts-roll"><span data-text="Charakter suchen">Charakter suchen</span></span></span></a>
         </div>
       </div>
       <div class="tsw-hero__aside">
@@ -94,7 +94,7 @@ markup = '''<div id="tsz-home" class="th tsw ts-bleed">
       <section class="th-card">
         <div class="tsw-sec-head th-card-head">
           <div><p class="tsw-label">[ Beute ]</p><h2 class="tsw-sec-title">Zuletzt erbeutet</h2></div>
-          <a class="tsw-more" href="/charakter">Alle Charaktere →</a>
+          <a class="tsw-more" href="/charakter">Charakter suchen →</a>
         </div>
         <div class="th-loot"></div>
       </section>
@@ -162,12 +162,12 @@ override = '''<style>
 </style>
 '''
 head_scripts = '''<script>window.whTooltips = { colorLinks: false, iconizeLinks: false, renameLinks: false }; // Tooltips aus dem Spiel – die Symbole zeichnet der Block selbst</script>
-<script src="https://wow.zamimg.com/js/tooltips.js"></script>
+<script src="https://wow.zamimg.com/js/tooltips.js" async></script>
 '''
 pages['12-twitch-startseite-codeblock.html'] = header('STARTSEITE', '/twitch-startseite') + FONTS + '\n' + head_scripts + '\n' + markup + '\n' + style + '\n' + override + '\n' + script + '\n'
 
 # ---------------------------------------------------------------- LIVE & STREAM-PLAN
-html = open(UP+'97f3646a-streamplan-codeblock.html').read()
+html = open(SRC+'streamplan-codeblock.html').read()
 style, script = parts(html)
 markup = '''<div id="tsz-plan" class="tl tsw ts-bleed">
   <section class="ts tsw-hero ts-container">
@@ -220,8 +220,8 @@ override = '''<style>
 '''
 pages['13-live-codeblock.html'] = header('LIVE & STREAM-PLAN', '/live', '\n     Den Wochenplan trägst du wie bisher im Skript bei CONFIG.schedule ein.') + FONTS + '\n\n' + markup + '\n' + style + '\n' + override + '\n' + script + '\n'
 
-# ---------------------------------------------------------------- MITSPIELEN
-html = open(UP+'f5650036-mitspielen-codeblock.html').read()
+# ---------------------------------------------------------------- MITSPIELEN (Themen-Reiter)
+html = open(SRC+'mitspielen-codeblock.html').read()
 style, script = parts(html)
 markup = '''<div id="tsz-play" class="tp tsw ts-bleed">
   <section class="ts tsw-hero ts-container">
@@ -231,73 +231,48 @@ markup = '''<div id="tsz-play" class="tp tsw ts-bleed">
         <h1 class="tsw-hero__title" data-ts-fit>
 ''' + title_lines(['Mitspielen.']) + '''
         </h1>
-        <p class="tp-lead tsw-hero__lead">Im Stream spielt der Chat mit: Jeder kann einen eigenen Helden aus WoW Forever erstellen, mit ihm kämpfen, Berufe lernen und in den Pausen um Ruf und Beute spielen. Alles läuft über den Twitch-Chat – hier steht, wie.</p>
+        <p class="tp-lead tsw-hero__lead">Im Stream spielt der Chat mit: Jeder kann einen eigenen Helden aus WoW Forever erstellen, mit ihm kämpfen, Talente und Berufe lernen und in den Pausen um Ruf und Beute spielen. Alles läuft über den Twitch-Chat – wähle ein Thema.</p>
       </div>
     </div>
   </section>
 
   <div class="tsw-body ts-container">
-    <section class="tsw-sec">
-''' + sec_head('[ Schritt für Schritt ]', 'So spielst du mit') + '''
-      <ol class="tp-steps"></ol>
-    </section>
-
-    <section class="tsw-sec">
-      <div class="tsw-sec-head">
-        <div><p class="tsw-label">[ Chat-Befehle ]</p><h2 class="tsw-sec-title">Alle Befehle</h2></div>
-        <input class="tp-search" type="search" placeholder="Befehl suchen …" aria-label="Befehl suchen">
-      </div>
-      <div class="tp-card">
-        <div class="tp-cmds"></div>
-        <p class="tp-note tp-cmd-note"></p>
-      </div>
-    </section>
-
-    <section class="tsw-sec">
-''' + sec_head('[ Azeroth ]', 'Völker, Klassen &amp; Ruf') + '''
-      <div class="tp-grid">
-        <div class="tp-card">
-          <h3>Völker &amp; Klassen in WoW Forever</h3>
-          <div class="tp-races"></div>
-          <p class="tp-note">Himmelsgeborene gibt es auf beiden Seiten: <code>!charakter Horde Himmelsgeborene Druide</code>. Für eine Heldin ein <code>w</code> dazuschreiben.</p>
-        </div>
-        <div class="tp-card">
-          <h3 class="tp-rep-h">Ruf bei der Stahlgarde</h3>
-          <div class="tp-ladder"></div>
-          <p class="tp-note">Ruf gibt es fürs Zuschauen, Schreiben, Kämpfe und die Pausen-Spiele – nie für Spam: eine Nachricht zählt höchstens einmal pro Minute.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="tsw-sec tp-card tp-pace">
-      <p class="tsw-label">[ Die lange Reise ]</p>
-      <h3>Wie lange dauert das?</h3>
-      <p>Alles ist auf eine lange Reise ausgelegt – wie in WoW Forever selbst. Bei rund zehn Stream-Stunden pro Woche braucht selbst jemand, der jeden Stream mitmacht, etwa <b>ein Jahr</b> bis Stufe 60, bis Ehrfürchtig und bis ein Beruf auf 300 steht. Die Erfahrungstabelle ist dieselbe wie im Spiel. Wer seltener dabei ist, kommt langsamer voran – verloren geht nichts.</p>
-    </section>
+    <p class="tsw-label">[ Themen ]</p>
+    <div class="tp-tabs" role="tablist" aria-label="Themen"></div>
+    <div class="tp-body"></div>
   </div>
 </div>
 '''
 override = '''<style>
   /* ---------- Gestaltung im Homepage-Layout (WoW-Forever-Farben) ---------- */
 ''' + frame_css('tsz-play','tp') + '''  #tsz-play .tp-lead { margin: 1.5rem 0 0; max-width: 40rem; color: #d9d0bb; }
-  #tsz-play .tp-steps { grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr)); gap: 1rem; margin: 0; }
-  #tsz-play .tp-step { gap: 1rem; padding: 1.5rem; border-radius: 22px; border-color: var(--tsw-line); transition: transform .6s cubic-bezier(.16,1,.3,1), border-color .4s; }
+  #tsz-play .tp-tabs { gap: .5rem; margin: .75rem 0 clamp(2.5rem, 5vw, 3.5rem); padding-bottom: clamp(1.5rem, 3vw, 2rem); border-bottom-color: var(--tsw-line); }
+  #tsz-play .tp-tab { padding: 8px 16px 8px 8px; border-radius: 999px; border-color: var(--tsw-line); }
+  #tsz-play .tp-tab img { width: 28px; height: 28px; border-radius: 50%; }
+  #tsz-play .tp-sec-h { gap: 1rem; margin-bottom: .75rem; }
+  #tsz-play .tp-sec-h img { width: 52px; height: 52px; border-radius: 14px; }
+  #tsz-play .tp-sec-h h3 { font-size: clamp(1.8rem, 4vw, 3.2rem); line-height: 1.05; }
+  #tsz-play .tp-intro { margin-bottom: clamp(1.75rem, 3.5vw, 2.5rem); font-size: 18px; line-height: 1.7; max-width: 46rem; }
+  #tsz-play .tp-steps { grid-template-columns: repeat(auto-fill, minmax(min(100%, 380px), 1fr)); gap: 1rem; margin-bottom: 1rem; }
+  #tsz-play .tp-step { gap: 1rem; padding: 1.5rem 1.6rem; border-radius: 22px; border-color: var(--tsw-line); transition: transform .6s cubic-bezier(.16,1,.3,1), border-color .4s; }
   #tsz-play .tp-step:hover { transform: translateY(-4px); border-color: rgba(199, 156, 56, .45); }
-  #tsz-play .tp-step img { width: 48px; height: 48px; border-radius: 10px; }
-  #tsz-play .tp-step h4 { font: 700 19px/1.3 Cinzel, Georgia, serif; margin-bottom: .5rem; }
-  #tsz-play .tp-step h4::before { content: counter(tp, decimal-leading-zero) "  "; color: var(--tsw-brass); }
-  #tsz-play .tp-card { margin-bottom: 0; padding: 1.5rem 1.75rem; border-radius: 22px; border-color: var(--tsw-line); }
+  #tsz-play .tp-step img { width: 52px; height: 52px; border-radius: 12px; }
+  #tsz-play .tp-step h4 { font: 700 20px/1.3 Cinzel, Georgia, serif; margin-bottom: .6rem; }
+  #tsz-play .tp-step p { font-size: 16px; line-height: 1.7; }
+  #tsz-play .tp-card { margin-bottom: 1rem; padding: 1.5rem 1.75rem; border-radius: 22px; border-color: var(--tsw-line); }
   #tsz-play .tp-card h3 { font-size: clamp(1.3rem, 2.2vw, 1.7rem); margin-bottom: 1rem; }
+  #tsz-play .tp-card p { font-size: 16px; line-height: 1.7; }
   #tsz-play .tp-search { width: 320px; padding: 12px 18px; border-radius: 999px; border-color: rgba(199, 156, 56, .45); background: rgba(12, 9, 7, .7); font-size: 16px; }
   #tsz-play .tp-group { margin: 1.5rem 0 .5rem; font: 700 11px/1.5 Cinzel, Georgia, serif; letter-spacing: .2em; text-transform: uppercase; }
   #tsz-play td { padding: .7rem .75rem; border-top-color: rgba(199, 156, 56, .12); }
-  #tsz-play .tp-grid { gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 380px), 1fr)); }
-  #tsz-play .tp-pace { padding: clamp(1.75rem, 4vw, 3rem); background: radial-gradient(120% 140% at 0% 0%, rgba(255, 209, 0, .12), rgba(12, 9, 7, .7) 60%); border-color: rgba(199, 156, 56, .4); }
-  #tsz-play .tp-pace h3 { font-size: clamp(1.7rem, 3.6vw, 3rem); }
-  #tsz-play .tp-pace p:last-child { max-width: 52rem; font-size: 17px; line-height: 1.75; }
+  #tsz-play .tp-race { padding: .6rem 0; border-top-color: rgba(199, 156, 56, .12); }
+  #tsz-play .tp-ladder div { padding: .6rem 0; border-top-color: rgba(199, 156, 56, .12); }
+  #tsz-play .tp-next { margin-top: 1rem; padding: 12px 22px; border-radius: 999px; border-color: rgba(199, 156, 56, .55); font-family: Cinzel, Georgia, serif; letter-spacing: .04em; transition: border-color .3s, color .3s, transform .5s cubic-bezier(.16,1,.3,1); }
+  #tsz-play .tp-next::after { content: "→"; }
+  #tsz-play .tp-next:hover { transform: translateX(4px); }
 </style>
 '''
-pages['14-mitspielen-codeblock.html'] = header('MITSPIELEN', '/mitspielen') + FONTS + '\n\n' + markup + '\n' + style + '\n' + override + '\n' + script + '\n'
+pages['14-mitspielen-codeblock.html'] = header('MITSPIELEN', '/mitspielen', '\n     Jedes Thema hat eine eigene Adresse, z.B. /mitspielen#talente.') + FONTS + '\n\n' + markup + '\n' + style + '\n' + override + '\n' + script + '\n'
 
 # ---------------------------------------------------------------- CHARAKTER
 html = open(SRC+'charaktere-codeblock.html').read()
@@ -345,7 +320,7 @@ override = '''<style>
 pages['15-charakter-codeblock.html'] = header('CHARAKTER', '/charakter', '\n     Ein Charakter öffnet sich direkt über /charakter#login (Links aus Chat, Bestenliste, Startseite).') + FONTS + '\n\n' + markup + '\n' + style + '\n' + override + '\n' + script + '\n'
 
 # ---------------------------------------------------------------- BESTENLISTE
-html = open(UP+'1c04b60e-bestenliste-codeblock.html').read()
+html = open(SRC+'bestenliste-codeblock.html').read()
 style, script = parts(html)
 markup = '''<div id="tsz-board" class="tb tsw ts-bleed">
   <section class="ts tsw-hero ts-container">
@@ -408,7 +383,7 @@ override = '''<style>
 pages['16-bestenliste-codeblock.html'] = header('BESTENLISTE', '/bestenliste') + FONTS + '\n\n' + markup + '\n' + style + '\n' + override + '\n' + script + '\n'
 
 # ---------------------------------------------------------------- STATISTIKEN (Klassen ts- → tst-, damit nichts mit dem Design-System kollidiert)
-html = open(UP+'05d185c1-statistiken-codeblock.html').read()
+html = open(SRC+'statistiken-codeblock.html').read()
 style, script = parts(html)
 def ren(s):
     s = re.sub(r'--ts-', '--tst-', s)

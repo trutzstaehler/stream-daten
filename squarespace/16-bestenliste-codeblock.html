@@ -102,7 +102,7 @@
 
   /* Liste */
   #tsz-board .tb-list { border: 1px solid var(--tb-line); border-radius: 4px; background: var(--tb-panel); overflow: hidden; }
-  #tsz-board .tb-row { display: grid; grid-template-columns: 44px 44px 1fr auto; align-items: center; gap: 12px; padding: 8px 14px; border-top: 1px solid #262626; }
+  #tsz-board .tb-row { display: grid; grid-template-columns: 44px 44px minmax(0, 1fr) auto; align-items: center; gap: 12px; padding: 8px 14px; border-top: 1px solid #262626; }
   #tsz-board .tb-row:first-child { border-top: none; }
   #tsz-board a.tb-row:hover { background: rgba(255, 209, 0, 0.05); }
   #tsz-board .tb-place { font: 700 20px/1 Cinzel, Georgia, serif; color: var(--tb-muted); text-align: center; }
@@ -113,7 +113,7 @@
   #tsz-board .tb-pic { width: 40px; height: 40px; border-radius: 50%; border: 2px solid #6b5a33; background: #000; object-fit: cover; }
   #tsz-board .tb-row.horde .tb-pic { border-color: #7f2a24; }
   #tsz-board .tb-row.allianz .tb-pic { border-color: #2f5ea8; }
-  #tsz-board .tb-name { font-weight: 700; font-size: 17px; text-shadow: var(--tb-ts); }
+  #tsz-board .tb-name { font-weight: 700; font-size: 17px; text-shadow: var(--tb-ts); overflow-wrap: anywhere; }
   #tsz-board .tb-title { color: var(--tb-muted); font-weight: 400; }
   #tsz-board .tb-sub { display: block; color: var(--tb-muted); font-size: 14px; }
   #tsz-board .tb-val { text-align: right; font-weight: 700; color: var(--tb-gold); white-space: nowrap; text-shadow: var(--tb-ts); }
@@ -136,7 +136,8 @@
   @media (max-width: 640px) {
     #tsz-board { padding: 14px; }
     #tsz-board .tb-h { font-size: 24px; }
-    #tsz-board .tb-row { grid-template-columns: 30px 36px 1fr auto; gap: 8px; padding: 8px 10px; }
+    #tsz-board .tb-row { grid-template-columns: 30px 36px minmax(0, 1fr) auto; gap: 8px; padding: 8px 10px; }
+    #tsz-board .tb-val { white-space: normal; max-width: 45vw; }
     #tsz-board .tb-pic { width: 34px; height: 34px; }
     #tsz-board .tb-name { font-size: 16px; }
   }
@@ -258,7 +259,7 @@
       [num(t.heroes != null ? t.heroes : all.length), 'Helden'],
       [num(t.bosses != null ? t.bosses : all.reduce((n, c) => n + (st(c).bosses || 0), 0)), 'Bosse besiegt'],
       [num(t.foes != null ? t.foes : all.reduce((n, c) => n + (st(c).foes || 0), 0)), 'Gegner besiegt'],
-      [best ? `Stufe ${best}` : '–', 'höchste Stufe']
+      [best || '–', 'höchste Stufe'] // nur die Zahl – „Stufe“ in Cinzel sähe wie Großbuchstaben aus
     ];
     $('.tb-totals').innerHTML = boxes.map(([v, l]) => `<div class="tb-total"><b>${esc(v)}</b><span>${esc(l)}</span></div>`).join('');
   }
@@ -323,7 +324,7 @@
 
   render();
   if (!CONFIG.dataUrl) return;
-  fetch(CONFIG.dataUrl + (CONFIG.dataUrl.includes('?') ? '&' : '?') + 't=' + Math.floor(Date.now() / 60000), { cache: 'no-store' })
+  fetch(CONFIG.dataUrl + (CONFIG.dataUrl.includes('?') ? '&' : '?') + 't=' + Math.floor(Date.now() / 60000)) // der Minuten-Zusatz hält die Daten frisch, der Browser darf sie innerhalb der Minute wiederverwenden
     .then(r => (r.status === 404 ? null : r.ok ? r.json() : Promise.reject(new Error('HTTP ' + r.status))))
     .then(d => {
       if (d && d.characters) { data = d; render(); } else $('.tb-foot').textContent = 'Noch keine Helden – sobald im Stream jemand mit !charakter einen Helden erstellt, erscheint er hier. (Bis dahin: Beispieldaten)';

@@ -5,6 +5,12 @@
 <style>
   /* Headline: alle Zeilen bündig links; Größe so gewählt, dass „statt perfekt“ auch in der breiten Syne passt */
   .ts .ts-hero .ts-headline { font-size: clamp(2.1rem, 8.6vw, 10rem) !important; }
+  /* Text unter der Überschrift nutzt die ganze Breite: Begrüßung links, Buttons rechts */
+  @media (min-width: 1024px) {
+    .ts-hero .ts-hero__intro { grid-column: 1 / -1; display: grid; grid-template-columns: minmax(0, 8fr) minmax(0, 4fr); align-items: end; column-gap: clamp(2rem, 5vw, 5rem); padding-top: 0; }
+    .ts.ts-hero .ts-hero__lead { max-width: 52rem; font-size: clamp(18px, 1.55vw, 22px); line-height: 1.65; }
+    .ts-hero .ts-hero__ctas { justify-content: flex-end; }
+  }
 </style>
 <section class="ts ts-hero ts-bleed" aria-labelledby="ts-hero-title">
   <div class="ts-hero__bg" aria-hidden="true">

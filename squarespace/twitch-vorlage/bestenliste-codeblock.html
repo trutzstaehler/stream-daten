@@ -1,0 +1,286 @@
+<!-- =====================================================================
+     Bestenliste für trutzstaehler.de (Squarespace, Code-Block)
+     Die besten Helden aus dem Chat: Stufe, Ruf, Rang, Vermächtnis, Bosse, Gegner,
+     Angeln, Quiz & Rätsel, Duelle und die besten in jedem Beruf.
+     Einfügen: Seite bearbeiten → Block hinzufügen → Code → alles hier einfügen
+     („Quelltext anzeigen“ aus). Die Daten kommen von der Stream-Zentrale –
+     dieselbe Datei wie bei der Charakterseite. Ist sie leer, werden
+     Beispieldaten gezeigt.
+     ===================================================================== -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Asul:wght@400;700&family=Cinzel:wght@700&display=swap" rel="stylesheet">
+
+<div id="tsz-board" class="tb">
+  <div class="tb-top">
+    <div>
+      <h2 class="tb-h">Bestenliste</h2>
+      <p class="tb-lead">Die stärksten Helden aus dem Chat – wer mitmacht, steigt auf.</p>
+    </div>
+    <div class="tb-side" role="group" aria-label="Seite">
+      <button type="button" data-side="" class="on">Alle</button>
+      <button type="button" data-side="allianz">Allianz</button>
+      <button type="button" data-side="horde">Horde</button>
+    </div>
+  </div>
+  <div class="tb-totals"></div>
+  <div class="tb-tabs" role="tablist"></div>
+  <div class="tb-body"></div>
+  <p class="tb-foot"></p>
+</div>
+
+<style>
+  #tsz-board {
+    --tb-gold: #ffd100;
+    --tb-txt: #f3eee2;
+    --tb-muted: #b8ad94;
+    --tb-ts: 1px 1px 0 #000, 0 1px 3px rgba(0, 0, 0, 0.8);
+    --tb-panel: linear-gradient(180deg, #161616 0%, #0c0c0c 100%);
+    --tb-line: #4a4a4a;
+    --tb-line-hi: #7a7a7a;
+    --tb-brass: #8c713c;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 22px;
+    border-radius: 4px;
+    background: #120e0b;
+    color: var(--tb-txt);
+    font: 400 16px/1.45 Asul, Georgia, serif;
+    text-align: left;
+  }
+  #tsz-board *, #tsz-board *::before, #tsz-board *::after { box-sizing: border-box; }
+  #tsz-board a { color: inherit; text-decoration: none; }
+  #tsz-board button { font: inherit; cursor: pointer; }
+
+  #tsz-board .tb-top { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 12px 24px; margin-bottom: 14px; }
+  #tsz-board .tb-h { margin: 0 0 4px; font: 700 30px/1.2 Cinzel, Georgia, serif; letter-spacing: 0.5px; color: var(--tb-gold); text-shadow: var(--tb-ts); }
+  #tsz-board .tb-lead { margin: 0; color: var(--tb-muted); }
+
+  /* Seite wählen */
+  #tsz-board .tb-side { display: flex; border: 1px solid var(--tb-brass); border-radius: 4px; overflow: hidden; }
+  #tsz-board .tb-side button { padding: 7px 14px; border: none; border-left: 1px solid var(--tb-brass); background: #0d0b09; color: var(--tb-muted); font-weight: 700; }
+  #tsz-board .tb-side button:first-child { border-left: none; }
+  #tsz-board .tb-side button.on { background: linear-gradient(180deg, #3a2c12, #241a0a); color: var(--tb-gold); }
+  #tsz-board .tb-side button:focus-visible, #tsz-board .tb-tab:focus-visible { outline: 2px solid var(--tb-gold); outline-offset: -2px; }
+
+  /* Zahlen oben */
+  #tsz-board .tb-totals { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; margin-bottom: 16px; }
+  #tsz-board .tb-total { padding: 10px 14px; border: 1px solid var(--tb-line); border-radius: 4px; background: var(--tb-panel); }
+  #tsz-board .tb-total b { display: block; font: 700 24px/1.2 Cinzel, Georgia, serif; color: var(--tb-gold); text-shadow: var(--tb-ts); }
+  #tsz-board .tb-total span { color: var(--tb-muted); font-size: 15px; }
+
+  /* Reiter */
+  #tsz-board .tb-tabs { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
+  #tsz-board .tb-tab {
+    display: flex; align-items: center; gap: 7px; padding: 6px 12px 6px 6px; border: 1px solid var(--tb-line); border-radius: 4px;
+    background: linear-gradient(180deg, #0f0f0f, #1d1d1d); color: var(--tb-muted); font-size: 15px; font-weight: 700; text-shadow: var(--tb-ts);
+  }
+  #tsz-board .tb-tab img { width: 24px; height: 24px; border-radius: 3px; border: 1px solid #000; }
+  #tsz-board .tb-tab:hover { color: var(--tb-txt); }
+  #tsz-board .tb-tab.on { color: var(--tb-gold); border-color: var(--tb-brass); background: linear-gradient(180deg, #2a2112, #17120a); }
+
+  /* Liste */
+  #tsz-board .tb-list { border: 1px solid var(--tb-line); border-radius: 4px; background: var(--tb-panel); overflow: hidden; }
+  #tsz-board .tb-row { display: grid; grid-template-columns: 44px 44px 1fr auto; align-items: center; gap: 12px; padding: 8px 14px; border-top: 1px solid #262626; }
+  #tsz-board .tb-row:first-child { border-top: none; }
+  #tsz-board a.tb-row:hover { background: rgba(255, 209, 0, 0.05); }
+  #tsz-board .tb-place { font: 700 20px/1 Cinzel, Georgia, serif; color: var(--tb-muted); text-align: center; }
+  #tsz-board .tb-row.p1 .tb-place { color: #ffd100; }
+  #tsz-board .tb-row.p2 .tb-place { color: #d6d6d6; }
+  #tsz-board .tb-row.p3 .tb-place { color: #d9883a; }
+  #tsz-board .tb-row.p1 { background: linear-gradient(90deg, rgba(255, 209, 0, 0.09), transparent 60%); }
+  #tsz-board .tb-pic { width: 40px; height: 40px; border-radius: 50%; border: 2px solid #6b5a33; background: #000; object-fit: cover; }
+  #tsz-board .tb-row.horde .tb-pic { border-color: #7f2a24; }
+  #tsz-board .tb-row.allianz .tb-pic { border-color: #2f5ea8; }
+  #tsz-board .tb-name { font-weight: 700; font-size: 17px; text-shadow: var(--tb-ts); }
+  #tsz-board .tb-title { color: var(--tb-muted); font-weight: 400; }
+  #tsz-board .tb-sub { display: block; color: var(--tb-muted); font-size: 14px; }
+  #tsz-board .tb-val { text-align: right; font-weight: 700; color: var(--tb-gold); white-space: nowrap; text-shadow: var(--tb-ts); }
+  #tsz-board .tb-val small { display: block; color: var(--tb-muted); font-weight: 400; font-size: 14px; }
+  #tsz-board .tb-bar { display: block; height: 6px; margin-top: 5px; border-radius: 2px; background: #000; border: 1px solid #333; overflow: hidden; }
+  #tsz-board .tb-bar i { display: block; height: 100%; background: linear-gradient(180deg, #9b5ccf, #5b2c8a); }
+  #tsz-board .tb-bar.rep i { background: linear-gradient(180deg, #2ea043, #1a6b2b); }
+
+  /* Berufe: je Beruf die besten drei */
+  #tsz-board .tb-profs { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 10px; }
+  #tsz-board .tb-prof { border: 1px solid var(--tb-line); border-radius: 4px; background: var(--tb-panel); padding: 10px 12px; }
+  #tsz-board .tb-prof-h { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; font-weight: 700; color: var(--tb-gold); text-shadow: var(--tb-ts); }
+  #tsz-board .tb-prof-h img { width: 28px; height: 28px; border-radius: 3px; border: 1px solid #000; }
+  #tsz-board .tb-prof-row { display: flex; justify-content: space-between; gap: 8px; padding: 3px 0; border-top: 1px solid #222; font-size: 15px; }
+  #tsz-board .tb-prof-row:first-of-type { border-top: none; }
+  #tsz-board .tb-prof-row b { color: var(--tb-txt); }
+  #tsz-board .tb-empty { padding: 26px; text-align: center; color: var(--tb-muted); }
+  #tsz-board .tb-foot { margin: 12px 0 0; color: var(--tb-muted); font-size: 14px; }
+
+  @media (max-width: 640px) {
+    #tsz-board { padding: 14px; }
+    #tsz-board .tb-h { font-size: 24px; }
+    #tsz-board .tb-row { grid-template-columns: 30px 36px 1fr auto; gap: 8px; padding: 8px 10px; }
+    #tsz-board .tb-pic { width: 34px; height: 34px; }
+    #tsz-board .tb-name { font-size: 16px; }
+  }
+</style>
+
+<script>
+(function () {
+  const CONFIG = {
+    dataUrl: 'https://raw.githubusercontent.com/trutzstaehler/stream-daten/main/helden.json', // dieselbe Datei wie die Charakterseite – leer = Beispieldaten
+    charPage: '/charakter', // Adresse der Charakterseite: ein Klick auf einen Namen öffnet dort sein Charakterfenster
+    top: 25                 // so viele Plätze je Liste
+  };
+
+  /* ---------- WoW Forever: Klassen, Völker, Berufe (deutsche Namen wie in der Stream-Zentrale) ---------- */
+  const CLASSES = {
+    krieger: ['Krieger', 'Kriegerin', '#C69B6D'], jaeger: ['Jäger', 'Jägerin', '#AAD372'], magier: ['Magier', 'Magierin', '#3FC7EB'],
+    schurke: ['Schurke', 'Schurkin', '#FFF468'], priester: ['Priester', 'Priesterin', '#FFFFFF'], hexenmeister: ['Hexenmeister', 'Hexenmeisterin', '#8788EE'],
+    paladin: ['Paladin', 'Paladin', '#F48CBA'], druide: ['Druide', 'Druidin', '#FF7C0A'], schamane: ['Schamane', 'Schamanin', '#2E8AE6']
+  };
+  const RACES = {
+    mensch: ['Mensch', 'Mensch'], zwerg: ['Zwerg', 'Zwergin'], nachtelf: ['Nachtelf', 'Nachtelfe'], gnom: ['Gnom', 'Gnomin'],
+    orc: ['Orc', 'Orc'], troll: ['Troll', 'Troll'], tauren: ['Tauren', 'Tauren'], untote: ['Untoter', 'Untote'], himmelsgeborene: ['Himmelsgeborener', 'Himmelsgeborene'], himmelsgebotene: ['Himmelsgeborener', 'Himmelsgeborene']
+  };
+  const RACE_ICONS = { mensch: 'human', zwerg: 'dwarf', nachtelf: 'nightelf', gnom: 'gnome', orc: 'orc', troll: 'troll', tauren: 'tauren', untote: 'scourge', himmelsgeborene: 'skyborne', himmelsgebotene: 'skyborne' };
+  const PROFS = {
+    bergbau: ['Bergbau', 'trade_mining'], kraeuter: ['Kräuterkunde', 'spell_nature_naturetouchgrow'], kuerschnern: ['Kürschnerei', 'inv_misc_pelt_wolf_01'],
+    alchimie: ['Alchimie', 'trade_alchemy'], schmiede: ['Schmiedekunst', 'trade_blacksmithing'], verzauber: ['Verzauberkunst', 'trade_engraving'],
+    ingenieur: ['Ingenieurskunst', 'trade_engineering'], leder: ['Lederverarbeitung', 'inv_misc_armorkit_17'], schneider: ['Schneiderei', 'trade_tailoring'],
+    kochen: ['Kochkunst', 'inv_misc_food_15'], erstehilfe: ['Erste Hilfe', 'spell_holy_sealofsacrifice'], angeln: ['Angeln', 'trade_fishing']
+  };
+  // Reiter: Symbol von Wowhead, Wert je Held, Anzeige
+  const BOARDS = [
+    { id: 'level', label: 'Stufe', icon: 'achievement_level_60', val: c => (c.level || 1) * 1e7 + ((c.xp && c.xp.have) || 0), show: c => [`Stufe ${c.level || 1}`, c.xp && c.xp.need ? `${num(c.xp.have)} / ${num(c.xp.need)} EP` : 'Höchststufe'], bar: c => (c.xp && c.xp.need ? c.xp.have / c.xp.need : 1) },
+    { id: 'rep', label: 'Ruf', icon: 'achievement_reputation_01', val: c => (c.rep && c.rep.pts) || 0, show: c => [c.rep ? c.rep.rank : 'Neutral', `${num(c.rep ? c.rep.pts : 0)} Ruf`], rep: true },
+    { id: 'pvp', label: 'Rang', icon: 'achievement_pvp_a_14', val: c => (c.pvp ? (c.pvp.rp || 0) * 1e6 + (c.pvp.honor || 0) : 0), show: c => [c.pvp && c.pvp.rank ? `${c.pvp.name} (Rang ${c.pvp.rank})` : 'Noch ohne Rang', `${num(c.pvp ? c.pvp.rp : 0)} Rangpunkte · ${num(c.pvp ? c.pvp.honor : 0)} Ehre`] },
+    { id: 'ach', label: 'Vermächtnis', icon: 'achievement_quests_completed_08', val: c => (c.legacy ? c.legacy.pts : c.achPts) || 0, show: c => { const n = (c.legacy ? c.legacy.pts : c.achPts) || 0; return [`${num(n)} ${n === 1 ? 'Punkt' : 'Punkte'}`, c.legacy && c.legacy.spent ? `${num(c.legacy.spent)} auf Vorteile verteilt` : '']; } },
+    { id: 'bg', label: 'Darkspear-Inseln', icon: 'inv_misc_rune_14', val: c => (c.pvp ? (c.pvp.bgWins || 0) * 1e4 - (c.pvp.bgGames || 0) : 0), show: c => [`${num(c.pvp.bgWins)} Siege`, `von ${num(c.pvp.bgGames)} Schlachten`] },
+    { id: 'bosses', label: 'Bosse', icon: 'achievement_boss_edwinvancleef', val: c => st(c).bosses || 0, show: c => [`${num(st(c).bosses)} besiegt`, st(c).worldbosses ? `davon ${num(st(c).worldbosses)} Weltbosse` : ''] },
+    { id: 'foes', label: 'Gegner', icon: 'ability_warrior_offensivestance', val: c => st(c).foes || 0, show: c => [`${num(st(c).foes)} besiegt`, ''] },
+    { id: 'fish', label: 'Angeln', icon: 'trade_fishing', val: c => st(c).fish || 0, show: c => [`${num(st(c).fish)} Fische`, ''] },
+    { id: 'quiz', label: 'Quiz & Rätsel', icon: 'inv_misc_book_09', val: c => st(c).quiz || 0, show: c => [`${num(st(c).quiz)} richtig`, ''] },
+    { id: 'duel', label: 'Duelle', icon: 'ability_dualwield', val: c => (st(c).duelsWon || 0) * 1e4 - (st(c).duels || 0), show: c => [`${num(st(c).duelsWon)} Siege`, `von ${num(st(c).duels)} Duellen`] },
+    { id: 'profs', label: 'Berufe', icon: 'inv_pick_02' }
+  ];
+
+  /* ---------- Beispieldaten (nur solange keine Datei eingetragen ist oder sie fehlt) ---------- */
+  const SAMPLE = {
+    updated: '2026-10-24T20:00:00Z', sample: true,
+    totals: { heroes: 5, bosses: 41, foes: 388 },
+    characters: {
+      einfach_trutz: { name: 'Trutz Stahl', faction: 'allianz', race: 'mensch', cls: 'paladin', gender: 'm', level: 60, xp: { have: 0, need: 0 }, title: 'der Drachentöter',
+        rep: { rank: 'Ehrfürchtig', idx: 4, pts: 52000 }, achPts: 38, ach: [{}, {}, {}, {}, {}, {}], legacy: { pts: 38 },
+        pvp: { rank: 9, name: 'Ritter der Allianz', rp: 12900, honor: 9100, bgWins: 31, bgGames: 44 }, profs: [{ id: 'bergbau', skill: 300 }, { id: 'schmiede', skill: 300 }, { id: 'angeln', skill: 210 }],
+        stats: { bosses: 12, worldbosses: 2, foes: 140, fish: 88, quiz: 31, duels: 9, duelsWon: 7 } },
+      anna: { name: 'Anna', faction: 'allianz', race: 'zwerg', cls: 'priester', gender: 'w', level: 27, xp: { have: 1830, need: 2160 }, title: 'die Unbezwungene',
+        rep: { rank: 'Wohlwollend', idx: 2, pts: 11400 }, achPts: 14, ach: [{}, {}, {}, {}], legacy: { pts: 14 },
+        pvp: { rank: 2, name: 'Fußknecht', rp: 1900, honor: 960, bgWins: 2, bgGames: 5 }, profs: [{ id: 'kraeuter', skill: 182 }, { id: 'alchimie', skill: 171 }, { id: 'erstehilfe', skill: 95 }, { id: 'angeln', skill: 40 }],
+        stats: { bosses: 5, foes: 77, fish: 23, quiz: 18, duels: 4, duelsWon: 3 } },
+      grimmzahn: { name: 'Grimmzahn', faction: 'horde', race: 'orc', cls: 'krieger', gender: 'm', level: 14, xp: { have: 410, need: 1270 }, title: '',
+        rep: { rank: 'Freundlich', idx: 1, pts: 4200 }, achPts: 6, ach: [{}], legacy: { pts: 6 },
+        pvp: { rank: 4, name: 'Schlachtrufer', rp: 4100, honor: 2300, bgWins: 7, bgGames: 9 }, profs: [{ id: 'bergbau', skill: 96 }, { id: 'schmiede', skill: 88 }, { id: 'kochen', skill: 30 }],
+        stats: { bosses: 3, foes: 52, fish: 8, quiz: 2, duels: 6, duelsWon: 2 } },
+      sternenwind: { name: 'Sternenwind', faction: 'horde', race: 'himmelsgeborene', cls: 'druide', gender: 'w', level: 9, xp: { have: 3100, need: 7600 }, title: '',
+        rep: { rank: 'Neutral', idx: 0, pts: 1250 }, achPts: 0, ach: [], profs: [{ id: 'kraeuter', skill: 61 }, { id: 'leder', skill: 40 }], stats: { bosses: 1, foes: 15, fish: 2, quiz: 6 } },
+      knackfix: { name: 'Knackfix', faction: 'allianz', race: 'gnom', cls: 'hexenmeister', gender: 'm', level: 5, xp: { have: 900, need: 2800 }, title: '',
+        rep: { rank: 'Neutral', idx: 0, pts: 640 }, achPts: 0, ach: [], profs: [{ id: 'schneider', skill: 22 }, { id: 'verzauber', skill: 18 }], stats: { foes: 9, quiz: 1 } }
+    }
+  };
+
+  /* ---------- Hilfen ---------- */
+  const root = document.getElementById('tsz-board');
+  if (!root) return;
+  const $ = (sel) => root.querySelector(sel);
+  const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  const num = (n) => Number(n || 0).toLocaleString('de-DE');
+  const st = (c) => c.stats || {};
+  const icon = (name) => `https://wow.zamimg.com/images/wow/icons/large/${encodeURIComponent(name)}.jpg`;
+  const color = (c) => (CLASSES[c.cls] ? CLASSES[c.cls][2] : '#f3eee2');
+  const sub = (c) => `${RACES[c.race] ? RACES[c.race][c.gender === 'w' ? 1 : 0] : ''} ${CLASSES[c.cls] ? CLASSES[c.cls][c.gender === 'w' ? 1 : 0] : ''}`.trim();
+  const portrait = (c) => (RACE_ICONS[c.race] ? `https://wow.zamimg.com/images/wow/icons/large/race_${RACE_ICONS[c.race]}_${c.gender === 'w' ? 'female' : 'male'}.jpg` : '');
+  const link = (login) => `${CONFIG.charPage}#${encodeURIComponent(login)}`;
+  const ui = { board: 'level', side: '' };
+  let data = SAMPLE;
+
+  function chars() {
+    return Object.entries(data.characters || {}).filter(([, c]) => !ui.side || c.faction === ui.side);
+  }
+
+  function renderTotals() {
+    const all = Object.values(data.characters || {});
+    const t = data.totals || {};
+    const best = all.reduce((m, c) => Math.max(m, c.level || 1), 0);
+    const boxes = [
+      [num(t.heroes != null ? t.heroes : all.length), 'Helden'],
+      [num(t.bosses != null ? t.bosses : all.reduce((n, c) => n + (st(c).bosses || 0), 0)), 'Bosse besiegt'],
+      [num(t.foes != null ? t.foes : all.reduce((n, c) => n + (st(c).foes || 0), 0)), 'Gegner besiegt'],
+      [best ? `Stufe ${best}` : '–', 'höchste Stufe']
+    ];
+    $('.tb-totals').innerHTML = boxes.map(([v, l]) => `<div class="tb-total"><b>${esc(v)}</b><span>${esc(l)}</span></div>`).join('');
+  }
+
+  function renderTabs() {
+    $('.tb-tabs').innerHTML = BOARDS.map(b => `<button type="button" role="tab" class="tb-tab${b.id === ui.board ? ' on' : ''}" aria-selected="${b.id === ui.board}" data-board="${b.id}"><img src="${icon(b.icon)}" alt="" loading="lazy">${esc(b.label)}</button>`).join('');
+  }
+
+  function row([login, c], i, b) {
+    const [main, small] = b.show(c);
+    const bar = b.bar ? `<span class="tb-bar"><i style="width:${Math.round(Math.max(0, Math.min(1, b.bar(c))) * 100)}%"></i></span>` : '';
+    const repBar = b.rep && data.ladder ? (() => {
+      const k = Math.max(0, Math.min(data.ladder.length - 1, (c.rep && c.rep.idx) || 0));
+      const lo = data.ladder[k].min; const hi = data.ladder[k + 1] ? data.ladder[k + 1].min : lo;
+      return `<span class="tb-bar rep"><i style="width:${hi > lo ? Math.round(Math.min(1, ((c.rep.pts || 0) - lo) / (hi - lo)) * 100) : 100}%"></i></span>`;
+    })() : '';
+    return `<a class="tb-row ${c.faction === 'horde' ? 'horde' : 'allianz'}${i < 3 ? ' p' + (i + 1) : ''}" href="${esc(link(login))}">
+      <span class="tb-place">${i + 1}</span>
+      ${portrait(c) ? `<img class="tb-pic" src="${esc(portrait(c))}" alt="" loading="lazy">` : '<span></span>'}
+      <span><span class="tb-name" style="color:${color(c)}">${esc(c.name)}</span>${c.title ? ` <span class="tb-title">${esc(c.title)}</span>` : ''}<span class="tb-sub">${esc(sub(c))}</span>${bar}${repBar}</span>
+      <span class="tb-val">${esc(main)}${small ? `<small>${esc(small)}</small>` : ''}</span>
+    </a>`;
+  }
+
+  function renderBoard() {
+    const b = BOARDS.find(x => x.id === ui.board) || BOARDS[0];
+    if (b.id === 'profs') return renderProfs();
+    const list = chars().filter(([, c]) => b.val(c) > 0).sort((x, y) => b.val(y[1]) - b.val(x[1])).slice(0, CONFIG.top);
+    $('.tb-body').innerHTML = list.length
+      ? `<div class="tb-list">${list.map((e, i) => row(e, i, b)).join('')}</div>`
+      : '<div class="tb-empty">Hier steht noch niemand – im Stream mitmachen und als Erstes auftauchen.</div>';
+  }
+
+  function renderProfs() {
+    const all = chars();
+    const cards = Object.entries(PROFS).map(([id, [name, ic]]) => {
+      const best = all.map(([login, c]) => [login, c, ((c.profs || []).find(p => p.id === id) || {}).skill || 0])
+        .filter(x => x[2] > 1).sort((x, y) => y[2] - x[2]).slice(0, 3);
+      return `<div class="tb-prof"><div class="tb-prof-h"><img src="${icon(ic)}" alt="" loading="lazy">${esc(name)}</div>
+        ${best.length ? best.map(([login, c, s]) => `<a class="tb-prof-row" href="${esc(link(login))}"><span style="color:${color(c)}">${esc(c.name)}</span><b>${num(s)} / 300</b></a>`).join('') : '<div class="tb-prof-row"><span class="tb-sub">noch niemand</span></div>'}
+      </div>`;
+    }).join('');
+    $('.tb-body').innerHTML = `<div class="tb-profs">${cards}</div>`;
+  }
+
+  function renderFoot() {
+    $('.tb-foot').textContent = `${data.updated ? 'Stand ' + new Date(data.updated).toLocaleString('de-DE', { dateStyle: 'short', timeStyle: 'short' }) : ''}${data.sample ? ' · Beispieldaten' : ''} · Ein Klick auf einen Namen öffnet das Charakterfenster.`;
+  }
+
+  function render() { renderTotals(); renderTabs(); renderBoard(); renderFoot(); }
+
+  root.addEventListener('click', (e) => {
+    const t = e.target.closest('[data-board]');
+    if (t) { ui.board = t.dataset.board; renderTabs(); renderBoard(); return; }
+    const s = e.target.closest('[data-side]');
+    if (s) {
+      ui.side = s.dataset.side;
+      root.querySelectorAll('[data-side]').forEach(x => x.classList.toggle('on', x === s));
+      renderBoard();
+    }
+  });
+
+  render();
+  if (!CONFIG.dataUrl) return;
+  fetch(CONFIG.dataUrl + (CONFIG.dataUrl.includes('?') ? '&' : '?') + 't=' + Math.floor(Date.now() / 60000), { cache: 'no-store' })
+    .then(r => (r.status === 404 ? null : r.ok ? r.json() : Promise.reject(new Error('HTTP ' + r.status))))
+    .then(d => {
+      if (d && d.characters) { data = d; render(); } else $('.tb-foot').textContent = 'Noch keine Helden – sobald im Stream jemand mit !charakter einen Helden erstellt, erscheint er hier. (Bis dahin: Beispieldaten)';
+    })
+    .catch(() => { $('.tb-foot').textContent = 'Die Bestenliste konnte gerade nicht geladen werden – bitte später noch einmal versuchen. (Bis dahin: Beispieldaten)'; });
+})();
+</script>

@@ -1,0 +1,798 @@
+<!-- =====================================================================
+     Charakterseite für trutzstaehler.de (Squarespace, Code-Block)
+     Zeigt die Charaktere, die Zuschauer im Stream mit !charakter erstellt haben:
+     keine Liste – gefunden wird ein Charakter nur mit seinem vollständigen Namen (oder über
+     den Link aus Chat, Bestenliste und Startseite). Pro Charakter ein Charakterfenster wie im Spiel
+     (Stufe & Erfahrung, Ausrüstung, Wertefenster mit „Zuletzt“, Reiter Charakter / Ruf / Ehre /
+     Beute / Berufe / Vermächtnis / Abzeichen).
+     Gegenstände mit deutschen Wowhead-Tooltips.
+     Einfügen: Seite bearbeiten → Block hinzufügen → Code → alles hier einfügen.
+     Die Daten kommen von der Stream-Zentrale (CONFIG.dataUrl). Ist sie leer,
+     werden Beispieldaten gezeigt.
+     ===================================================================== -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Asul:wght@400;700&family=Cinzel:wght@700&display=swap" rel="stylesheet">
+
+<div id="tsz-chars" class="tc">
+  <div class="tc-top">
+    <div>
+      <h2 class="tc-h">Charaktere aus dem Chat</h2>
+      <p class="tc-lead">Im Stream mit <b>!charakter</b> einen Helden erstellen – hier findest du ihn mit seinem vollständigen Namen.</p>
+    </div>
+    <input class="tc-search" type="search" placeholder="Vollständiger Name …" aria-label="Charakter mit vollständigem Namen suchen" autocomplete="off" spellcheck="false">
+  </div>
+  <div class="tc-sheet" hidden></div>
+  <div class="tc-list"></div>
+  <p class="tc-foot"></p>
+</div>
+
+<style>
+  #tsz-chars {
+    --tc-gold: #ffd100;
+    --tc-txt: #f3eee2;
+    --tc-muted: #b8ad94;
+    --tc-ts: 1px 1px 0 #000, 0 1px 3px rgba(0, 0, 0, 0.8);
+    --tc-panel: linear-gradient(180deg, #161616 0%, #0c0c0c 100%);
+    --tc-line: #4a4a4a;
+    --tc-line-hi: #7a7a7a;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 22px;
+    border-radius: 4px;
+    background: #120e0b;   /* eigener dunkler Hintergrund – passt auf helle wie dunkle Seiten */
+    color: var(--tc-txt);
+    font: 400 16px/1.45 Asul, Georgia, serif;
+    text-align: left;
+  }
+  #tsz-chars *, #tsz-chars *::before, #tsz-chars *::after { box-sizing: border-box; }
+  #tsz-chars [hidden] { display: none !important; }
+  #tsz-chars a { text-decoration: none; }
+  #tsz-chars button { font: inherit; cursor: pointer; }
+
+  /* ---------- Kopf mit Suche ---------- */
+  #tsz-chars .tc-top { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 12px 24px; margin-bottom: 18px; }
+  #tsz-chars .tc-h { margin: 0 0 4px; font: 700 30px/1.2 Cinzel, Georgia, serif; letter-spacing: 0.5px; color: var(--tc-gold); text-shadow: var(--tc-ts); }
+  #tsz-chars .tc-lead { margin: 0; color: var(--tc-muted); font-size: 16px; }
+  #tsz-chars .tc-lead b { color: var(--tc-gold); }
+  #tsz-chars .tc-search {
+    width: 260px; max-width: 100%; padding: 9px 12px; border-radius: 4px;
+    border: 1px solid #8c713c; background: #0d0b09; color: var(--tc-txt);
+    font: 400 16px Asul, Georgia, serif; box-shadow: inset 0 0 6px #000; outline: none;
+  }
+  #tsz-chars .tc-search:focus { border-color: #c59b47; }
+
+  /* ---------- Liste aller Charaktere ---------- */
+  #tsz-chars .tc-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 10px; }
+  #tsz-chars .tc-card {
+    display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 4px;
+    background: var(--tc-panel); border: 1px solid #3c3c3c; box-shadow: inset 0 0 8px #000;
+    color: var(--tc-txt); transition: border-color 0.2s ease;
+  }
+  #tsz-chars .tc-card:hover, #tsz-chars .tc-card:focus-visible { border-color: var(--tc-line-hi); outline: none; }
+  #tsz-chars .tc-card-band { align-self: stretch; width: 5px; border-radius: 2px; flex: 0 0 auto; background: #2f6fd1; }
+  #tsz-chars .tc-card.horde .tc-card-band { background: #b0182a; }
+  #tsz-chars .tc-card-txt { min-width: 0; }
+  #tsz-chars .tc-card-pic { flex: 0 0 42px; width: 42px; height: 42px; border-radius: 50%; border: 2px solid #8c713c; box-shadow: 0 0 0 1px #000; }
+  #tsz-chars .tc-card-name { display: block; font: 700 18px Asul, Georgia, serif; text-shadow: var(--tc-ts); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  #tsz-chars .tc-card-sub { display: block; font-size: 14px; color: var(--tc-muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  #tsz-chars .tc-empty { grid-column: 1 / -1; padding: 18px; text-align: center; color: var(--tc-muted); }
+  #tsz-chars .tc-foot { margin: 12px 0 0; font-size: 14px; color: var(--tc-muted); }
+
+  /* =========================================================
+     CHARAKTERFENSTER – aufgebaut wie im Spiel:
+     Titelleiste mit rundem Porträt · Ausrüstung links/rechts · Bild in der Mitte ·
+     Waffen unten · Reiter unter dem Fenster · Wertefenster rechts daneben
+     ========================================================= */
+  #tsz-chars .tc-sheet { margin-bottom: 26px; }
+  #tsz-chars .tc-win { display: flex; align-items: flex-start; gap: 6px; }
+  #tsz-chars .tc-pane { position: relative; flex: 0 1 660px; min-width: 0; padding-top: 18px; padding-left: 18px; }
+  #tsz-chars .tc-box {
+    position: relative; border-radius: 4px; background: var(--tc-panel);
+    border: 2px solid var(--tc-line); box-shadow: 0 0 0 1px #000, inset 0 0 10px #000, 0 6px 18px rgba(0, 0, 0, 0.5);
+  }
+
+  /* Titelleiste */
+  #tsz-chars .tc-title { position: relative; height: 62px; padding: 6px 48px 0 70px; text-align: center; border-bottom: 2px solid var(--tc-line); background: linear-gradient(180deg, #1d1d1d, #101010); border-radius: 3px 3px 0 0; }
+  #tsz-chars .tc-name { font: 700 21px/1.25 Asul, Georgia, serif; text-shadow: var(--tc-ts); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  #tsz-chars .tc-sub { font: 700 15px/1.3 Asul, Georgia, serif; color: var(--tc-gold); text-shadow: var(--tc-ts); }
+  #tsz-chars .tc-close {
+    position: absolute; top: 8px; right: 8px; width: 28px; height: 28px; padding: 0; border-radius: 3px;
+    border: 1px solid #000; background: linear-gradient(180deg, #8a1c14, #4a0c08); box-shadow: 0 0 0 1px #a88544, inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    color: #ffd100; font: 700 18px/26px Arial, sans-serif; text-align: center;
+  }
+  #tsz-chars .tc-close:hover { filter: brightness(1.2); }
+  #tsz-chars .tc-copy { position: absolute; top: 40px; right: 8px; padding: 0; border: none; background: none; color: var(--tc-muted); font-size: 14px; text-decoration: underline; text-underline-offset: 2px; }
+  #tsz-chars .tc-copy:hover { color: var(--tc-gold); }
+  /* Rundes Porträt oben links (ragt über den Rahmen wie im Spiel) */
+  #tsz-chars .tc-avatar {
+    position: absolute; left: 0; top: 0; z-index: 2; width: 84px; height: 84px; border-radius: 50%; overflow: hidden;
+    border: 3px solid #b8954a; box-shadow: 0 0 0 2px #000, 0 4px 10px rgba(0, 0, 0, 0.7);
+    display: flex; align-items: center; justify-content: center;
+    background: radial-gradient(circle at 50% 35%, #35507f 0%, #0b1426 80%);
+    font: 700 30px Cinzel, Georgia, serif; color: #f3eee2; text-shadow: var(--tc-ts);
+  }
+  #tsz-chars .tc-avatar.horde { background: radial-gradient(circle at 50% 35%, #7f2a24 0%, #250807 80%); }
+  #tsz-chars .tc-avatar img { width: 100%; height: 100%; object-fit: cover; }
+
+  /* Inhalt des Reiters „Charakter“ */
+  #tsz-chars .tc-doll { display: grid; grid-template-columns: 50px 1fr 50px; gap: 10px; padding: 12px 10px 8px; }
+  #tsz-chars .tc-col { display: flex; flex-direction: column; gap: 6px; }
+  #tsz-chars .tc-mid { min-width: 0; display: flex; flex-direction: column; gap: 10px; }
+  #tsz-chars .tc-model {
+    position: relative; height: 300px; border-radius: 3px; overflow: hidden;
+    background: radial-gradient(ellipse at 50% 30%, rgba(255, 255, 255, 0.07) 0%, rgba(0, 0, 0, 0) 60%), #0d0d0d;
+    border: 1px solid #262626;
+  }
+  #tsz-chars .tc-model img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; }
+  #tsz-chars .tc-model-ph { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; padding: 16px 50px 16px 16px; text-align: center; }
+  #tsz-chars .tc-model-ph b { font: 700 26px Cinzel, Georgia, serif; text-shadow: var(--tc-ts); }
+  #tsz-chars .tc-model img.tc-model-pic { position: static; width: 96px; height: 96px; flex: 0 0 96px; object-fit: cover; margin-bottom: 8px; border-radius: 50%; border: 3px solid #c59b47; box-shadow: 0 0 0 1px #000, 0 4px 14px rgba(0,0,0,0.8); }
+  #tsz-chars .tc-model-ph span { font-size: 15px; color: var(--tc-muted); }
+  /* Abzeichen-Spalte rechts im Bild (im Spiel: Widerstände) */
+  #tsz-chars .tc-marks { position: absolute; top: 8px; right: 8px; display: flex; flex-direction: column; gap: 6px; }
+  #tsz-chars .tc-mark {
+    position: relative; width: 32px; height: 32px; border-radius: 3px; border: 1px solid #555; background: #0a0a0a;
+    box-shadow: inset 0 0 6px #000; display: flex; align-items: center; justify-content: center; flex: 0 0 32px;
+  }
+  #tsz-chars .tc-mark svg { width: 20px; height: 20px; }
+  #tsz-chars .tc-mark i { position: absolute; right: 2px; bottom: 0; font: 700 14px/1 Asul, Georgia, serif; font-style: normal; color: #fff; text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000; }
+  /* Zwei Kästen unter dem Bild */
+  #tsz-chars .tc-boxes { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  #tsz-chars .tc-mini { border: 1px solid var(--tc-line); border-radius: 3px; background: #0a0a0a; }
+  #tsz-chars .tc-mini-h { padding: 3px 8px; border-bottom: 1px solid var(--tc-line); background: linear-gradient(180deg, #262626, #141414); font-size: 15px; font-weight: 700; color: var(--tc-txt); }
+  #tsz-chars .tc-kv { display: grid; grid-template-columns: 1fr auto; gap: 1px 10px; margin: 0; padding: 6px 8px; font-size: 15px; }
+  #tsz-chars .tc-kv dt { color: var(--tc-gold); font-weight: 700; }
+  #tsz-chars .tc-kv dd { margin: 0; text-align: right; font-weight: 700; font-variant-numeric: tabular-nums; }
+  #tsz-chars .tc-weapons { display: flex; justify-content: center; gap: 8px; padding: 2px 0 12px; }
+
+  /* Ausrüstungsplatz: nur das Symbol wie im Spiel, leer mit grauem Umriss */
+  #tsz-chars .tc-slot {
+    position: relative; display: block; width: 50px; height: 50px; padding: 0; border-radius: 4px; overflow: hidden;
+    border: 2px solid #3a3a3a; background: radial-gradient(circle at 50% 40%, #262626 0%, #0a0a0a 80%);
+    box-shadow: 0 0 0 1px #000, inset 0 0 8px #000; color: rgba(200, 200, 200, 0.3);
+  }
+  #tsz-chars .tc-slot svg { position: absolute; inset: 9px; width: 28px; height: 28px; fill: currentColor; }
+  #tsz-chars .tc-slot img { display: block; width: 100%; height: 100%; }
+  #tsz-chars .tc-slot.sel { box-shadow: 0 0 0 1px #000, 0 0 0 3px rgba(255, 209, 0, 0.55); }
+  #tsz-chars button.tc-slot:hover, #tsz-chars a.tc-slot:hover { filter: brightness(1.15); }
+  #tsz-chars .q-poor { --q: #9d9d9d; } #tsz-chars .q-common { --q: #ffffff; } #tsz-chars .q-uncommon { --q: #1eff00; }
+  #tsz-chars .q-rare { --q: #0070dd; } #tsz-chars .q-epic { --q: #a335ee; } #tsz-chars .q-legendary { --q: #ff8000; }
+  #tsz-chars .tc-slot[class*="q-"] { border-color: var(--q); }
+  /* Zeile unter der Ausrüstung: angeklickter Gegenstand */
+  #tsz-chars .tc-iteminfo { display: flex; align-items: center; gap: 10px; min-height: 42px; margin: 0 10px 12px; padding: 6px 10px; border: 1px solid #262626; border-radius: 3px; background: #0a0a0a; font-size: 15px; }
+  #tsz-chars .tc-iteminfo b { color: var(--q, var(--tc-txt)); }
+  #tsz-chars .tc-iteminfo small { color: var(--tc-muted); font-size: 14px; }
+  #tsz-chars .tc-iteminfo a { margin-left: auto; color: var(--tc-gold); white-space: nowrap; font-size: 14px; text-decoration: underline; text-underline-offset: 2px; }
+
+  /* Reiter unter dem Fenster */
+  #tsz-chars .tc-tabs { display: flex; flex-wrap: wrap; gap: 4px; padding: 0 10px; margin-top: -2px; }
+  #tsz-chars .tc-tab {
+    padding: 6px 14px 7px; border: 2px solid var(--tc-line); border-top: none; border-radius: 0 0 4px 4px;
+    background: linear-gradient(180deg, #0f0f0f, #1d1d1d); color: var(--tc-muted); font-size: 15px; font-weight: 700; text-shadow: var(--tc-ts);
+  }
+  #tsz-chars .tc-tab:hover { color: var(--tc-txt); }
+  #tsz-chars .tc-tab.on { color: var(--tc-txt); background: linear-gradient(180deg, #161616, #2a2a2a); border-color: var(--tc-line-hi); padding-top: 9px; }
+
+  /* Reiter „Ruf“, „Beute“, „Abzeichen“ */
+  #tsz-chars .tc-page { padding: 14px 16px 16px; min-height: 420px; }
+  #tsz-chars .tc-page h3 { margin: 0 0 10px; font: 700 18px Asul, Georgia, serif; color: var(--tc-gold); text-shadow: var(--tc-ts); }
+  #tsz-chars .tc-page p { margin: 0 0 12px; color: var(--tc-muted); font-size: 15px; }
+  #tsz-chars .tc-rep { position: relative; height: 24px; border-radius: 3px; overflow: hidden; border: 1px solid #000; background: #070707; box-shadow: 0 0 0 1px #3a3a3a, inset 0 0 8px #000; }
+  #tsz-chars .tc-rep-fill { position: absolute; inset: 0 auto 0 0; background: linear-gradient(180deg, #34c234 0%, #1f8a1f 50%, #0f5a0f 100%); box-shadow: inset -2px 0 0 #d6ffd6; }
+  #tsz-chars .tc-rep.r0 .tc-rep-fill { background: linear-gradient(180deg, #e3c235 0%, #b08f12 50%, #6e5806 100%); box-shadow: inset -2px 0 0 #fff4c4; }
+  #tsz-chars .tc-rep.rmax .tc-rep-fill { background: linear-gradient(180deg, #2fd6b4 0%, #12a184 50%, #076450 100%); box-shadow: none; }
+  #tsz-chars .tc-rep span { position: absolute; inset: 0; z-index: 1; display: flex; align-items: center; justify-content: center; font: 700 14px Asul, Georgia, serif; color: #fff; text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000; font-variant-numeric: tabular-nums; }
+  #tsz-chars .tc-ladder { margin: 14px 0 0; padding: 0; list-style: none; border: 1px solid #262626; border-radius: 3px; }
+  #tsz-chars .tc-ladder li { display: flex; justify-content: space-between; padding: 6px 10px; border-bottom: 1px solid #1d1d1d; font-size: 15px; color: var(--tc-muted); }
+  #tsz-chars .tc-ladder li:last-child { border-bottom: none; }
+  #tsz-chars .tc-ladder li.done { color: var(--tc-txt); }
+  #tsz-chars .tc-ladder li.cur { color: var(--tc-gold); font-weight: 700; background: rgba(255, 209, 0, 0.06); }
+  #tsz-chars .tc-loot { margin: 0; padding: 0; list-style: none; }
+  #tsz-chars .tc-loot li { display: flex; align-items: center; gap: 10px; padding: 6px 0; border-bottom: 1px solid #1d1d1d; }
+  #tsz-chars .tc-loot .tc-slot { width: 40px; height: 40px; flex: 0 0 40px; }
+  #tsz-chars .tc-loot b { color: var(--q, var(--tc-txt)); }
+  #tsz-chars .tc-loot small { display: block; color: var(--tc-muted); font-size: 14px; }
+  #tsz-chars .tc-badgelist { display: grid; gap: 8px; }
+  #tsz-chars .tc-badgerow { display: flex; align-items: center; gap: 10px; }
+  #tsz-chars .tc-nothing { padding: 30px 10px; text-align: center; color: var(--tc-muted); }
+  /* Titel hinter dem Namen, Erfahrungsbalken (lila wie im Spiel) */
+  #tsz-chars .tc-ttl { font-weight: 400; }
+  #tsz-chars .tc-xp { position: relative; height: 18px; margin: 2px 8px 8px; border-radius: 3px; overflow: hidden; border: 1px solid #000; background: #0d0710; box-shadow: 0 0 0 1px #3a3a3a, inset 0 0 6px #000; }
+  #tsz-chars .tc-xp-fill { position: absolute; inset: 0 auto 0 0; background: linear-gradient(180deg, #b25ee0 0%, #7a2aa8 50%, #4a1270 100%); }
+  #tsz-chars .tc-xp span { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font: 700 14px Asul, Georgia, serif; color: #fff; text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000; font-variant-numeric: tabular-nums; }
+  /* Reiter „Berufe“: Fertigkeitsbalken wie im Fenster „Fertigkeiten“ */
+  #tsz-chars .tc-skills { display: grid; gap: 10px; margin-bottom: 18px; }
+  #tsz-chars .tc-skill { display: grid; grid-template-columns: 36px minmax(0, 1fr); gap: 4px 10px; align-items: center; }
+  #tsz-chars .tc-skill img { grid-row: 1 / span 2; width: 36px; height: 36px; border-radius: 3px; border: 1px solid #000; box-shadow: 0 0 0 1px #555; }
+  #tsz-chars .tc-skill-h { display: flex; justify-content: space-between; gap: 8px; font-size: 15px; }
+  #tsz-chars .tc-skill-h b { color: var(--tc-txt); }
+  #tsz-chars .tc-skill-h small { color: var(--tc-muted); font-size: 14px; }
+  #tsz-chars .tc-skill-bar { position: relative; height: 16px; border-radius: 2px; overflow: hidden; border: 1px solid #000; background: #0a0d14; box-shadow: 0 0 0 1px #3a3a3a; }
+  #tsz-chars .tc-skill-fill { position: absolute; inset: 0 auto 0 0; background: linear-gradient(180deg, #4d7fd6 0%, #2552a8 50%, #12306e 100%); }
+  #tsz-chars .tc-skill-bar span { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font: 700 14px/1 Asul, Georgia, serif; color: #fff; text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000; }
+  /* Reiter „Vermächtnis“ */
+  #tsz-chars .tc-achhead { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px; margin-bottom: 12px; }
+  #tsz-chars .tc-achpts { display: inline-flex; align-items: center; gap: 8px; padding: 4px 12px; border: 1px solid #8c713c; border-radius: 3px; background: #0d0b09; color: var(--tc-gold); font-weight: 700; font-size: 17px; }
+  #tsz-chars .tc-achs { margin: 0; padding: 0; list-style: none; }
+  #tsz-chars .tc-achs li { display: grid; grid-template-columns: 40px minmax(0, 1fr) auto; gap: 10px; align-items: center; padding: 7px 0; border-bottom: 1px solid #1d1d1d; }
+  #tsz-chars .tc-achs img { width: 40px; height: 40px; border-radius: 3px; border: 2px solid #8c713c; box-shadow: 0 0 0 1px #000; }
+  #tsz-chars .tc-achs b { color: var(--tc-txt); }
+  #tsz-chars .tc-achs small { display: block; color: var(--tc-muted); font-size: 14px; }
+  #tsz-chars .tc-achs .tc-pts { min-width: 34px; padding: 2px 6px; border: 1px solid #8c713c; border-radius: 3px; text-align: center; color: var(--tc-gold); font-weight: 700; }
+  #tsz-chars .tc-achs li.off { opacity: 0.45; }
+  #tsz-chars .tc-achs li.off img { filter: grayscale(1); }
+  #tsz-chars .tc-cat { margin: 16px 0 4px; font-size: 15px; color: var(--tc-muted); }
+  /* Reiter „Ehre“ */
+  #tsz-chars .tc-rank { display: grid; grid-template-columns: 56px minmax(0, 1fr); gap: 4px 12px; align-items: center; margin-bottom: 12px; }
+  #tsz-chars .tc-rank img { grid-row: 1 / span 2; width: 56px; height: 56px; border-radius: 3px; border: 2px solid #8c713c; box-shadow: 0 0 0 1px #000; }
+  #tsz-chars .tc-rank b { font: 700 19px Asul, Georgia, serif; color: var(--tc-gold); text-shadow: var(--tc-ts); }
+  #tsz-chars .tc-rank small { color: var(--tc-muted); font-size: 14px; }
+  #tsz-chars .tc-ladder.tc-ranks li img { width: 20px; height: 20px; margin-right: 8px; border-radius: 2px; vertical-align: -4px; }
+
+  /* Wertefenster rechts (Abschnitte auf- und zuklappbar) */
+  #tsz-chars .tc-side { flex: 0 0 270px; margin-top: 18px; padding: 8px; }
+  #tsz-chars .tc-sec { margin-bottom: 8px; border: 1px solid var(--tc-line); border-radius: 3px; background: #0a0a0a; }
+  #tsz-chars .tc-sec:last-child { margin-bottom: 0; }
+  #tsz-chars .tc-sec-h {
+    display: flex; align-items: center; gap: 8px; width: 100%; padding: 4px 8px; border: none; border-bottom: 1px solid var(--tc-line);
+    background: linear-gradient(180deg, #262626, #141414); color: var(--tc-gold); font-size: 17px; font-weight: 700; text-align: left; text-shadow: var(--tc-ts);
+  }
+  #tsz-chars .tc-sec-h::before {
+    content: "−"; display: inline-flex; align-items: center; justify-content: center; width: 16px; height: 16px; border-radius: 3px;
+    background: linear-gradient(180deg, #b3261e, #5e0f0a); color: #fff; font: 700 14px/1 Arial, sans-serif; box-shadow: 0 0 0 1px #000;
+  }
+  #tsz-chars .tc-sec.shut .tc-sec-h { border-bottom: none; }
+  #tsz-chars .tc-sec.shut .tc-sec-h::before { content: "+"; }
+  #tsz-chars .tc-sec.shut .tc-kv, #tsz-chars .tc-sec.shut .tc-sec-body { display: none; }
+  #tsz-chars .tc-sec .tc-kv dt { color: var(--tc-txt); font-weight: 400; }
+  #tsz-chars .tc-sec-body { padding: 6px 8px; font-size: 15px; }
+  #tsz-chars .tc-sec-body .tc-loot li { padding: 4px 0; }
+  /* „Zuletzt“: was der Held von selbst gemacht hat (Herstellen, Vermächtnis, Lagerfeuer …) */
+  #tsz-chars .tc-log { margin: 0; padding: 0; list-style: none; }
+  #tsz-chars .tc-log li { display: flex; justify-content: space-between; gap: 8px; padding: 4px 0; border-bottom: 1px solid #1d1d1d; font-size: 14px; }
+  #tsz-chars .tc-log li:last-child { border-bottom: none; }
+  #tsz-chars .tc-log small { flex: none; color: var(--tc-muted); font-size: 14px; }
+  #tsz-chars .tc-sec-body .tc-loot .tc-slot { width: 32px; height: 32px; flex-basis: 32px; }
+
+  /* Schmaler Bildschirm: Wertefenster unter das Charakterfenster */
+  @media (max-width: 960px) {
+    #tsz-chars .tc-win { flex-direction: column; align-items: stretch; gap: 0; }
+    #tsz-chars .tc-pane { flex-basis: auto; }
+    #tsz-chars .tc-side { flex-basis: auto; margin-top: 16px; }
+  }
+  @media (max-width: 560px) {
+    #tsz-chars { padding: 12px; }
+    #tsz-chars .tc-pane { padding-left: 10px; padding-top: 14px; }
+    #tsz-chars .tc-avatar { width: 64px; height: 64px; left: 0; top: 0; font-size: 24px; }
+    #tsz-chars .tc-title { height: auto; padding: 6px 40px 26px 58px; }
+    #tsz-chars .tc-copy { top: auto; bottom: 5px; }
+    #tsz-chars .tc-name { font-size: 18px; }
+    #tsz-chars .tc-sub { font-size: 14px; }
+    #tsz-chars .tc-doll { grid-template-columns: 44px 1fr 44px; gap: 6px; padding: 10px 6px 6px; }
+    #tsz-chars .tc-slot { width: 44px; height: 44px; }
+    #tsz-chars .tc-slot svg { inset: 7px; width: 26px; height: 26px; }
+    #tsz-chars .tc-model { height: 250px; }
+    #tsz-chars .tc-model-ph b { font-size: 21px; }
+    #tsz-chars .tc-boxes { grid-template-columns: 1fr; }
+    #tsz-chars .tc-tab { padding: 6px 9px 7px; font-size: 14px; }
+    #tsz-chars .tc-iteminfo { flex-wrap: wrap; }
+    #tsz-chars .tc-iteminfo a { margin-left: 0; }
+  }
+</style>
+
+<script>
+(function () {
+  'use strict';
+
+  /* ---------- Einstellungen ---------- */
+  const CONFIG = {
+    dataUrl: 'https://raw.githubusercontent.com/trutzstaehler/stream-daten/main/helden.json', // Datei mit den Charakteren (lädt die Stream-Zentrale hoch) – leer = Beispieldaten
+    wowheadDb: 'forever', // Wowhead-Bereich für Links & Tooltips: 'forever' = WoW Forever – immer die deutsche Seite
+    images: {},           // Bilder je Volk & Geschlecht, z.B. { 'zwerg-m': 'https://…/zwerg-m.png', zwerg: '…' }
+    portraits: {},        // eigene runde Porträts, gleiche Schlüssel wie images – leer = Volks-Porträt von Wowhead
+    streamer: 'Trutz Stahl'
+  };
+
+  /* ---------- Völker & Klassen in WoW Forever (deutsche Namen) ---------- */
+  const CLASSES = {
+    krieger: { name: 'Krieger', w: 'Kriegerin', color: '#C69B6D' },
+    jaeger: { name: 'Jäger', w: 'Jägerin', color: '#AAD372' },
+    magier: { name: 'Magier', w: 'Magierin', color: '#3FC7EB' },
+    schurke: { name: 'Schurke', w: 'Schurkin', color: '#FFF468' },
+    priester: { name: 'Priester', w: 'Priesterin', color: '#FFFFFF' },
+    hexenmeister: { name: 'Hexenmeister', w: 'Hexenmeisterin', color: '#8788EE' },
+    paladin: { name: 'Paladin', w: 'Paladin', color: '#F48CBA' },
+    druide: { name: 'Druide', w: 'Druidin', color: '#FF7C0A' },
+    schamane: { name: 'Schamane', w: 'Schamanin', color: '#2E8AE6' }
+  };
+  const FACTIONS = { allianz: 'Allianz', horde: 'Horde' };
+  // [männlich, weiblich] – wie in der Stream-Zentrale
+  const RACES = {
+    mensch: ['Mensch', 'Mensch'], zwerg: ['Zwerg', 'Zwergin'], nachtelf: ['Nachtelf', 'Nachtelfe'], gnom: ['Gnom', 'Gnomin'],
+    orc: ['Orc', 'Orc'], troll: ['Troll', 'Troll'], tauren: ['Tauren', 'Tauren'], untote: ['Untoter', 'Untote'], himmelsgeborene: ['Himmelsgeborener', 'Himmelsgeborene'], himmelsgebotene: ['Himmelsgeborener', 'Himmelsgeborene']
+  };
+
+  /* ---------- Ausrüstungsplätze (Reihenfolge wie im Charakterfenster) mit grauem Umriss ---------- */
+  const SIL = {
+    head: '<path d="M8 20C8 11.5 11.6 6 16 6s8 5.5 8 14v5h-4v-6h-8v6H8z"/>',
+    neck: '<path d="M8 5c1 9 4.5 13 8 13s7-4 8-13" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 18l4 4.5-4 4.5-4-4.5z"/>',
+    shoulder: '<path d="M4 22c0-7 5-12 12-12 6 0 10 3 12 7l-4 2c-1.5-2.5-4.5-4-8-4-4.5 0-8 3.5-8 7z"/><path d="M6 23h8v3H6z"/>',
+    back: '<path d="M10 5h12l5 21-5-2-6 3-6-3-5 2z"/>',
+    chest: '<path d="M11 5l3 2.5h4L21 5l6 4-3 6v12H8V15L5 9z"/>',
+    shirt: '<path d="M11 6l3 2h4l3-2 6 5-3 3v12H8V14l-3-3z" opacity=".7"/>',
+    tabard: '<path d="M10 5h12v22l-6-4-6 4z"/>',
+    wrist: '<path d="M9 9h14v14H9z"/>',
+    hands: '<path d="M9 27V14l1-6h2.5v6l1-8h2.5v8l1-7h2.5v7l1-5h2.5v9l2.5-3 1.5 1.5-5 9.5z"/>',
+    waist: '<path d="M4 12h24v8H4z"/>',
+    legs: '<path d="M9 5h14l1 22h-6l-2-13-2 13H8z"/>',
+    feet: '<path d="M11 5h8v14l8 3v5H11z"/>',
+    finger: '<circle cx="16" cy="18" r="7" fill="none" stroke="currentColor" stroke-width="3"/><path d="M16 5l3 4-3 3-3-3z"/>',
+    trinket: '<path d="M16 4l3.5 8 8.5.8-6.5 5.7 2 8.5L16 22.5 8.5 27l2-8.5L4 12.8l8.5-.8z"/>',
+    mainhand: '<path d="M24 4h4v4L15 21l-4-4z"/><path d="M7 17l8 8-2 2-8-8z"/><path d="M6 24l2 2-3 3-2-2z"/>',
+    offhand: '<path d="M16 4l11 4c0 10-4 16-11 20C9 24 5 18 5 8z"/>',
+    ranged: '<path d="M9 3c12 5 12 21 0 26" fill="none" stroke="currentColor" stroke-width="2.5"/><path d="M9 3v26" stroke="currentColor" stroke-width="1"/>'
+  };
+  const SLOTS_LEFT = [['head', 'Kopf'], ['neck', 'Hals'], ['shoulder', 'Schultern'], ['back', 'Rücken'], ['chest', 'Brust'], ['shirt', 'Hemd'], ['tabard', 'Wappenrock'], ['wrist', 'Handgelenke']];
+  const SLOTS_RIGHT = [['hands', 'Hände'], ['waist', 'Taille'], ['legs', 'Beine'], ['feet', 'Füße'], ['finger1', 'Finger', 'finger'], ['finger2', 'Finger', 'finger'], ['trinket1', 'Schmuck', 'trinket'], ['trinket2', 'Schmuck', 'trinket']];
+  const SLOTS_BOTTOM = [['mainhand', 'Waffenhand'], ['offhand', 'Schildhand'], ['ranged', 'Distanz']];
+  const ALL_SLOTS = [...SLOTS_LEFT, ...SLOTS_RIGHT, ...SLOTS_BOTTOM];
+  const QUALITIES = ['poor', 'common', 'uncommon', 'rare', 'epic', 'legendary'];
+
+  /* Abzeichen (Spalte rechts im Bild) */
+  const MARKS = {
+    sub: { name: 'Abonnent', color: '#a970ff', svg: '<path d="M16 4l3.5 8 8.5.8-6.5 5.7 2 8.5L16 22.5 8.5 27l2-8.5L4 12.8l8.5-.8z"/>' },
+    vip: { name: 'VIP', color: '#ff6bd5', svg: '<path d="M16 4l11 12-11 12L5 16z"/>' },
+    mod: { name: 'Moderator', color: '#40c040', svg: '<path d="M24 4h4v4L15 21l-4-4z"/><path d="M7 17l8 8-2 2-8-8z"/>' },
+    founder: { name: 'Streamer', color: '#ffd100', svg: '<path d="M4 24l2-14 6 6 4-10 4 10 6-6 2 14z"/>' },
+    undefeated: { name: 'Unbezwungen', color: '#e6c678', svg: '<path d="M16 3l11 4v8c0 7-5 12-11 14C10 27 5 22 5 15V7z"/><path d="M11 13h3v3h-3zM18 13h3v3h-3zM13 19h6v2h-6z" fill="#0a0a0a"/>' }
+  };
+
+  /* Berufe (Namen & Symbole wie in WoW Forever – die Datei bringt sie auch selbst mit) */
+  const PROFS = {
+    bergbau: ['Bergbau', 'trade_mining'], kraeuter: ['Kräuterkunde', 'spell_nature_naturetouchgrow'], kuerschnern: ['Kürschnerei', 'inv_misc_pelt_wolf_01'],
+    alchimie: ['Alchimie', 'trade_alchemy'], schmiede: ['Schmiedekunst', 'trade_blacksmithing'], verzauber: ['Verzauberkunst', 'trade_engraving'],
+    ingenieur: ['Ingenieurskunst', 'trade_engineering'], leder: ['Lederverarbeitung', 'inv_misc_armorkit_17'], schneider: ['Schneiderei', 'trade_tailoring'],
+    kochen: ['Kochkunst', 'inv_misc_food_15'], erstehilfe: ['Erste Hilfe', 'spell_holy_sealofsacrifice'], angeln: ['Angeln', 'trade_fishing']
+  };
+  const SECONDARY = ['kochen', 'erstehilfe', 'angeln'];
+  const PROF_RANKS = [[75, 'Lehrling'], [150, 'Geselle'], [225, 'Experte'], [300, 'Fachmann']];
+
+  /* ---------- Beispieldaten (nur solange keine Datei eingetragen ist) ---------- */
+  const LADDER = [{ name: 'Neutral', min: 0 }, { name: 'Freundlich', min: 3000 }, { name: 'Wohlwollend', min: 9000 }, { name: 'Respektvoll', min: 21000 }, { name: 'Ehrfürchtig', min: 42000 }];
+  const SAMPLE = {
+    updated: '2026-10-24T20:00:00Z',
+    ladder: LADDER,
+    characters: {
+      einfach_trutz: { name: 'Trutz Stahl', faction: 'allianz', race: 'mensch', cls: 'paladin', gender: 'm',
+        rep: { rank: 'Ehrfürchtig', idx: 4, pts: 52000 }, badges: [{ t: 'founder' }],
+        level: 60, xp: { have: 0, need: 0 }, title: 'der Drachentöter', cap: 300, profs: [{ id: 'bergbau', skill: 300 }, { id: 'schmiede', skill: 300 }],
+        ach: [{ id: 'wb_azuregos', at: 1792900000000 }, { id: 'lvl60', at: 1792850000000 }], achPts: 2,
+        legacy: { pts: 2, spent: 2, max: 16, open: true, perks: [{ id: 'diplomat', rank: 2, text: '+4 % Ruf aus Kämpfen, Spielen und Quests' }], rewards: [] },
+        pvp: { rank: 6, name: 'Leutnant', rp: 7120, honor: 4800, marks: 24, best: 6, bestName: 'Leutnant', bgWins: 9, bgGames: 14, duels: 30, duelsWon: 21 },
+        stats: { since: '2026-10-11', bosses: 7, loot: 0, points: 0, messages: 2410 }, gear: {}, loot: [] },
+      anna: { name: 'Anna', faction: 'allianz', race: 'zwerg', cls: 'priester', gender: 'w',
+        level: 27, xp: { have: 1830, need: 2160 }, title: 'die Unbezwungene', cap: 225,
+        profs: [{ id: 'kraeuter', skill: 182 }, { id: 'alchimie', skill: 171 }, { id: 'erstehilfe', skill: 95 }, { id: 'angeln', skill: 40 }],
+        ach: [{ id: 'nodeath25', at: 1792800000000 }, { id: 'lvl20', at: 1792600000000 }, { id: 'fish10', at: 1792500000000 }, { id: 'lvl10' }], achPts: 4,
+        legacy: { pts: 4, spent: 4, max: 16, open: true, perks: [{ id: 'ausgeruht', rank: 2, text: 'Ruhebonus sammelt sich 8 % schneller an, Höchstwert +8 %' }, { id: 'ueberstunden', rank: 2, text: '+4 % Chance auf eine Fertigkeitserhöhung' }], rewards: [] },
+        pvp: { rank: 2, name: 'Fußknecht', rp: 1900, honor: 960, marks: 7, best: 2, bestName: 'Fußknecht', bgWins: 2, bgGames: 5, duels: 6, duelsWon: 4 },
+        log: [{ at: Date.now() - 25 * 60000, text: '3× Elixier der schwachen Stärke hergestellt' }, { at: Date.now() - 50 * 60000, text: 'Gewächshaus ans Lagerfeuer gestellt' }, { at: Date.now() - 26 * 3600000, text: 'Vermächtnis: Überstunden machen 2/5' }],
+        rep: { rank: 'Wohlwollend', idx: 2, pts: 11400 }, badges: [{ t: 'sub', months: 12 }, { t: 'vip' }, { t: 'undefeated', fights: 31 }],
+        stats: { since: '2026-10-12', bosses: 5, loot: 0, points: 15200, fish: 23, quiz: 3, messages: 860, fights: 31, deaths: 0, crafted: 14 }, gear: {}, loot: [] },
+      grimmzahn: { name: 'Grimmzahn', faction: 'horde', race: 'orc', cls: 'krieger', gender: 'm',
+        level: 14, xp: { have: 410, need: 1270 }, title: '', cap: 150,
+        profs: [{ id: 'bergbau', skill: 96 }, { id: 'schmiede', skill: 88 }, { id: 'kochen', skill: 30 }],
+        ach: [{ id: 'lvl10', at: 1792700000000 }], achPts: 1,
+        legacy: { pts: 1, spent: 0, max: 16, open: false, perks: [], rewards: [] },
+        pvp: { rank: 1, name: 'Späher', rp: 810, honor: 330, marks: 3, best: 1, bestName: 'Späher', bgWins: 1, bgGames: 3, duels: 2, duelsWon: 0 },
+        rep: { rank: 'Freundlich', idx: 1, pts: 4200 }, badges: [{ t: 'mod' }, { t: 'sub', months: 3 }],
+        stats: { since: '2026-10-14', bosses: 3, loot: 0, points: 4800, fish: 8, messages: 410, fights: 12, deaths: 2 }, gear: {}, loot: [] },
+      sternenwind: { name: 'Sternenwind', faction: 'horde', race: 'himmelsgeborene', cls: 'druide', gender: 'w',
+        rep: { rank: 'Neutral', idx: 0, pts: 1250 }, badges: [],
+        stats: { since: '2026-10-20', bosses: 1, loot: 0, points: 900, messages: 95 }, gear: {}, loot: [] },
+      knackfix: { name: 'Knackfix', faction: 'allianz', race: 'gnom', cls: 'hexenmeister', gender: 'm',
+        rep: { rank: 'Neutral', idx: 0, pts: 640 }, badges: [{ t: 'sub', months: 1 }],
+        stats: { since: '2026-10-22', bosses: 0, loot: 0, points: 300, messages: 41 }, gear: {}, loot: [] }
+    },
+    achievements: {
+      nodeath25: { name: 'Unbezwungen', desc: '25 Kämpfe, ohne je zu fallen', pts: 1, cat: 'abenteuer', icon: 'achievement_featsofstrength_gladiator_08' },
+      lvl10: { name: 'Stufe 10', desc: 'Erreiche Stufe 10', pts: 1, cat: 'klassen', icon: 'achievement_level_10' },
+      lvl20: { name: 'Stufe 20', desc: 'Erreiche Stufe 20', pts: 1, cat: 'klassen', icon: 'achievement_level_20' },
+      lvl60: { name: 'Stufe 60', desc: 'Erreiche Stufe 60', pts: 1, cat: 'klassen', icon: 'achievement_level_60' },
+      fish10: { name: 'Anfänger am Wasser', desc: 'Fange 10 Fische', pts: 1, cat: 'abenteuer', icon: 'achievement_profession_fishing_findfish' },
+      wb_azuregos: { name: 'Azuregos bezwungen', desc: 'Besiege Azuregos', pts: 1, cat: 'raids', icon: 'inv_misc_head_dragon_blue' }
+    },
+    legacy: {
+      max: 16,
+      cats: [{ id: 'klassen', name: 'Klassen' }, { id: 'berufe', name: 'Berufe' }, { id: 'pvp', name: 'Spieler gegen Spieler' }, { id: 'abenteuer', name: 'Abenteuer' }, { id: 'dungeons', name: 'Dungeons' }, { id: 'raids', name: 'Schlachtzüge' }],
+      trees: [
+        { id: 'abenteuer', name: 'Abenteuer', perks: [{ id: 'ausgeruht', name: 'Gut ausgeruht', icon: 'spell_nature_sleep', max: 5 }] },
+        { id: 'berufe', name: 'Berufe', perks: [{ id: 'ueberstunden', name: 'Überstunden machen', icon: 'inv_misc_pocketwatch_03', max: 5 }] },
+        { id: 'einfall', name: 'Einfallsreichtum', perks: [{ id: 'diplomat', name: 'Diplomat', icon: 'inv_scroll_03', max: 5 }] }
+      ],
+      rewards: [
+        { pts: 15, id: 281060, name: 'Replik des Ironforge-Luftgewehrs', icon: 'inv_weapon_rifle_22', q: 'rare' },
+        { pts: 25, id: 277714, name: 'Spektralbärenjunges', icon: 'inv_pet_babyblizzardbear', q: 'rare' },
+        { pts: 40, id: 277717, name: 'Wappenrock des Spektralbären', icon: 'inv_tabard_legacyc60_b_01', q: 'rare' },
+        { pts: 55, id: 277718, name: 'Zügel des Spektralbären', icon: 'inv_bearmountblizzard', q: 'epic' }
+      ]
+    },
+    pvp: {
+      season: 1, week: 12, seasonWeeks: 52,
+      ranks: {
+        allianz: ['Gefreiter', 'Fußknecht', 'Landsknecht', 'Feldwebel', 'Fähnrich', 'Leutnant', 'Hauptmann', 'Kürassier', 'Ritter der Allianz', 'Feldkommandant', 'Kommandant', 'Marschall', 'Feldmarschall', 'Großmarschall'],
+        horde: ['Späher', 'Grunzer', 'Waffenträger', 'Schlachtrufer', 'Rottenmeister', 'Steingardist', 'Blutgardist', 'Zornbringer', 'Klinge der Horde', 'Feldherr', 'Sturmreiter', 'Kriegsherr', 'Kriegsfürst', 'Oberster Kriegsfürst']
+      },
+      pts: [750, 1650, 2700, 3900, 5250, 6750, 8400, 10200, 12150, 14250, 16600, 19100, 21750, 24750]
+    }
+  };
+
+  /* ---------- Hilfen ---------- */
+  const root = document.getElementById('tsz-chars');
+  if (!root) return;
+  const $ = (sel) => root.querySelector(sel);
+  const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  const num = (n) => Number(n || 0).toLocaleString('de-DE');
+  const day = (v) => (v ? new Date(v).toLocaleDateString('de-DE') : '–');
+  // „vor 5 Min.“, „vor 3 Std.“, sonst das Datum
+  const ago = (v) => { const m = Math.round((Date.now() - Number(v || 0)) / 60000); return !v ? '' : m < 60 ? `vor ${Math.max(1, m)} Min.` : m < 1440 ? `vor ${Math.round(m / 60)} Std.` : day(v); };
+  const cls = (c) => CLASSES[c.cls] || { name: '?', color: '#f3eee2' };
+  const raceName = (c) => (RACES[c.race] ? RACES[c.race][c.gender === 'w' ? 1 : 0] : '?');
+  const className = (c) => (c.gender === 'w' && CLASSES[c.cls] ? CLASSES[c.cls].w : cls(c).name);
+  const faction = (c) => (FACTIONS[c.faction] ? c.faction : 'allianz');
+  // Porträt: eigenes Bild aus CONFIG.portraits, sonst das Volks-Porträt von Wowhead (männlich/weiblich)
+  const RACE_ICONS = { mensch: 'human', zwerg: 'dwarf', nachtelf: 'nightelf', gnom: 'gnome', orc: 'orc', troll: 'troll', tauren: 'tauren', untote: 'scourge', himmelsgeborene: 'skyborne', himmelsgebotene: 'skyborne' };
+  const portraitOf = (c) => CONFIG.portraits[`${c.race}-${c.gender}`] || CONFIG.portraits[c.race]
+    || (RACE_ICONS[c.race] ? `https://wow.zamimg.com/images/wow/icons/large/race_${RACE_ICONS[c.race]}_${c.gender === 'w' ? 'female' : 'male'}.jpg` : '');
+  const levelOf = (c) => Math.max(1, Math.min(60, Math.round(Number(c.level) || 1)));
+  const lvlText = (c) => (c.level ? `Stufe ${levelOf(c)} ` : '');
+  const svg = (inner, color) => `<svg viewBox="0 0 32 32" aria-hidden="true"${color ? ` style="fill:${color};color:${color}"` : ''}>${inner}</svg>`;
+  const ui = { login: '', tab: 'char', slot: '', shut: {} };
+  let data = { characters: {} };
+
+  /* ---------- Liste ---------- */
+  // Keine Liste aller Charaktere: gefunden wird nur, wer den vollständigen Namen eingibt (wie im Twitch-Chat, Groß/klein egal).
+  // Über die Bestenliste, die Startseite und den Link aus dem Chat öffnet sich das Charakterfenster direkt.
+  function renderList() {
+    const q = $('.tc-search').value.trim().replace(/^@/, '').toLowerCase();
+    const all = Object.entries(data.characters);
+    const hits = q ? all.filter(([login, c]) => login === q || String(c.name).toLowerCase() === q) : [];
+    $('.tc-list').innerHTML = hits.length ? hits.map(([login, c]) => `
+      <a class="tc-card ${faction(c)}" href="#${encodeURIComponent(login)}">
+        <span class="tc-card-band"></span>
+        ${portraitOf(c) ? `<img class="tc-card-pic" src="${esc(portraitOf(c))}" alt="" loading="lazy">` : ''}
+        <span class="tc-card-txt">
+          <span class="tc-card-name" style="color:${cls(c).color}">${esc(c.name)}</span>
+          <span class="tc-card-sub">${esc(lvlText(c) + raceName(c))} · ${esc(className(c))}${c.rep ? ' · ' + esc(c.rep.rank) : ''}</span>
+        </span>
+      </a>`).join('')
+      : `<div class="tc-empty">${q ? 'Kein Charakter mit genau diesem Namen – bitte den vollständigen Namen eingeben, so wie er im Chat steht.' : all.length ? 'Gib oben den vollständigen Namen deines Helden ein. Die Besten stehen in der Bestenliste.' : 'Noch keine Charaktere – im Stream mit !charakter den ersten erstellen.'}</div>`;
+    const n = all.length;
+    $('.tc-foot').textContent = `${num(n)} ${n === 1 ? 'Charakter' : 'Charaktere'}${data.updated ? ` · Stand ${new Date(data.updated).toLocaleString('de-DE', { dateStyle: 'short', timeStyle: 'short' })}` : ''}${data.sample ? ' · Beispieldaten (z.B. „Anna“ eingeben)' : ''}`;
+  }
+
+  /* ---------- Bausteine des Charakterfensters ---------- */
+  const itemHref = (id) => `https://www.wowhead.com/${CONFIG.wowheadDb ? CONFIG.wowheadDb + '/' : ''}de/item=${encodeURIComponent(id)}`;
+  const iconImg = (icon) => (icon ? `<img src="https://wow.zamimg.com/images/wow/icons/large/${encodeURIComponent(icon)}.jpg" alt="" loading="lazy">` : '');
+  const qOf = (it) => (QUALITIES.includes(it.q) ? it.q : 'common');
+
+  /** Ein Platz: Symbol (oder grauer Umriss) – Klick zeigt den Gegenstand in der Zeile darunter */
+  function slotHtml(c, [key, label, sil]) {
+    const it = c.gear && c.gear[key];
+    const sel = ui.slot === key ? ' sel' : '';
+    if (!it || !it.id) return `<button type="button" class="tc-slot${sel}" data-slot="${key}" title="${label} – leer">${svg(SIL[sil || key])}</button>`;
+    return `<a class="tc-slot q-${qOf(it)}${sel}" data-slot="${key}" href="${itemHref(it.id)}" target="_blank" rel="noopener" aria-label="${esc(it.name || label)}">${iconImg(it.icon) || svg(SIL[sil || key])}</a>`;
+  }
+
+  function itemInfoHtml(c) {
+    const def = ALL_SLOTS.find(s => s[0] === ui.slot);
+    if (!def) return '<span style="color:var(--tc-muted)">Gegenstand anklicken für Details – mit der Maus darüber zeigt Wowhead den Tooltip.</span>';
+    const it = c.gear && c.gear[ui.slot];
+    if (!it || !it.id) return `<span><b>${def[1]}</b> <small>– noch leer. Beute gibt es, wenn der Chat einen Boss besiegt.</small></span>`;
+    return `<span class="q-${qOf(it)}"><b>${esc(it.name || 'Gegenstand ' + it.id)}</b><br><small>${esc(it.inv || def[1])}${it.type ? ` · ${esc(it.type)}` : ''}${it.ilvl ? ` · Gegenstandsstufe ${num(it.ilvl)}` : ''}${it.from ? ` · von ${esc(it.from)}` : ''}${it.at ? ` · ${day(it.at)}` : ''}</small></span>
+      <a href="${itemHref(it.id)}" target="_blank" rel="noopener">Bei Wowhead ansehen</a>`;
+  }
+
+  function modelHtml(c) {
+    const key = `${c.race}-${c.gender}`;
+    const img = CONFIG.images[key] || CONFIG.images[c.race];
+    const marks = (c.badges || []).filter(b => MARKS[b.t]).map(b => {
+      const m = MARKS[b.t];
+      return `<span class="tc-mark" title="${m.name}${b.months ? ` · ${num(b.months)} ${Number(b.months) === 1 ? 'Monat' : 'Monate'}` : ''}">${svg(m.svg, m.color)}${b.months ? `<i>${num(b.months)}</i>` : ''}</span>`;
+    }).join('');
+    return `<div class="tc-model">
+      ${img ? `<img src="${esc(img)}" alt="${esc(raceName(c))}">`
+        : `<div class="tc-model-ph">${portraitOf(c) ? `<img class="tc-model-pic" src="${esc(portraitOf(c))}" alt="">` : ''}<b style="color:${cls(c).color}">${esc(raceName(c))}</b><span>${c.gender === 'w' ? 'weiblich' : c.gender === 'm' ? 'männlich' : ''}</span></div>`}
+      ${marks ? `<div class="tc-marks">${marks}</div>` : ''}
+    </div>`;
+  }
+
+  const kv = (rows) => `<dl class="tc-kv">${rows.filter(r => r[1] != null && r[1] !== '').map(([k, v]) => `<dt>${k}</dt><dd>${v}</dd>`).join('')}</dl>`;
+
+  function gearStats(c) {
+    const items = ALL_SLOTS.map(s => c.gear && c.gear[s[0]]).filter(it => it && it.id);
+    const lv = items.filter(it => it.ilvl);
+    return { worn: items.length, ilvl: lv.length ? Math.round(lv.reduce((a, it) => a + Number(it.ilvl), 0) / lv.length) : null };
+  }
+
+  function repParts(c) {
+    const r = c.rep || { rank: 'Neutral', idx: 0, pts: 0 };
+    const ladder = data.ladder || LADDER;
+    const cur = ladder[r.idx] || ladder[0];
+    const next = ladder[r.idx + 1];
+    const pct = next ? Math.max(0, Math.min(100, (r.pts - cur.min) / Math.max(1, next.min - cur.min) * 100)) : 100;
+    return { r, ladder, cur, next, pct };
+  }
+
+  function repBar(c) {
+    const { r, next, pct } = repParts(c);
+    return `<div class="tc-rep r${Math.max(0, Math.min(4, Math.round(Number(r.idx) || 0)))}${next ? '' : ' rmax'}"><div class="tc-rep-fill" style="width:${pct.toFixed(1)}%"></div>
+      <span>${esc(r.rank)} · ${num(r.pts)}${next ? ' / ' + num(next.min) : ''}</span></div>`;
+  }
+
+  /** Beute, die neueste zuerst */
+  function lootList(list, limit) {
+    const rows = (list || []).slice().sort((a, b) => (b.at || 0) - (a.at || 0)).slice(0, limit);
+    if (!rows.length) return '';
+    return `<ul class="tc-loot">${rows.map(it => `<li class="q-${qOf(it)}">
+      <a class="tc-slot q-${qOf(it)}" href="${itemHref(it.id)}" target="_blank" rel="noopener">${iconImg(it.icon) || svg(SIL.trinket)}</a>
+      <span><b>${esc(it.name || 'Gegenstand ' + it.id)}</b><small>${[it.inv || it.slot, it.type, it.from ? 'von ' + it.from : '', it.roll != null ? `gewürfelt ${it.roll}${it.of ? ` (${it.of} Teilnehmer)` : ''}` : '', day(it.at)].filter(Boolean).map(esc).join(' · ')}</small></span>
+    </li>`).join('')}</ul>`;
+  }
+
+  /* ---------- Reiter ---------- */
+  function tabChar(c) {
+    const st = c.stats || {};
+    const sub = (c.badges || []).find(b => b.t === 'sub');
+    return `<div class="tc-doll">
+        <div class="tc-col">${SLOTS_LEFT.map(s => slotHtml(c, s)).join('')}</div>
+        <div class="tc-mid">
+          ${modelHtml(c)}
+          <div class="tc-boxes">
+            <div class="tc-mini"><div class="tc-mini-h">Im Stream</div>${kv([['Bosse', num(st.bosses)], ['Beute', num(st.loot)], ['Gegner', st.foes != null ? num(st.foes) : null], ['Fische', st.fish != null ? num(st.fish) : null], ['Quiz & Rätsel', st.quiz != null ? num(st.quiz) : null], ['Hergestellt', st.crafted ? num(st.crafted) : null], ['Tagesquests', st.quests ? num(st.quests) : null], ['Duelle', st.duels ? `${num(st.duelsWon || 0)} von ${num(st.duels)} gewonnen` : null]])}</div>
+            <div class="tc-mini"><div class="tc-mini-h">Twitch</div>${kv([['Dabei seit', day(st.since)], ['Nachrichten', num(st.messages)], ['Punkte eingesetzt', st.points != null ? num(st.points) : null], ['Abo', sub ? `${num(sub.months || 1)} Mon.` : null]])}</div>
+          </div>
+        </div>
+        <div class="tc-col">${SLOTS_RIGHT.map(s => slotHtml(c, s)).join('')}</div>
+      </div>
+      <div class="tc-weapons">${SLOTS_BOTTOM.map(s => slotHtml(c, s)).join('')}</div>
+      <div class="tc-iteminfo">${itemInfoHtml(c)}</div>`;
+  }
+
+  function tabRep(c) {
+    const { r, ladder, next } = repParts(c);
+    return `<div class="tc-page">
+      <h3>Ruf bei ${esc(CONFIG.streamer)}</h3>
+      <p>Ruf gibt es fürs Zuschauen und Mitmachen im Stream – im Chat, bei Pausen-Spielen und Bosskämpfen.</p>
+      ${repBar(c)}
+      <p style="margin-top:8px">${next ? `Noch ${num(next.min - r.pts)} Ruf bis „${esc(next.name)}“.` : 'Höchster Rang erreicht.'}</p>
+      <ul class="tc-ladder">${ladder.map((l, i) => `<li class="${i < r.idx ? 'done' : i === r.idx ? 'cur' : ''}"><span>${esc(l.name)}</span><span>ab ${num(l.min)}</span></li>`).join('')}</ul>
+    </div>`;
+  }
+
+  function tabLoot(c) {
+    return `<div class="tc-page"><h3>Erbeutete Gegenstände</h3>
+      ${lootList(c.loot, 100) || '<div class="tc-nothing">Noch keine Beute – besiege im Stream mit dem Chat einen Boss!</div>'}</div>`;
+  }
+
+  /** Berufe: Fertigkeit wie im Fenster „Fertigkeiten“ (Lehrling bis 75, Geselle bis 150 …) */
+  function tabProfs(c) {
+    const list = Array.isArray(c.profs) ? c.profs.filter(p => p && (PROFS[p.id] || (data.profs && data.profs[p.id]))) : [];
+    const cap = Math.max(75, Math.min(300, Number(c.cap) || 75));
+    const row = (p) => {
+      const d = (data.profs && data.profs[p.id]) || {};
+      const name = d.name || PROFS[p.id][0];
+      const icon = d.icon || PROFS[p.id][1];
+      const skill = Math.max(1, Math.min(300, Math.round(Number(p.skill) || 1)));
+      const max = Math.max(skill, cap);
+      const rank = (PROF_RANKS.find(r => max <= r[0]) || PROF_RANKS[3])[1]; // der Rang richtet sich nach der höchsten erlernbaren Fertigkeit
+      return `<div class="tc-skill">${iconImg(icon)}<div class="tc-skill-h"><b>${esc(name)}</b><small>${rank}</small></div>
+        <div class="tc-skill-bar"><div class="tc-skill-fill" style="width:${(skill / max * 100).toFixed(1)}%"></div><span>${num(skill)} / ${num(max)}</span></div></div>`;
+    };
+    const main = list.filter(p => !SECONDARY.includes(p.id));
+    const second = list.filter(p => SECONDARY.includes(p.id));
+    return `<div class="tc-page"><h3>Berufe</h3>
+      ${main.length ? `<div class="tc-skills">${main.map(row).join('')}</div>` : '<p>Noch keine Hauptberufe – im Stream mit <b>!beruf</b> zwei wählen, z.B. <b>!beruf Bergbau Schmiedekunst</b>.</p>'}
+      <h3>Sekundäre Fertigkeiten</h3>
+      ${second.length ? `<div class="tc-skills">${second.map(row).join('')}</div>` : '<p>Kochkunst, Erste Hilfe und Angeln kann jeder – gekocht wird von selbst, solange du im Stream schreibst, verbunden im Kampf mit <b>!verbinden</b>, geangelt bei Fischschwärmen und in der Pause.</p>'}
+    </div>`;
+  }
+
+  /** Ehre: Rang wie im Spiel (14 Ränge je Seite), Rangpunkte bis zum nächsten Rang, Ehre & Ehrenabzeichen */
+  function tabPvp(c) {
+    const p = c.pvp;
+    const d = data.pvp;
+    if (!p || !d || !d.ranks) return '<div class="tc-page"><h3>Ehre</h3><div class="tc-nothing">Noch keine Ehre – die gibt es im Stream für Duelle (<b>!duell @name</b>) und die Schlacht um die Darkspear-Inseln in der Pause.</div></div>';
+    const side = faction(c) === 'horde' ? 'horde' : 'allianz';
+    const names = d.ranks[side] || [];
+    const pts = d.pts || [];
+    const icon = (r) => `achievement_pvp_${side === 'horde' ? 'h' : 'a'}_${String(r).padStart(2, '0')}`;
+    const r = Math.max(0, Math.min(names.length, Number(p.rank) || 0));
+    const lo = r > 0 ? pts[r - 1] : 0;
+    const hi = pts[r];
+    const bar = hi ? `<div class="tc-skill-bar"><div class="tc-skill-fill" style="width:${Math.max(0, Math.min(100, ((p.rp || 0) - lo) / (hi - lo) * 100)).toFixed(1)}%"></div><span>${num(p.rp)} / ${num(hi)} Rangpunkte</span></div>`
+      : `<div class="tc-skill-bar"><div class="tc-skill-fill" style="width:100%"></div><span>${num(p.rp)} Rangpunkte – höchster Rang</span></div>`;
+    return `<div class="tc-page">
+      <h3>Ehre</h3>
+      <div class="tc-rank">${r ? iconImg(icon(r)) : '<span></span>'}<b>${r ? `${esc(names[r - 1])} (Rang ${r})` : 'Noch ohne Rang'}</b><small>Saison ${num(d.season)} · Woche ${num(d.week)} von ${num(d.seasonWeeks)}${hi ? ` · nächster Rang: ${esc(names[r])}` : ''}</small></div>
+      ${bar}
+      ${kv([['Ehre', num(p.honor)], ['Ehrenabzeichen', num(p.marks)], ['Bester Rang', p.best ? `${esc(p.bestName || names[p.best - 1] || '')} (Rang ${num(p.best)})` : '–'], ['Darkspear-Inseln', `${num(p.bgWins)} von ${num(p.bgGames)} gewonnen`], ['Duelle', `${num(p.duelsWon)} von ${num(p.duels)} gewonnen`]])}
+      <p style="margin-top:12px">Rangpunkte gibt es für Duelle und die Schlacht um die Darkspear-Inseln. Mit jeder Saison beginnen sie neu – der beste Rang bleibt.</p>
+      <ul class="tc-ladder tc-ranks">${names.map((n, i) => `<li class="${i + 1 < r ? 'done' : i + 1 === r ? 'cur' : ''}"><span>${iconImg(icon(i + 1))}${esc(n)}</span><span>ab ${num(pts[i])}</span></li>`).join('')}</ul>
+    </div>`;
+  }
+
+  /** Vermächtnis: Herausforderungen (je 1 Punkt) nach Bereichen, verteilte Vorteile, Belohnungsweg */
+  function tabAch(c) {
+    const dict = data.achievements || {};
+    const L = data.legacy || {};
+    const list = (Array.isArray(c.ach) ? c.ach : []).filter(a => a && dict[a.id]);
+    const own = c.legacy || {};
+    const pts = own.pts != null ? own.pts : c.achPts != null ? c.achPts : list.length;
+    const perks = {};
+    (L.trees || []).forEach(t => (t.perks || []).forEach(p => { perks[p.id] = Object.assign({ tree: t.name }, p); }));
+    const mine = (own.perks || []).filter(p => perks[p.id]);
+    const got = new Set(own.rewards || []);
+    const cats = (L.cats || []).filter(k => list.some(a => dict[a.id].cat === k.id));
+    const rest = list.filter(a => !(L.cats || []).some(k => k.id === dict[a.id].cat));
+    const row = (a) => {
+      const d = dict[a.id];
+      return `<li>${iconImg(d.icon) || '<span></span>'}<span><b>${esc(d.name)}</b><small>${esc(d.desc)}${a.at ? ' · ' + day(a.at) : ''}</small></span><span class="tc-pts">1</span></li>`;
+    };
+    return `<div class="tc-page">
+      <div class="tc-achhead"><h3 style="margin:0">Vermächtnis</h3><span class="tc-achpts">${num(pts)} ${pts === 1 ? 'Punkt' : 'Punkte'}</span>${c.title ? `<span>Titel: <b style="color:var(--tc-gold)">${esc(c.name)}, ${esc(c.title)}</b></span>` : ''}</div>
+      <p>Jede Vermächtnisherausforderung bringt einen Punkt. Ab Stufe 25 (oder einem Herstellungsberuf auf 150) werden sie automatisch auf Vorteile verteilt – höchstens ${num(L.max || own.max || 16)}. Im Stream zeigt <b>!vermächtnis</b> sie an.</p>
+      ${mine.length ? `<ul class="tc-achs">${mine.map(p => `<li>${iconImg(perks[p.id].icon) || '<span></span>'}<span><b>${esc(perks[p.id].name)}</b><small>${esc(perks[p.id].tree)}${p.text ? ' · ' + esc(p.text) : ''}</small></span><span class="tc-pts">${num(p.rank)}/${num(perks[p.id].max)}</span></li>`).join('')}</ul>`
+        : `<p>${own.open ? 'Noch keine Vorteile verteilt.' : 'Vorteile gibt es ab Stufe 25.'}</p>`}
+      ${(L.rewards || []).length ? `<div class="tc-cat">Vermächtnisbelohnungsweg</div><ul class="tc-achs">${L.rewards.map(r => `<li class="${got.has(r.id) || pts >= r.pts ? '' : 'off'}">${iconImg(r.icon) || '<span></span>'}<span><b>${esc(r.name)}</b><small>ab ${num(r.pts)} Punkten${got.has(r.id) || pts >= r.pts ? ' · erreicht' : ` · noch ${num(r.pts - pts)}`}</small></span><span class="tc-pts">${num(r.pts)}</span></li>`).join('')}</ul>` : ''}
+      ${list.length ? cats.map(k => `<div class="tc-cat">${esc(k.name)}</div><ul class="tc-achs">${list.filter(a => dict[a.id].cat === k.id).map(row).join('')}</ul>`).join('')
+        + (rest.length ? `<ul class="tc-achs">${rest.map(row).join('')}</ul>` : '')
+        : '<div class="tc-nothing">Noch keine Herausforderungen geschafft – die gibt es für Stufen, Berufe, Duelle, die Darkspear-Inseln, Gegner, Dungeons und Weltbosse.</div>'}
+    </div>`;
+  }
+
+  function tabBadges(c) {
+    const rows = (c.badges || []).filter(b => MARKS[b.t]).map(b => {
+      const m = MARKS[b.t];
+      return `<div class="tc-badgerow"><span class="tc-mark">${svg(m.svg, m.color)}</span><span><b style="color:${m.color}">${m.name}</b>${b.months ? ` · ${num(b.months)} ${b.months === 1 ? 'Monat' : 'Monate'}` : ''}${b.t === 'undefeated' ? ` · ${b.fights ? num(b.fights) + ' Kämpfe, ' : ''}nie gefallen` : ''}</span></div>`;
+    }).join('');
+    return `<div class="tc-page"><h3>Abzeichen</h3>
+      <p>Abzeichen aus dem Twitch-Chat – sie werden bei der nächsten Nachricht im Stream aktualisiert. „Unbezwungen“ trägt, wer 25 Kämpfe bestritten hat, ohne je zu fallen – beim ersten Sturz ist es weg.</p>
+      ${rows ? `<div class="tc-badgelist">${rows}</div>` : '<div class="tc-nothing">Noch keine Abzeichen.</div>'}</div>`;
+  }
+
+  /* ---------- Wertefenster rechts ---------- */
+  function sideHtml(c) {
+    const g = gearStats(c);
+    const { r, next } = repParts(c);
+    const sec = (id, title, body) => `<div class="tc-sec${ui.shut[id] ? ' shut' : ''}"><button type="button" class="tc-sec-h" data-sec="${id}">${title}</button>${body}</div>`;
+    const recent = lootList(c.loot, 3);
+    return `<div class="tc-box tc-side">
+      ${sec('gen', 'Allgemein', kv([['Stufe', c.level ? num(levelOf(c)) : null], ['Volk', esc(raceName(c))], ['Klasse', `<span style="color:${cls(c).color}">${esc(className(c))}</span>`], ['Fraktion', FACTIONS[faction(c)]], ['Gegenstandsstufe', g.ilvl != null ? num(g.ilvl) : '–'], ['Ausgerüstet', `${g.worn} / ${ALL_SLOTS.length}`]]) + xpBar(c))}
+      ${sec('rep', 'Ruf', kv([['Rang', esc(r.rank)], ['Ruf', num(r.pts)], ['Nächster Rang', next ? esc(next.name) : '–'], ['Fehlt noch', next ? num(next.min - r.pts) : '–']]))}
+      ${c.pvp ? sec('pvp', 'Ehre', kv([['Rang', c.pvp.rank ? `${esc(c.pvp.name)} (${num(c.pvp.rank)})` : '–'], ['Rangpunkte', num(c.pvp.rp)], ['Ehre', num(c.pvp.honor)], ['Bester Rang', c.pvp.best ? esc(c.pvp.bestName) : '–']])) : ''}
+      ${sec('loot', 'Letzte Beute', `<div class="tc-sec-body">${recent || '<span style="color:var(--tc-muted)">Noch keine Beute.</span>'}</div>`)}
+      ${Array.isArray(c.log) && c.log.length ? sec('log', 'Zuletzt', `<div class="tc-sec-body"><ul class="tc-log">${c.log.slice(0, 10).map(e => `<li><span>${esc(e.text)}</span><small>${esc(ago(e.at))}</small></li>`).join('')}</ul></div>`) : ''}
+    </div>`;
+  }
+
+  /** Erfahrungsbalken (bei Stufe 60 voll) */
+  function xpBar(c) {
+    if (!c.level) return '';
+    const x = c.xp || {};
+    const max = levelOf(c) >= 60 || !x.need;
+    const pct = max ? 100 : Math.max(0, Math.min(100, (Number(x.have) || 0) / x.need * 100));
+    return `<div class="tc-xp" title="Erfahrung"><div class="tc-xp-fill" style="width:${pct.toFixed(1)}%"></div><span>${max ? 'Höchststufe' : `${num(x.have)} / ${num(x.need)} EP`}</span></div>`;
+  }
+
+  /* ---------- Ganzes Fenster ---------- */
+  const TABS = [['char', 'Charakter'], ['rep', 'Ruf'], ['pvp', 'Ehre'], ['loot', 'Beute'], ['profs', 'Berufe'], ['ach', 'Vermächtnis'], ['badges', 'Abzeichen']];
+
+  function renderSheet() {
+    const sheet = $('.tc-sheet');
+    const c = ui.login && data.characters[ui.login];
+    if (!c) { sheet.hidden = true; sheet.innerHTML = ''; return; }
+    const portrait = portraitOf(c);
+    const body = ({ rep: tabRep, pvp: tabPvp, loot: tabLoot, profs: tabProfs, ach: tabAch, badges: tabBadges }[ui.tab] || tabChar)(c);
+    sheet.innerHTML = `<div class="tc-win">
+      <div class="tc-pane">
+        <div class="tc-avatar ${faction(c)}">${portrait ? `<img src="${esc(portrait)}" alt="">` : esc(raceName(c).slice(0, 1))}</div>
+        <div class="tc-box">
+          <div class="tc-title">
+            <div class="tc-name" style="color:${cls(c).color}">${esc(c.name)}${c.title ? `<span class="tc-ttl">, ${esc(c.title)}</span>` : ''}</div>
+            <div class="tc-sub">${esc(lvlText(c) + raceName(c))} · ${esc(className(c))} · ${FACTIONS[faction(c)]}</div>
+            <button type="button" class="tc-close" data-act="close" title="Schließen – alle Charaktere">×</button>
+            <button type="button" class="tc-copy" data-act="copy">Link kopieren</button>
+          </div>
+          ${body}
+        </div>
+        <div class="tc-tabs">${TABS.map(([id, label]) => `<button type="button" class="tc-tab${ui.tab === id ? ' on' : ''}" data-tab="${id}">${label}</button>`).join('')}</div>
+      </div>
+      ${sideHtml(c)}
+    </div>`;
+    sheet.hidden = false;
+    if (window.$WowheadPower && window.$WowheadPower.refreshLinks) window.$WowheadPower.refreshLinks();
+  }
+
+  function route() {
+    const login = decodeURIComponent(location.hash.replace(/^#/, '')).toLowerCase();
+    const changed = login !== ui.login;
+    ui.login = login;
+    if (changed) { ui.tab = 'char'; ui.slot = ''; }
+    renderSheet();
+    if (changed && data.characters[login]) $('.tc-sheet').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  root.addEventListener('click', (e) => {
+    const t = e.target.closest('[data-act], [data-tab], [data-sec], button[data-slot]');
+    if (!t) {
+      // Gefüllter Platz: auf dem Handy erst anzeigen, beim zweiten Tippen zu Wowhead
+      const a = e.target.closest('a[data-slot]');
+      if (a && ui.slot !== a.dataset.slot && matchMedia('(hover: none)').matches) { e.preventDefault(); ui.slot = a.dataset.slot; renderSheet(); }
+      else if (a) { ui.slot = a.dataset.slot; }
+      return;
+    }
+    if (t.dataset.tab) { ui.tab = t.dataset.tab; renderSheet(); return; }
+    if (t.dataset.sec) { ui.shut[t.dataset.sec] = !ui.shut[t.dataset.sec]; renderSheet(); return; }
+    if (t.dataset.slot) { ui.slot = ui.slot === t.dataset.slot ? '' : t.dataset.slot; renderSheet(); return; }
+    if (t.dataset.act === 'close') { history.replaceState(null, '', location.pathname + location.search); ui.login = ''; renderSheet(); return; }
+    if (t.dataset.act === 'copy') {
+      const url = location.href;
+      (navigator.clipboard ? navigator.clipboard.writeText(url) : Promise.reject()).then(() => { t.textContent = 'Kopiert ✓'; }, () => { t.textContent = url; });
+      setTimeout(() => { t.textContent = 'Link kopieren'; }, 2500);
+    }
+  });
+  // Mit der Maus über einem gefüllten Platz: Details in der Zeile darunter (Wowhead zeigt dazu den Tooltip)
+  root.addEventListener('mouseover', (e) => {
+    const a = e.target.closest('a[data-slot]');
+    if (!a || ui.slot === a.dataset.slot) return;
+    ui.slot = a.dataset.slot;
+    const c = data.characters[ui.login];
+    root.querySelectorAll('.tc-slot.sel').forEach(el => el.classList.remove('sel'));
+    a.classList.add('sel');
+    const info = $('.tc-iteminfo');
+    if (c && info) info.innerHTML = itemInfoHtml(c);
+  });
+  $('.tc-search').addEventListener('input', renderList);
+  window.addEventListener('hashchange', route);
+
+  /* ---------- Wowhead-Tooltips (deutsch) beim Drüberfahren über Gegenstände ---------- */
+  window.whTooltips = { colorLinks: false, iconizeLinks: false, renameLinks: false };
+  if (!document.querySelector('script[src*="zamimg.com/js/tooltips.js"]')) {
+    const s = document.createElement('script');
+    s.src = 'https://wow.zamimg.com/js/tooltips.js';
+    s.async = true;
+    document.head.appendChild(s);
+  }
+
+  /* ---------- Daten laden ---------- */
+  function start(d) {
+    data = d && d.characters ? d : { characters: {} };
+    // Name, Symbol & Co. stehen einmal in data.items – bei Ausrüstung und Beute nur die Nummer
+    const items = data.items && typeof data.items === 'object' ? data.items : {};
+    const full = (ref) => ref && typeof ref === 'object' ? Object.assign({}, items[ref.id], ref) : ref;
+    Object.values(data.characters).forEach(c => {
+      if (!c || typeof c !== 'object') return;
+      if (c.gear && typeof c.gear === 'object') Object.keys(c.gear).forEach(k => { c.gear[k] = full(c.gear[k]); });
+      if (Array.isArray(c.loot)) c.loot = c.loot.map(full);
+    });
+    renderList();
+    route();
+  }
+  if (!CONFIG.dataUrl) { start(Object.assign({ sample: true }, SAMPLE)); return; }
+  fetch(CONFIG.dataUrl + (CONFIG.dataUrl.includes('?') ? '&' : '?') + 't=' + Math.floor(Date.now() / 60000), { cache: 'no-store' })
+    .then(r => {
+      if (r.status === 404) return null; // Datei gibt es noch nicht – die Stream-Zentrale lädt sie beim ersten Helden hoch
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      return r.json();
+    })
+    .then(d => {
+      start(d);
+      if (!d) $('.tc-foot').textContent = 'Noch keine Charaktere – sobald im Stream jemand mit !charakter einen Helden erstellt, erscheint er hier.';
+    })
+    .catch(() => {
+      start(null);
+      $('.tc-foot').textContent = 'Die Charaktere konnten gerade nicht geladen werden – bitte später noch einmal versuchen.';
+    });
+})();
+</script>

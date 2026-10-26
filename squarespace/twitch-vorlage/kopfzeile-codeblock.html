@@ -1,0 +1,145 @@
+<!-- =====================================================================
+     Kopfzeile (Navigation) für trutzstaehler.de (Squarespace, Code-Block)
+     Ganz oben auf jeder Seite einfügen: Seite bearbeiten → ganz oben einen
+     Abschnitt bzw. Block hinzufügen → Code → alles hier einfügen
+     („Quelltext anzeigen“ aus). Alle Seiten sind direkt anklickbar, die
+     aktuelle Seite ist golden markiert. Auf dem Handy klappt das Menü über
+     den Knopf „Menü“ auf.
+     Seiten ändern: unten in der Liste <ul> – Name und Adresse je Zeile.
+     ===================================================================== -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Asul:wght@400;700&family=Cinzel:wght@700&display=swap" rel="stylesheet">
+
+<header id="tsz-header" class="tsh">
+  <div class="tsh-bar">
+    <a class="tsh-brand" href="/">
+      <img class="tsh-emblem" src="https://wow.zamimg.com/images/wow/icons/large/inv_shield_06.jpg" alt="">
+      <span class="tsh-brand-txt"><b class="tsh-name">Trutz Stahl</b><small>World of Warcraft Forever · live auf Twitch</small></span>
+    </a>
+    <nav class="tsh-nav" id="tsh-nav" aria-label="Hauptmenü">
+      <ul>
+        <li><a href="/">Start</a></li>
+        <li><a href="/live">Live</a></li>
+        <li><a href="/mitspielen">Mitspielen</a></li>
+        <li><a href="/charakter">Charakter</a></li>
+        <li><a href="/bestenliste">Bestenliste</a></li>
+        <li><a href="/statistiken">Statistiken</a></li>
+      </ul>
+    </nav>
+    <a class="tsh-cta" href="https://www.twitch.tv/einfach_trutz" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.3 2 2.5 6.6v13.9h5V23h2.8l2.7-2.5h4.1L22.5 15V2H4.3zm16.3 12.1-3.3 3.1h-5.1l-2.8 2.6v-2.6H5.2V3.9h15.4v10.2zM17.5 6.9h-1.9v5.4h1.9V6.9zm-5.1 0h-1.9v5.4h1.9V6.9z"/></svg>
+      <span>Zum Stream</span>
+    </a>
+    <button class="tsh-toggle" type="button" aria-expanded="false" aria-controls="tsh-nav">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+      <span>Menü</span>
+    </button>
+  </div>
+</header>
+
+<style>
+  #tsz-header {
+    --tsh-gold: #ffd100;
+    --tsh-txt: #f3eee2;
+    --tsh-muted: #b8ad94;
+    --tsh-brass: #8c713c;
+    --tsh-line: #4a4a4a;
+    --tsh-ts: 1px 1px 0 #000, 0 1px 3px rgba(0, 0, 0, 0.8);
+    max-width: 1100px;
+    margin: 0 auto;
+    font: 400 16px/1.4 Asul, Georgia, serif;
+    text-align: left;
+    container: tsh / inline-size; /* richtet sich nach der Breite des Blocks, nicht des Fensters */
+  }
+  #tsz-header *, #tsz-header *::before, #tsz-header *::after { box-sizing: border-box; }
+  #tsz-header a { text-decoration: none; }
+  #tsz-header button { font: inherit; cursor: pointer; }
+  #tsz-header svg { width: 18px; height: 18px; flex-shrink: 0; fill: currentColor; }
+
+  #tsz-header .tsh-bar {
+    display: flex; align-items: center; gap: 16px; padding: 10px 14px;
+    border: 1px solid var(--tsh-line); border-bottom-color: var(--tsh-brass); border-radius: 4px;
+    background: radial-gradient(ellipse at 8% 0%, rgba(255, 209, 0, 0.08), transparent 45%), linear-gradient(180deg, #17110b, #0c0907);
+  }
+
+  /* Name & Wappen */
+  #tsz-header .tsh-brand { display: flex; align-items: center; gap: 10px; flex-shrink: 0; min-width: 0; }
+  #tsz-header .tsh-emblem { width: 40px; height: 40px; border: 1px solid #000; border-radius: 4px; box-shadow: 0 0 0 1px var(--tsh-brass); background: #000; }
+  #tsz-header .tsh-brand-txt { min-width: 0; }
+  #tsz-header .tsh-name { display: block; font: 700 22px/1.1 Cinzel, Georgia, serif; letter-spacing: 0.4px; color: var(--tsh-gold); text-shadow: var(--tsh-ts); white-space: nowrap; }
+  #tsz-header .tsh-brand-txt small { display: block; margin-top: 2px; color: var(--tsh-muted); font-size: 14px; white-space: nowrap; }
+
+  /* Seiten */
+  #tsz-header .tsh-nav { margin-left: auto; }
+  #tsz-header .tsh-nav ul { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 2px; margin: 0; padding: 0; list-style: none; }
+  #tsz-header .tsh-nav li { margin: 0; padding: 0; }
+  #tsz-header .tsh-nav li::before { display: none; } /* Squarespace-Aufzählungszeichen */
+  #tsz-header .tsh-nav a {
+    display: block; padding: 8px 10px; border-radius: 4px;
+    color: var(--tsh-txt); font-weight: 700; text-shadow: var(--tsh-ts); white-space: nowrap;
+    transition: color 0.15s ease, background-color 0.15s ease;
+  }
+  #tsz-header .tsh-nav a:hover { color: var(--tsh-gold); background-color: rgba(255, 209, 0, 0.06); }
+  #tsz-header .tsh-nav a[aria-current="page"] { color: var(--tsh-gold); box-shadow: inset 0 -2px 0 var(--tsh-gold); }
+  #tsz-header a:focus-visible, #tsz-header button:focus-visible { outline: 2px solid var(--tsh-gold); outline-offset: 2px; }
+
+  /* Zum Stream & Menü-Knopf */
+  #tsz-header .tsh-cta, #tsz-header .tsh-toggle {
+    display: flex; align-items: center; gap: 7px; flex-shrink: 0; padding: 8px 13px;
+    border: 1px solid var(--tsh-brass); border-radius: 4px; background: linear-gradient(180deg, #2a2112, #17120a);
+    color: var(--tsh-txt); font-weight: 700; text-shadow: var(--tsh-ts); white-space: nowrap; transition: border-color 0.15s ease;
+  }
+  #tsz-header .tsh-cta svg { fill: #a970ff; }
+  #tsz-header .tsh-cta:hover, #tsz-header .tsh-toggle:hover { border-color: var(--tsh-gold); }
+  #tsz-header .tsh-toggle { display: none; }
+
+  /* Etwas schmaler: ohne Untertitel */
+  @container tsh (max-width: 1080px) {
+    #tsz-header .tsh-brand-txt small { display: none; }
+  }
+  /* Schmal: Seiten klappen unter der Leiste auf */
+  @container tsh (max-width: 940px) {
+    #tsz-header .tsh-bar { flex-wrap: wrap; gap: 10px 12px; }
+    #tsz-header .tsh-toggle { display: flex; margin-left: auto; }
+    #tsz-header .tsh-nav { display: none; order: 3; flex-basis: 100%; margin: 0; }
+    #tsz-header .tsh-nav.open { display: block; }
+    #tsz-header .tsh-nav ul { flex-direction: column; gap: 0; border-top: 1px solid #2a2a2a; }
+    #tsz-header .tsh-nav a { padding: 11px 6px; border-radius: 0; border-bottom: 1px solid #262626; font-size: 17px; }
+    #tsz-header .tsh-nav a[aria-current="page"] { box-shadow: inset 3px 0 0 var(--tsh-gold); padding-left: 12px; }
+  }
+  @container tsh (max-width: 520px) {
+    #tsz-header .tsh-bar { padding: 8px 10px; }
+    #tsz-header .tsh-emblem { width: 34px; height: 34px; }
+    #tsz-header .tsh-name { font-size: 19px; }
+    #tsz-header .tsh-brand-txt small { display: none; }
+    #tsz-header .tsh-cta span { display: none; } /* auf dem Handy nur das Twitch-Zeichen */
+    #tsz-header .tsh-cta { padding: 8px 10px; }
+    #tsz-header .tsh-cta svg { width: 20px; height: 20px; }
+  }
+</style>
+
+<script>
+(function () {
+  const root = document.getElementById('tsz-header');
+  if (!root) return;
+  // Aktuelle Seite golden markieren (/home zählt als Startseite)
+  const norm = (p) => { const x = (decodeURIComponent(p).replace(/\/+$/, '') || '/').toLowerCase(); return x === '/home' ? '/' : x; };
+  const here = norm(location.pathname);
+  root.querySelectorAll('.tsh-nav a').forEach((a) => {
+    let path = a.getAttribute('href');
+    try { path = new URL(path, location.href).pathname; } catch (e) { /* Adresse bleibt, wie sie ist */ }
+    if (norm(path) === here) a.setAttribute('aria-current', 'page');
+  });
+  // Menü auf dem Handy
+  const btn = root.querySelector('.tsh-toggle');
+  const nav = root.querySelector('.tsh-nav');
+  btn.addEventListener('click', () => {
+    const open = !nav.classList.contains('open');
+    nav.classList.toggle('open', open);
+    btn.setAttribute('aria-expanded', String(open));
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && nav.classList.contains('open')) { nav.classList.remove('open'); btn.setAttribute('aria-expanded', 'false'); btn.focus(); }
+  });
+})();
+</script>

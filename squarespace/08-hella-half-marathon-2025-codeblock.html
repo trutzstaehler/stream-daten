@@ -113,6 +113,49 @@
   .ts-lightbox__close { position: absolute; right: 1.25rem; top: 1.25rem; width: 48px; height: 48px; border-radius: 50%; border: 1px solid var(--ts-line-strong); background: rgba(13, 17, 15, .7); color: var(--ts-text); font-size: 22px; line-height: 1; cursor: pointer; }
   .ts .ts-lightbox__cap { position: absolute; left: 50%; bottom: 1.5rem; transform: translateX(-50%); color: var(--ts-muted); }
 
+  /* Rennverlauf: zeichnet sich beim Scrollen */
+  .ts-race { position: relative; height: 340vh; margin-top: clamp(4rem, 8vw, 7rem); }
+  .ts-race__stage { position: sticky; top: 0; height: 100vh; height: 100svh; display: flex; flex-direction: column; justify-content: center; gap: clamp(1rem, 3vh, 2rem); padding-top: 84px; padding-bottom: 3vh; overflow: hidden; }
+  .ts-race__meta { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .75rem; padding-bottom: 1rem; border-bottom: 1px solid var(--ts-line); }
+  .ts-race__nums { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: .5rem 2rem; }
+  .ts .ts-race__km { font-family: var(--ts-font-display); font-weight: 800; font-size: clamp(3.4rem, 11vw, 9.5rem); line-height: .9; letter-spacing: -0.04em; font-variant-numeric: tabular-nums; }
+  .ts .ts-race__km small { font-size: .32em; letter-spacing: -0.01em; color: var(--ts-muted); margin-left: .15em; }
+  .ts-race__side { display: flex; flex-direction: column; align-items: flex-end; gap: .35rem; text-align: right; }
+  .ts .ts-race__clock { font-family: 'JetBrains Mono', ui-monospace, monospace; font-weight: 500; font-size: clamp(1.4rem, 3.4vw, 2.6rem); color: var(--ts-mint); font-variant-numeric: tabular-nums; }
+  .ts-race__chart { position: relative; height: clamp(170px, 34vh, 340px); }
+  .ts-race__chart svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+  .ts-race__grid line { stroke: var(--ts-line); stroke-width: 1; vector-effect: non-scaling-stroke; }
+  .ts-race__ghost { fill: none; stroke: rgba(255, 255, 255, .08); stroke-width: 2; vector-effect: non-scaling-stroke; stroke-dasharray: 2 6; }
+  .ts-race__line { fill: none; stroke: url(#ts-race-grad); stroke-width: 4; stroke-linecap: round; stroke-linejoin: round; vector-effect: non-scaling-stroke; filter: drop-shadow(0 0 10px rgba(74, 222, 128, .55)); }
+  .ts-race__area { fill: url(#ts-race-fill); }
+  .ts-race__runner { position: absolute; z-index: 2; width: 18px; height: 18px; margin: -9px 0 0 -9px; border-radius: 50%; background: var(--ts-text); box-shadow: 0 0 0 6px rgba(110, 231, 183, .25), 0 0 30px 6px rgba(74, 222, 128, .6); pointer-events: none; }
+  .ts-race__pin { position: absolute; z-index: 1; width: 10px; height: 10px; margin: -5px 0 0 -5px; border-radius: 50%; background: var(--ts-bg); border: 2px solid rgba(255, 255, 255, .25); transition: border-color .4s, background .4s, transform .5s var(--ts-ease-out); }
+  .ts-race__pin.is-on { border-color: var(--ts-mint); background: var(--ts-mint); transform: scale(1.2); }
+  .ts-race__pin span { position: absolute; left: 50%; top: 16px; transform: translateX(-50%); white-space: nowrap; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 10px; letter-spacing: .12em; color: var(--ts-muted); }
+  .ts-race__pin--wall span { color: var(--ts-mint); }
+  .ts-race__axis { display: flex; justify-content: space-between; gap: 1rem; margin-top: -.5rem; }
+  .ts-race__axis span:nth-child(2) { text-align: center; }
+  .ts-race__note { position: relative; min-height: 5.6rem; }
+  .ts-race__note > div { position: absolute; inset: 0 auto auto 0; max-width: 40rem; opacity: 0; transform: translateY(14px); transition: opacity .45s, transform .6s var(--ts-ease-out); }
+  .ts-race__note > div.is-on { opacity: 1; transform: none; }
+  .ts .ts-race__note-title { font-family: var(--ts-font-display); font-weight: 700; font-size: clamp(1.35rem, 2.6vw, 2.2rem); line-height: 1.05; letter-spacing: -0.02em; }
+  .ts .ts-race__note-text { margin-top: .4rem; color: var(--ts-muted); font-size: clamp(15px, 1.3vw, 17px); line-height: 1.5; }
+  .ts-race__hint { display: inline-flex; align-items: center; gap: .5rem; }
+  .ts-race__hint i { width: 6px; height: 6px; border-radius: 50%; background: var(--ts-mint); box-shadow: 0 0 10px var(--ts-mint); animation: ts-race-hint 1.4s ease-in-out infinite; }
+  @keyframes ts-race-hint { 50% { opacity: .25; transform: translateY(3px); } }
+  @media (max-width: 639px) {
+    .ts-race { height: 300vh; }
+    .ts-race__pin span { display: none; }
+    .ts-race__pin--wall span { display: block; }
+    .ts-race__note { min-height: 7rem; }
+    .ts-race__chart { margin-right: 12px; height: clamp(150px, 30vh, 260px); }
+    .ts-race__nums { flex-direction: column; align-items: flex-start; }
+    .ts-race__side { flex-direction: row; align-items: baseline; gap: .9rem; text-align: left; }
+    .ts-race__axis span:nth-child(2) { display: none; }
+  }
+  .ts-in-editor .ts-race { height: auto; }
+  .ts-in-editor .ts-race__stage { position: relative; height: auto; }
+
   @media (min-width: 640px) {
     .ts-post__facts { grid-template-columns: repeat(4, minmax(0, 1fr)); }
     .ts-post-fact { padding: 1.5rem; }
@@ -142,7 +185,7 @@
   <!-- ============ HERO ============ -->
   <header class="ts-post__hero">
     <div class="ts-post__hero-img" aria-hidden="true">
-      <img src="https://images.squarespace-cdn.com/content/v1/6869717aa7c996116c8c8a56/4b6f0667-0b2c-47d7-8321-2e51110bc466/IMG_7046.JPG?format=1500w" alt="">
+      <img src="https://images.squarespace-cdn.com/content/v1/6869717aa7c996116c8c8a56/4b6f0667-0b2c-47d7-8321-2e51110bc466/IMG_7046.JPG?format=1500w" srcset="https://images.squarespace-cdn.com/content/v1/6869717aa7c996116c8c8a56/4b6f0667-0b2c-47d7-8321-2e51110bc466/IMG_7046.JPG?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6869717aa7c996116c8c8a56/4b6f0667-0b2c-47d7-8321-2e51110bc466/IMG_7046.JPG?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6869717aa7c996116c8c8a56/4b6f0667-0b2c-47d7-8321-2e51110bc466/IMG_7046.JPG?format=1500w 1500w, https://images.squarespace-cdn.com/content/v1/6869717aa7c996116c8c8a56/4b6f0667-0b2c-47d7-8321-2e51110bc466/IMG_7046.JPG?format=2500w 2500w" sizes="100vw" alt="" fetchpriority="high" decoding="async">
     </div>
     <div class="ts-container ts-post__hero-inner">
       <a href="/running" class="ts-post__back ts-label">
@@ -239,6 +282,48 @@
         <img src="https://images.squarespace-cdn.com/content/v1/6869717aa7c996116c8c8a56/e62488e8-347c-47d6-96b6-55f693e3899b/IMG_7391.JPG?format=750w" alt="Adidas-Runners-Hamburg-Shirt im Detail" loading="lazy">
         <figcaption class="ts-label">by Pascal Lieleg</figcaption>
       </figure>
+    </div>
+  </section>
+
+  <!-- ============ RENNVERLAUF (zeichnet sich beim Scrollen) ============ -->
+  <section class="ts-race" data-ts-race aria-labelledby="ts-race-title">
+    <div class="ts-race__stage ts-container">
+      <div class="ts-race__meta">
+        <p class="ts-label ts-muted" id="ts-race-title">[ Rennverlauf · 21,1 km ]</p>
+        <p class="ts-label ts-muted ts-race__hint"><i aria-hidden="true"></i>Scroll mal – ich lauf mit</p>
+      </div>
+      <div class="ts-race__nums" aria-hidden="true">
+        <p class="ts-race__km"><span data-race-km>0,0</span><small>km</small></p>
+        <div class="ts-race__side">
+          <p class="ts-label ts-muted">Laufzeit</p>
+          <p class="ts-race__clock" data-race-clock>0:00:00</p>
+          <p class="ts-label ts-muted" data-race-pace>Ø 4:09 min/km</p>
+        </div>
+      </div>
+      <div class="ts-race__chart" data-race-chart>
+        <svg viewBox="0 0 1000 300" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+          <defs>
+            <linearGradient id="ts-race-grad" x1="0" x2="1" y1="0" y2="0"><stop offset="0" stop-color="#2e8c6c"/><stop offset=".55" stop-color="#4ade80"/><stop offset="1" stop-color="#6ee7b7"/></linearGradient>
+            <linearGradient id="ts-race-fill" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="rgba(74,222,128,.22)"/><stop offset="1" stop-color="rgba(74,222,128,0)"/></linearGradient>
+            <clipPath id="ts-race-clip"><rect data-race-clip x="0" y="-20" width="0" height="340"/></clipPath>
+          </defs>
+          <g class="ts-race__grid"><line x1="0" x2="1000" y1="0" y2="0"/><line x1="0" x2="1000" y1="150" y2="150"/><line x1="0" x2="1000" y1="300" y2="300"/></g>
+          <path class="ts-race__ghost" data-race-ghost d=""/>
+          <path class="ts-race__area" data-race-area d="" clip-path="url(#ts-race-clip)"/>
+          <path class="ts-race__line" data-race-line d="" clip-path="url(#ts-race-clip)"/>
+        </svg>
+        <span class="ts-race__runner" data-race-runner></span>
+      </div>
+      <div class="ts-race__axis ts-label ts-muted" aria-hidden="true"><span>Start</span><span>Tempo aus den Zwischenzeiten · oben = schneller</span><span>Ziel</span></div>
+      <div class="ts-race__note" aria-live="polite">
+        <div data-km="0"><p class="ts-race__note-title">9:00 Uhr, Startschuss.</p><p class="ts-race__note-text">22 Grad, schwere Luft. Der Kopf ist bei 100 %, der Körper findet den Tunnel noch nicht.</p></div>
+        <div data-km="5"><p class="ts-race__note-title">5 km in 20:50.</p><p class="ts-race__note-title ts-gradient-text" style="font-size:.6em;margin-top:.2rem">4:09 min/km</p><p class="ts-race__note-text">Alles im Soll – trotz Sonne und kaum Schatten.</p></div>
+        <div data-km="10"><p class="ts-race__note-title">Wallringtunnel. Halbzeit.</p><p class="ts-race__note-text">10 km in 41:49. Der Kopf will noch nicht nach Hause, sondern ein bisschen tanzen.</p></div>
+        <div data-km="14" data-wall><p class="ts-race__note-title">km 14: die Wand. Puls 201.</p><p class="ts-race__note-text">Der Körper ruft „Stopp!“. Gehen, trinken, zweifeln – bis zwei Adidas Runners „Go Trutz!“ rufen.</p></div>
+        <div data-km="15"><p class="ts-race__note-title">Ab jetzt läuft der Kopf.</p><p class="ts-race__note-text">15 km in 1:03:43. Puls 190 bis 195. SUB90 wird das heute nicht – und das ist okay.</p></div>
+        <div data-km="20"><p class="ts-race__note-title">Cheering Point, 1:26:43.</p><p class="ts-race__note-text">Die Adidas Runners tragen mich nochmal – ein Lächeln trotz 100 %.</p></div>
+        <div data-km="21.1"><p class="ts-race__note-title ts-gradient-text">Ziel. 1:31:49.</p><p class="ts-race__note-text">Medaille von meiner Tochter, Franzbrötchen in der Hand. Neue Hella-Bestzeit.</p></div>
+      </div>
     </div>
   </section>
 
@@ -439,5 +524,77 @@
   });
   box.addEventListener('click', close);
   addEventListener('keydown', e => { if (e.key === 'Escape' && box.classList.contains('is-open')) close(); });
+})();
+</script>
+<script>
+/* Rennverlauf: Linie, Läufer, Kilometer und Zeit folgen dem Scrollen */
+(() => {
+  const race = document.querySelector('[data-ts-race]');
+  if (!race) return;
+  const chart = race.querySelector('[data-race-chart]');
+  const line = race.querySelector('[data-race-line]'), ghost = race.querySelector('[data-race-ghost]');
+  const area = race.querySelector('[data-race-area]'), clip = race.querySelector('[data-race-clip]');
+  const runner = race.querySelector('[data-race-runner]');
+  const kmEl = race.querySelector('[data-race-km]'), clockEl = race.querySelector('[data-race-clock]'), paceEl = race.querySelector('[data-race-pace]');
+  const notes = [...race.querySelectorAll('.ts-race__note > div')];
+  const KM = 21.1, W = 1000, H = 300;
+  /* Zwischenzeiten in Sekunden – daraus Zeit und Durchschnittstempo */
+  const splits = [[0, 0], [5, 1250], [10, 2509], [15, 3823], [20, 5203], [KM, 5509]];
+  /* Tempo-Kurve in Sekunden pro Kilometer (Segment-Schnitte, Einbruch bei km 14) */
+  const pace = [[0, 252], [2.5, 249], [5, 250], [7.5, 251], [10, 253], [12, 257], [13.4, 262], [14, 305], [14.6, 272], [15, 266], [17.5, 274], [20, 277], [KM, 272]];
+  const PMIN = 226, PMAX = 312;
+  const lerp = (tab, x) => { for (let i = 1; i < tab.length; i++) if (x <= tab[i][0]) { const [a, va] = tab[i - 1], [b, vb] = tab[i]; return va + (vb - va) * ((x - a) / (b - a)); } return tab[tab.length - 1][1]; };
+  const X = km => km / KM * W, Y = s => (s - PMIN) / (PMAX - PMIN) * H;
+  /* glatte Kurve (Catmull-Rom → Bézier) */
+  const pts = pace.map(([k, s]) => [X(k), Y(s)]);
+  let d = `M${pts[0][0]},${pts[0][1]}`;
+  for (let i = 0; i < pts.length - 1; i++) {
+    const p0 = pts[i - 1] || pts[i], p1 = pts[i], p2 = pts[i + 1], p3 = pts[i + 2] || p2;
+    d += ` C${p1[0] + (p2[0] - p0[0]) / 6},${p1[1] + (p2[1] - p0[1]) / 6} ${p2[0] - (p3[0] - p1[0]) / 6},${p2[1] - (p3[1] - p1[1]) / 6} ${p2[0]},${p2[1]}`;
+  }
+  line.setAttribute('d', d); ghost.setAttribute('d', d);
+  area.setAttribute('d', `${d} L${W},${H} L0,${H} Z`);
+  const len = line.getTotalLength();
+  /* Punkte der Kurve nach x vorberechnen, damit der Läufer exakt auf der Linie sitzt */
+  const samples = [];
+  for (let i = 0; i <= 400; i++) { const p = line.getPointAtLength(len * i / 400); samples.push([p.x, p.y, len * i / 400]); }
+  const atX = x => { let lo = samples[0]; for (const s of samples) { if (s[0] >= x) { const t = (x - lo[0]) / ((s[0] - lo[0]) || 1); return [x, lo[1] + (s[1] - lo[1]) * t, lo[2] + (s[2] - lo[2]) * t]; } lo = s; } return samples[samples.length - 1]; };
+  /* Markierungen */
+  notes.forEach(n => {
+    const km = parseFloat(n.dataset.km); if (km === 0 || km === KM) return;
+    const pin = document.createElement('span');
+    pin.className = 'ts-race__pin' + (n.hasAttribute('data-wall') ? ' ts-race__pin--wall' : '');
+    const [x, y] = atX(X(km));
+    pin.style.left = `${x / W * 100}%`; pin.style.top = `${y / H * 100}%`;
+    pin.innerHTML = `<span>${n.hasAttribute('data-wall') ? 'DIE WAND' : String(km).replace('.', ',') + ' KM'}</span>`;
+    n._pin = pin; chart.appendChild(pin);
+  });
+  const fmt = s => { s = Math.round(s); const h = Math.floor(s / 3600), m = Math.floor(s % 3600 / 60), x = s % 60; return `${h}:${String(m).padStart(2, '0')}:${String(x).padStart(2, '0')}`; };
+  const still = document.documentElement.classList.contains('ts-in-editor') || matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let last = -1;
+  const render = p => {
+    if (Math.abs(p - last) < 0.0005) return; last = p;
+    const km = p * KM, [x, y] = atX(X(km));
+    clip.setAttribute('width', x);
+    runner.style.left = `${x / W * 100}%`; runner.style.top = `${y / H * 100}%`;
+    kmEl.textContent = km.toFixed(1).replace('.', ',');
+    const t = lerp(splits, km); clockEl.textContent = fmt(t);
+    const pk = Math.round(km > 0.2 ? t / km : 249); paceEl.textContent = `Ø ${Math.floor(pk / 60)}:${String(pk % 60).padStart(2, '0')} min/km`;
+    let cur = notes[0];
+    notes.forEach(n => { const on = km >= parseFloat(n.dataset.km) - 0.05; if (on) cur = n; if (n._pin) n._pin.classList.toggle('is-on', on); });
+    notes.forEach(n => n.classList.toggle('is-on', n === cur));
+  };
+  if (still) { render(1); return; }
+  let ticking = false;
+  const update = () => {
+    ticking = false;
+    const r = race.getBoundingClientRect(), total = r.height - innerHeight;
+    const p = total > 0 ? -r.top / total : 1;
+    render(p > 0.995 ? 1 : Math.max(0, p));
+  };
+  const onScroll = () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } };
+  addEventListener('scroll', onScroll, { passive: true });
+  addEventListener('resize', onScroll);
+  render(0); update();
 })();
 </script>

@@ -69,20 +69,16 @@ Am Ende **Marketing → SEO → Google Search Console** verbinden und die Sitema
 
 ## 4. Bild für Social-Media-Vorschau und Favicon
 
+Die fertigen Bilder liegen im Ordner `bilder/`.
+
 **Bild für die Social-Media-Vorschau** (erscheint, wenn jemand den Link in WhatsApp, Instagram oder LinkedIn teilt):
-- **Einstellungen → Website → Teilen in sozialen Medien → Social-Sharing-Bild**.
-- Format: 1200 × 630 px, JPG, gerne dunkel mit Grün und dem Satz „Echt sein statt perfekt wirken“.
-- Für einzelne Seiten zusätzlich unter Seiten-Einstellungen → **Social-Bild**, zum Beispiel:
-  - Buchcover für Maria Holm
-  - Zieleinlauf-Foto für den Hella Half
-  - ein WoW-Motiv für die Twitch-Seiten
+- **Einstellungen → Website → Teilen in sozialen Medien → Social-Sharing-Bild** → `social-sharing-1200x630.png` hochladen.
+- Für die sechs Twitch-Seiten jeweils: Seiten-Einstellungen (Zahnrad) → **Social-Bild** → `social-sharing-twitch-1200x630.png`.
 
 **Favicon** (Symbol im Browser-Tab):
-- **Einstellungen → Website → Browsersymbol (Favicon)**.
-- Quadratisches PNG, mindestens 300 × 300 px.
-- Passend zum Logo in der Navigation: dunkler Kreis (`#0c110f`) mit „TS“ in Weiß und kleinem grünem Punkt (`#4ade80`).
+- **Einstellungen → Website → Browsersymbol (Favicon)** → `favicon-512.png` hochladen.
 
-Wenn du möchtest, baue ich dir beides als fertige Bilddatei. Sag einfach Bescheid.
+Testen: Link `https://trutzstaehler.de` in WhatsApp an dich selbst schicken. WhatsApp merkt sich alte Vorschauen, deshalb notfalls `https://trutzstaehler.de/?v=2` probieren.
 
 ---
 
@@ -114,21 +110,37 @@ Die Pille „Cookie-Einstellungen“ ist im Design ausgeblendet. Besucher erreic
 
 ---
 
-## 7. Schriften selbst hosten statt Google Fonts (optional, besser für den Datenschutz)
+## 7. Schriften selbst hosten statt Google Fonts (schneller und besser für den Datenschutz)
 
-Derzeit lädt die Seite die Schriften von Google. Das ist in der Datenschutzerklärung erwähnt und damit erlaubt. Wer aber ganz sicher gehen will, hostet die Schriften selbst. Dann fließen keine IP-Adressen mehr an Google.
+Derzeit lädt die Seite die Schriften von Google. Selbst gehostet fällt diese Verbindung weg: Die Seite lädt schneller, und es gehen keine IP-Adressen mehr an Google.
 
-1. Auf **https://gwfh.mranftl.com/fonts** (google-webfonts-helper) diese Schriften jeweils als **woff2** herunterladen, Zeichensatz „latin“:
+Die Schriften liegen fertig im Ordner `schriften/`. Es sind nur 6 Dateien, weil vier davon alle Stärken in einer Datei enthalten:
 
-   | Schrift | Schnitte |
-   |---|---|
-   | Inter | 400, 500, 600 |
-   | JetBrains Mono | 400, 500 |
-   | Syne | 600, 700, 800 |
-   | Cinzel | 700 |
-   | Asul | 400, 700 |
+| Datei | Schrift |
+|---|---|
+| `syne-latin-wght-normal.woff2` | Syne (Überschriften) |
+| `inter-latin-wght-normal.woff2` | Inter (Text) |
+| `jetbrains-mono-latin-wght-normal.woff2` | JetBrains Mono (kleine Labels) |
+| `cinzel-latin-wght-normal.woff2` | Cinzel (Twitch-Überschriften) |
+| `asul-latin-400-normal.woff2` | Asul normal (Twitch-Text) |
+| `asul-latin-700-normal.woff2` | Asul fett (Twitch-Text) |
 
-   Das sind 11 Dateien. Alle Schriften stehen unter der SIL Open Font License und dürfen frei verwendet werden.
-2. **Website → Website-Werkzeuge → Benutzerdefiniertes CSS → „Benutzerdefinierte Dateien verwalten“** → alle 11 Dateien hochladen.
-3. Jede hochgeladene Datei anklicken: Squarespace zeigt eine Adresse wie `https://static1.squarespace.com/static/…/inter-400.woff2`. **Schick mir diese 11 Adressen.**
+Alle Schriften stehen unter der SIL Open Font License und dürfen frei verwendet werden.
+
+1. **Website → Website-Werkzeuge → Benutzerdefiniertes CSS → „Benutzerdefinierte Dateien verwalten“** → die 6 Dateien hochladen.
+2. Im CSS-Fenster nacheinander auf jede Datei klicken. Squarespace fügt dann ihre Adresse ein, etwa `https://static1.squarespace.com/static/…/syne-latin-wght-normal.woff2`.
+3. **Schick mir diese 6 Adressen.** Das eingefügte CSS kannst du danach wieder löschen.
 4. Ich tausche dann die Google-Links in Datei 01 und in den Twitch-Code-Blöcken gegen eigene `@font-face`-Regeln aus und passe die Datenschutzerklärung an: Der Abschnitt „Google Fonts“ entfällt.
+
+---
+
+## 8. Ladezeit messen
+
+1. **https://pagespeed.web.dev** öffnen → `https://trutzstaehler.de` eingeben → **Analysieren**.
+2. Den Reiter **Mobil** ansehen und mir Screenshots von diesen Teilen schicken:
+   - die vier Kreise
+   - „Leistung“ mit LCP, CLS und TBT
+   - die Liste „Diagnose“
+3. Das am besten für die Startseite, `/running` und `/twitch-startseite` machen.
+
+Squarespace selbst bringt eigene Skripte mit, die ich nicht entfernen kann. Alles aus den Code-Blöcken kann ich aber gezielt verbessern.

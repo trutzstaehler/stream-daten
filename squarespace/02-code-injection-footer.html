@@ -197,8 +197,39 @@
   const finePointer = matchMedia('(hover: hover) and (pointer: fine)').matches;
   const fx = finePointer && !reduceMotion && !inEditor;
 
-  /* ---------- Intro-Animation ---------- */
-  requestAnimationFrame(() => requestAnimationFrame(() => body.classList.add('ts-loaded')));
+  /* ---------- Intro-Animation (nach einem Seitenübergang erst, wenn der Vorhang aufgeht) ---------- */
+  const introDelay = html.classList.contains('ts-trans-in') ? 420 : 0;
+  requestAnimationFrame(() => requestAnimationFrame(() => setTimeout(() => body.classList.add('ts-loaded'), introDelay)));
+
+  /* ---------- Bilder: Squarespace-CDN liefert passend zur Anzeigegröße (spart am Handy viel Datenvolumen) ---------- */
+  document.querySelectorAll('img[loading="lazy"][src*="squarespace-cdn.com"]:not([srcset])').forEach(img => {
+    const m = img.getAttribute('src').match(/^(.*?)\?format=(\d+)w$/);
+    const w = img.getBoundingClientRect().width;
+    if (!m || !w || img.currentSrc) return;
+    const max = Math.max(+m[2], 750);
+    const set = [300, 500, 750, 1000, 1500, 2500].filter(x => x <= max);
+    img.sizes = `${Math.ceil(w)}px`;
+    img.srcset = set.map(x => `${m[1]}?format=${x}w ${x}w`).join(', ');
+  });
+
+  /* ---------- Seitenübergang: Vorhang fährt hoch, dann wechselt die Seite ---------- */
+  if (!inEditor && !reduceMotion) {
+    document.addEventListener('click', e => {
+      if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+      const a = e.target.closest && e.target.closest('a[href]');
+      if (!a || a.target && a.target !== '_self' || a.hasAttribute('download') || a.hasAttribute('data-ts-no-trans')) return;
+      const raw = a.getAttribute('href');
+      if (!raw || raw.charAt(0) === '#' || !/^https?:$/.test(a.protocol) || a.origin !== location.origin) return;
+      if (a.pathname === location.pathname && a.search === location.search) return;
+      e.preventDefault();
+      try { sessionStorage.setItem('ts-trans', '1'); } catch (err) {}
+      html.classList.remove('ts-trans-in');
+      html.classList.add('ts-trans-leave');
+      setTimeout(() => { location.href = a.href; }, 480);
+      setTimeout(() => html.classList.remove('ts-trans-leave'), 4000);
+    });
+    addEventListener('pageshow', e => { if (e.persisted) html.classList.remove('ts-trans-leave', 'ts-trans-in'); });
+  }
 
   /* ---------- Cookie-Einstellungen von Squarespace: statt schwebend über dem Footer als Link in der Footer-Leiste ---------- */
   const cookieLink = document.querySelector('[data-ts-cookie]');
@@ -337,22 +368,24 @@
   if (fx) {
     const dot = document.querySelector('.ts-cursor-dot');
     const ring = document.querySelector('.ts-cursor-ring');
-    let mx = -100, my = -100, rx = mx, ry = my, first = true;
+    let mx = -100, my = -100, rx = mx, ry = my, first = true, idle = true;
     addEventListener('mousemove', e => {
       mx = e.clientX; my = e.clientY;
       if (first) { rx = mx; ry = my; first = false; }
       dot.style.transform = `translate3d(${mx}px, ${my}px, 0)`;
       body.classList.add('ts-has-cursor');
+      if (idle) { idle = false; requestAnimationFrame(loop); }
     }, { passive: true });
     document.addEventListener('mouseleave', () => body.classList.remove('ts-has-cursor'));
     document.addEventListener('mouseover', e => {
       body.classList.toggle('ts-cursor-hover', !!e.target.closest('a, button, [role="button"], input[type="submit"], label'));
     });
-    (function loop() {
+    /* Ring folgt weich; steht die Maus still, schläft die Schleife (spart Akku) */
+    function loop() {
       rx += (mx - rx) * 0.16; ry += (my - ry) * 0.16;
       ring.style.transform = `translate3d(${rx}px, ${ry}px, 0)`;
-      requestAnimationFrame(loop);
-    })();
+      if (Math.abs(mx - rx) + Math.abs(my - ry) > 0.1) requestAnimationFrame(loop); else idle = true;
+    }
   }
 
   /* ---------- Magnetische Buttons ---------- */

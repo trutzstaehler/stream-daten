@@ -12,7 +12,21 @@
 <script>
   /* Im Squarespace-Editor (iframe) eigene Navigation/Cursor aus, native Navigation an */
   try { if (window.top !== window.self) document.documentElement.classList.add('ts-in-editor'); } catch (e) { document.documentElement.classList.add('ts-in-editor'); }
+  /* Seitenübergang: kam der Besuch über einen internen Link, startet die Seite hinter dem Vorhang */
+  try { if (sessionStorage.getItem('ts-trans') === '1') { sessionStorage.removeItem('ts-trans'); if (!document.documentElement.classList.contains('ts-in-editor') && !matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('ts-trans-in'); } } catch (e) {}
 </script>
+<style>
+  /* Seitenübergang: grüner Vorhang (ohne JS-Abhängigkeit beim Öffnen) */
+  html::after { content: "Trutz Stähler"; position: fixed; inset: 0; z-index: 2147483000; display: grid; place-items: center; pointer-events: none; visibility: hidden; transform: translateY(100%);
+    font: 800 clamp(1.6rem, 4vw, 3rem)/1 'Syne', system-ui, sans-serif; letter-spacing: -0.03em; color: rgba(246, 250, 247, .9);
+    background: radial-gradient(60% 50% at 50% 100%, rgba(74, 222, 128, .28), transparent 70%), linear-gradient(180deg, #0f2a22, #0c110f 55%, #060608); box-shadow: 0 -1px 0 #6ee7b7, 0 -30px 80px -20px rgba(74, 222, 128, .45); }
+  html:has(.tsw)::after { content: "Trutz Stahl"; font-family: 'Cinzel', Georgia, serif; font-weight: 700; color: #ffd100;
+    background: radial-gradient(60% 50% at 50% 100%, rgba(255, 209, 0, .18), transparent 70%), linear-gradient(180deg, #241a0e, #120e0b 55%, #0b0806); box-shadow: 0 -1px 0 #ffd100, 0 -30px 80px -20px rgba(255, 209, 0, .35); }
+  html.ts-trans-in::after { visibility: visible; transform: translateY(0); animation: ts-curtain-out .85s .12s cubic-bezier(.7, 0, .2, 1) forwards; }
+  html.ts-trans-leave::after { visibility: visible; animation: ts-curtain-in .5s cubic-bezier(.7, 0, .2, 1) forwards; }
+  @keyframes ts-curtain-out { to { transform: translateY(-100%); visibility: hidden; } }
+  @keyframes ts-curtain-in { from { transform: translateY(100%); } to { transform: translateY(0); } }
+</style>
 
 <style>
   /* ============ 1. DESIGN TOKENS ============ */
@@ -301,6 +315,9 @@
   .ts-card:hover .ts-card__go { transform: rotate(-45deg); background: var(--ts-text); color: var(--ts-bg); border-color: var(--ts-text); }
   .ts .ts-card__kicker { margin-top: 1.5rem; font-size: 10.5px; color: var(--ts-muted); }
   .ts .ts-card__title { margin-top: .375rem; font-family: var(--ts-font-display); font-size: 22px; font-weight: 700; line-height: 1.2; letter-spacing: -0.03em; }
+  /* Titel wächst mit der Kartenbreite – „Kreativhafen“ passt auch in schmale Karten */
+  .ts .ts-card { container-type: inline-size; }
+  .ts .ts-card__title { font-size: clamp(16px, 11cqi, 22px); }
   .ts .ts-card__text { margin-top: .25rem; font-size: 14px; line-height: 1.6; color: var(--ts-muted); }
   .ts .ts-card__cta { margin-top: auto; padding-top: 1.25rem; font-size: 10.5px; }
   .ts-card--books .ts-card__icon { background: rgba(46, 140, 108, .1); color: var(--ts-mint); }

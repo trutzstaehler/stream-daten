@@ -48,3 +48,9 @@ Seiten-URLs in der Navigation (in Datei 02 und 03 anpassen, falls deine anders l
 `/ueber-mich`, `/kreativhafen`, `/running`, `/twitch-startseite`, `/kontakt`
 
 Einstellungen, die nur im Squarespace-Backend gehen (Weiterleitungen, 404-Seite, SEO, Favicon, Sprache, Cookie-Banner, Schriften): siehe `ANLEITUNG-einstellungen.md`.
+
+Weitere Ordner:
+- `bilder/`: Vorschaubilder fürs Teilen (allgemein und Twitch) sowie das Browser-Symbol (Favicon)
+- `schriften/`: die 6 Schriftdateien zum Selbst-Hosten, mit Lizenzen
+
+Seitenübergänge (grüner Vorhang, im Twitch-Bereich gold) stecken in Datei 01 und 02. Die Rennverlauf-Grafik, die sich beim Scrollen zeichnet, steckt in Datei 08.

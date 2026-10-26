@@ -12,9 +12,12 @@ Design: Dark Editorial · Hintergrund `#060608` · Nebenfarbe Markengrün `#1d4d
 | `06-ueber-mich-codeblock.html` | Seite `/ueber-mich` → einzige Sektion → **Code-Block** über die volle Rasterbreite |
 | `07-running-codeblock.html` | Seite `/running` → einzige Sektion → **Code-Block** über die volle Rasterbreite |
 | `08-hella-half-marathon-2025-codeblock.html` | Seite `/hella-half-marathon-2025` (nicht verlinkt) → einzige Sektion → **Code-Block** über die volle Rasterbreite |
+| `09-romane-codeblock.html` | Seite `/romane` → einzige Sektion → **Code-Block** über die volle Rasterbreite |
+| `10-maria-holm-codeblock.html` | Seite `/maria-holmmaria-holm-und-das-geheimnis-der-verschwundenen-perle` → einzige Sektion → **Code-Block** über die volle Rasterbreite |
+| `11-malbuecher-codeblock.html` | Seite `/malbuecher` → einzige Sektion → **Code-Block** über die volle Rasterbreite |
 
 Die Datei 01 ist das globale Design-System und wird nur einmal eingefügt. Die Datei 02 enthält Navigation und JavaScript für alle Seiten.
 Jede neue Sektion kommt später als eigener Code-Block dazu.
 
 Seiten-URLs in der Navigation (in Datei 02 und 03 anpassen, falls deine anders lauten):
-`/ueber-mich`, `/kreativhafen`, `/running`, `/twitch`, `/kontakt`
+`/ueber-mich`, `/kreativhafen`, `/running`, `/twitch-startseite`, `/kontakt`

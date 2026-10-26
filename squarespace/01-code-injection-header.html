@@ -82,6 +82,11 @@
 
   /* Native Squarespace-Navigation auf der Live-Seite ausblenden (eigene Navigation übernimmt) */
   html:not(.ts-in-editor) #header { display: none !important; }
+  /* Squarespace-Seitenanimationen (Website-Stile → Animationen) neutralisieren: Sie blenden beim Scrollen jeden Block
+     zusätzlich zu den eigenen Effekten ein – das wirkt wie Springen. Eigene Animationen laufen weiter. */
+  html:not(.ts-in-editor) :is(.preFade, .fadeIn, .preSlide, .slideIn, .preScale, .scaleIn, .preClip, .clipIn, .preFlex, .flexIn) {
+    opacity: 1 !important; transform: none !important; clip-path: none !important; transition: none !important; animation: none !important;
+  }
   /* Platz für die schwebende Navigation auf Seiten ohne eigene Code-Blöcke */
   html:not(.ts-in-editor) body:not(:has(.ts-bleed)) #page { padding-top: var(--ts-header-space); }
   .ts-in-editor .ts-header, .ts-in-editor .ts-menu, .ts-in-editor .ts-cursor-dot, .ts-in-editor .ts-cursor-ring { display: none !important; }

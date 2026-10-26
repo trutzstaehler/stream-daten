@@ -108,6 +108,14 @@ Damit kennzeichnet der Browser die Seite als deutsch. Das hilft bei Google und V
 
 ---
 
+## 5b. Squarespace-Animationen ausschalten
+
+**Website → Website-Stile → Animationen → „Keine“** (live geprüft: derzeit „Einblenden“ mit 0,6 s Verzögerung).
+
+Die Seite hat eigene Animationen. Die Squarespace-Animation blendet beim Scrollen jeden Block zusätzlich ein, und das wirkt am Handy wie Springen. Datei 01 neutralisiert sie bereits. Ausgeschaltet spart Squarespace aber zusätzlich Rechenzeit.
+
+---
+
 ## 6. Cookie-Banner prüfen
 
 **Einstellungen → Cookies & Besucherdaten** (bzw. Datenschutz & Sicherheit → Cookie-Banner):

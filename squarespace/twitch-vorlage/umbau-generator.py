@@ -10,8 +10,7 @@ def parts(html):
     assert len(styles) == 1 and len(scripts) == 1, (len(styles), len(scripts))
     return styles[0], scripts[0]
 
-FONTS = '''<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Asul:wght@400;700&family=Cinzel:wght@700&display=swap" rel="stylesheet">'''
+FONTS = '<!-- Schriften (Cinzel, Asul) kommen selbst gehostet aus Datei 01 -->'
 
 def header(title, path, extra=''):
     return f'''<!-- =====================================================================
@@ -99,16 +98,13 @@ CONSENT = r'''<!-- Twitch erst nach Klick laden (Datenschutz) -->
       o.className = 'tsw-consent';
       o.innerHTML = ICON +
         '<p class="tsw-consent__title">' + (chat ? 'Twitch-Chat' : 'Stream auf Twitch') + '</p>' +
-        '<p class="tsw-consent__text">Beim Laden überträgt Twitch Daten wie deine IP-Adresse und setzt Cookies. Mehr dazu in der <a href="/datenschutz">Datenschutzerklärung</a>.</p>' +
+        '<p class="tsw-consent__text">Beim Laden überträgt Twitch Daten wie deine IP-Adresse und setzt Cookies. Mehr dazu in der <a href="/datenschutzerklaerung">Datenschutzerklärung</a>.</p>' +
         '<div class="tsw-consent__btns"><button type="button" data-ts-consent="once">' + (chat ? 'Chat laden' : 'Stream laden') + '</button>' +
         '<button type="button" data-ts-consent="always">Immer laden</button></div>';
       host.appendChild(o);
     });
   }
   document.addEventListener('click', function (e) {
-    /* Datenschutz-Link: auf die echte Adresse der Datenschutzseite aus dem Footer zeigen */
-    var priv = e.target.closest && e.target.closest('.tsw-consent__text a');
-    if (priv) { var f = document.querySelector('.ts-footer [data-ts-native="Datenschutz"]'); if (f) priv.href = f.href; return; }
     var b = e.target.closest && e.target.closest('[data-ts-consent]');
     if (!b) return;
     e.preventDefault();

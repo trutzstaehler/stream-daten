@@ -18,14 +18,15 @@ Damit alte Links (Google, Instagram, Lesezeichen) nicht ins Leere laufen.
 /running2/category/[cat] -> /running 301
 /maria-holmmaria-holm-und-das-geheimnis-der-verschwundenen-perle -> /maria-holm-und-das-geheimnis-der-verschwundenen-perle 301
 /malbucher -> /malbuecher 301
-/datenschutzerklrung -> /datenschutz 301
+/datenschutzerklrung -> /datenschutzerklaerung 301
+/datenschutz -> /datenschutzerklaerung 301
 /shop -> /kreativhafen 301
 ```
 
 Weiterleitungen greifen nur, wenn unter der alten Adresse **keine Seite mehr existiert**. Deshalb vorher:
 - den alten Blog **„Eventblog“ (`/running2`)** löschen. Er ist noch öffentlich und doppelt den Hella-Bericht im alten Design.
-- die leere Seite **„Shop“ (`/shop`)** löschen. Falls Squarespace das nicht zulässt: deaktivieren.
-- bei der Datenschutzerklärung die Adresse von `/datenschutzerklrung` (Tippfehler, das „ä“ fehlt) auf **`/datenschutz`** ändern: Seiten-Einstellungen → Allgemein → URL-Slug.
+- ~~die leere Seite „Shop“ löschen~~ ✓ erledigt
+- ~~Datenschutz-Adresse korrigieren~~ ✓ erledigt, jetzt `/datenschutzerklaerung`. Alle Links im Code zeigen direkt dorthin.
 
 Danach testen: `trutzstaehler.de/running2` und `trutzstaehler.de/malbucher` aufrufen. Du solltest jeweils auf der neuen Seite landen.
 

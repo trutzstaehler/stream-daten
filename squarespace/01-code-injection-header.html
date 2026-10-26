@@ -1,12 +1,18 @@
 <!-- ==================================================================
      TRUTZ STÄHLER · DESIGN SYSTEM
      Einfügen in: Squarespace → Code Injection → HEADER
-     Enthält: Fonts, Design-Tokens, Squarespace-Anpassungen, alle Komponenten
+     Enthält: Schriften (selbst gehostet), Design-Tokens, Squarespace-Anpassungen, alle Komponenten
      Alle eigenen Klassen beginnen mit "ts-" und kollidieren nicht mit Squarespace.
 =================================================================== -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+  /* Schriften – selbst gehostet bei Squarespace (keine Verbindung zu Google) */
+  @font-face { font-family: 'Syne'; font-style: normal; font-weight: 400 800; font-display: swap; src: url('https://static1.squarespace.com/static/6869717aa7c996116c8c8a56/t/6adf502e13aeb739ef55f134/1793019950546/syne-latin-wght-normal.woff2') format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+  @font-face { font-family: 'Inter'; font-style: normal; font-weight: 100 900; font-display: swap; src: url('https://static1.squarespace.com/static/6869717aa7c996116c8c8a56/t/6adf502e666c682c5dbbc34a/1793019950565/inter-latin-wght-normal.woff2') format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+  @font-face { font-family: 'JetBrains Mono'; font-style: normal; font-weight: 100 800; font-display: swap; src: url('https://static1.squarespace.com/static/6869717aa7c996116c8c8a56/t/6adf502e95c9a8434ebfef8d/1793019950556/jetbrains-mono-latin-wght-normal.woff2') format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+  @font-face { font-family: 'Cinzel'; font-style: normal; font-weight: 400 900; font-display: swap; src: url('https://static1.squarespace.com/static/6869717aa7c996116c8c8a56/t/6adf502e069df975516b9b5b/1793019950535/cinzel-latin-wght-normal.woff2') format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+  @font-face { font-family: 'Asul'; font-style: normal; font-weight: 400; font-display: swap; src: url('https://static1.squarespace.com/static/6869717aa7c996116c8c8a56/t/6adf502e499ff6311ccf5c23/1793019950544/asul-latin-400-normal.woff2') format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+  @font-face { font-family: 'Asul'; font-style: normal; font-weight: 700; font-display: swap; src: url('https://static1.squarespace.com/static/6869717aa7c996116c8c8a56/t/6adf502e4871e13d1ed65d30/1793019950542/asul-latin-700-normal.woff2') format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+</style>
 <meta name="theme-color" content="#060608">
 
 <script>

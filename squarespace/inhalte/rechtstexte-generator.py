@@ -1,5 +1,5 @@
 OUT='/home/user/stream-daten/squarespace/'
-DS = '<a href="/datenschutz" data-ts-native="Datenschutz">Datenschutzerklärung</a>'
+DS = '<a href="/datenschutzerklaerung">Datenschutzerklärung</a>'
 
 LEGAL_CSS = r'''<style>
   .ts-legal { position: relative; isolation: isolate; overflow: hidden; overflow: clip; background: var(--ts-bg); }
@@ -160,8 +160,7 @@ datenschutz = legal_page('''<!-- ===============================================
         <p>Für die Besucherstatistik nutze ich die Analysefunktion von Squarespace. Statistik- oder Analyse-Cookies werden nur gesetzt, wenn du im Cookie-Banner zustimmst (§ 25 Abs. 1 TDDDG, Art. 6 Abs. 1 lit. a DSGVO). Deine Einwilligung kannst du jederzeit mit Wirkung für die Zukunft widerrufen, indem du deine Cookie-Einstellungen änderst oder die Cookies in deinem Browser löschst.</p>'''),
   ('kontakt','Kontakt per E-Mail &amp; Social Media', '''        <p>Wenn du mir per E-Mail oder über Instagram oder LinkedIn schreibst, verarbeite ich deine Angaben (zum Beispiel Name, E-Mail-Adresse bzw. Profilname und deine Nachricht), um deine Anfrage zu beantworten und für mögliche Anschlussfragen (Art. 6 Abs. 1 lit. b und f DSGVO). Für Nachrichten über Instagram und LinkedIn gelten zusätzlich die Datenschutzbestimmungen des jeweiligen Netzwerks.</p>
         <p>Ich gebe diese Daten nicht ohne deine Einwilligung weiter und lösche sie, sobald deine Anfrage abschließend bearbeitet ist und keine gesetzlichen Aufbewahrungspflichten entgegenstehen.</p>'''),
-  ('schriften','Schriftarten (Google Fonts &amp; Adobe Fonts)', '''        <p>Für eine einheitliche Darstellung nutzt diese Website Schriftarten von <strong>Google Fonts</strong> (Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland). Beim Aufruf einer Seite lädt dein Browser die Schriften von Servern von Google; dabei wird deine IP-Adresse an Google übermittelt, auch in die USA (EU-US Data Privacy Framework).</p>
-        <p>Rechtsgrundlage ist mein berechtigtes Interesse an einer einheitlichen und ansprechenden Darstellung (Art. 6 Abs. 1 lit. f DSGVO). Mehr dazu: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Datenschutzerklärung von Google</a>.</p>
+  ('schriften','Schriftarten', '''        <p>Die Schriften dieser Website (Syne, Inter, JetBrains Mono, Cinzel und Asul) liegen auf den Servern von Squarespace und werden von dort geladen. Eine Verbindung zu Google Fonts findet nicht statt.</p>
         <p>Zusätzlich lädt Squarespace die Schriften des Website-Designs über <strong>Adobe Fonts</strong> (Adobe Systems Software Ireland Limited, 4–6 Riverwalk, Citywest Business Campus, Dublin 24, Irland; Server use.typekit.net und p.typekit.net). Dabei wird deine IP-Adresse an Adobe übermittelt, gegebenenfalls auch in die USA (EU-US Data Privacy Framework). Rechtsgrundlage ist ebenfalls mein berechtigtes Interesse an einer einheitlichen Darstellung (Art. 6 Abs. 1 lit. f DSGVO). Mehr dazu: <a href="https://www.adobe.com/de/privacy/policies/adobe-fonts.html" target="_blank" rel="noopener">Datenschutzhinweise zu Adobe Fonts</a>.</p>'''),
   ('eingebettet','Eingebettete Inhalte', '''        <p>Einige Seiten laden Inhalte von anderen Anbietern. Dabei erhält der jeweilige Anbieter technisch bedingt deine IP-Adresse und die Information, welche Seite du aufgerufen hast.</p>
         <h3>Twitch</h3>
@@ -252,7 +251,7 @@ kontakt = '''<!-- ==============================================================
           <p class="ts-reveal">Moin! Hast du Fragen, Anregungen oder willst mir einfach mal 'n netten Gruß dalassen?</p>
           <p class="ts-reveal">Dann schreib mir gern – per E-Mail oder auf Instagram und LinkedIn. Ich beiß nicht (höchstens ins <strong>Franzbrötchen</strong>) und melde mich fix bei dir zurück.</p>
         </div>
-        <p class="ts-contact__note ts-glass ts-reveal"><strong>Datenschutz:</strong> Deine Angaben werden natürlich nur dafür genutzt, dir zu antworten. Mehr dazu findest du in meiner <a href="/datenschutz" data-ts-native="Datenschutz" style="color:var(--ts-mint);border-bottom:1px solid rgba(110,231,183,.35)">Datenschutzerklärung</a>.</p>
+        <p class="ts-contact__note ts-glass ts-reveal"><strong>Datenschutz:</strong> Deine Angaben werden natürlich nur dafür genutzt, dir zu antworten. Mehr dazu findest du in meiner <a href="/datenschutzerklaerung" style="color:var(--ts-mint);border-bottom:1px solid rgba(110,231,183,.35)">Datenschutzerklärung</a>.</p>
       </div>
 
       <div class="ts-contact__ways ts-reveal" aria-label="Kontaktwege">

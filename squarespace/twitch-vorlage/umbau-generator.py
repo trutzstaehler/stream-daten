@@ -263,6 +263,9 @@ override = '''<style>
   #tsz-play .tp-card h3 { font-size: clamp(1.3rem, 2.2vw, 1.7rem); margin-bottom: 1rem; }
   #tsz-play .tp-card p { font-size: 16px; line-height: 1.7; }
   #tsz-play .tp-search { width: 320px; padding: 12px 18px; border-radius: 999px; border-color: rgba(199, 156, 56, .45); background: rgba(12, 9, 7, .7); font-size: 16px; }
+  #tsz-play .tp-search, #tsz-play .tp-search:hover { -webkit-appearance: none; appearance: none; background: rgba(12, 9, 7, .7) !important; color: #f3eee2 !important; border: 1px solid rgba(199, 156, 56, .45) !important; }
+  #tsz-play .tp-search::placeholder { color: rgba(184, 173, 148, .7); opacity: 1; }
+  #tsz-play .tp-search::-webkit-search-decoration { -webkit-appearance: none; }
   #tsz-play .tp-group { margin: 1.5rem 0 .5rem; font: 700 11px/1.5 Cinzel, Georgia, serif; letter-spacing: .2em; text-transform: uppercase; }
   #tsz-play td { padding: .7rem .75rem; border-top-color: rgba(199, 156, 56, .12); }
   #tsz-play .tp-race { padding: .6rem 0; border-top-color: rgba(199, 156, 56, .12); }
@@ -306,7 +309,10 @@ override = '''<style>
 ''' + frame_css('tsz-chars','tc') + '''  #tsz-chars .tc-lead { margin: 1.5rem 0 0; color: #d9d0bb; }
   #tsz-chars .tsw-hero__aside .tsw-label { display: block; }
   #tsz-chars .tc-search { width: 100%; padding: 16px 22px; border-radius: 999px; border-color: rgba(199, 156, 56, .55); background: rgba(12, 9, 7, .75); font-size: 18px; box-shadow: inset 0 0 10px #000, 0 20px 50px -30px rgba(0, 0, 0, .9); }
-  #tsz-chars .tc-search:focus { border-color: #ffd100; box-shadow: inset 0 0 10px #000, 0 0 0 4px rgba(255, 209, 0, .12); }
+  #tsz-chars .tc-search, #tsz-chars .tc-search:hover { -webkit-appearance: none; appearance: none; background: rgba(12, 9, 7, .75) !important; color: #f3eee2 !important; border: 1px solid rgba(199, 156, 56, .55) !important; outline: none; }
+  #tsz-chars .tc-search::placeholder { color: rgba(184, 173, 148, .7); opacity: 1; }
+  #tsz-chars .tc-search::-webkit-search-decoration, #tsz-chars .tc-search::-webkit-search-cancel-button { -webkit-appearance: none; }
+  #tsz-chars .tc-search:focus { border-color: #ffd100 !important; box-shadow: inset 0 0 10px #000, 0 0 0 4px rgba(255, 209, 0, .12); }
   #tsz-chars .tc-sheet { margin-bottom: clamp(3rem, 6vw, 4.5rem); }
   #tsz-chars .tc-box { border-radius: 14px; }
   #tsz-chars .tc-title { border-radius: 12px 12px 0 0; }

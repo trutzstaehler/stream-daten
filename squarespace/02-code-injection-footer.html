@@ -81,10 +81,8 @@
   .ts-footer__link .ts-ext { opacity: 0; transform: translate(-4px, 4px); transition: opacity .3s, transform .5s var(--ts-ease-out); }
   .ts-footer__link:hover .ts-ext { opacity: 1; transform: none; }
 
-  .ts-footer__mark { display: block; width: 100%; height: auto; padding: 0 calc(var(--ts-gutter) * .5); margin-bottom: -.6%; overflow: visible; user-select: none; }
-  .ts-footer__mark text { font-family: var(--ts-font-display); font-weight: 800; letter-spacing: -0.03em; }
 
-  .ts-footer__bar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem; padding: 1.5rem 0 2rem; border-top: 1px solid var(--ts-line); color: var(--ts-muted); }
+  .ts-footer__bar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem; padding: 1.5rem 0 2.5rem; border-top: 1px solid var(--ts-line); color: var(--ts-muted); }
   .ts .ts-totop { display: inline-flex; align-items: center; gap: .6rem; color: var(--ts-muted); transition: color .3s; }
   .ts .ts-totop:hover { color: var(--ts-text); }
   .ts-totop span:last-child { display: grid; place-items: center; width: 34px; height: 34px; border-radius: 50%; border: 1px solid var(--ts-line-strong); transition: transform .5s var(--ts-ease-out), border-color .3s; }
@@ -167,16 +165,6 @@
     </div>
   </div>
 
-  <svg class="ts-footer__mark" viewBox="0 0 1000 150" aria-hidden="true" focusable="false">
-    <defs>
-      <linearGradient id="ts-mark-grad" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0" stop-color="#f6faf7" stop-opacity=".9"/>
-        <stop offset=".55" stop-color="#6ee7b7" stop-opacity=".35"/>
-        <stop offset="1" stop-color="#1d4d3f" stop-opacity="0"/>
-      </linearGradient>
-    </defs>
-    <text x="500" y="128" text-anchor="middle" textLength="970" lengthAdjust="spacingAndGlyphs" font-size="150" fill="url(#ts-mark-grad)">Trutz Stähler</text>
-  </svg>
 
   <div class="ts-container">
     <div class="ts-footer__bar">
@@ -423,14 +411,6 @@
       if (match) el.setAttribute('href', match.getAttribute('href'));
     });
   }
-  /* Schriftzug exakt auf die Breite einpassen (Safari ignoriert textLength teilweise) */
-  const fitMark = () => document.querySelectorAll('.ts-footer__mark').forEach(svg => {
-    const t = svg.querySelector('text');
-    try { const bb = t.getBBox(); if (bb.width) svg.setAttribute('viewBox', `${bb.x} ${bb.y} ${bb.width} ${bb.height}`); } catch (e) {}
-  });
-  fitMark();
-  if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitMark);
-  addEventListener('load', fitMark);
   document.querySelectorAll('[data-ts-totop]').forEach(el => el.addEventListener('click', e => {
     e.preventDefault();
     scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });

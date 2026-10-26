@@ -28,8 +28,11 @@ if '__BUCH_' in block:
 
 p = os.path.join(ROOT, '10-maria-holm-codeblock.html')
 s = open(p).read()
-s, n = re.subn(r'\n<!-- ============ BLICK INS BUCH ============ -->.*?<!-- /BLICK INS BUCH -->', lambda m: '\n' + block, s, flags=re.S)
-if not n:
-    s = s.rstrip('\n') + '\n\n' + block + '\n'
+# Alten Einbau entfernen und den Bereich vor die Buchvorstellung setzen
+s = re.sub(r'\n*<!-- ============ BLICK INS BUCH ============ -->.*?<!-- /BLICK INS BUCH -->\n*', '\n', s, flags=re.S)
+anchor = '<section class="ts ts-book'
+if anchor not in s:
+    sys.exit('Buchvorstellung nicht gefunden')
+s = s.replace(anchor, block + '\n\n' + anchor, 1)
 open(p, 'w').write(s)
 print('Fertig.')

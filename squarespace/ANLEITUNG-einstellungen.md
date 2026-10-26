@@ -13,11 +13,21 @@ Damit alte Links (Google, Instagram, Lesezeichen) nicht ins Leere laufen.
 
 ```
 /running/hella-half-marathon-2025 -> /hella-half-marathon-2025 301
+/running2/hella-half-marathon-2025 -> /hella-half-marathon-2025 301
+/running2 -> /running 301
+/running2/category/[cat] -> /running 301
 /maria-holmmaria-holm-und-das-geheimnis-der-verschwundenen-perle -> /maria-holm-und-das-geheimnis-der-verschwundenen-perle 301
 /malbucher -> /malbuecher 301
+/datenschutzerklrung -> /datenschutz 301
+/shop -> /kreativhafen 301
 ```
 
-Danach testen: `trutzstaehler.de/running/hella-half-marathon-2025` aufrufen. Du solltest auf der neuen Seite landen.
+Weiterleitungen greifen nur, wenn unter der alten Adresse **keine Seite mehr existiert**. Deshalb vorher:
+- den alten Blog **„Eventblog“ (`/running2`)** löschen. Er ist noch öffentlich und doppelt den Hella-Bericht im alten Design.
+- die leere Seite **„Shop“ (`/shop`)** löschen. Falls Squarespace das nicht zulässt: deaktivieren.
+- bei der Datenschutzerklärung die Adresse von `/datenschutzerklrung` (Tippfehler, das „ä“ fehlt) auf **`/datenschutz`** ändern: Seiten-Einstellungen → Allgemein → URL-Slug.
+
+Danach testen: `trutzstaehler.de/running2` und `trutzstaehler.de/malbucher` aufrufen. Du solltest jeweils auf der neuen Seite landen.
 
 ---
 
@@ -57,10 +67,14 @@ Die Titel haben höchstens etwa 60 Zeichen, die Beschreibungen höchstens etwa 1
 | Impressum `/impressum` | Impressum – Trutz Stähler | Impressum von trutzstaehler.de. |
 | Datenschutz | Datenschutzerklärung – Trutz Stähler | Datenschutzerklärung von trutzstaehler.de: welche Daten verarbeitet werden und welche Rechte du hast. |
 
+**Live geprüft:** Alle Beschreibungen sind eingetragen. Zwei Kleinigkeiten fehlen noch:
+- **Startseite:** Der SEO-Titel fehlt, im Browser-Tab steht nur „trutzstaehler.de“. Bitte den Titel aus der Tabelle eintragen.
+- **Impressum:** Im SEO-Titel fehlt das „I“: „mpressum – Trutz Stähler“.
+
 Für Impressum, Datenschutz und 404 außerdem „Seite in Suchergebnissen ausblenden“ aktivieren. Das ist optional, für die 404-Seite aber empfohlen.
 
 **Website-weit:** **Einstellungen → SEO** (bzw. Marketing → SEO):
-- **Format für Seitentitel:** `%p – %s`. Da die Titel oben schon vollständig sind, kannst du alternativ nur `%p` verwenden.
+- **Format für Seitentitel:** nur `%p`. **Live geprüft:** Derzeit hängt Squarespace „ — trutzstaehler.de“ an jeden Titel. Zusammen mit den Titeln oben wird das zu lang und doppelt sich.
 - **Website-Beschreibung:** den Text der Startseite von oben verwenden.
 
 Am Ende **Marketing → SEO → Google Search Console** verbinden und die Sitemap `https://trutzstaehler.de/sitemap.xml` einreichen.

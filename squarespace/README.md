@@ -16,6 +16,22 @@ Design: Dark Editorial · Hintergrund `#060608` · Nebenfarbe Markengrün `#1d4d
 | `10-maria-holm-codeblock.html` | Seite `/maria-holm-und-das-geheimnis-der-verschwundenen-perle` → einzige Sektion → **Code-Block** über die volle Rasterbreite |
 | `11-malbuecher-codeblock.html` | Seite `/malbuecher` → einzige Sektion → **Code-Block** über die volle Rasterbreite |
 
+### Twitch-Bereich (World of Warcraft Forever)
+
+Alle Seiten tragen die Klasse `tsw`: Navigation, Buttons und Footer werden dort automatisch golden, unter der Navigation erscheint die Twitch-Unternavigation mit „← Homepage“. Die Daten kommen weiter aus `helden.json` (Stream-Zentrale); die Skripte sind unverändert übernommen.
+
+| Datei | Wohin in Squarespace |
+|---|---|
+| `12-twitch-startseite-codeblock.html` | Seite `/twitch-startseite` |
+| `13-live-codeblock.html` | Seite `/live` (Wochenplan im Skript bei `CONFIG.schedule`) |
+| `14-mitspielen-codeblock.html` | Seite `/mitspielen` |
+| `15-charakter-codeblock.html` | Seite `/charakter` |
+| `16-bestenliste-codeblock.html` | Seite `/bestenliste` |
+| `17-statistiken-codeblock.html` | Seite `/statistiken` |
+
+Jeweils: einzige Sektion → **Code-Block** über die volle Rasterbreite. Die Seiten `/live` bis `/statistiken` unter „Nicht verlinkt“ anlegen.
+Die Originale liegen in `twitch-vorlage/`, `umbau-generator.py` erzeugt daraus die Seiten neu.
+
 Die Datei 01 ist das globale Design-System und wird nur einmal eingefügt. Die Datei 02 enthält Navigation und JavaScript für alle Seiten.
 Jede neue Sektion kommt später als eigener Code-Block dazu.
 

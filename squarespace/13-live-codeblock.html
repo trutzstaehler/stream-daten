@@ -1,0 +1,230 @@
+<!-- =====================================================================
+     TRUTZ STÄHLER · TWITCH-BEREICH (WoW Forever) · LIVE & STREAM-PLAN
+     Einfügen in: Seite /live → einzige Sektion → Code-Block (volle Breite),
+     „Quelltext anzeigen“ aus. Navigation, Unternavigation (mit Weg zurück zur
+     Homepage) und Footer kommen aus dem globalen Header- und Footer-Code.
+     Die Daten kommen wie bisher aus der Stream-Zentrale (CONFIG.dataUrl im Skript).
+     Den Wochenplan trägst du wie bisher im Skript bei CONFIG.schedule ein.
+     ===================================================================== -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Asul:wght@400;700&family=Cinzel:wght@700&display=swap" rel="stylesheet">
+
+<div id="tsz-plan" class="tl tsw ts-bleed">
+  <section class="ts tsw-hero ts-container">
+      <div class="tsw-hero__meta">
+        <p class="tsw-label" style="margin:0">[ Twitch · Live ]</p>
+        <p class="tsw-label" style="margin:0">Deutsche Zeit · Countdown in deiner Uhrzeit</p>
+      </div>
+    <div class="tsw-hero__grid tsw-hero__grid--split">
+      <div>
+        <h1 class="tsw-hero__title" data-ts-fit>
+          <span class="ts-line"><span style="transition-delay:0.10s">Live &amp;</span></span>
+          <span class="ts-line"><span class="ts-gradient-text" style="transition-delay:0.22s">Stream-Plan.</span></span>
+        </h1>
+        <p class="tl-lead tsw-hero__lead"></p>
+      </div>
+      <div class="tsw-hero__aside"><div class="tl-next"></div></div>
+    </div>
+  </section>
+
+  <div class="tsw-body ts-container">
+    <section class="tsw-sec">
+      <div class="tsw-sec-head">
+        <div>
+          <p class="tsw-label">[ Jetzt im Stream ]</p>
+          <h2 class="tsw-sec-title">Stream &amp; Chat</h2>
+        </div>
+      </div>
+      <div class="tl-live">
+        <div class="tl-player"></div>
+        <div class="tl-chat"></div>
+      </div>
+    </section>
+    <section class="tsw-sec">
+      <div class="tsw-sec-head">
+        <div>
+          <p class="tsw-label">[ Wochenplan ]</p>
+          <h2 class="tsw-sec-title">Wann ich live bin</h2>
+        </div>
+        <p class="tsw-sec-note">Folgen lohnt sich – dann meldet Twitch jeden Stream.</p>
+      </div>
+      <div class="tl-week"></div>
+      <p class="tl-foot"></p>
+    </section>
+  </div>
+</div>
+
+<style>
+  #tsz-plan {
+    --tl-gold: #ffd100;
+    --tl-txt: #f3eee2;
+    --tl-muted: #b8ad94;
+    --tl-ts: 1px 1px 0 #000, 0 1px 3px rgba(0, 0, 0, 0.8);
+    --tl-panel: linear-gradient(180deg, #161616 0%, #0c0c0c 100%);
+    --tl-line: #4a4a4a;
+    --tl-brass: #8c713c;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 22px;
+    border-radius: 4px;
+    background: #120e0b;
+    color: var(--tl-txt);
+    font: 400 16px/1.5 Asul, Georgia, serif;
+    text-align: left;
+  }
+  #tsz-plan *, #tsz-plan *::before, #tsz-plan *::after { box-sizing: border-box; }
+  #tsz-plan a { color: var(--tl-gold); text-decoration: none; }
+  #tsz-plan a:hover { text-decoration: underline; }
+  #tsz-plan .tl-top { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 12px 24px; margin-bottom: 14px; }
+  #tsz-plan .tl-h { margin: 0 0 4px; font: 700 30px/1.2 Cinzel, Georgia, serif; letter-spacing: 0.5px; color: var(--tl-gold); text-shadow: var(--tl-ts); }
+  #tsz-plan .tl-lead { margin: 0; color: var(--tl-muted); }
+  #tsz-plan .tl-next { padding: 10px 16px; border: 1px solid var(--tl-brass); border-radius: 4px; background: linear-gradient(180deg, #2a2112, #17120a); text-align: right; }
+  #tsz-plan .tl-next b { display: block; font: 700 22px/1.2 Cinzel, Georgia, serif; color: var(--tl-gold); text-shadow: var(--tl-ts); }
+  #tsz-plan .tl-next span { color: var(--tl-muted); font-size: 15px; }
+  #tsz-plan .tl-live { display: grid; grid-template-columns: 1fr 340px; gap: 12px; margin-bottom: 16px; }
+  #tsz-plan .tl-player { position: relative; padding-top: 56.25%; border-radius: 4px; overflow: hidden; background: #000; box-shadow: 0 0 0 1px var(--tl-brass); }
+  #tsz-plan .tl-player iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+  #tsz-plan .tl-chat { border-radius: 4px; overflow: hidden; background: #000; box-shadow: 0 0 0 1px var(--tl-line); min-height: 320px; }
+  #tsz-plan .tl-chat iframe { width: 100%; height: 100%; min-height: 320px; border: 0; display: block; }
+  #tsz-plan .tl-week { display: grid; grid-template-columns: repeat(7, 1fr); gap: 8px; }
+  #tsz-plan .tl-day { min-height: 110px; padding: 10px; border: 1px solid var(--tl-line); border-radius: 4px; background: var(--tl-panel); }
+  #tsz-plan .tl-day.today { border-color: var(--tl-gold); box-shadow: inset 0 0 0 1px rgba(255, 209, 0, 0.25); }
+  #tsz-plan .tl-day-h { font-weight: 700; color: var(--tl-muted); margin-bottom: 6px; }
+  #tsz-plan .tl-day.today .tl-day-h { color: var(--tl-gold); }
+  #tsz-plan .tl-slot { padding: 6px 8px; border-radius: 3px; background: linear-gradient(180deg, #3a2c12, #241a0a); border: 1px solid var(--tl-brass); margin-bottom: 6px; }
+  #tsz-plan .tl-slot b { display: block; color: var(--tl-gold); font-size: 15px; }
+  #tsz-plan .tl-slot span { color: var(--tl-txt); font-size: 14px; }
+  #tsz-plan .tl-slot.now { border-color: #e0574f; background: linear-gradient(180deg, #5a0d07, #2c0603); }
+  #tsz-plan .tl-free { color: #6c6455; font-size: 14px; }
+  #tsz-plan .tl-empty { padding: 18px; border: 1px solid var(--tl-line); border-radius: 4px; background: var(--tl-panel); color: var(--tl-muted); }
+  #tsz-plan .tl-foot { margin: 12px 0 0; color: var(--tl-muted); font-size: 14px; }
+
+  @media (max-width: 900px) {
+    #tsz-plan .tl-live { grid-template-columns: 1fr; }
+    #tsz-plan .tl-week { grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); }
+  }
+  @media (max-width: 640px) {
+    #tsz-plan { padding: 14px; }
+    #tsz-plan .tl-h { font-size: 24px; }
+    #tsz-plan .tl-next { text-align: left; width: 100%; }
+  }
+</style>
+<style>
+  /* ---------- Gestaltung im Homepage-Layout (WoW-Forever-Farben) ---------- */
+  #tsz-plan.tsw { width: 100vw; max-width: none; margin: 0 0 0 calc(50% - 50vw); padding: 0; border-radius: 0; background: var(--tsw-bg); font: 400 16px/1.6 Asul, Georgia, serif; }
+  #tsz-plan.tsw { --tl-panel: var(--tsw-panel); --tl-line: rgba(199, 156, 56, 0.22); }
+  #tsz-plan .tl-lead { margin-top: 1.5rem; }
+  #tsz-plan .tl-next { display: inline-block; min-width: min(100%, 340px); padding: 1.5rem 1.75rem; border-radius: 22px; text-align: left; border-color: rgba(199, 156, 56, .55); background: radial-gradient(120% 140% at 0% 0%, rgba(255, 209, 0, .14), rgba(12, 9, 7, .7) 60%); box-shadow: 0 30px 70px -40px rgba(0, 0, 0, .9); }
+  #tsz-plan .tl-next b { font-size: clamp(1.6rem, 3vw, 2.4rem); }
+  #tsz-plan .tl-next span { display: block; margin-top: .4rem; }
+  #tsz-plan .tl-live { grid-template-columns: minmax(0, 1fr) 360px; gap: 1rem; margin: 0; }
+  #tsz-plan .tl-player { border-radius: 22px; box-shadow: 0 0 0 1px rgba(199, 156, 56, .45), 0 40px 90px -40px rgba(0, 0, 0, .9); }
+  #tsz-plan .tl-chat { border-radius: 22px; box-shadow: 0 0 0 1px var(--tsw-line); }
+  #tsz-plan .tl-week { gap: .75rem; }
+  #tsz-plan .tl-day { min-height: 150px; padding: 1rem; border-radius: 18px; border-color: var(--tsw-line); }
+  #tsz-plan .tl-day-h { font: 700 11px/1.5 Cinzel, Georgia, serif; letter-spacing: .18em; text-transform: uppercase; margin-bottom: .75rem; }
+  #tsz-plan .tl-slot { border-radius: 10px; }
+  #tsz-plan .tl-empty { padding: 1.5rem 1.75rem; border-radius: 22px; }
+  #tsz-plan .tl-foot { margin-top: 1.5rem; }
+  @media (max-width: 1100px) { #tsz-plan .tl-live { grid-template-columns: minmax(0, 1fr); } #tsz-plan .tl-chat { min-height: 420px; } }
+  @media (max-width: 640px) { #tsz-plan .tl-next { width: 100%; } }
+</style>
+
+<script>
+(function () {
+  const CONFIG = {
+    streamer: 'Trutz Stahl',
+    channel: 'einfach_trutz',
+    chat: true, // Twitch-Chat neben dem Stream-Fenster
+    // Wochenplan (deutsche Zeit). Tag: 1 = Montag … 7 = Sonntag. Ende nach Mitternacht geht, z.B. '01:00'.
+    // Beispiel: { day: 3, start: '19:00', end: '00:00', title: 'WoW Forever mit dem Chat' }
+    schedule: []
+  };
+  const DAYS = ['Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag', 'Sonntag'];
+  const TZ = 'Europe/Berlin';
+
+  const root = document.getElementById('tsz-plan');
+  if (!root) return;
+  const $ = (sel) => root.querySelector(sel);
+  const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  const twitch = `https://www.twitch.tv/${encodeURIComponent(CONFIG.channel)}`;
+  const host = location.hostname || 'trutzstaehler.de';
+
+  // Uhrzeit in Berlin → echter Zeitpunkt (berücksichtigt Sommer- und Winterzeit)
+  const berlinParts = (d) => Object.fromEntries(new Intl.DateTimeFormat('en-GB', { timeZone: TZ, year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', weekday: 'short', hour12: false })
+    .formatToParts(d).map(p => [p.type, p.value]));
+  const WD = { Mon: 1, Tue: 2, Wed: 3, Thu: 4, Fri: 5, Sat: 6, Sun: 7 };
+  function berlinTime(y, m, d, hh, mm) {
+    // Startwert: als wäre Berlin UTC, dann um den Unterschied korrigieren (zweimal – wegen der Zeitumstellung)
+    let t = Date.UTC(y, m - 1, d, hh, mm);
+    for (let i = 0; i < 2; i++) {
+      const p = berlinParts(new Date(t));
+      const shown = Date.UTC(+p.year, +p.month - 1, +p.day, +p.hour % 24, +p.minute);
+      t -= shown - Date.UTC(y, m - 1, d, hh, mm);
+    }
+    return t;
+  }
+  const hm = (s) => String(s || '0:0').split(':').map(Number);
+
+  /** Alle Termine der nächsten 8 Tage als echte Zeitpunkte */
+  function upcoming(now) {
+    const p = berlinParts(new Date(now));
+    const todayWd = WD[p.weekday];
+    const out = [];
+    for (let k = -1; k <= 7; k++) {
+      const base = new Date(Date.UTC(+p.year, +p.month - 1, +p.day + k));
+      const wd = ((todayWd - 1 + k) % 7 + 7) % 7 + 1;
+      CONFIG.schedule.filter(s => Number(s.day) === wd).forEach(s => {
+        const [h1, m1] = hm(s.start); const [h2, m2] = hm(s.end);
+        const start = berlinTime(base.getUTCFullYear(), base.getUTCMonth() + 1, base.getUTCDate(), h1, m1);
+        let end = berlinTime(base.getUTCFullYear(), base.getUTCMonth() + 1, base.getUTCDate(), h2, m2);
+        if (end <= start) end += 86400000; // bis nach Mitternacht
+        out.push({ s, start, end });
+      });
+    }
+    return out.sort((a, b) => a.start - b.start);
+  }
+
+  const fmtLocal = (t) => new Date(t).toLocaleString('de-DE', { weekday: 'long', hour: '2-digit', minute: '2-digit' });
+  function countdown(ms) {
+    const m = Math.max(0, Math.round(ms / 60000));
+    const d = Math.floor(m / 1440); const h = Math.floor((m % 1440) / 60); const mm = m % 60;
+    return d ? `in ${d} ${d === 1 ? 'Tag' : 'Tagen'}, ${h} Std.` : h ? `in ${h} Std. ${mm} Min.` : `in ${mm} Min.`;
+  }
+
+  function renderNext() {
+    const now = Date.now();
+    const list = upcoming(now);
+    const live = list.find(x => x.start <= now && now < x.end);
+    const next = list.find(x => x.start > now);
+    $('.tl-next').innerHTML = live ? `<b>Jetzt laut Plan live</b><span>bis ${new Date(live.end).toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' })} Uhr · <a href="${twitch}" target="_blank" rel="noopener">zum Stream</a></span>`
+      : next ? `<b>${esc(countdown(next.start - now))}</b><span>Nächster Stream: ${esc(fmtLocal(next.start))} Uhr</span>`
+        : `<b>Plan folgt</b><span><a href="${twitch}/schedule" target="_blank" rel="noopener">Stream-Plan bei Twitch</a></span>`;
+    return { list, live };
+  }
+
+  function renderWeek({ list, live }) {
+    if (!CONFIG.schedule.length) {
+      $('.tl-week').innerHTML = `<div class="tl-empty" style="grid-column:1/-1">Der Wochenplan steht gerade bei Twitch: <a href="${twitch}/schedule" target="_blank" rel="noopener">twitch.tv/${esc(CONFIG.channel)}/schedule</a> – folgen lohnt sich, dann meldet Twitch jeden Stream.</div>`;
+      return;
+    }
+    const todayWd = WD[berlinParts(new Date()).weekday];
+    $('.tl-week').innerHTML = DAYS.map((name, i) => {
+      const wd = i + 1;
+      const slots = CONFIG.schedule.filter(s => Number(s.day) === wd).sort((a, b) => String(a.start).localeCompare(String(b.start)));
+      return `<div class="tl-day${wd === todayWd ? ' today' : ''}"><div class="tl-day-h">${name}${wd === todayWd ? ' · heute' : ''}</div>
+        ${slots.length ? slots.map(s => `<div class="tl-slot${live && live.s === s ? ' now' : ''}"><b>${esc(s.start)}–${esc(s.end)} Uhr</b><span>${esc(s.title || 'WoW Forever')}</span></div>`).join('') : '<div class="tl-free">kein Stream</div>'}</div>`;
+    }).join('');
+  }
+
+  $('.tl-lead').innerHTML = `${esc(CONFIG.streamer)} spielt World of Warcraft Forever – mit Helden, Bosskämpfen und Spielen für den Chat. Folgen auf <a href="${twitch}" target="_blank" rel="noopener">Twitch</a>, dann verpasst du keinen Stream.`;
+  $('.tl-player').innerHTML = `<iframe src="https://player.twitch.tv/?channel=${encodeURIComponent(CONFIG.channel)}&parent=${encodeURIComponent(host)}&muted=true&autoplay=false" allowfullscreen title="Stream von ${esc(CONFIG.streamer)}"></iframe>`;
+  if (CONFIG.chat) $('.tl-chat').innerHTML = `<iframe src="https://www.twitch.tv/embed/${encodeURIComponent(CONFIG.channel)}/chat?parent=${encodeURIComponent(host)}&darkpopout" title="Twitch-Chat"></iframe>`;
+  else $('.tl-chat').remove();
+  $('.tl-foot').textContent = 'Alle Zeiten in deutscher Zeit – der Countdown rechnet in deine Uhrzeit um.';
+
+  function tick() { renderWeek(renderNext()); }
+  tick();
+  setInterval(renderNext, 30000);
+})();
+</script>

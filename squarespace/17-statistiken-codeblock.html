@@ -1,0 +1,527 @@
+<!-- =====================================================================
+     TRUTZ STÄHLER · TWITCH-BEREICH (WoW Forever) · STATISTIKEN
+     Einfügen in: Seite /statistiken → einzige Sektion → Code-Block (volle Breite),
+     „Quelltext anzeigen“ aus. Navigation, Unternavigation (mit Weg zurück zur
+     Homepage) und Footer kommen aus dem globalen Header- und Footer-Code.
+     Die Daten kommen wie bisher aus der Stream-Zentrale (CONFIG.dataUrl im Skript).
+     Direkt zu einem Reiter: /statistiken#stream, #kanal, #spiele, #bosse, #gluecksrad
+     ===================================================================== -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Asul:wght@400;700&family=Cinzel:wght@700&display=swap" rel="stylesheet">
+
+<div id="tsz-stats" class="tst tsw ts-bleed">
+  <section class="ts tsw-hero ts-container">
+      <div class="tsw-hero__meta">
+        <p class="tsw-label" style="margin:0">[ Twitch · Statistiken ]</p>
+        <p class="tsw-label" style="margin:0">Zahlen aus der Stream-Zentrale</p>
+      </div>
+    <div class="tsw-hero__grid tsw-hero__grid--split">
+      <div>
+        <h1 class="tsw-hero__title" data-ts-fit>
+          <span class="ts-line"><span class="ts-gradient-text" style="transition-delay:0.10s">Statistiken.</span></span>
+        </h1>
+        <p class="tst-lead tsw-hero__lead">Im Stream passieren die Dinge – hier steht, was dabei herausgekommen ist.</p>
+      </div>
+      <div class="tsw-hero__aside"><div class="tst-state"></div></div>
+    </div>
+  </section>
+
+  <div class="tsw-body ts-container">
+    <div class="tst-tabs" role="tablist" aria-label="Bereiche"></div>
+    <div class="tst-body" role="tabpanel"></div>
+    <p class="tst-foot"></p>
+  </div>
+</div>
+
+<style>
+  #tsz-stats {
+    --tst-gold: #ffd100;
+    --tst-txt: #f3eee2;
+    --tst-muted: #b8ad94;
+    --tst-ts: 1px 1px 0 #000, 0 1px 3px rgba(0, 0, 0, 0.8);
+    --tst-panel: linear-gradient(180deg, #161616 0%, #0c0c0c 100%);
+    --tst-line: #4a4a4a;
+    --tst-row: #262626;
+    --tst-brass: #8c713c;
+    --tst-a: #2f6fd1;
+    --tst-h: #b0182a;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 22px;
+    border-radius: 4px;
+    background: #120e0b;
+    color: var(--tst-txt);
+    font: 400 16px/1.45 Asul, Georgia, serif;
+    text-align: left;
+  }
+  #tsz-stats *, #tsz-stats *::before, #tsz-stats *::after { box-sizing: border-box; }
+  #tsz-stats a { color: inherit; text-decoration: none; }
+  #tsz-stats a:hover { text-decoration: underline; text-decoration-color: rgba(255, 209, 0, 0.5); }
+  #tsz-stats button { font: inherit; cursor: pointer; }
+
+  /* Kopf */
+  #tsz-stats .tst-top { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 12px 24px; margin-bottom: 14px; }
+  #tsz-stats .tst-h { margin: 0 0 4px; font: 700 30px/1.2 Cinzel, Georgia, serif; letter-spacing: 0.5px; color: var(--tst-gold); text-shadow: var(--tst-ts); }
+  #tsz-stats .tst-lead { margin: 0; color: var(--tst-muted); }
+  #tsz-stats .tst-state { padding: 7px 12px; border: 1px solid var(--tst-line); border-radius: 4px; background: var(--tst-panel); color: var(--tst-muted); font-size: 15px; }
+  #tsz-stats .tst-state b { color: var(--tst-txt); }
+  #tsz-stats .tst-state.live { border-color: var(--tst-brass); }
+  #tsz-stats .tst-state.live b { color: var(--tst-gold); }
+  #tsz-stats .tst-dot { display: inline-block; width: 9px; height: 9px; margin-right: 7px; border-radius: 50%; background: #e0352b; box-shadow: 0 0 0 2px rgba(224, 53, 43, 0.25); vertical-align: 1px; }
+
+  /* Reiter */
+  #tsz-stats .tst-tabs { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
+  #tsz-stats .tst-tab {
+    display: flex; align-items: center; gap: 7px; padding: 6px 12px 6px 6px; border: 1px solid var(--tst-line); border-radius: 4px;
+    background: linear-gradient(180deg, #0f0f0f, #1d1d1d); color: var(--tst-muted); font-size: 15px; font-weight: 700; text-shadow: var(--tst-ts);
+  }
+  #tsz-stats .tst-tab img { width: 24px; height: 24px; border-radius: 3px; border: 1px solid #000; }
+  #tsz-stats .tst-tab:hover { color: var(--tst-txt); }
+  #tsz-stats .tst-tab.on { color: var(--tst-gold); border-color: var(--tst-brass); background: linear-gradient(180deg, #2a2112, #17120a); }
+  #tsz-stats .tst-tab:focus-visible { outline: 2px solid var(--tst-gold); outline-offset: -2px; }
+
+  /* Abschnitte */
+  #tsz-stats .tst-sec { margin-top: 22px; }
+  #tsz-stats .tst-sec:first-child { margin-top: 0; }
+  #tsz-stats .tst-sec-h { display: flex; align-items: center; gap: 9px; margin: 0 0 10px; font: 700 20px/1.25 Cinzel, Georgia, serif; letter-spacing: 0.4px; color: var(--tst-gold); text-shadow: var(--tst-ts); }
+  #tsz-stats .tst-sec-h img { width: 28px; height: 28px; border-radius: 3px; border: 1px solid #000; }
+  #tsz-stats .tst-sec-h small { margin-left: auto; font: 400 14px Asul, Georgia, serif; letter-spacing: 0; color: var(--tst-muted); text-shadow: none; white-space: nowrap; }
+  #tsz-stats .tst-cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 14px; }
+  #tsz-stats .tst-cols3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 14px; }
+  #tsz-stats .tst-cols .tst-sec, #tsz-stats .tst-cols3 .tst-sec { margin-top: 0; }
+  #tsz-stats .tst-gap { height: 14px; }
+  #tsz-stats .tst-label { margin: 0 0 6px; color: var(--tst-muted); font-size: 14px; font-weight: 700; }
+
+  /* Kacheln */
+  #tsz-stats .tst-tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 10px; }
+  #tsz-stats .tst-tile { padding: 10px 14px; border: 1px solid var(--tst-line); border-radius: 4px; background: var(--tst-panel); }
+  #tsz-stats .tst-tile b { display: block; font: 700 24px/1.2 Cinzel, Georgia, serif; color: var(--tst-gold); text-shadow: var(--tst-ts); font-variant-numeric: tabular-nums; overflow-wrap: break-word; }
+  #tsz-stats .tst-tile b.txt { font: 700 21px/1.35 Asul, Georgia, serif; } /* Cinzel nur für Zahlen – Text sähe in Cinzel wie Großbuchstaben aus */
+  #tsz-stats .tst-tile span { display: block; color: var(--tst-muted); font-size: 15px; }
+  #tsz-stats .tst-tile small { display: block; color: var(--tst-muted); font-size: 14px; }
+
+  /* Kasten mit Zeilen */
+  #tsz-stats .tst-box { border: 1px solid var(--tst-line); border-radius: 4px; background: var(--tst-panel); overflow: hidden; }
+  #tsz-stats .tst-row { display: grid; grid-template-columns: 34px 1fr auto; align-items: center; gap: 10px; padding: 8px 14px; border-top: 1px solid var(--tst-row); }
+  #tsz-stats .tst-row:first-child { border-top: none; }
+  #tsz-stats .tst-row.plain { grid-template-columns: 1fr auto; }
+  #tsz-stats .tst-row.ico { grid-template-columns: 36px 1fr auto; }
+  #tsz-stats .tst-place { font: 700 18px/1 Cinzel, Georgia, serif; color: var(--tst-muted); text-align: center; }
+  #tsz-stats .tst-row.p1 .tst-place { color: #ffd100; }
+  #tsz-stats .tst-row.p2 .tst-place { color: #d6d6d6; }
+  #tsz-stats .tst-row.p3 .tst-place { color: #d9883a; }
+  #tsz-stats .tst-row.p1 { background: linear-gradient(90deg, rgba(255, 209, 0, 0.08), transparent 60%); }
+  #tsz-stats .tst-name { font-weight: 700; text-shadow: var(--tst-ts); overflow-wrap: break-word; }
+  #tsz-stats .tst-sub { display: block; color: var(--tst-muted); font-size: 14px; }
+  #tsz-stats .tst-val { text-align: right; font-weight: 700; color: var(--tst-gold); white-space: nowrap; text-shadow: var(--tst-ts); font-variant-numeric: tabular-nums; }
+  #tsz-stats .tst-val small { display: block; color: var(--tst-muted); font-weight: 400; font-size: 14px; }
+  #tsz-stats .tst-pic { width: 34px; height: 34px; border-radius: 4px; border: 1px solid #000; background: #000; }
+  #tsz-stats .tst-empty { padding: 18px 14px; color: var(--tst-muted); text-align: center; }
+
+  /* Tabelle (Verläufe) */
+  #tsz-stats .tst-table { width: 100%; border-collapse: collapse; font-size: 15px; }
+  #tsz-stats .tst-table th { padding: 8px 14px; border-bottom: 1px solid var(--tst-line); color: var(--tst-muted); font-weight: 700; text-align: left; white-space: nowrap; }
+  #tsz-stats .tst-table td { padding: 8px 14px; border-top: 1px solid var(--tst-row); vertical-align: top; }
+  #tsz-stats .tst-table tr:first-child td { border-top: none; }
+  #tsz-stats .tst-table td.num, #tsz-stats .tst-table th.num { text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; }
+  #tsz-stats .tst-table td.when { color: var(--tst-muted); white-space: nowrap; }
+  #tsz-stats .tst-scroll { overflow-x: auto; }
+
+  /* Leisten (Ziele, Stufe) */
+  #tsz-stats .tst-goal { padding: 10px 14px; border-top: 1px solid var(--tst-row); }
+  #tsz-stats .tst-goal:first-child { border-top: none; }
+  #tsz-stats .tst-goal-head { display: flex; justify-content: space-between; gap: 10px; margin-bottom: 6px; }
+  #tsz-stats .tst-goal-head b { text-shadow: var(--tst-ts); }
+  #tsz-stats .tst-goal-head span { color: var(--tst-muted); font-variant-numeric: tabular-nums; white-space: nowrap; }
+  #tsz-stats .tst-goal.done .tst-goal-head span { color: var(--tst-gold); }
+  #tsz-stats .tst-bar { height: 10px; border: 1px solid #000; border-radius: 2px; background: #0b0906; box-shadow: 0 0 0 1px #3a3a3a; overflow: hidden; }
+  #tsz-stats .tst-bar i { display: block; height: 100%; background: linear-gradient(180deg, #b84bb0, #5c0057); }
+  #tsz-stats .tst-goal.done .tst-bar i { background: linear-gradient(180deg, #ffe27a, #8a6510); }
+
+  /* Allianz gegen Horde */
+  #tsz-stats .tst-split { padding: 12px 14px; }
+  #tsz-stats .tst-split-head { display: flex; justify-content: space-between; gap: 12px; margin-bottom: 7px; font-weight: 700; text-shadow: var(--tst-ts); }
+  #tsz-stats .tst-split-head .a { color: #5b95f0; }
+  #tsz-stats .tst-split-head .h { color: #e0485a; text-align: right; }
+  #tsz-stats .tst-split-head small { display: block; color: var(--tst-muted); font-weight: 400; font-size: 14px; }
+  #tsz-stats .tst-split-bar { display: flex; height: 12px; border: 1px solid #000; border-radius: 2px; background: #0b0906; overflow: hidden; }
+  #tsz-stats .tst-split-bar .a { background: linear-gradient(180deg, #4d86e0, #1d4b99); }
+  #tsz-stats .tst-split-bar .h { margin-left: auto; background: linear-gradient(180deg, #d0324a, #7a0f1b); }
+  #tsz-stats .side-a { color: #5b95f0; font-weight: 700; }
+  #tsz-stats .side-h { color: #e0485a; font-weight: 700; }
+
+  /* Streamer-Charakter */
+  #tsz-stats .tst-hero { display: grid; grid-template-columns: 1fr auto; gap: 6px 16px; align-items: end; padding: 12px 14px; }
+  #tsz-stats .tst-hero-name { font: 700 22px/1.2 Cinzel, Georgia, serif; color: var(--tst-gold); text-shadow: var(--tst-ts); }
+  #tsz-stats .tst-hero .tst-bar { grid-column: 1 / -1; }
+
+  /* Beute */
+  #tsz-stats .tst-loot { display: flex; flex-wrap: wrap; gap: 4px 14px; margin-top: 4px; font-size: 15px; }
+  #tsz-stats .tst-loot span { color: var(--tst-muted); }
+  #tsz-stats .won { color: #3fbf3f; font-weight: 700; }
+  #tsz-stats .lost { color: var(--tst-muted); font-weight: 700; }
+  #tsz-stats .q-poor { color: #9d9d9d; } #tsz-stats .q-common { color: #ffffff; } #tsz-stats .q-uncommon { color: #1eff00; }
+  #tsz-stats .q-rare { color: #0070dd; } #tsz-stats .q-epic { color: #a335ee; } #tsz-stats .q-legendary { color: #ff8000; }
+
+  #tsz-stats .tst-note { margin: 8px 0 0; color: var(--tst-muted); font-size: 14px; }
+  #tsz-stats .tst-foot { margin: 16px 0 0; color: var(--tst-muted); font-size: 14px; }
+
+  @media (max-width: 640px) {
+    #tsz-stats { padding: 14px; }
+    #tsz-stats .tst-h { font-size: 24px; }
+    #tsz-stats .tst-tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    #tsz-stats .tst-tile b { font-size: 20px; }
+    #tsz-stats .tst-row { padding: 8px 10px; gap: 8px; }
+    #tsz-stats .tst-table th, #tsz-stats .tst-table td { padding: 7px 10px; }
+    #tsz-stats .tst-cols, #tsz-stats .tst-cols3 { grid-template-columns: minmax(0, 1fr); }
+  }
+</style>
+<style>
+  /* ---------- Gestaltung im Homepage-Layout (WoW-Forever-Farben) ---------- */
+  #tsz-stats.tsw { width: 100vw; max-width: none; margin: 0 0 0 calc(50% - 50vw); padding: 0; border-radius: 0; background: var(--tsw-bg); font: 400 16px/1.6 Asul, Georgia, serif; }
+  #tsz-stats.tsw { --tst-panel: var(--tsw-panel); --tst-line: rgba(199, 156, 56, 0.22); }
+  #tsz-stats .tst-lead { margin: 1.5rem 0 0; color: #d9d0bb; }
+  #tsz-stats .tst-state { display: inline-block; padding: 1rem 1.5rem; border-radius: 999px; border-color: rgba(199, 156, 56, .45); font-size: 16px; }
+  #tsz-stats .tst-tabs { gap: .5rem; margin-bottom: clamp(2rem, 4vw, 3rem); padding-bottom: 1.5rem; border-bottom: 1px solid var(--tsw-line); }
+  #tsz-stats .tst-tab { padding: 8px 18px 8px 8px; border-radius: 999px; border-color: var(--tsw-line); }
+  #tsz-stats .tst-tab img { border-radius: 50%; }
+  #tsz-stats .tst-sec { margin-top: clamp(2.5rem, 5vw, 4rem); }
+  #tsz-stats .tst-sec-h { font-size: clamp(1.3rem, 2.4vw, 1.9rem); padding-bottom: .75rem; margin-bottom: 1.25rem; border-bottom: 1px solid var(--tsw-line); }
+  #tsz-stats .tst-cols, #tsz-stats .tst-cols3 { gap: 1.5rem; }
+  #tsz-stats .tst-gap { height: 1.5rem; }
+  #tsz-stats .tst-tiles { gap: 0; border-top: 1px solid var(--tsw-line); border-left: 1px solid var(--tsw-line); }
+  #tsz-stats .tst-tile { padding: 1.4rem 1.25rem 1.5rem; border: 0; border-right: 1px solid var(--tsw-line); border-bottom: 1px solid var(--tsw-line); border-radius: 0; background: transparent; }
+  #tsz-stats .tst-tile b { font-size: clamp(1.6rem, 3vw, 2.6rem); line-height: 1.1; }
+  #tsz-stats .tst-tile span { margin-top: .35rem; font-family: Cinzel, Georgia, serif; font-size: 11px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; }
+  #tsz-stats .tst-box { border-radius: 20px; border-color: var(--tsw-line); }
+  #tsz-stats .tst-row { padding: .8rem 1.25rem; border-top-color: rgba(199, 156, 56, .12); }
+  #tsz-stats .tst-label { font-family: Cinzel, Georgia, serif; font-size: 11px; letter-spacing: .18em; text-transform: uppercase; }
+  #tsz-stats .tst-foot { margin-top: 2rem; }
+  @media (max-width: 640px) { #tsz-stats .tst-tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+</style>
+
+<script>
+(function () {
+  const CONFIG = {
+    dataUrl: 'https://raw.githubusercontent.com/trutzstaehler/stream-daten/main/helden.json', // dieselbe Datei wie die Charakterseite – leer = Beispieldaten
+    charPage: '/charakter', // Namen, zu denen es einen Helden gibt, öffnen dort sein Charakterfenster
+    top: 10                 // so viele Plätze je Liste
+  };
+
+  // Reiter: Adresse (#stream …), Name, Symbol von Wowhead
+  const TABS = [
+    { id: 'stream', label: 'Letzter Stream', icon: 'inv_misc_pocketwatch_01' },
+    { id: 'kanal', label: 'Kanal', icon: 'inv_scroll_03' },
+    { id: 'spiele', label: 'Spiele', icon: 'inv_misc_dice_01' },
+    { id: 'bosse', label: 'Bosse', icon: 'inv_misc_head_dragon_01' },
+    { id: 'gluecksrad', label: 'Glücksrad', icon: 'inv_misc_gear_01' }
+  ];
+  const THANKS = {
+    follow: 'Letzter Follower', sub: 'Letztes Abo', gift: 'Zuletzt Abos verschenkt', cheer: 'Letzte Bits',
+    raid: 'Letzter Raid', topCheer: 'Die meisten Bits', topGift: 'Die meisten verschenkten Abos'
+  };
+  const CLASS_COLORS = { krieger: '#C69B6D', jaeger: '#AAD372', magier: '#3FC7EB', schurke: '#FFF468', priester: '#FFFFFF', hexenmeister: '#8788EE', paladin: '#F48CBA', druide: '#FF7C0A', schamane: '#2E8AE6' };
+  const COIN = [['kopf', 'Kopf'], ['zahl', 'Zahl'], ['seite', 'Kante']];
+
+  /* ---------- Beispieldaten (nur solange keine Datei eingetragen ist oder sie fehlt) ---------- */
+  const SAMPLE = {
+    updated: '2026-10-24T22:40:00Z', sample: true,
+    totals: { heroes: 5, bosses: 41, foes: 388 },
+    characters: {
+      anna: { name: 'Anna', cls: 'priester' }, grimmzahn: { name: 'Grimmzahn', cls: 'krieger' }, sternenwind: { name: 'Sternenwind', cls: 'druide' }
+    },
+    stream: {
+      live: false,
+      session: {
+        since: '2026-10-24T18:55:00Z', from: '2026-10-24T19:00:00Z', sec: 12900,
+        follows: 14, subs: 3, bits: 1200, raids: 1, raidViewers: 23, chatters: 58, messages: 1874, deaths: 2,
+        level: { from: 41, to: 42 },
+        topChat: [{ name: 'Anna', n: 212 }, { name: 'Grimmzahn', n: 167 }, { name: 'Mankrik', n: 98 }, { name: 'Sternenwind', n: 74 }, { name: 'Knackfix', n: 51 }],
+        topRep: [{ name: 'Anna', n: 340 }, { name: 'Grimmzahn', n: 285 }, { name: 'Sternenwind', n: 190 }, { name: 'Mankrik', n: 120 }, { name: 'Knackfix', n: 75 }],
+        thanks: [{ key: 'follow', name: 'Knackfix', info: '' }, { key: 'sub', name: 'Grimmzahn', info: '3 Monate' }, { key: 'cheer', name: 'Mankrik', info: '500 Bits' }, { key: 'raid', name: 'Magnus_Stahlbart', info: 'mit 23 Zuschauern' }, { key: 'topCheer', name: 'Mankrik', info: '700 Bits' }],
+        goals: [{ title: 'Follower-Ziel', cur: 14, target: 25, done: false }, { title: 'Sub-Ziel', cur: 3, target: 3, done: true }, { title: 'Nächstes Glücksrad', cur: 140, target: 200, done: false }],
+        draws: [{ at: '2026-10-24T21:12:00Z', wheel: 'Beweglichkeit', name: 'Anna', result: 'Kniebeugen' }, { at: '2026-10-24T20:05:00Z', wheel: 'Beweglichkeit', name: 'Community', result: 'Liegestütze' }]
+      },
+      channel: {
+        followers: 1284, subs: 37,
+        goals: [{ title: 'Follower', cur: 1284, target: 1500, done: false }],
+        counters: [{ name: 'Tode', total: 47, session: 2 }],
+        char: { name: 'Trutz Stahl', cls: 'Paladin', race: 'Mensch', level: 42, max: 60, sec: 412000,
+          levels: [{ level: 42, sec: 14400, at: '2026-10-24T21:30:00Z' }, { level: 41, sec: 12800, at: '2026-10-21T20:10:00Z' }, { level: 40, sec: 11900, at: '2026-10-19T19:45:00Z' }] }
+      },
+      games: {
+        bg: { a: 'Allianz', h: 'Horde', wins: { a: 18, h: 15 },
+          history: [{ side: 'h', score: '1.240 : 2.000', at: '2026-10-24T20:40:00Z' }, { side: 'a', score: '2.000 : 1.610', at: '2026-10-24T20:20:00Z' }, { side: 'a', score: '2.000 : 980', at: '2026-10-21T20:35:00Z' }] },
+        quiz: { top: [{ name: 'Anna', n: 64 }, { name: 'Sternenwind', n: 41 }, { name: 'Grimmzahn', n: 22 }], winners: [{ name: 'Anna', pts: 7, of: 10, at: '2026-10-24T20:50:00Z' }] },
+        riddle: { top: [{ name: 'Sternenwind', n: 19 }, { name: 'Knackfix', n: 12 }], winners: [{ name: 'Sternenwind', pts: 4, of: 6, at: '2026-10-21T20:50:00Z' }] },
+        fish: { top: [{ name: 'Grimmzahn', n: 88 }, { name: 'Anna', n: 23 }], winners: [{ name: 'Grimmzahn', pts: 9, of: 21, at: '2026-10-24T20:15:00Z' }] },
+        coin: { session: { kopf: 4, zahl: 3, seite: 0 }, lifetime: { kopf: 212, zahl: 205, seite: 2 }, last: [{ side: 'zahl', name: 'Anna' }, { side: 'kopf', name: 'Mankrik' }] },
+        build: { level: 7, messages: 9120, alliance: 5400, horde: 4980, helpers: [{ name: 'Anna', n: 212 }, { name: 'Grimmzahn', n: 167 }], legends: [{ name: 'Anna', n: 3104 }, { name: 'Grimmzahn', n: 2876 }, { name: 'Mankrik', n: 1450 }] },
+        loot: [{ date: '24.10.2026', name: 'Mankrik', prize: 'Spielschlüssel' }]
+      },
+      bosses: {
+        kills: [{ name: 'Edwin van Cleef', zone: 'Die Todesminen', icon: 'inv_misc_bandana_03', n: 9 }, { name: 'Erzmagier Arugal', zone: 'Burg Shadowfang', icon: 'spell_shadow_antishadow', n: 6 }],
+        history: [{ at: '2026-10-24T20:30:00Z', boss: 'Edwin van Cleef', won: true, players: 12, loot: [{ name: 'Grausamer Widerhaken', q: 'rare', user: 'Anna', roll: 94 }, { name: 'Cape der Bruderschaft', q: 'rare', user: 'Grimmzahn', roll: 71 }] },
+          { at: '2026-10-21T20:25:00Z', boss: 'Erzmagier Arugal', won: false, players: 8, loot: [] }]
+      },
+      wheel: { since: '2026-09-01T18:00:00Z', spins: 143, completed: 118, failed: 12, canceled: 4,
+        users: [{ name: 'Anna', n: 21 }, { name: 'Community', n: 19 }, { name: 'Grimmzahn', n: 14 }],
+        segments: [{ name: 'Beweglichkeit › BEWEGLICHKEIT', n: 37 }, { name: 'Beweglichkeit › KRAFT', n: 29 }],
+        sources: [{ name: 'Kanalpunkte', n: 81 }, { name: 'Ziel erreicht', n: 22 }, { name: 'Game Master', n: 17 }] }
+    }
+  };
+
+  /* ---------- Hilfen ---------- */
+  const root = document.getElementById('tsz-stats');
+  if (!root) return;
+  const $ = (sel) => root.querySelector(sel);
+  // Kein Emoji auf der Homepage
+  const clean = (s) => String(s ?? '').replace(/[\p{Extended_Pictographic}\u{1F1E6}-\u{1F1FF}\uFE0F\u200D]/gu, '').replace(/\s{2,}/g, ' ').trim();
+  // Texte des Glücksrads in GROSSBUCHSTABEN normal schreiben (keine Großbuchstaben-Schreibweise auf der Homepage)
+  const nice = (s) => clean(s).split(' › ').map(p => (/\p{Lu}{3,}/u.test(p) && p === p.toUpperCase()
+    ? p.toLowerCase().replace(/(^|[\s(\-/])(\p{L})/gu, (m, a, b) => a + b.toUpperCase()) : p)).join(' › ');
+  const esc = (s) => clean(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  const num = (n) => Number(n || 0).toLocaleString('de-DE');
+  const icon = (name) => `https://wow.zamimg.com/images/wow/icons/large/${encodeURIComponent(name || 'inv_misc_questionmark')}.jpg`;
+  const date = (iso) => (iso ? new Date(iso).toLocaleDateString('de-DE', { day: '2-digit', month: '2-digit', year: 'numeric' }) : '');
+  const time = (iso) => (iso ? new Date(iso).toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' }) : '');
+  const pct = (a, b) => (b > 0 ? Math.round(a / b * 100) : 0);
+  function dur(sec) {
+    const m = Math.round((sec || 0) / 60);
+    if (m < 60) return `${m} Min.`;
+    const h = Math.floor(m / 60);
+    if (h < 48) return m % 60 ? `${h} Std. ${m % 60} Min.` : `${h} Std.`;
+    return `${num(Math.floor(h / 24))} Tage ${h % 24} Std.`;
+  }
+  const ui = { tab: 'stream' };
+  let data = SAMPLE;
+  let heroesByName = {};
+
+  /** Name → Link zum Charakterfenster, wenn es einen Helden mit diesem Namen gibt */
+  function who(name) {
+    const key = String(name || '').toLowerCase();
+    const h = heroesByName[key];
+    if (!h) return `<span class="tst-name">${esc(name)}</span>`;
+    return `<a class="tst-name" href="${esc(CONFIG.charPage)}#${encodeURIComponent(h[0])}" style="color:${CLASS_COLORS[h[1].cls] || '#f3eee2'}">${esc(name)}</a>`;
+  }
+
+  /* ---------- Bausteine ---------- */
+  const sec = (title, body, { ic = '', note = '' } = {}) =>
+    `<section class="tst-sec"><h3 class="tst-sec-h">${ic ? `<img src="${icon(ic)}" alt="" loading="lazy">` : ''}${esc(title)}${note ? `<small>${esc(note)}</small>` : ''}</h3>${body}</section>`;
+  const tiles = (list) => `<div class="tst-tiles">${list.filter(Boolean).map(([v, l, s]) => `<div class="tst-tile"><b${/^[\d.\s:,%+→-]+$/.test(String(v)) ? '' : ' class="txt"'}>${esc(v)}</b><span>${esc(l)}</span>${s ? `<small>${esc(s)}</small>` : ''}</div>`).join('')}</div>`;
+  const plural = (one, many) => (n) => (n === 1 ? one : many);
+  const empty = (text) => `<div class="tst-box"><div class="tst-empty">${esc(text)}</div></div>`;
+
+  /** Rangliste: [{ name, n }] mit Platz, Name und Wert */
+  function rank(list, unit, emptyText = 'Noch niemand.') {
+    const rows = (list || []).slice(0, CONFIG.top);
+    if (!rows.length) return empty(emptyText);
+    return `<div class="tst-box">${rows.map((x, i) => `<div class="tst-row${i < 3 ? ' p' + (i + 1) : ''}">
+      <span class="tst-place">${i + 1}</span>${who(x.name)}<span class="tst-val">${num(x.n)}${unit ? ` <small>${esc(typeof unit === 'function' ? unit(x.n) : unit)}</small>` : ''}</span></div>`).join('')}</div>`;
+  }
+
+  function goals(list) {
+    return `<div class="tst-box">${list.map(g => {
+      const p = Math.max(0, Math.min(100, pct(g.cur, g.target)));
+      return `<div class="tst-goal${g.done ? ' done' : ''}"><div class="tst-goal-head"><b>${esc(g.title)}</b><span>${num(g.cur)} / ${num(g.target)}${g.done ? ' · erreicht' : ''}</span></div>
+        <div class="tst-bar"><i style="width:${p}%"></i></div></div>`;
+    }).join('')}</div>`;
+  }
+
+  /** Allianz gegen Horde: unit = [Einzahl, Mehrzahl] */
+  function split(aName, a, hName, h, unit) {
+    const total = a + h;
+    const u = (n) => unit[n === 1 ? 0 : 1];
+    const pa = total ? a / total * 100 : 50;
+    return `<div class="tst-box tst-split"><div class="tst-split-head">
+      <span class="a">${esc(aName)}<small>${num(a)} ${esc(u(a))} · ${total ? Math.round(pa) : 0} %</small></span>
+      <span class="h">${esc(hName)}<small>${num(h)} ${esc(u(h))} · ${total ? 100 - Math.round(pa) : 0} %</small></span></div>
+      <div class="tst-split-bar"><i class="a" style="width:${pa}%"></i><i class="h" style="width:${100 - pa}%"></i></div></div>`;
+  }
+
+  function table(head, rows, emptyText) {
+    if (!rows.length) return empty(emptyText);
+    return `<div class="tst-box tst-scroll"><table class="tst-table"><thead><tr>${head.map(([t, c]) => `<th${c ? ` class="${c}"` : ''}>${esc(t)}</th>`).join('')}</tr></thead>
+      <tbody>${rows.map(r => `<tr>${r.map(([html, c]) => `<td${c ? ` class="${c}"` : ''}>${html}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`;
+  }
+
+  /* ---------- Reiter: Letzter Stream ---------- */
+  function renderStream(st) {
+    const s = st.session;
+    if (!s || (!s.sec && !s.messages && !s.follows && !s.subs)) return empty('Noch kein Stream erfasst – nach dem nächsten Stream stehen hier die Zahlen.');
+    const lvl = s.level && s.level.to > s.level.from ? [`${s.level.from} → ${s.level.to}`, 'Stufen von ' + ((st.channel && st.channel.char && st.channel.char.name) || 'Trutz')] : null;
+    let out = tiles([
+      [s.sec ? dur(s.sec) : '–', 'Dauer', s.from ? `ab ${time(s.from)} Uhr` : ''],
+      [num(s.follows), 'Neue Follower'],
+      [num(s.subs), 'Neue Abos'],
+      [num(s.bits), 'Bits'],
+      [num(s.raids), s.raids === 1 ? 'Raid' : 'Raids', s.raidViewers ? `mit ${num(s.raidViewers)} Gästen` : ''],
+      [num(s.chatters), 'im Chat dabei', s.messages ? `${num(s.messages)} Nachrichten` : ''],
+      s.deaths != null ? [num(s.deaths), s.deaths === 1 ? 'Tod' : 'Tode'] : null,
+      lvl
+    ]);
+    out += `<div class="tst-gap"></div><div class="tst-cols">
+      ${sec('Am aktivsten im Chat', rank(s.topChat, plural('Nachricht', 'Nachrichten'), 'Noch keine Nachrichten.'))}
+      ${sec('Meister des Rufs', rank(s.topRep, 'Ruf', 'Noch kein Ruf verdient.'))}
+    </div>`;
+    if ((s.thanks || []).length) {
+      out += sec('Danke an', `<div class="tst-box">${s.thanks.map(t => `<div class="tst-row plain"><span>${who(t.name)}<span class="tst-sub">${esc(THANKS[t.key] || '')}</span></span><span class="tst-val">${esc(t.info)}</span></div>`).join('')}</div>`);
+    }
+    if ((s.goals || []).length) out += sec('Ziele', goals(s.goals));
+    if ((s.draws || []).length) {
+      out += sec('Glücksrad in diesem Stream', table([['Uhrzeit'], ['Wer'], ['Ergebnis']],
+        s.draws.map(d => [[esc(time(d.at)), 'when'], [who(d.name)], [`${esc(nice(d.result))}<span class="tst-sub">${esc(nice(d.wheel))}</span>`]]), ''), { note: `${num(s.draws.length)} ${s.draws.length === 1 ? 'Dreh' : 'Drehs'}` });
+    }
+    return out;
+  }
+
+  /* ---------- Reiter: Kanal ---------- */
+  function renderChannel(st) {
+    const c = st.channel || {};
+    const t = data.totals || {};
+    let out = tiles([
+      c.followers != null ? [num(c.followers), 'Follower'] : null,
+      c.subs != null ? [num(c.subs), 'Abonnenten'] : null,
+      t.heroes != null ? [num(t.heroes), 'Helden aus dem Chat'] : null,
+      t.bosses != null ? [num(t.bosses), 'Bosse besiegt'] : null,
+      t.foes != null ? [num(t.foes), 'Gegner besiegt'] : null,
+      ...(c.counters || []).map(x => [num(x.total), `${x.name} gesamt`, `${num(x.session)} im letzten Stream`])
+    ]);
+    if ((c.goals || []).length) out += sec('Meilensteine', goals(c.goals));
+    const ch = c.char;
+    if (ch) {
+      const p = ch.max ? pct(ch.level, ch.max) : 0;
+      out += sec(`Der Held des Streams`, `<div class="tst-box"><div class="tst-hero">
+        <div><div class="tst-hero-name">${esc(ch.name)}</div><span class="tst-sub">${esc([`Stufe ${ch.level}`, ch.race, ch.cls].filter(Boolean).join(' '))}</span></div>
+        <div class="tst-val">${ch.sec ? dur(ch.sec) : '–'}<small>Spielzeit im Stream</small></div>
+        <div class="tst-bar"><i style="width:${p}%"></i></div></div></div>
+        ${(ch.levels || []).length ? `<div class="tst-gap"></div>${table([['Stufe'], ['Erreicht am'], ['Dauer auf der Stufe davor', 'num']],
+          ch.levels.map(l => [[`Stufe ${num(l.level)}`], [esc(date(l.at)), 'when'], [l.sec ? esc(dur(l.sec)) : '–', 'num']]), '')}` : ''}`);
+    }
+    if (out === tiles([])) return empty('Noch keine Zahlen vom Kanal.');
+    return out;
+  }
+
+  /* ---------- Reiter: Spiele ---------- */
+  function gameCard(title, ic, g, unit) {
+    const w = (g.winners || []).slice(0, 3);
+    return sec(title, `${w.length ? `<p class="tst-label">Letzte Rundensieger</p><div class="tst-box">${w.map(x => `<div class="tst-row plain"><span>${who(x.name)}<span class="tst-sub">${esc(date(x.at))}</span></span><span class="tst-val">${num(x.pts)}${x.of ? ` <small>von ${num(x.of)}</small>` : ''}</span></div>`).join('')}</div><div class="tst-gap"></div>` : ''}
+      <p class="tst-label">Ewige Bestenliste</p>${rank(g.top, unit, 'Noch niemand.')}`, { ic });
+  }
+
+  function renderGames(st) {
+    const g = st.games || {};
+    let out = '';
+    if (g.bg) {
+      const b = g.bg;
+      out += sec('Schlacht um die Darkspear-Inseln', `${split(b.a, b.wins.a, b.h, b.wins.h, ['Sieg', 'Siege'])}<div class="tst-gap"></div>
+        <p class="tst-label">Hallen des Ruhms: die letzten Schlachten der Pause</p>${table([['Datum'], ['Sieger'], ['Punkte', 'num']], (b.history || []).map(x => [[esc(`${date(x.at)} ${time(x.at)}`.trim()) || '–', 'when'],
+          [`<span class="side-${x.side === 'a' ? 'a' : 'h'}">${esc(x.side === 'a' ? b.a : b.h)}</span>`], [esc(x.score), 'num']]), 'Noch keine Schlacht geschlagen.')}`, { ic: 'inv_bannerpvp_02' });
+    }
+    if (g.quiz || g.riddle || g.fish) {
+      out += `<div class="tst-gap"></div><div class="tst-cols3">
+        ${g.quiz ? gameCard('Azeroth-Quiz', 'inv_misc_book_09', g.quiz, 'richtig') : ''}
+        ${g.riddle ? gameCard('Azeroth-Rätsel', 'inv_misc_note_01', g.riddle, 'gelöst') : ''}
+        ${g.fish ? gameCard('Angeln', 'trade_fishing', g.fish, plural('Fisch', 'Fische')) : ''}
+      </div>`;
+    }
+    if (g.coin) {
+      const L = g.coin.lifetime || {};
+      const S = g.coin.session || {};
+      const all = COIN.reduce((n, [k]) => n + (L[k] || 0), 0);
+      out += sec('Münzwurf', `${tiles(COIN.map(([k, l]) => [num(L[k]), l, `${pct(L[k] || 0, all)} % · ${num(S[k])} im letzten Stream`]))}
+        ${(g.coin.last || []).length ? `<p class="tst-note">Zuletzt: ${g.coin.last.map(x => `${esc((COIN.find(c => c[0] === x.side) || [0, x.side])[1])} (${esc(x.name)})`).join(' · ')}</p>` : ''}`, { ic: 'inv_misc_coin_01', note: `${num(all)} Würfe` });
+    }
+    if (g.build) {
+      const b = g.build;
+      out += sec('Aufbauspiel', `${tiles([[`Stufe ${num(b.level)}`, 'Ausbau'], [num(b.messages), 'Nachrichten gezählt']])}<div class="tst-gap"></div>
+        ${split('Allianz', b.alliance || 0, 'Horde', b.horde || 0, ['Punkt', 'Punkte'])}<div class="tst-gap"></div>
+        <div class="tst-cols">${sec('Top Helfer', rank(b.helpers, plural('Nachricht', 'Nachrichten')), { note: 'letzter Stream' })}${sec('Legenden', rank(b.legends, plural('Nachricht', 'Nachrichten')), { note: 'gesamt' })}</div>`, { ic: 'inv_misc_gear_01' });
+    }
+    if ((g.loot || []).length) {
+      out += sec('Beute des Tages', table([['Datum'], ['Gewinner'], ['Preis']], g.loot.map(x => [[esc(x.date), 'when'], [who(x.name)], [esc(x.prize)]]), ''), { ic: 'inv_misc_bag_10' });
+    }
+    return out || empty('Noch keine Spiele gespielt.');
+  }
+
+  /* ---------- Reiter: Bosse ---------- */
+  function renderBosses(st) {
+    const b = st.bosses;
+    if (!b || (!(b.kills || []).length && !(b.history || []).length)) return empty('Noch kein Boss besiegt – die Bosskämpfe laufen in der Pause.');
+    const total = (b.kills || []).reduce((n, k) => n + k.n, 0);
+    let out = tiles([[num(total), 'Bosse besiegt'], [num((b.kills || []).length), 'verschiedene Bosse']]);
+    out += `<div class="tst-gap"></div><div class="tst-cols">`;
+    out += sec('Besiegte Bosse', (b.kills || []).length ? `<div class="tst-box">${b.kills.slice(0, 15).map(k => `<div class="tst-row ico"><img class="tst-pic" src="${icon(k.icon)}" alt="" loading="lazy"><span><span class="tst-name">${esc(k.name)}</span><span class="tst-sub">${esc(k.zone)}</span></span><span class="tst-val">${num(k.n)}×</span></div>`).join('')}</div>` : empty('Noch keiner.'));
+    out += sec('Letzte Kämpfe', (b.history || []).length ? `<div class="tst-box">${b.history.map(h => `<div class="tst-row plain"><span><span class="tst-name">${esc(h.boss)}</span>
+        <span class="tst-sub">${esc(date(h.at))} · ${num(h.players)} Mitstreiter</span>
+        ${(h.loot || []).length ? `<span class="tst-loot">${h.loot.map(x => `<span><b class="q-${esc(x.q)}">[${esc(x.name)}]</b> ${esc(x.user)}${x.roll ? ` (${num(x.roll)})` : ''}</span>`).join('')}</span>` : ''}</span>
+        <span class="${h.won ? 'won' : 'lost'}">${h.won ? 'Sieg' : 'Niederlage'}</span></div>`).join('')}</div>` : empty('Noch kein Kampf.'));
+    return out + '</div>';
+  }
+
+  /* ---------- Reiter: Glücksrad ---------- */
+  function renderWheel(st) {
+    const w = st.wheel;
+    if (!w || !w.spins) return empty('Das Glücksrad hat sich noch nicht gedreht.');
+    return `${tiles([[num(w.spins), 'Drehs'], [num(w.completed), 'Quests erledigt'], [num(w.failed), 'fehlgeschlagen'], [num(w.canceled), 'unerledigt abgegeben']])}
+      <p class="tst-note">Gezählt seit ${esc(date(w.since))}</p><div class="tst-gap"></div>
+      <div class="tst-cols3">${sec('Wer am meisten dreht', rank(w.users, plural('Dreh', 'Drehs')))}${sec('Häufigste Ergebnisse', rank((w.segments || []).map(x => ({ name: nice(x.name), n: x.n })), '×'))}${sec('Ausgelöst durch', rank(w.sources, '×'))}</div>`;
+  }
+
+  /* ---------- Anzeige ---------- */
+  function renderState() {
+    const st = data.stream || {};
+    const s = st.session || {};
+    const box = $('.tst-state');
+    box.classList.toggle('live', !!st.live);
+    if (st.live) box.innerHTML = `<span class="tst-dot" aria-hidden="true"></span><b>Gerade live</b>${s.from ? ` · seit ${esc(time(s.from))} Uhr` : ''}`;
+    else if (s.from || s.since) box.innerHTML = `Letzter Stream: <b>${esc(date(s.from || s.since))}</b>${s.sec ? ` · ${esc(dur(s.sec))}` : ''}`;
+    else box.textContent = 'Noch kein Stream erfasst';
+  }
+
+  function renderTabs() {
+    const live = data.stream && data.stream.live;
+    $('.tst-tabs').innerHTML = TABS.map(t => `<button type="button" role="tab" class="tst-tab${t.id === ui.tab ? ' on' : ''}" aria-selected="${t.id === ui.tab}" data-tab="${t.id}"><img src="${icon(t.icon)}" alt="" loading="lazy">${esc(t.id === 'stream' && live ? 'Dieser Stream' : t.label)}</button>`).join('');
+  }
+
+  function renderBody() {
+    const st = data.stream || {};
+    const fn = { stream: renderStream, kanal: renderChannel, spiele: renderGames, bosse: renderBosses, gluecksrad: renderWheel }[ui.tab] || renderStream;
+    $('.tst-body').innerHTML = data.stream ? fn(st) : empty('Noch keine Statistiken – sie kommen mit der nächsten Version der Stream-Zentrale.');
+  }
+
+  function renderFoot() {
+    $('.tst-foot').textContent = `${data.updated ? 'Stand ' + new Date(data.updated).toLocaleString('de-DE', { dateStyle: 'short', timeStyle: 'short' }) : ''}${data.sample ? ' · Beispieldaten' : ''} · Während des Streams kommen neue Zahlen etwa alle 30 Minuten, nach dem Stream sofort.`;
+  }
+
+  function render() {
+    heroesByName = {};
+    Object.entries(data.characters || {}).forEach(([login, c]) => { if (c && c.name) heroesByName[String(c.name).toLowerCase()] = [login, c]; });
+    renderState(); renderTabs(); renderBody(); renderFoot();
+  }
+
+  function fromHash() {
+    const h = decodeURIComponent(location.hash.replace(/^#/, ''));
+    if (TABS.some(t => t.id === h)) ui.tab = h;
+  }
+
+  root.addEventListener('click', (e) => {
+    const t = e.target.closest('[data-tab]');
+    if (!t) return;
+    ui.tab = t.dataset.tab;
+    if (history.replaceState) history.replaceState(null, '', '#' + ui.tab);
+    renderTabs(); renderBody();
+  });
+  window.addEventListener('hashchange', () => { fromHash(); renderTabs(); renderBody(); });
+
+  fromHash();
+  render();
+  if (!CONFIG.dataUrl) return;
+  fetch(CONFIG.dataUrl + (CONFIG.dataUrl.includes('?') ? '&' : '?') + 't=' + Math.floor(Date.now() / 60000), { cache: 'no-store' })
+    .then(r => (r.status === 404 ? null : r.ok ? r.json() : Promise.reject(new Error('HTTP ' + r.status))))
+    .then(d => {
+      if (d && d.characters) { data = d; render(); } else $('.tst-foot').textContent = 'Noch keine Daten von der Stream-Zentrale. (Bis dahin: Beispieldaten)';
+    })
+    .catch(() => { $('.tst-foot').textContent = 'Die Statistiken konnten gerade nicht geladen werden – bitte später noch einmal versuchen. (Bis dahin: Beispieldaten)'; });
+})();
+</script>

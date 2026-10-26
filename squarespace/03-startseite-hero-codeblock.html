@@ -1,0 +1,116 @@
+<!-- ==================================================================
+     TRUTZ STÄHLER · HERO STARTSEITE
+     Einfügen in: Startseite → erste Sektion → Code-Block (volle Breite)
+=================================================================== -->
+<section class="ts ts-hero ts-bleed" aria-labelledby="ts-hero-title">
+  <div class="ts-hero__bg" aria-hidden="true">
+    <div class="ts-grid-lines"></div>
+    <canvas id="ts-hero-canvas"></canvas>
+    <div class="ts-orb ts-orb--green" data-ts-parallax="0.04"></div>
+    <div class="ts-orb ts-orb--cyan" data-ts-parallax="-0.06"></div>
+    <div class="ts-hero__fade"></div>
+  </div>
+
+  <div class="ts-container ts-hero__inner">
+    <div class="ts-hero__meta ts-reveal" style="transition-delay:.1s">
+      <p class="ts-label ts-muted"><span class="ts-hero__meta-line"></span>Papa · Autor · Läufer · Streamer</p>
+      <p class="ts-label ts-muted ts-hero__index">[ Hamburg — Startseite ]</p>
+    </div>
+
+    <div class="ts-hero__grid">
+      <div class="ts-hero__title">
+        <h1 id="ts-hero-title" class="ts-headline">
+          <span class="ts-line"><span style="transition-delay:.15s">Echt sein</span></span>
+          <span class="ts-line ts-line--indent"><span style="transition-delay:.27s">statt <span class="ts-strike ts-outline">perfekt</span></span></span>
+          <span class="ts-line"><span class="ts-gradient-text" style="transition-delay:.39s">wirken.</span></span>
+        </h1>
+      </div>
+
+      <div class="ts-hero__intro">
+        <p class="ts-hero__lead ts-reveal" style="transition-delay:.7s">Schön, dass du da bist! Ich bin <strong>Trutz</strong> – Papa aus Hamburg, leidenschaftlicher Läufer und der kreative Kopf hinter dem <strong>Kreativhafen</strong>. Hier geht es um Kinderbücher mit Herz, Laufkilometer an der Alster und um <strong>World of Warcraft</strong> live auf Twitch.</p>
+        <div class="ts-hero__ctas ts-reveal" style="transition-delay:.85s">
+          <a href="#ts-projekte" class="ts-btn ts-btn--primary ts-magnetic">
+            <span class="ts-btn__inner"><span class="ts-roll"><span data-text="Projekte ansehen">Projekte ansehen</span></span>
+              <svg class="ts-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </span>
+          </a>
+          <a href="/kontakt" class="ts-btn ts-btn--ghost ts-magnetic">
+            <span class="ts-btn__inner"><span class="ts-roll"><span data-text="Kontakt aufnehmen">Kontakt aufnehmen</span></span></span>
+          </a>
+        </div>
+      </div>
+
+      <div class="ts-hero__worlds" role="group" aria-label="Meine drei Welten">
+        <p class="ts-label ts-muted ts-hero__worlds-head ts-reveal" style="transition-delay:.55s"><span>Drei Welten</span><span>03</span></p>
+        <ul class="ts-worlds">
+          <li class="ts-reveal" style="transition-delay:.65s">
+            <a href="/kreativhafen" class="ts-card ts-card--books ts-glass ts-tilt" style="--glow:rgba(46,140,108,.75)">
+              <div class="ts-card__top">
+                <span class="ts-card__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 19.5V5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2Zm0 0A2 2 0 0 0 6 22h13"/><path d="M9 7h6"/></svg></span>
+                <span class="ts-card__go"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+              </div>
+              <p class="ts-label ts-card__kicker">02 — Bücher</p>
+              <h2 class="ts-card__title">Kreativhafen</h2>
+              <p class="ts-card__text">Kinderbücher, Ausmalspaß und Lernhelfer.</p>
+              <span class="ts-label ts-card__cta">→ Bücher kaufen</span>
+            </a>
+          </li>
+          <li class="ts-reveal" style="transition-delay:.75s">
+            <a href="/running" class="ts-card ts-card--run ts-glass ts-tilt" style="--glow:rgba(34,211,238,.6)">
+              <div class="ts-card__top">
+                <span class="ts-card__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="14" cy="4" r="2"/><path d="m6 21 3-6 3 2v4M8.5 10.5 11 7l4 2 2 4h3M11 7l-2 7"/></svg></span>
+                <span class="ts-card__go"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+              </div>
+              <p class="ts-label ts-card__kicker">03 — Lauf-Blog</p>
+              <h2 class="ts-card__title">Running</h2>
+              <p class="ts-card__text">Alster, Niendorfer Gehege, Marathon.</p>
+              <span class="ts-label ts-card__cta">→ Laufgeschichten</span>
+            </a>
+          </li>
+          <li class="ts-reveal" style="transition-delay:.85s">
+            <a href="https://www.twitch.tv/einfach_trutz" target="_blank" rel="noopener" class="ts-card ts-card--twitch ts-glass ts-tilt" style="--glow:rgba(145,70,255,.6)">
+              <div class="ts-card__top">
+                <span class="ts-card__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 3h17v11l-5 5h-4l-3 3H7v-3H4V3Z"/><path d="M11 8v4M16 8v4"/></svg></span>
+                <span class="ts-card__go"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
+              </div>
+              <p class="ts-label ts-card__kicker">04 — World of Warcraft</p>
+              <h2 class="ts-card__title">Twitch</h2>
+              <p class="ts-card__text">World of Warcraft, live mit der Stahlgarde.</p>
+              <span class="ts-label ts-card__cta">→ Streams schauen</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="ts-hero__bottom ts-reveal" style="transition-delay:1s">
+      <a href="#ts-projekte" class="ts-scroll-cue" aria-label="Weiter scrollen">
+        <span class="ts-scroll-cue__bar"></span>
+        <span class="ts-label ts-muted">Scrollen</span>
+      </a>
+      <p class="ts-label ts-muted ts-hero__claim">Bücher · Kilometer · Raids<br>Made in Hamburg</p>
+    </div>
+  </div>
+
+  <div class="ts-marquee" aria-hidden="true">
+    <div class="ts-marquee__track">
+      <div class="ts-marquee__group">
+        <span>Echt sein</span><span class="ts-star-cyan">✦</span>
+        <span class="ts-outline">Kreativhafen</span><span class="ts-star-green">✦</span>
+        <span>Laufen</span><span class="ts-star-cyan">✦</span>
+        <span class="ts-outline">World of Warcraft</span><span class="ts-star-green">✦</span>
+        <span>Hamburg</span><span class="ts-star-cyan">✦</span>
+        <span class="ts-outline">Live auf Twitch</span><span class="ts-star-green">✦</span>
+      </div>
+      <div class="ts-marquee__group">
+        <span>Echt sein</span><span class="ts-star-cyan">✦</span>
+        <span class="ts-outline">Kreativhafen</span><span class="ts-star-green">✦</span>
+        <span>Laufen</span><span class="ts-star-cyan">✦</span>
+        <span class="ts-outline">World of Warcraft</span><span class="ts-star-green">✦</span>
+        <span>Hamburg</span><span class="ts-star-cyan">✦</span>
+        <span class="ts-outline">Live auf Twitch</span><span class="ts-star-green">✦</span>
+      </div>
+    </div>
+  </div>
+  <span id="ts-projekte"></span>
+</section>

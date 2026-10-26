@@ -108,7 +108,7 @@ impressum = legal_page('''<!-- =================================================
   ('anbieter','Angaben gemäß § 5 DDG', f'''        <div class="ts-legal-card ts-glass">
           {ADDR}
         </div>'''),
-  ('kontakt','Kontakt', f'''        <p>E-Mail: {MAIL}<br>Kontaktformular: <a href="/kontakt">trutzstaehler.de/kontakt</a></p>'''),
+  ('kontakt','Kontakt', f'''        <p>E-Mail: {MAIL}</p>'''),
   ('verantwortlich','Verantwortlich für den Inhalt', f'''        <p>Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV:</p>
         {ADDR}'''),
   ('bilder','Bildnachweise', '''        <ul>
@@ -158,7 +158,7 @@ datenschutz = legal_page('''<!-- ===============================================
         <p>Diese Daten sind technisch notwendig, um die Website auszuliefern und ihre Sicherheit zu gewährleisten (Art. 6 Abs. 1 lit. f DSGVO). Eine Zusammenführung mit anderen Datenquellen nehme ich nicht vor.</p>'''),
   ('cookies','Cookies &amp; Statistik', '''        <p>Squarespace setzt technisch notwendige Cookies, damit die Website funktioniert und sicher ausgeliefert wird (§ 25 Abs. 2 TDDDG, Art. 6 Abs. 1 lit. f DSGVO).</p>
         <p>Für die Besucherstatistik nutze ich die Analysefunktion von Squarespace. Statistik- oder Analyse-Cookies werden nur gesetzt, wenn du im Cookie-Banner zustimmst (§ 25 Abs. 1 TDDDG, Art. 6 Abs. 1 lit. a DSGVO). Deine Einwilligung kannst du jederzeit mit Wirkung für die Zukunft widerrufen, indem du deine Cookie-Einstellungen änderst oder die Cookies in deinem Browser löschst.</p>'''),
-  ('kontaktformular','Kontaktformular &amp; E-Mail', '''        <p>Wenn du mir über das Kontaktformular oder per E-Mail schreibst, verarbeite ich deine Angaben (Name, E-Mail-Adresse, Betreff, Nachricht), um deine Anfrage zu beantworten und für mögliche Anschlussfragen (Art. 6 Abs. 1 lit. b und f DSGVO). Die Formulardaten werden über Squarespace übermittelt und gespeichert.</p>
+  ('kontakt','Kontakt per E-Mail &amp; Social Media', '''        <p>Wenn du mir per E-Mail oder über Instagram oder LinkedIn schreibst, verarbeite ich deine Angaben (zum Beispiel Name, E-Mail-Adresse bzw. Profilname und deine Nachricht), um deine Anfrage zu beantworten und für mögliche Anschlussfragen (Art. 6 Abs. 1 lit. b und f DSGVO). Für Nachrichten über Instagram und LinkedIn gelten zusätzlich die Datenschutzbestimmungen des jeweiligen Netzwerks.</p>
         <p>Ich gebe diese Daten nicht ohne deine Einwilligung weiter und lösche sie, sobald deine Anfrage abschließend bearbeitet ist und keine gesetzlichen Aufbewahrungspflichten entgegenstehen.</p>'''),
   ('schriften','Schriftarten (Google Fonts)', '''        <p>Für eine einheitliche Darstellung nutzt diese Website Schriftarten von <strong>Google Fonts</strong> (Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland). Beim Aufruf einer Seite lädt dein Browser die Schriften von Servern von Google; dabei wird deine IP-Adresse an Google übermittelt, auch in die USA (EU-US Data Privacy Framework).</p>
         <p>Rechtsgrundlage ist mein berechtigtes Interesse an einer einheitlichen und ansprechenden Darstellung (Art. 6 Abs. 1 lit. f DSGVO). Mehr dazu: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Datenschutzerklärung von Google</a>.</p>'''),
@@ -196,14 +196,13 @@ open(OUT+'20-datenschutz-codeblock.html','w').write(datenschutz)
 # ------------------------------------------------------------------ KONTAKT
 kontakt = '''<!-- ==================================================================
      TRUTZ STÄHLER · SEITE „KONTAKT“
-     Einfügen in: Seite /kontakt → OBERSTE Sektion → Code-Block (volle Breite)
-     Dein Squarespace-Formular bleibt in einer eigenen Sektion direkt darunter –
-     dieser Block gestaltet es automatisch im dunklen Design.
+     Einfügen in: Seite /kontakt → einzige Sektion → Code-Block (volle Breite)
+     Alle anderen Blöcke und Sektionen dieser Seite können gelöscht werden.
 =================================================================== -->
 <style>
   .ts-contact { position: relative; isolation: isolate; overflow: hidden; overflow: clip; background: var(--ts-bg); }
   .ts-contact__orb { position: absolute; z-index: -1; left: -12%; top: 10%; width: 52vw; height: 52vw; max-width: 800px; max-height: 800px; border-radius: 50%; filter: blur(110px); background: radial-gradient(circle, rgba(46, 140, 108, .32), transparent 66%); pointer-events: none; }
-  .ts-contact__intro { padding-top: clamp(8.5rem, 14vw, 12rem); padding-bottom: clamp(2.5rem, 5vw, 4rem); }
+  .ts-contact__intro { padding-top: clamp(8.5rem, 14vw, 12rem); padding-bottom: clamp(6rem, 11vw, 10rem); }
   .ts-contact__meta { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem; padding-bottom: 1.25rem; border-bottom: 1px solid var(--ts-line); }
   .ts-contact .ts-line { padding-bottom: .16em; margin-bottom: -.16em; }
   .ts-contact__grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 3rem; padding-top: clamp(2.5rem, 5vw, 4rem); }
@@ -223,39 +222,14 @@ kontakt = '''<!-- ==============================================================
   .ts .ts-way__value { margin-top: .15rem; font-size: 16px; color: var(--ts-text); overflow-wrap: anywhere; }
   .ts-way__go { margin-left: auto; color: var(--ts-muted); transition: color .3s, transform .5s var(--ts-ease-out); }
   .ts-way:hover .ts-way__go { color: var(--ts-mint); transform: translate(2px, -2px); }
-  .ts-contact__formhead { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; margin-top: clamp(3.5rem, 7vw, 5.5rem); padding-bottom: 1.25rem; border-bottom: 1px solid var(--ts-line); }
 
   @media (min-width: 1024px) {
     .ts-contact__grid { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); column-gap: clamp(3rem, 6vw, 6rem); align-items: start; }
   }
 
-  /* ---------- Squarespace-Formular darunter im dunklen Design ---------- */
-  body:has(.ts-contact) #page .page-section, body:has(.ts-contact) #page .page-section .section-background { background-color: var(--ts-bg) !important; }
-  body:has(.ts-contact) #page .page-section:not(:has(.ts-bleed)) { padding-top: 0 !important; padding-bottom: clamp(6rem, 11vw, 10rem) !important; }
-  body:has(.ts-contact) .sqs-block-form { color: var(--ts-text); font-family: var(--ts-font-body); }
-  body:has(.ts-contact) .sqs-block-form fieldset { border: 0 !important; margin: 0 0 1rem !important; padding: 0 !important; }
-  body:has(.ts-contact) .sqs-block-form legend { padding: 0 !important; margin-bottom: .5rem !important; }
   /* Auf der Kontaktseite braucht der Footer keine zweite Kontakt-Einladung */
   body:has(.ts-contact) .ts-footer__cta { display: none; }
   body:has(.ts-contact) .ts-footer { padding-top: 0; }
-  body:has(.ts-contact) .sqs-block-form :is(label, legend, .title, .field-list .title) { color: var(--ts-text) !important; font-family: var(--ts-font-body) !important; font-size: 15px !important; font-weight: 500 !important; letter-spacing: 0 !important; text-transform: none !important; }
-  body:has(.ts-contact) .sqs-block-form :is(.required, .description, .caption, [class*="description"]) { color: var(--ts-muted) !important; font-size: 12.5px !important; }
-  body:has(.ts-contact) .sqs-block-form :is(input:not([type="checkbox"]):not([type="radio"]):not([type="submit"]), textarea, select) {
-    -webkit-appearance: none; appearance: none; box-sizing: border-box !important; max-width: 100%;
-    background: rgba(12, 17, 15, .7) !important; color: var(--ts-text) !important; border: 1px solid var(--ts-line-strong) !important;
-    border-radius: 14px !important; padding: 14px 16px !important; font-family: var(--ts-font-body) !important; font-size: 16px !important;
-    box-shadow: none !important; transition: border-color .3s, box-shadow .3s;
-  }
-  body:has(.ts-contact) .sqs-block-form textarea { min-height: 180px; }
-  body:has(.ts-contact) .sqs-block-form :is(input, textarea, select):focus { outline: none !important; border-color: var(--ts-mint) !important; box-shadow: 0 0 0 4px rgba(110, 231, 183, .12) !important; }
-  body:has(.ts-contact) .sqs-block-form :is(button[type="submit"], input[type="submit"], .form-button-wrapper button, .sqs-system-button) {
-    -webkit-appearance: none; appearance: none; height: 56px; padding: 0 1.8rem !important; border: 0 !important; border-radius: 999px !important;
-    background: var(--ts-text) !important; color: var(--ts-bg) !important; font-family: var(--ts-font-body) !important; font-size: 15px !important; font-weight: 500 !important;
-    letter-spacing: 0 !important; text-transform: none !important; cursor: pointer; transition: background-color .4s, color .4s, box-shadow .5s;
-  }
-  body:has(.ts-contact) .sqs-block-form :is(button[type="submit"], input[type="submit"], .form-button-wrapper button, .sqs-system-button):hover { background: var(--ts-green-glow) !important; color: var(--ts-text) !important; box-shadow: 0 18px 50px -14px rgba(46, 140, 108, .8); }
-  body:has(.ts-contact) .sqs-block-form :is(.form-submission-text, .form-submission-html, [class*="submission"]) { color: var(--ts-text) !important; }
-  body:has(.ts-contact) .sqs-block-form :is(.field-error, .form-field-error, [class*="error"]) { color: #fca5a5 !important; }
 </style>
 
 <div class="ts ts-contact ts-bleed">
@@ -274,13 +248,13 @@ kontakt = '''<!-- ==============================================================
         </h1>
         <div class="ts-contact__text" style="margin-top:2rem">
           <p class="ts-reveal">Moin! Hast du Fragen, Anregungen oder willst mir einfach mal 'n netten Gruß dalassen?</p>
-          <p class="ts-reveal">Dann tipp hier gern was rein – ich beiß nicht (höchstens ins <strong>Franzbrötchen</strong>) und melde mich fix bei dir zurück.</p>
+          <p class="ts-reveal">Dann schreib mir gern – per E-Mail oder auf Instagram und LinkedIn. Ich beiß nicht (höchstens ins <strong>Franzbrötchen</strong>) und melde mich fix bei dir zurück.</p>
         </div>
         <p class="ts-contact__note ts-glass ts-reveal"><strong>Datenschutz:</strong> Deine Angaben werden natürlich nur dafür genutzt, dir zu antworten. Mehr dazu findest du in meiner <a href="/datenschutz" data-ts-native="Datenschutz" style="color:var(--ts-mint);border-bottom:1px solid rgba(110,231,183,.35)">Datenschutzerklärung</a>.</p>
       </div>
 
-      <div class="ts-contact__ways ts-reveal" aria-label="Weitere Wege">
-        <p class="ts-label ts-muted" style="margin-bottom:.25rem">Oder direkt</p>
+      <div class="ts-contact__ways ts-reveal" aria-label="Kontaktwege">
+        <p class="ts-label ts-muted" style="margin-bottom:.25rem">So erreichst du mich</p>
         <a class="ts-way ts-glass" href="mailto:moin@trutzstaehler.de">
           <span class="ts-way__icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m4 7 8 6 8-6"/></svg></span>
           <span class="ts-way__txt"><span class="ts-label ts-way__label">E-Mail</span><span class="ts-way__value">moin@trutzstaehler.de</span></span>
@@ -304,10 +278,6 @@ kontakt = '''<!-- ==============================================================
       </div>
     </div>
 
-    <div class="ts-contact__formhead ts-reveal">
-      <p class="ts-label ts-muted">[ Nachricht schreiben ]</p>
-      <p class="ts-label ts-muted">Felder mit „erforderlich“ bitte ausfüllen</p>
-    </div>
   </section>
 </div>
 '''

@@ -20,7 +20,7 @@ Design: Dark Editorial · Hintergrund `#060608` · Nebenfarbe Markengrün `#1d4d
 
 | Datei | Wohin in Squarespace |
 |---|---|
-| `18-kontakt-codeblock.html` | Seite `/kontakt` → **oberste** Sektion → Code-Block; das Squarespace-Formular bleibt in einer Sektion darunter und wird automatisch dunkel gestaltet |
+| `18-kontakt-codeblock.html` | Seite `/kontakt` → einzige Sektion → Code-Block (ohne Formular: E-Mail, 2× Instagram, LinkedIn) |
 | `19-impressum-codeblock.html` | Seite `/impressum` → einzige Sektion → Code-Block |
 | `20-datenschutz-codeblock.html` | Seite Datenschutzerklärung → einzige Sektion → Code-Block (Abschnitt „Cookies & Statistik“ mit den Squarespace-Einstellungen abgleichen) |
 

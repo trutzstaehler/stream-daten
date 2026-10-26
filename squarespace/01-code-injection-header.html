@@ -48,8 +48,8 @@
 
   /* Native Squarespace-Navigation auf der Live-Seite ausblenden (eigene Navigation übernimmt) */
   html:not(.ts-in-editor) #header { display: none !important; }
-  /* Platz für die schwebende Navigation auf Seiten ohne Hero */
-  html:not(.ts-in-editor) body:not(:has(.ts-hero)) #page { padding-top: var(--ts-header-space); }
+  /* Platz für die schwebende Navigation auf Seiten ohne eigene Code-Blöcke */
+  html:not(.ts-in-editor) body:not(:has(.ts-bleed)) #page { padding-top: var(--ts-header-space); }
   .ts-in-editor .ts-header, .ts-in-editor .ts-menu, .ts-in-editor .ts-cursor-dot, .ts-in-editor .ts-cursor-ring { display: none !important; }
 
   /* Sektionen mit eigenem Code-Block (.ts-bleed): Squarespace-Abstände entfernen, Inhalt läuft randlos */

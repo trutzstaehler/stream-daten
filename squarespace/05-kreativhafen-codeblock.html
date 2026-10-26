@@ -50,11 +50,11 @@
   .ts .ts-kh-card:hover { border-color: rgba(255, 255, 255, .16); box-shadow: 0 40px 90px -40px rgba(0, 0, 0, .9), 0 0 70px -35px rgba(46, 140, 108, .8); }
   .ts-kh-card:hover::before { opacity: 1; }
 
-  .ts-kh-card__stage { position: relative; display: grid; place-items: center; height: clamp(240px, 46vw, 360px); overflow: hidden; border-bottom: 1px solid var(--ts-line); background: radial-gradient(70% 80% at 50% 100%, rgba(46, 140, 108, .35), transparent 70%), linear-gradient(180deg, rgba(29, 77, 63, .25), rgba(12, 17, 15, .4)); }
+  .ts-kh-card__stage { position: relative; display: flex; align-items: center; justify-content: center; height: clamp(260px, 46vw, 380px); overflow: hidden; border-bottom: 1px solid var(--ts-line); background: radial-gradient(70% 80% at 50% 100%, rgba(46, 140, 108, .35), transparent 70%), linear-gradient(180deg, rgba(29, 77, 63, .25), rgba(12, 17, 15, .4)); }
   .ts-kh-card__stage::after { content: ""; position: absolute; left: 12%; right: 12%; bottom: 14%; height: 1px; background: linear-gradient(90deg, transparent, rgba(110, 231, 183, .35), transparent); }
-  .ts-kh-card__stage img { position: relative; z-index: 1; display: block; max-height: 78%; max-width: 78%; width: auto; height: auto; object-fit: contain; transition: transform .8s var(--ts-ease-out); }
+  .ts-kh-card__stage img { position: relative; z-index: 1; display: block; max-height: 74% !important; max-width: 78% !important; width: auto !important; height: auto !important; object-fit: contain; transition: transform .8s var(--ts-ease-out); }
   .ts-kh-card__stage--art img { border-radius: 18px; filter: drop-shadow(0 30px 40px rgba(0, 0, 0, .55)); }
-  .ts-kh-card__stage--cover img { max-height: 76%; border-radius: 3px 8px 8px 3px; transform: perspective(900px) rotateY(-16deg) rotateZ(-1deg); box-shadow: 0 30px 60px -20px rgba(0, 0, 0, .9), 0 0 0 1px rgba(255, 255, 255, .06); }
+  .ts-kh-card__stage--cover img { border-radius: 3px 8px 8px 3px; transform: perspective(900px) rotateY(-16deg) rotateZ(-1deg); box-shadow: 0 30px 60px -20px rgba(0, 0, 0, .9), 0 0 0 1px rgba(255, 255, 255, .06); }
   .ts-kh-card:hover .ts-kh-card__stage--art img { transform: scale(1.04) rotate(-1deg); }
   .ts-kh-card:hover .ts-kh-card__stage--cover img { transform: perspective(900px) rotateY(-4deg) translateY(-6px); }
   .ts-kh-card__num { position: absolute; left: 1.5rem; top: 1.25rem; z-index: 1; color: var(--ts-muted); }

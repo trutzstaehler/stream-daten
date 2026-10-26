@@ -77,7 +77,7 @@
   .ts-footer__link .ts-ext { opacity: 0; transform: translate(-4px, 4px); transition: opacity .3s, transform .5s var(--ts-ease-out); }
   .ts-footer__link:hover .ts-ext { opacity: 1; transform: none; }
 
-  .ts-footer__mark { display: block; width: 100%; height: auto; margin-bottom: -1.5%; user-select: none; }
+  .ts-footer__mark { display: block; width: 100%; height: auto; padding: 0 calc(var(--ts-gutter) * .5); margin-bottom: -.6%; overflow: visible; user-select: none; }
   .ts-footer__mark text { font-family: var(--ts-font-display); font-weight: 800; letter-spacing: -0.03em; }
 
   .ts-footer__bar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem; padding: 1.5rem 0 2rem; border-top: 1px solid var(--ts-line); color: var(--ts-muted); }
@@ -370,6 +370,14 @@
       if (match) el.setAttribute('href', match.getAttribute('href'));
     });
   }
+  /* Schriftzug exakt auf die Breite einpassen (Safari ignoriert textLength teilweise) */
+  const fitMark = () => document.querySelectorAll('.ts-footer__mark').forEach(svg => {
+    const t = svg.querySelector('text');
+    try { const bb = t.getBBox(); if (bb.width) svg.setAttribute('viewBox', `${bb.x} ${bb.y} ${bb.width} ${bb.height}`); } catch (e) {}
+  });
+  fitMark();
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitMark);
+  addEventListener('load', fitMark);
   document.querySelectorAll('[data-ts-totop]').forEach(el => el.addEventListener('click', e => {
     e.preventDefault();
     scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });

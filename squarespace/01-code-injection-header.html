@@ -252,7 +252,7 @@
   .ts .ts-headline { font-family: var(--ts-font-display) !important; font-weight: 800; font-size: clamp(2.25rem, 10.5vw, 10.5rem) !important; line-height: .9 !important; letter-spacing: -0.03em !important; }
   .ts-line { display: block; overflow: hidden; padding-bottom: .06em; margin-bottom: -.06em; }
   /* Zeilen gleiten per CSS herein – sofort beim ersten Zeichnen, ohne auf das Footer-Skript zu warten (wichtig für die Ladezeit/LCP) */
-  .ts-line > span { display: inline-block; animation: ts-rise 1.3s var(--ts-ease-out) var(--d, .1s) both; }
+  .ts-line > span { display: inline-block; transition: none; animation: ts-rise 1.3s var(--ts-ease-out) var(--d, .1s) both; }
   @keyframes ts-rise { from { transform: translateY(110%); } to { transform: translateY(0); } }
   .ts-outline { color: transparent !important; -webkit-text-stroke: 1.5px rgba(246, 250, 247, .55); }
   .ts-strike { position: relative; display: inline-block; }

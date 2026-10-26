@@ -13,7 +13,7 @@ Design: Dark Editorial · Hintergrund `#060608` · Nebenfarbe Markengrün `#1d4d
 | `07-running-codeblock.html` | Seite `/running` → einzige Sektion → **Code-Block** über die volle Rasterbreite |
 | `08-hella-half-marathon-2025-codeblock.html` | Seite `/hella-half-marathon-2025` (nicht verlinkt) → einzige Sektion → **Code-Block** über die volle Rasterbreite |
 | `09-romane-codeblock.html` | Seite `/romane` → einzige Sektion → **Code-Block** über die volle Rasterbreite |
-| `10-maria-holm-codeblock.html` | Seite `/maria-holmmaria-holm-und-das-geheimnis-der-verschwundenen-perle` → einzige Sektion → **Code-Block** über die volle Rasterbreite |
+| `10-maria-holm-codeblock.html` | Seite `/maria-holm-und-das-geheimnis-der-verschwundenen-perle` → einzige Sektion → **Code-Block** über die volle Rasterbreite |
 | `11-malbuecher-codeblock.html` | Seite `/malbuecher` → einzige Sektion → **Code-Block** über die volle Rasterbreite |
 
 Die Datei 01 ist das globale Design-System und wird nur einmal eingefügt. Die Datei 02 enthält Navigation und JavaScript für alle Seiten.

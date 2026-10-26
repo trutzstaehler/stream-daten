@@ -84,6 +84,11 @@
 
 
   .ts-footer__bar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem; padding: 1.5rem 0 2.5rem; border-top: 1px solid var(--ts-line); color: var(--ts-muted); }
+  .ts .ts-cookie-link { color: var(--ts-muted); text-decoration: underline; text-underline-offset: 3px; text-decoration-color: rgba(154, 171, 163, .4); transition: color .3s; }
+  .ts .ts-cookie-link:hover { color: var(--ts-text); }
+  .ts .ts-cookie-link[hidden] { display: none; }
+  /* Schwebender Squarespace-Knopf „Cookie-Einstellungen“: ausgeblendet, der Link im Footer übernimmt */
+  [data-ts-cookie-float] { opacity: 0 !important; pointer-events: none !important; }
   .ts .ts-totop { display: inline-flex; align-items: center; gap: .6rem; color: var(--ts-muted); transition: color .3s; }
   .ts .ts-totop:hover { color: var(--ts-text); }
   .ts-totop span:last-child { display: grid; place-items: center; width: 34px; height: 34px; border-radius: 50%; border: 1px solid var(--ts-line-strong); transition: transform .5s var(--ts-ease-out), border-color .3s; }
@@ -171,6 +176,7 @@
     <div class="ts-footer__bar">
       <p class="ts-label">© <span data-ts-year>2026</span> trutzstaehler</p>
       <p class="ts-label">Made with ♡ and (lots of) coffee</p>
+      <button type="button" class="ts-label ts-cookie-link" data-ts-cookie hidden>Cookie-Einstellungen</button>
       <p class="ts-footer__wow">World of Warcraft ist eine Marke von Blizzard Entertainment. Der Twitch-Bereich ist ein Fan-Projekt und steht in keiner Verbindung zu Blizzard.</p>
       <a href="#" class="ts-totop ts-label" data-ts-totop><span>Nach oben</span><span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6"/></svg></span></a>
     </div>
@@ -192,6 +198,38 @@
 
   /* ---------- Intro-Animation ---------- */
   requestAnimationFrame(() => requestAnimationFrame(() => body.classList.add('ts-loaded')));
+
+  /* ---------- Cookie-Einstellungen von Squarespace: statt schwebend über dem Footer als Link in der Footer-Leiste ---------- */
+  const cookieLink = document.querySelector('[data-ts-cookie]');
+  let cookieFloat = null;
+  const findCookieFloat = () => {
+    if (cookieFloat && document.contains(cookieFloat)) return;
+    // kleines, fest positioniertes Element mit kurzem „Cookie“-Text, das nicht zu dieser Website gehört
+    // (das große Banner beim ersten Besuch bleibt bewusst unangetastet)
+    const hit = [...document.body.querySelectorAll('div, button, a, aside, section')].find(el => {
+      if (el.closest('.ts, .tsw')) return false;
+      const t = (el.textContent || '').trim();
+      if (!/cookie/i.test(t) || t.length > 40) return false;
+      const cs = getComputedStyle(el);
+      if (cs.position !== 'fixed') return false;
+      const r = el.getBoundingClientRect();
+      return r.height > 0 && r.height < 90 && r.width < 420;
+    });
+    if (!hit) return;
+    cookieFloat = hit;
+    hit.setAttribute('data-ts-cookie-float', '');
+    if (cookieLink) cookieLink.hidden = false;
+  };
+  if (cookieLink) {
+    cookieLink.addEventListener('click', () => {
+      if (!cookieFloat) return;
+      const target = cookieFloat.matches('button, a') ? cookieFloat : (cookieFloat.querySelector('button, a') || cookieFloat);
+      target.click();
+    });
+    [300, 1500, 4000, 8000].forEach(ms => setTimeout(findCookieFloat, ms));
+    // nach „Akzeptieren“ im Banner erscheint der Knopf neu
+    document.addEventListener('click', () => setTimeout(findCookieFloat, 600), true);
+  }
 
   /* ---------- Twitch-Bereich (WoW Forever): Unternavigation mit Weg zurück zur Homepage ---------- */
   const tsw = document.querySelector('.tsw');

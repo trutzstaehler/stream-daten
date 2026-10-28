@@ -1,5 +1,5 @@
 <!-- ==================================================================
-     TRUTZ STÄHLER · BUCHSEITE „MEIN DINO-KRITZELBUCH“ (mit Party-Dino zum Ausmalen)
+     TRUTZ STÄHLER · BUCHSEITE „MEIN DINO-KRITZELBUCH“ (mit Dino zum Ausmalen)
      Einfügen in: neue Seite /mein-dino-kritzelbuch (Bereich „Nicht verlinkt“)
                   → einzige Sektion → Code-Block (volle Breite)
      Bilder sind direkt eingebettet – nichts hochladen nötig.
@@ -133,12 +133,12 @@
       <p class="ts-label ts-muted">[ Probier's aus ]</p>
       <p class="ts-label ts-muted">Seite 31 von 52</p>
     </div>
-    <h2 id="ts-kb-paint-title" class="ts-kb__h2 ts-reveal">Mal den Party-Dino aus.</h2>
+    <h2 id="ts-kb-paint-title" class="ts-kb__h2 ts-reveal">Mal den Dino aus.</h2>
     <p class="ts-kb__sub ts-reveal">Farbe antippen, dann ins Bild tippen – der Farbeimer füllt die ganze Fläche. Mit dem Pinsel kannst du frei malen. Fertig? Speichere dein Bild oder drucke es aus.</p>
 
     <div class="ts-paint" data-ts-paint>
       <div class="ts-paint__paper ts-reveal">
-        <canvas class="ts-paint__canvas" width="1000" height="1327" role="img" aria-label="Ausmalbild Party-Dino mit Hütchen und Luftballon – tippe hinein, um Flächen auszumalen"></canvas>
+        <canvas class="ts-paint__canvas" width="1000" height="1327" role="img" aria-label="Ausmalbild Dino mit Hütchen und Luftballon – tippe hinein, um Flächen auszumalen"></canvas>
         <p class="ts-label ts-paint__done" data-paint-msg aria-live="polite"></p>
       </div>
       <div class="ts-paint__tools ts-glass ts-reveal">
@@ -207,8 +207,8 @@
   const ZOO = __THUMBS__;
   const ALL = [];
   const box = document.querySelector('[data-kb-zoo]'), list = document.querySelector('[data-kb-all]');
-  if (box) box.innerHTML = ZOO.map((z, i) => `<figure class="ts-reveal" style="--r:${[-1.6, 1.2, -.7, 1.5, -1.1, .8][i % 6]}deg"><img src="${z.src}" alt="Ausmalbild ${z.n}" width="260" height="260" loading="lazy" decoding="async"><figcaption>${z.n}</figcaption></figure>`).join('');
-  const shown = new Set(ZOO.map(z => z.n));
+  if (box) box.innerHTML = ZOO.map((z, i) => `<figure class="ts-reveal" style="--r:${[-1.6, 1.2, -.7, 1.5, -1.1, .8][i % 6]}deg"><img src="${z.src}" alt="Dino-Ausmalbild aus dem Buch" width="260" height="260" loading="lazy" decoding="async"></figure>`).join('');
+  const shown = new Set();
   if (list) list.innerHTML = ALL.map(n => `<li class="ts-label${shown.has(n) ? ' is-shown' : ''}">${n}</li>`).join('');
   /* nachträglich eingefügte Elemente ebenfalls einblenden */
   if ('IntersectionObserver' in window) {
@@ -287,9 +287,9 @@
   root.querySelector('[data-act="save"]').addEventListener('click', () => {
     const out = document.createElement('canvas'); out.width = W; out.height = H + 90; const o = out.getContext('2d');
     o.fillStyle = '#fff'; o.fillRect(0, 0, out.width, out.height); o.drawImage(cv, 0, 0);
-    o.fillStyle = '#1b1f1c'; o.font = '800 34px Syne, Arial, sans-serif'; o.textAlign = 'center'; o.fillText('MEIN PARTY-DINO', W / 2, H + 42);
+    o.fillStyle = '#1b1f1c'; o.font = '800 34px Syne, Arial, sans-serif'; o.textAlign = 'center'; o.fillText('MEIN DINO', W / 2, H + 42);
     o.fillStyle = '#7d7d7d'; o.font = '500 18px Inter, Arial, sans-serif'; o.fillText('Mein Dino-Kritzelbuch · trutzstaehler.de', W / 2, H + 72);
-    const a = document.createElement('a'); a.download = 'mein-party-dino.png'; a.href = out.toDataURL('image/png'); document.body.appendChild(a); a.click(); a.remove(); say('Bild gespeichert');
+    const a = document.createElement('a'); a.download = 'mein-dino.png'; a.href = out.toDataURL('image/png'); document.body.appendChild(a); a.click(); a.remove(); say('Bild gespeichert');
   });
 
   /* Vorlage laden, Linien als Wände merken, gespeichertes Bild wiederherstellen */

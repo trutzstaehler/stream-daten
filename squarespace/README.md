@@ -15,6 +15,7 @@ Design: Dark Editorial · Hintergrund `#060608` · Nebenfarbe Markengrün `#1d4d
 | `09-romane-codeblock.html` | Seite `/romane` → einzige Sektion → **Code-Block** über die volle Rasterbreite |
 | `10-maria-holm-codeblock.html` | Seite `/maria-holm-und-das-geheimnis-der-verschwundenen-perle` → einzige Sektion → **Code-Block** über die volle Rasterbreite |
 | `11-malbuecher-codeblock.html` | Seite `/malbuecher` → einzige Sektion → **Code-Block** über die volle Rasterbreite |
+| `22-tiere-kritzelbuch-codeblock.html` | neue Seite `/mein-tiere-kritzelbuch` (Nicht verlinkt) → einzige Sektion → **Code-Block** über die volle Rasterbreite · Eichhörnchen zum Ausmalen, Bilder eingebettet |
 
 ### Kontakt & Rechtliches
 
@@ -57,3 +58,5 @@ Seitenübergänge (grüner Vorhang, im Twitch-Bereich gold) stecken in Datei 01 
 
 Startseite: Datei 03 enthält zusätzlich die Scroll-Sequenz „Drei Welten“ (Bücher → Laufen → Twitch).
 Maria-Holm-Seite: Der Bereich „Blick ins Buch“ liegt als Vorlage in `inhalte/maria-holm-einblick.html` und wird mit `inhalte/buch-einblick-einbauen.py` und den Bild-Adressen in Datei 10 eingebaut. Die Buchinhalte sind in `inhalte/maria-holm-buch.md` festgehalten.
+
+Live-Anzeige: Datei 02 fragt `helden.json` ab (alle 2 Minuten). Live ist, wenn `stream.live` true ist und `updated` höchstens 15 Minuten alt ist. Dann leuchtet die Pille „Live · einfach_trutz“ rot und unten erscheint ein Hinweis mit „Zuschauen“ (→ `/live`).

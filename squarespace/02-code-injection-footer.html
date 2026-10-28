@@ -17,12 +17,13 @@
         <li><a class="ts-nav-link" href="/kreativhafen"><span class="ts-idx ts-label">02</span>Kreativhafen</a></li>
         <li><a class="ts-nav-link" href="/running"><span class="ts-idx ts-label">03</span>Running</a></li>
         <li><a class="ts-nav-link" href="/twitch-startseite"><span class="ts-idx ts-label">04</span>Twitch</a></li>
+        <li><a class="ts-nav-link" href="/shop"><span class="ts-idx ts-label">05</span>Shop</a></li>
       </ul>
     </nav>
 
     <div class="ts-header__actions">
-      <a href="/twitch-startseite" class="ts-live ts-label">
-        <span class="ts-pulse"></span>einfach_trutz
+      <a href="/twitch-startseite" class="ts-live ts-label" data-ts-live-pill>
+        <span class="ts-pulse"></span><span class="ts-live__on" aria-hidden="true">Live</span><span class="ts-live__name">einfach_trutz</span>
       </a>
       <a href="/kontakt" class="ts-btn ts-btn--primary ts-btn--sm ts-magnetic">
         <span class="ts-btn__inner"><span class="ts-roll"><span data-text="Kontakt">Kontakt</span></span>
@@ -44,7 +45,8 @@
     <li class="ts-m-item" style="--d:.36s;transition-delay:.36s"><a href="/kreativhafen" class="ts-menu__link ts-display">Kreativhafen <span class="ts-label ts-muted">02</span></a></li>
     <li class="ts-m-item" style="--d:.42s;transition-delay:.42s"><a href="/running" class="ts-menu__link ts-display">Running <span class="ts-label ts-muted">03</span></a></li>
     <li class="ts-m-item" style="--d:.48s;transition-delay:.48s"><a href="/twitch-startseite" class="ts-menu__link ts-display">Twitch <span class="ts-label ts-muted">04</span></a></li>
-    <li class="ts-m-item" style="--d:.54s;transition-delay:.54s"><a href="/kontakt" class="ts-menu__link ts-display">Kontakt <span class="ts-label ts-muted">05</span></a></li>
+    <li class="ts-m-item" style="--d:.54s;transition-delay:.54s"><a href="/shop" class="ts-menu__link ts-display">Shop <span class="ts-label ts-muted">05</span></a></li>
+    <li class="ts-m-item" style="--d:.60s;transition-delay:.60s"><a href="/kontakt" class="ts-menu__link ts-display">Kontakt <span class="ts-label ts-muted">06</span></a></li>
   </ul>
   <div class="ts-menu__footer ts-m-item" style="--d:.62s;transition-delay:.62s">
     <a href="/twitch-startseite" class="ts-label" style="display:inline-flex;align-items:center;gap:10px"><span class="ts-pulse"></span>Twitch · einfach_trutz</a>
@@ -109,8 +111,8 @@
   .sqs-cookie-banner-v2-accept { background: var(--ts-text) !important; color: #060608 !important; border: 1px solid var(--ts-text) !important; }
   .sqs-cookie-banner-v2-accept:hover { background: var(--ts-mint) !important; border-color: var(--ts-mint) !important; }
   .sqs-cookie-banner-v2-deny, .sqs-cookie-banner-v2-cta:not(.sqs-cookie-banner-v2-accept) { background: transparent !important; color: var(--ts-text) !important; border: 1px solid rgba(255, 255, 255, .16) !important; }
-  body:has(.tsw) .sqs-cookie-banner-v2-accept { background: #ffd100 !important; border-color: #ffd100 !important; color: #120e0b !important; }
-  body:has(.tsw) .sqs-cookie-banner-v2 a { color: #ffd100 !important; }
+  body:has(:is(.tsw, .tss-gold)) .sqs-cookie-banner-v2-accept { background: #ffd100 !important; border-color: #ffd100 !important; color: #120e0b !important; }
+  body:has(:is(.tsw, .tss-gold)) .sqs-cookie-banner-v2 a { color: #ffd100 !important; }
   .ts .ts-totop { display: inline-flex; align-items: center; gap: .6rem; color: var(--ts-muted); transition: color .3s; }
   .ts .ts-totop:hover { color: var(--ts-text); }
   .ts-totop span:last-child { display: grid; place-items: center; width: 34px; height: 34px; border-radius: 50%; border: 1px solid var(--ts-line-strong); transition: transform .5s var(--ts-ease-out), border-color .3s; }
@@ -126,6 +128,31 @@
   @media (min-width: 1024px) {
     .ts-footer__cta { grid-template-columns: 1fr auto; align-items: end; }
   }
+
+  /* ---------- Live-Anzeige (Stream läuft gerade) ---------- */
+  .ts-live__on { display: none; }
+  html.ts-is-live .ts .ts-live { display: inline-flex; color: #fff; border-color: rgba(239, 68, 68, .55); background: rgba(239, 68, 68, .12); }
+  html.ts-is-live .ts .ts-live .ts-live__on { display: inline; color: #fca5a5; font-weight: 700; }
+  html.ts-is-live .ts .ts-live .ts-live__on + .ts-live__name::before { content: "· "; color: rgba(255, 255, 255, .5); }
+  html.ts-is-live .ts-live .ts-pulse { background: #ef4444; }
+  html.ts-is-live .ts-live .ts-pulse::after { border-color: #ef4444; }
+  @media (max-width: 767px) { html.ts-is-live .ts .ts-live { padding: 8px 12px; } html.ts-is-live .ts-live__name { display: none; } }
+  .ts-livebar { position: fixed; left: 16px; bottom: 16px; z-index: 8990; display: flex; align-items: center; gap: .9rem; max-width: min(420px, calc(100vw - 32px)); padding: 12px 12px 12px 16px; border-radius: 20px;
+    background: rgba(12, 17, 15, .94); border: 1px solid rgba(239, 68, 68, .35); box-shadow: 0 30px 70px -30px rgba(0, 0, 0, .9), 0 0 50px -20px rgba(239, 68, 68, .45);
+    -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); color: #f6faf7; font-family: var(--ts-font-body);
+    transform: translateY(140%); opacity: 0; transition: transform .7s cubic-bezier(.16, 1, .3, 1), opacity .4s; }
+  .ts-livebar.is-on { transform: none; opacity: 1; }
+  .ts-livebar__dot { position: relative; flex: none; width: 12px; height: 12px; border-radius: 50%; background: #ef4444; box-shadow: 0 0 14px #ef4444; }
+  .ts-livebar__dot::after { content: ""; position: absolute; inset: -5px; border-radius: 50%; border: 2px solid #ef4444; animation: ts-pulse 1.8s ease-out infinite; }
+  .ts-livebar__txt { display: flex; flex-direction: column; min-width: 0; line-height: 1.25; }
+  .ts-livebar__txt b { font-size: 14.5px; font-weight: 600; }
+  .ts-livebar__txt span { font-size: 12.5px; color: #9aaba3; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .ts-livebar__go { flex: none; padding: 9px 14px; border-radius: 999px; background: #f6faf7; color: #060608 !important; font-size: 13px; font-weight: 600; text-decoration: none !important; }
+  .ts-livebar__go:hover { background: #fca5a5; }
+  .ts-livebar__x { flex: none; display: grid; place-items: center; width: 30px; height: 30px; border: 0; border-radius: 50%; background: transparent; color: #9aaba3; cursor: pointer; font-size: 18px; line-height: 1; }
+  .ts-livebar__x:hover { color: #f6faf7; background: rgba(255, 255, 255, .06); }
+  .ts-in-editor .ts-livebar { display: none; }
+  @media (prefers-reduced-motion: reduce) { .ts-livebar { transition: opacity .2s; transform: none; } }
 </style>
 
 <footer class="ts ts-footer" aria-label="Seitenfuß">
@@ -164,6 +191,7 @@
           <li><a class="ts-footer__link" href="/kreativhafen">Kreativhafen</a></li>
           <li><a class="ts-footer__link" href="/running">Running</a></li>
           <li><a class="ts-footer__link" href="/twitch-startseite">Twitch</a></li>
+          <li><a class="ts-footer__link" href="/shop">Shop</a></li>
         </ul>
       </nav>
 
@@ -217,6 +245,46 @@
   const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const finePointer = matchMedia('(hover: hover) and (pointer: fine)').matches;
   const fx = finePointer && !reduceMotion && !inEditor;
+
+  /* ---------- Live-Anzeige: liest den Stream-Status aus der Stream-Zentrale (helden.json) ---------- */
+  if (!inEditor) {
+    const LIVE_URL = 'https://raw.githubusercontent.com/trutzstaehler/stream-daten/main/helden.json';
+    const FRESH = 15 * 60 * 1000;           /* älter als 15 Minuten = nicht mehr live */
+    const onLivePage = /^\/live\/?$/.test(location.pathname);
+    let bar = null, timer = null;
+    const showBar = d => {
+      if (onLivePage) return;
+      try { if (sessionStorage.getItem('ts-livebar-x')) return; } catch (e) {}
+      if (!bar) {
+        bar = document.createElement('div');
+        bar.className = 'ts-livebar'; bar.setAttribute('role', 'status');
+        bar.innerHTML = '<span class="ts-livebar__dot" aria-hidden="true"></span><span class="ts-livebar__txt"><b>Ich bin gerade live!</b><span></span></span><a class="ts-livebar__go" href="/live">Zuschauen</a><button type="button" class="ts-livebar__x" aria-label="Hinweis schließen">×</button>';
+        bar.querySelector('button').addEventListener('click', () => { bar.classList.remove('is-on'); try { sessionStorage.setItem('ts-livebar-x', '1'); } catch (e) {} });
+        document.body.appendChild(bar);
+      }
+      bar.querySelector('.ts-livebar__txt span').textContent = 'World of Warcraft Forever · twitch.tv/' + (d.channel || 'einfach_trutz');
+      requestAnimationFrame(() => bar.classList.add('is-on'));
+    };
+    const setLive = (on, d) => {
+      html.classList.toggle('ts-is-live', on);
+      document.querySelectorAll('[data-ts-live-pill]').forEach(a => { a.href = on ? '/live' : '/twitch-startseite'; a.setAttribute('aria-label', on ? 'Gerade live auf Twitch – jetzt zuschauen' : 'Twitch: einfach_trutz'); });
+      if (on) showBar(d); else if (bar) bar.classList.remove('is-on');
+    };
+    const check = () => {
+      if (document.hidden) return;
+      fetch(LIVE_URL + '?t=' + Math.floor(Date.now() / 60000), { cache: 'no-store' })
+        .then(r => r.ok ? r.json() : null)
+        .then(d => {
+          if (!d) return;
+          const fresh = Date.now() - Date.parse(d.updated || 0) < FRESH;
+          setLive(!!(d.stream && d.stream.live) && fresh, d);
+        })
+        .catch(() => {});
+    };
+    const startLive = () => setTimeout(() => { check(); timer = setInterval(check, 120000); }, 1500);
+    if (document.readyState === 'complete') startLive(); else addEventListener('load', startLive, { once: true });
+    document.addEventListener('visibilitychange', () => { if (!document.hidden) check(); });
+  }
 
   /* ---------- Hallo an alle, die in den Code schauen ---------- */
   try {
@@ -559,5 +627,275 @@
     e.preventDefault();
     scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
   }));
+})();
+</script>
+
+
+<!-- ==================================================================
+     TRUTZ STÄHLER · SHOP – GEMEINSAME BASIS (Katalog + Darstellung)
+     Einfügen in: Einstellungen → Entwickler-Tools → Code Injection → FOOTER
+     (einmal für die ganze Website – alle Shop-Seiten lesen hieraus)
+
+     NEUES PRODUKT HINZUFÜGEN: unten in TS_SHOP.produkte einen Eintrag
+     ergänzen. NEUE KATEGORIE (z. B. Merch): in TS_SHOP.kategorien.
+     preis: so wie er angezeigt werden soll, z. B. "9,90 €" – muss zum
+            Preis im Squarespace-Produkt passen! Leer = "Preis im Shop".
+     link:  Adresse des Squarespace-Produkts, z. B. "/store/p/muenzwurf"
+=================================================================== -->
+<script>
+window.TS_SHOP = {
+  kategorien: [
+    { id: 'stream-widgets', nr: '01', titel: 'Stream-Widgets', text: 'Overlays für OBS – in fertigen Themen wie World of Warcraft oder in deinem ganz eigenen Stil.', link: '/shop/stream-widgets', farbe: 'rgb(74, 222, 128)' },
+    { id: 'buecher',        nr: '02', titel: 'Bücher',         text: 'Kinderbücher und Malbücher aus dem Kreativhafen.',                   link: '/shop/buecher',        farbe: 'rgb(110, 231, 183)' }
+    // weitere Kategorie: { id: 'merch', nr: '03', titel: 'Merch', text: '…', link: '/shop/merch', farbe: 'rgb(74, 222, 128)' }
+  ],
+  /* Themen der Stream-Widgets (Seite /shop/stream-widgets). Neues Thema = neuer Eintrag + neue Seite */
+  themen: [
+    { id: 'wow',    nr: '01', titel: 'World of Warcraft', text: 'Questlog, Ruf, Bosse und goldene Rahmen – die Widgets im Stil von Azeroth.', link: '/shop/stream-widgets/world-of-warcraft', farbe: '#ffd100' },
+    { id: 'custom', nr: '02', titel: 'Dein eigener Stil', label: 'Auf Bestellung', text: 'Dein Spiel, dein Stil: Ich gestalte die Widgets in deinem eigenen Thema.', link: '/shop/stream-widgets/eigener-stil', farbe: 'rgb(110, 231, 183)' },
+    { id: 'gta6', nr: '03', titel: 'Neon City', text: 'Sonnenuntergang, Palmen, Neon und Gangs: Missionen statt Quests, Respekt statt Ruf, Revierkampf statt Schlacht – im Look der neuen Großstadt-Krimis.', link: '/shop/stream-widgets/neon-city', farbe: '#ff3d9a' }
+    // weiteres Thema: { id: 'diablo', nr: '03', titel: 'Diablo', text: '…', link: '/shop/stream-widgets/diablo', farbe: '#c0392b' }
+  ],
+  produkte: [
+    /* ---------- Stream-Widgets (jedes inkl. Standard-Paket) ---------- */
+    { kat: 'stream-widgets', thema: 'wow', id: 'wheel',    icon: '☸',  titel: 'Glücksrad & Quests', text: 'Glücksrad mit Questlog und „Aktive Quests" – dreht bei Kanalpunkten, Follows, Subs und !rad.', preis: '14,90 €', link: '/store/p/gluecksrad-und-quests' },
+    /* Pause-Spiele – jedes einzeln */
+    { kat: 'stream-widgets', thema: 'wow', id: 'boss',     icon: '⚔',  titel: 'Pause: Bosskampf',   text: 'Ein Boss aus WoW: Der Chat kämpft mit !angriff, reagiert auf Fähigkeiten und würfelt um die Beute.', preis: '14,90 €', link: '/store/p/pause-bosskampf' },
+    { kat: 'stream-widgets', thema: 'wow', id: 'quiz',     icon: '❓', titel: 'Pause: Azeroth-Quiz', text: 'WoW-Fragen mit !A bis !D – jeder hat eine Stimme, richtige Antworten bringen Punkte und Ruf.',      preis: '12,90 €', link: '/store/p/pause-azeroth-quiz' },
+    { kat: 'stream-widgets', thema: 'wow', id: 'darkspear',icon: '🏴', titel: 'Pause: Darkspear-Schlacht', text: 'Allianz gegen Horde um Stützpunkte und Flagge – der Chat kämpft mit !allianz und !horde.',     preis: '12,90 €', link: '/store/p/pause-darkspear-schlacht' },
+    { kat: 'stream-widgets', thema: 'wow', id: 'fish',     icon: '🎣', titel: 'Pause: Angeln',      text: 'Mit !angeln die Angel auswerfen – bei jedem Fischschwarm beißt etwas an. Beste Angler im Stream.', preis: '12,90 €', link: '/store/p/pause-angeln' },
+    { kat: 'stream-widgets', thema: 'wow', id: 'riddle',   icon: '🧩', titel: 'Pause: Azeroth-Rätsel', text: 'Ein WoW-Begriff, Buchstabe für Buchstabe – wer ihn zuerst in den Chat schreibt, gewinnt.',        preis: '12,90 €', link: '/store/p/pause-azeroth-raetsel' },
+    { kat: 'stream-widgets', thema: 'wow', id: 'giveaway', icon: '🎁', titel: 'Beute des Tages',    text: 'Faire Verlosung per Chat-Befehl – mit Endspurt, Ziehungs-Animation und Gewinner-Historie.',        preis: '14,90 €', link: '/store/p/beute-des-tages' },
+    { kat: 'stream-widgets', thema: 'wow', id: 'voting',   icon: '🗳️', titel: 'Umfrage',            text: 'Der Chat stimmt ab – Live-Ergebnisse, Sudden Death bei Gleichstand, Siegertreppchen.',            preis: '9,90 €', link: '/store/p/umfrage' },
+    { kat: 'stream-widgets', thema: 'wow', id: 'level',    icon: '🏰', titel: 'Aufbauspiel',        text: 'Jede Chat-Nachricht baut am Gebäude mit – mit Buffs, Strafen, Fraktionen und Bestenliste.',        preis: '14,90 €', link: '/store/p/aufbauspiel' },
+    { kat: 'stream-widgets', thema: 'wow', id: 'bingo',    icon: '🎯', titel: 'Stream-Bingo',       text: 'Bingo-Feld mit eigenen Zielen – der Chat meldet Felder, du bestätigst.',                           preis: '9,90 €', link: '/store/p/stream-bingo' },
+    { kat: 'stream-widgets', thema: 'wow', id: 'coin',     icon: '🪙', titel: 'Münzwurf',           text: '3D-Münze mit Kopf, Zahl und seltener Kante – per Befehl, Kanalpunkten oder Knopfdruck.',          preis: '9,90 €', link: '/store/p/muenzwurf' },
+    { kat: 'stream-widgets', thema: 'wow', id: 'rep',      icon: '🏅', titel: 'Ruf',                text: 'Zuschauer sammeln Ruf bei deiner Fraktion – Ränge von Neutral bis Ehrfürchtig. Ruf aus Spielen gibt es im Wunsch-Paket.',                   preis: '14,90 €', link: '/store/p/ruf' },
+    { kat: 'stream-widgets', thema: 'wow', id: 'char',     icon: '🧙', titel: 'Charakter',          text: 'Leveling-Tracker mit Erfahrungsleiste und goldenem Stufenband bei „Ding!".',                      preis: '9,90 €', link: '/store/p/charakter' },
+    { kat: 'stream-widgets', thema: 'wow', id: 'metrics',  icon: '📈', titel: 'Metrics',            text: 'Ziele im Rotations-Fenster, „Zuletzt"-Leiste und ein Chat-Fenster im WoW-Rahmen.',               preis: '14,90 €', link: '/store/p/metrics' },
+    { kat: 'stream-widgets', thema: 'wow', id: 'counter',  icon: '🔢', titel: 'Zähler',             text: 'Bild mit Zahl – Tode, Wipes, Bosse. Zählen per Knopf oder Chat-Befehl.',                          preis: '9,90 €', link: '/store/p/zaehler' },
+    { kat: 'stream-widgets', thema: 'wow', id: 'wunsch',   icon: '✦',  titel: 'Wunsch-Paket',       text: 'Mehrere Widgets in einer Datei – du wählst, ich baue es dir und schicke es per Mail.',            preis: 'ab 22,90 €', link: '/shop/stream-widgets/world-of-warcraft/wunsch-paket', highlight: true },
+    /* ---------- Neon City ---------- */
+    { kat: 'stream-widgets', thema: 'gta6', id: 'wheel-gta6', icon: '☸', titel: 'Glücksrad & Missionen', text: 'Glücksrad mit Missions-Log und „Aktive Missionen" – dreht bei Kanalpunkten, Follows, Subs und !rad.', preis: '14,90 €', link: '/store/p/gluecksrad-und-quests-gta6' },
+    { kat: 'stream-widgets', thema: 'gta6', id: 'giveaway-gta6', icon: '🎁', titel: 'Beute des Tages', text: 'Faire Verlosung per Chat-Befehl – mit Endspurt, Ziehungs-Animation und Gewinner-Historie.', preis: '14,90 €', link: '/store/p/beute-des-tages-gta6' },
+    { kat: 'stream-widgets', thema: 'gta6', id: 'voting-gta6', icon: '🗳️', titel: 'Umfrage', text: 'Der Chat stimmt ab – Live-Ergebnisse, Sudden Death bei Gleichstand, Siegertreppchen.', preis: '9,90 €', link: '/store/p/umfrage-gta6' },
+    { kat: 'stream-widgets', thema: 'gta6', id: 'level-gta6', icon: '🏰', titel: 'Aufbauspiel', text: 'Jede Chat-Nachricht baut am Gebäude mit – mit Buffs, Strafen, Gangen und Bestenliste.', preis: '14,90 €', link: '/store/p/aufbauspiel-gta6' },
+    { kat: 'stream-widgets', thema: 'gta6', id: 'bingo-gta6', icon: '🎯', titel: 'Stream-Bingo', text: 'Bingo-Feld mit eigenen Zielen – der Chat meldet Felder, du bestätigst.', preis: '9,90 €', link: '/store/p/stream-bingo-gta6' },
+    { kat: 'stream-widgets', thema: 'gta6', id: 'coin-gta6', icon: '🪙', titel: 'Münzwurf', text: '3D-Münze mit Kopf, Zahl und seltener Kante – per Befehl, Kanalpunkten oder Knopfdruck.', preis: '9,90 €', link: '/store/p/muenzwurf-gta6' },
+    { kat: 'stream-widgets', thema: 'gta6', id: 'rep-gta6', icon: '🏅', titel: 'Respekt', text: 'Zuschauer sammeln Respekt bei deiner Gang – Ränge von Neutral bis Ehrfürchtig.', preis: '14,90 €', link: '/store/p/ruf-gta6' },
+    { kat: 'stream-widgets', thema: 'gta6', id: 'char-gta6', icon: '🧙', titel: 'Charakter', text: 'Leveling-Tracker mit Erfahrungsleiste und leuchtendem Level-up-Banner.', preis: '9,90 €', link: '/store/p/charakter-gta6' },
+    { kat: 'stream-widgets', thema: 'gta6', id: 'metrics-gta6', icon: '📈', titel: 'Metrics', text: 'Ziele im Rotations-Fenster, „Zuletzt"-Leiste und ein Chat-Fenster im Neon-Rahmen.', preis: '14,90 €', link: '/store/p/metrics-gta6' },
+    { kat: 'stream-widgets', thema: 'gta6', id: 'counter-gta6', icon: '🔢', titel: 'Zähler', text: 'Bild mit Zahl – Tode, Wipes, Bosse. Zählen per Knopf oder Chat-Befehl.', preis: '9,90 €', link: '/store/p/zaehler-gta6' },
+    { kat: 'stream-widgets', thema: 'gta6', id: 'boss-gta6', icon: '⚔', titel: 'Pause: Bosskampf', text: 'Gang-Bosse der Stadt: Der Chat kämpft mit !angriff, reagiert mit !deckung & Co. und würfelt um Neonketten, Geldkoffer und Villen.', preis: '14,90 €', link: '/store/p/pause-bosskampf-gta6' },
+    { kat: 'stream-widgets', thema: 'gta6', id: 'quiz-gta6', icon: '❓', titel: 'Pause: Quiz', text: 'Quizfragen mit !A bis !D – jeder hat eine Stimme, richtige Antworten bringen Punkte.', preis: '12,90 €', link: '/store/p/pause-azeroth-quiz-gta6' },
+    { kat: 'stream-widgets', thema: 'gta6', id: 'darkspear-gta6', icon: '🏴', titel: 'Pause: Revierkampf', text: 'Zwei Gangs um Blocks und Beutetasche – der Chat kämpft mit !neon und !sunset.', preis: '12,90 €', link: '/store/p/pause-darkspear-schlacht-gta6' },
+    { kat: 'stream-widgets', thema: 'gta6', id: 'fish-gta6', icon: '🎣', titel: 'Pause: Angeln', text: 'Mit !angeln die Angel auswerfen – bei jedem Fischschwarm beißt etwas an. Beste Angler im Stream.', preis: '12,90 €', link: '/store/p/pause-angeln-gta6' },
+    { kat: 'stream-widgets', thema: 'gta6', id: 'riddle-gta6', icon: '🧩', titel: 'Pause: Rätsel', text: 'Ein Begriff, Buchstabe für Buchstabe – wer ihn zuerst in den Chat schreibt, gewinnt.', preis: '12,90 €', link: '/store/p/pause-azeroth-raetsel-gta6' },
+    { kat: 'stream-widgets', thema: 'gta6', id: 'wunsch-gta6', icon: '✦', titel: 'Wunsch-Paket', text: 'Mehrere Widgets in einer Datei – du wählst, ich baue es dir und schicke es per Mail.', preis: 'ab 22,90 €', link: '/shop/stream-widgets/neon-city/wunsch-paket', highlight: true },
+    /* ---------- Dein eigener Stil ---------- */
+    { kat: 'stream-widgets', thema: 'custom', id: 'eigenes-thema', icon: '🎨', titel: 'Eigenes Thema', text: 'Du nennst Spiel oder Stil, ich gestalte das Standard-Paket und deine Widgets passend dazu – per Mail geliefert.', preis: 'ab 49,90 €', link: '/store/p/eigenes-thema', highlight: true }
+    /* ---------- Bücher (Beispiel – Kommentarzeichen entfernen und ausfüllen) ----------
+    ,{ kat: 'buecher', id: 'loki-1', bild: 'https://…/cover.jpg', titel: 'Die Loki-Detektive', text: 'Maria Holm auf Ermittlungstour.', preis: '12,90 €', link: '/store/p/loki-detektive' }
+    */
+  ]
+};
+
+/* Darstellung: füllt alle Platzhalter <div data-tss-grid="kategorie-id"></div> und <div data-tss-cats></div> */
+(() => {
+  const S = window.TS_SHOP;
+  const esc = s => String(s || '').replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+  const arrow = '<svg class="ts-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
+  const card = (p, i) => {
+    const media = p.bild ? `<img class="tss-card__img" src="${esc(p.bild)}" alt="" loading="lazy">` : `<span class="tss-card__icon" aria-hidden="true">${esc(p.icon || '✦')}</span>`;
+    const tag = p.link ? 'a' : 'div';
+    return `<${tag} class="tss-card${p.highlight ? ' tss-card--hi' : ''}"${p.link ? ` href="${esc(p.link)}"` : ''}>
+      <div class="tss-card__media">${media}<span class="ts-label tss-card__nr">${String(i + 1).padStart(2, '0')}</span></div>
+      <div class="tss-card__body">
+        <h3 class="tss-card__title">${esc(p.titel)}</h3>
+        <p class="tss-card__text">${esc(p.text)}</p>
+        <div class="tss-card__foot">
+          <span class="tss-card__price">${p.preis ? esc(p.preis) : '<span class="ts-label ts-muted">Preis im Shop</span>'}</span>
+          <span class="ts-label tss-card__cta">${p.link ? 'Ansehen ' + arrow : 'Bald verfügbar'}</span>
+        </div>
+      </div></${tag}>`;
+  };
+  const run = () => {
+    document.querySelectorAll('[data-tss-grid]').forEach(el => {
+      const list = S.produkte.filter(p => p.kat === el.dataset.tssGrid && (!el.dataset.tssThema || p.thema === el.dataset.tssThema));
+      el.innerHTML = list.length ? list.map(card).join('') : `<p class="tss-empty ts-label ts-muted">[ Hier entsteht gerade etwas – bald mehr ]</p>`;
+      // Kleinunternehmer-Hinweis einmal unter dem Raster
+      if (list.some(p => p.preis) && !(el.nextElementSibling && el.nextElementSibling.classList.contains('tss-tax'))) {
+        el.insertAdjacentHTML('afterend', '<p class="ts-label ts-muted tss-tax">Alle Preise sind Endpreise · Gemäß § 19 UStG wird keine Umsatzsteuer berechnet.</p>');
+      }
+    });
+    document.querySelectorAll('[data-tss-themes]').forEach(el => {
+      el.innerHTML = (S.themen || []).map(t => {
+        const n = S.produkte.filter(p => p.thema === t.id).length;
+        return `<a class="tss-cat" href="${esc(t.link)}" style="--tss-acc:${esc(t.farbe)}">
+          <span class="ts-label tss-cat__nr">${esc(t.nr)} — ${esc(t.label || (n ? n + ' Produkt' + (n === 1 ? '' : 'e') : 'bald'))}</span>
+          <span class="tss-cat__title">${esc(t.titel)}<i>.</i></span>
+          <span class="tss-cat__text">${esc(t.text)}</span>
+          <span class="ts-label tss-cat__go">Entdecken ${arrow}</span></a>`;
+      }).join('');
+    });
+    document.querySelectorAll('[data-tss-cats]').forEach(el => {
+      el.innerHTML = S.kategorien.map(k => {
+        const n = S.produkte.filter(p => p.kat === k.id).length;
+        return `<a class="tss-cat" href="${esc(k.link)}" style="--tss-acc:${esc(k.farbe)}">
+          <span class="ts-label tss-cat__nr">${esc(k.nr)} — ${n ? n + ' Produkt' + (n === 1 ? '' : 'e') : 'bald'}</span>
+          <span class="tss-cat__title">${esc(k.titel)}<i>.</i></span>
+          <span class="tss-cat__text">${esc(k.text)}</span>
+          <span class="ts-label tss-cat__go">Entdecken ${arrow}</span></a>`;
+      }).join('');
+    });
+  };
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', run); else run();
+})();
+</script>
+
+<style>
+  /* ---------- Shop-Bausteine (nutzen deine ts-Variablen, mit Ersatzwerten) ---------- */
+  .tss { --tss-acc: rgb(110, 231, 183); --tss-line: rgba(255, 255, 255, .1); --tss-card: rgba(255, 255, 255, .025);
+         --tss-text: rgba(246, 250, 247, .72); color: #f6faf7; padding: clamp(3.5rem, 8vw, 7rem) 0; }
+  .tss-kicker { display: flex; justify-content: space-between; gap: 1rem; padding-bottom: 1rem; border-bottom: 1px solid var(--tss-line); margin-bottom: clamp(2rem, 5vw, 4rem); }
+  .tss-h1 { font-family: var(--ts-font-display, 'Syne', sans-serif); font-weight: 800; font-size: clamp(2.8rem, 10vw, 8.5rem); line-height: .9; letter-spacing: -0.045em; margin: 0; }
+  .tss-h2 { font-family: var(--ts-font-display, 'Syne', sans-serif); font-weight: 800; font-size: clamp(2rem, 5.5vw, 4.4rem); line-height: .95; letter-spacing: -0.04em; margin: 0; }
+  .tss-h1 i, .tss-h2 i { font-style: normal; color: var(--tss-acc); }
+  .tss-lead { max-width: 44rem; margin: 1.5rem 0 0; color: var(--tss-text); font-size: clamp(16px, 1.45vw, 20px); line-height: 1.65; }
+  .tss-head { display: grid; gap: 1.5rem; margin-bottom: clamp(2rem, 5vw, 3.5rem); }
+  @media (min-width: 1024px) { .tss-head { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); align-items: end; } .tss-head .tss-lead { margin: 0; } }
+
+  /* Kategorien */
+  .tss-cats { display: grid; gap: 1px; background: var(--tss-line); border: 1px solid var(--tss-line); }
+  @media (min-width: 900px) { .tss-cats { grid-template-columns: repeat(auto-fit, minmax(0, 1fr)); } }
+  .tss-cat { position: relative; display: flex; flex-direction: column; gap: .9rem; min-height: 22rem; padding: clamp(1.5rem, 3vw, 2.5rem); background: var(--ts-bg, #0b100e); color: inherit; text-decoration: none; overflow: hidden; transition: background .4s; }
+  .tss-cat::before { content: ""; position: absolute; inset: auto -20% -60% auto; width: 70%; aspect-ratio: 1; border-radius: 50%; background: radial-gradient(closest-side, color-mix(in srgb, var(--tss-acc) 28%, transparent), transparent); opacity: .35; transition: opacity .5s, transform .6s; }
+  .tss-cat:hover::before { opacity: .8; transform: scale(1.15); }
+  .tss-cat__nr { color: var(--tss-acc); }
+  .tss-cat__title { font-family: var(--ts-font-display, 'Syne', sans-serif); font-weight: 800; font-size: clamp(2.4rem, 5vw, 4.2rem); line-height: .92; letter-spacing: -0.04em; margin-top: auto; }
+  .tss-cat__title i { font-style: normal; color: var(--tss-acc); }
+  .tss-cat__text { max-width: 26rem; color: var(--tss-text); line-height: 1.6; }
+  .tss-cat__go { display: inline-flex; align-items: center; gap: .5rem; color: #f6faf7; }
+  .tss-cat:hover .ts-arrow, .tss-card:hover .ts-arrow { transform: translateX(4px); }
+  .tss .ts-arrow { transition: transform .3s; }
+
+  /* Produktkarten */
+  .tss-grid { display: grid; gap: 1px; grid-template-columns: 1fr; }
+  .tss-grid > * { outline: 1px solid var(--tss-line); }
+  @media (min-width: 640px) { .tss-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (min-width: 1100px) { .tss-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+  .tss-card { display: flex; flex-direction: column; background: var(--ts-bg, #0b100e); color: inherit; text-decoration: none; transition: background .35s; animation: tss-in .6s both; }
+  .tss-card:hover { background: color-mix(in srgb, var(--ts-bg, #0b100e) 92%, white); }
+  .tss-card__media { position: relative; aspect-ratio: 16 / 10; display: grid; place-items: center; overflow: hidden; border-bottom: 1px solid var(--tss-line);
+    background: radial-gradient(60% 70% at 50% 60%, color-mix(in srgb, var(--tss-acc) 14%, transparent), transparent 70%), repeating-linear-gradient(90deg, transparent 0 39px, rgba(255,255,255,.035) 39px 40px); }
+  .tss-card__icon { font-size: clamp(3rem, 6vw, 4.5rem); filter: drop-shadow(0 10px 24px rgba(0, 0, 0, .6)); transition: transform .5s; }
+  .tss-card:hover .tss-card__icon { transform: scale(1.08) rotate(-4deg); }
+  .tss-card__img { width: 100%; height: 100%; object-fit: cover; }
+  .tss-card__nr { position: absolute; left: 1rem; top: 1rem; color: rgba(246, 250, 247, .45); }
+  .tss-card__body { display: flex; flex-direction: column; gap: .6rem; flex: 1; padding: 1.4rem 1.4rem 1.2rem; }
+  .tss-card__title { margin: 0; font-family: var(--ts-font-display, 'Syne', sans-serif); font-weight: 800; font-size: clamp(1.35rem, 2vw, 1.7rem); letter-spacing: -0.02em; line-height: 1.05; }
+  .tss-card__text { margin: 0; color: var(--tss-text); font-size: 15px; line-height: 1.55; }
+  .tss-card__foot { display: flex; justify-content: space-between; align-items: center; gap: 1rem; margin-top: auto; padding-top: 1rem; border-top: 1px solid var(--tss-line); }
+  .tss-card__price { font-family: var(--ts-font-display, 'Syne', sans-serif); font-weight: 700; font-size: 1.15rem; }
+  .tss-card__cta { display: inline-flex; align-items: center; gap: .45rem; color: var(--tss-acc); }
+  .tss-card--hi { background: linear-gradient(160deg, color-mix(in srgb, var(--tss-acc) 12%, var(--ts-bg, #0b100e)), var(--ts-bg, #0b100e) 60%); }
+  .tss-empty { grid-column: 1 / -1; padding: 3rem 1.5rem; background: var(--ts-bg, #0b100e); text-align: center; }
+  @keyframes tss-in { from { opacity: 0; transform: translateY(14px); } }
+  @media (prefers-reduced-motion: reduce) { .tss-card { animation: none; } }
+
+  /* Info-Blöcke (Standard-Paket, Schritte, FAQ) */
+  .tss-split { display: grid; gap: 2rem; padding: clamp(1.5rem, 3vw, 2.5rem); border: 1px solid var(--tss-line); background: var(--tss-card); }
+  @media (min-width: 1024px) { .tss-split { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); align-items: start; gap: 4rem; } }
+  .tss-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 1px; background: var(--tss-line); }
+  .tss-list li { display: grid; grid-template-columns: 2.5rem minmax(0, 1fr); gap: 1rem; padding: 1rem 0; background: var(--ts-bg, #0b100e); }
+  .tss-split .tss-list { background: transparent; }
+  .tss-split .tss-list li { background: transparent; border-bottom: 1px solid var(--tss-line); }
+  .tss-split .tss-list li:last-child { border-bottom: 0; }
+  .tss-list b { display: block; font-family: var(--ts-font-display, 'Syne', sans-serif); font-size: 1.1rem; }
+  .tss-list span { color: var(--tss-text); line-height: 1.55; }
+  .tss-list .ts-label { color: var(--tss-acc); padding-top: .2rem; }
+  .tss-steps { display: grid; gap: 1px; background: var(--tss-line); border: 1px solid var(--tss-line); counter-reset: s; }
+  @media (min-width: 900px) { .tss-steps { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+  .tss-step { padding: clamp(1.5rem, 3vw, 2.2rem); background: var(--ts-bg, #0b100e); }
+  .tss-step::before { counter-increment: s; content: "0" counter(s); display: block; font-family: var(--ts-font-display, 'Syne', sans-serif); font-weight: 800; font-size: 3rem; line-height: 1; color: transparent; -webkit-text-stroke: 1px var(--tss-acc); margin-bottom: 1.2rem; }
+  .tss-step h3 { margin: 0 0 .5rem; font-family: var(--ts-font-display, 'Syne', sans-serif); font-size: 1.3rem; }
+  .tss-step p { margin: 0; color: var(--tss-text); line-height: 1.6; }
+  .tss-faq { border-top: 1px solid var(--tss-line); }
+  .tss-faq details { border-bottom: 1px solid var(--tss-line); }
+  .tss-faq summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; gap: 1rem; padding: 1.3rem 0; font-family: var(--ts-font-display, 'Syne', sans-serif); font-weight: 700; font-size: clamp(1.05rem, 1.6vw, 1.3rem); }
+  .tss-faq summary::-webkit-details-marker { display: none; }
+  .tss-faq summary::after { content: "+"; color: var(--tss-acc); font-size: 1.5rem; line-height: 1; transition: transform .3s; }
+  .tss-faq details[open] summary::after { transform: rotate(45deg); }
+  .tss-faq details p { margin: 0 0 1.4rem; max-width: 46rem; color: var(--tss-text); line-height: 1.7; }
+  .tss-faq a, .tss-lead a { color: var(--tss-acc); }
+  .tss-ctas { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 2rem; }
+  .tss-note { margin-top: 1.25rem; color: rgba(246, 250, 247, .5); font-size: 13px; line-height: 1.6; }
+  .tss + .tss { padding-top: 0; }
+</style>
+
+<style>
+  /* Shop: Feinschliff passend zum Design-System */
+  .tss.tss--top { padding-top: calc(var(--ts-header-space) + clamp(2rem, 5vw, 4rem)); }
+  .ts .tss-lead { margin-top: 1.5rem; }
+  .ts .tss-head .tss-lead { margin-top: 0; }
+  .ts .tss-note { margin-top: 1.25rem; }
+  .ts .tss-step h3 { margin-bottom: .5rem; }
+  .ts .tss-faq details p { margin-bottom: 1.4rem; }
+  .ts .tss-faq a, .ts .tss-lead a { color: var(--tss-acc); }
+</style>
+
+<script>
+/* Produktseiten (Squarespace-Store) im Design: Titel aufteilen, Beschreibung gliedern, Brotkrumen auf den Shop */
+(() => {
+  const d = document.querySelector('.product-detail');
+  if (!d) return;
+  // Titel: „01 · Name – Untertitel" → Label „Untertitel" + großer Name
+  const t = d.querySelector('.product-title');
+  if (t && !t.dataset.tsp) {
+    t.dataset.tsp = '1';
+    const raw = t.textContent.replace(/^\s*\d+\s*·\s*/, '').trim();
+    const [name, ...rest] = raw.split(' – ');
+    const k = document.createElement('p');
+    k.className = 'tsp-kicker';
+    k.textContent = rest.join(' – ') || 'Shop';
+    t.before(k);
+    t.textContent = name;
+    const dot = document.createElement('span'); dot.className = 'tsp-dot'; dot.textContent = '.';
+    t.append(dot);
+  }
+  // Beschreibung: Großbuchstaben-Zeilen = Zwischenüberschrift, „• " = Aufzählung, erster Absatz = Einleitung
+  d.querySelectorAll('.product-description').forEach(box => {
+    box.querySelectorAll('p').forEach((p, i) => {
+      const s = p.textContent.trim();
+      if (!s) return;
+      if (/^•\s*/.test(s)) { p.classList.add('tsp-li'); p.innerHTML = p.innerHTML.replace(/^\s*•\s*/, ''); }
+      else if (s.length < 60 && s === s.toUpperCase() && /[A-ZÄÖÜ]/.test(s)) p.classList.add('tsp-h');
+      else if (i === 0) p.classList.add('tsp-intro');
+    });
+  });
+  // Kleinunternehmer-Hinweis unter dem Preis
+  const price = d.querySelector('.product-price');
+  if (price && !price.querySelector('.tsp-tax')) {
+    const tax = document.createElement('span');
+    tax.className = 'tsp-tax';
+    tax.textContent = 'Endpreis · Gemäß § 19 UStG wird keine Umsatzsteuer berechnet.';
+    price.append(tax);
+  }
+  // Brotkrumen: „Shop" zeigt auf die Shop-Seite statt auf die versteckte Store-Seite
+  const crumbs = d.querySelectorAll('.product-nav a');
+  if (crumbs[0]) {
+    const pth = location.pathname;
+    // Thema aus dem Katalog (TS_SHOP) – passt automatisch für jedes neue Thema
+    const S = window.TS_SHOP || {};
+    const norm = (u) => String(u || '').replace(/\/+$/, '').toLowerCase();
+    const prod = (S.produkte || []).find(p => p.link && norm(p.link) === norm(pth));
+    const th = prod && prod.thema && (S.themen || []).find(x => x.id === prod.thema);
+    const [href, txt] = th ? [th.link, String(th.titel).replace(/\u00AD/g, '')]
+      : /eigenes-thema/i.test(pth) ? ['/shop/stream-widgets/eigener-stil', 'Dein eigener Stil']
+      : /pause-|widget|gluecksrad|helden|muenz|mnz|zaehler|ruf|charakter|metrics|umfrage|bingo|aufbau|beute|wunsch/i.test(pth) ? ['/shop/stream-widgets/world-of-warcraft', 'World of Warcraft'] : ['/shop', 'Shop'];
+    crumbs[0].href = href; crumbs[0].textContent = txt;
+    if (txt === 'World of Warcraft') d.closest('.product-detail-section') && d.closest('.product-detail-section').classList.add('tss-gold');
+  }
+  if (crumbs[1]) crumbs[1].textContent = t ? t.textContent.replace(/\.$/, '') : crumbs[1].textContent;
 })();
 </script>

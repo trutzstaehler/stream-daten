@@ -163,12 +163,12 @@ malbuch = page(
 ''', 'Kreativhafen · Malbücher', ['Kritzelspaß &amp;', 'Malfreude.'],
  'Unsere Mal- und Kritzelbücher fördern spielerisch Fantasie, Motorik und Konzentration – mit liebevollen Motiven aus Alltag, Natur und Tierwelt.',
  'Das Regal', '2 Malbücher · ab 1 Jahr',
- card('01','Tiere','https://www.amazon.de/dp/B0HFC3LDZM',
+ card('01','Tiere','/mein-tiere-kritzelbuch',
       'https://images.squarespace-cdn.com/content/v1/6869717aa7c996116c8c8a56/ed4546f0-e46a-4af1-a52e-a880ce697147/Malbuch+Mein+erstes+Tiere-Kritzelbuch++Cover+%281%29.png?format=1000w',
       'Malbuch „Mein Tiere-Kritzelbuch ab 1 Jahr“, aufgeschlagen mit Wachsmalstiften','wide',
       'Malbuch ab 1 Jahr','Mein Tiere-Kritzelbuch',
       'Liebevoll gestaltetes Malbuch für Kleinkinder: Erstes Ausmalbuch mit großen Motiven zum Ausmalen – zur Förderung von Kreativität und Motorik.',
-      [('age','Ab 1 Jahr'),('pen','Große Motive'),('hand','Kreativität &amp; Motorik')], 'Zum Malbuch auf Amazon', ext=True)
+      [('age','Ab 1 Jahr'),('pen','Große Motive'),('hand','Kreativität &amp; Motorik')], 'Reinschauen &amp; Eichhörnchen ausmalen')
  + '\n' +
  card('02','Dinos','https://www.amazon.de/dp/B0HFC3RF56',
       'https://images.squarespace-cdn.com/content/v1/6869717aa7c996116c8c8a56/03265d54-7284-481a-908a-2941deae8c19/Malbuch+Gro%C3%9Fe+Dinomotive+zum+Ausmalen+-+Cover+%282%29.png?format=1000w',

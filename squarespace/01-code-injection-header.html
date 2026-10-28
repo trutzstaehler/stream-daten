@@ -47,7 +47,7 @@
   html::after { content: "Trutz Stähler"; position: fixed; inset: 0; z-index: 2147483000; display: grid; place-items: center; pointer-events: none; visibility: hidden; transform: translateY(100%);
     font: 800 clamp(1.6rem, 4vw, 3rem)/1 'Syne', system-ui, sans-serif; letter-spacing: -0.03em; color: rgba(246, 250, 247, .9);
     background: radial-gradient(60% 50% at 50% 100%, rgba(74, 222, 128, .28), transparent 70%), linear-gradient(180deg, #0f2a22, #0c110f 55%, #060608); box-shadow: 0 -1px 0 #6ee7b7, 0 -30px 80px -20px rgba(74, 222, 128, .45); }
-  html:has(.tsw)::after { content: "Trutz Stahl"; font-family: 'Cinzel', Georgia, serif; font-weight: 700; color: #ffd100;
+  html:has(:is(.tsw, .tss-gold))::after { content: "Trutz Stahl"; font-family: 'Cinzel', Georgia, serif; font-weight: 700; color: #ffd100;
     background: radial-gradient(60% 50% at 50% 100%, rgba(255, 209, 0, .18), transparent 70%), linear-gradient(180deg, #241a0e, #120e0b 55%, #0b0806); box-shadow: 0 -1px 0 #ffd100, 0 -30px 80px -20px rgba(255, 209, 0, .35); }
   html.ts-trans-in::after { visibility: visible; transform: translateY(0); animation: ts-curtain-out .85s .12s cubic-bezier(.7, 0, .2, 1) forwards; }
   html.ts-trans-leave::after { visibility: visible; animation: ts-curtain-in .5s cubic-bezier(.7, 0, .2, 1) forwards; }
@@ -91,7 +91,7 @@
   ::selection { background: rgba(46, 140, 108, 0.35); color: var(--ts-text); }
   /* Scrollleiste im Design (dünn, grün; im Twitch-Bereich gold) */
   html { scrollbar-width: thin; scrollbar-color: #24654f #060608; }
-  html:has(.tsw) { scrollbar-color: #8c713c #0b0806; }
+  html:has(:is(.tsw, .tss-gold)) { scrollbar-color: #8c713c #0b0806; }
   ::-webkit-scrollbar { width: 10px; height: 10px; }
   ::-webkit-scrollbar-track { background: #060608; }
   ::-webkit-scrollbar-thumb { background: #1d4d3f; border-radius: 10px; border: 2px solid #060608; }
@@ -414,7 +414,7 @@
   /* ============ 9. TWITCH-BEREICH IM WORLD-OF-WARCRAFT-FOREVER-STIL ============
      Greift automatisch auf jeder Seite mit einem Block der Klasse „tsw“:
      Navigation, Buttons und Footer werden golden, Schriften Cinzel & Asul. */
-  body:has(.tsw) {
+  body:has(:is(.tsw, .tss-gold)) {
     --ts-bg: #0b0806; --ts-bg-2: #16100a;
     --ts-line: rgba(199, 156, 56, 0.18); --ts-line-strong: rgba(199, 156, 56, 0.38);
     --ts-green: #5a0d07; --ts-green-glow: #8b1a10;
@@ -422,27 +422,27 @@
     --ts-text: #f3eee2; --ts-muted: #b8ad94;
     --ts-font-display: 'Cinzel', Georgia, serif; --ts-font-body: 'Asul', Georgia, serif; --ts-font-mono: 'Cinzel', Georgia, serif;
   }
-  html:has(.tsw), body:has(.tsw), body:has(.tsw) #siteWrapper, body:has(.tsw) #page, body:has(.tsw) main { background-color: #0b0806 !important; }
-  body:has(.tsw) ::selection { background: rgba(255, 209, 0, 0.3); }
-  body:has(.tsw) .ts .ts-display { letter-spacing: 0.02em; }
-  body:has(.tsw) .ts .ts-label { font-weight: 700; }
-  body:has(.tsw) .ts .ts-btn--primary { background: linear-gradient(180deg, #ffe27a, #c79c38); color: #1a1206; text-shadow: none; }
-  body:has(.tsw) .ts .ts-btn--primary:hover { color: #ffe9a8; box-shadow: 0 0 0 1px #c79c38, 0 18px 50px -14px rgba(139, 26, 16, 0.9); }
-  body:has(.tsw) .ts .ts-btn--ghost:hover { border-color: rgba(255, 209, 0, 0.55); box-shadow: 0 0 40px -12px rgba(255, 209, 0, 0.45); }
-  body:has(.tsw) .ts-footer__glow { background: radial-gradient(ellipse, rgba(255, 209, 0, 0.14), rgba(139, 26, 16, 0.14) 45%, transparent 70%); }
-  body:has(.tsw) .ts-footer__title .ts-outline { -webkit-text-stroke-color: rgba(255, 209, 0, 0.75); }
+  html:has(:is(.tsw, .tss-gold)), body:has(:is(.tsw, .tss-gold)), body:has(:is(.tsw, .tss-gold)) #siteWrapper, body:has(:is(.tsw, .tss-gold)) #page, body:has(:is(.tsw, .tss-gold)) main { background-color: #0b0806 !important; }
+  body:has(:is(.tsw, .tss-gold)) ::selection { background: rgba(255, 209, 0, 0.3); }
+  body:has(:is(.tsw, .tss-gold)) .ts .ts-display { letter-spacing: 0.02em; }
+  body:has(:is(.tsw, .tss-gold)) .ts .ts-label { font-weight: 700; }
+  body:has(:is(.tsw, .tss-gold)) .ts .ts-btn--primary { background: linear-gradient(180deg, #ffe27a, #c79c38); color: #1a1206; text-shadow: none; }
+  body:has(:is(.tsw, .tss-gold)) .ts .ts-btn--primary:hover { color: #ffe9a8; box-shadow: 0 0 0 1px #c79c38, 0 18px 50px -14px rgba(139, 26, 16, 0.9); }
+  body:has(:is(.tsw, .tss-gold)) .ts .ts-btn--ghost:hover { border-color: rgba(255, 209, 0, 0.55); box-shadow: 0 0 40px -12px rgba(255, 209, 0, 0.45); }
+  body:has(:is(.tsw, .tss-gold)) .ts-footer__glow { background: radial-gradient(ellipse, rgba(255, 209, 0, 0.14), rgba(139, 26, 16, 0.14) 45%, transparent 70%); }
+  body:has(:is(.tsw, .tss-gold)) .ts-footer__title .ts-outline { -webkit-text-stroke-color: rgba(255, 209, 0, 0.75); }
   /* Normale Squarespace-Blöcke auf Twitch-Seiten im WoW-Design (aus der Twitch-Kopfzeile übernommen) */
-  body:has(.tsw) #page .page-section, body:has(.tsw) #page .page-section .section-background { background-color: #0b0806 !important; }
-  body:has(.tsw) .sqs-block-html p, body:has(.tsw) .sqs-block-html li, body:has(.tsw) .sqs-block-html blockquote { font-family: Asul, Georgia, serif; color: #f3eee2; }
-  body:has(.tsw) .sqs-block-html h1, body:has(.tsw) .sqs-block-html h2, body:has(.tsw) .sqs-block-html h3 { font-family: Cinzel, Georgia, serif !important; font-weight: 700 !important; letter-spacing: .02em; text-transform: none !important; color: #ffd100 !important; text-shadow: 0 2px 0 #000; }
-  body:has(.tsw) .sqs-block-html h4 { font-family: Asul, Georgia, serif !important; font-weight: 700 !important; text-transform: none !important; color: #ffd100 !important; }
-  body:has(.tsw) .sqs-block-html a { color: #ffd100; text-decoration: none; border-bottom: 1px solid rgba(255, 209, 0, .35); }
-  body:has(.tsw) .sqs-block-html a:hover { border-bottom-color: #ffd100; }
-  body:has(.tsw) .sqs-block-button-element, body:has(.tsw) .sqs-button-element--primary { font-family: Asul, Georgia, serif !important; font-weight: 700 !important; text-transform: none !important; border-radius: 999px !important; border: 1px solid #c79c38 !important; background: linear-gradient(180deg, #ffe27a, #c79c38) !important; color: #1a1206 !important; }
-  body:has(.tsw) .sqs-block-image img, body:has(.tsw) .image-block-wrapper img { border-radius: 18px; }
-  body:has(.tsw) .sqs-block-horizontalrule hr { border: none; height: 1px; background: linear-gradient(90deg, transparent, #8c713c, transparent); }
+  body:has(:is(.tsw, .tss-gold)) #page .page-section, body:has(:is(.tsw, .tss-gold)) #page .page-section .section-background { background-color: #0b0806 !important; }
+  body:has(:is(.tsw, .tss-gold)) .sqs-block-html p, body:has(:is(.tsw, .tss-gold)) .sqs-block-html li, body:has(:is(.tsw, .tss-gold)) .sqs-block-html blockquote { font-family: Asul, Georgia, serif; color: #f3eee2; }
+  body:has(:is(.tsw, .tss-gold)) .sqs-block-html h1, body:has(:is(.tsw, .tss-gold)) .sqs-block-html h2, body:has(:is(.tsw, .tss-gold)) .sqs-block-html h3 { font-family: Cinzel, Georgia, serif !important; font-weight: 700 !important; letter-spacing: .02em; text-transform: none !important; color: #ffd100 !important; text-shadow: 0 2px 0 #000; }
+  body:has(:is(.tsw, .tss-gold)) .sqs-block-html h4 { font-family: Asul, Georgia, serif !important; font-weight: 700 !important; text-transform: none !important; color: #ffd100 !important; }
+  body:has(:is(.tsw, .tss-gold)) .sqs-block-html a { color: #ffd100; text-decoration: none; border-bottom: 1px solid rgba(255, 209, 0, .35); }
+  body:has(:is(.tsw, .tss-gold)) .sqs-block-html a:hover { border-bottom-color: #ffd100; }
+  body:has(:is(.tsw, .tss-gold)) .sqs-block-button-element, body:has(:is(.tsw, .tss-gold)) .sqs-button-element--primary { font-family: Asul, Georgia, serif !important; font-weight: 700 !important; text-transform: none !important; border-radius: 999px !important; border: 1px solid #c79c38 !important; background: linear-gradient(180deg, #ffe27a, #c79c38) !important; color: #1a1206 !important; }
+  body:has(:is(.tsw, .tss-gold)) .sqs-block-image img, body:has(:is(.tsw, .tss-gold)) .image-block-wrapper img { border-radius: 18px; }
+  body:has(:is(.tsw, .tss-gold)) .sqs-block-horizontalrule hr { border: none; height: 1px; background: linear-gradient(90deg, transparent, #8c713c, transparent); }
   .ts-footer__wow { display: none; }
-  body:has(.tsw) .ts-footer__wow { display: block; flex-basis: 100%; margin: 0; color: #8f8573; font-size: 13px; line-height: 1.6; }
+  body:has(:is(.tsw, .tss-gold)) .ts-footer__wow { display: block; flex-basis: 100%; margin: 0; color: #8f8573; font-size: 13px; line-height: 1.6; }
 
   .tsw {
     --tsw-gold: #ffd100; --tsw-gold-soft: #e6c678; --tsw-brass: #8c713c; --tsw-txt: #f3eee2; --tsw-muted: #b8ad94;
@@ -496,6 +496,74 @@
     .tsw-subnav__inner { flex-wrap: wrap; }
     .tsw-subnav__list { flex-basis: 100%; order: 2; }
   }
+
+
+  /* ============ 11. PRODUKTSEITEN (Squarespace-Store) ============ */
+  .product-detail-section, .product-detail-section .section-background { background: var(--ts-bg) !important; }
+  .product-detail-section { padding-top: calc(var(--ts-header-space) + 1rem) !important; padding-bottom: clamp(4rem, 8vw, 7rem) !important; color: var(--ts-text); font-family: var(--ts-font-body); }
+  .product-detail-section .content-wrapper { max-width: 1440px !important; padding-left: var(--ts-gutter) !important; padding-right: var(--ts-gutter) !important; }
+  /* Brotkrumen als Label */
+  .product-detail .product-nav { padding-bottom: 1.25rem; margin-bottom: clamp(1.5rem, 3vw, 2.5rem); border-bottom: 1px solid var(--ts-line); }
+  .product-detail .product-nav, .product-detail .product-nav a { font: 400 11.5px/1.5 var(--ts-font-mono) !important; letter-spacing: .18em; text-transform: uppercase; color: var(--ts-muted) !important; }
+  .product-detail .product-nav a:hover { color: var(--ts-text) !important; }
+  /* Raster: Bild links, Infos rechts */
+  @media (min-width: 1024px) {
+    .product-detail .product-content-wrapper { display: grid !important; grid-template-columns: minmax(0, 6fr) minmax(0, 6fr); gap: clamp(2.5rem, 5vw, 5rem); align-items: start; }
+    .product-detail .product-gallery { position: sticky; top: calc(var(--ts-header-space) + 1rem); width: auto !important; }
+    .product-detail .product-meta { width: auto !important; padding: 0 !important; }
+  }
+  .product-detail .product-gallery-slides { border: 1px solid var(--ts-line); border-radius: 22px; overflow: hidden; background: #060608; }
+  .product-detail .product-gallery-slides-item, .product-detail .product-gallery-slides { aspect-ratio: 1 / 1 !important; height: auto !important; }
+  .product-detail .product-gallery-slides-item-image { object-fit: contain !important; width: 100% !important; height: 100% !important; }
+  /* Titel */
+  .product-detail .tsp-kicker { display: inline-flex; align-items: center; gap: 12px; margin-bottom: 1.1rem; font: 400 11.5px/1.5 var(--ts-font-mono); letter-spacing: .18em; text-transform: uppercase; color: var(--ts-mint); }
+  .product-detail .tsp-kicker::before { content: ""; width: 32px; height: 1px; background: linear-gradient(90deg, var(--ts-mint), var(--ts-leaf)); }
+  .product-detail .product-title { margin: 0 !important; font-family: var(--ts-font-display) !important; font-weight: 800 !important; font-size: clamp(2.4rem, 5vw, 4.6rem) !important; line-height: .95 !important; letter-spacing: -0.04em !important; text-transform: none !important; color: var(--ts-text) !important; overflow-wrap: break-word; hyphens: auto; }
+  .product-detail .product-title .tsp-dot { color: var(--ts-mint); }
+  body:has(.tss-gold) .product-detail .product-title .tsp-dot { color: #ffd100; }
+  /* Preis */
+  .product-detail .product-price { margin: 1.5rem 0 0 !important; padding: 1.25rem 0; border-top: 1px solid var(--ts-line); border-bottom: 1px solid var(--ts-line); }
+  .product-detail .product-price-value, .product-detail .product-price { font-family: var(--ts-font-display) !important; font-weight: 800 !important; font-size: 2rem !important; letter-spacing: -0.02em; color: var(--ts-mint) !important; }
+  body:has(.tss-gold) .product-detail :is(.product-price-value, .product-price) { color: #ffd100 !important; }
+  .product-detail .product-price .tsp-tax { display: block; margin-top: .5rem; font: 400 11px/1.6 var(--ts-font-mono) !important; letter-spacing: .04em !important; text-transform: none !important; color: var(--ts-muted) !important; }
+  .tss-head > *, .tss-cat { min-width: 0; }
+  .tss-cat__title { hyphens: manual; overflow-wrap: normal; }
+  /* ab drei Kacheln nebeneinander: Titel kleiner, damit lange Namen (World of Warcraft) ganz passen */
+  @media (min-width: 900px) { .tss-cats:has(> :nth-child(3)) .tss-cat__title { font-size: clamp(1.9rem, 3.1vw, 3rem); } }
+  /* WoW-Shopseiten im goldenen Stil (gleiche Farben wie der Twitch-Bereich) */
+  .tss-gold, body:has(.tss-gold) .tss { --tss-acc: #ffd100; --tss-line: rgba(199, 156, 56, .2); --tss-text: #d9d0bb; }
+  body:has(.tss-gold) :is(.tss-h1, .tss-h2, .tss-cat__title, .tss-card__title, .tss-step h3, .tss-list b, .tss-faq summary, .product-detail .product-title) { font-family: 'Cinzel', Georgia, serif !important; font-weight: 700 !important; letter-spacing: .01em !important; }
+  body:has(.tss-gold) :is(.tss-h1, .product-detail .product-title) { color: #ffd100 !important; text-shadow: 0 2px 0 #000, 0 14px 40px rgba(0, 0, 0, .55); }
+  body:has(.tss-gold) .tss-card:hover { background: #16100a; }
+  body:has(.tss-gold) .tss-step::before { -webkit-text-stroke-color: #c79c38; }
+  body:has(.tss-gold) .product-detail .sqs-add-to-cart-button { background: linear-gradient(180deg, #ffe27a, #c79c38) !important; color: #1a1206 !important; }
+  body:has(.tss-gold) .product-detail .sqs-add-to-cart-button::before { background: linear-gradient(110deg, #5a0d07, #8b1a10); }
+  body:has(.tss-gold) .product-detail .sqs-add-to-cart-button:hover { color: #ffe9a8 !important; box-shadow: 0 0 0 1px #c79c38, 0 18px 50px -14px rgba(139, 26, 16, .9); }
+  body:has(.tss-gold) .product-detail .product-gallery-slides { border-color: rgba(199, 156, 56, .4); }
+  body:has(.tss-gold) :is(.tsp-tax, .tss-tax) { font-family: 'Asul', Georgia, serif !important; letter-spacing: 0 !important; font-size: 13px !important; }
+  .ts .tss-tax { margin-top: 1rem; font-size: 11px; letter-spacing: .04em; text-transform: none; }
+  /* Beschreibung */
+  .product-detail .product-description { margin-top: 1.75rem !important; }
+  .product-detail .product-description p { margin: 0 !important; font-family: var(--ts-font-body) !important; font-size: 16px !important; line-height: 1.7 !important; color: rgba(246, 250, 247, .72) !important; text-transform: none !important; letter-spacing: 0 !important; }
+  .product-detail .product-description p.tsp-intro { font-size: clamp(17px, 1.4vw, 19px) !important; color: var(--ts-text) !important; }
+  .product-detail .product-description p.tsp-h { margin-top: 2rem !important; padding-bottom: .75rem; margin-bottom: .5rem !important; border-bottom: 1px solid var(--ts-line); font: 400 11.5px/1.5 var(--ts-font-mono) !important; letter-spacing: .18em !important; text-transform: uppercase !important; color: var(--ts-mint) !important; }
+  .product-detail .product-description p.tsp-li { position: relative; padding: .45rem 0 .45rem 1.5rem; font-size: 15px !important; }
+  .product-detail .product-description p.tsp-li::before { content: ""; position: absolute; left: 2px; top: 1.05rem; width: 7px; height: 7px; border-radius: 50%; background: var(--ts-leaf); box-shadow: 0 0 10px rgba(74, 222, 128, .55); }
+  /* Warenkorb-Button im Pillen-Look */
+  .product-detail .product-add-to-cart { margin-top: 2rem !important; }
+  .product-detail .sqs-add-to-cart-button { position: relative; overflow: hidden; isolation: isolate; height: 60px !important; padding: 0 2rem !important; border-radius: 999px !important; border: 0 !important; background: var(--ts-text) !important; color: var(--ts-bg) !important;
+    font: 500 16px/1 var(--ts-font-body) !important; letter-spacing: 0 !important; text-transform: none !important; transition: color .4s, box-shadow .5s var(--ts-ease-out) !important; }
+  .product-detail .sqs-add-to-cart-button::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(110deg, var(--ts-green), var(--ts-green-glow)); transform: translateY(101%); transition: transform .6s var(--ts-ease-out); }
+  .product-detail .sqs-add-to-cart-button:hover { color: var(--ts-text) !important; box-shadow: 0 18px 50px -12px rgba(46, 140, 108, .65); }
+  .product-detail .sqs-add-to-cart-button:hover::before { transform: translateY(0); }
+  .product-detail .sqs-add-to-cart-button-inner { font: inherit !important; color: inherit !important; }
+  /* Varianten, Menge, Formular-Felder (z. B. Wunsch-Paket) */
+  .product-detail .product-variants, .product-detail .product-quantity-input { margin-top: 1.5rem !important; }
+  .product-detail .variant-option-title, .product-detail .product-quantity-input label { font: 400 11.5px/1.5 var(--ts-font-mono) !important; letter-spacing: .18em; text-transform: uppercase; color: var(--ts-muted) !important; }
+  .product-detail select, .product-detail input[type="number"], .product-detail .variant-select-wrapper { background: rgba(255, 255, 255, .03) !important; color: var(--ts-text) !important; border: 1px solid var(--ts-line-strong) !important; border-radius: 14px !important; font-family: var(--ts-font-body) !important; }
+  .product-detail select option { background: #0c110f; color: var(--ts-text); }
+  /* Leere Bewertungs-/Empfehlungs-Bereiche ohne Höhe */
+  .product-reviews-section:not(:has(.product-reviews *)), .related-products-section:not(:has(img)) { display: none !important; }
 
   /* ============ 8. BEWEGUNG REDUZIEREN ============ */
   @media (prefers-reduced-motion: reduce) {

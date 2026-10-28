@@ -162,7 +162,7 @@ malbuch = page(
 =================================================================== -->
 ''', 'Kreativhafen · Malbücher', ['Kritzelspaß &amp;', 'Malfreude.'],
  'Unsere Mal- und Kritzelbücher fördern spielerisch Fantasie, Motorik und Konzentration – mit liebevollen Motiven aus Alltag, Natur und Tierwelt.',
- 'Das Regal', '2 Malbücher · ab 1 Jahr',
+ 'Das Regal', '2 Malbücher · ab 1 bzw. 2 Jahren',
  card('01','Tiere','/mein-tiere-kritzelbuch',
       'https://images.squarespace-cdn.com/content/v1/6869717aa7c996116c8c8a56/ed4546f0-e46a-4af1-a52e-a880ce697147/Malbuch+Mein+erstes+Tiere-Kritzelbuch++Cover+%281%29.png?format=1000w',
       'Malbuch „Mein Tiere-Kritzelbuch ab 1 Jahr“, aufgeschlagen mit Wachsmalstiften','wide',
@@ -170,12 +170,12 @@ malbuch = page(
       'Liebevoll gestaltetes Malbuch für Kleinkinder: Erstes Ausmalbuch mit großen Motiven zum Ausmalen – zur Förderung von Kreativität und Motorik.',
       [('age','Ab 1 Jahr'),('pen','Große Motive'),('hand','Kreativität &amp; Motorik')], 'Reinschauen &amp; Eichhörnchen ausmalen')
  + '\n' +
- card('02','Dinos','https://www.amazon.de/dp/B0HFC3RF56',
+ card('02','Dinos','/mein-dino-kritzelbuch',
       'https://images.squarespace-cdn.com/content/v1/6869717aa7c996116c8c8a56/03265d54-7284-481a-908a-2941deae8c19/Malbuch+Gro%C3%9Fe+Dinomotive+zum+Ausmalen+-+Cover+%282%29.png?format=1000w',
-      'Malbuch „Mein Dino-Kritzelbuch ab 1 Jahr“, aufgeschlagen mit Wachsmalstiften','wide',
-      'Malbuch ab 1 Jahr','Mein Dino-Kritzelbuch',
+      'Malbuch „Mein Dino-Kritzelbuch ab 2 Jahren“, aufgeschlagen mit Wachsmalstiften','wide',
+      'Malbuch ab 2 Jahren','Mein Dino-Kritzelbuch',
       'Liebevoll gestaltetes Malbuch für Kleinkinder: Erstes Ausmalbuch mit großen Motiven zum Ausmalen – zur Förderung von Kreativität und Motorik.',
-      [('age','Ab 1 Jahr'),('pen','Große Motive'),('hand','Kreativität &amp; Motorik')], 'Zum Malbuch auf Amazon', ext=True))
+      [('age','Ab 2 Jahren'),('pen','Große Motive'),('hand','Kreativität &amp; Motorik')], 'Reinschauen &amp; Dino ausmalen'))
 import re as _re
 B='https://m.media-amazon.com/images/I/613IuTeT+2L.'
 _cov=lambda h: h.replace(f'src="{B}_SL1491_.jpg"', f'src="{B}_SL900_.jpg" srcset="{B}_SL600_.jpg 400w, {B}_SL900_.jpg 600w, {B}_SL1491_.jpg 994w" sizes="(min-width: 1024px) 460px, 80vw"')

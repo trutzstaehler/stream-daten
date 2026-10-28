@@ -1,0 +1,308 @@
+<!-- ==================================================================
+     TRUTZ STÄHLER · BUCHSEITE „MEIN DINO-KRITZELBUCH“ (mit Party-Dino zum Ausmalen)
+     Einfügen in: neue Seite /mein-dino-kritzelbuch (Bereich „Nicht verlinkt“)
+                  → einzige Sektion → Code-Block (volle Breite)
+     Bilder sind direkt eingebettet – nichts hochladen nötig.
+=================================================================== -->
+<style>
+  .ts-kb { position: relative; isolation: isolate; overflow: hidden; overflow: clip; background: var(--ts-bg); }
+  .ts-kb__orb { position: absolute; z-index: -1; right: -14%; top: 2%; width: 56vw; height: 56vw; max-width: 860px; max-height: 860px; border-radius: 50%; pointer-events: none;
+    background: radial-gradient(circle, rgba(46, 140, 108, .28) 0%, rgba(46, 140, 108, .19) 22%, rgba(46, 140, 108, .09) 42%, rgba(46, 140, 108, .03) 58%, rgba(46, 140, 108, 0) 72%); }
+  .ts-kb .ts-line { padding-bottom: .16em; margin-bottom: -.16em; }
+
+  /* Intro */
+  .ts-kb__intro { padding-top: clamp(8.5rem, 14vw, 12rem); }
+  .ts-kb__meta { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem; padding-bottom: 1.25rem; border-bottom: 1px solid var(--ts-line); }
+  .ts .ts-kb__back { display: inline-flex; align-items: center; gap: .6rem; color: var(--ts-muted); transition: color .3s, gap .4s var(--ts-ease-out); }
+  .ts .ts-kb__back:hover { color: var(--ts-mint); gap: .9rem; }
+  .ts-kb__head { display: grid; grid-template-columns: minmax(0, 1fr); gap: 2.5rem; padding-top: clamp(2.5rem, 5vw, 4rem); align-items: center; }
+  .ts .ts-kb__title { font-family: var(--ts-font-display); font-weight: 800; font-size: clamp(2.4rem, 7.4vw, 7rem); line-height: .93; letter-spacing: -0.035em; }
+  .ts .ts-kb__claim { margin-top: 1.5rem; font-family: var(--ts-font-display); font-weight: 700; font-size: clamp(1.15rem, 2vw, 1.6rem); line-height: 1.2; letter-spacing: -0.015em; }
+  .ts .ts-kb__lead { margin-top: 1rem; max-width: 36rem; color: var(--ts-muted); font-size: clamp(16px, 1.4vw, 18.5px); line-height: 1.7; }
+  .ts .ts-kb__chips { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1.5rem; }
+  .ts .ts-kb__chips li { padding: 8px 13px; border-radius: 999px; border: 1px solid var(--ts-line-strong); color: var(--ts-text); font-size: 10.5px; }
+  .ts-kb__ctas { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 2rem; }
+  .ts-kb__cover { margin: 0; justify-self: center; width: 100%; max-width: 640px; }
+  .ts-kb__cover img { display: block; width: 100% !important; height: auto !important; border-radius: 14px; filter: drop-shadow(0 40px 50px rgba(0, 0, 0, .6)); transform: rotate(-1.5deg); transition: transform .8s var(--ts-ease-out); }
+  .ts-kb__cover:hover img { transform: rotate(0deg) scale(1.02); }
+
+  /* Ausmalen */
+  .ts-kb__block { padding-top: clamp(5rem, 9vw, 8rem); }
+  .ts-kb__blockhead { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; padding-bottom: 1.25rem; border-bottom: 1px solid var(--ts-line); }
+  .ts .ts-kb__h2 { margin-top: clamp(1.75rem, 3vw, 2.5rem); font-family: var(--ts-font-display); font-weight: 800; font-size: clamp(2rem, 5vw, 4.4rem); line-height: .98; letter-spacing: -0.03em; }
+  .ts .ts-kb__sub { margin-top: .9rem; max-width: 40rem; color: var(--ts-muted); font-size: clamp(15px, 1.3vw, 17.5px); line-height: 1.65; }
+  .ts-paint { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1.25rem; margin-top: 2rem; align-items: start; }
+  .ts-paint__paper { position: relative; padding: clamp(.6rem, 1.6vw, 1.25rem); border-radius: 8px; background: #fbf9f4; box-shadow: 0 1px 0 rgba(255, 255, 255, .7) inset, 0 40px 80px -36px rgba(0, 0, 0, .9), 0 2px 8px rgba(0, 0, 0, .35); }
+  .ts-paint__canvas { display: block; width: 100%; height: auto; aspect-ratio: var(--ar, 1000 / 1327); border-radius: 4px; cursor: crosshair; touch-action: pan-y; background: #fff; }
+  .ts-paint.is-brush .ts-paint__canvas { touch-action: none; }
+  .ts .ts-paint__done { position: absolute; left: 50%; top: 1rem; transform: translate(-50%, -10px); padding: 8px 14px; border-radius: 999px; background: #1d4d3f; color: #f6faf7; font-size: 11px; opacity: 0; pointer-events: none; transition: opacity .3s, transform .4s var(--ts-ease-out); white-space: nowrap; }
+  .ts .ts-paint__done.is-on { opacity: 1; transform: translate(-50%, 0); }
+  .ts-paint__tools { display: grid; gap: 1rem; padding: 1.1rem; border-radius: 22px; }
+  .ts .ts-paint__label { color: var(--ts-muted); font-size: 10.5px; }
+  .ts-paint__swatches { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: .5rem; margin-top: .5rem; }
+  .ts .ts-paint__sw { position: relative; aspect-ratio: 1; width: 100%; border-radius: 50%; border: 2px solid rgba(255, 255, 255, .14); background: var(--c); cursor: pointer; transition: transform .25s var(--ts-ease-out), border-color .2s; }
+  .ts .ts-paint__sw:hover { transform: scale(1.08); }
+  .ts .ts-paint__sw[aria-pressed="true"] { border-color: #f6faf7; transform: scale(1.12); box-shadow: 0 0 0 3px rgba(110, 231, 183, .45); }
+  .ts-paint__modes, .ts-paint__acts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .5rem; margin-top: .5rem; }
+  .ts .ts-paint__btn { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .35rem; min-height: 64px; padding: .6rem .4rem; border-radius: 16px; border: 1px solid var(--ts-line-strong); background: rgba(255, 255, 255, .03); color: var(--ts-text); font: 500 12.5px/1.15 var(--ts-font-body); cursor: pointer; transition: background .25s, border-color .25s, color .25s; }
+  .ts .ts-paint__btn:hover { border-color: rgba(110, 231, 183, .45); }
+  .ts .ts-paint__btn[aria-pressed="true"] { background: #f6faf7; color: #060608; border-color: #f6faf7; }
+  .ts .ts-paint__btn:disabled { opacity: .35; cursor: default; }
+  .ts .ts-paint__size { display: flex; align-items: center; gap: .75rem; margin-top: .5rem; }
+  .ts-paint__size input { flex: 1; accent-color: #6ee7b7; }
+  .ts .ts-paint__hint { color: var(--ts-muted); font-size: 13px; line-height: 1.5; }
+
+  /* Tierparade */
+  .ts-zoo { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(.6rem, 1.6vw, 1.1rem); margin-top: 2rem; }
+  .ts .ts-zoo figure { margin: 0; padding: clamp(.5rem, 1.2vw, .8rem); border-radius: 6px; background: #fbf9f4; transform: rotate(var(--r, 0deg)); box-shadow: 0 24px 50px -28px rgba(0, 0, 0, .85); transition: transform .5s var(--ts-ease-out); }
+  .ts .ts-zoo figure:hover { transform: rotate(0deg) translateY(-5px) scale(1.03); }
+  .ts-zoo img { display: block; width: 100% !important; height: auto !important; aspect-ratio: 1; }
+  .ts .ts-zoo figcaption { margin-top: .35rem; text-align: center; font: 800 clamp(10px, 1.2vw, 13px)/1 var(--ts-font-display); letter-spacing: .02em; text-transform: uppercase; color: #1b1f1c; }
+  .ts-zoo__all { margin-top: 1.75rem; display: flex; flex-wrap: wrap; gap: .4rem; }
+  .ts .ts-zoo__all li { padding: 6px 11px; border-radius: 999px; border: 1px solid var(--ts-line); color: var(--ts-muted); font-size: 13px; }
+  .ts .ts-zoo__all li.is-shown { border-color: rgba(110, 231, 183, .35); color: var(--ts-text); }
+
+  /* Warum */
+  .ts-why { display: grid; grid-template-columns: minmax(0, 1fr); gap: .9rem; margin-top: 2rem; }
+  .ts .ts-why > div { padding: 1.5rem; border-radius: 22px; }
+  .ts-why__icon { display: grid; place-items: center; width: 46px; height: 46px; border-radius: 14px; border: 1px solid var(--ts-line); background: rgba(29, 77, 63, .45); color: var(--ts-mint); }
+  .ts .ts-why h3 { margin-top: 1rem; font: 700 1.3rem/1.15 var(--ts-font-display); letter-spacing: -0.02em; }
+  .ts .ts-why p { margin-top: .6rem; color: var(--ts-muted); font-size: 15px; line-height: 1.6; }
+  .ts-kb__end { padding-bottom: clamp(6rem, 11vw, 10rem); }
+  .ts .ts-kb__final { margin-top: clamp(3rem, 6vw, 5rem); padding: clamp(1.75rem, 4vw, 3rem); border-radius: 26px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1.5rem; }
+  .ts .ts-kb__final p { font: 800 clamp(1.5rem, 3vw, 2.4rem)/1.05 var(--ts-font-display); letter-spacing: -0.025em; }
+
+  @media (min-width: 640px) {
+    .ts-zoo { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .ts-why { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  }
+  @media (min-width: 1024px) {
+    .ts-kb__head { grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); column-gap: clamp(3rem, 6vw, 6rem); }
+    .ts-paint { grid-template-columns: minmax(0, 8fr) minmax(0, 4fr); gap: 2rem; }
+    .ts-paint__tools { position: sticky; top: 110px; }
+    .ts-zoo { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+  }
+  @media (prefers-reduced-motion: reduce) { .ts .ts-zoo figure, .ts-kb__cover img { transform: none !important; } }
+  /* Hochkant-Motiv: nie höher als der Bildschirm */
+  .ts-paint__canvas { max-height: calc(100vh - 150px); max-height: calc(100svh - 150px); width: auto; max-width: 100%; margin: 0 auto; }
+</style>
+
+<div class="ts ts-kb ts-bleed">
+  <div class="ts-kb__orb" aria-hidden="true"></div>
+
+  <!-- ============ INTRO ============ -->
+  <section class="ts-container ts-kb__intro" aria-labelledby="ts-kb-title">
+    <div class="ts-kb__meta ts-reveal">
+      <a href="/malbuecher" class="ts-kb__back ts-label"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>Malbücher</a>
+      <p class="ts-label ts-muted">Kreativhafen · Malbuch ab 2 Jahren</p>
+    </div>
+    <div class="ts-kb__head">
+      <div>
+        <h1 id="ts-kb-title" class="ts-kb__title" data-ts-fit>
+          <span class="ts-line"><span style="--d:.1s;transition-delay:.1s">Mein Dino-</span></span>
+          <span class="ts-line"><span class="ts-gradient-text" style="--d:.22s;transition-delay:.22s">Kritzelbuch.</span></span>
+        </h1>
+        <p class="ts-kb__claim ts-reveal">Stifte raus – die Dinos sind los!</p>
+        <p class="ts-kb__lead ts-reveal">Langhals, Triceratops, T-Rex und Flugsaurier: In diesem Malbuch warten 50 freundliche Dinos darauf, bunt zu werden – beim Schlüpfen aus dem Ei, mit Partyhut und Luftballon, am Vulkan oder unterm Regenbogen.</p>
+        <ul class="ts-kb__chips ts-reveal" style="list-style:none;padding:0">
+          <li class="ts-label">Ab 2 Jahren</li>
+          <li class="ts-label">50 Dinos</li>
+          <li class="ts-label">Große, klare Motive</li>
+          <li class="ts-label">Eine Seite pro Motiv</li>
+        </ul>
+        <div class="ts-kb__ctas ts-reveal">
+          <a href="#ts-kb-malen" class="ts-btn ts-btn--primary ts-magnetic" data-ts-no-trans>
+            <span class="ts-btn__inner"><span class="ts-roll"><span data-text="Dino ausmalen">Dino ausmalen</span></span>
+              <svg class="ts-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg>
+            </span>
+          </a>
+          <a href="https://www.amazon.de/dp/B0HFC3RF56" target="_blank" rel="noopener" class="ts-btn ts-btn--ghost ts-magnetic">
+            <span class="ts-btn__inner"><span class="ts-roll"><span data-text="Auf Amazon ansehen">Auf Amazon ansehen</span></span></span>
+          </a>
+        </div>
+      </div>
+      <figure class="ts-kb__cover ts-reveal">
+        <img src="https://images.squarespace-cdn.com/content/v1/6869717aa7c996116c8c8a56/03265d54-7284-481a-908a-2941deae8c19/Malbuch+Gro%C3%9Fe+Dinomotive+zum+Ausmalen+-+Cover+%282%29.png?format=1000w" srcset="https://images.squarespace-cdn.com/content/v1/6869717aa7c996116c8c8a56/03265d54-7284-481a-908a-2941deae8c19/Malbuch+Gro%C3%9Fe+Dinomotive+zum+Ausmalen+-+Cover+%282%29.png?format=750w 750w, https://images.squarespace-cdn.com/content/v1/6869717aa7c996116c8c8a56/03265d54-7284-481a-908a-2941deae8c19/Malbuch+Gro%C3%9Fe+Dinomotive+zum+Ausmalen+-+Cover+%282%29.png?format=1000w 1000w, https://images.squarespace-cdn.com/content/v1/6869717aa7c996116c8c8a56/03265d54-7284-481a-908a-2941deae8c19/Malbuch+Gro%C3%9Fe+Dinomotive+zum+Ausmalen+-+Cover+%282%29.png?format=1500w 1500w" sizes="(min-width: 1024px) 42vw, 92vw" alt="Malbuch „Mein Dino-Kritzelbuch“, aufgeschlagen mit Wachsmalstiften" fetchpriority="high" decoding="async">
+      </figure>
+    </div>
+  </section>
+
+  <!-- ============ AUSMALEN ============ -->
+  <section id="ts-kb-malen" class="ts-container ts-kb__block" aria-labelledby="ts-kb-paint-title">
+    <div class="ts-kb__blockhead ts-reveal">
+      <p class="ts-label ts-muted">[ Probier's aus ]</p>
+      <p class="ts-label ts-muted">Seite 31 von 52</p>
+    </div>
+    <h2 id="ts-kb-paint-title" class="ts-kb__h2 ts-reveal">Mal den Party-Dino aus.</h2>
+    <p class="ts-kb__sub ts-reveal">Farbe antippen, dann ins Bild tippen – der Farbeimer füllt die ganze Fläche. Mit dem Pinsel kannst du frei malen. Fertig? Speichere dein Bild oder drucke es aus.</p>
+
+    <div class="ts-paint" data-ts-paint>
+      <div class="ts-paint__paper ts-reveal">
+        <canvas class="ts-paint__canvas" width="1000" height="1327" role="img" aria-label="Ausmalbild Party-Dino mit Hütchen und Luftballon – tippe hinein, um Flächen auszumalen"></canvas>
+        <p class="ts-label ts-paint__done" data-paint-msg aria-live="polite"></p>
+      </div>
+      <div class="ts-paint__tools ts-glass ts-reveal">
+        <div>
+          <p class="ts-label ts-paint__label">Farbe</p>
+          <div class="ts-paint__swatches" role="group" aria-label="Farben" data-paint-colors></div>
+        </div>
+        <div>
+          <p class="ts-label ts-paint__label">Werkzeug</p>
+          <div class="ts-paint__modes" role="group" aria-label="Werkzeug">
+            <button type="button" class="ts-paint__btn" data-mode="fill" aria-pressed="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m19 11-8-8-8.6 8.6a2 2 0 0 0 0 2.8l5.2 5.2a2 2 0 0 0 2.8 0L19 11Z"/><path d="m5 2 5 5M2 13h15M22 20a2 2 0 1 1-4 0c0-1.6 1.7-2.4 2-4 .3 1.6 2 2.4 2 4Z"/></svg>Farbeimer</button>
+            <button type="button" class="ts-paint__btn" data-mode="brush" aria-pressed="false"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M9.06 11.9 17.1 3.86a2.83 2.83 0 1 1 4 4l-8.04 8.04"/><path d="M7.07 14.94c-1.66 0-3 1.35-3 3.02 0 1.33-2.5 1.52-2 2.02 1.08 1.1 2.49 2.02 4 2.02 2.2 0 4-1.8 4-4.04a3.01 3.01 0 0 0-3-3.02Z"/></svg>Pinsel</button>
+            <button type="button" class="ts-paint__btn" data-mode="erase" aria-pressed="false"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m7 21-4.3-4.3a1 1 0 0 1 0-1.4l10-10a1 1 0 0 1 1.4 0l5.6 5.6a1 1 0 0 1 0 1.4L11 21M22 21H7M5 11l9 9"/></svg>Radierer</button>
+          </div>
+          <label class="ts-paint__size"><span class="ts-label ts-paint__label">Pinsel</span><input type="range" min="6" max="60" value="22" data-paint-size aria-label="Pinselgröße"></label>
+        </div>
+        <div>
+          <div class="ts-paint__acts">
+            <button type="button" class="ts-paint__btn" data-act="undo" disabled><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M9 14 4 9l5-5"/><path d="M4 9h10.5a5.5 5.5 0 0 1 0 11H11"/></svg>Zurück</button>
+            <button type="button" class="ts-paint__btn" data-act="clear"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg>Neu</button>
+            <button type="button" class="ts-paint__btn" data-act="save"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>Speichern</button>
+          </div>
+        </div>
+        <p class="ts-paint__hint">Tipp: Am Handy einfach mit dem Finger tippen. Dein Bild bleibt auf diesem Gerät gespeichert, bis du „Neu“ drückst.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TIERPARADE ============ -->
+  <section class="ts-container ts-kb__block" aria-labelledby="ts-kb-zoo-title">
+    <div class="ts-kb__blockhead ts-reveal">
+      <p class="ts-label ts-muted">[ Im Buch ]</p>
+      <p class="ts-label ts-muted">50 Dinos · je eine Seite</p>
+    </div>
+    <h2 id="ts-kb-zoo-title" class="ts-kb__h2 ts-reveal">50 Dinos warten auf Farbe.</h2>
+    <p class="ts-kb__sub ts-reveal">Jeder Dino hat seine eigene Seite – mit dicken Linien und großen Flächen, perfekt für erste Malerfolge.</p>
+    <div class="ts-zoo" data-kb-zoo></div>
+  </section>
+
+  <!-- ============ WARUM ============ -->
+  <section class="ts-container ts-kb__block ts-kb__end" aria-labelledby="ts-kb-why-title">
+    <div class="ts-kb__blockhead ts-reveal">
+      <p class="ts-label ts-muted">[ Warum Kritzeln gut tut ]</p>
+    </div>
+    <h2 id="ts-kb-why-title" class="ts-kb__h2 ts-reveal">Spaß – und ganz nebenbei lernen.</h2>
+    <p class="ts-kb__sub ts-reveal">Die klaren Linien und großen Flächen sind perfekt für kleine Hände geeignet und sorgen für erste Malerfolge.</p>
+    <div class="ts-why">
+      <div class="ts-glass ts-reveal"><span class="ts-why__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.9 1.2-1.8-.5-1.1.2-2.2 1.4-2.2H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10Z"/><circle cx="7.5" cy="11" r="1.2"/><circle cx="10" cy="7" r="1.2"/><circle cx="15" cy="7.5" r="1.2"/></svg></span><h3>Kreativität</h3><p>Welche Farbe hat ein T-Rex? Das weiß keiner so genau – also entscheiden die Kleinen selbst.</p></div>
+      <div class="ts-glass ts-reveal"><span class="ts-why__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5"/></svg></span><h3>Konzentration</h3><p>Ein Dino, eine Seite: Die übersichtlichen Motive helfen, dranzubleiben – bis das Bild fertig ist.</p></div>
+      <div class="ts-glass ts-reveal"><span class="ts-why__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M18 11V6a2 2 0 0 0-4 0v1M14 10V4a2 2 0 0 0-4 0v2M10 10.5V6a2 2 0 0 0-4 0v8"/><path d="M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.9-6-2.4l-3.6-3.6a2 2 0 0 1 2.8-2.8L7 15"/></svg></span><h3>Motorik</h3><p>Stift halten, Flächen füllen, Linien entdecken – so wird die Hand ganz spielerisch geschickter.</p></div>
+    </div>
+    <div class="ts-kb__final ts-glass ts-reveal">
+      <p>Lust auf alle 50 Dinos?</p>
+      <a href="https://www.amazon.de/dp/B0HFC3RF56" target="_blank" rel="noopener" class="ts-btn ts-btn--primary ts-magnetic">
+        <span class="ts-btn__inner"><span class="ts-roll"><span data-text="Malbuch auf Amazon bestellen">Malbuch auf Amazon bestellen</span></span>
+          <svg class="ts-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </span>
+      </a>
+    </div>
+  </section>
+</div>
+
+<script>
+/* Tierparade: Vorschaubilder und alle Namen */
+(() => {
+  const ZOO = __THUMBS__;
+  const ALL = [];
+  const box = document.querySelector('[data-kb-zoo]'), list = document.querySelector('[data-kb-all]');
+  if (box) box.innerHTML = ZOO.map((z, i) => `<figure class="ts-reveal" style="--r:${[-1.6, 1.2, -.7, 1.5, -1.1, .8][i % 6]}deg"><img src="${z.src}" alt="Ausmalbild ${z.n}" width="260" height="260" loading="lazy" decoding="async"><figcaption>${z.n}</figcaption></figure>`).join('');
+  const shown = new Set(ZOO.map(z => z.n));
+  if (list) list.innerHTML = ALL.map(n => `<li class="ts-label${shown.has(n) ? ' is-shown' : ''}">${n}</li>`).join('');
+  /* nachträglich eingefügte Elemente ebenfalls einblenden */
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); } }), { rootMargin: '0px 0px -8% 0px' });
+    box && box.querySelectorAll('.ts-reveal').forEach(el => io.observe(el));
+  } else box && box.querySelectorAll('.ts-reveal').forEach(el => el.classList.add('is-in'));
+})();
+
+/* Ausmalen: Farbeimer, Pinsel, Radierer, Zurück, Neu, Speichern */
+(() => {
+  const root = document.querySelector('[data-ts-paint]');
+  if (!root) return;
+  const LINES = '__EICH__';
+  const COLORS = ['#e8505b', '#f6a33b', '#f7d046', '#8bc34a', '#2e9e6a', '#5ec8e5', '#3f7fd9', '#9b6ad6', '#f29bc4', '#a0683f', '#7d7d7d', '#2b2b2b'];
+  const KEY = 'ts-kb-party-dino';
+  const cv = root.querySelector('canvas'), ctx = cv.getContext('2d');
+  const W = cv.width, H = cv.height;
+  const paint = document.createElement('canvas'); paint.width = W; paint.height = H;
+  const pctx = paint.getContext('2d', { willReadFrequently: true });
+  const msg = root.querySelector('[data-paint-msg]'), undoBtn = root.querySelector('[data-act="undo"]'), size = root.querySelector('[data-paint-size]');
+  let wall = null, color = COLORS[2], mode = 'fill', stack = [], drawing = false, last = null, msgT;
+
+  /* Farbwahl */
+  const sw = root.querySelector('[data-paint-colors]');
+  sw.innerHTML = COLORS.map((c, i) => `<button type="button" class="ts-paint__sw" style="--c:${c}" data-c="${c}" aria-label="Farbe ${i + 1}" aria-pressed="${c === color}"></button>`).join('');
+  sw.addEventListener('click', e => {
+    const b = e.target.closest('[data-c]'); if (!b) return;
+    color = b.dataset.c; sw.querySelectorAll('[data-c]').forEach(x => x.setAttribute('aria-pressed', x === b));
+    if (mode === 'erase') setMode('fill');
+  });
+  const setMode = m => {
+    mode = m; root.classList.toggle('is-brush', m !== 'fill');
+    root.querySelectorAll('[data-mode]').forEach(b => b.setAttribute('aria-pressed', b.dataset.mode === m));
+  };
+  root.querySelectorAll('[data-mode]').forEach(b => b.addEventListener('click', () => setMode(b.dataset.mode)));
+
+  const say = t => { msg.textContent = t; msg.classList.add('is-on'); clearTimeout(msgT); msgT = setTimeout(() => msg.classList.remove('is-on'), 1600); };
+  const render = () => { ctx.globalCompositeOperation = 'source-over'; ctx.drawImage(paint, 0, 0); ctx.globalCompositeOperation = 'multiply'; ctx.drawImage(img, 0, 0, W, H); ctx.globalCompositeOperation = 'source-over'; };
+  const store = () => { try { localStorage.setItem(KEY, paint.toDataURL('image/png')); } catch (e) {} };
+  const push = () => { stack.push(pctx.getImageData(0, 0, W, H)); if (stack.length > 20) stack.shift(); undoBtn.disabled = false; };
+  const hex = c => [1, 3, 5].map(i => parseInt(c.slice(i, i + 2), 16));
+
+  /* Farbeimer: füllt die Fläche innerhalb der schwarzen Linien (Linien kommen aus der Vorlage, nicht aus der Farbe) */
+  const fill = (x, y) => {
+    x = Math.round(x); y = Math.round(y);
+    if (x < 0 || y < 0 || x >= W || y >= H || wall[y * W + x]) return false;
+    push();
+    const id = pctx.getImageData(0, 0, W, H), d = id.data, [r, g, b] = mode === 'erase' ? [255, 255, 255] : hex(color);
+    const seen = new Uint8Array(W * H), q = new Int32Array(W * H); let h = 0, t = 0;
+    q[t++] = y * W + x; seen[y * W + x] = 1;
+    while (h < t) {
+      const p = q[h++], px = p % W;
+      const o = p * 4; d[o] = r; d[o + 1] = g; d[o + 2] = b; d[o + 3] = 255;
+      const n = [px > 0 ? p - 1 : -1, px < W - 1 ? p + 1 : -1, p - W, p + W];
+      for (let k = 0; k < 4; k++) { const v = n[k]; if (v >= 0 && v < W * H && !seen[v]) { seen[v] = 1; if (!wall[v]) q[t++] = v; else { const vo = v * 4; d[vo] = r; d[vo + 1] = g; d[vo + 2] = b; d[vo + 3] = 255; } } }
+    }
+    pctx.putImageData(id, 0, 0); render(); store(); return true;
+  };
+  const pos = e => { const r = cv.getBoundingClientRect(); return [(e.clientX - r.left) * W / r.width, (e.clientY - r.top) * H / r.height]; };
+  const stroke = (a, b) => {
+    pctx.strokeStyle = mode === 'erase' ? '#ffffff' : color; pctx.lineCap = 'round'; pctx.lineJoin = 'round';
+    pctx.lineWidth = +size.value * (mode === 'erase' ? 1.4 : 1);
+    pctx.beginPath(); pctx.moveTo(a[0], a[1]); pctx.lineTo(b[0], b[1]); pctx.stroke(); render();
+  };
+  cv.addEventListener('pointerdown', e => {
+    if (!wall) return;
+    if (mode === 'fill') { if (fill(...pos(e))) { if (!sessionStorage.getItem('ts-kb-tip')) { say('Toll! Nächste Fläche antippen'); try { sessionStorage.setItem('ts-kb-tip', '1'); } catch (er) {} } } return; }
+    e.preventDefault(); cv.setPointerCapture(e.pointerId); push(); drawing = true; last = pos(e); stroke(last, [last[0] + .01, last[1]]);
+  });
+  cv.addEventListener('pointermove', e => { if (!drawing) return; const p = pos(e); stroke(last, p); last = p; });
+  const end = () => { if (drawing) { drawing = false; store(); } };
+  cv.addEventListener('pointerup', end); cv.addEventListener('pointercancel', end); cv.addEventListener('pointerleave', end);
+
+  undoBtn.addEventListener('click', () => { const s = stack.pop(); if (s) { pctx.putImageData(s, 0, 0); render(); store(); } undoBtn.disabled = !stack.length; });
+  root.querySelector('[data-act="clear"]').addEventListener('click', () => { push(); pctx.fillStyle = '#fff'; pctx.fillRect(0, 0, W, H); render(); try { localStorage.removeItem(KEY); } catch (e) {} say('Neues Blatt'); });
+  root.querySelector('[data-act="save"]').addEventListener('click', () => {
+    const out = document.createElement('canvas'); out.width = W; out.height = H + 90; const o = out.getContext('2d');
+    o.fillStyle = '#fff'; o.fillRect(0, 0, out.width, out.height); o.drawImage(cv, 0, 0);
+    o.fillStyle = '#1b1f1c'; o.font = '800 34px Syne, Arial, sans-serif'; o.textAlign = 'center'; o.fillText('MEIN PARTY-DINO', W / 2, H + 42);
+    o.fillStyle = '#7d7d7d'; o.font = '500 18px Inter, Arial, sans-serif'; o.fillText('Mein Dino-Kritzelbuch · trutzstaehler.de', W / 2, H + 72);
+    const a = document.createElement('a'); a.download = 'mein-party-dino.png'; a.href = out.toDataURL('image/png'); document.body.appendChild(a); a.click(); a.remove(); say('Bild gespeichert');
+  });
+
+  /* Vorlage laden, Linien als Wände merken, gespeichertes Bild wiederherstellen */
+  const img = new Image();
+  img.onload = () => {
+    const t = document.createElement('canvas'); t.width = W; t.height = H; const tc = t.getContext('2d');
+    tc.fillStyle = '#fff'; tc.fillRect(0, 0, W, H); tc.drawImage(img, 0, 0, W, H);
+    const d = tc.getImageData(0, 0, W, H).data; wall = new Uint8Array(W * H);
+    for (let i = 0; i < W * H; i++) wall[i] = d[i * 4] < 140 ? 1 : 0;
+    pctx.fillStyle = '#fff'; pctx.fillRect(0, 0, W, H);
+    let saved = null; try { saved = localStorage.getItem(KEY); } catch (e) {}
+    if (saved) { const s = new Image(); s.onload = () => { pctx.drawImage(s, 0, 0); render(); }; s.src = saved; } else render();
+  };
+  img.src = LINES;
+})();
+</script>

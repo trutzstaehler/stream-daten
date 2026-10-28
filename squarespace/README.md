@@ -16,6 +16,7 @@ Design: Dark Editorial · Hintergrund `#060608` · Nebenfarbe Markengrün `#1d4d
 | `10-maria-holm-codeblock.html` | Seite `/maria-holm-und-das-geheimnis-der-verschwundenen-perle` → einzige Sektion → **Code-Block** über die volle Rasterbreite |
 | `11-malbuecher-codeblock.html` | Seite `/malbuecher` → einzige Sektion → **Code-Block** über die volle Rasterbreite |
 | `22-tiere-kritzelbuch-codeblock.html` | neue Seite `/mein-tiere-kritzelbuch` (Nicht verlinkt) → einzige Sektion → **Code-Block** über die volle Rasterbreite · Eichhörnchen zum Ausmalen, Bilder eingebettet |
+| `23-dino-kritzelbuch-codeblock.html` | neue Seite `/mein-dino-kritzelbuch` (Nicht verlinkt) → einzige Sektion → **Code-Block** über die volle Rasterbreite · Party-Dino zum Ausmalen, Bilder eingebettet |
 
 ### Kontakt & Rechtliches
 

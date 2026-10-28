@@ -1,0 +1,207 @@
+<!-- ==================================================================
+     TRUTZ STÄHLER · NEUERSCHEINUNG „MARIA HOLM“
+     Einfügen in: Startseite → Sektion direkt unter der Hero → Code-Block (volle Breite)
+=================================================================== -->
+<style>
+  .ts-book { position: relative; isolation: isolate; overflow: hidden; overflow: clip; padding: clamp(6rem, 11vw, 10rem) 0; background: var(--ts-bg); }
+  .ts-book__bg { position: absolute; inset: 0; z-index: -1; pointer-events: none; }
+  .ts-book__orb { position: absolute; left: -8%; top: 20%; width: 50vw; height: 50vw; max-width: 820px; max-height: 820px; border-radius: 50%; background: radial-gradient(circle, rgba(46, 140, 108, 0.272) 0%, rgba(46, 140, 108, 0.192) 22%, rgba(46, 140, 108, 0.096) 42%, rgba(46, 140, 108, 0.032) 58%, rgba(46, 140, 108, 0) 72%); }
+  .ts-book__watermark {
+    position: absolute; right: -2vw; bottom: 4%; font-family: var(--ts-font-display); font-weight: 800; letter-spacing: -0.04em; line-height: .8;
+    font-size: clamp(6rem, 22vw, 22rem); color: transparent; -webkit-text-stroke: 1px rgba(246, 250, 247, .06); white-space: nowrap; user-select: none;
+  }
+
+  .ts-book__top { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem; padding-bottom: 1.25rem; border-bottom: 1px solid var(--ts-line); }
+  .ts .ts-book__new { display: inline-flex; align-items: center; gap: 10px; padding: 8px 14px; border-radius: 999px; border: 1px solid rgba(110, 231, 183, .25); background: rgba(29, 77, 63, .35); color: var(--ts-mint); }
+  .ts-book__new .ts-pulse { background: var(--ts-mint); }
+  .ts-book__new .ts-pulse::after { border-color: var(--ts-mint); }
+
+  .ts-book__grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: 1.5rem; row-gap: 4rem; padding-top: clamp(3rem, 6vw, 5.5rem); }
+  .ts-book__visual, .ts-book__content { grid-column: 1 / -1; }
+
+  /* 3D-Buch */
+  .ts-book__stage { position: relative; display: flex; flex-direction: column; align-items: center; }
+  .ts-book__stage::before { content: ""; position: absolute; left: 50%; top: 46%; width: 70%; aspect-ratio: 1; transform: translate(-50%, -50%); border-radius: 50%; background: radial-gradient(circle, rgba(46, 140, 108, 0.383) 0%, rgba(46, 140, 108, 0.27) 22%, rgba(46, 140, 108, 0.135) 42%, rgba(46, 140, 108, 0.045) 58%, rgba(46, 140, 108, 0) 71%); z-index: -1; }
+  .ts-book__tilt { perspective: 1400px; transition: transform .6s var(--ts-ease-out); }
+  .ts-book__3d {
+    position: relative; width: clamp(200px, 56vw, 340px); aspect-ratio: 2 / 3; transform-style: preserve-3d;
+    transform: rotateY(-22deg) rotateX(4deg); transition: transform .9s var(--ts-ease-out);
+  }
+  .ts-book__tilt:hover .ts-book__3d { transform: rotateY(-8deg) rotateX(2deg) translateY(-6px); }
+  .ts-book__face { position: absolute; inset: 0; border-radius: 3px 10px 10px 3px; overflow: hidden; transform: translateZ(14px); box-shadow: 0 40px 80px -30px rgba(0, 0, 0, .9), 0 0 0 1px rgba(255, 255, 255, .06); background: var(--ts-bg-2); }
+  .ts-book__face img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+  .ts-book__face img:not([src]), .ts-book__face img[src=""], .ts-book__face img.is-broken { display: none; }
+  .ts-book__face::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(0, 0, 0, .35) 0, rgba(255, 255, 255, .12) 2.5%, transparent 6%, transparent 70%, rgba(255, 255, 255, .06)); pointer-events: none; }
+  .ts-book__spine { position: absolute; top: 0; left: 0; width: 28px; height: 100%; transform-origin: left; transform: rotateY(-90deg) translateX(-14px); background: linear-gradient(90deg, #12352b, var(--ts-green)); border-radius: 3px 0 0 3px; }
+  .ts-book__pages { position: absolute; top: 4px; right: 0; width: 26px; height: calc(100% - 8px); transform-origin: right; transform: rotateY(90deg) translateX(13px); background: repeating-linear-gradient(90deg, #e9e4dc 0 1px, #d9d3c8 1px 2px); }
+  /* Typografisches Ersatz-Cover, solange kein Bild hinterlegt ist */
+  .ts-book__fallback { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: space-between; padding: 22px 20px 20px 26px; background: radial-gradient(120% 80% at 80% 0%, rgba(110, 231, 183, .18), transparent 60%), linear-gradient(160deg, var(--ts-green), #0b1f19 75%); }
+  .ts .ts-book__fallback-title { font-family: var(--ts-font-display); font-weight: 800; font-size: clamp(1.6rem, 6vw, 2.4rem); line-height: .95; letter-spacing: -0.03em; }
+  .ts .ts-book__fallback-sub { margin-top: .6rem; font-size: 13px; line-height: 1.4; color: rgba(246, 250, 247, .75); }
+  .ts-book__pearl { width: 44px; height: 44px; border-radius: 50%; background: radial-gradient(circle at 32% 30%, #6b7280, #0b0b10 60%); box-shadow: 0 0 30px rgba(110, 231, 183, .35), inset -4px -6px 12px rgba(0, 0, 0, .8), inset 4px 4px 8px rgba(255, 255, 255, .25); }
+
+  .ts .ts-book__chips { display: flex; flex-wrap: wrap; justify-content: center; gap: .5rem; margin-top: 3.25rem; }
+  .ts .ts-chip { display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px; border-radius: 999px; border: 1px solid var(--ts-line); background: rgba(12, 17, 15, .6); color: var(--ts-muted); font-size: 10.5px; }
+  .ts-chip svg { color: var(--ts-mint); }
+
+  /* Inhalt */
+  .ts .ts-book__series { color: var(--ts-mint); }
+  .ts .ts-book__title { margin-top: 1rem; font-family: var(--ts-font-display); font-weight: 800; font-size: clamp(3rem, 8.5vw, 7rem); line-height: .9; letter-spacing: -0.03em; }
+  .ts .ts-book__subtitle { display: block; margin-top: .9rem; font-family: var(--ts-font-display); font-weight: 700; font-size: clamp(1.35rem, 2.6vw, 2.1rem); line-height: 1.1; letter-spacing: -0.03em; color: transparent; -webkit-text-stroke: 1px rgba(246, 250, 247, .7); }
+  .ts .ts-book__byline { margin-top: 1.25rem; color: var(--ts-muted); }
+  .ts-book__byline strong { color: var(--ts-text); font-weight: 500; }
+  .ts .ts-book__lead { margin-top: 2rem; max-width: 36rem; font-size: 17px; line-height: 1.75; color: var(--ts-muted); }
+  .ts-book__lead strong { color: var(--ts-text); font-weight: 500; }
+
+  .ts-case { margin-top: 2.5rem; border-radius: 22px; padding: 1.5rem; position: relative; overflow: hidden; }
+  .ts-case::before { content: ""; position: absolute; left: 0; top: 1.5rem; bottom: 1.5rem; width: 2px; background: linear-gradient(var(--ts-mint), var(--ts-leaf)); border-radius: 2px; }
+  .ts-case__head { display: flex; align-items: center; gap: 10px; color: var(--ts-mint); }
+  .ts .ts-case__text { margin-top: .9rem; font-size: 15px; line-height: 1.7; color: var(--ts-muted); }
+  .ts-case__list { margin-top: 1.25rem !important; border-top: 1px solid var(--ts-line); }
+  .ts .ts-case__list li { display: grid; grid-template-columns: 2.5rem 1fr; align-items: baseline; padding: .85rem 0; border-bottom: 1px solid var(--ts-line); font-size: 15px; line-height: 1.55; }
+  .ts .ts-case__list li:last-child { border-bottom: 0; padding-bottom: 0; }
+  .ts-case__list .ts-label { color: var(--ts-leaf); font-size: 10.5px; }
+
+  .ts-features { display: grid; gap: .75rem; margin-top: .75rem; }
+  .ts .ts-feature { border-radius: 18px; padding: 1.25rem; transition: transform .6s var(--ts-ease-out), border-color .4s; }
+  .ts .ts-feature:hover { transform: translateY(-4px); border-color: rgba(255, 255, 255, .16); }
+  .ts-feature__icon { display: grid; place-items: center; width: 38px; height: 38px; border-radius: 12px; border: 1px solid var(--ts-line); background: rgba(29, 77, 63, .4); color: var(--ts-mint); }
+  .ts .ts-feature h3 { margin-top: 1rem; font-family: var(--ts-font-display); font-size: 18px; font-weight: 700; line-height: 1.25; letter-spacing: -0.02em; }
+  .ts .ts-feature p { margin-top: .35rem; font-size: 14px; line-height: 1.6; color: var(--ts-muted); }
+
+  .ts-prices { display: grid; grid-template-columns: 1fr 1fr; margin-top: 2.5rem; border-top: 1px solid var(--ts-line); border-bottom: 1px solid var(--ts-line); }
+  .ts-price { padding: 1.25rem 0; }
+  .ts-price + .ts-price { padding-left: 1.5rem; border-left: 1px solid var(--ts-line); }
+  .ts .ts-price__format { color: var(--ts-muted); font-size: 10.5px; }
+  .ts .ts-price__value { margin-top: .35rem; font-family: var(--ts-font-display); font-weight: 700; font-size: clamp(1.9rem, 4vw, 2.6rem); line-height: 1; letter-spacing: -0.03em; }
+  .ts .ts-price__note { margin-top: .5rem; font-size: 12.5px; line-height: 1.5; color: var(--ts-muted); }
+
+  .ts-book__ctas { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 2rem; }
+  .ts .ts-book__more { display: inline-flex; align-items: center; gap: .5rem; margin-top: 1.25rem; font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: .78rem; letter-spacing: .14em; text-transform: uppercase; color: var(--ts-mint); text-decoration: none; }
+  .ts .ts-book__more span { background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat; transition: background-size .4s cubic-bezier(.2,.8,.2,1); padding-bottom: 2px; }
+  .ts .ts-book__more:hover span { background-size: 100% 1px; }
+  .ts .ts-book__more svg { transition: transform .3s; }
+  .ts .ts-book__more:hover svg { transform: translateX(4px); }
+
+  @media (min-width: 640px) {
+    .ts-features { grid-template-columns: 1fr 1fr; }
+    .ts-case { padding: 1.75rem 2rem; }
+    .ts-case::before { top: 1.75rem; bottom: 1.75rem; }
+  }
+  @media (min-width: 1024px) {
+    .ts-book__visual { grid-column: 1 / span 5; position: sticky; top: 120px; align-self: start; padding-top: 2rem; }
+    .ts-book__content { grid-column: 7 / span 6; }
+  }
+</style>
+
+<section class="ts ts-book ts-bleed" aria-labelledby="ts-book-title">
+  <div class="ts-book__bg" aria-hidden="true">
+    <div class="ts-book__orb" data-ts-parallax="0.03"></div>
+    <div class="ts-book__watermark">Perle</div>
+  </div>
+
+  <div class="ts-container">
+    <div class="ts-book__top ts-reveal">
+      <p class="ts-label ts-muted">[ 02 — Kreativhafen ]</p>
+      <p class="ts-label ts-book__new"><span class="ts-pulse"></span>Neu erschienen · Kinderkrimi aus Hamburg</p>
+    </div>
+
+    <div class="ts-book__grid">
+      <!-- Buch -->
+      <div class="ts-book__visual">
+        <div class="ts-book__stage ts-reveal">
+          <div class="ts-book__tilt ts-tilt">
+            <div class="ts-book__3d">
+              <div class="ts-book__spine"></div>
+              <div class="ts-book__pages"></div>
+              <div class="ts-book__face">
+                <div class="ts-book__fallback" aria-hidden="true">
+                  <div>
+                    <p class="ts-label" style="color:var(--ts-mint);font-size:10px">Trutz Stähler</p>
+                  </div>
+                  <div>
+                    <div class="ts-book__pearl"></div>
+                    <p class="ts-book__fallback-title" style="margin-top:1rem">Maria Holm</p>
+                    <p class="ts-book__fallback-sub">und das Geheimnis der verschwundenen Perle</p>
+                  </div>
+                  <p class="ts-label" style="color:rgba(246,250,247,.6);font-size:9.5px">Ein Abenteuer der Loki-Detektive</p>
+                </div>
+                <img src="https://m.media-amazon.com/images/I/613IuTeT+2L._SL900_.jpg" srcset="https://m.media-amazon.com/images/I/613IuTeT+2L._SL600_.jpg 400w, https://m.media-amazon.com/images/I/613IuTeT+2L._SL900_.jpg 600w, https://m.media-amazon.com/images/I/613IuTeT+2L._SL1491_.jpg 994w" sizes="(min-width: 1024px) 460px, 80vw" alt="Buchcover: Maria Holm und das Geheimnis der verschwundenen Perle" loading="lazy" onerror="this.classList.add('is-broken')">
+              </div>
+            </div>
+          </div>
+
+          <ul class="ts-book__chips" aria-label="Eckdaten">
+            <li class="ts-chip ts-label"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 19.5V5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2Zm0 0A2 2 0 0 0 6 22h13"/></svg>Buch &amp; Kindle eBook</li>
+            <li class="ts-chip ts-label"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>Ab 8 Jahren</li>
+            <li class="ts-chip ts-label"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 22s7-6.2 7-12a7 7 0 0 0-14 0c0 5.8 7 12 7 12Z"/><circle cx="12" cy="10" r="2.5"/></svg>Tatort Hamburg</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Inhalt -->
+      <div class="ts-book__content">
+        <p class="ts-label ts-book__series ts-reveal">Ein Abenteuer der Loki-Detektive</p>
+        <h2 id="ts-book-title" class="ts-book__title ts-reveal" data-ts-fit>Maria Holm
+          <span class="ts-book__subtitle">und das Geheimnis der verschwundenen Perle</span>
+        </h2>
+        <p class="ts-label ts-book__byline ts-reveal">von <strong>Trutz Stähler</strong></p>
+
+        <p class="ts-book__lead ts-reveal">Maria Holm ist klug, mutig und extrem aufmerksam – kein noch so kleines Detail entgeht ihr. Zusammen mit ihren besten Freunden Paul, Bhavana und Eugenia gründet sie im Niendorfer Gehege das Detektivbüro <strong>„Die Loki-Detektive“</strong>.</p>
+
+        <div class="ts-case ts-glass ts-reveal">
+          <p class="ts-label ts-case__head">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+            Der Fall
+          </p>
+          <p class="ts-case__text">Als aus dem Museum für Maritime Kunst eine wertvolle schwarze Perle gestohlen wird, beginnt eine rasante Jagd durch die historische Speicherstadt und den nächtlichen Hamburger Hafen.</p>
+          <ol class="ts-case__list" style="list-style:none;padding:0;margin:0">
+            <li><span class="ts-label">01</span><span>Wer steckt hinter den rätselhaften Anker-Symbolen im Wald?</span></li>
+            <li><span class="ts-label">02</span><span>Was hat es mit dem mysteriösen Frachtschiff „Seagull“ auf sich?</span></li>
+            <li><span class="ts-label">03</span><span>Und welche Rolle spielen die rivalisierenden „Elb-Piraten“?</span></li>
+          </ol>
+        </div>
+
+        <div class="ts-features">
+          <div class="ts-feature ts-glass ts-reveal">
+            <span class="ts-feature__icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5M11 8v3l2 2"/></svg></span>
+            <h3>Spannung &amp; Miträtseln</h3>
+            <p>Clevere Spurensuche, die Kinder von der ersten bis zur letzten Seite fesselt.</p>
+          </div>
+          <div class="ts-feature ts-glass ts-reveal">
+            <span class="ts-feature__icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="9" cy="8" r="3.2"/><circle cx="17" cy="9" r="2.6"/><path d="M3 20a6 6 0 0 1 12 0M14.5 14.2A5 5 0 0 1 21 19"/></svg></span>
+            <h3>Freundschaft &amp; Teamgeist</h3>
+            <p>Vier Freunde, die zeigen, dass man gemeinsam jedes Rätsel lösen kann.</p>
+          </div>
+        </div>
+
+        <div class="ts-prices ts-reveal">
+          <div class="ts-price">
+            <p class="ts-label ts-price__format">Gebundenes Buch</p>
+            <p class="ts-price__value">12,99 €</p>
+            <p class="ts-price__note">inkl. MwSt. · Schnelle Lieferung</p>
+          </div>
+          <div class="ts-price">
+            <p class="ts-label ts-price__format">Kindle eBook</p>
+            <p class="ts-price__value">2,69 €</p>
+            <p class="ts-price__note">inkl. MwSt. · Sofort verfügbar</p>
+          </div>
+        </div>
+
+        <div class="ts-book__ctas ts-reveal">
+          <a href="https://www.amazon.de/Maria-Holm-Geheimnis-verschwundenen-Perle/dp/B0HFNSGY35" target="_blank" rel="noopener" class="ts-btn ts-btn--primary ts-magnetic">
+            <span class="ts-btn__inner"><span class="ts-roll"><span data-text="Jetzt auf Amazon bestellen">Jetzt auf Amazon bestellen</span></span>
+              <svg class="ts-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </span>
+          </a>
+          <a href="https://lesen.amazon.de/sample/B0HFNSGY35?clientId=share" target="_blank" rel="noopener" class="ts-btn ts-btn--ghost ts-magnetic">
+            <span class="ts-btn__inner"><span class="ts-roll"><span data-text="Leseprobe">Leseprobe</span></span></span>
+          </a>
+        </div>
+        <a href="/maria-holm-und-das-geheimnis-der-verschwundenen-perle" class="ts-book__more ts-reveal"><span>Mehr zum Buch</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,328 @@
+<!-- ==================================================================
+     TRUTZ STÄHLER · HERO STARTSEITE
+     Einfügen in: Startseite → erste Sektion → Code-Block (volle Breite)
+=================================================================== -->
+<style>
+  /* Headline: alle Zeilen bündig links; Größe so gewählt, dass „statt perfekt“ auch in der breiten Syne passt */
+  .ts .ts-hero .ts-headline { font-size: clamp(2.1rem, 8.6vw, 10rem) !important; }
+  /* Text unter der Überschrift nutzt die ganze Breite: Begrüßung links, Buttons rechts */
+  @media (min-width: 1024px) {
+    .ts-hero .ts-hero__intro { grid-column: 1 / -1; display: grid; grid-template-columns: minmax(0, 8fr) minmax(0, 4fr); align-items: end; column-gap: clamp(2rem, 5vw, 5rem); padding-top: 0; }
+    .ts.ts-hero .ts-hero__lead { max-width: 52rem; font-size: clamp(18px, 1.55vw, 22px); line-height: 1.65; }
+    .ts-hero .ts-hero__ctas { justify-content: flex-end; }
+  }
+</style>
+<section class="ts ts-hero ts-bleed" aria-labelledby="ts-hero-title">
+  <div class="ts-hero__bg" aria-hidden="true">
+    <div class="ts-grid-lines"></div>
+    <canvas id="ts-hero-canvas"></canvas>
+    <div class="ts-orb ts-orb--green" data-ts-parallax="0.04"></div>
+    <div class="ts-orb ts-orb--leaf" data-ts-parallax="-0.06"></div>
+    <div class="ts-hero__fade"></div>
+  </div>
+
+  <div class="ts-container ts-hero__inner">
+    <div class="ts-hero__meta ts-reveal" style="--d:.1s;transition-delay:.1s">
+      <p class="ts-label ts-muted"><span class="ts-hero__meta-line"></span>Papa · Autor · Läufer · Streamer</p>
+      <p class="ts-label ts-muted ts-hero__index">[ Hamburg — Startseite ]</p>
+    </div>
+
+    <div class="ts-hero__grid">
+      <div class="ts-hero__title">
+        <h1 id="ts-hero-title" class="ts-headline" data-ts-fit>
+          <span class="ts-line"><span style="--d:.15s;transition-delay:.15s">Echt sein</span></span>
+          <span class="ts-line"><span style="--d:.27s;transition-delay:.27s">statt <span class="ts-strike ts-outline">perfekt</span></span></span>
+          <span class="ts-line"><span class="ts-gradient-text" style="--d:.39s;transition-delay:.39s">wirken.</span></span>
+        </h1>
+      </div>
+
+      <div class="ts-hero__intro">
+        <p class="ts-hero__lead ts-reveal" style="--d:.3s;transition-delay:.3s">Schön, dass du da bist! Ich bin <strong>Trutz</strong> – Papa aus Hamburg, leidenschaftlicher Läufer und der kreative Kopf hinter dem <strong>Kreativhafen</strong>. Hier geht es um Kinderbücher mit Herz, Laufkilometer an der Alster und um <strong>World of Warcraft</strong> live auf Twitch.</p>
+        <div class="ts-hero__ctas ts-reveal" style="--d:.4s;transition-delay:.4s">
+          <a href="#ts-projekte" class="ts-btn ts-btn--primary ts-magnetic">
+            <span class="ts-btn__inner"><span class="ts-roll"><span data-text="Projekte ansehen">Projekte ansehen</span></span>
+              <svg class="ts-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </span>
+          </a>
+          <a href="/kontakt" class="ts-btn ts-btn--ghost ts-magnetic">
+            <span class="ts-btn__inner"><span class="ts-roll"><span data-text="Kontakt aufnehmen">Kontakt aufnehmen</span></span></span>
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="ts-hero__bottom ts-reveal" style="--d:1s;transition-delay:1s">
+      <a href="#ts-projekte" class="ts-scroll-cue" aria-label="Weiter scrollen">
+        <span class="ts-scroll-cue__bar"></span>
+        <span class="ts-label ts-muted">Scrollen</span>
+      </a>
+      <p class="ts-label ts-muted ts-hero__claim">Bücher · Kilometer · Raids<br>Made in Hamburg</p>
+    </div>
+  </div>
+
+  <div class="ts-marquee" aria-hidden="true">
+    <div class="ts-marquee__track">
+      <div class="ts-marquee__group">
+        <span>Echt sein</span><span class="ts-star-leaf">✦</span>
+        <span class="ts-outline">Kreativhafen</span><span class="ts-star-green">✦</span>
+        <span>Laufen</span><span class="ts-star-leaf">✦</span>
+        <span class="ts-outline">World of Warcraft</span><span class="ts-star-green">✦</span>
+        <span>Hamburg</span><span class="ts-star-leaf">✦</span>
+        <span class="ts-outline">Live auf Twitch</span><span class="ts-star-green">✦</span>
+      </div>
+      <div class="ts-marquee__group">
+        <span>Echt sein</span><span class="ts-star-leaf">✦</span>
+        <span class="ts-outline">Kreativhafen</span><span class="ts-star-green">✦</span>
+        <span>Laufen</span><span class="ts-star-leaf">✦</span>
+        <span class="ts-outline">World of Warcraft</span><span class="ts-star-green">✦</span>
+        <span>Hamburg</span><span class="ts-star-leaf">✦</span>
+        <span class="ts-outline">Live auf Twitch</span><span class="ts-star-green">✦</span>
+      </div>
+    </div>
+  </div>
+  <span id="ts-projekte"></span>
+</section>
+
+<!-- ============ DREI WELTEN: Scroll-Sequenz (Bücher → Laufen → Twitch) ============ -->
+<style>
+  .ts-3w { --w-bg: rgb(12, 31, 25); --w-acc: rgb(110, 231, 183); position: relative; height: 420vh; background: var(--ts-bg); }
+  .ts-3w__stage { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; display: flex; flex-direction: column; padding-top: 92px; padding-bottom: 22px;
+    background: radial-gradient(90% 70% at 70% 45%, color-mix(in srgb, var(--w-bg) 100%, white 4%), var(--w-bg) 55%, #060608 115%); }
+  .ts-3w__stage::before { content: ""; position: absolute; inset: 0; pointer-events: none;
+    background: radial-gradient(40% 40% at 72% 48%, color-mix(in srgb, var(--w-acc) 22%, transparent), transparent 70%); }
+  .ts-3w__top { position: relative; display: flex; justify-content: space-between; gap: 1rem; padding-bottom: 1rem; border-bottom: 1px solid rgba(255, 255, 255, .08); }
+  .ts-3w__body { position: relative; flex: 1; min-height: 0; display: grid; grid-template-rows: minmax(0, 1fr) auto; gap: 1rem; padding-top: 1rem; }
+  .ts-3w__visual { position: relative; min-height: 0; }
+  .ts-3w__texts { position: relative; min-height: 15.5rem; }
+  .ts-world { position: absolute; inset: 0 0 auto 0; }
+  /* Ausgangszustand ohne Skript: erste Welt sichtbar */
+  .ts-world:not([data-world="0"]), .ts-wv:not([data-wv="0"]) { opacity: 0; visibility: hidden; }
+  .ts .ts-world__label { color: var(--w-acc); }
+  .ts .ts-world__title { margin-top: .6rem; font-family: var(--ts-font-display); font-weight: 800; font-size: clamp(2.6rem, 9vw, 7.4rem); line-height: .92; letter-spacing: -0.04em; }
+  .ts-world__title i { font-style: normal; color: var(--w-acc); }
+  .ts .ts-world__text { margin-top: .9rem; max-width: 30rem; color: rgba(246, 250, 247, .72); font-size: clamp(15px, 1.3vw, 18px); line-height: 1.6; }
+  .ts .ts-world .ts-btn { margin-top: 1.25rem; }
+  .ts-3w__bars { position: relative; display: grid; grid-template-columns: repeat(3, 1fr); gap: .75rem; margin-top: 1rem; }
+  .ts-3w__bar { display: flex; flex-direction: column; gap: .45rem; }
+  .ts-3w__bar > span { height: 2px; background: rgba(255, 255, 255, .12); overflow: hidden; border-radius: 2px; }
+  .ts-3w__bar i { display: block; height: 100%; background: var(--w-acc); transform-origin: left; transform: scaleX(0); }
+  .ts .ts-3w__bar p { color: rgba(246, 250, 247, .5); font-size: 10px; }
+
+  /* Ebenen der Bühne */
+  .ts-wv { position: absolute; inset: 0; display: grid; place-items: center; }
+
+  /* Welt 1: Buch, das seine Kapitel umblättert */
+  .ts-wv--book { perspective: 1600px; }
+  .ts-book3d { position: relative; width: min(86%, 520px); aspect-ratio: 1.5; transform: rotateX(22deg) rotateZ(-5deg); transform-style: preserve-3d; }
+  .ts-book3d::before { content: ""; position: absolute; inset: 6% -3% -8% -3%; border-radius: 10px; background: #0a1712; transform: translateZ(-14px); box-shadow: 0 40px 70px -20px rgba(0, 0, 0, .7); }
+  .ts-book3d__half, .ts-w-page > div { position: absolute; top: 0; height: 100%; width: 50%; border-radius: 3px;
+    background: linear-gradient(90deg, rgba(0, 0, 0, .12), transparent 14%), repeating-linear-gradient(180deg, transparent 0 14px, rgba(27, 31, 28, .12) 14px 15px) 0 34px / 100% calc(100% - 60px) no-repeat, #f3eee3; }
+  .ts-book3d__half--l { left: 0; background-color: #efe9dc; transform: scaleX(-1); }
+  .ts-book3d__half--r { left: 50%; }
+  .ts-w-page { position: absolute; left: 50%; top: 0; width: 50%; height: 100%; transform-origin: 0 50%; transform-style: preserve-3d; transform: rotateY(var(--a, 0deg)); }
+  .ts-w-page > div { left: 0; width: 100%; backface-visibility: hidden; -webkit-backface-visibility: hidden; padding: 9% 9% 0; }
+  .ts-w-page > div + div { transform: rotateY(180deg); }
+  .ts .ts-w-page small { display: block; font: 600 clamp(7px, 1vw, 10px)/1.3 var(--ts-font-mono); letter-spacing: .14em; text-transform: uppercase; color: #2e8c6c; }
+  .ts .ts-w-page b { display: block; margin-top: .35em; font: 800 clamp(9px, 1.3vw, 15px)/1.12 var(--ts-font-display); letter-spacing: -0.02em; color: #1b1f1c; hyphens: auto; -webkit-hyphens: auto; overflow-wrap: break-word; }
+
+  /* Welt 2: Alsterrunde */
+  .ts-wv--run { display: block; }
+  .ts-wv--run svg { display: block; width: 100%; height: 100%; overflow: visible; }
+  .ts-w-water { fill: color-mix(in srgb, var(--w-acc) 8%, transparent); stroke: rgba(255, 255, 255, .14); stroke-width: 1.5; stroke-dasharray: 3 7; }
+  .ts-w-route { fill: none; stroke: var(--w-acc); stroke-width: 5; stroke-linecap: round; stroke-linejoin: round; }
+  .ts-w-runner { fill: #f6faf7; }
+  .ts-w-runner-halo { fill: color-mix(in srgb, var(--w-acc) 35%, transparent); }
+  .ts-w-svgtext { font: 600 11px var(--ts-font-mono); letter-spacing: .16em; fill: rgba(246, 250, 247, .55); }
+  .ts-w-km { position: absolute; right: 4%; top: 6%; text-align: right; }
+  .ts .ts-w-osm { position: absolute; right: 0; bottom: 0; font: 500 9px/1 var(--ts-font-mono); letter-spacing: .08em; color: rgba(246, 250, 247, .35); }
+  .ts .ts-w-km b { display: block; font: 800 clamp(2rem, 5vw, 3.6rem)/1 var(--ts-font-display); letter-spacing: -0.03em; color: #f6faf7; font-variant-numeric: tabular-nums; }
+
+  /* Welt 3: Runenkreis in Gold */
+  .ts-wv--wow svg { width: min(78%, 440px); height: auto; overflow: visible; }
+  .ts-w-rune { transform-origin: 0 0; }
+  .ts-w-rune circle, .ts-w-rune path, .ts-w-rune polygon { fill: none; stroke: var(--w-acc); }
+  .ts-w-live { position: absolute; left: 50%; bottom: 8%; transform: translateX(-50%); display: inline-flex; align-items: center; gap: .6rem; padding: 8px 14px; border-radius: 999px; border: 1px solid color-mix(in srgb, var(--w-acc) 45%, transparent); background: rgba(10, 8, 6, .55); color: #ffe9a8; white-space: nowrap; }
+  .ts-w-sparks { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+  .ts-w-sparks i { position: absolute; bottom: -10px; width: 3px; height: 3px; border-radius: 50%; background: #ffd100; box-shadow: 0 0 8px #ffd100; opacity: 0; animation: ts-w-spark 4.8s linear infinite; animation-play-state: paused; }
+  .ts-3w.is-gold .ts-w-sparks i { animation-play-state: running; }
+  @keyframes ts-w-spark { 0% { transform: translateY(0); opacity: 0; } 10% { opacity: .9; } 100% { transform: translateY(-75vh); opacity: 0; } }
+
+  @media (min-width: 1024px) {
+    .ts-3w__body { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); grid-template-rows: 1fr; align-items: center; gap: 3rem; }
+    .ts-3w__texts { order: -1; min-height: 22rem; }
+    .ts .ts-world__title { font-size: clamp(2.6rem, 5.4vw, 6.4rem); }
+    .ts-world { top: 50%; transform: translateY(-50%); }
+    .ts-3w__visual { height: 100%; }
+  }
+  @media (max-width: 1023px) {
+    .ts-3w { height: 380vh; }
+    .ts-wv--run { padding: 4px 0 18px; }
+    .ts-w-km { left: 0; right: auto; top: 4%; text-align: left; }
+    .ts .ts-world__text { font-size: 15px; }
+  }
+
+  /* Ohne Bewegung (Editor, „Bewegung reduzieren“): einfach untereinander */
+  .ts-3w.is-static { height: auto; }
+  .ts-3w.is-static .ts-3w__stage { position: relative; height: auto; padding-top: 4rem; padding-bottom: 4rem; }
+  .ts-3w.is-static .ts-3w__visual, .ts-3w.is-static .ts-3w__bars { display: none; }
+  .ts-3w.is-static .ts-3w__body { display: block; }
+  .ts-3w.is-static .ts-3w__texts { min-height: 0; }
+  .ts-3w.is-static .ts-world { position: relative; inset: auto; transform: none; opacity: 1 !important; visibility: visible !important; padding: 2.5rem 0; border-bottom: 1px solid rgba(255, 255, 255, .08); }
+</style>
+
+<section class="ts ts-3w ts-bleed" data-ts-worlds aria-labelledby="ts-worlds-title">
+  <div class="ts-3w__stage">
+    <div class="ts-container ts-3w__top">
+      <p id="ts-worlds-title" class="ts-label ts-muted">[ Drei Welten · ein Trutz ]</p>
+      <p class="ts-label ts-muted" aria-hidden="true"><span data-w-index>01</span> / 03</p>
+    </div>
+
+    <div class="ts-container ts-3w__body">
+      <div class="ts-3w__visual" aria-hidden="true">
+        <!-- Welt 1: Buch -->
+        <div class="ts-wv ts-wv--book" data-wv="0">
+          <div class="ts-book3d">
+            <div class="ts-book3d__half ts-book3d__half--l"></div>
+            <div class="ts-book3d__half ts-book3d__half--r"></div>
+            <div class="ts-w-page" style="z-index:4"><div><small>Kapitel 1</small><b>Maria Holm auf Ermittlungs&shy;tour</b></div><div><small>Fallbuch</small><b>Rotes Stoffband. Ursprung unklar.</b></div></div>
+            <div class="ts-w-page" style="z-index:3"><div><small>Kapitel 2</small><b>Spurensuche im Niendorfer Gehege</b></div><div><small>Regel 1</small><b>Aufmerksam beobachten.</b></div></div>
+            <div class="ts-w-page" style="z-index:2"><div><small>Kapitel 6</small><b>Beschattung in der Speicherstadt</b></div><div><small>Regel 4</small><b>Niemals Angst zeigen.</b></div></div>
+            <div class="ts-w-page" style="z-index:1"><div><small>Kreativhafen</small><b>Bücher, Malspaß &amp; Lernfreude</b></div><div><small>Neu</small><b>Die Loki-Detektive ermitteln.</b></div></div>
+          </div>
+        </div>
+        <!-- Welt 2: Alsterrunde -->
+        <div class="ts-wv ts-wv--run" data-wv="1">
+          <svg viewBox="0 0 300 430" focusable="false">
+            <path class="ts-w-water" d="M112.9 389.4 L110.6 389.7 L108.3 389.9 L106.0 390.0 L103.7 390.0 L101.4 389.9 L98.9 389.7 L96.4 389.5 L93.9 389.1 L91.3 388.7 L88.6 388.2 L85.9 387.6 L83.1 386.9 L80.4 386.1 L77.8 385.3 L75.3 384.5 L73.0 383.6 L70.8 382.6 L68.6 381.6 L66.6 380.6 L64.7 379.5 L63.0 378.4 L61.4 377.4 L59.9 376.4 L58.6 375.4 L57.5 374.5 L56.5 373.6 L55.6 372.8 L54.9 372.0 L54.3 371.1 L53.7 370.1 L53.2 368.9 L52.7 367.7 L52.4 366.3 L52.0 364.8 L51.8 363.2 L51.6 361.6 L51.5 360.0 L51.4 358.5 L51.5 357.2 L51.6 356.0 L51.9 354.9 L52.2 354.0 L52.6 353.2 L53.1 352.5 L53.6 351.6 L54.2 350.6 L54.7 349.5 L55.2 348.3 L55.8 346.9 L56.4 345.4 L57.0 343.7 L57.6 341.9 L58.2 340.2 L58.8 338.5 L59.5 336.8 L60.2 335.2 L60.9 333.7 L61.7 332.2 L62.5 330.7 L63.3 329.3 L64.1 327.6 L65.0 325.5 L66.0 323.0 L67.0 320.2 L68.0 317.1 L69.1 313.6 L70.3 309.7 L71.5 305.5 L72.6 301.7 L73.6 298.4 L74.5 295.5 L75.3 293.1 L76.0 291.1 L76.6 289.5 L77.1 288.4 L77.5 287.7 L78.0 286.8 L78.8 285.9 L79.6 284.8 L80.7 283.6 L81.9 282.3 L83.3 280.8 L84.8 279.2 L86.5 277.6 L88.1 275.9 L89.5 274.4 L90.9 272.9 L92.1 271.5 L93.1 270.2 L94.1 268.9 L94.9 267.8 L95.6 266.6 L96.4 265.2 L97.1 263.4 L97.9 261.3 L98.8 258.9 L99.7 256.1 L100.6 253.0 L101.6 249.5 L102.6 245.7 L103.4 242.2 L104.2 239.1 L104.7 236.3 L105.2 233.9 L105.5 231.8 L105.7 230.0 L105.7 228.6 L105.6 227.5 L105.6 226.2 L105.7 225.0 L105.9 223.6 L106.2 222.1 L106.6 220.5 L107.1 218.8 L107.7 217.0 L108.4 215.1 L109.0 213.2 L109.6 211.2 L110.1 209.4 L110.5 207.5 L110.8 205.6 L111.0 203.7 L111.2 201.8 L111.3 199.9 L111.4 198.1 L111.4 196.5 L111.4 195.1 L111.3 193.9 L111.3 192.8 L111.1 191.9 L111.0 191.1 L110.8 190.5 L110.6 189.7 L110.4 188.7 L110.3 187.5 L110.2 186.1 L110.1 184.5 L110.1 182.7 L110.1 180.7 L110.1 178.5 L110.1 176.4 L110.1 174.5 L110.2 172.7 L110.3 171.0 L110.4 169.4 L110.6 167.9 L110.8 166.6 L111.0 165.4 L111.2 164.3 L111.4 163.3 L111.6 162.5 L111.9 161.7 L112.2 161.1 L112.4 160.6 L112.7 160.2 L113.0 159.8 L113.3 159.5 L113.6 159.1 L113.8 158.7 L114.1 158.2 L114.3 157.6 L114.6 157.0 L114.8 156.3 L115.0 155.7 L115.1 154.7 L115.3 153.5 L115.4 152.1 L115.5 150.3 L115.6 148.4 L115.6 146.2 L115.7 143.8 L115.7 141.1 L115.6 138.4 L115.4 135.8 L115.1 133.2 L114.8 130.6 L114.4 128.1 L113.8 125.6 L113.2 123.2 L112.5 120.8 L111.8 118.5 L111.2 116.4 L110.5 114.4 L109.8 112.6 L109.2 110.9 L108.6 109.3 L108.0 107.9 L107.4 106.6 L106.8 105.1 L106.1 103.4 L105.5 101.5 L104.8 99.4 L104.2 97.1 L103.5 94.5 L102.8 91.9 L102.1 89.0 L101.3 86.0 L100.5 83.2 L99.6 80.2 L98.6 77.3 L97.5 74.5 L96.3 71.6 L95.1 68.7 L93.8 65.8 L92.5 63.1 L91.3 60.6 L90.0 58.3 L88.7 56.3 L87.5 54.4 L86.3 52.8 L85.1 51.4 L83.9 50.2 L82.8 49.0 L81.9 47.9 L81.2 46.8 L80.6 45.7 L80.1 44.6 L79.8 43.5 L79.7 42.5 L79.7 41.5 L79.9 40.4 L80.4 39.2 L81.2 37.8 L82.2 36.4 L83.4 34.8 L84.9 33.1 L86.7 31.4 L88.7 29.5 L90.7 27.7 L92.7 26.1 L94.7 24.7 L96.8 23.5 L98.9 22.4 L100.9 21.5 L103.0 20.7 L105.1 20.1 L107.1 19.6 L108.9 19.1 L110.7 18.8 L112.3 18.4 L113.7 18.2 L115.1 18.1 L116.3 18.0 L117.4 18.0 L118.5 18.1 L119.5 18.1 L120.5 18.3 L121.4 18.5 L122.4 18.8 L123.2 19.1 L124.1 19.4 L124.9 19.8 L125.6 20.2 L126.2 20.7 L126.7 21.1 L127.1 21.6 L127.4 22.2 L127.6 22.7 L127.7 23.3 L127.7 23.9 L127.6 24.6 L127.5 25.3 L127.4 26.1 L127.2 26.9 L126.9 27.8 L126.6 28.8 L126.3 29.9 L125.9 31.0 L125.5 32.1 L125.2 33.3 L125.0 34.5 L124.8 35.7 L124.6 37.0 L124.5 38.3 L124.5 39.7 L124.5 41.1 L124.5 42.5 L124.7 43.8 L124.8 45.1 L125.1 46.3 L125.4 47.5 L125.8 48.7 L126.2 49.9 L126.7 51.0 L127.2 52.1 L127.6 53.3 L128.1 54.5 L128.5 55.7 L128.8 57.0 L129.2 58.3 L129.5 59.7 L129.8 61.1 L130.2 62.4 L130.6 63.7 L131.0 64.9 L131.5 66.1 L132.1 67.2 L132.7 68.2 L133.3 69.2 L134.0 70.1 L134.8 70.9 L135.6 71.7 L136.5 72.5 L137.4 73.2 L138.5 73.8 L139.5 74.4 L140.7 75.0 L141.9 75.5 L143.2 75.9 L144.6 76.3 L146.2 76.6 L147.9 76.8 L149.7 77.0 L151.7 77.1 L153.8 77.2 L156.0 77.2 L158.1 77.1 L160.1 77.0 L162.0 76.8 L163.8 76.6 L165.5 76.3 L167.1 75.9 L168.6 75.5 L170.0 75.0 L171.3 74.4 L172.6 73.8 L173.8 73.2 L174.9 72.5 L176.0 71.7 L177.1 70.9 L178.0 70.1 L178.9 69.2 L179.7 68.4 L180.5 67.7 L181.2 67.1 L181.8 66.7 L182.3 66.3 L182.7 66.1 L183.1 66.0 L183.4 66.0 L183.7 66.1 L184.1 66.2 L184.5 66.5 L184.9 66.8 L185.3 67.1 L185.7 67.6 L186.2 68.1 L186.7 68.7 L187.2 69.5 L187.7 70.5 L188.1 71.6 L188.6 73.0 L189.0 74.5 L189.5 76.2 L189.9 78.2 L190.3 80.2 L190.4 82.2 L190.2 84.0 L189.7 85.7 L189.0 87.2 L188.0 88.5 L186.6 89.7 L185.0 90.8 L183.1 91.7 L181.2 92.6 L179.4 93.7 L177.5 94.9 L175.6 96.1 L173.8 97.5 L172.0 98.9 L170.2 100.4 L168.4 102.0 L166.8 103.6 L165.4 105.2 L164.3 106.9 L163.4 108.5 L162.7 110.2 L162.3 111.9 L162.1 113.6 L162.1 115.2 L162.1 116.8 L162.3 118.3 L162.4 119.6 L162.7 120.8 L163.0 121.9 L163.4 122.8 L163.8 123.7 L164.3 124.4 L164.8 125.0 L165.1 125.7 L165.4 126.3 L165.7 126.9 L165.9 127.5 L166.0 128.0 L166.1 128.6 L166.1 129.1 L166.2 129.8 L166.4 130.9 L166.7 132.3 L167.2 133.9 L167.8 135.9 L168.4 138.1 L169.2 140.6 L170.1 143.4 L171.0 146.1 L171.9 148.6 L172.7 150.9 L173.6 153.1 L174.4 155.2 L175.3 157.1 L176.1 158.8 L176.9 160.4 L177.7 161.9 L178.4 163.3 L179.2 164.7 L179.9 165.9 L180.7 167.1 L181.4 168.2 L182.1 169.2 L182.8 170.1 L183.5 171.1 L184.1 172.2 L184.6 173.5 L185.1 174.9 L185.6 176.4 L186.0 178.1 L186.3 179.9 L186.6 181.8 L186.9 183.5 L187.2 185.1 L187.5 186.5 L187.8 187.7 L188.1 188.8 L188.4 189.7 L188.7 190.5 L189.0 191.1 L189.3 191.7 L189.6 192.2 L189.9 192.7 L190.2 193.1 L190.5 193.5 L190.8 193.9 L191.1 194.2 L191.4 194.6 L191.8 194.8 L192.2 195.1 L192.7 195.3 L193.2 195.5 L193.9 195.7 L194.5 195.8 L195.3 196.0 L196.1 196.1 L197.0 196.3 L198.0 196.7 L199.1 197.3 L200.3 198.1 L201.6 199.0 L203.0 200.1 L204.5 201.3 L206.1 202.7 L207.8 204.1 L209.6 205.4 L211.6 206.6 L213.7 207.8 L215.9 209.0 L218.3 210.1 L220.8 211.1 L223.4 212.1 L225.8 213.1 L228.0 214.1 L230.0 215.2 L231.9 216.2 L233.6 217.3 L235.0 218.4 L236.3 219.5 L237.4 220.6 L238.5 221.8 L239.5 223.1 L240.5 224.5 L241.4 226.0 L242.4 227.6 L243.2 229.2 L244.1 231.1 L244.9 233.0 L245.6 235.3 L246.2 238.1 L246.8 241.4 L247.3 245.1 L247.7 249.2 L248.1 253.8 L248.4 258.9 L248.6 264.4 L248.4 269.7 L247.8 275.0 L246.8 280.1 L245.4 285.1 L243.6 290.0 L241.4 294.7 L238.8 299.4 L235.8 303.9 L232.9 308.1 L230.1 312.1 L227.5 315.8 L225.0 319.2 L222.6 322.4 L220.4 325.3 L218.3 328.0 L216.3 330.4 L214.3 332.6 L212.4 334.5 L210.6 336.2 L208.8 337.8 L207.0 339.0 L205.3 340.1 L203.7 340.9 L202.1 341.5 L200.4 342.2 L198.6 343.1 L196.7 344.1 L194.7 345.2 L192.6 346.4 L190.4 347.7 L188.1 349.2 L185.7 350.8 L183.3 352.3 L181.1 353.7 L178.9 355.0 L176.8 356.2 L174.8 357.3 L172.8 358.3 L171.0 359.2 L169.2 360.0 L167.4 360.9 L165.6 361.8 L163.9 362.8 L162.2 363.8 L160.5 364.9 L158.9 366.1 L157.3 367.4 L155.7 368.7 L154.0 370.0 L152.2 371.2 L150.4 372.6 L148.5 373.9 L146.5 375.2 L144.5 376.5 L142.4 377.8 L140.2 379.1 L138.0 380.3 L135.7 381.5 L133.5 382.6 L131.2 383.6 L129.0 384.6 L126.7 385.5 L124.4 386.4 L122.1 387.2 L119.8 387.9 L117.5 388.5 L115.2 389.0 Z"/>
+            <path class="ts-w-route" data-w-route d="M112.9 389.4 L110.6 389.7 L108.3 389.9 L106.0 390.0 L103.7 390.0 L101.4 389.9 L98.9 389.7 L96.4 389.5 L93.9 389.1 L91.3 388.7 L88.6 388.2 L85.9 387.6 L83.1 386.9 L80.4 386.1 L77.8 385.3 L75.3 384.5 L73.0 383.6 L70.8 382.6 L68.6 381.6 L66.6 380.6 L64.7 379.5 L63.0 378.4 L61.4 377.4 L59.9 376.4 L58.6 375.4 L57.5 374.5 L56.5 373.6 L55.6 372.8 L54.9 372.0 L54.3 371.1 L53.7 370.1 L53.2 368.9 L52.7 367.7 L52.4 366.3 L52.0 364.8 L51.8 363.2 L51.6 361.6 L51.5 360.0 L51.4 358.5 L51.5 357.2 L51.6 356.0 L51.9 354.9 L52.2 354.0 L52.6 353.2 L53.1 352.5 L53.6 351.6 L54.2 350.6 L54.7 349.5 L55.2 348.3 L55.8 346.9 L56.4 345.4 L57.0 343.7 L57.6 341.9 L58.2 340.2 L58.8 338.5 L59.5 336.8 L60.2 335.2 L60.9 333.7 L61.7 332.2 L62.5 330.7 L63.3 329.3 L64.1 327.6 L65.0 325.5 L66.0 323.0 L67.0 320.2 L68.0 317.1 L69.1 313.6 L70.3 309.7 L71.5 305.5 L72.6 301.7 L73.6 298.4 L74.5 295.5 L75.3 293.1 L76.0 291.1 L76.6 289.5 L77.1 288.4 L77.5 287.7 L78.0 286.8 L78.8 285.9 L79.6 284.8 L80.7 283.6 L81.9 282.3 L83.3 280.8 L84.8 279.2 L86.5 277.6 L88.1 275.9 L89.5 274.4 L90.9 272.9 L92.1 271.5 L93.1 270.2 L94.1 268.9 L94.9 267.8 L95.6 266.6 L96.4 265.2 L97.1 263.4 L97.9 261.3 L98.8 258.9 L99.7 256.1 L100.6 253.0 L101.6 249.5 L102.6 245.7 L103.4 242.2 L104.2 239.1 L104.7 236.3 L105.2 233.9 L105.5 231.8 L105.7 230.0 L105.7 228.6 L105.6 227.5 L105.6 226.2 L105.7 225.0 L105.9 223.6 L106.2 222.1 L106.6 220.5 L107.1 218.8 L107.7 217.0 L108.4 215.1 L109.0 213.2 L109.6 211.2 L110.1 209.4 L110.5 207.5 L110.8 205.6 L111.0 203.7 L111.2 201.8 L111.3 199.9 L111.4 198.1 L111.4 196.5 L111.4 195.1 L111.3 193.9 L111.3 192.8 L111.1 191.9 L111.0 191.1 L110.8 190.5 L110.6 189.7 L110.4 188.7 L110.3 187.5 L110.2 186.1 L110.1 184.5 L110.1 182.7 L110.1 180.7 L110.1 178.5 L110.1 176.4 L110.1 174.5 L110.2 172.7 L110.3 171.0 L110.4 169.4 L110.6 167.9 L110.8 166.6 L111.0 165.4 L111.2 164.3 L111.4 163.3 L111.6 162.5 L111.9 161.7 L112.2 161.1 L112.4 160.6 L112.7 160.2 L113.0 159.8 L113.3 159.5 L113.6 159.1 L113.8 158.7 L114.1 158.2 L114.3 157.6 L114.6 157.0 L114.8 156.3 L115.0 155.7 L115.1 154.7 L115.3 153.5 L115.4 152.1 L115.5 150.3 L115.6 148.4 L115.6 146.2 L115.7 143.8 L115.7 141.1 L115.6 138.4 L115.4 135.8 L115.1 133.2 L114.8 130.6 L114.4 128.1 L113.8 125.6 L113.2 123.2 L112.5 120.8 L111.8 118.5 L111.2 116.4 L110.5 114.4 L109.8 112.6 L109.2 110.9 L108.6 109.3 L108.0 107.9 L107.4 106.6 L106.8 105.1 L106.1 103.4 L105.5 101.5 L104.8 99.4 L104.2 97.1 L103.5 94.5 L102.8 91.9 L102.1 89.0 L101.3 86.0 L100.5 83.2 L99.6 80.2 L98.6 77.3 L97.5 74.5 L96.3 71.6 L95.1 68.7 L93.8 65.8 L92.5 63.1 L91.3 60.6 L90.0 58.3 L88.7 56.3 L87.5 54.4 L86.3 52.8 L85.1 51.4 L83.9 50.2 L82.8 49.0 L81.9 47.9 L81.2 46.8 L80.6 45.7 L80.1 44.6 L79.8 43.5 L79.7 42.5 L79.7 41.5 L79.9 40.4 L80.4 39.2 L81.2 37.8 L82.2 36.4 L83.4 34.8 L84.9 33.1 L86.7 31.4 L88.7 29.5 L90.7 27.7 L92.7 26.1 L94.7 24.7 L96.8 23.5 L98.9 22.4 L100.9 21.5 L103.0 20.7 L105.1 20.1 L107.1 19.6 L108.9 19.1 L110.7 18.8 L112.3 18.4 L113.7 18.2 L115.1 18.1 L116.3 18.0 L117.4 18.0 L118.5 18.1 L119.5 18.1 L120.5 18.3 L121.4 18.5 L122.4 18.8 L123.2 19.1 L124.1 19.4 L124.9 19.8 L125.6 20.2 L126.2 20.7 L126.7 21.1 L127.1 21.6 L127.4 22.2 L127.6 22.7 L127.7 23.3 L127.7 23.9 L127.6 24.6 L127.5 25.3 L127.4 26.1 L127.2 26.9 L126.9 27.8 L126.6 28.8 L126.3 29.9 L125.9 31.0 L125.5 32.1 L125.2 33.3 L125.0 34.5 L124.8 35.7 L124.6 37.0 L124.5 38.3 L124.5 39.7 L124.5 41.1 L124.5 42.5 L124.7 43.8 L124.8 45.1 L125.1 46.3 L125.4 47.5 L125.8 48.7 L126.2 49.9 L126.7 51.0 L127.2 52.1 L127.6 53.3 L128.1 54.5 L128.5 55.7 L128.8 57.0 L129.2 58.3 L129.5 59.7 L129.8 61.1 L130.2 62.4 L130.6 63.7 L131.0 64.9 L131.5 66.1 L132.1 67.2 L132.7 68.2 L133.3 69.2 L134.0 70.1 L134.8 70.9 L135.6 71.7 L136.5 72.5 L137.4 73.2 L138.5 73.8 L139.5 74.4 L140.7 75.0 L141.9 75.5 L143.2 75.9 L144.6 76.3 L146.2 76.6 L147.9 76.8 L149.7 77.0 L151.7 77.1 L153.8 77.2 L156.0 77.2 L158.1 77.1 L160.1 77.0 L162.0 76.8 L163.8 76.6 L165.5 76.3 L167.1 75.9 L168.6 75.5 L170.0 75.0 L171.3 74.4 L172.6 73.8 L173.8 73.2 L174.9 72.5 L176.0 71.7 L177.1 70.9 L178.0 70.1 L178.9 69.2 L179.7 68.4 L180.5 67.7 L181.2 67.1 L181.8 66.7 L182.3 66.3 L182.7 66.1 L183.1 66.0 L183.4 66.0 L183.7 66.1 L184.1 66.2 L184.5 66.5 L184.9 66.8 L185.3 67.1 L185.7 67.6 L186.2 68.1 L186.7 68.7 L187.2 69.5 L187.7 70.5 L188.1 71.6 L188.6 73.0 L189.0 74.5 L189.5 76.2 L189.9 78.2 L190.3 80.2 L190.4 82.2 L190.2 84.0 L189.7 85.7 L189.0 87.2 L188.0 88.5 L186.6 89.7 L185.0 90.8 L183.1 91.7 L181.2 92.6 L179.4 93.7 L177.5 94.9 L175.6 96.1 L173.8 97.5 L172.0 98.9 L170.2 100.4 L168.4 102.0 L166.8 103.6 L165.4 105.2 L164.3 106.9 L163.4 108.5 L162.7 110.2 L162.3 111.9 L162.1 113.6 L162.1 115.2 L162.1 116.8 L162.3 118.3 L162.4 119.6 L162.7 120.8 L163.0 121.9 L163.4 122.8 L163.8 123.7 L164.3 124.4 L164.8 125.0 L165.1 125.7 L165.4 126.3 L165.7 126.9 L165.9 127.5 L166.0 128.0 L166.1 128.6 L166.1 129.1 L166.2 129.8 L166.4 130.9 L166.7 132.3 L167.2 133.9 L167.8 135.9 L168.4 138.1 L169.2 140.6 L170.1 143.4 L171.0 146.1 L171.9 148.6 L172.7 150.9 L173.6 153.1 L174.4 155.2 L175.3 157.1 L176.1 158.8 L176.9 160.4 L177.7 161.9 L178.4 163.3 L179.2 164.7 L179.9 165.9 L180.7 167.1 L181.4 168.2 L182.1 169.2 L182.8 170.1 L183.5 171.1 L184.1 172.2 L184.6 173.5 L185.1 174.9 L185.6 176.4 L186.0 178.1 L186.3 179.9 L186.6 181.8 L186.9 183.5 L187.2 185.1 L187.5 186.5 L187.8 187.7 L188.1 188.8 L188.4 189.7 L188.7 190.5 L189.0 191.1 L189.3 191.7 L189.6 192.2 L189.9 192.7 L190.2 193.1 L190.5 193.5 L190.8 193.9 L191.1 194.2 L191.4 194.6 L191.8 194.8 L192.2 195.1 L192.7 195.3 L193.2 195.5 L193.9 195.7 L194.5 195.8 L195.3 196.0 L196.1 196.1 L197.0 196.3 L198.0 196.7 L199.1 197.3 L200.3 198.1 L201.6 199.0 L203.0 200.1 L204.5 201.3 L206.1 202.7 L207.8 204.1 L209.6 205.4 L211.6 206.6 L213.7 207.8 L215.9 209.0 L218.3 210.1 L220.8 211.1 L223.4 212.1 L225.8 213.1 L228.0 214.1 L230.0 215.2 L231.9 216.2 L233.6 217.3 L235.0 218.4 L236.3 219.5 L237.4 220.6 L238.5 221.8 L239.5 223.1 L240.5 224.5 L241.4 226.0 L242.4 227.6 L243.2 229.2 L244.1 231.1 L244.9 233.0 L245.6 235.3 L246.2 238.1 L246.8 241.4 L247.3 245.1 L247.7 249.2 L248.1 253.8 L248.4 258.9 L248.6 264.4 L248.4 269.7 L247.8 275.0 L246.8 280.1 L245.4 285.1 L243.6 290.0 L241.4 294.7 L238.8 299.4 L235.8 303.9 L232.9 308.1 L230.1 312.1 L227.5 315.8 L225.0 319.2 L222.6 322.4 L220.4 325.3 L218.3 328.0 L216.3 330.4 L214.3 332.6 L212.4 334.5 L210.6 336.2 L208.8 337.8 L207.0 339.0 L205.3 340.1 L203.7 340.9 L202.1 341.5 L200.4 342.2 L198.6 343.1 L196.7 344.1 L194.7 345.2 L192.6 346.4 L190.4 347.7 L188.1 349.2 L185.7 350.8 L183.3 352.3 L181.1 353.7 L178.9 355.0 L176.8 356.2 L174.8 357.3 L172.8 358.3 L171.0 359.2 L169.2 360.0 L167.4 360.9 L165.6 361.8 L163.9 362.8 L162.2 363.8 L160.5 364.9 L158.9 366.1 L157.3 367.4 L155.7 368.7 L154.0 370.0 L152.2 371.2 L150.4 372.6 L148.5 373.9 L146.5 375.2 L144.5 376.5 L142.4 377.8 L140.2 379.1 L138.0 380.3 L135.7 381.5 L133.5 382.6 L131.2 383.6 L129.0 384.6 L126.7 385.5 L124.4 386.4 L122.1 387.2 L119.8 387.9 L117.5 388.5 L115.2 389.0 Z"/>
+            <circle class="ts-w-runner-halo" data-w-halo r="14" cx="112.9" cy="389.4"/>
+            <circle class="ts-w-runner" data-w-runner r="6" cx="112.9" cy="389.4"/>
+            <text class="ts-w-svgtext" x="176" y="296" text-anchor="middle">AUSSENALSTER</text>
+            <text class="ts-w-svgtext" x="113" y="419" text-anchor="middle">START · ZIEL</text>
+          </svg>
+          <p class="ts-w-km"><b data-w-km>0,0</b><span class="ts-label ts-muted">km · Alster</span></p>
+          <p class="ts-w-osm">Karte: © OpenStreetMap-Mitwirkende</p>
+        </div>
+        <!-- Welt 3: Runenkreis -->
+        <div class="ts-wv ts-wv--wow" data-wv="2">
+          <div class="ts-w-sparks"><i style="left:12%;animation-delay:-.4s"></i><i style="left:22%;animation-delay:-2.1s"></i><i style="left:31%;animation-delay:-3.6s"></i><i style="left:40%;animation-delay:-1.2s"></i><i style="left:48%;animation-delay:-4.1s"></i><i style="left:55%;animation-delay:-.9s"></i><i style="left:63%;animation-delay:-2.8s"></i><i style="left:71%;animation-delay:-1.7s"></i><i style="left:79%;animation-delay:-3.2s"></i><i style="left:86%;animation-delay:-.2s"></i><i style="left:93%;animation-delay:-2.4s"></i><i style="left:6%;animation-delay:-3.9s"></i></div>
+          <svg viewBox="-110 -110 220 220" focusable="false">
+            <g class="ts-w-rune" data-w-rune>
+              <circle r="100" stroke-width="1" stroke-dasharray="2 6" opacity=".6"/>
+              <circle r="88" stroke-width="2"/>
+              <circle r="80" stroke-width=".8" opacity=".6"/>
+              <path stroke-width="2" d="M0-88V-80M0 80V88M-88 0H-80M80 0H88M-62-62l6 6M56 56l6 6M-62 62l6-6M56-56l6-6"/>
+              <polygon stroke-width="1.6" points="0,-72 16,-16 72,0 16,16 0,72 -16,16 -72,0 -16,-16"/>
+              <polygon stroke-width="1" opacity=".7" points="0,-48 34,-34 48,0 34,34 0,48 -34,34 -48,0 -34,-34"/>
+              <circle r="22" stroke-width="2"/>
+              <path stroke-width="2.4" d="M0-14L10 0 0 14-10 0Z"/>
+            </g>
+          </svg>
+          <p class="ts-w-live ts-label"><span class="ts-pulse"></span>einfach_trutz · WoW Forever</p>
+        </div>
+      </div>
+
+      <div class="ts-3w__texts">
+        <div class="ts-world" data-world="0">
+          <p class="ts-label ts-world__label">01 — Kreativhafen</p>
+          <h2 class="ts-world__title">Geschich&shy;ten<i>.</i></h2>
+          <p class="ts-world__text">Kinderbücher mit Herz und Malbücher zum Abtauchen – geschrieben in Hamburg, für kleine Entdeckerinnen und Entdecker.</p>
+          <a href="/kreativhafen" class="ts-btn ts-btn--ghost ts-magnetic"><span class="ts-btn__inner"><span class="ts-roll"><span data-text="Zum Kreativhafen">Zum Kreativhafen</span></span><svg class="ts-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+        </div>
+        <div class="ts-world" data-world="1">
+          <p class="ts-label ts-world__label">02 — Running</p>
+          <h2 class="ts-world__title">Kilo&shy;meter<i>.</i></h2>
+          <p class="ts-world__text">Alster, Niendorfer Gehege, Halbmarathon: Laufen ist mein Kopf-frei-Knopf – mit Puls, Zwischenzeiten und ehrlichen Geschichten.</p>
+          <a href="/running" class="ts-btn ts-btn--ghost ts-magnetic"><span class="ts-btn__inner"><span class="ts-roll"><span data-text="Zu den Laufgeschichten">Zu den Laufgeschichten</span></span><svg class="ts-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+        </div>
+        <div class="ts-world" data-world="2">
+          <p class="ts-label ts-world__label">03 — Twitch</p>
+          <h2 class="ts-world__title">Aben&shy;teuer<i>.</i></h2>
+          <p class="ts-world__text">World of Warcraft Forever, live auf Twitch – mit Chat-Spiel, eigenen Helden und der Bestenliste aus der Stream-Zentrale.</p>
+          <a href="/twitch-startseite" class="ts-btn ts-btn--ghost ts-magnetic"><span class="ts-btn__inner"><span class="ts-roll"><span data-text="Zur Stream-Zentrale">Zur Stream-Zentrale</span></span><svg class="ts-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="ts-container ts-3w__bars" aria-hidden="true">
+      <div class="ts-3w__bar"><span><i></i></span><p class="ts-label">Bücher</p></div>
+      <div class="ts-3w__bar"><span><i></i></span><p class="ts-label">Laufen</p></div>
+      <div class="ts-3w__bar"><span><i></i></span><p class="ts-label">Twitch</p></div>
+    </div>
+  </div>
+</section>
+
+<script>
+/* Drei Welten: Farben, Buch, Strecke und Runenkreis folgen dem Scrollen */
+(() => {
+  const root = document.querySelector('[data-ts-worlds]');
+  if (!root) return;
+  const still = document.documentElement.classList.contains('ts-in-editor') || matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (still) { root.classList.add('is-static'); return; }
+  const BG = [[12, 31, 25], [9, 22, 15], [24, 17, 7]];
+  const ACC = [[110, 231, 183], [74, 222, 128], [255, 209, 0]];
+  const worlds = [...root.querySelectorAll('[data-world]')];
+  const layers = [...root.querySelectorAll('[data-wv]')];
+  const bars = [...root.querySelectorAll('.ts-3w__bar i')];
+  const pages = [...root.querySelectorAll('.ts-w-page')];
+  const route = root.querySelector('[data-w-route]'), runner = root.querySelector('[data-w-runner]'), halo = root.querySelector('[data-w-halo]');
+  const kmEl = root.querySelector('[data-w-km]'), rune = root.querySelector('[data-w-rune]'), idx = root.querySelector('[data-w-index]');
+  const len = route.getTotalLength();
+  route.style.strokeDasharray = `${len} ${len}`;
+  const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
+  const ease = t => t < .5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
+  const mix = (a, b, t) => a.map((v, i) => Math.round(v + (b[i] - v) * t)).join(',');
+  /* Sichtbarkeit einer Welt: Plateau in ihrem Drittel, weiche Übergänge an den Rändern */
+  const weight = (seg, j) => {
+    if (j === 0 && seg < .45) return 1;
+    if (j === 2 && seg > 2.45) return 1;
+    return clamp(1 - Math.max(0, Math.abs(seg - (j + .45)) - .38) / .16);
+  };
+  let last = -1, ticking = false;
+  const render = p => {
+    if (Math.abs(p - last) < .0004) return; last = p;
+    const seg = p * 3, i = Math.min(2, Math.floor(seg)), lp = seg - i;
+    const k = i < 2 ? ease(clamp((lp - .78) / .22)) : 0;
+    root.style.setProperty('--w-bg', `rgb(${mix(BG[i], BG[Math.min(2, i + 1)], k)})`);
+    root.style.setProperty('--w-acc', `rgb(${mix(ACC[i], ACC[Math.min(2, i + 1)], k)})`);
+    root.classList.toggle('is-gold', seg > 2.1);
+    let cur = 0;
+    worlds.forEach((w, j) => {
+      const o = weight(seg, j), dir = seg < j + .45 ? 1 : -1;
+      w.style.opacity = o; w.style.visibility = o < .02 ? 'hidden' : 'visible';
+      w.style.translate = `0 ${(1 - o) * 26 * dir}px`;
+      layers[j].style.opacity = o; layers[j].style.visibility = o < .02 ? 'hidden' : 'visible';
+      if (o > .5) cur = j;
+    });
+    idx.textContent = '0' + (cur + 1);
+    bars.forEach((b, j) => b.style.transform = `scaleX(${clamp(seg - j)})`);
+    /* Buch blättert */
+    const b0 = clamp(seg / .95);
+    pages.forEach((pg, n) => pg.style.setProperty('--a', `${-178 * ease(clamp((b0 * 1.15 - n * .24) / .32))}deg`));
+    /* Strecke */
+    const r = clamp((seg - 1) / .9), l = len * ease(r), pt = route.getPointAtLength(l);
+    route.style.strokeDashoffset = `${len - l}`;
+    runner.setAttribute('cx', pt.x); runner.setAttribute('cy', pt.y); halo.setAttribute('cx', pt.x); halo.setAttribute('cy', pt.y);
+    kmEl.textContent = (7.4 * ease(r)).toFixed(1).replace('.', ',');
+    /* Runenkreis */
+    const g = clamp(seg - 2);
+    rune.setAttribute('transform', `rotate(${g * 140}) scale(${.82 + .18 * ease(g)})`);
+  };
+  const update = () => {
+    ticking = false;
+    const rect = root.getBoundingClientRect(), total = rect.height - innerHeight;
+    render(clamp(total > 0 ? -rect.top / total : 0));
+  };
+  /* Erst starten, wenn die Sektion in die Nähe kommt – spart Rechenzeit beim Laden der Startseite */
+  const start = () => {
+    addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
+    addEventListener('resize', update);
+    update();
+  };
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver(es => { if (es.some(e => e.isIntersecting)) { io.disconnect(); start(); } }, { rootMargin: '600px 0px' });
+    io.observe(root);
+  } else start();
+})();
+</script>

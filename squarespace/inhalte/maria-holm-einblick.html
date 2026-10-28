@@ -1,0 +1,238 @@
+<!-- ============ BLICK INS BUCH ============ -->
+<style>
+  /* Blick ins Buch steht oben auf der Seite, die Buchvorstellung mit Preisen folgt darunter */
+  .ts-insight { position: relative; isolation: isolate; overflow: hidden; overflow: clip; padding: clamp(8.5rem, 14vw, 12rem) 0 clamp(5rem, 9vw, 8rem); background: var(--ts-bg); }
+  .ts-insight ~ .ts-book { padding-top: clamp(5rem, 9vw, 8rem); border-top: 1px solid var(--ts-line); }
+  .ts-insight ~ .ts-book .ts-book__back { display: none; }
+  .ts-insight__orb { position: absolute; z-index: -1; right: -14%; top: 8%; width: 52vw; height: 52vw; max-width: 820px; max-height: 820px; border-radius: 50%; pointer-events: none;
+    background: radial-gradient(circle, rgba(46, 140, 108, .26) 0%, rgba(46, 140, 108, .18) 22%, rgba(46, 140, 108, .09) 42%, rgba(46, 140, 108, .03) 58%, rgba(46, 140, 108, 0) 72%); }
+  .ts-insight__head { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; padding-bottom: 1.25rem; border-bottom: 1px solid var(--ts-line); }
+  .ts .ts-insight__title { margin-top: clamp(2rem, 4vw, 3rem); font-family: var(--ts-font-display); font-weight: 800; font-size: clamp(2.3rem, 6.6vw, 6.4rem); line-height: .95; letter-spacing: -0.035em; }
+  .ts-insight .ts-line { padding-bottom: .14em; margin-bottom: -.14em; }
+  .ts .ts-insight__intro { margin-top: 1.5rem; max-width: 38rem; color: var(--ts-muted); font-size: clamp(16px, 1.4vw, 19px); line-height: 1.7; }
+  .ts .ts-insight__h3 { font-family: var(--ts-font-display); font-weight: 700; font-size: clamp(1.5rem, 2.6vw, 2.3rem); letter-spacing: -0.02em; line-height: 1.05; }
+  .ts .ts-insight__sub { margin-top: .5rem; color: var(--ts-muted); }
+  .ts-insight__block { margin-top: clamp(4.5rem, 8vw, 7rem); }
+
+  /* Papier */
+  .ts-paper { position: relative; border-radius: 6px; color: #1b1f1c;
+    background: radial-gradient(120% 90% at 20% 0%, #f7f3ea, #efe8da 70%, #e8e0cf); box-shadow: 0 1px 0 rgba(255, 255, 255, .6) inset, 0 30px 60px -28px rgba(0, 0, 0, .85), 0 2px 6px rgba(0, 0, 0, .3); }
+  .ts-paper img { display: block; width: 100% !important; height: auto !important; }
+
+  /* Leseprobe */
+  .ts-insight__read { display: grid; grid-template-columns: minmax(0, 1fr); gap: 2rem; margin-top: clamp(3rem, 6vw, 4.5rem); align-items: start; }
+  .ts-excerpt { padding: clamp(1.75rem, 4vw, 3.25rem); transform: rotate(-.6deg); }
+  .ts .ts-excerpt__chapter { font: 600 11px/1.3 var(--ts-font-mono); letter-spacing: .18em; text-transform: uppercase; color: #2e8c6c; }
+  .ts .ts-excerpt__h { margin-top: .5rem; font: 800 clamp(1.35rem, 2.4vw, 1.9rem)/1.1 var(--ts-font-display); letter-spacing: -0.02em; color: #1b1f1c; }
+  .ts .ts-excerpt p.ts-excerpt__p { margin-top: 1.1rem; font-family: Georgia, 'Times New Roman', serif; font-size: clamp(16px, 1.35vw, 18.5px); line-height: 1.75; color: #2a2e2b; hyphens: auto; -webkit-hyphens: auto; }
+  .ts-excerpt__p--first::first-letter { float: left; margin: .08em .12em 0 0; font: 800 3.4em/.8 var(--ts-font-display); color: #1d4d3f; }
+  .ts .ts-excerpt__more { display: inline-flex; align-items: center; gap: .5rem; margin-top: 1.5rem; font: 600 12px/1 var(--ts-font-mono); letter-spacing: .14em; text-transform: uppercase; color: #1d4d3f; border-bottom: 1px solid rgba(29, 77, 63, .35); padding-bottom: 4px; }
+  .ts-excerpt__more:hover { color: #2e8c6c; }
+  .ts-insight__aside { display: grid; gap: 1.5rem; }
+  .ts-insight__portrait { padding: 1.25rem; transform: rotate(1.4deg); max-width: 420px; justify-self: center; width: 100%; }
+  .ts .ts-insight__portrait figcaption { margin-top: .6rem; font: 600 10.5px/1.3 var(--ts-font-mono); letter-spacing: .16em; text-transform: uppercase; color: #5b6158; text-align: center; }
+  .ts-dedication { position: relative; padding: 1.5rem 1.5rem 1.5rem 1.75rem; border-left: 2px solid var(--ts-mint); }
+  .ts .ts-dedication p { font-family: Georgia, 'Times New Roman', serif; font-style: italic; font-size: 17px; line-height: 1.65; color: rgba(246, 250, 247, .85); }
+  .ts .ts-dedication p + p { margin-top: .75rem; }
+  .ts .ts-dedication cite { display: block; margin-top: .9rem; font: 600 11px/1 var(--ts-font-mono); letter-spacing: .16em; text-transform: uppercase; color: var(--ts-mint); font-style: normal; }
+
+  /* Crew */
+  .ts-crew { display: grid; grid-template-columns: minmax(0, 1fr); gap: .9rem; margin-top: 2rem; }
+  .ts .ts-member { position: relative; padding: 1.5rem; border-radius: 22px; transition: transform .6s var(--ts-ease-out), border-color .4s; }
+  .ts .ts-member:hover { transform: translateY(-4px); border-color: rgba(110, 231, 183, .35); }
+  .ts-member__icon { display: grid; place-items: center; width: 46px; height: 46px; border-radius: 14px; border: 1px solid var(--ts-line); background: rgba(29, 77, 63, .45); color: var(--ts-mint); }
+  .ts .ts-member__name { margin-top: 1.1rem; font: 700 1.35rem/1.1 var(--ts-font-display); letter-spacing: -0.02em; }
+  .ts .ts-member__role { margin-top: .35rem; color: var(--ts-mint); font-size: 10.5px; }
+  .ts .ts-member__text { margin-top: .75rem; color: var(--ts-muted); font-size: 15px; line-height: 1.6; }
+  .ts .ts-member--rival { border-style: dashed; background: transparent; }
+  .ts-member--rival .ts-member__icon { color: #f6b35b; background: rgba(246, 179, 91, .08); }
+  .ts .ts-member--rival .ts-member__role { color: #f6b35b; }
+
+  /* Regeln + Fallbuch */
+  .ts-insight__duo { display: grid; grid-template-columns: minmax(0, 1fr); gap: 3rem; }
+  .ts .ts-rules { margin-top: 1.75rem; counter-reset: rule; }
+  .ts .ts-rule { display: flex; align-items: baseline; gap: 1.25rem; padding: 1.1rem 0; border-bottom: 1px solid var(--ts-line); }
+  .ts-rule__no { flex: none; width: 2.6rem; font: 800 clamp(1.6rem, 2.6vw, 2.3rem)/1 var(--ts-font-display); color: var(--ts-mint); }
+  .ts .ts-rule__text { font: 700 clamp(1.15rem, 2vw, 1.6rem)/1.15 var(--ts-font-display); letter-spacing: -0.02em; }
+  .ts-notes { display: grid; gap: 1rem; margin-top: 1.75rem; }
+  .ts .ts-note { padding: 1rem 1.15rem; border-radius: 4px; border-left: 4px solid #f6b35b; background: #fff6e6; color: #3a3226; font-size: 14.5px; line-height: 1.55; box-shadow: 0 18px 40px -24px rgba(0, 0, 0, .8); transform: rotate(var(--r, 0deg)); transition: transform .5s var(--ts-ease-out); }
+  .ts .ts-note:hover { transform: rotate(0deg) translateY(-2px); }
+  .ts .ts-note small { display: block; margin-bottom: .3rem; font: 600 10px/1 var(--ts-font-mono); letter-spacing: .16em; text-transform: uppercase; color: #b9792a; }
+
+  /* Illustrationen */
+  .ts-sketches { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(.9rem, 2.5vw, 2rem); margin-top: 2rem; }
+  .ts .ts-sketch { margin: 0; padding: clamp(.7rem, 1.6vw, 1.1rem); transform: rotate(var(--r, 0deg)); transition: transform .7s var(--ts-ease-out), box-shadow .5s; }
+  .ts .ts-sketch:hover { transform: rotate(0deg) translateY(-6px) scale(1.02); z-index: 2; }
+  .ts-sketch__img { aspect-ratio: 4 / 5; display: grid; place-items: center; overflow: hidden; }
+  .ts-sketch__img img { max-height: 100%; width: auto !important; max-width: 100%; object-fit: contain; }
+  .ts .ts-sketch figcaption { margin-top: .6rem; font: 600 clamp(8.5px, 1vw, 10.5px)/1.35 var(--ts-font-mono); letter-spacing: .12em; text-transform: uppercase; color: #5b6158; }
+
+  /* Kapitel */
+  .ts-chapters { margin-top: 1.75rem; border-top: 1px solid var(--ts-line); }
+  .ts .ts-chapters li, .ts .ts-chapters summary { display: flex; align-items: baseline; gap: 1rem; padding: .95rem 0; border-bottom: 1px solid var(--ts-line); }
+  .ts .ts-chapters .ts-label { flex: none; width: 3.2rem; color: var(--ts-mint); }
+  .ts .ts-chapters li span:last-child { font: 600 clamp(1rem, 1.6vw, 1.25rem)/1.3 var(--ts-font-display); letter-spacing: -0.01em; }
+  .ts-chapters details summary { cursor: pointer; list-style: none; color: var(--ts-muted); }
+  .ts-chapters details summary::-webkit-details-marker { display: none; }
+  .ts-chapters details summary:hover { color: var(--ts-text); }
+  .ts-chapters details[open] summary { display: none; }
+  .ts .ts-chapters ol { list-style: none; padding: 0; margin: 0; }
+
+  .ts-insight__cta { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 2.5rem; }
+
+  @media (min-width: 640px) {
+    .ts-crew { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .ts-sketches { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  }
+  @media (min-width: 1024px) {
+    .ts-insight__read { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: clamp(3rem, 5vw, 5rem); }
+    .ts-crew { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+    .ts-insight__duo { grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); gap: clamp(3rem, 6vw, 6rem); }
+  }
+  @media (prefers-reduced-motion: reduce) { .ts-excerpt, .ts-insight__portrait, .ts .ts-note, .ts .ts-sketch { transform: none !important; } }
+</style>
+
+<section class="ts ts-insight ts-bleed" aria-labelledby="ts-insight-title">
+  <div class="ts-insight__orb" aria-hidden="true"></div>
+  <div class="ts-container">
+    <div class="ts-insight__head ts-reveal">
+      <a href="/romane" class="ts-book__back ts-label"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>Kinderromane</a>
+      <p class="ts-label ts-muted">17 Kapitel · ab 8 Jahren · Tatort Hamburg</p>
+    </div>
+    <h2 id="ts-insight-title" class="ts-insight__title" data-ts-fit>
+      <span class="ts-line"><span style="--d:.1s">Willkommen bei den</span></span>
+      <span class="ts-line"><span class="ts-gradient-text" style="--d:.22s">Loki-Detektiven.</span></span>
+    </h2>
+    <p class="ts-insight__intro ts-reveal">Ein Schuppen im Niendorfer Gehege, ein dunkelblaues Notizbuch und vier Freunde, die genau hinschauen. Hier kannst du ins erste Kapitel hineinlesen und die Crew kennenlernen.</p>
+
+    <!-- Leseprobe -->
+    <div class="ts-insight__read">
+      <article class="ts-paper ts-excerpt ts-reveal" aria-label="Leseprobe aus Kapitel 1">
+        <p class="ts-excerpt__chapter">Kapitel 1</p>
+        <h3 class="ts-excerpt__h">Maria Holm auf Ermittlungstour</h3>
+        <p class="ts-excerpt__p ts-excerpt__p--first">Hamburg konnte an einem Sommertag laut und bunt sein. Die S-Bahnen ratterten über die Brücken, Lastwagen hupten, und am Hafen lockten die Buden mit Bratwurst und frischen Fischbrötchen. Doch wer ein paar Kilometer nach Norden fuhr, fand plötzlich eine ganz andere Welt. Das Niendorfer Gehege lag still und kühl da, als gehörte es gar nicht zu derselben Stadt. Und genau dorthin war Maria Holm unterwegs.</p>
+        <p class="ts-excerpt__p">Maria trat kräftig in die Pedale. Ihr Fahrrad war älter als sie selbst, brachte sie aber zuverlässig überallhin. Im Rucksack steckte ihr dunkelblaues Notizbuch – das Herzstück ihrer Detektivarbeit. Darin stand jede Beobachtung, jede Idee, jeder noch so kleine Verdacht. Sie hatte es feierlich „Fallbuch“ genannt, auch wenn noch kein richtiger Kriminalfall darin gelöst war. Bis jetzt.</p>
+        <a class="ts-excerpt__more" href="https://lesen.amazon.de/sample/B0HFNSGY35?clientId=share" target="_blank" rel="noopener">Weiterlesen in der Leseprobe <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </article>
+      <div class="ts-insight__aside">
+        <figure class="ts-paper ts-insight__portrait ts-reveal">
+          <img src="__BUCH_maria-detektivin__" alt="Illustration: Maria Holm läuft mit Lupe und Notizbuch los" loading="lazy" decoding="async" width="713" height="800">
+          <figcaption>Maria Holm, Detektivin</figcaption>
+        </figure>
+        <blockquote class="ts-dedication ts-reveal">
+          <p>Dieses Buch ist meiner Tochter, meiner kleinen Entdeckerin, gewidmet.</p>
+          <p>Deine Neugier, dein Mut und dein Lachen haben mich zu dieser Geschichte inspiriert. Mögest du immer deinen eigenen Weg finden – voller Abenteuer, Liebe und Freude.</p>
+          <cite>Dein Papa · Widmung im Buch</cite>
+        </blockquote>
+      </div>
+    </div>
+
+    <!-- Crew -->
+    <div class="ts-insight__block">
+      <h3 class="ts-insight__h3 ts-reveal">Die Crew</h3>
+      <p class="ts-insight__sub ts-reveal">So verschieden die vier auch sind – genau das macht ihre Stärke aus.</p>
+      <div class="ts-crew">
+        <div class="ts-member ts-glass ts-reveal">
+          <span class="ts-member__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m20 20-4.2-4.2"/></svg></span>
+          <p class="ts-member__name">Maria</p>
+          <p class="ts-label ts-member__role">Die Ermittlerin</p>
+          <p class="ts-member__text">Behält den Überblick und knüpft die Fäden zusammen. Jede Beobachtung landet im „Fallbuch“.</p>
+        </div>
+        <div class="ts-member ts-glass ts-reveal">
+          <span class="ts-member__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M13 3 5 14h6l-1 7 8-11h-6z"/></svg></span>
+          <p class="ts-member__name">Paul</p>
+          <p class="ts-label ts-member__role">Der Tatendrang</p>
+          <p class="ts-member__text">Zerzauster Schopf, unbändiger Tatendrang – und immer eine Tüte Weingummi dabei.</p>
+        </div>
+        <div class="ts-member ts-glass ts-reveal">
+          <span class="ts-member__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2V17h5v-1.1c0-.8.4-1.5 1-2A6 6 0 0 0 12 3Z"/></svg></span>
+          <p class="ts-member__name">Bhavana</p>
+          <p class="ts-label ts-member__role">Die Erfinderin</p>
+          <p class="ts-member__text">Technischer Erfindergeist – ihre selbst gebaute Lampe mit roter Linse hat einen „Nachtsichtmodus“.</p>
+        </div>
+        <div class="ts-member ts-glass ts-reveal">
+          <span class="ts-member__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 19.5V5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2Zm0 0A2 2 0 0 0 6 22h13"/><path d="M9 7h6"/></svg></span>
+          <p class="ts-member__name">Eugenia</p>
+          <p class="ts-label ts-member__role">Das Wissen</p>
+          <p class="ts-member__text">Unerschöpfliches Bücherwissen und ein dickes Nachschlagewerk unter dem Arm.</p>
+        </div>
+        <div class="ts-member ts-member--rival ts-reveal">
+          <span class="ts-member__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 3v14M7 8h10M5 13a7 7 0 0 0 14 0"/><circle cx="12" cy="3.5" r="1.5"/></svg></span>
+          <p class="ts-member__name">Elb-Piraten</p>
+          <p class="ts-label ts-member__role">Die Rivalen</p>
+          <p class="ts-member__text">Ben, Jonte und Sixtus – frech, laut und den Loki-Detektiven gern einen Schritt im Weg.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Regeln + Fallbuch -->
+    <div class="ts-insight__block ts-insight__duo">
+      <div>
+        <h3 class="ts-insight__h3 ts-reveal">Die vier Grundregeln</h3>
+        <p class="ts-insight__sub ts-reveal">Feierlich aufgesagt vor jeder Versammlung im Hauptquartier.</p>
+        <ol class="ts-rules" style="list-style:none;padding:0">
+          <li class="ts-rule ts-reveal"><span class="ts-rule__no" aria-hidden="true">1</span><span class="ts-rule__text">Aufmerksam beobachten.</span></li>
+          <li class="ts-rule ts-reveal"><span class="ts-rule__no" aria-hidden="true">2</span><span class="ts-rule__text">Die richtigen Fragen stellen.</span></li>
+          <li class="ts-rule ts-reveal"><span class="ts-rule__no" aria-hidden="true">3</span><span class="ts-rule__text">Alles protokollieren!</span></li>
+          <li class="ts-rule ts-reveal"><span class="ts-rule__no" aria-hidden="true">4</span><span class="ts-rule__text">Niemals Angst zeigen.</span></li>
+        </ol>
+      </div>
+      <div>
+        <h3 class="ts-insight__h3 ts-reveal">Aus Marias Fallbuch</h3>
+        <p class="ts-insight__sub ts-reveal">Detektive sehen genau die Dinge, an denen andere achtlos vorbeilaufen.</p>
+        <div class="ts-notes">
+          <p class="ts-note ts-reveal" style="--r:-1deg"><small>Beobachtung</small>Frau Möller: rote Fingerkuppen → Tomaten geerntet. Erde an den Stiefeln → Gartenarbeit. Zeitung mit Kriminalschlagzeile in der Hand.</p>
+          <p class="ts-note ts-reveal" style="--r:.8deg"><small>Am Kiosk</small>Hund aufmerksam, Halter abgelenkt.</p>
+          <p class="ts-note ts-reveal" style="--r:-.6deg"><small>Niendorfer Gehege</small>14:20 Uhr. Spurenlage unauffällig. Keine Besonderheiten.</p>
+          <p class="ts-note ts-reveal" style="--r:1deg"><small>Fundstück</small>Fundort Schuppen: Rotes Stoffband. Ursprung unklar.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Illustrationen -->
+    <div class="ts-insight__block">
+      <h3 class="ts-insight__h3 ts-reveal">Gezeichnet für das Buch</h3>
+      <p class="ts-insight__sub ts-reveal">Jedes Kapitel beginnt mit einer eigenen Illustration.</p>
+      <div class="ts-sketches">
+        <figure class="ts-paper ts-sketch ts-reveal" style="--r:-1.6deg"><div class="ts-sketch__img"><img src="__BUCH_kapitel-01-fahrrad__" alt="Illustration: Maria fährt mit dem Fahrrad zum Niendorfer Gehege" loading="lazy" decoding="async" width="538" height="800"></div><figcaption>Kapitel 1 · Maria Holm auf Ermittlungstour</figcaption></figure>
+        <figure class="ts-paper ts-sketch ts-reveal" style="--r:1.2deg"><div class="ts-sketch__img"><img src="__BUCH_kapitel-02-spurensuche__" alt="Illustration: Die vier Detektive untersuchen Fußspuren im Waldboden" loading="lazy" decoding="async" width="638" height="800"></div><figcaption>Kapitel 2 · Spurensuche im Niendorfer Gehege</figcaption></figure>
+        <figure class="ts-paper ts-sketch ts-reveal" style="--r:-.8deg"><div class="ts-sketch__img"><img src="__BUCH_kapitel-05-lagebesprechung__" alt="Illustration: Lagebesprechung unter einer Laterne im Hauptquartier" loading="lazy" decoding="async" width="541" height="800"></div><figcaption>Kapitel 5 · Lagebesprechung der Loki-Detektive</figcaption></figure>
+        <figure class="ts-paper ts-sketch ts-reveal" style="--r:1.5deg"><div class="ts-sketch__img"><img src="__BUCH_kapitel-06-speicherstadt__" alt="Illustration: Die Detektive in der Speicherstadt" loading="lazy" decoding="async" width="518" height="800"></div><figcaption>Kapitel 6 · Beschattung in der Speicherstadt</figcaption></figure>
+        <figure class="ts-paper ts-sketch ts-reveal" style="--r:-1.1deg"><div class="ts-sketch__img"><img src="__BUCH_kapitel-09-anker__" alt="Illustration: Ein in einen Baum geritzter Anker" loading="lazy" decoding="async" width="531" height="800"></div><figcaption>Kapitel 9 · Das Geheimbund-Symbol</figcaption></figure>
+        <figure class="ts-paper ts-sketch ts-reveal" style="--r:.9deg"><div class="ts-sketch__img"><img src="__BUCH_maria-detektivin__" alt="Illustration: Maria Holm mit Lupe" loading="lazy" decoding="async" width="713" height="800"></div><figcaption>Maria Holm · Titelfigur</figcaption></figure>
+      </div>
+    </div>
+
+    <!-- Kapitel -->
+    <div class="ts-insight__block">
+      <h3 class="ts-insight__h3 ts-reveal">Inhalt</h3>
+      <div class="ts-chapters ts-reveal">
+        <ol>
+          <li><span class="ts-label">01</span><span>Maria Holm auf Ermittlungstour</span></li>
+          <li><span class="ts-label">02</span><span>Spurensuche im Niendorfer Gehege</span></li>
+          <li><span class="ts-label">03</span><span>Geheimnisvoller Eintrag im Hauptquartier</span></li>
+          <li><span class="ts-label">04</span><span>Eilmeldung im Fernsehen</span></li>
+          <li><span class="ts-label">05</span><span>Lagebesprechung der Loki-Detektive</span></li>
+          <li><span class="ts-label">06</span><span>Beschattung in der Speicherstadt</span></li>
+        </ol>
+        <details>
+          <summary><span class="ts-label">+11</span><span>Alle Kapitel zeigen</span></summary>
+          <ol>
+            <li><span class="ts-label">07</span><span>Konfrontation mit den Elb-Piraten</span></li>
+            <li><span class="ts-label">08</span><span>Nächtliche Verfolgung im Wald</span></li>
+            <li><span class="ts-label">09</span><span>Das Geheimbund-Symbol</span></li>
+            <li><span class="ts-label">10</span><span>Versteckte Beobachtung am Hafen</span></li>
+            <li><span class="ts-label">11</span><span>Eingeschlossen im Hauptquartier</span></li>
+            <li><span class="ts-label">12</span><span>Flucht vor dem Verfolger</span></li>
+            <li><span class="ts-label">13</span><span>Tatort- und Kartenanalyse</span></li>
+            <li><span class="ts-label">14</span><span>Sabotage durch die Elb-Piraten</span></li>
+            <li><span class="ts-label">15</span><span>Das Schmugglerschiff „Seagull“</span></li>
+            <li><span class="ts-label">16</span><span>Der Zugriff der Polizei</span></li>
+            <li><span class="ts-label">17</span><span>Fall abgeschlossen</span></li>
+          </ol>
+        </details>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- /BLICK INS BUCH -->

@@ -1,0 +1,86 @@
+<!-- ==================================================================
+     TRUTZ STÄHLER · SEITE „KONTAKT“
+     Einfügen in: Seite /kontakt → einzige Sektion → Code-Block (volle Breite)
+     Alle anderen Blöcke und Sektionen dieser Seite können gelöscht werden.
+=================================================================== -->
+<style>
+  .ts-contact { position: relative; isolation: isolate; overflow: hidden; overflow: clip; background: var(--ts-bg); }
+  .ts-contact__orb { position: absolute; z-index: -1; left: -12%; top: 10%; width: 52vw; height: 52vw; max-width: 800px; max-height: 800px; border-radius: 50%; background: radial-gradient(circle, rgba(46, 140, 108, 0.272) 0%, rgba(46, 140, 108, 0.192) 22%, rgba(46, 140, 108, 0.096) 42%, rgba(46, 140, 108, 0.032) 58%, rgba(46, 140, 108, 0) 72%); pointer-events: none; }
+  .ts-contact__intro { padding-top: clamp(8.5rem, 14vw, 12rem); padding-bottom: clamp(6rem, 11vw, 10rem); }
+  .ts-contact__meta { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem; padding-bottom: 1.25rem; border-bottom: 1px solid var(--ts-line); }
+  .ts-contact .ts-line { padding-bottom: .16em; margin-bottom: -.16em; }
+  .ts-contact__grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 3rem; padding-top: clamp(2.5rem, 5vw, 4rem); }
+  .ts .ts-contact__title { font-family: var(--ts-font-display); font-weight: 800; font-size: clamp(2.3rem, 7.6vw, 7.2rem); line-height: .95; letter-spacing: -0.03em; }
+  .ts .ts-contact__text p { max-width: 36rem; font-size: clamp(17px, 1.5vw, 19px); line-height: 1.75; color: var(--ts-muted); }
+  .ts .ts-contact__text p + p { margin-top: 1.1rem; }
+  .ts .ts-contact__text strong { color: var(--ts-text); font-weight: 500; }
+  .ts .ts-contact__text a { color: var(--ts-mint); border-bottom: 1px solid rgba(110, 231, 183, .35); }
+  .ts .ts-contact__note { margin-top: 1.75rem; padding: 1.1rem 1.35rem; border-radius: 16px; font-size: 14.5px; line-height: 1.65; color: var(--ts-muted); }
+  .ts .ts-contact__note strong { color: var(--ts-text); font-weight: 500; }
+  .ts .ts-contact__ways { display: grid; gap: .75rem; }
+  .ts .ts-way { display: flex; align-items: center; gap: 1rem; padding: 1.1rem 1.25rem; border-radius: 18px; transition: transform .6s var(--ts-ease-out), border-color .4s; }
+  .ts .ts-way:hover { transform: translateY(-3px); border-color: rgba(110, 231, 183, .35); }
+  .ts-way__icon { display: grid; place-items: center; flex: none; width: 44px; height: 44px; border-radius: 14px; border: 1px solid var(--ts-line); background: rgba(29, 77, 63, .4); color: var(--ts-mint); }
+  .ts-way__txt { display: flex; flex-direction: column; min-width: 0; }
+  .ts .ts-way__label { color: var(--ts-muted); font-size: 10.5px; }
+  .ts .ts-way__value { margin-top: .15rem; font-size: 16px; color: var(--ts-text); overflow-wrap: anywhere; }
+  .ts-way__go { margin-left: auto; color: var(--ts-muted); transition: color .3s, transform .5s var(--ts-ease-out); }
+  .ts-way:hover .ts-way__go { color: var(--ts-mint); transform: translate(2px, -2px); }
+
+  @media (min-width: 1024px) {
+    .ts-contact__grid { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); column-gap: clamp(3rem, 6vw, 6rem); align-items: start; }
+  }
+
+  /* Auf der Kontaktseite braucht der Footer keine zweite Kontakt-Einladung */
+  body:has(.ts-contact) .ts-footer__cta { display: none; }
+  body:has(.ts-contact) .ts-footer { padding-top: 0; }
+</style>
+
+<div class="ts ts-contact ts-bleed">
+  <div class="ts-contact__orb" aria-hidden="true" data-ts-parallax="0.03"></div>
+  <section class="ts-container ts-contact__intro" aria-labelledby="ts-contact-title">
+    <div class="ts-contact__meta ts-reveal">
+      <p class="ts-label ts-muted">[ 05 — Kontakt ]</p>
+      <p class="ts-label ts-muted">Ich melde mich fix zurück</p>
+    </div>
+
+    <div class="ts-contact__grid">
+      <div>
+        <h1 id="ts-contact-title" class="ts-contact__title" data-ts-fit>
+          <span class="ts-line"><span style="--d:.1s;transition-delay:.1s">Melde dich</span></span>
+          <span class="ts-line"><span class="ts-gradient-text" style="--d:.22s;transition-delay:.22s">bei mir.</span></span>
+        </h1>
+        <div class="ts-contact__text" style="margin-top:2rem">
+          <p class="ts-reveal">Moin! Hast du Fragen, Anregungen oder willst mir einfach mal 'n netten Gruß dalassen?</p>
+          <p class="ts-reveal">Dann schreib mir gern – per E-Mail oder auf Instagram und LinkedIn. Ich beiß nicht (höchstens ins <strong>Franzbrötchen</strong>) und melde mich fix bei dir zurück.</p>
+        </div>
+        <p class="ts-contact__note ts-glass ts-reveal"><strong>Datenschutz:</strong> Deine Angaben werden natürlich nur dafür genutzt, dir zu antworten. Mehr dazu findest du in meiner <a href="/datenschutzerklaerung" style="color:var(--ts-mint);border-bottom:1px solid rgba(110,231,183,.35)">Datenschutzerklärung</a>.</p>
+      </div>
+
+      <div class="ts-contact__ways ts-reveal" aria-label="Kontaktwege">
+        <p class="ts-label ts-muted" style="margin-bottom:.25rem">So erreichst du mich</p>
+        <a class="ts-way ts-glass" href="mailto:moin@trutzstaehler.de">
+          <span class="ts-way__icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m4 7 8 6 8-6"/></svg></span>
+          <span class="ts-way__txt"><span class="ts-label ts-way__label">E-Mail</span><span class="ts-way__value">moin@trutzstaehler.de</span></span>
+          <svg class="ts-way__go" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
+        </a>
+        <a class="ts-way ts-glass" href="https://www.instagram.com/trutzstaehler/" target="_blank" rel="noopener">
+          <span class="ts-way__icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor"/></svg></span>
+          <span class="ts-way__txt"><span class="ts-label ts-way__label">Instagram · Papa, Laufen &amp; Bücher</span><span class="ts-way__value">@trutzstaehler</span></span>
+          <svg class="ts-way__go" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
+        </a>
+        <a class="ts-way ts-glass" href="https://www.instagram.com/trutz.stahl/" target="_blank" rel="noopener">
+          <span class="ts-way__icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor"/></svg></span>
+          <span class="ts-way__txt"><span class="ts-label ts-way__label">Instagram · World of Warcraft &amp; Twitch</span><span class="ts-way__value">@trutz.stahl</span></span>
+          <svg class="ts-way__go" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
+        </a>
+        <a class="ts-way ts-glass" href="https://www.linkedin.com/in/trutz-st%C3%A4hler" target="_blank" rel="noopener">
+          <span class="ts-way__icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 10v7M8 7v.01M12 17v-4a2 2 0 0 1 4 0v4M12 10v7"/></svg></span>
+          <span class="ts-way__txt"><span class="ts-label ts-way__label">LinkedIn</span><span class="ts-way__value">Trutz Stähler</span></span>
+          <svg class="ts-way__go" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
+        </a>
+      </div>
+    </div>
+
+  </section>
+</div>

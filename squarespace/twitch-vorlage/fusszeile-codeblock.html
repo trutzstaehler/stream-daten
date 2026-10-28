@@ -1,0 +1,127 @@
+<!-- =====================================================================
+     Fußzeile für die Twitch-Seiten auf trutzstaehler.de (Squarespace,
+     Code-Block). Ganz unten auf jeder Twitch-Seite einfügen: Seite
+     bearbeiten → ganz unten Block hinzufügen → Code → alles hier einfügen
+     („Quelltext anzeigen“ aus).
+     Enthält: alle Twitch-Seiten, Twitch, Instagram, den Weg zurück zur
+     übrigen Website und das Impressum.
+     Datenschutz: Hast du eine Seite dafür, unten bei der Zeile mit
+     „Datenschutz“ die Kommentarzeichen davor und dahinter löschen.
+     ===================================================================== -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Asul:wght@400;700&family=Cinzel:wght@700&display=swap" rel="stylesheet">
+
+<footer id="tsz-footer" class="tsf">
+  <div class="tsf-main">
+    <div class="tsf-about">
+      <a class="tsf-brand" href="/twitch-startseite">
+        <img class="tsf-emblem" src="https://wow.zamimg.com/images/wow/icons/large/inv_shield_06.jpg" alt="">
+        <b>Trutz Stahl</b>
+      </a>
+      <p>Gemeinsam mit dem Chat durch Azeroth: World of Warcraft Forever, live auf Twitch. Wer zuschaut, spielt mit – mit eigenem Helden.</p>
+    </div>
+    <nav class="tsf-col" aria-label="Seiten">
+      <h3 class="tsf-h">Seiten</h3>
+      <ul>
+        <li><a href="/twitch-startseite">Start</a></li>
+        <li><a href="/mitspielen">Mitspielen</a></li>
+        <li><a href="/charakter">Charakter</a></li>
+        <li><a href="/bestenliste">Bestenliste</a></li>
+        <li><a href="/statistiken">Statistiken</a></li>
+      </ul>
+    </nav>
+    <div class="tsf-col">
+      <h3 class="tsf-h">Folgen</h3>
+      <ul class="tsf-social">
+        <li><a href="https://www.twitch.tv/einfach_trutz" target="_blank" rel="noopener">
+          <svg class="tw" viewBox="0 0 24 24" aria-hidden="true"><path d="M4.3 2 2.5 6.6v13.9h5V23h2.8l2.7-2.5h4.1L22.5 15V2H4.3zm16.3 12.1-3.3 3.1h-5.1l-2.8 2.6v-2.6H5.2V3.9h15.4v10.2zM17.5 6.9h-1.9v5.4h1.9V6.9zm-5.1 0h-1.9v5.4h1.9V6.9z"/></svg>
+          <span>Twitch<small>einfach_trutz</small></span></a></li>
+        <li><a href="https://www.instagram.com/trutz.stahl/" target="_blank" rel="noopener">
+          <svg class="ig" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle class="dot" cx="17.3" cy="6.7" r="1.2"/></svg>
+          <span>Instagram<small>trutz.stahl</small></span></a></li>
+        <li><a href="/">
+          <svg class="web" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 2 11.5h3V21h5.5v-6h3v6H19v-9.5h3z"/></svg>
+          <span>trutzstaehler.de<small>Laufen, Kinderbücher und mehr</small></span></a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="tsf-bottom">
+    <span>© <span class="tsf-year">2026</span> Trutz Stahl</span>
+    <span class="tsf-links">
+      <a href="https://trutzstaehler.de/impressum">Impressum</a>
+      <!-- <a href="https://trutzstaehler.de/datenschutz">Datenschutz</a> -->
+    </span>
+    <p class="tsf-note">World of Warcraft ist eine Marke von Blizzard Entertainment. Diese Seite ist ein Fan-Projekt und steht in keiner Verbindung zu Blizzard.</p>
+  </div>
+</footer>
+
+<style>
+  #tsz-footer {
+    --tsf-gold: #ffd100;
+    --tsf-txt: #f3eee2;
+    --tsf-muted: #b8ad94;
+    --tsf-brass: #8c713c;
+    --tsf-line: #4a4a4a;
+    --tsf-ts: 1px 1px 0 #000, 0 1px 3px rgba(0, 0, 0, 0.8);
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 24px 22px 16px;
+    border: 1px solid var(--tsf-line);
+    border-top-color: var(--tsf-brass);
+    border-radius: 4px;
+    background: linear-gradient(180deg, #120e0b, #070504);
+    color: var(--tsf-txt);
+    font: 400 16px/1.5 Asul, Georgia, serif;
+    text-align: left;
+    container: tsf / inline-size; /* richtet sich nach der Breite des Blocks, nicht des Fensters */
+  }
+  #tsz-footer *, #tsz-footer *::before, #tsz-footer *::after { box-sizing: border-box; }
+  #tsz-footer a { color: var(--tsf-txt); text-decoration: none; transition: color 0.15s ease; }
+  #tsz-footer a:hover { color: var(--tsf-gold); }
+  #tsz-footer a:focus-visible { outline: 2px solid var(--tsf-gold); outline-offset: 2px; }
+  #tsz-footer ul { margin: 0; padding: 0; list-style: none; }
+  #tsz-footer li { margin: 0; padding: 0; }
+  #tsz-footer li::before { display: none; } /* Squarespace-Aufzählungszeichen */
+
+  #tsz-footer .tsf-main { display: grid; grid-template-columns: 1.6fr 1fr 1fr; gap: 22px 32px; padding-bottom: 18px; border-bottom: 1px solid #2a2a2a; }
+  #tsz-footer .tsf-brand { display: inline-flex; align-items: center; gap: 10px; }
+  #tsz-footer .tsf-brand b { font: 700 22px/1.1 Cinzel, Georgia, serif; letter-spacing: 0.4px; color: var(--tsf-gold); text-shadow: var(--tsf-ts); }
+  #tsz-footer .tsf-emblem { width: 36px; height: 36px; border: 1px solid #000; border-radius: 4px; box-shadow: 0 0 0 1px var(--tsf-brass); background: #000; }
+  #tsz-footer .tsf-about p { margin: 10px 0 0; max-width: 380px; color: var(--tsf-muted); font-size: 15px; }
+
+  #tsz-footer .tsf-h { margin: 0 0 8px; font: 700 17px/1.3 Cinzel, Georgia, serif; letter-spacing: 0.4px; color: var(--tsf-gold); text-shadow: var(--tsf-ts); }
+  #tsz-footer .tsf-col li a { display: inline-block; padding: 3px 0; font-weight: 700; text-shadow: var(--tsf-ts); }
+  #tsz-footer .tsf-col .tsf-social a { display: inline-flex; align-items: center; gap: 10px; padding: 5px 0; }
+  #tsz-footer .tsf-social span { display: flex; flex-direction: column; line-height: 1.2; }
+  #tsz-footer .tsf-social small { color: var(--tsf-muted); font-size: 14px; font-weight: 400; }
+  #tsz-footer .tsf-social svg { width: 26px; height: 26px; flex-shrink: 0; }
+  #tsz-footer svg.tw { fill: #a970ff; }
+  #tsz-footer svg.web { fill: #c9a24a; }
+  #tsz-footer svg.ig { fill: none; stroke: #e1306c; stroke-width: 2; }
+  #tsz-footer svg.ig .dot { fill: #e1306c; stroke: none; }
+
+  #tsz-footer .tsf-bottom { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 18px; padding-top: 12px; color: var(--tsf-muted); font-size: 14px; }
+  #tsz-footer .tsf-links { display: flex; gap: 16px; }
+  #tsz-footer .tsf-links a { color: var(--tsf-muted); border-bottom: 1px solid rgba(184, 173, 148, 0.4); }
+  #tsz-footer .tsf-links a:hover { color: var(--tsf-gold); border-bottom-color: var(--tsf-gold); }
+  #tsz-footer .tsf-note { flex-basis: 100%; margin: 4px 0 0; color: #8f8573; font-size: 14px; }
+
+  @container tsf (max-width: 720px) {
+    #tsz-footer .tsf-main { grid-template-columns: 1fr 1fr; }
+    #tsz-footer .tsf-about { grid-column: 1 / -1; }
+  }
+  @media (max-width: 640px) {
+    #tsz-footer { padding: 20px 16px 14px; }
+  }
+  @container tsf (max-width: 300px) {
+    #tsz-footer .tsf-main { grid-template-columns: 1fr; }
+  }
+</style>
+
+<script>
+(function () {
+  const root = document.getElementById('tsz-footer');
+  if (!root) return;
+  root.querySelector('.tsf-year').textContent = String(new Date().getFullYear()); // Jahr im Copyright immer aktuell
+})();
+</script>

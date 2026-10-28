@@ -1,0 +1,89 @@
+<!-- ==================================================================
+     TRUTZ STÄHLER · EIGENE 404-SEITE („Seite nicht gefunden“)
+     1. Seiten → „Nicht verlinkt“ → neue leere Seite „404“ (Adresse z.B. /404)
+     2. Einzige Sektion → Code-Block (volle Breite) → diesen Code einfügen
+     3. Einstellungen → Website → Seiten (bzw. „Erweitert“) → „404-Seite“
+        → die neue Seite „404“ auswählen → Speichern
+=================================================================== -->
+<style>
+  .ts-404 { position: relative; isolation: isolate; overflow: hidden; overflow: clip; background: var(--ts-bg); }
+  .ts-404__orb { position: absolute; z-index: -1; right: -14%; top: 4%; width: 56vw; height: 56vw; max-width: 820px; max-height: 820px; border-radius: 50%; background: radial-gradient(circle, rgba(46, 140, 108, 0.289) 0%, rgba(46, 140, 108, 0.204) 22%, rgba(46, 140, 108, 0.102) 42%, rgba(46, 140, 108, 0.034) 58%, rgba(46, 140, 108, 0) 72%); pointer-events: none; }
+  .ts-404__intro { padding-top: clamp(8.5rem, 14vw, 12rem); padding-bottom: clamp(6rem, 11vw, 10rem); }
+  .ts-404__meta { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem; padding-bottom: 1.25rem; border-bottom: 1px solid var(--ts-line); }
+  .ts-404 .ts-line { padding-bottom: .16em; margin-bottom: -.16em; }
+  .ts-404__grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 3rem; padding-top: clamp(2.5rem, 5vw, 4rem); }
+  .ts .ts-404__num { font-family: var(--ts-font-display); font-weight: 800; font-size: clamp(5rem, 20vw, 15rem); line-height: 1; letter-spacing: -0.04em; min-width: 0; overflow-wrap: normal !important; }
+  .ts-404 .ts-404__num .ts-line { padding: .06em .08em .14em 0; margin-bottom: -.14em; }
+  .ts .ts-404__title { margin-top: 1.5rem; font-family: var(--ts-font-display); font-weight: 700; font-size: clamp(1.7rem, 3.4vw, 3rem); line-height: 1.05; letter-spacing: -0.02em; }
+  .ts .ts-404__text { margin-top: 1.25rem; max-width: 34rem; font-size: clamp(17px, 1.5vw, 19px); line-height: 1.75; color: var(--ts-muted); }
+  .ts .ts-404__links { display: grid; grid-template-columns: minmax(0, 1fr); gap: .75rem; align-content: start; }
+  .ts .ts-404__link { display: flex; align-items: center; gap: 1rem; padding: 1.1rem 1.25rem; border-radius: 18px; transition: transform .6s var(--ts-ease-out), border-color .4s; }
+  .ts .ts-404__link:hover { transform: translateY(-3px); border-color: rgba(110, 231, 183, .35); }
+  .ts-404__no { flex: none; width: 2.2rem; color: var(--ts-mint); }
+  .ts-404__txt { display: flex; flex-direction: column; min-width: 0; }
+  .ts .ts-404__name { font-family: var(--ts-font-display); font-weight: 700; font-size: 18px; color: var(--ts-text); }
+  .ts .ts-404__desc { margin-top: .15rem; font-size: 14px; color: var(--ts-muted); }
+  .ts-404__go { margin-left: auto; flex: none; color: var(--ts-muted); transition: color .3s, transform .5s var(--ts-ease-out); }
+  .ts-404__link:hover .ts-404__go { color: var(--ts-mint); transform: translateX(4px); }
+
+  @media (min-width: 640px) {
+    .ts .ts-404__links { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (min-width: 1024px) {
+    .ts-404__grid { grid-template-columns: minmax(0, 6fr) minmax(0, 6fr); column-gap: clamp(3rem, 6vw, 6rem); align-items: end; }
+  }
+</style>
+
+<div class="ts ts-404 ts-bleed">
+  <div class="ts-404__orb" aria-hidden="true" data-ts-parallax="0.03"></div>
+  <section class="ts-container ts-404__intro" aria-labelledby="ts-404-title">
+    <div class="ts-404__meta ts-reveal">
+      <p class="ts-label ts-muted">[ 404 — Seite nicht gefunden ]</p>
+      <p class="ts-label ts-muted">Falsch abgebogen</p>
+    </div>
+
+    <div class="ts-404__grid">
+      <div style="min-width:0">
+        <p class="ts-404__num" aria-hidden="true" data-ts-fit>
+          <span class="ts-line"><span class="ts-gradient-text" style="--d:.1s;transition-delay:.1s">404.</span></span>
+        </p>
+        <h1 id="ts-404-title" class="ts-404__title ts-reveal">Hier ist nichts – aber vielleicht hier …</h1>
+        <p class="ts-404__text ts-reveal">Die Seite gibt es nicht (mehr) oder der Link hat sich verlaufen. Kein Drama – wie bei km 14: kurz durchatmen, Richtung wählen, weiterlaufen.</p>
+      </div>
+
+      <nav class="ts-404__links ts-reveal" aria-label="Wohin möchtest du?">
+        <a class="ts-404__link ts-glass" href="/">
+          <span class="ts-label ts-404__no">01</span>
+          <span class="ts-404__txt"><span class="ts-404__name">Startseite</span><span class="ts-404__desc">Alles auf einen Blick</span></span>
+          <svg class="ts-404__go" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <a class="ts-404__link ts-glass" href="/kreativhafen">
+          <span class="ts-label ts-404__no">02</span>
+          <span class="ts-404__txt"><span class="ts-404__name">Kreativhafen</span><span class="ts-404__desc">Kinderbücher &amp; Malbücher</span></span>
+          <svg class="ts-404__go" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <a class="ts-404__link ts-glass" href="/running">
+          <span class="ts-label ts-404__no">03</span>
+          <span class="ts-404__txt"><span class="ts-404__name">Running</span><span class="ts-404__desc">Rennberichte &amp; Kilometer</span></span>
+          <svg class="ts-404__go" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <a class="ts-404__link ts-glass" href="/twitch-startseite">
+          <span class="ts-label ts-404__no">04</span>
+          <span class="ts-404__txt"><span class="ts-404__name">Twitch</span><span class="ts-404__desc">WoW Forever &amp; Stream-Zentrale</span></span>
+          <svg class="ts-404__go" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <a class="ts-404__link ts-glass" href="/ueber-mich">
+          <span class="ts-label ts-404__no">05</span>
+          <span class="ts-404__txt"><span class="ts-404__name">Über mich</span><span class="ts-404__desc">Papa aus Hamburg</span></span>
+          <svg class="ts-404__go" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <a class="ts-404__link ts-glass" href="/kontakt">
+          <span class="ts-label ts-404__no">06</span>
+          <span class="ts-404__txt"><span class="ts-404__name">Kontakt</span><span class="ts-404__desc">Schreib mir einfach</span></span>
+          <svg class="ts-404__go" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </nav>
+    </div>
+
+  </section>
+</div>

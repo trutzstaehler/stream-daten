@@ -1,0 +1,901 @@
+<!-- ==================================================================
+     TRUTZ STÄHLER · NAVIGATION + INTERAKTIONEN
+     Einfügen in: Squarespace → Code Injection → FOOTER
+     Enthält: Navigation, Mobile-Menü, Footer, Cursor, Filmkorn und das komplette JavaScript.
+     Link-Ziele (Squarespace-Seiten-URLs) hier anpassen, falls deine Seiten anders heißen.
+=================================================================== -->
+<header class="ts ts-header" data-ts-header>
+  <div class="ts-header__bar">
+    <a href="/" class="ts-brand" aria-label="Trutz Stähler – Startseite">
+      <span class="ts-brand__mark ts-display">TS</span>
+      <span class="ts-brand__name ts-display"><span class="ts-roll"><span data-text="Trutz Stähler">Trutz Stähler</span></span></span>
+    </a>
+
+    <nav class="ts-nav" aria-label="Hauptnavigation">
+      <ul>
+        <li><a class="ts-nav-link" href="/ueber-mich"><span class="ts-idx ts-label">01</span>Über mich</a></li>
+        <li><a class="ts-nav-link" href="/kreativhafen"><span class="ts-idx ts-label">02</span>Kreativhafen</a></li>
+        <li><a class="ts-nav-link" href="/running"><span class="ts-idx ts-label">03</span>Running</a></li>
+        <li><a class="ts-nav-link" href="/twitch-startseite"><span class="ts-idx ts-label">04</span>Twitch</a></li>
+        <li><a class="ts-nav-link" href="/shop"><span class="ts-idx ts-label">05</span>Shop</a></li>
+      </ul>
+    </nav>
+
+    <div class="ts-header__actions">
+      <a href="/twitch-startseite" class="ts-live ts-label" data-ts-live-pill>
+        <span class="ts-pulse"></span><span class="ts-live__on" aria-hidden="true">Live</span><span class="ts-live__name">einfach_trutz</span>
+      </a>
+      <a href="/kontakt" class="ts-btn ts-btn--primary ts-btn--sm ts-magnetic">
+        <span class="ts-btn__inner"><span class="ts-roll"><span data-text="Kontakt">Kontakt</span></span>
+          <svg class="ts-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </span>
+      </a>
+      <button type="button" class="ts-burger" aria-label="Menü öffnen" aria-expanded="false" aria-controls="ts-menu" data-ts-menu-toggle>
+        <span><i></i><i></i></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div id="ts-menu" class="ts ts-menu" aria-hidden="true">
+  <div class="ts-menu__glow"></div>
+  <p class="ts-label ts-muted ts-m-item" style="position:relative;margin-bottom:2rem;transition-delay:.25s">Navigation</p>
+  <ul class="ts-menu__list">
+    <li class="ts-m-item" style="--d:.30s;transition-delay:.30s"><a href="/ueber-mich" class="ts-menu__link ts-display">Über mich <span class="ts-label ts-muted">01</span></a></li>
+    <li class="ts-m-item" style="--d:.36s;transition-delay:.36s"><a href="/kreativhafen" class="ts-menu__link ts-display">Kreativhafen <span class="ts-label ts-muted">02</span></a></li>
+    <li class="ts-m-item" style="--d:.42s;transition-delay:.42s"><a href="/running" class="ts-menu__link ts-display">Running <span class="ts-label ts-muted">03</span></a></li>
+    <li class="ts-m-item" style="--d:.48s;transition-delay:.48s"><a href="/twitch-startseite" class="ts-menu__link ts-display">Twitch <span class="ts-label ts-muted">04</span></a></li>
+    <li class="ts-m-item" style="--d:.54s;transition-delay:.54s"><a href="/shop" class="ts-menu__link ts-display">Shop <span class="ts-label ts-muted">05</span></a></li>
+    <li class="ts-m-item" style="--d:.60s;transition-delay:.60s"><a href="/kontakt" class="ts-menu__link ts-display">Kontakt <span class="ts-label ts-muted">06</span></a></li>
+  </ul>
+  <div class="ts-menu__footer ts-m-item" style="--d:.62s;transition-delay:.62s">
+    <a href="/twitch-startseite" class="ts-label" style="display:inline-flex;align-items:center;gap:10px"><span class="ts-pulse"></span>Twitch · einfach_trutz</a>
+    <span class="ts-label ts-muted">Echt sein statt perfekt wirken</span>
+  </div>
+</div>
+
+<!-- ============ FOOTER ============ -->
+<style>
+  html:not(.ts-in-editor) #footer-sections { display: none !important; }
+  /* Eingepasste Headlines dürfen ihre Spalte nie aufdehnen */
+  .ts [data-ts-fit], .ts :has(> [data-ts-fit]) { min-width: 0; max-width: 100%; }
+  .ts [data-ts-fit], .ts [data-ts-fit] * { overflow-wrap: normal !important; word-break: normal !important; hyphens: manual !important; }
+  .ts [data-ts-fit] .ts-line > span { white-space: nowrap; width: max-content; max-width: none; }
+
+  .ts-footer { position: relative; isolation: isolate; overflow: hidden; padding-top: clamp(5rem, 10vw, 9rem); background: var(--ts-bg); border-top: 1px solid var(--ts-line); }
+  .ts-in-editor .ts-footer { display: none; }
+  .ts-footer__glow { position: absolute; left: 50%; bottom: -30%; z-index: -1; width: 90vw; height: 60vw; max-height: 900px; transform: translateX(-50%); border-radius: 50%; pointer-events: none; background: radial-gradient(ellipse, rgba(46, 140, 108, .38), rgba(29, 77, 63, .15) 45%, transparent 70%); }
+
+  .ts-footer__cta { display: grid; gap: 2.5rem; padding-bottom: clamp(4rem, 8vw, 7rem); border-bottom: 1px solid var(--ts-line); }
+  .ts .ts-footer__title { margin-top: 1.25rem; font-family: var(--ts-font-display); font-weight: 800; font-size: clamp(2.5rem, 6.5vw, 6.5rem); line-height: .92; letter-spacing: -0.03em; }
+  .ts-footer__title .ts-outline { -webkit-text-stroke-color: rgba(110, 231, 183, .7); }
+  .ts-footer__actions { display: flex; flex-wrap: wrap; align-items: center; gap: .75rem; }
+
+  .ts-footer__cols { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 3rem 1.5rem; padding: clamp(3rem, 6vw, 5rem) 0; }
+  .ts-footer__brand { grid-column: 1 / -1; }
+  .ts .ts-footer__about { margin-top: 1.25rem; max-width: 22rem; font-size: 15px; line-height: 1.7; color: var(--ts-muted); }
+  .ts .ts-footer__head { margin-bottom: 1.25rem; color: rgba(154, 171, 163, .6); }
+  .ts-footer__list li + li { margin-top: .8rem; }
+  .ts .ts-footer__link { position: relative; display: inline-flex; align-items: center; gap: .6rem; font-size: 15px; color: var(--ts-text); transition: color .3s; }
+  .ts .ts-footer__link:hover { color: var(--ts-mint); }
+  .ts-footer__link svg { color: var(--ts-muted); transition: color .3s, transform .5s var(--ts-ease-out); }
+  .ts-footer__link:hover svg { color: var(--ts-mint); }
+  .ts .ts-footer__handle { color: var(--ts-muted); font-size: 13px; }
+  .ts-footer__link .ts-ext { opacity: 0; transform: translate(-4px, 4px); transition: opacity .3s, transform .5s var(--ts-ease-out); }
+  .ts-footer__link:hover .ts-ext { opacity: 1; transform: none; }
+
+
+  .ts-footer__bar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem; padding: 1.5rem 0 2.5rem; border-top: 1px solid var(--ts-line); color: var(--ts-muted); }
+  .ts .ts-cookie-link { color: var(--ts-muted); text-decoration: underline; text-underline-offset: 3px; text-decoration-color: rgba(154, 171, 163, .4); transition: color .3s; }
+  .ts .ts-cookie-link:hover { color: var(--ts-text); }
+  .ts .ts-cookie-link[hidden] { display: none; }
+  /* Schwebender Squarespace-Knopf „Cookie-Einstellungen“: ausgeblendet, der Link im Footer übernimmt */
+  [data-ts-cookie-float] { opacity: 0 !important; pointer-events: none !important; }
+  .cookie-banner-manager .manage-cookies-bar { display: none !important; }
+  /* Cookie-Banner von Squarespace kompakt halten: Sein langer Text war am Handy das größte Element und bestimmte den LCP-Wert */
+  .cookie-banner-manager p, [class*="cookie-banner"] p { font-size: 13px !important; line-height: 1.5 !important; }
+  /* … und im Design der Seite: dunkles Glas, abgerundet, eigene Schrift und Buttons */
+  .sqs-cookie-banner-v2 {
+    margin: 12px !important; max-width: 760px; border-radius: 22px !important; padding: 18px 20px !important;
+    background: rgba(12, 17, 15, .94) !important; color: var(--ts-text) !important; border: 1px solid rgba(255, 255, 255, .1) !important;
+    box-shadow: 0 30px 80px -30px rgba(0, 0, 0, .9), 0 0 0 1px rgba(110, 231, 183, .06) !important;
+    font-family: var(--ts-font-body) !important;
+  }
+  @media (min-width: 800px) { .sqs-cookie-banner-v2 { margin: 0 auto 20px !important; } }
+  .sqs-cookie-banner-v2 p, .sqs-cookie-banner-v2-text { color: var(--ts-muted) !important; font-family: var(--ts-font-body) !important; }
+  .sqs-cookie-banner-v2 a { color: var(--ts-mint) !important; }
+  .sqs-cookie-banner-v2 button, [class*="cookie-banner"] button {
+    font-family: var(--ts-font-body) !important; font-size: 13px !important; font-weight: 500 !important; letter-spacing: 0 !important; text-transform: none !important;
+    border-radius: 999px !important; padding: 10px 18px !important; transition: background .3s, color .3s, border-color .3s !important;
+  }
+  .sqs-cookie-banner-v2-accept { background: var(--ts-text) !important; color: #060608 !important; border: 1px solid var(--ts-text) !important; }
+  .sqs-cookie-banner-v2-accept:hover { background: var(--ts-mint) !important; border-color: var(--ts-mint) !important; }
+  .sqs-cookie-banner-v2-deny, .sqs-cookie-banner-v2-cta:not(.sqs-cookie-banner-v2-accept) { background: transparent !important; color: var(--ts-text) !important; border: 1px solid rgba(255, 255, 255, .16) !important; }
+  body:has(:is(.tsw, .tss-gold)) .sqs-cookie-banner-v2-accept { background: #ffd100 !important; border-color: #ffd100 !important; color: #120e0b !important; }
+  body:has(:is(.tsw, .tss-gold)) .sqs-cookie-banner-v2 a { color: #ffd100 !important; }
+  .ts .ts-totop { display: inline-flex; align-items: center; gap: .6rem; color: var(--ts-muted); transition: color .3s; }
+  .ts .ts-totop:hover { color: var(--ts-text); }
+  .ts-totop span:last-child { display: grid; place-items: center; width: 34px; height: 34px; border-radius: 50%; border: 1px solid var(--ts-line-strong); transition: transform .5s var(--ts-ease-out), border-color .3s; }
+  .ts-totop:hover span:last-child { transform: translateY(-3px); border-color: rgba(110, 231, 183, .5); }
+
+  @media (min-width: 768px) {
+    .ts-footer__cols { grid-template-columns: repeat(12, minmax(0, 1fr)); }
+    .ts-footer__brand { grid-column: 1 / span 4; }
+    .ts-footer__col--pages { grid-column: 6 / span 2; }
+    .ts-footer__col--social { grid-column: 8 / span 2; }
+    .ts-footer__col--legal { grid-column: 10 / span 3; }
+  }
+  @media (min-width: 1024px) {
+    .ts-footer__cta { grid-template-columns: 1fr auto; align-items: end; }
+  }
+
+  /* ---------- Live-Anzeige (Stream läuft gerade) ---------- */
+  .ts-live__on { display: none; }
+  html.ts-is-live .ts .ts-live { display: inline-flex; color: #fff; border-color: rgba(239, 68, 68, .55); background: rgba(239, 68, 68, .12); }
+  html.ts-is-live .ts .ts-live .ts-live__on { display: inline; color: #fca5a5; font-weight: 700; }
+  html.ts-is-live .ts .ts-live .ts-live__on + .ts-live__name::before { content: "· "; color: rgba(255, 255, 255, .5); }
+  html.ts-is-live .ts-live .ts-pulse { background: #ef4444; }
+  html.ts-is-live .ts-live .ts-pulse::after { border-color: #ef4444; }
+  @media (max-width: 767px) { html.ts-is-live .ts .ts-live { padding: 8px 12px; } html.ts-is-live .ts-live__name { display: none; } }
+  .ts-livebar { position: fixed; left: 16px; bottom: 16px; z-index: 8990; display: flex; align-items: center; gap: .9rem; max-width: min(420px, calc(100vw - 32px)); padding: 12px 12px 12px 16px; border-radius: 20px;
+    background: rgba(12, 17, 15, .94); border: 1px solid rgba(239, 68, 68, .35); box-shadow: 0 30px 70px -30px rgba(0, 0, 0, .9), 0 0 50px -20px rgba(239, 68, 68, .45);
+    -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); color: #f6faf7; font-family: var(--ts-font-body);
+    transform: translateY(140%); opacity: 0; transition: transform .7s cubic-bezier(.16, 1, .3, 1), opacity .4s; }
+  .ts-livebar.is-on { transform: none; opacity: 1; }
+  .ts-livebar__dot { position: relative; flex: none; width: 12px; height: 12px; border-radius: 50%; background: #ef4444; box-shadow: 0 0 14px #ef4444; }
+  .ts-livebar__dot::after { content: ""; position: absolute; inset: -5px; border-radius: 50%; border: 2px solid #ef4444; animation: ts-pulse 1.8s ease-out infinite; }
+  .ts-livebar__txt { display: flex; flex-direction: column; min-width: 0; line-height: 1.25; }
+  .ts-livebar__txt b { font-size: 14.5px; font-weight: 600; }
+  .ts-livebar__txt span { font-size: 12.5px; color: #9aaba3; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .ts-livebar__go { flex: none; padding: 9px 14px; border-radius: 999px; background: #f6faf7; color: #060608 !important; font-size: 13px; font-weight: 600; text-decoration: none !important; }
+  .ts-livebar__go:hover { background: #fca5a5; }
+  .ts-livebar__x { flex: none; display: grid; place-items: center; width: 30px; height: 30px; border: 0; border-radius: 50%; background: transparent; color: #9aaba3; cursor: pointer; font-size: 18px; line-height: 1; }
+  .ts-livebar__x:hover { color: #f6faf7; background: rgba(255, 255, 255, .06); }
+  .ts-in-editor .ts-livebar { display: none; }
+  @media (prefers-reduced-motion: reduce) { .ts-livebar { transition: opacity .2s; transform: none; } }
+</style>
+
+<footer class="ts ts-footer" aria-label="Seitenfuß">
+  <div class="ts-footer__glow" aria-hidden="true"></div>
+  <div class="ts-container">
+    <div class="ts-footer__cta ts-reveal">
+      <div>
+        <p class="ts-label ts-muted">[ 05 — Kontakt ]</p>
+        <h2 class="ts-footer__title" data-ts-fit>Lust auf ein<br><span class="ts-outline">echtes</span> Gespräch?</h2>
+      </div>
+      <div class="ts-footer__actions">
+        <a href="/kontakt" class="ts-btn ts-btn--primary ts-magnetic">
+          <span class="ts-btn__inner"><span class="ts-roll"><span data-text="Kontakt aufnehmen">Kontakt aufnehmen</span></span>
+            <svg class="ts-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </span>
+        </a>
+        <a href="/twitch-startseite" class="ts-btn ts-btn--ghost ts-magnetic">
+          <span class="ts-btn__inner"><span class="ts-pulse"></span><span class="ts-roll"><span data-text="Streams schauen">Streams schauen</span></span></span>
+        </a>
+      </div>
+    </div>
+
+    <div class="ts-footer__cols">
+      <div class="ts-footer__brand">
+        <a href="/" class="ts-brand" aria-label="Trutz Stähler – Startseite">
+          <span class="ts-brand__mark ts-display">TS</span>
+          <span class="ts-display" style="font-size:17px;font-weight:700">Trutz Stähler</span>
+        </a>
+        <p class="ts-footer__about">Papa aus Hamburg, Autor im Kreativhafen, Läufer an der Alster und Streamer mit der Stahlgarde. Echt sein statt perfekt wirken.</p>
+      </div>
+
+      <nav class="ts-footer__col--pages" aria-label="Seiten">
+        <p class="ts-label ts-footer__head">Seiten</p>
+        <ul class="ts-footer__list">
+          <li><a class="ts-footer__link" href="/ueber-mich">Über mich</a></li>
+          <li><a class="ts-footer__link" href="/kreativhafen">Kreativhafen</a></li>
+          <li><a class="ts-footer__link" href="/running">Running</a></li>
+          <li><a class="ts-footer__link" href="/twitch-startseite">Twitch</a></li>
+          <li><a class="ts-footer__link" href="/shop">Shop</a></li>
+        </ul>
+      </nav>
+
+      <div class="ts-footer__col--social">
+        <p class="ts-label ts-footer__head">Social</p>
+        <ul class="ts-footer__list">
+          <li><a class="ts-footer__link" href="https://www.instagram.com/trutzstaehler/" target="_blank" rel="noopener" data-ts-insta>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor"/></svg>Instagram <span class="ts-footer__handle" data-ts-insta-handle>@trutzstaehler</span>
+            <svg class="ts-ext" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a></li>
+          <li><a class="ts-footer__link" href="https://www.linkedin.com/in/trutz-st%C3%A4hler" target="_blank" rel="noopener">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 10v7M8 7v.01M12 17v-4a2 2 0 0 1 4 0v4M12 10v7"/></svg>LinkedIn
+            <svg class="ts-ext" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a></li>
+          <li><a class="ts-footer__link" href="/twitch-startseite">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 3h17v11l-5 5h-4l-3 3H7v-3H4V3Z"/><path d="M11 8v4M16 8v4"/></svg>Twitch
+            <svg class="ts-ext" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a></li>
+        </ul>
+      </div>
+
+      <nav class="ts-footer__col--legal" aria-label="Rechtliches">
+        <p class="ts-label ts-footer__head">Rechtliches</p>
+        <ul class="ts-footer__list">
+          <li><a class="ts-footer__link" href="/kontakt">Kontakt</a></li>
+          <li><a class="ts-footer__link" href="/impressum" data-ts-native="Impressum">Impressum</a></li>
+          <li><a class="ts-footer__link" href="/datenschutzerklaerung">Datenschutzerklärung</a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+
+
+  <div class="ts-container">
+    <div class="ts-footer__bar">
+      <p class="ts-label">© <span data-ts-year>2026</span> trutzstaehler</p>
+      <p class="ts-label">Made with ♡ and (lots of) coffee</p>
+      <button type="button" class="ts-label ts-cookie-link" data-ts-cookie hidden>Cookie-Einstellungen</button>
+      <p class="ts-footer__wow">World of Warcraft ist eine Marke von Blizzard Entertainment. Der Twitch-Bereich ist ein Fan-Projekt und steht in keiner Verbindung zu Blizzard.</p>
+      <a href="#" class="ts-totop ts-label" data-ts-totop><span>Nach oben</span><span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6"/></svg></span></a>
+    </div>
+  </div>
+</footer>
+
+<div class="ts-cursor-dot" aria-hidden="true"></div>
+<div class="ts-cursor-ring" aria-hidden="true"></div>
+<div class="ts-grain" aria-hidden="true"></div>
+
+<script>
+(() => {
+  const html = document.documentElement;
+  const body = document.body;
+  const inEditor = html.classList.contains('ts-in-editor');
+  const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const finePointer = matchMedia('(hover: hover) and (pointer: fine)').matches;
+  const fx = finePointer && !reduceMotion && !inEditor;
+
+  /* ---------- Live-Anzeige: liest den Stream-Status aus der Stream-Zentrale (helden.json) ---------- */
+  if (!inEditor) {
+    const LIVE_URL = 'https://raw.githubusercontent.com/trutzstaehler/stream-daten/main/helden.json';
+    const FRESH = 15 * 60 * 1000;           /* älter als 15 Minuten = nicht mehr live */
+    const onLivePage = /^\/live\/?$/.test(location.pathname);
+    let bar = null, timer = null;
+    const showBar = d => {
+      if (onLivePage) return;
+      try { if (sessionStorage.getItem('ts-livebar-x')) return; } catch (e) {}
+      if (!bar) {
+        bar = document.createElement('div');
+        bar.className = 'ts-livebar'; bar.setAttribute('role', 'status');
+        bar.innerHTML = '<span class="ts-livebar__dot" aria-hidden="true"></span><span class="ts-livebar__txt"><b>Ich bin gerade live!</b><span></span></span><a class="ts-livebar__go" href="/live">Zuschauen</a><button type="button" class="ts-livebar__x" aria-label="Hinweis schließen">×</button>';
+        bar.querySelector('button').addEventListener('click', () => { bar.classList.remove('is-on'); try { sessionStorage.setItem('ts-livebar-x', '1'); } catch (e) {} });
+        document.body.appendChild(bar);
+      }
+      bar.querySelector('.ts-livebar__txt span').textContent = 'World of Warcraft Forever · twitch.tv/' + (d.channel || 'einfach_trutz');
+      requestAnimationFrame(() => bar.classList.add('is-on'));
+    };
+    const setLive = (on, d) => {
+      html.classList.toggle('ts-is-live', on);
+      document.querySelectorAll('[data-ts-live-pill]').forEach(a => { a.href = on ? '/live' : '/twitch-startseite'; a.setAttribute('aria-label', on ? 'Gerade live auf Twitch – jetzt zuschauen' : 'Twitch: einfach_trutz'); });
+      if (on) showBar(d); else if (bar) bar.classList.remove('is-on');
+    };
+    const check = () => {
+      if (document.hidden) return;
+      fetch(LIVE_URL + '?t=' + Math.floor(Date.now() / 60000), { cache: 'no-store' })
+        .then(r => r.ok ? r.json() : null)
+        .then(d => {
+          if (!d) return;
+          const fresh = Date.now() - Date.parse(d.updated || 0) < FRESH;
+          setLive(!!(d.stream && d.stream.live) && fresh, d);
+        })
+        .catch(() => {});
+    };
+    const startLive = () => setTimeout(() => { check(); timer = setInterval(check, 120000); }, 1500);
+    if (document.readyState === 'complete') startLive(); else addEventListener('load', startLive, { once: true });
+    document.addEventListener('visibilitychange', () => { if (!document.hidden) check(); });
+  }
+
+  /* ---------- Hallo an alle, die in den Code schauen ---------- */
+  try {
+    console.log('%cMoin! 👋', 'font: 800 28px Syne, system-ui, sans-serif; color: #6ee7b7;');
+    console.log('%cEcht sein statt perfekt wirken – auch im Quelltext.\nDu schaust gern unter die Haube? Schreib mir: moin@trutzstaehler.de', 'font: 13px/1.6 Inter, system-ui, sans-serif; color: #9aaba3;');
+  } catch (e) {}
+
+  /* ---------- Intro-Animation (nach einem Seitenübergang erst, wenn der Vorhang aufgeht) ---------- */
+  const introDelay = html.classList.contains('ts-trans-in') ? 420 : 0;
+  requestAnimationFrame(() => requestAnimationFrame(() => setTimeout(() => body.classList.add('ts-loaded'), introDelay)));
+
+  /* ---------- Bilder: Squarespace-CDN liefert passend zur Anzeigegröße (spart am Handy viel Datenvolumen) ---------- */
+  document.querySelectorAll('img[loading="lazy"][src*="squarespace-cdn.com"]:not([srcset])').forEach(img => {
+    const m = img.getAttribute('src').match(/^(.*?)\?format=(\d+)w$/);
+    const w = img.getBoundingClientRect().width;
+    if (!m || !w || img.currentSrc) return;
+    const max = Math.max(+m[2], 750);
+    const set = [300, 500, 750, 1000, 1500, 2500].filter(x => x <= max);
+    img.sizes = `${Math.ceil(w)}px`;
+    img.srcset = set.map(x => `${m[1]}?format=${x}w ${x}w`).join(', ');
+  });
+
+  /* ---------- Seitenübergang: Vorhang fährt hoch, dann wechselt die Seite ---------- */
+  if (!inEditor && !reduceMotion) {
+    document.addEventListener('click', e => {
+      if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+      const a = e.target.closest && e.target.closest('a[href]');
+      if (!a || a.target && a.target !== '_self' || a.hasAttribute('download') || a.hasAttribute('data-ts-no-trans')) return;
+      const raw = a.getAttribute('href');
+      if (!raw || raw.charAt(0) === '#' || !/^https?:$/.test(a.protocol) || a.origin !== location.origin) return;
+      if (a.pathname === location.pathname && a.search === location.search) return;
+      e.preventDefault();
+      try { sessionStorage.setItem('ts-trans', '1'); } catch (err) {}
+      html.classList.remove('ts-trans-in');
+      html.classList.add('ts-trans-leave');
+      setTimeout(() => { location.href = a.href; }, 480);
+      setTimeout(() => html.classList.remove('ts-trans-leave'), 4000);
+    });
+    addEventListener('pageshow', e => { if (e.persisted) html.classList.remove('ts-trans-leave', 'ts-trans-in'); });
+  }
+
+  /* ---------- Cookie-Einstellungen von Squarespace: statt schwebend über dem Footer als Link in der Footer-Leiste ---------- */
+  const cookieLink = document.querySelector('[data-ts-cookie]');
+  let cookieFloat = null;
+  const textOf = (el) => ((el.shadowRoot ? el.shadowRoot.textContent : '') + ' ' + (el.textContent || '')).replace(/\s+/g, ' ').trim();
+  const parentOf = (a) => a.parentElement || (a.getRootNode && a.getRootNode().host) || null;
+  const fixedAncestor = (el) => { for (let a = el; a && a !== document.body; a = parentOf(a)) { if (getComputedStyle(a).position === 'fixed') return a; } return null; };
+  const shown = (d) => { const r = d.getBoundingClientRect(); const cs = getComputedStyle(d); return r.height > 0 && r.width > 0 && cs.visibility !== 'hidden' && cs.opacity !== '0'; };
+  // Ist im selben festen Rahmen gerade ein Banner mit längerem Text sichtbar? Dann nichts anfassen.
+  const bannerVisible = (root) => [...root.querySelectorAll('*'), ...(root.shadowRoot ? root.shadowRoot.querySelectorAll('*') : [])].some(d => {
+    const own = [...d.childNodes].filter(n => n.nodeType === 3).map(n => n.textContent).join('').trim();
+    return own.length > 60 && shown(d);
+  });
+  const findCookieFloat = () => {
+    // 1. Squarespace: <div class="cookie-banner-manager"><section class="manage-cookies-bar …"><button class="manage-bar-action">
+    const sq = document.querySelector('.cookie-banner-manager .manage-cookies-bar');
+    if (sq) { cookieFloat = sq.querySelector('.manage-bar-action, button') || sq; if (cookieLink) cookieLink.hidden = false; return; }
+    // 2. Reserve, falls Squarespace den Aufbau ändert: kleiner fester Knopf mit kurzem „Cookie“-Text
+    if (cookieFloat && document.contains(cookieFloat) && cookieFloat.hasAttribute('data-ts-cookie-float')) return;
+    // kleiner, sichtbarer Knopf mit kurzem „Cookie“-Text, der selbst oder über einen Rahmen fest auf dem Bildschirm sitzt.
+    // Das große Banner beim ersten Besuch hat viel Text und bleibt deshalb unangetastet.
+    const hit = [...document.body.querySelectorAll('*')].find(el => {
+      if (el.closest('.ts, .tsw') || /^(SCRIPT|STYLE|svg|path)$/i.test(el.tagName)) return false;
+      const t = textOf(el);
+      if (!/cookie/i.test(t) || t.length > 40) return false;
+      const r = el.getBoundingClientRect();
+      if (r.height <= 0 || r.height > 90 || r.width <= 0 || r.width > 420) return false;
+      const fa = fixedAncestor(el);
+      return !!fa && !bannerVisible(fa);
+    });
+    if (!hit) return;
+    cookieFloat = hit;
+    hit.setAttribute('data-ts-cookie-float', '');
+    if (cookieLink) cookieLink.hidden = false;
+  };
+  if (cookieLink) {
+    cookieLink.addEventListener('click', () => {
+      findCookieFloat();
+      if (!cookieFloat) return;
+      cookieFloat.removeAttribute('data-ts-cookie-float');
+      const inner = cookieFloat.shadowRoot ? cookieFloat.shadowRoot.querySelector('button, a') : null;
+      const target = cookieFloat.matches('button, a') ? cookieFloat : (inner || cookieFloat.querySelector('button, a') || cookieFloat);
+      target.click();
+    });
+    [300, 1500, 4000, 8000, 15000].forEach(ms => setTimeout(findCookieFloat, ms));
+    // nach „Akzeptieren“ im Banner erscheint der Knopf neu
+    document.addEventListener('click', () => setTimeout(findCookieFloat, 600), true);
+  }
+
+  /* ---------- Twitch-Bereich (WoW Forever): Unternavigation mit Weg zurück zur Homepage ---------- */
+  const tsw = document.querySelector('.tsw');
+  if (tsw) {
+    const TSW_PAGES = [['/twitch-startseite', 'Start'], ['/live', 'Live'], ['/mitspielen', 'Mitspielen'], ['/charakter', 'Charakter'], ['/bestenliste', 'Bestenliste'], ['/statistiken', 'Statistiken']];
+    const here = (location.pathname.replace(/\/+$/, '') || '/').toLowerCase();
+    const sub = document.createElement('nav');
+    sub.className = 'tsw-subnav';
+    sub.setAttribute('aria-label', 'Twitch-Bereich');
+    sub.innerHTML = `<div class="ts-container tsw-subnav__inner">
+      <a class="tsw-subnav__home" href="/"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>Homepage</a>
+      <ul class="tsw-subnav__list">${TSW_PAGES.map(([href, label]) => `<li><a href="${href}"${here === href ? ' aria-current="page"' : ''}>${label}</a></li>`).join('')}</ul>
+    </div>`;
+    tsw.prepend(sub);
+    // Instagram: auf Twitch-Seiten das WoW-/Twitch-Konto, sonst das private Konto
+    document.querySelectorAll('[data-ts-insta]').forEach(a => { a.href = 'https://www.instagram.com/trutz.stahl/'; });
+    document.querySelectorAll('[data-ts-insta-handle]').forEach(el => { el.textContent = '@trutz.stahl'; });
+    document.querySelectorAll('.ts-nav-link[href="/twitch-startseite"]').forEach(a => { a.classList.add('is-active'); a.setAttribute('aria-current', 'page'); });
+  }
+
+  /* ---------- Große Headlines in ihre Spalte einpassen ---------- */
+  const fitOne = el => {
+    const before = el.style.getPropertyValue('font-size');
+    el.style.removeProperty('font-size');
+    const avail = el.clientWidth;
+    if (!avail) { if (before) el.style.setProperty('font-size', before, 'important'); return; }
+    const left = el.getBoundingClientRect().left;
+    const lines = el.querySelectorAll('.ts-line > span');
+    const need = lines.length
+      ? Math.max(...[...lines].map(s => { const r = s.getBoundingClientRect(); return r.left - left + Math.max(r.width, s.scrollWidth); }))
+      : el.scrollWidth;
+    if (need > avail + 1) {
+      const size = parseFloat(getComputedStyle(el).fontSize) * (avail / need) * 0.98;
+      /* Winzige Abweichungen ignorieren, damit nichts zuckt */
+      const keep = before && Math.abs(parseFloat(before) - size) < 0.75;
+      el.style.setProperty('font-size', keep ? before : `${size}px`, 'important');
+    }
+  };
+  const fitEls = [...document.querySelectorAll('[data-ts-fit]')];
+  const fitAll = () => fitEls.forEach(fitOne);
+  fitAll();
+  /* Während des Ladens auf jede Größenänderung reagieren – danach ist Ruhe: nur noch, wenn eine Schrift
+     ankommt oder sich die Breite wirklich ändert (Drehen, Fenster), nie beim Scrollen */
+  let ro = null, fitDelay;
+  if ('ResizeObserver' in window && fitEls.length) {
+    ro = new ResizeObserver(() => { clearTimeout(fitDelay); fitDelay = setTimeout(fitAll, 30); });
+    fitEls.forEach(el => { ro.observe(el); el.querySelectorAll('.ts-line > span').forEach(s => ro.observe(s)); });
+  }
+  const onFonts = () => fitAll();
+  if (document.fonts) {
+    document.fonts.addEventListener('loadingdone', onFonts);
+    if (document.fonts.ready) document.fonts.ready.then(fitAll);
+  }
+  const settle = () => setTimeout(() => {
+    fitAll();
+    if (ro) { ro.disconnect(); ro = null; }
+  }, 1500);
+  if (document.readyState === 'complete') settle(); else addEventListener('load', () => { fitAll(); settle(); }, { once: true });
+  let fitTimer;
+  /* Nur bei echter Breitenänderung neu einpassen – am Handy feuert „resize“ auch, wenn beim Scrollen die Adressleiste ein- und ausfährt */
+  let fitW = innerWidth;
+  addEventListener('resize', () => { if (Math.abs(innerWidth - fitW) < 2) return; fitW = innerWidth; clearTimeout(fitTimer); fitTimer = setTimeout(fitAll, 120); });
+
+  /* ---------- Aktiver Navigationspunkt ---------- */
+  const path = location.pathname.replace(/\/$/, '') || '/';
+  document.querySelectorAll('.ts-nav-link').forEach(a => {
+    const href = a.getAttribute('href');
+    if (href !== '/' && (path === href || path.startsWith(href + '/'))) { a.classList.add('is-active'); a.setAttribute('aria-current', 'page'); }
+  });
+
+  /* ---------- Header: Glas beim Scrollen, aus- und einblenden ---------- */
+  const header = document.querySelector('[data-ts-header]');
+  if (!document.querySelector('.ts-hero')) header.classList.add('is-solid');
+  /* Erst nach einer deutlichen Bewegung aus- bzw. einblenden – am Handy wackelt scrollY beim Schwung-Scrollen,
+     Nachfedern und Ein-/Ausfahren der Adressleiste ständig um ein paar Pixel, sonst springt der Header */
+  let lastY = Math.max(0, scrollY), acc = 0, headTick = false;
+  const onScroll = () => {
+    headTick = false;
+    const y = Math.max(0, scrollY), dy = y - lastY;
+    lastY = y;
+    header.classList.toggle('is-scrolled', y > 24);
+    if (y < 240 || body.classList.contains('ts-menu-open')) { acc = 0; header.classList.remove('is-hidden'); return; }
+    if (y >= document.documentElement.scrollHeight - innerHeight - 2 || !dy) return; // Gummiband am Seitenende ignorieren
+    if ((dy > 0) !== (acc > 0)) acc = 0;
+    acc += dy;
+    if (acc > 16) header.classList.add('is-hidden');
+    else if (acc < -48) header.classList.remove('is-hidden');
+  };
+  addEventListener('scroll', () => { if (!headTick) { headTick = true; requestAnimationFrame(onScroll); } }, { passive: true });
+  onScroll();
+
+  /* ---------- Mobile-Menü ---------- */
+  const toggle = document.querySelector('[data-ts-menu-toggle]');
+  const menu = document.getElementById('ts-menu');
+  const setMenu = open => {
+    body.classList.toggle('ts-menu-open', open);
+    toggle.setAttribute('aria-expanded', String(open));
+    toggle.setAttribute('aria-label', open ? 'Menü schließen' : 'Menü öffnen');
+    menu.setAttribute('aria-hidden', String(!open));
+  };
+  toggle.addEventListener('click', () => setMenu(!body.classList.contains('ts-menu-open')));
+  menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setMenu(false)));
+  addEventListener('keydown', e => { if (e.key === 'Escape') setMenu(false); });
+  matchMedia('(min-width: 1024px)').addEventListener('change', e => { if (e.matches) setMenu(false); });
+
+  /* ---------- Custom Cursor (wirkt auf alle Links der Seite) ---------- */
+  if (fx) {
+    const dot = document.querySelector('.ts-cursor-dot');
+    const ring = document.querySelector('.ts-cursor-ring');
+    let mx = -100, my = -100, rx = mx, ry = my, first = true, idle = true;
+    addEventListener('mousemove', e => {
+      mx = e.clientX; my = e.clientY;
+      if (first) { rx = mx; ry = my; first = false; }
+      dot.style.transform = `translate3d(${mx}px, ${my}px, 0)`;
+      body.classList.add('ts-has-cursor');
+      if (idle) { idle = false; requestAnimationFrame(loop); }
+    }, { passive: true });
+    document.addEventListener('mouseleave', () => body.classList.remove('ts-has-cursor'));
+    document.addEventListener('mouseover', e => {
+      body.classList.toggle('ts-cursor-hover', !!e.target.closest('a, button, [role="button"], input[type="submit"], label'));
+    });
+    /* Ring folgt weich; steht die Maus still, schläft die Schleife (spart Akku) */
+    function loop() {
+      rx += (mx - rx) * 0.16; ry += (my - ry) * 0.16;
+      ring.style.transform = `translate3d(${rx}px, ${ry}px, 0)`;
+      if (Math.abs(mx - rx) + Math.abs(my - ry) > 0.1) requestAnimationFrame(loop); else idle = true;
+    }
+  }
+
+  /* ---------- Magnetische Buttons ---------- */
+  if (fx) {
+    document.querySelectorAll('.ts-magnetic').forEach(el => {
+      const inner = el.querySelector('.ts-btn__inner');
+      el.addEventListener('mousemove', e => {
+        const r = el.getBoundingClientRect();
+        const x = e.clientX - (r.left + r.width / 2), y = e.clientY - (r.top + r.height / 2);
+        el.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
+        if (inner) inner.style.transform = `translate(${x * 0.12}px, ${y * 0.12}px)`;
+      });
+      el.addEventListener('mouseleave', () => {
+        const ease = 'transform .7s cubic-bezier(.16,1,.3,1)';
+        el.style.transition = `${ease}, box-shadow .5s, border-color .4s, color .4s`;
+        el.style.transform = '';
+        if (inner) { inner.style.transition = ease; inner.style.transform = ''; }
+        setTimeout(() => { el.style.transition = ''; if (inner) inner.style.transition = ''; }, 700);
+      });
+    });
+  }
+
+  /* ---------- 3D-Tilt + Lichtpunkt auf Karten ---------- */
+  document.querySelectorAll('.ts-tilt').forEach(card => {
+    card.addEventListener('pointermove', e => {
+      const r = card.getBoundingClientRect();
+      const px = (e.clientX - r.left) / r.width, py = (e.clientY - r.top) / r.height;
+      card.style.setProperty('--mx', `${px * 100}%`);
+      card.style.setProperty('--my', `${py * 100}%`);
+      if (fx) card.style.transform = `perspective(900px) rotateX(${(0.5 - py) * 7}deg) rotateY(${(px - 0.5) * 9}deg) translateY(-4px)`;
+    });
+    card.addEventListener('pointerleave', () => { card.style.transform = ''; });
+  });
+
+  /* ---------- Parallax der Lichtflächen ---------- */
+  if (fx) {
+    const orbs = document.querySelectorAll('[data-ts-parallax]');
+    if (orbs.length) addEventListener('mousemove', e => {
+      const cx = e.clientX - innerWidth / 2, cy = e.clientY - innerHeight / 2;
+      orbs.forEach(o => { const f = parseFloat(o.dataset.tsParallax); o.style.transform = `translate3d(${cx * f}px, ${cy * f}px, 0)`; });
+    }, { passive: true });
+  }
+
+  /* ---------- Einblenden beim Scrollen ---------- */
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(en => { if (en.isIntersecting) { en.target.classList.add('is-in'); io.unobserve(en.target); } });
+  }, { threshold: 0.15, rootMargin: '0px 0px -8% 0px' });
+  document.querySelectorAll('.ts-reveal').forEach(el => { if (!el.closest('.ts-hero')) io.observe(el); });
+
+  /* ---------- Hero: Sternenfeld / Konstellation ---------- */
+  const canvas = document.getElementById('ts-hero-canvas');
+  if (canvas) {
+    const ctx = canvas.getContext('2d');
+    const hero = canvas.closest('.ts-hero');
+    const animate = !reduceMotion;
+    let w = 0, h = 0, points = [], running = false, ready = false;
+    const mouse = { x: -9999, y: -9999 };
+
+    const build = () => {
+      const dpr = Math.min(devicePixelRatio || 1, 2);
+      const nw = canvas.clientWidth, nh = canvas.clientHeight;
+      /* Nur die Höhe geändert (Adressleiste am Handy)? Sterne behalten, nicht neu würfeln */
+      if (points.length && nw === w && Math.abs(nh - h) < 160) { h = nh; canvas.height = h * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0); return; }
+      w = nw; h = nh;
+      canvas.width = w * dpr; canvas.height = h * dpr;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      const count = Math.round(Math.min(110, (w * h) / 14000));
+      points = Array.from({ length: count }, () => ({
+        x: Math.random() * w, y: Math.random() * h,
+        vx: (Math.random() - 0.5) * 0.18, vy: (Math.random() - 0.5) * 0.18,
+        r: Math.random() * 1.3 + 0.3,
+        c: Math.random() > 0.7 ? '74,222,128' : (Math.random() > 0.5 ? '110,231,183' : '246,250,247'),
+      }));
+    };
+
+    const draw = () => {
+      ctx.clearRect(0, 0, w, h);
+      for (let i = 0; i < points.length; i++) {
+        const p = points[i];
+        if (animate) {
+          p.x += p.vx; p.y += p.vy;
+          const dx = p.x - mouse.x, dy = p.y - mouse.y, d2 = dx * dx + dy * dy;
+          if (d2 < 22000) { const f = (22000 - d2) / 22000 * 0.6, d = Math.sqrt(d2 + 1); p.x += dx / d * f; p.y += dy / d * f; }
+          if (p.x < -20) p.x = w + 20; if (p.x > w + 20) p.x = -20;
+          if (p.y < -20) p.y = h + 20; if (p.y > h + 20) p.y = -20;
+        }
+        for (let j = i + 1; j < points.length; j++) {
+          const q = points[j], d = Math.hypot(p.x - q.x, p.y - q.y);
+          if (d < 130) {
+            ctx.strokeStyle = `rgba(154,171,163,${(1 - d / 130) * 0.12})`;
+            ctx.lineWidth = 0.6;
+            ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(q.x, q.y); ctx.stroke();
+          }
+        }
+        ctx.fillStyle = `rgba(${p.c},0.75)`;
+        ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2); ctx.fill();
+      }
+    };
+
+    const tick = () => { if (!running) return; draw(); if (animate) requestAnimationFrame(tick); };
+    const resume = () => { if (ready && !running) { running = true; if (animate) tick(); } };
+
+    /* Erst ein ruhiges Bild, die Bewegung startet nach dem Laden – so bleibt der Seitenaufbau flott */
+    build(); draw();
+    const go = () => setTimeout(() => { ready = true; if (!document.hidden && canvas.getBoundingClientRect().bottom > 0) resume(); }, 400);
+    if (document.readyState === 'complete') go(); else addEventListener('load', go, { once: true });
+    let rt;
+    addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(() => { build(); draw(); }, 150); });
+    hero.addEventListener('pointermove', e => { const r = canvas.getBoundingClientRect(); mouse.x = e.clientX - r.left; mouse.y = e.clientY - r.top; });
+    hero.addEventListener('pointerleave', () => { mouse.x = mouse.y = -9999; });
+    new IntersectionObserver(([en]) => { if (en.isIntersecting && !document.hidden) resume(); else running = false; }).observe(canvas);
+    document.addEventListener('visibilitychange', () => { if (document.hidden) running = false; else resume(); });
+  }
+
+  /* ---------- Footer: Jahr, Rechtslinks aus dem Squarespace-Footer, nach oben ---------- */
+  document.querySelectorAll('[data-ts-year]').forEach(el => { el.textContent = new Date().getFullYear(); });
+  const nativeFooter = document.getElementById('footer-sections');
+  if (nativeFooter) {
+    document.querySelectorAll('[data-ts-native]').forEach(el => {
+      const match = [...nativeFooter.querySelectorAll('a[href]')].find(a => a.textContent.trim().toLowerCase().startsWith(el.dataset.tsNative.toLowerCase()));
+      if (match) el.setAttribute('href', match.getAttribute('href'));
+    });
+  }
+  document.querySelectorAll('[data-ts-totop]').forEach(el => el.addEventListener('click', e => {
+    e.preventDefault();
+    scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
+  }));
+})();
+</script>
+
+
+<!-- ==================================================================
+     TRUTZ STÄHLER · SHOP – GEMEINSAME BASIS (Katalog + Darstellung)
+     Einfügen in: Einstellungen → Entwickler-Tools → Code Injection → FOOTER
+     (einmal für die ganze Website – alle Shop-Seiten lesen hieraus)
+
+     NEUES PRODUKT HINZUFÜGEN: unten in TS_SHOP.produkte einen Eintrag
+     ergänzen. NEUE KATEGORIE (z. B. Merch): in TS_SHOP.kategorien.
+     preis: so wie er angezeigt werden soll, z. B. "9,90 €" – muss zum
+            Preis im Squarespace-Produkt passen! Leer = "Preis im Shop".
+     link:  Adresse des Squarespace-Produkts, z. B. "/store/p/muenzwurf"
+=================================================================== -->
+<script>
+window.TS_SHOP = {
+  kategorien: [
+    { id: 'stream-widgets', nr: '01', titel: 'Stream-Widgets', text: 'Overlays für OBS – in fertigen Themen wie World of Warcraft oder in deinem ganz eigenen Stil.', link: '/shop/stream-widgets', farbe: 'rgb(74, 222, 128)' },
+    { id: 'buecher',        nr: '02', titel: 'Bücher',         text: 'Kinderbücher und Malbücher aus dem Kreativhafen.',                   link: '/shop/buecher',        farbe: 'rgb(110, 231, 183)' }
+    // weitere Kategorie: { id: 'merch', nr: '03', titel: 'Merch', text: '…', link: '/shop/merch', farbe: 'rgb(74, 222, 128)' }
+  ],
+  /* Themen der Stream-Widgets (Seite /shop/stream-widgets). Neues Thema = neuer Eintrag + neue Seite */
+  themen: [
+    { id: 'wow',    nr: '01', titel: 'World of Warcraft', text: 'Questlog, Ruf, Bosse und goldene Rahmen – die Widgets im Stil von Azeroth.', link: '/shop/stream-widgets/world-of-warcraft', farbe: '#ffd100' },
+    { id: 'custom', nr: '02', titel: 'Dein eigener Stil', label: 'Auf Bestellung', text: 'Dein Spiel, dein Stil: Ich gestalte die Widgets in deinem eigenen Thema.', link: '/shop/stream-widgets/eigener-stil', farbe: 'rgb(110, 231, 183)' },
+    { id: 'gta6', nr: '03', titel: 'Neon City', text: 'Sonnenuntergang, Palmen, Neon und Gangs: Missionen statt Quests, Respekt statt Ruf, Revierkampf statt Schlacht – im Look der neuen Großstadt-Krimis.', link: '/shop/stream-widgets/neon-city', farbe: '#ff3d9a' }
+    // weiteres Thema: { id: 'diablo', nr: '03', titel: 'Diablo', text: '…', link: '/shop/stream-widgets/diablo', farbe: '#c0392b' }
+  ],
+  produkte: [
+    /* ---------- Stream-Widgets (jedes inkl. Standard-Paket) ---------- */
+    { kat: 'stream-widgets', thema: 'wow', id: 'wheel',    icon: '☸',  titel: 'Glücksrad & Quests', text: 'Glücksrad mit Questlog und „Aktive Quests" – dreht bei Kanalpunkten, Follows, Subs und !rad.', preis: '14,90 €', link: '/store/p/gluecksrad-und-quests' },
+    /* Pause-Spiele – jedes einzeln */
+    { kat: 'stream-widgets', thema: 'wow', id: 'boss',     icon: '⚔',  titel: 'Pause: Bosskampf',   text: 'Ein Boss aus WoW: Der Chat kämpft mit !angriff, reagiert auf Fähigkeiten und würfelt um die Beute.', preis: '14,90 €', link: '/store/p/pause-bosskampf' },
+    { kat: 'stream-widgets', thema: 'wow', id: 'quiz',     icon: '❓', titel: 'Pause: Azeroth-Quiz', text: 'WoW-Fragen mit !A bis !D – jeder hat eine Stimme, richtige Antworten bringen Punkte und Ruf.',      preis: '12,90 €', link: '/store/p/pause-azeroth-quiz' },
+    { kat: 'stream-widgets', thema: 'wow', id: 'darkspear',icon: '🏴', titel: 'Pause: Darkspear-Schlacht', text: 'Allianz gegen Horde um Stützpunkte und Flagge – der Chat kämpft mit !allianz und !horde.',     preis: '12,90 €', link: '/store/p/pause-darkspear-schlacht' },
+    { kat: 'stream-widgets', thema: 'wow', id: 'fish',     icon: '🎣', titel: 'Pause: Angeln',      text: 'Mit !angeln die Angel auswerfen – bei jedem Fischschwarm beißt etwas an. Beste Angler im Stream.', preis: '12,90 €', link: '/store/p/pause-angeln' },
+    { kat: 'stream-widgets', thema: 'wow', id: 'riddle',   icon: '🧩', titel: 'Pause: Azeroth-Rätsel', text: 'Ein WoW-Begriff, Buchstabe für Buchstabe – wer ihn zuerst in den Chat schreibt, gewinnt.',        preis: '12,90 €', link: '/store/p/pause-azeroth-raetsel' },
+    { kat: 'stream-widgets', thema: 'wow', id: 'giveaway', icon: '🎁', titel: 'Beute des Tages',    text: 'Faire Verlosung per Chat-Befehl – mit Endspurt, Ziehungs-Animation und Gewinner-Historie.',        preis: '14,90 €', link: '/store/p/beute-des-tages' },
+    { kat: 'stream-widgets', thema: 'wow', id: 'voting',   icon: '🗳️', titel: 'Umfrage',            text: 'Der Chat stimmt ab – Live-Ergebnisse, Sudden Death bei Gleichstand, Siegertreppchen.',            preis: '9,90 €', link: '/store/p/umfrage' },
+    { kat: 'stream-widgets', thema: 'wow', id: 'level',    icon: '🏰', titel: 'Aufbauspiel',        text: 'Jede Chat-Nachricht baut am Gebäude mit – mit Buffs, Strafen, Fraktionen und Bestenliste.',        preis: '14,90 €', link: '/store/p/aufbauspiel' },
+    { kat: 'stream-widgets', thema: 'wow', id: 'bingo',    icon: '🎯', titel: 'Stream-Bingo',       text: 'Bingo-Feld mit eigenen Zielen – der Chat meldet Felder, du bestätigst.',                           preis: '9,90 €', link: '/store/p/stream-bingo' },
+    { kat: 'stream-widgets', thema: 'wow', id: 'coin',     icon: '🪙', titel: 'Münzwurf',           text: '3D-Münze mit Kopf, Zahl und seltener Kante – per Befehl, Kanalpunkten oder Knopfdruck.',          preis: '9,90 €', link: '/store/p/muenzwurf' },
+    { kat: 'stream-widgets', thema: 'wow', id: 'rep',      icon: '🏅', titel: 'Ruf',                text: 'Zuschauer sammeln Ruf bei deiner Fraktion – Ränge von Neutral bis Ehrfürchtig. Ruf aus Spielen gibt es im Wunsch-Paket.',                   preis: '14,90 €', link: '/store/p/ruf' },
+    { kat: 'stream-widgets', thema: 'wow', id: 'char',     icon: '🧙', titel: 'Charakter',          text: 'Leveling-Tracker mit Erfahrungsleiste und goldenem Stufenband bei „Ding!".',                      preis: '9,90 €', link: '/store/p/charakter' },
+    { kat: 'stream-widgets', thema: 'wow', id: 'metrics',  icon: '📈', titel: 'Metrics',            text: 'Ziele im Rotations-Fenster, „Zuletzt"-Leiste und ein Chat-Fenster im WoW-Rahmen.',               preis: '14,90 €', link: '/store/p/metrics' },
+    { kat: 'stream-widgets', thema: 'wow', id: 'counter',  icon: '🔢', titel: 'Zähler',             text: 'Bild mit Zahl – Tode, Wipes, Bosse. Zählen per Knopf oder Chat-Befehl.',                          preis: '9,90 €', link: '/store/p/zaehler' },
+    { kat: 'stream-widgets', thema: 'wow', id: 'wunsch',   icon: '✦',  titel: 'Wunsch-Paket',       text: 'Mehrere Widgets in einer Datei – du wählst, ich baue es dir und schicke es per Mail.',            preis: 'ab 22,90 €', link: '/shop/stream-widgets/world-of-warcraft/wunsch-paket', highlight: true },
+    /* ---------- Neon City ---------- */
+    { kat: 'stream-widgets', thema: 'gta6', id: 'wheel-gta6', icon: '☸', titel: 'Glücksrad & Missionen', text: 'Glücksrad mit Missions-Log und „Aktive Missionen" – dreht bei Kanalpunkten, Follows, Subs und !rad.', preis: '14,90 €', link: '/store/p/gluecksrad-und-quests-gta6' },
+    { kat: 'stream-widgets', thema: 'gta6', id: 'giveaway-gta6', icon: '🎁', titel: 'Beute des Tages', text: 'Faire Verlosung per Chat-Befehl – mit Endspurt, Ziehungs-Animation und Gewinner-Historie.', preis: '14,90 €', link: '/store/p/beute-des-tages-gta6' },
+    { kat: 'stream-widgets', thema: 'gta6', id: 'voting-gta6', icon: '🗳️', titel: 'Umfrage', text: 'Der Chat stimmt ab – Live-Ergebnisse, Sudden Death bei Gleichstand, Siegertreppchen.', preis: '9,90 €', link: '/store/p/umfrage-gta6' },
+    { kat: 'stream-widgets', thema: 'gta6', id: 'level-gta6', icon: '🏰', titel: 'Aufbauspiel', text: 'Jede Chat-Nachricht baut am Gebäude mit – mit Buffs, Strafen, Gangen und Bestenliste.', preis: '14,90 €', link: '/store/p/aufbauspiel-gta6' },
+    { kat: 'stream-widgets', thema: 'gta6', id: 'bingo-gta6', icon: '🎯', titel: 'Stream-Bingo', text: 'Bingo-Feld mit eigenen Zielen – der Chat meldet Felder, du bestätigst.', preis: '9,90 €', link: '/store/p/stream-bingo-gta6' },
+    { kat: 'stream-widgets', thema: 'gta6', id: 'coin-gta6', icon: '🪙', titel: 'Münzwurf', text: '3D-Münze mit Kopf, Zahl und seltener Kante – per Befehl, Kanalpunkten oder Knopfdruck.', preis: '9,90 €', link: '/store/p/muenzwurf-gta6' },
+    { kat: 'stream-widgets', thema: 'gta6', id: 'rep-gta6', icon: '🏅', titel: 'Respekt', text: 'Zuschauer sammeln Respekt bei deiner Gang – Ränge von Neutral bis Ehrfürchtig.', preis: '14,90 €', link: '/store/p/ruf-gta6' },
+    { kat: 'stream-widgets', thema: 'gta6', id: 'char-gta6', icon: '🧙', titel: 'Charakter', text: 'Leveling-Tracker mit Erfahrungsleiste und leuchtendem Level-up-Banner.', preis: '9,90 €', link: '/store/p/charakter-gta6' },
+    { kat: 'stream-widgets', thema: 'gta6', id: 'metrics-gta6', icon: '📈', titel: 'Metrics', text: 'Ziele im Rotations-Fenster, „Zuletzt"-Leiste und ein Chat-Fenster im Neon-Rahmen.', preis: '14,90 €', link: '/store/p/metrics-gta6' },
+    { kat: 'stream-widgets', thema: 'gta6', id: 'counter-gta6', icon: '🔢', titel: 'Zähler', text: 'Bild mit Zahl – Tode, Wipes, Bosse. Zählen per Knopf oder Chat-Befehl.', preis: '9,90 €', link: '/store/p/zaehler-gta6' },
+    { kat: 'stream-widgets', thema: 'gta6', id: 'boss-gta6', icon: '⚔', titel: 'Pause: Bosskampf', text: 'Gang-Bosse der Stadt: Der Chat kämpft mit !angriff, reagiert mit !deckung & Co. und würfelt um Neonketten, Geldkoffer und Villen.', preis: '14,90 €', link: '/store/p/pause-bosskampf-gta6' },
+    { kat: 'stream-widgets', thema: 'gta6', id: 'quiz-gta6', icon: '❓', titel: 'Pause: Quiz', text: 'Quizfragen mit !A bis !D – jeder hat eine Stimme, richtige Antworten bringen Punkte.', preis: '12,90 €', link: '/store/p/pause-azeroth-quiz-gta6' },
+    { kat: 'stream-widgets', thema: 'gta6', id: 'darkspear-gta6', icon: '🏴', titel: 'Pause: Revierkampf', text: 'Zwei Gangs um Blocks und Beutetasche – der Chat kämpft mit !neon und !sunset.', preis: '12,90 €', link: '/store/p/pause-darkspear-schlacht-gta6' },
+    { kat: 'stream-widgets', thema: 'gta6', id: 'fish-gta6', icon: '🎣', titel: 'Pause: Angeln', text: 'Mit !angeln die Angel auswerfen – bei jedem Fischschwarm beißt etwas an. Beste Angler im Stream.', preis: '12,90 €', link: '/store/p/pause-angeln-gta6' },
+    { kat: 'stream-widgets', thema: 'gta6', id: 'riddle-gta6', icon: '🧩', titel: 'Pause: Rätsel', text: 'Ein Begriff, Buchstabe für Buchstabe – wer ihn zuerst in den Chat schreibt, gewinnt.', preis: '12,90 €', link: '/store/p/pause-azeroth-raetsel-gta6' },
+    { kat: 'stream-widgets', thema: 'gta6', id: 'wunsch-gta6', icon: '✦', titel: 'Wunsch-Paket', text: 'Mehrere Widgets in einer Datei – du wählst, ich baue es dir und schicke es per Mail.', preis: 'ab 22,90 €', link: '/shop/stream-widgets/neon-city/wunsch-paket', highlight: true },
+    /* ---------- Dein eigener Stil ---------- */
+    { kat: 'stream-widgets', thema: 'custom', id: 'eigenes-thema', icon: '🎨', titel: 'Eigenes Thema', text: 'Du nennst Spiel oder Stil, ich gestalte das Standard-Paket und deine Widgets passend dazu – per Mail geliefert.', preis: 'ab 49,90 €', link: '/store/p/eigenes-thema', highlight: true }
+    /* ---------- Bücher (Beispiel – Kommentarzeichen entfernen und ausfüllen) ----------
+    ,{ kat: 'buecher', id: 'loki-1', bild: 'https://…/cover.jpg', titel: 'Die Loki-Detektive', text: 'Maria Holm auf Ermittlungstour.', preis: '12,90 €', link: '/store/p/loki-detektive' }
+    */
+  ]
+};
+
+/* Darstellung: füllt alle Platzhalter <div data-tss-grid="kategorie-id"></div> und <div data-tss-cats></div> */
+(() => {
+  const S = window.TS_SHOP;
+  const esc = s => String(s || '').replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+  const arrow = '<svg class="ts-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
+  const card = (p, i) => {
+    const media = p.bild ? `<img class="tss-card__img" src="${esc(p.bild)}" alt="" loading="lazy">` : `<span class="tss-card__icon" aria-hidden="true">${esc(p.icon || '✦')}</span>`;
+    const tag = p.link ? 'a' : 'div';
+    return `<${tag} class="tss-card${p.highlight ? ' tss-card--hi' : ''}"${p.link ? ` href="${esc(p.link)}"` : ''}>
+      <div class="tss-card__media">${media}<span class="ts-label tss-card__nr">${String(i + 1).padStart(2, '0')}</span></div>
+      <div class="tss-card__body">
+        <h3 class="tss-card__title">${esc(p.titel)}</h3>
+        <p class="tss-card__text">${esc(p.text)}</p>
+        <div class="tss-card__foot">
+          <span class="tss-card__price">${p.preis ? esc(p.preis) : '<span class="ts-label ts-muted">Preis im Shop</span>'}</span>
+          <span class="ts-label tss-card__cta">${p.link ? 'Ansehen ' + arrow : 'Bald verfügbar'}</span>
+        </div>
+      </div></${tag}>`;
+  };
+  const run = () => {
+    document.querySelectorAll('[data-tss-grid]').forEach(el => {
+      const list = S.produkte.filter(p => p.kat === el.dataset.tssGrid && (!el.dataset.tssThema || p.thema === el.dataset.tssThema));
+      el.innerHTML = list.length ? list.map(card).join('') : `<p class="tss-empty ts-label ts-muted">[ Hier entsteht gerade etwas – bald mehr ]</p>`;
+      // Kleinunternehmer-Hinweis einmal unter dem Raster
+      if (list.some(p => p.preis) && !(el.nextElementSibling && el.nextElementSibling.classList.contains('tss-tax'))) {
+        el.insertAdjacentHTML('afterend', '<p class="ts-label ts-muted tss-tax">Alle Preise sind Endpreise · Gemäß § 19 UStG wird keine Umsatzsteuer berechnet.</p>');
+      }
+    });
+    document.querySelectorAll('[data-tss-themes]').forEach(el => {
+      el.innerHTML = (S.themen || []).map(t => {
+        const n = S.produkte.filter(p => p.thema === t.id).length;
+        return `<a class="tss-cat" href="${esc(t.link)}" style="--tss-acc:${esc(t.farbe)}">
+          <span class="ts-label tss-cat__nr">${esc(t.nr)} — ${esc(t.label || (n ? n + ' Produkt' + (n === 1 ? '' : 'e') : 'bald'))}</span>
+          <span class="tss-cat__title">${esc(t.titel)}<i>.</i></span>
+          <span class="tss-cat__text">${esc(t.text)}</span>
+          <span class="ts-label tss-cat__go">Entdecken ${arrow}</span></a>`;
+      }).join('');
+    });
+    document.querySelectorAll('[data-tss-cats]').forEach(el => {
+      el.innerHTML = S.kategorien.map(k => {
+        const n = S.produkte.filter(p => p.kat === k.id).length;
+        return `<a class="tss-cat" href="${esc(k.link)}" style="--tss-acc:${esc(k.farbe)}">
+          <span class="ts-label tss-cat__nr">${esc(k.nr)} — ${n ? n + ' Produkt' + (n === 1 ? '' : 'e') : 'bald'}</span>
+          <span class="tss-cat__title">${esc(k.titel)}<i>.</i></span>
+          <span class="tss-cat__text">${esc(k.text)}</span>
+          <span class="ts-label tss-cat__go">Entdecken ${arrow}</span></a>`;
+      }).join('');
+    });
+  };
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', run); else run();
+})();
+</script>
+
+<style>
+  /* ---------- Shop-Bausteine (nutzen deine ts-Variablen, mit Ersatzwerten) ---------- */
+  .tss { --tss-acc: rgb(110, 231, 183); --tss-line: rgba(255, 255, 255, .1); --tss-card: rgba(255, 255, 255, .025);
+         --tss-text: rgba(246, 250, 247, .72); color: #f6faf7; padding: clamp(3.5rem, 8vw, 7rem) 0; }
+  .tss-kicker { display: flex; justify-content: space-between; gap: 1rem; padding-bottom: 1rem; border-bottom: 1px solid var(--tss-line); margin-bottom: clamp(2rem, 5vw, 4rem); }
+  .tss-h1 { font-family: var(--ts-font-display, 'Syne', sans-serif); font-weight: 800; font-size: clamp(2.8rem, 10vw, 8.5rem); line-height: .9; letter-spacing: -0.045em; margin: 0; }
+  .tss-h2 { font-family: var(--ts-font-display, 'Syne', sans-serif); font-weight: 800; font-size: clamp(2rem, 5.5vw, 4.4rem); line-height: .95; letter-spacing: -0.04em; margin: 0; }
+  .tss-h1 i, .tss-h2 i { font-style: normal; color: var(--tss-acc); }
+  .tss-lead { max-width: 44rem; margin: 1.5rem 0 0; color: var(--tss-text); font-size: clamp(16px, 1.45vw, 20px); line-height: 1.65; }
+  .tss-head { display: grid; gap: 1.5rem; margin-bottom: clamp(2rem, 5vw, 3.5rem); }
+  @media (min-width: 1024px) { .tss-head { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); align-items: end; } .tss-head .tss-lead { margin: 0; } }
+
+  /* Kategorien */
+  .tss-cats { display: grid; gap: 1px; background: var(--tss-line); border: 1px solid var(--tss-line); }
+  @media (min-width: 900px) { .tss-cats { grid-template-columns: repeat(auto-fit, minmax(0, 1fr)); } }
+  .tss-cat { position: relative; display: flex; flex-direction: column; gap: .9rem; min-height: 22rem; padding: clamp(1.5rem, 3vw, 2.5rem); background: var(--ts-bg, #0b100e); color: inherit; text-decoration: none; overflow: hidden; transition: background .4s; }
+  .tss-cat::before { content: ""; position: absolute; inset: auto -20% -60% auto; width: 70%; aspect-ratio: 1; border-radius: 50%; background: radial-gradient(closest-side, color-mix(in srgb, var(--tss-acc) 28%, transparent), transparent); opacity: .35; transition: opacity .5s, transform .6s; }
+  .tss-cat:hover::before { opacity: .8; transform: scale(1.15); }
+  .tss-cat__nr { color: var(--tss-acc); }
+  .tss-cat__title { font-family: var(--ts-font-display, 'Syne', sans-serif); font-weight: 800; font-size: clamp(2.4rem, 5vw, 4.2rem); line-height: .92; letter-spacing: -0.04em; margin-top: auto; }
+  .tss-cat__title i { font-style: normal; color: var(--tss-acc); }
+  .tss-cat__text { max-width: 26rem; color: var(--tss-text); line-height: 1.6; }
+  .tss-cat__go { display: inline-flex; align-items: center; gap: .5rem; color: #f6faf7; }
+  .tss-cat:hover .ts-arrow, .tss-card:hover .ts-arrow { transform: translateX(4px); }
+  .tss .ts-arrow { transition: transform .3s; }
+
+  /* Produktkarten */
+  .tss-grid { display: grid; gap: 1px; grid-template-columns: 1fr; }
+  .tss-grid > * { outline: 1px solid var(--tss-line); }
+  @media (min-width: 640px) { .tss-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (min-width: 1100px) { .tss-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+  .tss-card { display: flex; flex-direction: column; background: var(--ts-bg, #0b100e); color: inherit; text-decoration: none; transition: background .35s; animation: tss-in .6s both; }
+  .tss-card:hover { background: color-mix(in srgb, var(--ts-bg, #0b100e) 92%, white); }
+  .tss-card__media { position: relative; aspect-ratio: 16 / 10; display: grid; place-items: center; overflow: hidden; border-bottom: 1px solid var(--tss-line);
+    background: radial-gradient(60% 70% at 50% 60%, color-mix(in srgb, var(--tss-acc) 14%, transparent), transparent 70%), repeating-linear-gradient(90deg, transparent 0 39px, rgba(255,255,255,.035) 39px 40px); }
+  .tss-card__icon { font-size: clamp(3rem, 6vw, 4.5rem); filter: drop-shadow(0 10px 24px rgba(0, 0, 0, .6)); transition: transform .5s; }
+  .tss-card:hover .tss-card__icon { transform: scale(1.08) rotate(-4deg); }
+  .tss-card__img { width: 100%; height: 100%; object-fit: cover; }
+  .tss-card__nr { position: absolute; left: 1rem; top: 1rem; color: rgba(246, 250, 247, .45); }
+  .tss-card__body { display: flex; flex-direction: column; gap: .6rem; flex: 1; padding: 1.4rem 1.4rem 1.2rem; }
+  .tss-card__title { margin: 0; font-family: var(--ts-font-display, 'Syne', sans-serif); font-weight: 800; font-size: clamp(1.35rem, 2vw, 1.7rem); letter-spacing: -0.02em; line-height: 1.05; }
+  .tss-card__text { margin: 0; color: var(--tss-text); font-size: 15px; line-height: 1.55; }
+  .tss-card__foot { display: flex; justify-content: space-between; align-items: center; gap: 1rem; margin-top: auto; padding-top: 1rem; border-top: 1px solid var(--tss-line); }
+  .tss-card__price { font-family: var(--ts-font-display, 'Syne', sans-serif); font-weight: 700; font-size: 1.15rem; }
+  .tss-card__cta { display: inline-flex; align-items: center; gap: .45rem; color: var(--tss-acc); }
+  .tss-card--hi { background: linear-gradient(160deg, color-mix(in srgb, var(--tss-acc) 12%, var(--ts-bg, #0b100e)), var(--ts-bg, #0b100e) 60%); }
+  .tss-empty { grid-column: 1 / -1; padding: 3rem 1.5rem; background: var(--ts-bg, #0b100e); text-align: center; }
+  @keyframes tss-in { from { opacity: 0; transform: translateY(14px); } }
+  @media (prefers-reduced-motion: reduce) { .tss-card { animation: none; } }
+
+  /* Info-Blöcke (Standard-Paket, Schritte, FAQ) */
+  .tss-split { display: grid; gap: 2rem; padding: clamp(1.5rem, 3vw, 2.5rem); border: 1px solid var(--tss-line); background: var(--tss-card); }
+  @media (min-width: 1024px) { .tss-split { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); align-items: start; gap: 4rem; } }
+  .tss-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 1px; background: var(--tss-line); }
+  .tss-list li { display: grid; grid-template-columns: 2.5rem minmax(0, 1fr); gap: 1rem; padding: 1rem 0; background: var(--ts-bg, #0b100e); }
+  .tss-split .tss-list { background: transparent; }
+  .tss-split .tss-list li { background: transparent; border-bottom: 1px solid var(--tss-line); }
+  .tss-split .tss-list li:last-child { border-bottom: 0; }
+  .tss-list b { display: block; font-family: var(--ts-font-display, 'Syne', sans-serif); font-size: 1.1rem; }
+  .tss-list span { color: var(--tss-text); line-height: 1.55; }
+  .tss-list .ts-label { color: var(--tss-acc); padding-top: .2rem; }
+  .tss-steps { display: grid; gap: 1px; background: var(--tss-line); border: 1px solid var(--tss-line); counter-reset: s; }
+  @media (min-width: 900px) { .tss-steps { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+  .tss-step { padding: clamp(1.5rem, 3vw, 2.2rem); background: var(--ts-bg, #0b100e); }
+  .tss-step::before { counter-increment: s; content: "0" counter(s); display: block; font-family: var(--ts-font-display, 'Syne', sans-serif); font-weight: 800; font-size: 3rem; line-height: 1; color: transparent; -webkit-text-stroke: 1px var(--tss-acc); margin-bottom: 1.2rem; }
+  .tss-step h3 { margin: 0 0 .5rem; font-family: var(--ts-font-display, 'Syne', sans-serif); font-size: 1.3rem; }
+  .tss-step p { margin: 0; color: var(--tss-text); line-height: 1.6; }
+  .tss-faq { border-top: 1px solid var(--tss-line); }
+  .tss-faq details { border-bottom: 1px solid var(--tss-line); }
+  .tss-faq summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; gap: 1rem; padding: 1.3rem 0; font-family: var(--ts-font-display, 'Syne', sans-serif); font-weight: 700; font-size: clamp(1.05rem, 1.6vw, 1.3rem); }
+  .tss-faq summary::-webkit-details-marker { display: none; }
+  .tss-faq summary::after { content: "+"; color: var(--tss-acc); font-size: 1.5rem; line-height: 1; transition: transform .3s; }
+  .tss-faq details[open] summary::after { transform: rotate(45deg); }
+  .tss-faq details p { margin: 0 0 1.4rem; max-width: 46rem; color: var(--tss-text); line-height: 1.7; }
+  .tss-faq a, .tss-lead a { color: var(--tss-acc); }
+  .tss-ctas { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 2rem; }
+  .tss-note { margin-top: 1.25rem; color: rgba(246, 250, 247, .5); font-size: 13px; line-height: 1.6; }
+  .tss + .tss { padding-top: 0; }
+</style>
+
+<style>
+  /* Shop: Feinschliff passend zum Design-System */
+  .tss.tss--top { padding-top: calc(var(--ts-header-space) + clamp(2rem, 5vw, 4rem)); }
+  .ts .tss-lead { margin-top: 1.5rem; }
+  .ts .tss-head .tss-lead { margin-top: 0; }
+  .ts .tss-note { margin-top: 1.25rem; }
+  .ts .tss-step h3 { margin-bottom: .5rem; }
+  .ts .tss-faq details p { margin-bottom: 1.4rem; }
+  .ts .tss-faq a, .ts .tss-lead a { color: var(--tss-acc); }
+</style>
+
+<script>
+/* Produktseiten (Squarespace-Store) im Design: Titel aufteilen, Beschreibung gliedern, Brotkrumen auf den Shop */
+(() => {
+  const d = document.querySelector('.product-detail');
+  if (!d) return;
+  // Titel: „01 · Name – Untertitel" → Label „Untertitel" + großer Name
+  const t = d.querySelector('.product-title');
+  if (t && !t.dataset.tsp) {
+    t.dataset.tsp = '1';
+    const raw = t.textContent.replace(/^\s*\d+\s*·\s*/, '').trim();
+    const [name, ...rest] = raw.split(' – ');
+    const k = document.createElement('p');
+    k.className = 'tsp-kicker';
+    k.textContent = rest.join(' – ') || 'Shop';
+    t.before(k);
+    t.textContent = name;
+    const dot = document.createElement('span'); dot.className = 'tsp-dot'; dot.textContent = '.';
+    t.append(dot);
+  }
+  // Beschreibung: Großbuchstaben-Zeilen = Zwischenüberschrift, „• " = Aufzählung, erster Absatz = Einleitung
+  d.querySelectorAll('.product-description').forEach(box => {
+    box.querySelectorAll('p').forEach((p, i) => {
+      const s = p.textContent.trim();
+      if (!s) return;
+      if (/^•\s*/.test(s)) { p.classList.add('tsp-li'); p.innerHTML = p.innerHTML.replace(/^\s*•\s*/, ''); }
+      else if (s.length < 60 && s === s.toUpperCase() && /[A-ZÄÖÜ]/.test(s)) p.classList.add('tsp-h');
+      else if (i === 0) p.classList.add('tsp-intro');
+    });
+  });
+  // Kleinunternehmer-Hinweis unter dem Preis
+  const price = d.querySelector('.product-price');
+  if (price && !price.querySelector('.tsp-tax')) {
+    const tax = document.createElement('span');
+    tax.className = 'tsp-tax';
+    tax.textContent = 'Endpreis · Gemäß § 19 UStG wird keine Umsatzsteuer berechnet.';
+    price.append(tax);
+  }
+  // Brotkrumen: „Shop" zeigt auf die Shop-Seite statt auf die versteckte Store-Seite
+  const crumbs = d.querySelectorAll('.product-nav a');
+  if (crumbs[0]) {
+    const pth = location.pathname;
+    // Thema aus dem Katalog (TS_SHOP) – passt automatisch für jedes neue Thema
+    const S = window.TS_SHOP || {};
+    const norm = (u) => String(u || '').replace(/\/+$/, '').toLowerCase();
+    const prod = (S.produkte || []).find(p => p.link && norm(p.link) === norm(pth));
+    const th = prod && prod.thema && (S.themen || []).find(x => x.id === prod.thema);
+    const [href, txt] = th ? [th.link, String(th.titel).replace(/\u00AD/g, '')]
+      : /eigenes-thema/i.test(pth) ? ['/shop/stream-widgets/eigener-stil', 'Dein eigener Stil']
+      : /pause-|widget|gluecksrad|helden|muenz|mnz|zaehler|ruf|charakter|metrics|umfrage|bingo|aufbau|beute|wunsch/i.test(pth) ? ['/shop/stream-widgets/world-of-warcraft', 'World of Warcraft'] : ['/shop', 'Shop'];
+    crumbs[0].href = href; crumbs[0].textContent = txt;
+    if (txt === 'World of Warcraft') d.closest('.product-detail-section') && d.closest('.product-detail-section').classList.add('tss-gold');
+  }
+  if (crumbs[1]) crumbs[1].textContent = t ? t.textContent.replace(/\.$/, '') : crumbs[1].textContent;
+})();
+</script>

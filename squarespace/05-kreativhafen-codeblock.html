@@ -57,6 +57,12 @@
   .ts-kh-card__stage--cover img { border-radius: 3px 8px 8px 3px; transform: perspective(900px) rotateY(-16deg) rotateZ(-1deg); box-shadow: 0 30px 60px -20px rgba(0, 0, 0, .9), 0 0 0 1px rgba(255, 255, 255, .06); }
   .ts-kh-card:hover .ts-kh-card__stage--art img { transform: scale(1.04) rotate(-1deg); }
   .ts-kh-card:hover .ts-kh-card__stage--cover img { transform: perspective(900px) rotateY(-4deg) translateY(-6px); }
+  /* Malbücher-Karte: Bilder wechseln sich weich ab */
+  .ts-kh-rot img { position: absolute !important; left: 50%; top: 50%; translate: -50% -50%; opacity: 0; transition: opacity 1.1s ease, transform .8s var(--ts-ease-out) !important; }
+  .ts-kh-rot img.is-on { opacity: 1; }
+  .ts-kh-rot__dots { position: absolute; left: 50%; bottom: 1rem; z-index: 2; display: flex; gap: 6px; translate: -50% 0; }
+  .ts-kh-rot__dots i { width: 6px; height: 6px; border-radius: 50%; background: rgba(246, 250, 247, .25); transition: background .4s, width .4s; }
+  .ts-kh-rot__dots i.is-on { width: 18px; border-radius: 3px; background: var(--ts-mint); }
   .ts-kh-card__num { position: absolute; left: 1.5rem; top: 1.25rem; z-index: 1; color: var(--ts-muted); }
   .ts-kh-card__tag { position: absolute; right: 1.25rem; top: 1.1rem; z-index: 1; padding: 6px 12px; border-radius: 999px; border: 1px solid rgba(110, 231, 183, .25); background: rgba(29, 77, 63, .45); color: var(--ts-mint); }
 
@@ -167,10 +173,13 @@
     <ul class="ts-kh__cards">
       <li class="ts-reveal">
         <a href="/malbuecher" class="ts-kh-card ts-glass ts-tilt">
-          <div class="ts-kh-card__stage ts-kh-card__stage--art">
+          <div class="ts-kh-card__stage ts-kh-card__stage--art ts-kh-rot" data-kh-rot>
             <span class="ts-label ts-kh-card__num">01</span>
             <span class="ts-label ts-kh-card__tag">Malbücher</span>
-            <img src="https://images.squarespace-cdn.com/content/v1/6869717aa7c996116c8c8a56/4b7996de-045f-4bc0-aa06-c91c517488fa/Kopie+von+Lunibu+%E2%80%93+Der+kleine+H%C3%BCter+der+Nacht+%284%29.png?format=750w" alt="Malbuch-Logo des Kreativhafens" loading="lazy">
+            <img class="is-on" src="https://images.squarespace-cdn.com/content/v1/6869717aa7c996116c8c8a56/4b7996de-045f-4bc0-aa06-c91c517488fa/Kopie+von+Lunibu+%E2%80%93+Der+kleine+H%C3%BCter+der+Nacht+%284%29.png?format=750w" alt="Malbuch-Logo des Kreativhafens" loading="lazy">
+            <img src="https://images.squarespace-cdn.com/content/v1/6869717aa7c996116c8c8a56/ed4546f0-e46a-4af1-a52e-a880ce697147/Malbuch+Mein+erstes+Tiere-Kritzelbuch++Cover+%281%29.png?format=750w" alt="Malbuch „Mein Tiere-Kritzelbuch“, aufgeschlagen mit Wachsmalstiften" loading="lazy">
+            <img src="https://images.squarespace-cdn.com/content/v1/6869717aa7c996116c8c8a56/03265d54-7284-481a-908a-2941deae8c19/Malbuch+Gro%C3%9Fe+Dinomotive+zum+Ausmalen+-+Cover+%282%29.png?format=750w" alt="Malbuch „Mein Dino-Kritzelbuch“, aufgeschlagen mit Wachsmalstiften" loading="lazy">
+            <span class="ts-kh-rot__dots" aria-hidden="true"><i class="is-on"></i><i></i><i></i></span>
           </div>
           <div class="ts-kh-card__body">
             <h3 class="ts-kh-card__title">Mal- &amp; Kritzelbücher für Kinder</h3>
@@ -202,3 +211,18 @@
     </ul>
   </section>
 </div>
+
+<script>
+/* Malbücher-Karte: Logo und Infobilder rotieren (nur sichtbar, nicht bei „Bewegung reduzieren“) */
+(() => {
+  const box = document.querySelector('[data-kh-rot]');
+  if (!box || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const imgs = [...box.querySelectorAll('img')], dots = [...box.querySelectorAll('.ts-kh-rot__dots i')];
+  let i = 0, t = null;
+  const go = () => { i = (i + 1) % imgs.length; imgs.forEach((im, k) => im.classList.toggle('is-on', k === i)); dots.forEach((d, k) => d.classList.toggle('is-on', k === i)); };
+  const start = () => { if (!t) t = setInterval(go, 3200); }, stop = () => { clearInterval(t); t = null; };
+  imgs.slice(1).forEach(im => { im.loading = 'eager'; });
+  if ('IntersectionObserver' in window) new IntersectionObserver(([e]) => e.isIntersecting && !document.hidden ? start() : stop()).observe(box); else start();
+  document.addEventListener('visibilitychange', () => document.hidden ? stop() : null);
+})();
+</script>

@@ -1,3 +1,23 @@
+# Kreativhafen: Geschichten, Ausmalbilder, Bücher
+
+> **Aktueller Stand (gilt):** Die Ausmalbilder sind **kostenlos**, die **Gute-Nacht-Geschichten** stehen direkt auf der Website, deine **Malbücher und Romane** bleiben zum Kaufen.
+> **Start hier: `08-kreativhafen-gratis/EINRICHTUNG.md`**
+
+| Bereich | Adresse | Inhalt |
+|---|---|---|
+| Kreativhafen (Hauptkategorie) | `/kreativhafen` | Reiter-Leiste + neues Regal „Gratis im Hafen“ unter den Büchern |
+| Gute-Nacht-Geschichten | `/gute-nacht-geschichten` + `/geschichten/…` | 24 Geschichten direkt zum Lesen: Suche, Filter (Länge, Alter, Art, Thema), Saison-Block, Figuren, Nachtmodus, Vorlesen lassen, Ausmalbild zur Geschichte |
+| Ausmalbilder | `/ausmalbilder` | 112 Motive in 11 Themen, PDF je Paket + Gesamt-ZIP, jedes Motiv einzeln drucken, Mal-Werkzeug im Browser |
+| Bücher | `/malbuecher`, `/romane` | deine bestehenden Seiten, jetzt mit Reiter-Leiste |
+
+**Daten:** Der Ordner `kreativhafen/` im Repo (PDFs, Motive, Bilder) wird wie `helden.json` über GitHub geladen. Dafür muss er nach `main`, siehe Anleitung, Schritt 0.
+
+---
+
+## Archiv: frühere Variante „Verkauf im Shop“ (nicht mehr aktiv)
+
+Die folgenden Abschnitte beschreiben die erste Variante mit kostenpflichtigen Paketen. Sie wird nicht mehr genutzt. Die Dateien (`01-` bis `07-`) bleiben als Vorlage, falls du später doch etwas verkaufen möchtest.
+
 # Ausmalbilder-Saison 2026: alles für den Kreativhafen-Shop
 
 Moin Trutz! Hier ist alles, was du für den Verkauf der Ausmalbilder brauchst: Produkte, Bilder, Webseiten, Texte und Plan. **Fang mit `04-shop-einrichtung.md` an**, dort steht Schritt für Schritt, was wohin gehört.

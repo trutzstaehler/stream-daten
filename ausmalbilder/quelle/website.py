@@ -33,10 +33,11 @@ import re as _re
 
 
 def mini(svg):
-    """SVG verkleinern: Zahlen runden, Leerraum sparen, einfache Anfuehrungszeichen (kein JSON-Escaping)."""
-    svg = _re.sub(r'(\d+\.\d+)', lambda m: str(round(float(m.group(1)))), svg)
-    svg = _re.sub(r'\s+', ' ', svg).replace('> <', '><').replace('"', "'")
-    return svg
+    """SVG verkleinern: nur Pfad-/Formkoordinaten runden (nie Transformationen!), Leerraum sparen."""
+    rnd = lambda m: str(round(float(m.group(0))))
+    svg = _re.sub(r'(\s(?:d|points|cx|cy|r|rx|ry|x|y|width|height|x1|y1|x2|y2)=")([^"]*)(")',
+                 lambda m: m.group(1) + _re.sub(r'-?\d+\.\d+', rnd, m.group(2)) + m.group(3), svg)
+    return _re.sub(r'\s+', ' ', svg).replace('> <', '><')
 
 
 def cap_cls(key):

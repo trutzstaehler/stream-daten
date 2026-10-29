@@ -1,0 +1,342 @@
+<!-- =====================================================================
+  GUTE-NACHT-GESCHICHTE „Die Luftballons wollen noch nicht schlafen“  ·  Blog-Beitrag /geschichten/die-luftballons-wollen-noch-nicht-schlafen
+  Einfügen: Beitrag öffnen → Inhalt löschen → Code-Block → alles einfügen.
+====================================================================== -->
+
+<style>
+  /* ===== Ausmalbilder (ts-am) – nutzt die ts-/tss-Bausteine der Seite ===== */
+  .ts-am { position: relative; isolation: isolate; overflow: hidden; overflow: clip; }
+  .ts-am__orb { position: absolute; z-index: -1; right: -14%; top: 0; width: 56vw; height: 56vw; max-width: 860px; max-height: 860px; border-radius: 50%; pointer-events: none;
+    background: radial-gradient(circle, rgba(46, 140, 108, .28) 0%, rgba(46, 140, 108, .16) 24%, rgba(46, 140, 108, .06) 46%, rgba(46, 140, 108, 0) 70%); }
+  .ts-am .ts-line { padding-bottom: .16em; margin-bottom: -.16em; }
+  .ts-am__ctas { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.75rem; }
+  .ts .ts-am__chips { display: flex; flex-wrap: wrap; gap: .5rem; margin: 1.5rem 0 0; padding: 0; list-style: none; }
+  .ts .ts-am__chips li { padding: 8px 13px; border-radius: 999px; border: 1px solid var(--ts-line-strong, rgba(255,255,255,.14)); color: var(--ts-text, #f6faf7); font-size: 10.5px; }
+  .ts-am__block { padding-top: clamp(4.5rem, 8vw, 7.5rem); }
+  .ts-am__blockhead { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; padding-bottom: 1.25rem; border-bottom: 1px solid var(--tss-line, rgba(255,255,255,.1)); }
+  .ts .ts-am__h2 { margin-top: clamp(1.75rem, 3vw, 2.5rem); font-family: var(--ts-font-display, 'Syne', sans-serif); font-weight: 800; font-size: clamp(2rem, 5vw, 4.4rem); line-height: .98; letter-spacing: -0.03em; }
+  .ts .ts-am__h2 i { font-style: normal; color: var(--tss-acc, #6ee7b7); }
+  .ts .ts-am__sub { margin-top: .9rem; max-width: 42rem; color: var(--tss-text, rgba(246,250,247,.72)); font-size: clamp(15px, 1.3vw, 17.5px); line-height: 1.65; }
+  .ts-am__end { padding-bottom: clamp(6rem, 11vw, 10rem); }
+
+  /* Saison-Leiste */
+  .ts-am-season { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(230px, 1fr); gap: 1px; margin: 2rem 0 0; padding: 0; list-style: none;
+    overflow-x: auto; scroll-snap-type: x mandatory; background: var(--tss-line, rgba(255,255,255,.1)); border: 1px solid var(--tss-line, rgba(255,255,255,.1)); scrollbar-width: thin; }
+  .ts-am-season li { scroll-snap-align: start; background: var(--ts-bg, #060608); }
+  .ts .ts-am-season a { position: relative; display: flex; flex-direction: column; gap: .55rem; height: 100%; min-height: 190px; padding: 1.4rem 1.3rem 1.3rem; color: inherit; text-decoration: none; transition: background .3s; }
+  .ts .ts-am-season a::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 3px; background: var(--c); opacity: .35; transition: opacity .3s; }
+  .ts .ts-am-season a:hover { background: rgba(255,255,255,.03); }
+  .ts .ts-am-season a:hover::before, .ts-am-season .is-now a::before { opacity: 1; }
+  .ts-am-season__date { color: var(--c); }
+  .ts .ts-am-season__name { font: 800 clamp(1.1rem, 1.35vw, 1.32rem)/1.08 var(--ts-font-display, 'Syne', sans-serif); letter-spacing: -0.025em; overflow-wrap: anywhere; hyphens: auto; }
+  .ts .ts-am-season__sub { color: var(--tss-text, rgba(246,250,247,.72)); font-size: 14px; line-height: 1.5; }
+  .ts .ts-am-season__state { margin-top: auto; display: inline-flex; align-self: flex-start; align-items: center; gap: .45rem; padding: 6px 11px; border-radius: 999px;
+    border: 1px solid var(--tss-line, rgba(255,255,255,.1)); color: var(--ts-muted, #9aaba3); font-size: 10px; white-space: nowrap; }
+  .ts-am-season .is-now .ts-am-season__state { border-color: var(--c); color: #060608; background: var(--c); }
+  .ts-am-season .is-now .ts-am-season__state::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: #060608; animation: ts-am-pulse 1.6s infinite; }
+  .ts-am-season .is-past { opacity: .5; }
+  @keyframes ts-am-pulse { 50% { opacity: .25; } }
+
+  /* Highlight-Karte (Saisonpaket) */
+  .ts .ts-am-bundle { display: grid; gap: 2rem; margin-top: 2rem; padding: clamp(1.5rem, 4vw, 3rem); border-radius: 26px; align-items: center; }
+  .ts .ts-am-bundle__price { display: flex; align-items: baseline; gap: .8rem; margin-top: 1.2rem; font: 800 clamp(2rem, 4vw, 3rem)/1 var(--ts-font-display, 'Syne', sans-serif); letter-spacing: -0.03em; }
+  .ts .ts-am-bundle__price s { font-size: .45em; color: var(--ts-muted, #9aaba3); font-weight: 700; }
+  .ts-am-bundle__art { position: relative; min-height: 260px; }
+  .ts .ts-am-bundle__art img { position: absolute; width: 46% !important; height: auto !important; border-radius: 8px; background: #fbf9f4; padding: 6px; box-shadow: 0 30px 60px -30px rgba(0,0,0,.9); }
+  .ts-am-bundle__art img:nth-child(1) { left: 0; top: 12%; transform: rotate(-6deg); }
+  .ts-am-bundle__art img:nth-child(2) { left: 27%; top: 0; transform: rotate(2deg); z-index: 2; }
+  .ts-am-bundle__art img:nth-child(3) { right: 0; top: 16%; transform: rotate(7deg); }
+
+  /* Ausmal-Widget (wie im Kritzelbuch) */
+  .ts-am-pick { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1.5rem; }
+  .ts .ts-am-pick button { padding: 9px 14px; border-radius: 999px; border: 1px solid var(--ts-line-strong, rgba(255,255,255,.14)); background: transparent; color: var(--ts-text, #f6faf7);
+    font: 600 11px/1 var(--ts-font-mono, 'JetBrains Mono', monospace); letter-spacing: .12em; text-transform: uppercase; cursor: pointer; transition: background .25s, color .25s, border-color .25s; }
+  .ts .ts-am-pick button:hover { border-color: rgba(110, 231, 183, .45); }
+  .ts .ts-am-pick button[aria-pressed="true"] { background: #f6faf7; color: #060608; border-color: #f6faf7; }
+  .ts-paint { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1.25rem; margin-top: 1.5rem; align-items: start; }
+  .ts-paint__paper { position: relative; padding: clamp(.6rem, 1.6vw, 1.25rem); border-radius: 8px; background: #fbf9f4; box-shadow: 0 1px 0 rgba(255,255,255,.7) inset, 0 40px 80px -36px rgba(0,0,0,.9), 0 2px 8px rgba(0,0,0,.35); }
+  .ts-paint__canvas { display: block; width: 100%; height: auto; aspect-ratio: 1000 / 1100; border-radius: 4px; cursor: crosshair; touch-action: pan-y; background: #fff; }
+  .ts-paint.is-brush .ts-paint__canvas { touch-action: none; }
+  .ts .ts-paint__done { position: absolute; left: 50%; top: 1rem; transform: translate(-50%, -10px); padding: 8px 14px; border-radius: 999px; background: #1d4d3f; color: #f6faf7; font-size: 11px; opacity: 0; pointer-events: none; transition: opacity .3s, transform .4s var(--ts-ease-out); white-space: nowrap; }
+  .ts .ts-paint__done.is-on { opacity: 1; transform: translate(-50%, 0); }
+  .ts-paint__tools { display: grid; gap: 1rem; padding: 1.1rem; border-radius: 22px; }
+  .ts .ts-paint__label { color: var(--ts-muted, #9aaba3); font-size: 10.5px; }
+  .ts-paint__swatches { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: .5rem; margin-top: .5rem; }
+  .ts .ts-paint__sw { position: relative; aspect-ratio: 1; width: 100%; border-radius: 50%; border: 2px solid rgba(255,255,255,.14); background: var(--c); cursor: pointer; transition: transform .25s var(--ts-ease-out), border-color .2s; }
+  .ts .ts-paint__sw:hover { transform: scale(1.08); }
+  .ts .ts-paint__sw[aria-pressed="true"] { border-color: #f6faf7; transform: scale(1.12); box-shadow: 0 0 0 3px rgba(110,231,183,.45); }
+  .ts-paint__modes, .ts-paint__acts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .5rem; margin-top: .5rem; }
+  .ts-paint__acts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .ts .ts-paint__btn { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .35rem; min-height: 64px; padding: .6rem .4rem; border-radius: 16px; border: 1px solid var(--ts-line-strong, rgba(255,255,255,.14)); background: rgba(255,255,255,.03); color: var(--ts-text, #f6faf7); font: 500 12.5px/1.15 var(--ts-font-body, Inter, sans-serif); cursor: pointer; transition: background .25s, border-color .25s, color .25s; }
+  .ts .ts-paint__btn:hover { border-color: rgba(110,231,183,.45); }
+  .ts .ts-paint__btn[aria-pressed="true"] { background: #f6faf7; color: #060608; border-color: #f6faf7; }
+  .ts .ts-paint__btn:disabled { opacity: .35; cursor: default; }
+  .ts .ts-paint__size { display: flex; align-items: center; gap: .75rem; margin-top: .5rem; }
+  .ts-paint__size input { flex: 1; accent-color: #6ee7b7; }
+  .ts .ts-paint__hint { color: var(--ts-muted, #9aaba3); font-size: 13px; line-height: 1.5; }
+
+  /* Motiv-Parade */
+  .ts-am-zoo { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(.6rem, 1.6vw, 1.1rem); margin-top: 2rem; }
+  .ts .ts-am-zoo figure { margin: 0; padding: clamp(.4rem, 1vw, .7rem); border-radius: 6px; background: #fbf9f4; transform: rotate(var(--r, 0deg)); box-shadow: 0 24px 50px -28px rgba(0,0,0,.85); transition: transform .5s var(--ts-ease-out); }
+  .ts .ts-am-zoo figure:hover { transform: rotate(0deg) translateY(-5px) scale(1.03); }
+  .ts-am-zoo svg, .ts-am-zoo img { display: block; width: 100% !important; height: auto !important; }
+  .ts .ts-am-zoo figcaption { margin-top: .35rem; text-align: center; font: 800 clamp(8px, .9vw, 12px)/1 var(--ts-font-display, 'Syne', sans-serif); letter-spacing: 0; text-transform: uppercase; color: #1b1f1c; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .ts .ts-am-zoo figcaption.is-long { font-size: clamp(6.5px, .68vw, 9.5px); }
+  .ts .ts-am-zoo .ts-am-door { position: relative; }
+  .ts .ts-am-zoo .ts-am-door b { position: absolute; left: .45rem; top: .4rem; min-width: 1.9rem; height: 1.9rem; display: grid; place-items: center; border-radius: 999px; background: #060608; color: #f6faf7; font: 700 12px/1 var(--ts-font-mono, monospace); }
+
+  /* Gratis + Kita */
+  .ts .ts-am-split { display: grid; gap: 2rem; margin-top: 2rem; padding: clamp(1.5rem, 3.5vw, 2.75rem); border-radius: 26px; align-items: center; }
+  .ts-am-thumbs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .8rem; }
+  .ts .ts-am-thumbs img { display: block; width: 100% !important; height: auto !important; border-radius: 6px; background: #fbf9f4; padding: 5px; box-shadow: 0 24px 50px -28px rgba(0,0,0,.85); }
+  .ts-am-thumbs img:nth-child(1) { transform: rotate(-3deg); } .ts-am-thumbs img:nth-child(2) { transform: translateY(-8px) rotate(1.5deg); } .ts-am-thumbs img:nth-child(3) { transform: rotate(2.5deg); }
+  .ts .ts-am-note { margin-top: 1rem; color: rgba(246,250,247,.5); font-size: 13px; line-height: 1.6; }
+  .ts .ts-am-list { list-style: none; margin: 1.25rem 0 0; padding: 0; display: grid; gap: .7rem; }
+  .ts .ts-am-list li { position: relative; padding-left: 1.6rem; color: var(--tss-text, rgba(246,250,247,.72)); line-height: 1.55; }
+  .ts .ts-am-list li::before { content: ""; position: absolute; left: 0; top: .5em; width: 8px; height: 8px; border-radius: 50%; background: var(--tss-acc, #6ee7b7); }
+  .ts .ts-am-list b { color: #f6faf7; }
+  .ts .ts-am-final { margin-top: clamp(3rem, 6vw, 5rem); padding: clamp(1.75rem, 4vw, 3rem); border-radius: 26px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1.5rem; }
+  .ts .ts-am-final p { font: 800 clamp(1.5rem, 3vw, 2.4rem)/1.05 var(--ts-font-display, 'Syne', sans-serif); letter-spacing: -0.025em; margin: 0; }
+
+  @media (min-width: 640px) {
+    .ts-am-zoo { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  }
+  @media (min-width: 1024px) {
+    .ts-paint { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 2rem; }
+    .ts-paint__tools { position: sticky; top: 110px; }
+    .ts .ts-am-bundle, .ts .ts-am-split { grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); gap: 3rem; }
+    .ts-am-zoo { grid-template-columns: repeat(var(--cols, 6), minmax(0, 1fr)); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .ts .ts-am-zoo figure, .ts-am-bundle__art img, .ts-am-thumbs img { transform: none !important; }
+    .ts-am-season .is-now .ts-am-season__state::before { animation: none; }
+  }
+
+  .ts-khr { position: relative; z-index: 3; padding-top: calc(var(--ts-header-space, 96px) + 1rem); }
+  .ts-khr__bar { display: flex; gap: .4rem; overflow-x: auto; scrollbar-width: none; padding: .35rem; border: 1px solid var(--ts-line, rgba(255,255,255,.08)); border-radius: 999px; background: rgba(255,255,255,.025); width: max-content; max-width: 100%; }
+  .ts-khr__bar::-webkit-scrollbar { display: none; }
+  .ts .ts-khr__bar a { display: inline-flex; align-items: center; gap: .45rem; padding: 10px 16px; border-radius: 999px; color: var(--ts-muted, #9aaba3); text-decoration: none; white-space: nowrap; font: 500 14px/1 var(--ts-font-body, Inter, sans-serif); transition: background .25s, color .25s; }
+  .ts .ts-khr__bar a:hover { color: var(--ts-text, #f6faf7); background: rgba(255,255,255,.04); }
+  .ts .ts-khr__bar a[aria-current="page"] { background: #f6faf7; color: #060608; }
+  .ts .ts-khr__bar a i { font-style: normal; padding: 3px 7px; border-radius: 999px; background: rgba(110,231,183,.16); color: #6ee7b7; font: 700 9.5px/1 var(--ts-font-mono, monospace); letter-spacing: .1em; text-transform: uppercase; }
+  .ts .ts-khr__bar a[aria-current="page"] i { background: #1d4d3f; color: #f6faf7; }
+
+  /* ---------- Kreativhafen gratis ---------- */
+  .ts-kh2 .tss--top { padding-top: clamp(2rem, 4vw, 3rem); }
+  .ts-am-packs { display: grid; gap: 1rem; margin-top: 2rem; grid-template-columns: minmax(0, 1fr); }
+  .ts .ts-am-pack { display: flex; flex-direction: column; border-radius: 22px; overflow: hidden; scroll-margin-top: 120px; }
+  .ts-am-pack__img { position: relative; aspect-ratio: 3 / 2; background: #0b100e; overflow: hidden; }
+  .ts .ts-am-pack__img img { display: block; width: 100% !important; height: 100% !important; object-fit: cover; transition: transform .7s var(--ts-ease-out); }
+  .ts-am-pack:hover .ts-am-pack__img img { transform: scale(1.04); }
+  .ts .ts-am-pack__nr { position: absolute; left: 1rem; top: .9rem; color: rgba(246,250,247,.6); }
+  .ts .ts-am-pack__tag { position: absolute; right: .9rem; top: .8rem; padding: 6px 11px; border-radius: 999px; background: rgba(6,6,8,.65); border: 1px solid var(--c); color: var(--c); font-size: 10px; }
+  .ts-am-pack__body { display: flex; flex-direction: column; gap: .55rem; flex: 1; padding: 1.25rem 1.35rem 1.4rem; }
+  .ts .ts-am-pack__t { font: 800 clamp(1.3rem, 1.8vw, 1.6rem)/1.05 var(--ts-font-display, 'Syne', sans-serif); letter-spacing: -0.025em; margin: 0; }
+  .ts .ts-am-pack__t i { font-style: normal; color: var(--c); }
+  .ts .ts-am-pack__s { color: var(--ts-muted, #9aaba3); font-size: 14px; line-height: 1.55; margin: 0; }
+  .ts-am-pack__acts { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: auto; padding-top: .9rem; }
+  .ts .ts-am-mini { display: inline-flex; align-items: center; gap: .45rem; padding: 10px 14px; border-radius: 999px; border: 1px solid var(--ts-line-strong, rgba(255,255,255,.14)); background: transparent; color: var(--ts-text, #f6faf7); font: 600 13px/1 var(--ts-font-body, Inter, sans-serif); text-decoration: none; cursor: pointer; transition: background .25s, color .25s, border-color .25s; }
+  .ts .ts-am-mini:hover { border-color: rgba(110,231,183,.5); }
+  .ts .ts-am-mini--hi { background: #f6faf7; color: #060608; border-color: #f6faf7; }
+  .ts .ts-am-mini--hi:hover { background: #6ee7b7; border-color: #6ee7b7; }
+  .ts .ts-am-mini svg { flex: none; }
+  /* Galerie */
+  .ts-am-filter { display: flex; gap: .45rem; overflow-x: auto; scrollbar-width: none; margin-top: 1.5rem; padding-bottom: .25rem; }
+  .ts-am-filter::-webkit-scrollbar { display: none; }
+  .ts .ts-am-filter button { flex: none; padding: 9px 14px; border-radius: 999px; border: 1px solid var(--ts-line-strong, rgba(255,255,255,.14)); background: transparent; color: var(--ts-text, #f6faf7); font: 600 11px/1 var(--ts-font-mono, monospace); letter-spacing: .1em; text-transform: uppercase; cursor: pointer; }
+  .ts .ts-am-filter button[aria-pressed="true"] { background: #f6faf7; color: #060608; border-color: #f6faf7; }
+  .ts-am-gal { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(.6rem, 1.4vw, 1rem); margin-top: 1.5rem; min-height: 200px; }
+  .ts .ts-am-tile { position: relative; margin: 0; padding: .55rem .55rem .6rem; border-radius: 8px; background: #fbf9f4; box-shadow: 0 24px 50px -28px rgba(0,0,0,.85); transform: rotate(var(--r, 0deg)); transition: transform .45s var(--ts-ease-out); }
+  .ts .ts-am-tile:hover { transform: rotate(0deg) translateY(-4px); }
+  .ts-am-tile > svg { display: block; width: 100% !important; height: auto !important; }
+  .ts .ts-am-tile__acts svg { width: 15px !important; height: 15px !important; flex: none; }
+  .ts-am-tile__acts { display: grid; grid-template-columns: 1fr 1fr; gap: .35rem; margin-top: .45rem; }
+  .ts .ts-am-tile__acts button { display: inline-flex; align-items: center; justify-content: center; gap: .3rem; padding: 8px 6px; border-radius: 999px; border: 1px solid #d7d3c8; background: #fff; color: #1b1f1c; font: 600 11.5px/1 var(--ts-font-body, Inter, sans-serif); cursor: pointer; }
+  .ts .ts-am-tile__acts button:hover { background: #1b1f1c; color: #fff; border-color: #1b1f1c; }
+  .ts .ts-am-gal__msg { grid-column: 1 / -1; color: var(--ts-muted, #9aaba3); }
+  /* Geschichten */
+  .ts-gn-today { display: grid; gap: 1.5rem; margin-top: 2rem; padding: clamp(1.25rem, 3.5vw, 2.5rem); border-radius: 26px; align-items: center; }
+  .ts .ts-gn-today img { display: block; width: 100% !important; max-width: 340px; height: auto !important; margin: 0 auto; border-radius: 10px; background: #fbf9f4; padding: 8px; transform: rotate(-2deg); box-shadow: 0 40px 70px -30px rgba(0,0,0,.9); }
+  .ts .ts-gn-meta { display: flex; flex-wrap: wrap; gap: .45rem; margin: 1rem 0 0; padding: 0; list-style: none; }
+  .ts .ts-gn-meta li { padding: 6px 11px; border-radius: 999px; border: 1px solid var(--ts-line-strong, rgba(255,255,255,.14)); color: var(--ts-text, #f6faf7); font-size: 10.5px; }
+  .ts-gn-filter { display: flex; flex-wrap: wrap; gap: .45rem; margin-top: 1.5rem; }
+  .ts .ts-gn-filter button { padding: 9px 14px; border-radius: 999px; border: 1px solid var(--ts-line-strong, rgba(255,255,255,.14)); background: transparent; color: var(--ts-text, #f6faf7); font: 600 11px/1 var(--ts-font-mono, monospace); letter-spacing: .1em; text-transform: uppercase; cursor: pointer; }
+  .ts .ts-gn-filter button[aria-pressed="true"] { background: #f6faf7; color: #060608; border-color: #f6faf7; }
+  .ts-gn-grid { display: grid; gap: 1rem; margin-top: 1.5rem; grid-template-columns: minmax(0, 1fr); }
+  .ts .ts-gn-card { display: flex; flex-direction: column; border-radius: 22px; overflow: hidden; color: inherit; text-decoration: none; transition: transform .5s var(--ts-ease-out); }
+  .ts .ts-gn-card:hover { transform: translateY(-4px); }
+  .ts-gn-card[hidden] { display: none !important; }
+  .ts .ts-gn-card__img { display: grid; place-items: center; aspect-ratio: 16 / 10; background: radial-gradient(70% 80% at 50% 100%, rgba(46,140,108,.35), transparent 70%), linear-gradient(180deg, rgba(29,77,63,.25), rgba(12,17,15,.4)); }
+  .ts .ts-gn-card__img img { width: 46% !important; height: auto !important; border-radius: 8px; background: #fbf9f4; padding: 5px; transform: rotate(var(--r, -2deg)); box-shadow: 0 30px 50px -26px rgba(0,0,0,.9); }
+  .ts-gn-card__body { display: flex; flex-direction: column; gap: .5rem; flex: 1; padding: 1.2rem 1.35rem 1.4rem; }
+  .ts .ts-gn-card__t { margin: 0; font: 800 clamp(1.2rem, 1.7vw, 1.45rem)/1.1 var(--ts-font-display, 'Syne', sans-serif); letter-spacing: -0.02em; }
+  .ts .ts-gn-card__s { margin: 0; color: var(--ts-muted, #9aaba3); font-size: 14.5px; line-height: 1.6; }
+  .ts .ts-gn-card__m { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: auto; padding-top: .8rem; color: #6ee7b7; }
+  /* Einzelne Geschichte */
+  .ts-gn-story { max-width: 46rem; margin: 0 auto; }
+  .ts .ts-gn-h1 { margin: 1.25rem 0 0; font: 800 clamp(2.2rem, 6vw, 4.6rem)/.98 var(--ts-font-display, 'Syne', sans-serif); letter-spacing: -0.035em; }
+  .ts .ts-gn-h1 i { font-style: normal; color: #6ee7b7; }
+  .ts .ts-gn-lead { margin-top: 1rem; color: var(--ts-muted, #9aaba3); font-size: clamp(16px, 1.4vw, 19px); line-height: 1.65; }
+  .ts-gn-tools { position: sticky; top: calc(var(--ts-header-space, 96px) - 16px); z-index: 4; display: flex; flex-wrap: wrap; gap: .45rem; margin-top: 1.5rem; padding: .5rem; border-radius: 999px; border: 1px solid var(--ts-line, rgba(255,255,255,.08)); background: rgba(6,6,8,.82); backdrop-filter: blur(12px); width: max-content; max-width: 100%; }
+  .ts .ts-gn-tools button, .ts .ts-gn-tools a { display: inline-flex; align-items: center; gap: .4rem; padding: 9px 13px; border-radius: 999px; border: 1px solid transparent; background: transparent; color: var(--ts-text, #f6faf7); font: 500 13px/1 var(--ts-font-body, Inter, sans-serif); text-decoration: none; cursor: pointer; }
+  .ts .ts-gn-tools button:hover, .ts .ts-gn-tools a:hover { border-color: var(--ts-line-strong, rgba(255,255,255,.14)); }
+  .ts .ts-gn-tools button[aria-pressed="true"] { background: #f6faf7; color: #060608; }
+  .ts-gn-text { --gn-size: 19px; margin-top: 2.25rem; }
+  .ts .ts-gn-text p { margin: 0 0 1.15em; font: 400 var(--gn-size)/1.85 var(--ts-font-body, Inter, sans-serif); color: #e7ece9; }
+  .ts .ts-gn-text p:first-child::first-letter { float: left; margin: .08em .12em 0 0; font: 800 3.4em/.8 var(--ts-font-display, 'Syne', sans-serif); color: #6ee7b7; }
+  .ts .ts-gn-night { display: flex; align-items: center; gap: 1rem; margin: 2.5rem 0 0; padding: 1.4rem 1.5rem; border-radius: 22px; font: 700 clamp(1.15rem, 2vw, 1.45rem)/1.35 var(--ts-font-display, 'Syne', sans-serif); letter-spacing: -0.01em; }
+  .ts .ts-gn-night svg { flex: none; color: #f7d046; }
+  .ts .ts-gn-ask { margin-top: 1.25rem; padding: 1.4rem 1.5rem; border-radius: 22px; }
+  .ts .ts-gn-ask ul { margin: .8rem 0 0; padding: 0; list-style: none; display: grid; gap: .55rem; }
+  .ts .ts-gn-ask li { position: relative; padding-left: 1.5rem; color: var(--tss-text, rgba(246,250,247,.8)); line-height: 1.55; }
+  .ts .ts-gn-ask li::before { content: "?"; position: absolute; left: 0; top: 0; color: #6ee7b7; font-weight: 800; }
+  .ts-gn-motiv { display: grid; gap: 1.25rem; margin-top: 1.25rem; padding: 1.4rem 1.5rem; border-radius: 22px; align-items: center; }
+  .ts .ts-gn-motiv__img { max-width: 220px; padding: .5rem; border-radius: 8px; background: #fbf9f4; transform: rotate(-2deg); box-shadow: 0 30px 50px -26px rgba(0,0,0,.9); }
+  .ts .ts-gn-motiv__img svg { display: block; width: 100% !important; height: auto !important; }
+  .ts .ts-gn-author { display: grid; grid-template-columns: 72px 1fr; gap: 1.1rem; align-items: start; margin-top: 1.25rem; padding: 1.4rem 1.5rem; border-radius: 22px; }
+  .ts .ts-gn-author img { width: 72px !important; height: 72px !important; border-radius: 50%; object-fit: cover; }
+  .ts .ts-gn-author p { margin: 0; color: var(--tss-text, rgba(246,250,247,.75)); line-height: 1.6; font-size: 15px; }
+  .ts .ts-gn-author p + p { margin-top: .45rem; }
+  .ts .ts-gn-author b { color: #f6faf7; }
+  .ts .ts-gn-audio { margin-top: 1.5rem; padding: 1rem 1.2rem; border-radius: 18px; }
+  .ts .ts-gn-audio audio { width: 100%; margin-top: .6rem; }
+  .ts .ts-gn-reihe { margin-top: 1.25rem; }
+  .ts .ts-gn-reihe ul { margin: .7rem 0 0; padding: 0; list-style: none; border-top: 1px solid var(--ts-line, rgba(255,255,255,.08)); }
+  .ts .ts-gn-reihe li { display: flex; justify-content: space-between; gap: 1rem; padding: .85rem 0; border-bottom: 1px solid var(--ts-line, rgba(255,255,255,.08)); }
+  .ts .ts-gn-reihe a { color: #f6faf7; font: 700 1.05rem/1.3 var(--ts-font-display, 'Syne', sans-serif); text-decoration: none; }
+  .ts .ts-gn-reihe a:hover { color: #6ee7b7; }
+  .ts .ts-gn-reihe .ts-label { color: var(--ts-muted, #9aaba3); white-space: nowrap; }
+  /* Nachtmodus: dunkler, wärmer, größer – zum Vorlesen im abgedunkelten Kinderzimmer */
+  html.ts-gn-dark .ts-gn-page { background: #050505; }
+  html.ts-gn-dark .ts .ts-gn-text p { color: #e9dcc0; }
+  html.ts-gn-dark .ts .ts-gn-text p:first-child::first-letter { color: #f7d046; }
+  html.ts-gn-dark .ts-gn-dim { opacity: .25; transition: opacity .4s; }
+  html.ts-gn-dark .ts-khr, html.ts-gn-dark .ts-header { opacity: .25; }
+  @media (min-width: 640px) {
+    .ts-am-gal { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .ts-am-packs, .ts-gn-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (min-width: 1024px) {
+    .ts-am-gal { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+    .ts-am-packs, .ts-gn-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .ts-gn-today { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 3rem; }
+    .ts-gn-motiv { grid-template-columns: 220px minmax(0, 1fr); }
+  }
+  @media print {
+    .ts-khr, .ts-gn-tools, .ts-gn-noprint, header, footer, #footer-sections, .ts-header { display: none !important; }
+    .ts .ts-gn-text p { color: #111 !important; font-size: 13pt !important; }
+    .ts .ts-gn-h1, .ts .ts-gn-night, .ts .ts-gn-ask, .ts .ts-gn-ask li { color: #111 !important; background: none !important; border: 0 !important; }
+    .ts-gn-motiv { page-break-before: always; }
+    body, .ts-gn-page { background: #fff !important; }
+  }
+</style>
+
+<nav class="ts ts-khr" aria-label="Kreativhafen">
+  <div class="ts-container"><div class="ts-khr__bar"><a href="/kreativhafen">Übersicht</a><a href="/gute-nacht-geschichten">Gute-Nacht-Geschichten <i>gratis</i></a><a href="/ausmalbilder">Ausmalbilder <i>gratis</i></a><a href="/malbuecher">Malbücher</a><a href="/romane">Romane</a></div></div>
+</nav>
+<script>
+/* Reiter: aktiven Bereich markieren (Geschichten-Seiten gehören zu „Gute-Nacht-Geschichten“) */
+(() => {
+  const p = location.pathname.replace(/\/+$/, '') || '/';
+  document.querySelectorAll('.ts-khr__bar a').forEach(a => {
+    const h = a.getAttribute('href');
+    if (p === h || (h === '/gute-nacht-geschichten' && p.indexOf('/geschichten') === 0)) { a.setAttribute('aria-current', 'page'); a.scrollIntoView({ block: 'nearest', inline: 'center' }); }
+  });
+})();
+</script>
+<article class="ts ts-am tss ts-bleed ts-kh2 ts-gn-page" style="padding-top:0" data-gn-story aria-labelledby="ts-gn-h">
+  <div class="ts-am__orb ts-gn-dim" aria-hidden="true"></div>
+  <div class="ts-container tss--top">
+    <div class="ts-gn-story">
+      <div class="tss-kicker ts-gn-dim"><p class="ts-label ts-muted"><a href="/gute-nacht-geschichten" style="color:inherit">← Alle Gute-Nacht-Geschichten</a></p><p class="ts-label ts-muted">Geschichte 20 / 24</p></div>
+      <ul class="ts-gn-meta ts-gn-dim"><li class="ts-label">Mitmachgeschichte</li><li class="ts-label">Ab 2 Jahren</li><li class="ts-label">2 Min. Vorlesezeit</li><li class="ts-label">Gefühle</li><li class="ts-label">Einschlafen</li></ul>
+      <h1 id="ts-gn-h" class="ts-gn-h1">Die Luftballons wollen noch nicht schlafen<i>.</i></h1>
+      <p class="ts-gn-lead ts-gn-dim">Die Party ist vorbei, aber die drei Luftballons wollen noch weiter tanzen. Bis sie merken, wie gemütlich es auch ganz ruhig sein kann.</p>
+      <div class="ts-gn-tools" role="toolbar" aria-label="Lesehilfen">
+        <button type="button" data-gn="night" aria-pressed="false"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg>Nachtmodus</button>
+        <button type="button" data-gn="minus" aria-label="Schrift kleiner">A−</button>
+        <button type="button" data-gn="plus" aria-label="Schrift größer">A+</button>
+        <button type="button" data-gn="speak" aria-pressed="false"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><path d="M11 5 6 9H2v6h4l5 4V5Z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M19 5a10 10 0 0 1 0 14"/></svg>Vorlesen lassen</button>
+        <button type="button" data-gn="print"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><path d="M6 9V3h12v6"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><path d="M6 14h12v7H6z"/></svg>Drucken</button>
+      </div>
+      
+      <div class="ts-gn-text"><p>Heute war eine Party. Mit Kuchen, mit Musik und mit drei Luftballons.</p><p>Ein roter Ballon. Ein gelber Ballon. Ein grüner Ballon.</p><p>Den ganzen Tag haben sie getanzt. Hoch und runter. Hin und her. Hüpf, hüpf, hüpf.</p><p>Jetzt ist die Party vorbei. Alle Gäste sind nach Hause gegangen. Das Zimmer ist leer.</p><p>„Schlafenszeit, Luftballons“, sagt die Lampe.</p><p>„Nein!“, ruft der rote Ballon. „Wir wollen noch tanzen!“</p><p>„Nein!“, ruft der gelbe Ballon. „Wir sind noch gar nicht müde!“</p><p>„Nein!“, ruft der grüne Ballon. Und dann gähnt er. Haaaa.</p><p>Die Ballons tanzen weiter. Aber jetzt ein bisschen langsamer. Hüpf … hüpf …</p><p>Das Fenster ist ein kleines Stück offen. Ein leiser Wind kommt herein. Er schaukelt die Ballons. Hin und her. Hin und her. Wie in einer Wiege.</p><p>„Oh“, sagt der rote Ballon. „Das ist schön.“</p><p>„Ganz weich“, sagt der gelbe Ballon.</p><p>„Ganz ruhig“, flüstert der grüne Ballon.</p><p>Die drei Ballons schweben ganz nah zusammen. Ihre Schnüre kuscheln sich aneinander.</p><p>„Gute Nacht, roter Ballon.“ – „Gute Nacht, gelber Ballon.“ – „Gute Nacht, grüner Ballon.“</p><p>Die Lampe macht ihr Licht aus. Klick. Und die Luftballons schlafen.</p></div>
+      <p class="ts-gn-night ts-glass" data-gn-night><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg><span>Gute Nacht, rot. Gute Nacht, gelb. Gute Nacht, grün. Gute Nacht, du.</span></p>
+      <div class="ts-gn-ask ts-glass ts-gn-dim"><p class="ts-label ts-muted">[ Zum Reden danach ]</p><ul><li>Welche Farben haben die drei Luftballons?</li><li>Was machst du, wenn du noch nicht müde bist?</li></ul></div>
+      <div class="ts-gn-motiv ts-glass ts-gn-dim">
+        <div class="ts-gn-motiv__img"><svg role='img' aria-label='Ausmalbild Luftballons' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1100" width="1000" height="1100"><g stroke="#111111" stroke-linecap="round" stroke-linejoin="round"><g transform="translate(60 0) scale(.88)"><path d="M270 496 C346 616 424 800 500 860" fill="none" stroke-width="7"/><path d="M730 496 C714 616 516 800 500 860" fill="none" stroke-width="7"/><path d="M500 636 C530 756 470 800 500 860" fill="none" stroke-width="7"/><path d="M248 498 L270 466 L292 498 Q270 488 248 498 Z" fill="#fff" stroke-width="7" /><ellipse cx="270" cy="290" rx="150" ry="180" fill="#fff" stroke-width="11"/><path d="M180 245 Q188 173 240 150" fill="none" stroke-width="7"/><ellipse cx="221" cy="298" rx="18" ry="23" fill="#111111" stroke-width="0"/><circle cx="215" cy="290" r="7" fill="#fff" stroke="none"/><circle cx="227" cy="306" r="3" fill="#fff" stroke="none"/><ellipse cx="319" cy="298" rx="18" ry="23" fill="#111111" stroke-width="0"/><circle cx="313" cy="290" r="7" fill="#fff" stroke="none"/><circle cx="325" cy="306" r="3" fill="#fff" stroke="none"/><path d="M256 331 Q270 348 284 331" fill="none" stroke-width="5.95"/><ellipse cx="192" cy="327" rx="16" ry="8" fill="#fff" stroke-width="4.25"/><ellipse cx="348" cy="327" rx="16" ry="8" fill="#fff" stroke-width="4.25"/><path d="M708 498 L730 466 L752 498 Q730 488 708 498 Z" fill="#fff" stroke-width="7" /><ellipse cx="730" cy="290" rx="150" ry="180" fill="#fff" stroke-width="11"/><path d="M640 245 Q648 173 700 150" fill="none" stroke-width="7"/><ellipse cx="681" cy="298" rx="18" ry="23" fill="#111111" stroke-width="0"/><circle cx="675" cy="290" r="7" fill="#fff" stroke="none"/><circle cx="687" cy="306" r="3" fill="#fff" stroke="none"/><ellipse cx="779" cy="298" rx="18" ry="23" fill="#111111" stroke-width="0"/><circle cx="773" cy="290" r="7" fill="#fff" stroke="none"/><circle cx="785" cy="306" r="3" fill="#fff" stroke="none"/><path d="M716 331 Q730 348 744 331" fill="none" stroke-width="5.95"/><ellipse cx="652" cy="327" rx="16" ry="8" fill="#fff" stroke-width="4.25"/><ellipse cx="808" cy="327" rx="16" ry="8" fill="#fff" stroke-width="4.25"/><path d="M478 638 L500 606 L522 638 Q500 628 478 638 Z" fill="#fff" stroke-width="7" /><ellipse cx="500" cy="410" rx="170" ry="200" fill="#fff" stroke-width="11"/><path d="M398 360 Q406 280 466 254" fill="none" stroke-width="7"/><ellipse cx="436" cy="421" rx="23" ry="30" fill="#111111" stroke-width="0"/><circle cx="428" cy="410" r="9" fill="#fff" stroke="none"/><circle cx="444" cy="431" r="4" fill="#fff" stroke="none"/><ellipse cx="564" cy="421" rx="23" ry="30" fill="#111111" stroke-width="0"/><circle cx="556" cy="410" r="9" fill="#fff" stroke="none"/><circle cx="572" cy="431" r="4" fill="#fff" stroke="none"/><path d="M476 458 Q500 452 524 458 Q522 496 500 496 Q478 496 476 458 Z" fill="#fff" stroke-width="7.700000000000001" /><path d="M489 486 Q500 476 511 486" fill="none" stroke-width="5.5"/><ellipse cx="399" cy="458" rx="21" ry="11" fill="#fff" stroke-width="5.5"/><ellipse cx="601" cy="458" rx="21" ry="11" fill="#fff" stroke-width="5.5"/><path d="M500 860 C467 805 401 816 406 860 C401 904 467 915 500 860 Z" fill="#fff" stroke-width="7" /><path d="M500 860 C533 805 599 816 594 860 C599 904 533 915 500 860 Z" fill="#fff" stroke-width="7" /><circle cx="500" cy="860" r="18" fill="#fff" stroke-width="7"/><path d="M110 586 Q114 616 144 620 Q114 624 110 654 Q106 624 76 620 Q106 616 110 586 Z" fill="#fff" stroke-width="7" /><path d="M890 590 Q893 617 920 620 Q893 623 890 650 Q887 623 860 620 Q887 617 890 590 Z" fill="#fff" stroke-width="7" /><path d="M500 80 Q503 107 530 110 Q503 113 500 140 Q497 113 470 110 Q497 107 500 80 Z" fill="#fff" stroke-width="7" /></g><g transform="translate(33.6 1035.3) scale(0.12735 -0.12735)" fill="#fff" stroke="#111111" stroke-width="188.45" stroke-linejoin="round" paint-order="stroke"><path transform="translate(0 0)" d="M141 -9Q96 -9 77 4Q58 18 54 40Q50 61 50 83V600Q50 622 54 643Q58 664 77 678Q96 691 142 691Q188 691 206 678Q225 664 229 643Q233 622 233 599V147H477Q496 147 514 144Q531 141 542 124Q554 108 554 69Q554 31 542 14Q530 -2 512 -6Q495 -9 476 -9Z"/><path transform="translate(609 0)" d="M336 -20Q260 -20 202 10Q145 41 106 91Q67 141 48 201Q28 261 28 320V600Q28 623 32 644Q36 665 55 678Q74 692 120 692Q166 692 185 678Q204 665 208 644Q212 623 212 599V320Q212 287 223 251Q234 215 262 190Q289 164 339 164Q377 164 405 184Q433 203 448 238Q464 274 464 321V605Q464 627 468 646Q473 666 492 679Q511 692 556 692Q602 692 620 678Q639 664 643 643Q647 622 647 599V318Q647 258 627 198Q607 139 568 90Q528 40 470 10Q412 -20 336 -20Z"/><path transform="translate(1324 0)" d="M129 -9Q84 -9 65 4Q46 18 42 40Q38 61 38 83V600Q38 652 58 672Q79 691 132 691H498Q521 691 542 687Q562 683 575 664Q588 645 588 599Q588 554 574 535Q561 516 540 512Q519 508 496 508H221V419H405Q428 419 446 416Q465 412 476 396Q486 379 486 339Q486 301 475 285Q464 269 446 266Q427 263 404 263H221V82Q221 60 217 39Q213 18 194 4Q175 -9 129 -9Z"/><path transform="translate(1977 0)" d="M549 692Q568 692 585 689Q602 686 614 670Q625 654 625 615Q625 577 614 560Q602 544 584 541Q567 538 548 538H410V80Q410 58 406 38Q402 17 384 4Q365 -9 319 -9Q275 -9 256 4Q237 18 234 38Q230 59 230 81V538H91Q73 538 56 542Q38 545 26 561Q15 577 15 616Q15 654 26 670Q38 686 56 689Q74 692 92 692Z"/><path transform="translate(2657 0)" d="M121 -8Q76 -8 57 6Q38 19 34 40Q30 62 30 85V601Q30 623 34 644Q38 665 57 678Q76 692 122 692H356Q417 692 465 662Q513 633 541 584Q569 535 569 478Q569 459 566 440Q562 420 554 402Q547 383 536 366Q553 345 565 320Q577 296 583 270Q589 245 589 219Q588 171 570 130Q553 88 522 58Q491 27 451 10Q411 -8 366 -8ZM213 175H356Q363 175 375 178Q387 180 396 192Q406 203 406 230Q406 244 404 254Q401 263 396 268Q391 274 384 276Q378 279 370 280Q361 281 351 281H338Q298 281 281 298Q264 315 264 358Q264 399 282 416Q301 432 343 432H355Q363 432 369 433Q375 434 378 438Q382 442 384 450Q386 457 386 470Q386 493 376 501Q365 509 334 509H213Z"/><path transform="translate(3306 0)" d="M690 118Q705 88 706 67Q707 46 693 30Q679 14 648 -2Q600 -25 574 -16Q548 -8 525 41L355 389L187 40Q163 -7 137 -16Q111 -24 64 -1Q33 14 18 30Q4 46 5 67Q6 88 21 118L272 638Q284 662 308 676Q331 691 356 691Q374 691 390 684Q405 678 418 666Q431 654 439 637ZM197 136 273 292H438L514 136Z"/><path transform="translate(4057 0)" d="M141 -9Q96 -9 77 4Q58 18 54 40Q50 61 50 83V600Q50 622 54 643Q58 664 77 678Q96 691 142 691Q188 691 206 678Q225 664 229 643Q233 622 233 599V147H477Q496 147 514 144Q531 141 542 124Q554 108 554 69Q554 31 542 14Q530 -2 512 -6Q495 -9 476 -9Z"/><path transform="translate(4666 0)" d="M141 -9Q96 -9 77 4Q58 18 54 40Q50 61 50 83V600Q50 622 54 643Q58 664 77 678Q96 691 142 691Q188 691 206 678Q225 664 229 643Q233 622 233 599V147H477Q496 147 514 144Q531 141 542 124Q554 108 554 69Q554 31 542 14Q530 -2 512 -6Q495 -9 476 -9Z"/><path transform="translate(5275 0)" d="M365 -20Q292 -20 228 8Q165 35 117 84Q69 133 42 198Q14 262 14 335Q14 411 40 477Q67 543 114 593Q161 643 224 671Q286 699 357 699Q430 699 494 672Q557 644 605 595Q653 546 680 480Q707 415 707 339Q707 265 680 200Q654 135 606 86Q559 36 498 8Q436 -20 365 -20ZM360 163Q394 163 424 176Q454 190 476 214Q499 237 512 270Q524 302 524 339Q524 376 511 408Q498 440 476 464Q453 489 424 502Q394 516 361 516Q327 516 298 502Q268 489 246 464Q223 440 210 408Q197 376 197 339Q197 303 210 271Q223 239 246 214Q268 190 298 176Q327 163 360 163Z"/><path transform="translate(6036 0)" d="M118 -9Q74 -9 55 4Q36 18 32 39Q28 60 28 83V602Q28 624 32 644Q36 664 56 677Q75 690 120 690Q164 690 180 679Q196 668 209 651L459 315V602Q459 624 464 644Q468 664 487 677Q506 690 551 690Q597 690 616 676Q634 663 638 642Q642 621 642 598V82Q642 60 638 39Q634 18 615 4Q596 -9 550 -9Q516 -9 498 -4Q481 2 469 18L210 360V82Q210 60 206 39Q202 18 183 4Q164 -9 118 -9Z"/><path transform="translate(6746 0)" d="M271 -19Q210 -19 168 -4Q125 11 98 32Q71 52 57 69Q43 86 40 90Q20 115 16 135Q11 155 22 175Q32 195 57 219Q80 241 102 244Q124 246 146 234Q167 222 187 199Q211 172 228 162Q245 153 267 153Q294 153 311 160Q328 166 336 180Q344 193 344 214Q344 231 327 240Q310 250 282 257Q255 264 221 272Q187 281 154 295Q134 303 115 315Q96 327 80 342Q63 358 51 380Q39 401 32 428Q26 455 26 489Q26 550 56 598Q87 646 140 674Q194 702 262 702Q311 702 346 694Q381 686 404 675Q426 664 438 654Q450 645 453 642Q486 612 489 590Q492 569 465 529Q435 486 406 480Q377 475 339 499Q331 505 323 512Q315 520 302 526Q288 531 261 531Q251 531 241 528Q231 524 224 518Q217 513 212 505Q208 497 208 488Q208 467 224 456Q240 444 266 438Q293 432 325 426Q357 420 390 410Q417 401 442 387Q467 373 486 351Q505 329 516 296Q528 264 528 217Q528 152 503 106Q478 61 438 34Q399 6 354 -6Q310 -19 271 -19Z"/></g></g></svg></div>
+        <div><p class="ts-label ts-muted">[ Das Ausmalbild zur Geschichte ]</p>
+          <h2 class="ts-am__h2" style="font-size:clamp(1.5rem,3vw,2.2rem);margin-top:.8rem">Morgen früh: Luftballons ausmalen<i>.</i></h2>
+          <div class="ts-am__ctas ts-gn-noprint">
+            <button type="button" class="ts-am-mini ts-am-mini--hi" data-gn="motiv" data-name="Luftballons" data-titel="Die Luftballons wollen noch nicht schlafen">Ausmalbild drucken</button>
+            <a class="ts-am-mini" href="/ausmalbilder?motiv=gb02#ts-am-malen">Online ausmalen</a>
+          </div></div>
+      </div>
+      <div class="ts-gn-author ts-glass ts-gn-dim ts-gn-noprint">
+        <img src="https://images.squarespace-cdn.com/content/v1/6869717aa7c996116c8c8a56/ffc25dc6-15ea-4d07-ab0d-6173fde95edf/IMG_3686.jpeg?format=300w" alt="Trutz Stähler" width="72" height="72" loading="lazy">
+        <div><p class="ts-label ts-muted">[ Aus dem Kreativhafen ]</p>
+          <p><b>Trutz Stähler</b> – Papa aus Hamburg, Autor der Kritzelbücher und des Kinderkrimis „Maria Holm“. Im Kreativhafen entstehen Geschichten zum Vorlesen und Ausmalbilder zum Weitermalen.</p>
+          <div class="ts-am__ctas" style="margin-top:.9rem">
+            <button type="button" class="ts-am-mini" data-gn="share">Mit Freunden teilen</button>
+            <a class="ts-am-mini" href="/malbuecher">Die Kritzelbücher ansehen</a>
+          </div></div>
+      </div>
+      
+    </div>
+  </div>
+  <section class="ts-container ts-am__block ts-am__end ts-gn-noprint ts-gn-dim" aria-label="Weitere Geschichten">
+    <div class="ts-am__blockhead"><p class="ts-label ts-muted">[ Noch eine? ]</p><p class="ts-label ts-muted"><a href="/gute-nacht-geschichten" style="color:inherit">Alle Geschichten →</a></p></div>
+    <div class="ts-gn-grid" style="margin-top:1.5rem"><a class="ts-gn-card ts-glass" href="/geschichten/robo-lernt-traeumen" data-gn-card data-themen="Weltraum,Einschlafen,Gefühle" data-zeit="7" data-alter="5" data-form="Fantasiegeschichte" data-saison="" data-suche="robo lernt träumen robo ist ein kleiner roboter, der alles kann – nur nicht schlafen. denn er hat keinen aus-knopf zum träumen. oder vielleicht doch? weltraum,einschlafen,gefühle  im kinderzimmer von lio, ganz oben im regal zwischen den bilderbüchern, wohnt ein kleiner roboter. er heißt robo. robo hat einen eckigen kopf, zwei runde augen, die blau leuchten, und eine kleine antenne, die wackelt, wenn er sich freut. auf seinem bauch sind drei knöpfe: ein roter, ein gelber und ein grüner. robo kann ganz viel. er kann rechnen, schneller als jeder taschenrechner. er kann lio beim aufräumen helfen und die bauklötze nach farben sortieren. er kann piepsen, blinken und sogar ein bisschen tanzen. bip-bup, bip-bup." data-titel="Robo lernt träumen" data-teaser="Robo ist ein kleiner Roboter, der alles kann – nur nicht schlafen. Denn er hat keinen Aus-Knopf zum Träumen. Oder vielleicht doch?"><div class="ts-gn-card__img"><img src="https://raw.githubusercontent.com/trutzstaehler/stream-daten/main/kreativhafen/ausmalbilder/bilder/bunt/wr06.webp" alt="" loading="lazy" width="360" height="396" style="--r:-2deg"></div><div class="ts-gn-card__body"><h3 class="ts-gn-card__t">Robo lernt träumen</h3><p class="ts-gn-card__s">Robo ist ein kleiner Roboter, der alles kann – nur nicht schlafen. Denn er hat keinen Aus-Knopf zum Träumen. Oder vielleicht doch?</p><p class="ts-label ts-gn-card__m">7 Min. · ab 5 J. · Fantasiegeschichte</p></div></a><a class="ts-gn-card ts-glass" href="/geschichten/moewe-mats-will-nicht-schlafen" data-gn-card data-themen="Hafen,Tiere,Einschlafen" data-zeit="4" data-alter="3" data-form="Tiergeschichte" data-saison="" data-suche="möwe mats will nicht schlafen im hafen ist abends noch so viel los – da kann möwe mats doch unmöglich schlafen gehen! oder leuchtet der hafen vielleicht auch ohne sie weiter? hafen,tiere,einschlafen  am hamburger hafen wohnt eine kleine möwe. sie heißt mats. mats hat weiße federn, graue flügel und gelbe füße, die immer ein bisschen tapsen. tap, tap, tap. am liebsten sitzt mats auf einem dicken poller direkt an der elbe. von dort kann sie alles sehen: die großen schiffe, die kleinen boote, die kräne und die menschen, die winken. eines abends wird der himmel orange, dann rosa, dann lila. die sonne sinkt langsam hinter die kräne." data-titel="Möwe Mats will nicht schlafen" data-teaser="Im Hafen ist abends noch so viel los – da kann Möwe Mats doch unmöglich schlafen gehen! Oder leuchtet der Hafen vielleicht auch ohne sie weiter?"><div class="ts-gn-card__img"><img src="https://raw.githubusercontent.com/trutzstaehler/stream-daten/main/kreativhafen/ausmalbilder/bilder/bunt/hf03.webp" alt="" loading="lazy" width="360" height="396" style="--r:1.5deg"></div><div class="ts-gn-card__body"><h3 class="ts-gn-card__t">Möwe Mats will nicht schlafen</h3><p class="ts-gn-card__s">Im Hafen ist abends noch so viel los – da kann Möwe Mats doch unmöglich schlafen gehen! Oder leuchtet der Hafen vielleicht auch ohne sie weiter?</p><p class="ts-label ts-gn-card__m">4 Min. · ab 3 J. · Tiergeschichte</p></div></a></div>
+  </section>
+</article>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "ShortStory", "name": "Die Luftballons wollen noch nicht schlafen", "headline": "Die Luftballons wollen noch nicht schlafen", "description": "Die Party ist vorbei, aber die drei Luftballons wollen noch weiter tanzen. Bis sie merken, wie gemütlich es auch ganz ruhig sein kann.", "inLanguage": "de", "author": {"@type": "Person", "name": "Trutz Stähler", "url": "https://trutzstaehler.de/ueber-mich"}, "publisher": {"@type": "Organization", "name": "Kreativhafen"}, "isAccessibleForFree": true, "typicalAgeRange": "2-6", "timeRequired": "PT2M", "genre": "Gute-Nacht-Geschichte", "keywords": "Gefühle, Einschlafen", "image": "https://raw.githubusercontent.com/trutzstaehler/stream-daten/main/kreativhafen/ausmalbilder/bilder/bunt/gb02.webp", "url": "https://trutzstaehler.de/geschichten/die-luftballons-wollen-noch-nicht-schlafen", "wordCount": 182}</script>
+<script>
+/* Ein Motiv als A4-Seite drucken (öffnet ein Druckfenster) */
+window.tsKhPrint = (svg, name, paket) => {
+  const w = window.open('', '_blank');
+  if (!w) { alert('Bitte Pop-ups für diese Seite erlauben, um zu drucken.'); return; }
+  w.document.write('<!doctype html><html lang="de"><head><meta charset="utf-8"><title>' + name + ' – Ausmalbild</title>' +
+    '<style>@page{size:A4;margin:12mm}html,body{margin:0;background:#fff}body{display:flex;flex-direction:column;align-items:center;justify-content:center;height:96vh;font:500 9pt Arial,sans-serif;color:#888}' +
+    'svg{width:100%;max-height:88vh}p{margin:3mm 0 0;letter-spacing:.12em;text-transform:uppercase}</style></head><body>' + svg +
+    '<p>' + (paket ? paket + ' · ' : '') + 'trutzstaehler.de/ausmalbilder</p></body></html>');
+  w.document.close();
+  w.onafterprint = () => w.close();
+  setTimeout(() => { w.focus(); w.print(); }, 350);
+};
+</script>
+
+<script>
+/* Geschichte: Nachtmodus, Schriftgröße, Vorlesen lassen, Drucken, Ausmalbild drucken */
+(() => {
+  const root = document.querySelector('[data-gn-story]'); if (!root) return;
+  const txt = root.querySelector('.ts-gn-text'), h = document.documentElement;
+  const night = root.querySelector('[data-gn="night"]');
+  const setNight = on => { h.classList.toggle('ts-gn-dark', on); night.setAttribute('aria-pressed', on); try { localStorage.setItem('ts-gn-night', on ? '1' : ''); } catch (e) {} };
+  night.addEventListener('click', () => setNight(!h.classList.contains('ts-gn-dark')));
+  try { if (localStorage.getItem('ts-gn-night')) setNight(true); } catch (e) {}
+  let size = 19; try { size = +localStorage.getItem('ts-gn-size') || 19; } catch (e) {}
+  const setSize = s => { size = Math.max(16, Math.min(28, s)); txt.style.setProperty('--gn-size', size + 'px'); try { localStorage.setItem('ts-gn-size', size); } catch (e) {} };
+  setSize(size);
+  root.querySelector('[data-gn="plus"]').addEventListener('click', () => setSize(size + 2));
+  root.querySelector('[data-gn="minus"]').addEventListener('click', () => setSize(size - 2));
+  root.querySelector('[data-gn="print"]').addEventListener('click', () => window.print());
+  /* Vorlesen lassen (Computerstimme des Geräts, falls vorhanden) */
+  const sp = root.querySelector('[data-gn="speak"]');
+  if (!('speechSynthesis' in window)) sp.hidden = true;
+  else sp.addEventListener('click', () => {
+    if (speechSynthesis.speaking) { speechSynthesis.cancel(); sp.setAttribute('aria-pressed', 'false'); return; }
+    const t = [...txt.querySelectorAll('p')].map(p => p.textContent).join(' ') + ' ' + ((root.querySelector('[data-gn-night]') || {}).textContent || '');
+    const u = new SpeechSynthesisUtterance(t); u.lang = 'de-DE'; u.rate = .85; u.pitch = 1;
+    const v = speechSynthesis.getVoices().find(v => /^de/i.test(v.lang)); if (v) u.voice = v;
+    u.onend = () => sp.setAttribute('aria-pressed', 'false');
+    speechSynthesis.speak(u); sp.setAttribute('aria-pressed', 'true');
+  });
+  const sh = root.querySelector('[data-gn="share"]');
+  if (sh) sh.addEventListener('click', async () => {
+    const data = { title: document.title, text: 'Eine Gute-Nacht-Geschichte zum Vorlesen:', url: location.href };
+    try { if (navigator.share) await navigator.share(data); else { await navigator.clipboard.writeText(location.href); sh.textContent = 'Link kopiert ✓'; } } catch (e) {}
+  });
+  const mp = root.querySelector('[data-gn="motiv"]');
+  if (mp) mp.addEventListener('click', () => window.tsKhPrint(root.querySelector('.ts-gn-motiv__img').innerHTML, mp.dataset.name, mp.dataset.titel));
+})();
+</script>

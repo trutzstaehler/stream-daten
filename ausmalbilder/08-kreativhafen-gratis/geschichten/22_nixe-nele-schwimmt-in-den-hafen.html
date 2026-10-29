@@ -1,0 +1,342 @@
+<!-- =====================================================================
+  GUTE-NACHT-GESCHICHTE „Nixe Nele schwimmt in den Hafen“  ·  Blog-Beitrag /geschichten/nixe-nele-schwimmt-in-den-hafen
+  Einfügen: Beitrag öffnen → Inhalt löschen → Code-Block → alles einfügen.
+====================================================================== -->
+
+<style>
+  /* ===== Ausmalbilder (ts-am) – nutzt die ts-/tss-Bausteine der Seite ===== */
+  .ts-am { position: relative; isolation: isolate; overflow: hidden; overflow: clip; }
+  .ts-am__orb { position: absolute; z-index: -1; right: -14%; top: 0; width: 56vw; height: 56vw; max-width: 860px; max-height: 860px; border-radius: 50%; pointer-events: none;
+    background: radial-gradient(circle, rgba(46, 140, 108, .28) 0%, rgba(46, 140, 108, .16) 24%, rgba(46, 140, 108, .06) 46%, rgba(46, 140, 108, 0) 70%); }
+  .ts-am .ts-line { padding-bottom: .16em; margin-bottom: -.16em; }
+  .ts-am__ctas { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.75rem; }
+  .ts .ts-am__chips { display: flex; flex-wrap: wrap; gap: .5rem; margin: 1.5rem 0 0; padding: 0; list-style: none; }
+  .ts .ts-am__chips li { padding: 8px 13px; border-radius: 999px; border: 1px solid var(--ts-line-strong, rgba(255,255,255,.14)); color: var(--ts-text, #f6faf7); font-size: 10.5px; }
+  .ts-am__block { padding-top: clamp(4.5rem, 8vw, 7.5rem); }
+  .ts-am__blockhead { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; padding-bottom: 1.25rem; border-bottom: 1px solid var(--tss-line, rgba(255,255,255,.1)); }
+  .ts .ts-am__h2 { margin-top: clamp(1.75rem, 3vw, 2.5rem); font-family: var(--ts-font-display, 'Syne', sans-serif); font-weight: 800; font-size: clamp(2rem, 5vw, 4.4rem); line-height: .98; letter-spacing: -0.03em; }
+  .ts .ts-am__h2 i { font-style: normal; color: var(--tss-acc, #6ee7b7); }
+  .ts .ts-am__sub { margin-top: .9rem; max-width: 42rem; color: var(--tss-text, rgba(246,250,247,.72)); font-size: clamp(15px, 1.3vw, 17.5px); line-height: 1.65; }
+  .ts-am__end { padding-bottom: clamp(6rem, 11vw, 10rem); }
+
+  /* Saison-Leiste */
+  .ts-am-season { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(230px, 1fr); gap: 1px; margin: 2rem 0 0; padding: 0; list-style: none;
+    overflow-x: auto; scroll-snap-type: x mandatory; background: var(--tss-line, rgba(255,255,255,.1)); border: 1px solid var(--tss-line, rgba(255,255,255,.1)); scrollbar-width: thin; }
+  .ts-am-season li { scroll-snap-align: start; background: var(--ts-bg, #060608); }
+  .ts .ts-am-season a { position: relative; display: flex; flex-direction: column; gap: .55rem; height: 100%; min-height: 190px; padding: 1.4rem 1.3rem 1.3rem; color: inherit; text-decoration: none; transition: background .3s; }
+  .ts .ts-am-season a::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 3px; background: var(--c); opacity: .35; transition: opacity .3s; }
+  .ts .ts-am-season a:hover { background: rgba(255,255,255,.03); }
+  .ts .ts-am-season a:hover::before, .ts-am-season .is-now a::before { opacity: 1; }
+  .ts-am-season__date { color: var(--c); }
+  .ts .ts-am-season__name { font: 800 clamp(1.1rem, 1.35vw, 1.32rem)/1.08 var(--ts-font-display, 'Syne', sans-serif); letter-spacing: -0.025em; overflow-wrap: anywhere; hyphens: auto; }
+  .ts .ts-am-season__sub { color: var(--tss-text, rgba(246,250,247,.72)); font-size: 14px; line-height: 1.5; }
+  .ts .ts-am-season__state { margin-top: auto; display: inline-flex; align-self: flex-start; align-items: center; gap: .45rem; padding: 6px 11px; border-radius: 999px;
+    border: 1px solid var(--tss-line, rgba(255,255,255,.1)); color: var(--ts-muted, #9aaba3); font-size: 10px; white-space: nowrap; }
+  .ts-am-season .is-now .ts-am-season__state { border-color: var(--c); color: #060608; background: var(--c); }
+  .ts-am-season .is-now .ts-am-season__state::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: #060608; animation: ts-am-pulse 1.6s infinite; }
+  .ts-am-season .is-past { opacity: .5; }
+  @keyframes ts-am-pulse { 50% { opacity: .25; } }
+
+  /* Highlight-Karte (Saisonpaket) */
+  .ts .ts-am-bundle { display: grid; gap: 2rem; margin-top: 2rem; padding: clamp(1.5rem, 4vw, 3rem); border-radius: 26px; align-items: center; }
+  .ts .ts-am-bundle__price { display: flex; align-items: baseline; gap: .8rem; margin-top: 1.2rem; font: 800 clamp(2rem, 4vw, 3rem)/1 var(--ts-font-display, 'Syne', sans-serif); letter-spacing: -0.03em; }
+  .ts .ts-am-bundle__price s { font-size: .45em; color: var(--ts-muted, #9aaba3); font-weight: 700; }
+  .ts-am-bundle__art { position: relative; min-height: 260px; }
+  .ts .ts-am-bundle__art img { position: absolute; width: 46% !important; height: auto !important; border-radius: 8px; background: #fbf9f4; padding: 6px; box-shadow: 0 30px 60px -30px rgba(0,0,0,.9); }
+  .ts-am-bundle__art img:nth-child(1) { left: 0; top: 12%; transform: rotate(-6deg); }
+  .ts-am-bundle__art img:nth-child(2) { left: 27%; top: 0; transform: rotate(2deg); z-index: 2; }
+  .ts-am-bundle__art img:nth-child(3) { right: 0; top: 16%; transform: rotate(7deg); }
+
+  /* Ausmal-Widget (wie im Kritzelbuch) */
+  .ts-am-pick { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1.5rem; }
+  .ts .ts-am-pick button { padding: 9px 14px; border-radius: 999px; border: 1px solid var(--ts-line-strong, rgba(255,255,255,.14)); background: transparent; color: var(--ts-text, #f6faf7);
+    font: 600 11px/1 var(--ts-font-mono, 'JetBrains Mono', monospace); letter-spacing: .12em; text-transform: uppercase; cursor: pointer; transition: background .25s, color .25s, border-color .25s; }
+  .ts .ts-am-pick button:hover { border-color: rgba(110, 231, 183, .45); }
+  .ts .ts-am-pick button[aria-pressed="true"] { background: #f6faf7; color: #060608; border-color: #f6faf7; }
+  .ts-paint { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1.25rem; margin-top: 1.5rem; align-items: start; }
+  .ts-paint__paper { position: relative; padding: clamp(.6rem, 1.6vw, 1.25rem); border-radius: 8px; background: #fbf9f4; box-shadow: 0 1px 0 rgba(255,255,255,.7) inset, 0 40px 80px -36px rgba(0,0,0,.9), 0 2px 8px rgba(0,0,0,.35); }
+  .ts-paint__canvas { display: block; width: 100%; height: auto; aspect-ratio: 1000 / 1100; border-radius: 4px; cursor: crosshair; touch-action: pan-y; background: #fff; }
+  .ts-paint.is-brush .ts-paint__canvas { touch-action: none; }
+  .ts .ts-paint__done { position: absolute; left: 50%; top: 1rem; transform: translate(-50%, -10px); padding: 8px 14px; border-radius: 999px; background: #1d4d3f; color: #f6faf7; font-size: 11px; opacity: 0; pointer-events: none; transition: opacity .3s, transform .4s var(--ts-ease-out); white-space: nowrap; }
+  .ts .ts-paint__done.is-on { opacity: 1; transform: translate(-50%, 0); }
+  .ts-paint__tools { display: grid; gap: 1rem; padding: 1.1rem; border-radius: 22px; }
+  .ts .ts-paint__label { color: var(--ts-muted, #9aaba3); font-size: 10.5px; }
+  .ts-paint__swatches { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: .5rem; margin-top: .5rem; }
+  .ts .ts-paint__sw { position: relative; aspect-ratio: 1; width: 100%; border-radius: 50%; border: 2px solid rgba(255,255,255,.14); background: var(--c); cursor: pointer; transition: transform .25s var(--ts-ease-out), border-color .2s; }
+  .ts .ts-paint__sw:hover { transform: scale(1.08); }
+  .ts .ts-paint__sw[aria-pressed="true"] { border-color: #f6faf7; transform: scale(1.12); box-shadow: 0 0 0 3px rgba(110,231,183,.45); }
+  .ts-paint__modes, .ts-paint__acts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .5rem; margin-top: .5rem; }
+  .ts-paint__acts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .ts .ts-paint__btn { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .35rem; min-height: 64px; padding: .6rem .4rem; border-radius: 16px; border: 1px solid var(--ts-line-strong, rgba(255,255,255,.14)); background: rgba(255,255,255,.03); color: var(--ts-text, #f6faf7); font: 500 12.5px/1.15 var(--ts-font-body, Inter, sans-serif); cursor: pointer; transition: background .25s, border-color .25s, color .25s; }
+  .ts .ts-paint__btn:hover { border-color: rgba(110,231,183,.45); }
+  .ts .ts-paint__btn[aria-pressed="true"] { background: #f6faf7; color: #060608; border-color: #f6faf7; }
+  .ts .ts-paint__btn:disabled { opacity: .35; cursor: default; }
+  .ts .ts-paint__size { display: flex; align-items: center; gap: .75rem; margin-top: .5rem; }
+  .ts-paint__size input { flex: 1; accent-color: #6ee7b7; }
+  .ts .ts-paint__hint { color: var(--ts-muted, #9aaba3); font-size: 13px; line-height: 1.5; }
+
+  /* Motiv-Parade */
+  .ts-am-zoo { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(.6rem, 1.6vw, 1.1rem); margin-top: 2rem; }
+  .ts .ts-am-zoo figure { margin: 0; padding: clamp(.4rem, 1vw, .7rem); border-radius: 6px; background: #fbf9f4; transform: rotate(var(--r, 0deg)); box-shadow: 0 24px 50px -28px rgba(0,0,0,.85); transition: transform .5s var(--ts-ease-out); }
+  .ts .ts-am-zoo figure:hover { transform: rotate(0deg) translateY(-5px) scale(1.03); }
+  .ts-am-zoo svg, .ts-am-zoo img { display: block; width: 100% !important; height: auto !important; }
+  .ts .ts-am-zoo figcaption { margin-top: .35rem; text-align: center; font: 800 clamp(8px, .9vw, 12px)/1 var(--ts-font-display, 'Syne', sans-serif); letter-spacing: 0; text-transform: uppercase; color: #1b1f1c; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .ts .ts-am-zoo figcaption.is-long { font-size: clamp(6.5px, .68vw, 9.5px); }
+  .ts .ts-am-zoo .ts-am-door { position: relative; }
+  .ts .ts-am-zoo .ts-am-door b { position: absolute; left: .45rem; top: .4rem; min-width: 1.9rem; height: 1.9rem; display: grid; place-items: center; border-radius: 999px; background: #060608; color: #f6faf7; font: 700 12px/1 var(--ts-font-mono, monospace); }
+
+  /* Gratis + Kita */
+  .ts .ts-am-split { display: grid; gap: 2rem; margin-top: 2rem; padding: clamp(1.5rem, 3.5vw, 2.75rem); border-radius: 26px; align-items: center; }
+  .ts-am-thumbs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .8rem; }
+  .ts .ts-am-thumbs img { display: block; width: 100% !important; height: auto !important; border-radius: 6px; background: #fbf9f4; padding: 5px; box-shadow: 0 24px 50px -28px rgba(0,0,0,.85); }
+  .ts-am-thumbs img:nth-child(1) { transform: rotate(-3deg); } .ts-am-thumbs img:nth-child(2) { transform: translateY(-8px) rotate(1.5deg); } .ts-am-thumbs img:nth-child(3) { transform: rotate(2.5deg); }
+  .ts .ts-am-note { margin-top: 1rem; color: rgba(246,250,247,.5); font-size: 13px; line-height: 1.6; }
+  .ts .ts-am-list { list-style: none; margin: 1.25rem 0 0; padding: 0; display: grid; gap: .7rem; }
+  .ts .ts-am-list li { position: relative; padding-left: 1.6rem; color: var(--tss-text, rgba(246,250,247,.72)); line-height: 1.55; }
+  .ts .ts-am-list li::before { content: ""; position: absolute; left: 0; top: .5em; width: 8px; height: 8px; border-radius: 50%; background: var(--tss-acc, #6ee7b7); }
+  .ts .ts-am-list b { color: #f6faf7; }
+  .ts .ts-am-final { margin-top: clamp(3rem, 6vw, 5rem); padding: clamp(1.75rem, 4vw, 3rem); border-radius: 26px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1.5rem; }
+  .ts .ts-am-final p { font: 800 clamp(1.5rem, 3vw, 2.4rem)/1.05 var(--ts-font-display, 'Syne', sans-serif); letter-spacing: -0.025em; margin: 0; }
+
+  @media (min-width: 640px) {
+    .ts-am-zoo { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  }
+  @media (min-width: 1024px) {
+    .ts-paint { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 2rem; }
+    .ts-paint__tools { position: sticky; top: 110px; }
+    .ts .ts-am-bundle, .ts .ts-am-split { grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); gap: 3rem; }
+    .ts-am-zoo { grid-template-columns: repeat(var(--cols, 6), minmax(0, 1fr)); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .ts .ts-am-zoo figure, .ts-am-bundle__art img, .ts-am-thumbs img { transform: none !important; }
+    .ts-am-season .is-now .ts-am-season__state::before { animation: none; }
+  }
+
+  .ts-khr { position: relative; z-index: 3; padding-top: calc(var(--ts-header-space, 96px) + 1rem); }
+  .ts-khr__bar { display: flex; gap: .4rem; overflow-x: auto; scrollbar-width: none; padding: .35rem; border: 1px solid var(--ts-line, rgba(255,255,255,.08)); border-radius: 999px; background: rgba(255,255,255,.025); width: max-content; max-width: 100%; }
+  .ts-khr__bar::-webkit-scrollbar { display: none; }
+  .ts .ts-khr__bar a { display: inline-flex; align-items: center; gap: .45rem; padding: 10px 16px; border-radius: 999px; color: var(--ts-muted, #9aaba3); text-decoration: none; white-space: nowrap; font: 500 14px/1 var(--ts-font-body, Inter, sans-serif); transition: background .25s, color .25s; }
+  .ts .ts-khr__bar a:hover { color: var(--ts-text, #f6faf7); background: rgba(255,255,255,.04); }
+  .ts .ts-khr__bar a[aria-current="page"] { background: #f6faf7; color: #060608; }
+  .ts .ts-khr__bar a i { font-style: normal; padding: 3px 7px; border-radius: 999px; background: rgba(110,231,183,.16); color: #6ee7b7; font: 700 9.5px/1 var(--ts-font-mono, monospace); letter-spacing: .1em; text-transform: uppercase; }
+  .ts .ts-khr__bar a[aria-current="page"] i { background: #1d4d3f; color: #f6faf7; }
+
+  /* ---------- Kreativhafen gratis ---------- */
+  .ts-kh2 .tss--top { padding-top: clamp(2rem, 4vw, 3rem); }
+  .ts-am-packs { display: grid; gap: 1rem; margin-top: 2rem; grid-template-columns: minmax(0, 1fr); }
+  .ts .ts-am-pack { display: flex; flex-direction: column; border-radius: 22px; overflow: hidden; scroll-margin-top: 120px; }
+  .ts-am-pack__img { position: relative; aspect-ratio: 3 / 2; background: #0b100e; overflow: hidden; }
+  .ts .ts-am-pack__img img { display: block; width: 100% !important; height: 100% !important; object-fit: cover; transition: transform .7s var(--ts-ease-out); }
+  .ts-am-pack:hover .ts-am-pack__img img { transform: scale(1.04); }
+  .ts .ts-am-pack__nr { position: absolute; left: 1rem; top: .9rem; color: rgba(246,250,247,.6); }
+  .ts .ts-am-pack__tag { position: absolute; right: .9rem; top: .8rem; padding: 6px 11px; border-radius: 999px; background: rgba(6,6,8,.65); border: 1px solid var(--c); color: var(--c); font-size: 10px; }
+  .ts-am-pack__body { display: flex; flex-direction: column; gap: .55rem; flex: 1; padding: 1.25rem 1.35rem 1.4rem; }
+  .ts .ts-am-pack__t { font: 800 clamp(1.3rem, 1.8vw, 1.6rem)/1.05 var(--ts-font-display, 'Syne', sans-serif); letter-spacing: -0.025em; margin: 0; }
+  .ts .ts-am-pack__t i { font-style: normal; color: var(--c); }
+  .ts .ts-am-pack__s { color: var(--ts-muted, #9aaba3); font-size: 14px; line-height: 1.55; margin: 0; }
+  .ts-am-pack__acts { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: auto; padding-top: .9rem; }
+  .ts .ts-am-mini { display: inline-flex; align-items: center; gap: .45rem; padding: 10px 14px; border-radius: 999px; border: 1px solid var(--ts-line-strong, rgba(255,255,255,.14)); background: transparent; color: var(--ts-text, #f6faf7); font: 600 13px/1 var(--ts-font-body, Inter, sans-serif); text-decoration: none; cursor: pointer; transition: background .25s, color .25s, border-color .25s; }
+  .ts .ts-am-mini:hover { border-color: rgba(110,231,183,.5); }
+  .ts .ts-am-mini--hi { background: #f6faf7; color: #060608; border-color: #f6faf7; }
+  .ts .ts-am-mini--hi:hover { background: #6ee7b7; border-color: #6ee7b7; }
+  .ts .ts-am-mini svg { flex: none; }
+  /* Galerie */
+  .ts-am-filter { display: flex; gap: .45rem; overflow-x: auto; scrollbar-width: none; margin-top: 1.5rem; padding-bottom: .25rem; }
+  .ts-am-filter::-webkit-scrollbar { display: none; }
+  .ts .ts-am-filter button { flex: none; padding: 9px 14px; border-radius: 999px; border: 1px solid var(--ts-line-strong, rgba(255,255,255,.14)); background: transparent; color: var(--ts-text, #f6faf7); font: 600 11px/1 var(--ts-font-mono, monospace); letter-spacing: .1em; text-transform: uppercase; cursor: pointer; }
+  .ts .ts-am-filter button[aria-pressed="true"] { background: #f6faf7; color: #060608; border-color: #f6faf7; }
+  .ts-am-gal { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(.6rem, 1.4vw, 1rem); margin-top: 1.5rem; min-height: 200px; }
+  .ts .ts-am-tile { position: relative; margin: 0; padding: .55rem .55rem .6rem; border-radius: 8px; background: #fbf9f4; box-shadow: 0 24px 50px -28px rgba(0,0,0,.85); transform: rotate(var(--r, 0deg)); transition: transform .45s var(--ts-ease-out); }
+  .ts .ts-am-tile:hover { transform: rotate(0deg) translateY(-4px); }
+  .ts-am-tile > svg { display: block; width: 100% !important; height: auto !important; }
+  .ts .ts-am-tile__acts svg { width: 15px !important; height: 15px !important; flex: none; }
+  .ts-am-tile__acts { display: grid; grid-template-columns: 1fr 1fr; gap: .35rem; margin-top: .45rem; }
+  .ts .ts-am-tile__acts button { display: inline-flex; align-items: center; justify-content: center; gap: .3rem; padding: 8px 6px; border-radius: 999px; border: 1px solid #d7d3c8; background: #fff; color: #1b1f1c; font: 600 11.5px/1 var(--ts-font-body, Inter, sans-serif); cursor: pointer; }
+  .ts .ts-am-tile__acts button:hover { background: #1b1f1c; color: #fff; border-color: #1b1f1c; }
+  .ts .ts-am-gal__msg { grid-column: 1 / -1; color: var(--ts-muted, #9aaba3); }
+  /* Geschichten */
+  .ts-gn-today { display: grid; gap: 1.5rem; margin-top: 2rem; padding: clamp(1.25rem, 3.5vw, 2.5rem); border-radius: 26px; align-items: center; }
+  .ts .ts-gn-today img { display: block; width: 100% !important; max-width: 340px; height: auto !important; margin: 0 auto; border-radius: 10px; background: #fbf9f4; padding: 8px; transform: rotate(-2deg); box-shadow: 0 40px 70px -30px rgba(0,0,0,.9); }
+  .ts .ts-gn-meta { display: flex; flex-wrap: wrap; gap: .45rem; margin: 1rem 0 0; padding: 0; list-style: none; }
+  .ts .ts-gn-meta li { padding: 6px 11px; border-radius: 999px; border: 1px solid var(--ts-line-strong, rgba(255,255,255,.14)); color: var(--ts-text, #f6faf7); font-size: 10.5px; }
+  .ts-gn-filter { display: flex; flex-wrap: wrap; gap: .45rem; margin-top: 1.5rem; }
+  .ts .ts-gn-filter button { padding: 9px 14px; border-radius: 999px; border: 1px solid var(--ts-line-strong, rgba(255,255,255,.14)); background: transparent; color: var(--ts-text, #f6faf7); font: 600 11px/1 var(--ts-font-mono, monospace); letter-spacing: .1em; text-transform: uppercase; cursor: pointer; }
+  .ts .ts-gn-filter button[aria-pressed="true"] { background: #f6faf7; color: #060608; border-color: #f6faf7; }
+  .ts-gn-grid { display: grid; gap: 1rem; margin-top: 1.5rem; grid-template-columns: minmax(0, 1fr); }
+  .ts .ts-gn-card { display: flex; flex-direction: column; border-radius: 22px; overflow: hidden; color: inherit; text-decoration: none; transition: transform .5s var(--ts-ease-out); }
+  .ts .ts-gn-card:hover { transform: translateY(-4px); }
+  .ts-gn-card[hidden] { display: none !important; }
+  .ts .ts-gn-card__img { display: grid; place-items: center; aspect-ratio: 16 / 10; background: radial-gradient(70% 80% at 50% 100%, rgba(46,140,108,.35), transparent 70%), linear-gradient(180deg, rgba(29,77,63,.25), rgba(12,17,15,.4)); }
+  .ts .ts-gn-card__img img { width: 46% !important; height: auto !important; border-radius: 8px; background: #fbf9f4; padding: 5px; transform: rotate(var(--r, -2deg)); box-shadow: 0 30px 50px -26px rgba(0,0,0,.9); }
+  .ts-gn-card__body { display: flex; flex-direction: column; gap: .5rem; flex: 1; padding: 1.2rem 1.35rem 1.4rem; }
+  .ts .ts-gn-card__t { margin: 0; font: 800 clamp(1.2rem, 1.7vw, 1.45rem)/1.1 var(--ts-font-display, 'Syne', sans-serif); letter-spacing: -0.02em; }
+  .ts .ts-gn-card__s { margin: 0; color: var(--ts-muted, #9aaba3); font-size: 14.5px; line-height: 1.6; }
+  .ts .ts-gn-card__m { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: auto; padding-top: .8rem; color: #6ee7b7; }
+  /* Einzelne Geschichte */
+  .ts-gn-story { max-width: 46rem; margin: 0 auto; }
+  .ts .ts-gn-h1 { margin: 1.25rem 0 0; font: 800 clamp(2.2rem, 6vw, 4.6rem)/.98 var(--ts-font-display, 'Syne', sans-serif); letter-spacing: -0.035em; }
+  .ts .ts-gn-h1 i { font-style: normal; color: #6ee7b7; }
+  .ts .ts-gn-lead { margin-top: 1rem; color: var(--ts-muted, #9aaba3); font-size: clamp(16px, 1.4vw, 19px); line-height: 1.65; }
+  .ts-gn-tools { position: sticky; top: calc(var(--ts-header-space, 96px) - 16px); z-index: 4; display: flex; flex-wrap: wrap; gap: .45rem; margin-top: 1.5rem; padding: .5rem; border-radius: 999px; border: 1px solid var(--ts-line, rgba(255,255,255,.08)); background: rgba(6,6,8,.82); backdrop-filter: blur(12px); width: max-content; max-width: 100%; }
+  .ts .ts-gn-tools button, .ts .ts-gn-tools a { display: inline-flex; align-items: center; gap: .4rem; padding: 9px 13px; border-radius: 999px; border: 1px solid transparent; background: transparent; color: var(--ts-text, #f6faf7); font: 500 13px/1 var(--ts-font-body, Inter, sans-serif); text-decoration: none; cursor: pointer; }
+  .ts .ts-gn-tools button:hover, .ts .ts-gn-tools a:hover { border-color: var(--ts-line-strong, rgba(255,255,255,.14)); }
+  .ts .ts-gn-tools button[aria-pressed="true"] { background: #f6faf7; color: #060608; }
+  .ts-gn-text { --gn-size: 19px; margin-top: 2.25rem; }
+  .ts .ts-gn-text p { margin: 0 0 1.15em; font: 400 var(--gn-size)/1.85 var(--ts-font-body, Inter, sans-serif); color: #e7ece9; }
+  .ts .ts-gn-text p:first-child::first-letter { float: left; margin: .08em .12em 0 0; font: 800 3.4em/.8 var(--ts-font-display, 'Syne', sans-serif); color: #6ee7b7; }
+  .ts .ts-gn-night { display: flex; align-items: center; gap: 1rem; margin: 2.5rem 0 0; padding: 1.4rem 1.5rem; border-radius: 22px; font: 700 clamp(1.15rem, 2vw, 1.45rem)/1.35 var(--ts-font-display, 'Syne', sans-serif); letter-spacing: -0.01em; }
+  .ts .ts-gn-night svg { flex: none; color: #f7d046; }
+  .ts .ts-gn-ask { margin-top: 1.25rem; padding: 1.4rem 1.5rem; border-radius: 22px; }
+  .ts .ts-gn-ask ul { margin: .8rem 0 0; padding: 0; list-style: none; display: grid; gap: .55rem; }
+  .ts .ts-gn-ask li { position: relative; padding-left: 1.5rem; color: var(--tss-text, rgba(246,250,247,.8)); line-height: 1.55; }
+  .ts .ts-gn-ask li::before { content: "?"; position: absolute; left: 0; top: 0; color: #6ee7b7; font-weight: 800; }
+  .ts-gn-motiv { display: grid; gap: 1.25rem; margin-top: 1.25rem; padding: 1.4rem 1.5rem; border-radius: 22px; align-items: center; }
+  .ts .ts-gn-motiv__img { max-width: 220px; padding: .5rem; border-radius: 8px; background: #fbf9f4; transform: rotate(-2deg); box-shadow: 0 30px 50px -26px rgba(0,0,0,.9); }
+  .ts .ts-gn-motiv__img svg { display: block; width: 100% !important; height: auto !important; }
+  .ts .ts-gn-author { display: grid; grid-template-columns: 72px 1fr; gap: 1.1rem; align-items: start; margin-top: 1.25rem; padding: 1.4rem 1.5rem; border-radius: 22px; }
+  .ts .ts-gn-author img { width: 72px !important; height: 72px !important; border-radius: 50%; object-fit: cover; }
+  .ts .ts-gn-author p { margin: 0; color: var(--tss-text, rgba(246,250,247,.75)); line-height: 1.6; font-size: 15px; }
+  .ts .ts-gn-author p + p { margin-top: .45rem; }
+  .ts .ts-gn-author b { color: #f6faf7; }
+  .ts .ts-gn-audio { margin-top: 1.5rem; padding: 1rem 1.2rem; border-radius: 18px; }
+  .ts .ts-gn-audio audio { width: 100%; margin-top: .6rem; }
+  .ts .ts-gn-reihe { margin-top: 1.25rem; }
+  .ts .ts-gn-reihe ul { margin: .7rem 0 0; padding: 0; list-style: none; border-top: 1px solid var(--ts-line, rgba(255,255,255,.08)); }
+  .ts .ts-gn-reihe li { display: flex; justify-content: space-between; gap: 1rem; padding: .85rem 0; border-bottom: 1px solid var(--ts-line, rgba(255,255,255,.08)); }
+  .ts .ts-gn-reihe a { color: #f6faf7; font: 700 1.05rem/1.3 var(--ts-font-display, 'Syne', sans-serif); text-decoration: none; }
+  .ts .ts-gn-reihe a:hover { color: #6ee7b7; }
+  .ts .ts-gn-reihe .ts-label { color: var(--ts-muted, #9aaba3); white-space: nowrap; }
+  /* Nachtmodus: dunkler, wärmer, größer – zum Vorlesen im abgedunkelten Kinderzimmer */
+  html.ts-gn-dark .ts-gn-page { background: #050505; }
+  html.ts-gn-dark .ts .ts-gn-text p { color: #e9dcc0; }
+  html.ts-gn-dark .ts .ts-gn-text p:first-child::first-letter { color: #f7d046; }
+  html.ts-gn-dark .ts-gn-dim { opacity: .25; transition: opacity .4s; }
+  html.ts-gn-dark .ts-khr, html.ts-gn-dark .ts-header { opacity: .25; }
+  @media (min-width: 640px) {
+    .ts-am-gal { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .ts-am-packs, .ts-gn-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (min-width: 1024px) {
+    .ts-am-gal { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+    .ts-am-packs, .ts-gn-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .ts-gn-today { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 3rem; }
+    .ts-gn-motiv { grid-template-columns: 220px minmax(0, 1fr); }
+  }
+  @media print {
+    .ts-khr, .ts-gn-tools, .ts-gn-noprint, header, footer, #footer-sections, .ts-header { display: none !important; }
+    .ts .ts-gn-text p { color: #111 !important; font-size: 13pt !important; }
+    .ts .ts-gn-h1, .ts .ts-gn-night, .ts .ts-gn-ask, .ts .ts-gn-ask li { color: #111 !important; background: none !important; border: 0 !important; }
+    .ts-gn-motiv { page-break-before: always; }
+    body, .ts-gn-page { background: #fff !important; }
+  }
+</style>
+
+<nav class="ts ts-khr" aria-label="Kreativhafen">
+  <div class="ts-container"><div class="ts-khr__bar"><a href="/kreativhafen">Übersicht</a><a href="/gute-nacht-geschichten">Gute-Nacht-Geschichten <i>gratis</i></a><a href="/ausmalbilder">Ausmalbilder <i>gratis</i></a><a href="/malbuecher">Malbücher</a><a href="/romane">Romane</a></div></div>
+</nav>
+<script>
+/* Reiter: aktiven Bereich markieren (Geschichten-Seiten gehören zu „Gute-Nacht-Geschichten“) */
+(() => {
+  const p = location.pathname.replace(/\/+$/, '') || '/';
+  document.querySelectorAll('.ts-khr__bar a').forEach(a => {
+    const h = a.getAttribute('href');
+    if (p === h || (h === '/gute-nacht-geschichten' && p.indexOf('/geschichten') === 0)) { a.setAttribute('aria-current', 'page'); a.scrollIntoView({ block: 'nearest', inline: 'center' }); }
+  });
+})();
+</script>
+<article class="ts ts-am tss ts-bleed ts-kh2 ts-gn-page" style="padding-top:0" data-gn-story aria-labelledby="ts-gn-h">
+  <div class="ts-am__orb ts-gn-dim" aria-hidden="true"></div>
+  <div class="ts-container tss--top">
+    <div class="ts-gn-story">
+      <div class="tss-kicker ts-gn-dim"><p class="ts-label ts-muted"><a href="/gute-nacht-geschichten" style="color:inherit">← Alle Gute-Nacht-Geschichten</a></p><p class="ts-label ts-muted">Geschichte 22 / 24</p></div>
+      <ul class="ts-gn-meta ts-gn-dim"><li class="ts-label">Abenteuer</li><li class="ts-label">Ab 5 Jahren</li><li class="ts-label">7 Min. Vorlesezeit</li><li class="ts-label">Hafen</li><li class="ts-label">Freundschaft</li><li class="ts-label">Fantasie</li></ul>
+      <h1 id="ts-gn-h" class="ts-gn-h1">Nixe Nele schwimmt in den Hafen<i>.</i></h1>
+      <p class="ts-gn-lead ts-gn-dim">Die kleine Meerjungfrau Nele will wissen, wohin die großen Schiffe fahren. Also schwimmt sie von der Nordsee die Elbe hinauf – bis mitten in den Hamburger Hafen.</p>
+      <div class="ts-gn-tools" role="toolbar" aria-label="Lesehilfen">
+        <button type="button" data-gn="night" aria-pressed="false"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg>Nachtmodus</button>
+        <button type="button" data-gn="minus" aria-label="Schrift kleiner">A−</button>
+        <button type="button" data-gn="plus" aria-label="Schrift größer">A+</button>
+        <button type="button" data-gn="speak" aria-pressed="false"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><path d="M11 5 6 9H2v6h4l5 4V5Z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M19 5a10 10 0 0 1 0 14"/></svg>Vorlesen lassen</button>
+        <button type="button" data-gn="print"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><path d="M6 9V3h12v6"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><path d="M6 14h12v7H6z"/></svg>Drucken</button>
+      </div>
+      
+      <div class="ts-gn-text"><p>Weit draußen in der Nordsee, da, wo das Wasser grün und grau und manchmal ein bisschen silbern ist, wohnt eine kleine Meerjungfrau. Sie heißt Nele.</p><p>Nele hat lange Haare, in denen immer ein bisschen Seetang hängt, und eine Schwanzflosse mit glitzernden Schuppen. Wenn sie schnell schwimmt, sieht es aus, als würde ein Regenbogen durchs Wasser flitzen.</p><p>Neles Lieblingsplatz ist eine alte Muschelbank. Von dort kann sie die großen Schiffe sehen, die oben über das Wasser fahren. Riesige Schiffe mit bunten Kisten darauf, rot, blau, grün und gelb – so hoch gestapelt wie Bauklötze.</p><p>„Wohin fahren die nur alle?“, fragt Nele jeden Tag.</p><p>„Nach Hamburg“, sagt ihre Oma, die alte Nixe Hedda, und kämmt sich mit einer Fischgräte die Haare. „Die Elbe hinauf, bis in den Hafen.“</p><p>„Was ist ein Hafen?“</p><p>„Ein Ort, an dem Schiffe nach Hause kommen“, sagt Oma Hedda. „Mit Kränen so groß wie Giraffen. Mit Lichtern, die nachts funkeln. Und mit Möwen, die alles besser wissen.“</p><p>Von da an kann Nele an nichts anderes mehr denken. Ein Ort, an dem Schiffe nach Hause kommen! Den will sie sehen.</p><p>Eines Morgens packt sie ihre Muscheltasche: drei glatte Steine, ein Stück Bernstein und einen getrockneten Seestern als Glücksbringer. Dann gibt sie Oma Hedda einen Kuss auf die Wange.</p><p>„Ich bin vor dem Abend zurück“, verspricht sie.</p><p>„Schwimm immer flussaufwärts, wo das Wasser süßer schmeckt“, sagt Oma Hedda. „Und halte Abstand von den großen Schiffsschrauben.“</p><p>Und los geht es. Nele schwimmt in die Elbe hinein. Das Wasser wird erst ein bisschen braun, dann ein bisschen trüber, und es schmeckt nicht mehr so salzig. Sie schwimmt vorbei an Sandbänken, auf denen Seehunde in der Sonne dösen.</p><p>„Wohin so eilig, Kleine?“, brummt ein dicker Seehund und kratzt sich mit der Flosse am Bauch.</p><p>„In den Hamburger Hafen!“, ruft Nele.</p><p>„Puh, weit“, sagt der Seehund und gähnt. „Viel zu weit für mich. Ich bleib hier liegen.“</p><p>Nele schwimmt weiter. Vorbei an Leuchttürmen, an grünen Deichen mit Schafen darauf, an kleinen Häfen mit Segelbooten. Ein Schiff fährt über sie hinweg und macht „Tuuuut!“, so laut, dass Nele vor Schreck einen Purzelbaum im Wasser schlägt.</p><p>Ein Schwarm kleiner Stinte flitzt an ihr vorbei. „Wo wollt ihr hin?“, ruft Nele. „Nirgendwohin!“, rufen die Stinte im Chor. „Wir schwimmen nur gern im Kreis!“ Und schon drehen sie eine Runde um Nele herum, kitzeln sie an der Nase und sind wieder weg.</p><p>Nele kichert und schwimmt weiter. Das Wasser wird jetzt ganz süß. Ganz anders als zu Hause. Am Ufer stehen Häuser mit roten Dächern, und auf einem Steg sitzt ein Kind mit gelben Gummistiefeln und lässt die Beine baumeln.</p><p>Am Nachmittag sind ihre Flossen müde. Aber dann sieht sie sie: die Kräne! Riesig und lang, mit Armen, die bis in den Himmel reichen. Und überall Schiffe, große und kleine, Fähren, Schlepper, Barkassen.</p><p>„Der Hafen“, flüstert Nele. „Ich bin wirklich da.“</p><p>Sie taucht vorsichtig auf, nur bis zur Nase. Da landet direkt vor ihr etwas Weißes auf einem Poller. Eine Möwe. Sie legt den Kopf schief und schaut Nele an.</p><p>„Moin“, sagt die Möwe. „Du bist aber kein Fisch.“</p><p>„Nein“, sagt Nele. „Ich bin eine Meerjungfrau. Ich heiße Nele.“</p><p>„Ich bin Mats“, sagt die Möwe und plustert sich auf. „Ich weiß alles über den Hafen. Fast alles. Na gut, ziemlich viel.“</p><p>Nele muss lachen. Und Mats zeigt ihr den Hafen. Sie schwimmt, und Mats fliegt über ihr her. Sie sehen den großen Kran Karl, der gerade einen roten Container hochhebt. Sie winken der Fähre Frieda zu, die vollbepackt mit Menschen vorbeischaukelt. Und sie sehen einen Kirchturm mit einer großen Uhr, den Michel.</p><p>„Der Michel sagt allen, wie spät es ist“, erklärt Mats wichtig.</p><p>Nele schaut auf die Uhr. Die Zeiger stehen schon ziemlich weit unten. Der Himmel wird rosa. Und da fällt es ihr ein.</p><p>„Oh nein!“, ruft sie. „Ich hab Oma Hedda versprochen, vor dem Abend zurück zu sein! Und meine Flossen sind so müde!“</p><p>Mats kratzt sich mit dem Fuß am Kopf. Dann ruft sie: „Ich hab eine Idee! Warte hier!“ Und weg ist sie.</p><p>Nele wartet. Das Wasser gluckert. Ein Schiff tutet. Dann kommt Mats zurück – und hinter ihr schaukelt ein kleiner, roter Schlepper heran, mit einem freundlichen Gesicht vorne am Bug.</p><p>„Das ist Paul“, sagt Mats. „Paul fährt heute Abend sowieso Richtung Nordsee, um ein großes Schiff abzuholen.“</p><p>„Halt dich einfach hinten am Seil fest, Kleine“, brummt Paul. „Ich zieh dich mit.“</p><p>Nele kann es kaum glauben. „Danke, Mats! Danke, Paul!“</p><p>Sie hält sich am dicken Tau fest, und Paul tuckert los. Tuck, tuck, tuck. Mats fliegt noch ein Stück mit und ruft: „Komm bald wieder, Nele! Ich zeig dir dann die Elbstrände!“</p><p>„Versprochen!“, ruft Nele. Und dann ist Mats nur noch ein kleiner weißer Punkt über den Hafenlichtern.</p><p>Paul tuckert die Elbe hinunter. Die Sonne geht unter. Die Deiche werden dunkel, die Leuchttürme gehen an, einer nach dem anderen. Blink. Blink. Blink.</p><p>Nele liegt auf dem Rücken im Wasser und lässt sich ziehen. Sie schaut in den Himmel, wo die ersten Sterne auftauchen. Ihre Flossen ruhen sich aus.</p><p>Als sie die Nordsee erreichen, wartet Oma Hedda schon an der Muschelbank. „Da bist du ja“, sagt sie und nimmt Nele in die Arme. „Und? Wie ist der Hafen?“</p><p>Nele gähnt. „Groß“, sagt sie. „Und laut. Und schön. Und ich hab eine Freundin gefunden. Sie heißt Mats und weiß fast alles.“</p><p>Oma Hedda lächelt. „Ein Freund im Hafen. Das ist das beste Mitbringsel überhaupt.“</p><p>Nele kuschelt sich in ihr Muschelbett. Die Wellen schaukeln sie sanft hin und her. Hin und her.</p><p>Weit weg, im Hamburger Hafen, sitzt eine Möwe auf einem Poller und schaut aufs dunkle Wasser.</p><p>Und ganz leise, so leise, dass es nur das Meer hören kann, sagen beide zur gleichen Zeit: „Gute Nacht.“</p></div>
+      
+      
+      <div class="ts-gn-motiv ts-glass ts-gn-dim">
+        <div class="ts-gn-motiv__img"><svg role='img' aria-label='Ausmalbild Meerjungfrau' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1100" width="1000" height="1100"><g stroke="#111111" stroke-linecap="round" stroke-linejoin="round"><g transform="translate(60 0) scale(.88)"><path d="M330 300 C300 420 300 560 260 640 C320 650 360 600 380 560 L620 560 C640 600 680 650 740 640 C700 560 700 420 670 300 C640 170 360 170 330 300 Z" fill="#fff" stroke-width="11" /><path d="M680 770 C760 660 880 640 940 690 C890 740 870 790 890 850 C810 850 740 830 690 820 Z" fill="#fff" stroke-width="11" /><path d="M680 800 C740 870 800 920 900 935 C830 970 730 950 660 880 Z" fill="#fff" stroke-width="11" /><path d="M390 600 L610 600 C640 700 620 780 700 800 C700 840 680 870 640 870 C520 870 400 830 380 720 C375 680 380 640 390 600 Z" fill="#fff" stroke-width="11" /><path d="M410 650 Q445 695 480 650" fill="none" stroke-width="7"/><path d="M485 650 Q520 695 555 650" fill="none" stroke-width="7"/><path d="M560 655 Q595 700 630 655" fill="none" stroke-width="7"/><path d="M410 725 Q445 770 480 725" fill="none" stroke-width="7"/><path d="M485 725 Q520 770 555 725" fill="none" stroke-width="7"/><path d="M560 740 Q595 785 630 740" fill="none" stroke-width="7"/><path d="M405 470 C405 440 430 420 460 420 L540 420 C570 420 595 440 595 470 L610 610 L390 610 Z" fill="#fff" stroke-width="11" /><path d="M405 510 C405 460 495 460 495 510 Z" fill="#fff" stroke-width="7" /><path d="M450 470 L450 508" fill="none" stroke-width="5"/><path d="M505 510 C505 460 595 460 595 510 Z" fill="#fff" stroke-width="7" /><path d="M550 470 L550 508" fill="none" stroke-width="5"/><path d="M410 470 C360 520 345 580 360 620 C370 640 395 630 392 610 C385 570 400 530 440 500 Z" fill="#fff" stroke-width="11" /><path d="M590 470 C640 520 655 580 640 620 C630 640 605 630 608 610 C615 570 600 530 560 500 Z" fill="#fff" stroke-width="11" /><circle cx="500" cy="330" r="130" fill="#fff" stroke-width="11"/><path d="M372 320 C375 230 440 195 500 198 C560 195 625 230 628 320 C600 280 560 270 520 285 C490 265 445 270 420 290 C400 290 385 300 372 320 Z" fill="#fff" stroke-width="11" /><path d="M613 181 Q615 177 617 181 L626 204 Q628 207 632 208 L657 210 Q661 210 658 213 L639 229 Q636 232 637 236 L642 260 Q643 264 640 262 L618 249 Q615 247 612 249 L590 262 Q587 264 588 260 L593 236 Q594 232 591 229 L572 213 Q569 210 573 210 L598 208 Q602 207 604 204 Z" fill="#fff" stroke-width="11" /><ellipse cx="442" cy="350" rx="21" ry="27" fill="#111111" stroke-width="0"/><circle cx="435" cy="340" r="8" fill="#fff" stroke="none"/><circle cx="449" cy="359" r="4" fill="#fff" stroke="none"/><ellipse cx="558" cy="350" rx="21" ry="27" fill="#111111" stroke-width="0"/><circle cx="551" cy="340" r="8" fill="#fff" stroke="none"/><circle cx="565" cy="359" r="4" fill="#fff" stroke="none"/><path d="M483 388 Q500 408 517 388" fill="none" stroke-width="7.0"/><ellipse cx="408" cy="384" rx="19" ry="10" fill="#fff" stroke-width="5.0"/><ellipse cx="592" cy="384" rx="19" ry="10" fill="#fff" stroke-width="5.0"/><circle cx="170" cy="300" r="34" fill="#fff" stroke-width="11"/><circle cx="210" cy="220" r="22" fill="#fff" stroke-width="11"/><circle cx="820" cy="380" r="30" fill="#fff" stroke-width="11"/><circle cx="160" cy="820" r="28" fill="#fff" stroke-width="11"/><path d="M860 170 Q863 197 890 200 Q863 203 860 230 Q857 203 830 200 Q857 197 860 170 Z" fill="#fff" stroke-width="7" /></g><g transform="translate(36.9 1028.7) scale(0.11218 -0.11218)" fill="#fff" stroke="#111111" stroke-width="213.94" stroke-linejoin="round" paint-order="stroke"><path transform="translate(0 0)" d="M118 -8Q74 -8 55 5Q36 18 32 39Q28 60 28 84V600Q28 622 32 642Q36 663 55 676Q74 690 120 690Q151 690 166 686Q180 682 186 676Q193 670 200 662L407 396H401L607 661Q617 672 626 678Q634 684 648 687Q663 690 690 690Q735 690 754 676Q773 663 777 642Q781 621 781 598V82Q781 60 777 39Q773 18 754 5Q735 -8 689 -8Q644 -8 625 6Q606 19 602 40Q598 62 598 84V368L481 209Q477 204 469 194Q461 184 446 176Q431 168 404 168Q377 168 362 176Q346 184 338 194Q330 203 326 209L210 367V82Q210 60 206 39Q202 18 183 5Q164 -8 118 -8Z"/><path transform="translate(849 0)" d="M129 -9Q84 -9 65 4Q46 18 42 40Q38 61 38 83V600Q38 652 58 672Q79 691 132 691H498Q521 691 542 687Q562 683 576 664Q589 645 589 599Q589 554 576 535Q562 516 541 512Q520 508 497 508H221V419H406Q429 419 447 416Q465 412 476 396Q487 380 487 340Q487 302 476 286Q465 269 446 266Q427 263 404 263H221V174H498Q521 174 542 170Q562 166 576 147Q589 128 589 82Q589 37 576 18Q562 -1 541 -5Q520 -9 497 -9Z"/><path transform="translate(1492 0)" d="M129 -9Q84 -9 65 4Q46 18 42 40Q38 61 38 83V600Q38 652 58 672Q79 691 132 691H498Q521 691 542 687Q562 683 576 664Q589 645 589 599Q589 554 576 535Q562 516 541 512Q520 508 497 508H221V419H406Q429 419 447 416Q465 412 476 396Q487 380 487 340Q487 302 476 286Q465 269 446 266Q427 263 404 263H221V174H498Q521 174 542 170Q562 166 576 147Q589 128 589 82Q589 37 576 18Q562 -1 541 -5Q520 -9 497 -9Z"/><path transform="translate(2135 0)" d="M126 -8Q81 -8 62 6Q43 19 39 40Q35 62 35 84V600Q35 622 39 643Q43 664 62 678Q81 691 127 691H328Q366 691 410 676Q454 660 493 628Q532 596 557 548Q582 500 582 434Q582 388 568 348Q555 308 528 276Q502 243 464 218Q427 194 379 180H218V83Q218 61 214 40Q210 19 191 6Q172 -8 126 -8ZM545 16Q500 -18 474 -12Q448 -5 418 35L234 285L442 311L566 144Q586 115 592 95Q597 75 586 57Q575 39 545 16ZM218 362H328Q337 362 350 366Q362 369 373 378Q384 386 392 400Q399 414 399 435Q399 456 389 472Q379 489 362 498Q346 508 326 508H218Z"/><path transform="translate(2779 0)" d="M232 -19Q190 -19 156 -7Q122 5 98 21Q75 37 62 49Q50 61 50 61Q37 75 26 90Q15 104 15 123Q15 139 24 156Q32 172 50 191Q67 209 83 218Q99 227 115 227Q135 227 152 215Q168 203 181 189Q185 186 192 180Q199 175 210 170Q221 166 237 166Q253 166 266 172Q280 177 290 188Q299 198 304 212Q309 227 309 245V592Q309 615 314 638Q318 661 338 676Q357 691 403 691Q447 691 466 677Q484 663 488 642Q493 620 493 598V238Q493 185 473 138Q453 92 417 56Q381 21 334 1Q286 -19 232 -19Z"/><path transform="translate(3350 0)" d="M336 -20Q260 -20 202 10Q145 41 106 91Q67 141 48 201Q28 261 28 320V600Q28 623 32 644Q36 665 55 678Q74 692 120 692Q166 692 185 678Q204 665 208 644Q212 623 212 599V320Q212 287 223 251Q234 215 262 190Q289 164 339 164Q377 164 405 184Q433 203 448 238Q464 274 464 321V605Q464 627 468 646Q473 666 492 679Q511 692 556 692Q602 692 620 678Q639 664 643 643Q647 622 647 599V318Q647 258 627 198Q607 139 568 90Q528 40 470 10Q412 -20 336 -20Z"/><path transform="translate(4065 0)" d="M118 -9Q74 -9 55 4Q36 18 32 39Q28 60 28 83V602Q28 624 32 644Q36 664 56 677Q75 690 120 690Q164 690 180 679Q196 668 209 651L459 315V602Q459 624 464 644Q468 664 487 677Q506 690 551 690Q597 690 616 676Q634 663 638 642Q642 621 642 598V82Q642 60 638 39Q634 18 615 4Q596 -9 550 -9Q516 -9 498 -4Q481 2 469 18L210 360V82Q210 60 206 39Q202 18 183 4Q164 -9 118 -9Z"/><path transform="translate(4775 0)" d="M387 -19Q315 -19 252 10Q188 39 139 90Q90 141 62 208Q35 275 35 351Q35 424 63 488Q91 551 140 600Q190 648 255 676Q320 703 394 703Q426 703 463 697Q500 691 536 678Q571 666 597 648Q618 634 636 618Q653 602 653 578Q653 566 647 552Q641 538 630 522Q611 494 592 482Q573 469 556 469Q545 469 534 474Q522 480 502 492Q496 496 479 502Q462 509 438 514Q415 520 389 520Q342 520 303 498Q264 475 241 436Q218 397 218 349Q218 300 242 258Q266 217 306 192Q345 166 391 166Q409 166 426 167Q444 168 461 171Q478 174 491 179V265H417Q399 265 383 268Q367 272 357 288Q347 304 347 343Q347 382 358 398Q369 414 386 417Q403 420 420 420H595Q635 419 651 406Q667 392 670 373Q674 354 674 333V128Q674 100 650 70Q626 41 585 20Q560 7 529 -2Q498 -10 462 -14Q427 -19 387 -19Z"/><path transform="translate(5534 0)" d="M129 -9Q84 -9 65 4Q46 18 42 40Q38 61 38 83V600Q38 652 58 672Q79 691 132 691H498Q521 691 542 687Q562 683 575 664Q588 645 588 599Q588 554 574 535Q561 516 540 512Q519 508 496 508H221V419H405Q428 419 446 416Q465 412 476 396Q486 379 486 339Q486 301 475 285Q464 269 446 266Q427 263 404 263H221V82Q221 60 217 39Q213 18 194 4Q175 -9 129 -9Z"/><path transform="translate(6187 0)" d="M126 -8Q81 -8 62 6Q43 19 39 40Q35 62 35 84V600Q35 622 39 643Q43 664 62 678Q81 691 127 691H328Q366 691 410 676Q454 660 493 628Q532 596 557 548Q582 500 582 434Q582 388 568 348Q555 308 528 276Q502 243 464 218Q427 194 379 180H218V83Q218 61 214 40Q210 19 191 6Q172 -8 126 -8ZM545 16Q500 -18 474 -12Q448 -5 418 35L234 285L442 311L566 144Q586 115 592 95Q597 75 586 57Q575 39 545 16ZM218 362H328Q337 362 350 366Q362 369 373 378Q384 386 392 400Q399 414 399 435Q399 456 389 472Q379 489 362 498Q346 508 326 508H218Z"/><path transform="translate(6831 0)" d="M690 118Q705 88 706 67Q707 46 693 30Q679 14 648 -2Q600 -25 574 -16Q548 -8 525 41L355 389L187 40Q163 -7 137 -16Q111 -24 64 -1Q33 14 18 30Q4 46 5 67Q6 88 21 118L272 638Q284 662 308 676Q331 691 356 691Q374 691 390 684Q405 678 418 666Q431 654 439 637ZM197 136 273 292H438L514 136Z"/><path transform="translate(7582 0)" d="M336 -20Q260 -20 202 10Q145 41 106 91Q67 141 48 201Q28 261 28 320V600Q28 623 32 644Q36 665 55 678Q74 692 120 692Q166 692 185 678Q204 665 208 644Q212 623 212 599V320Q212 287 223 251Q234 215 262 190Q289 164 339 164Q377 164 405 184Q433 203 448 238Q464 274 464 321V605Q464 627 468 646Q473 666 492 679Q511 692 556 692Q602 692 620 678Q639 664 643 643Q647 622 647 599V318Q647 258 627 198Q607 139 568 90Q528 40 470 10Q412 -20 336 -20Z"/></g></g></svg></div>
+        <div><p class="ts-label ts-muted">[ Das Ausmalbild zur Geschichte ]</p>
+          <h2 class="ts-am__h2" style="font-size:clamp(1.5rem,3vw,2.2rem);margin-top:.8rem">Morgen früh: Meerjungfrau ausmalen<i>.</i></h2>
+          <div class="ts-am__ctas ts-gn-noprint">
+            <button type="button" class="ts-am-mini ts-am-mini--hi" data-gn="motiv" data-name="Meerjungfrau" data-titel="Nixe Nele schwimmt in den Hafen">Ausmalbild drucken</button>
+            <a class="ts-am-mini" href="/ausmalbilder?motiv=mf08#ts-am-malen">Online ausmalen</a>
+          </div></div>
+      </div>
+      <div class="ts-gn-author ts-glass ts-gn-dim ts-gn-noprint">
+        <img src="https://images.squarespace-cdn.com/content/v1/6869717aa7c996116c8c8a56/ffc25dc6-15ea-4d07-ab0d-6173fde95edf/IMG_3686.jpeg?format=300w" alt="Trutz Stähler" width="72" height="72" loading="lazy">
+        <div><p class="ts-label ts-muted">[ Aus dem Kreativhafen ]</p>
+          <p><b>Trutz Stähler</b> – Papa aus Hamburg, Autor der Kritzelbücher und des Kinderkrimis „Maria Holm“. Im Kreativhafen entstehen Geschichten zum Vorlesen und Ausmalbilder zum Weitermalen.</p>
+          <div class="ts-am__ctas" style="margin-top:.9rem">
+            <button type="button" class="ts-am-mini" data-gn="share">Mit Freunden teilen</button>
+            <a class="ts-am-mini" href="/romane">Für Größere: Kinderkrimi „Maria Holm“</a>
+          </div></div>
+      </div>
+      
+    </div>
+  </div>
+  <section class="ts-container ts-am__block ts-am__end ts-gn-noprint ts-gn-dim" aria-label="Weitere Geschichten">
+    <div class="ts-am__blockhead"><p class="ts-label ts-muted">[ Noch eine? ]</p><p class="ts-label ts-muted"><a href="/gute-nacht-geschichten" style="color:inherit">Alle Geschichten →</a></p></div>
+    <div class="ts-gn-grid" style="margin-top:1.5rem"><a class="ts-gn-card ts-glass" href="/geschichten/ein-schlaflied-fuer-kran-karl" data-gn-card data-themen="Hafen,Freundschaft,Einschlafen" data-zeit="4" data-alter="3" data-form="Hafengeschichte" data-saison="" data-suche="ein schlaflied für kran karl kran karl ist der größte kran im hafen – und heute abend ist er so müde wie noch nie. zum glück hat ein kind am ufer eine idee. hafen,freundschaft,einschlafen  im hamburger hafen stehen viele kräne. sie sind groß und haben lange arme, mit denen sie container von den schiffen heben. der größte von allen heißt karl. karl ist blau und hat einen arm, der fast bis zu den wolken reicht. den ganzen tag arbeitet karl. er hebt einen roten container. hoch, hoch, hoch. dreht sich. surrr. und setzt ihn ab. plong." data-titel="Ein Schlaflied für Kran Karl" data-teaser="Kran Karl ist der größte Kran im Hafen – und heute Abend ist er so müde wie noch nie. Zum Glück hat ein Kind am Ufer eine Idee."><div class="ts-gn-card__img"><img src="https://raw.githubusercontent.com/trutzstaehler/stream-daten/main/kreativhafen/ausmalbilder/bilder/bunt/hf05.webp" alt="" loading="lazy" width="360" height="396" style="--r:-2deg"></div><div class="ts-gn-card__body"><h3 class="ts-gn-card__t">Ein Schlaflied für Kran Karl</h3><p class="ts-gn-card__s">Kran Karl ist der größte Kran im Hafen – und heute Abend ist er so müde wie noch nie. Zum Glück hat ein Kind am Ufer eine Idee.</p><p class="ts-label ts-gn-card__m">4 Min. · ab 3 J. · Hafengeschichte</p></div></a><a class="ts-gn-card ts-glass" href="/geschichten/funki-der-kleine-drache" data-gn-card data-themen="Fantasie,Gefühle,Freundschaft" data-zeit="5" data-alter="3" data-form="Fabel" data-saison="" data-suche="funki, der kleine drache alle drachen im tal können feuer spucken – nur funki nicht. aus seinem maul kommt bloß warme luft. doch in einer eisigen nacht wird genau das zu etwas ganz besonderem. fantasie,gefühle,freundschaft  hinter den sieben grünen hügeln liegt ein tal, in dem die drachen wohnen. große drachen, kleine drachen, rote, blaue und gepunktete drachen. und alle können eines ganz besonders gut: feuer spucken. fffffuuuusch! so klingt es, wenn die großen drachen am morgen ihre flammen in den himmel pusten. dann leuchtet das ganze tal orange, und die vögel singen besonders laut. auch funki wohnt in diesem tal. funki ist ein kleiner grüner drache mit runden flügeln und einem schwanz, der immer ein bisschen wackelt, wenn er sich freut." data-titel="Funki, der kleine Drache" data-teaser="Alle Drachen im Tal können Feuer spucken – nur Funki nicht. Aus seinem Maul kommt bloß warme Luft. Doch in einer eisigen Nacht wird genau das zu etwas ganz Besonderem."><div class="ts-gn-card__img"><img src="https://raw.githubusercontent.com/trutzstaehler/stream-daten/main/kreativhafen/ausmalbilder/bilder/bunt/mf02.webp" alt="" loading="lazy" width="360" height="396" style="--r:1.5deg"></div><div class="ts-gn-card__body"><h3 class="ts-gn-card__t">Funki, der kleine Drache</h3><p class="ts-gn-card__s">Alle Drachen im Tal können Feuer spucken – nur Funki nicht. Aus seinem Maul kommt bloß warme Luft. Doch in einer eisigen Nacht wird genau das zu etwas ganz Besonderem.</p><p class="ts-label ts-gn-card__m">5 Min. · ab 3 J. · Fabel</p></div></a></div>
+  </section>
+</article>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "ShortStory", "name": "Nixe Nele schwimmt in den Hafen", "headline": "Nixe Nele schwimmt in den Hafen", "description": "Die kleine Meerjungfrau Nele will wissen, wohin die großen Schiffe fahren. Also schwimmt sie von der Nordsee die Elbe hinauf – bis mitten in den Hamburger Hafen.", "inLanguage": "de", "author": {"@type": "Person", "name": "Trutz Stähler", "url": "https://trutzstaehler.de/ueber-mich"}, "publisher": {"@type": "Organization", "name": "Kreativhafen"}, "isAccessibleForFree": true, "typicalAgeRange": "5-6", "timeRequired": "PT7M", "genre": "Gute-Nacht-Geschichte", "keywords": "Hafen, Freundschaft, Fantasie", "image": "https://raw.githubusercontent.com/trutzstaehler/stream-daten/main/kreativhafen/ausmalbilder/bilder/bunt/mf08.webp", "url": "https://trutzstaehler.de/geschichten/nixe-nele-schwimmt-in-den-hafen", "wordCount": 952}</script>
+<script>
+/* Ein Motiv als A4-Seite drucken (öffnet ein Druckfenster) */
+window.tsKhPrint = (svg, name, paket) => {
+  const w = window.open('', '_blank');
+  if (!w) { alert('Bitte Pop-ups für diese Seite erlauben, um zu drucken.'); return; }
+  w.document.write('<!doctype html><html lang="de"><head><meta charset="utf-8"><title>' + name + ' – Ausmalbild</title>' +
+    '<style>@page{size:A4;margin:12mm}html,body{margin:0;background:#fff}body{display:flex;flex-direction:column;align-items:center;justify-content:center;height:96vh;font:500 9pt Arial,sans-serif;color:#888}' +
+    'svg{width:100%;max-height:88vh}p{margin:3mm 0 0;letter-spacing:.12em;text-transform:uppercase}</style></head><body>' + svg +
+    '<p>' + (paket ? paket + ' · ' : '') + 'trutzstaehler.de/ausmalbilder</p></body></html>');
+  w.document.close();
+  w.onafterprint = () => w.close();
+  setTimeout(() => { w.focus(); w.print(); }, 350);
+};
+</script>
+
+<script>
+/* Geschichte: Nachtmodus, Schriftgröße, Vorlesen lassen, Drucken, Ausmalbild drucken */
+(() => {
+  const root = document.querySelector('[data-gn-story]'); if (!root) return;
+  const txt = root.querySelector('.ts-gn-text'), h = document.documentElement;
+  const night = root.querySelector('[data-gn="night"]');
+  const setNight = on => { h.classList.toggle('ts-gn-dark', on); night.setAttribute('aria-pressed', on); try { localStorage.setItem('ts-gn-night', on ? '1' : ''); } catch (e) {} };
+  night.addEventListener('click', () => setNight(!h.classList.contains('ts-gn-dark')));
+  try { if (localStorage.getItem('ts-gn-night')) setNight(true); } catch (e) {}
+  let size = 19; try { size = +localStorage.getItem('ts-gn-size') || 19; } catch (e) {}
+  const setSize = s => { size = Math.max(16, Math.min(28, s)); txt.style.setProperty('--gn-size', size + 'px'); try { localStorage.setItem('ts-gn-size', size); } catch (e) {} };
+  setSize(size);
+  root.querySelector('[data-gn="plus"]').addEventListener('click', () => setSize(size + 2));
+  root.querySelector('[data-gn="minus"]').addEventListener('click', () => setSize(size - 2));
+  root.querySelector('[data-gn="print"]').addEventListener('click', () => window.print());
+  /* Vorlesen lassen (Computerstimme des Geräts, falls vorhanden) */
+  const sp = root.querySelector('[data-gn="speak"]');
+  if (!('speechSynthesis' in window)) sp.hidden = true;
+  else sp.addEventListener('click', () => {
+    if (speechSynthesis.speaking) { speechSynthesis.cancel(); sp.setAttribute('aria-pressed', 'false'); return; }
+    const t = [...txt.querySelectorAll('p')].map(p => p.textContent).join(' ') + ' ' + ((root.querySelector('[data-gn-night]') || {}).textContent || '');
+    const u = new SpeechSynthesisUtterance(t); u.lang = 'de-DE'; u.rate = .85; u.pitch = 1;
+    const v = speechSynthesis.getVoices().find(v => /^de/i.test(v.lang)); if (v) u.voice = v;
+    u.onend = () => sp.setAttribute('aria-pressed', 'false');
+    speechSynthesis.speak(u); sp.setAttribute('aria-pressed', 'true');
+  });
+  const sh = root.querySelector('[data-gn="share"]');
+  if (sh) sh.addEventListener('click', async () => {
+    const data = { title: document.title, text: 'Eine Gute-Nacht-Geschichte zum Vorlesen:', url: location.href };
+    try { if (navigator.share) await navigator.share(data); else { await navigator.clipboard.writeText(location.href); sh.textContent = 'Link kopiert ✓'; } } catch (e) {}
+  });
+  const mp = root.querySelector('[data-gn="motiv"]');
+  if (mp) mp.addEventListener('click', () => window.tsKhPrint(root.querySelector('.ts-gn-motiv__img').innerHTML, mp.dataset.name, mp.dataset.titel));
+})();
+</script>

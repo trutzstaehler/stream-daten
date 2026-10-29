@@ -148,7 +148,8 @@
   .ts-am-gal { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(.6rem, 1.4vw, 1rem); margin-top: 1.5rem; min-height: 200px; }
   .ts .ts-am-tile { position: relative; margin: 0; padding: .55rem .55rem .6rem; border-radius: 8px; background: #fbf9f4; box-shadow: 0 24px 50px -28px rgba(0,0,0,.85); transform: rotate(var(--r, 0deg)); transition: transform .45s var(--ts-ease-out); }
   .ts .ts-am-tile:hover { transform: rotate(0deg) translateY(-4px); }
-  .ts-am-tile svg { display: block; width: 100% !important; height: auto !important; }
+  .ts-am-tile > svg { display: block; width: 100% !important; height: auto !important; }
+  .ts .ts-am-tile__acts svg { width: 15px !important; height: 15px !important; flex: none; }
   .ts-am-tile__acts { display: grid; grid-template-columns: 1fr 1fr; gap: .35rem; margin-top: .45rem; }
   .ts .ts-am-tile__acts button { display: inline-flex; align-items: center; justify-content: center; gap: .3rem; padding: 8px 6px; border-radius: 999px; border: 1px solid #d7d3c8; background: #fff; color: #1b1f1c; font: 600 11.5px/1 var(--ts-font-body, Inter, sans-serif); cursor: pointer; }
   .ts .ts-am-tile__acts button:hover { background: #1b1f1c; color: #fff; border-color: #1b1f1c; }
@@ -192,6 +193,19 @@
   .ts-gn-motiv { display: grid; gap: 1.25rem; margin-top: 1.25rem; padding: 1.4rem 1.5rem; border-radius: 22px; align-items: center; }
   .ts .ts-gn-motiv__img { max-width: 220px; padding: .5rem; border-radius: 8px; background: #fbf9f4; transform: rotate(-2deg); box-shadow: 0 30px 50px -26px rgba(0,0,0,.9); }
   .ts .ts-gn-motiv__img svg { display: block; width: 100% !important; height: auto !important; }
+  .ts .ts-gn-author { display: grid; grid-template-columns: 72px 1fr; gap: 1.1rem; align-items: start; margin-top: 1.25rem; padding: 1.4rem 1.5rem; border-radius: 22px; }
+  .ts .ts-gn-author img { width: 72px !important; height: 72px !important; border-radius: 50%; object-fit: cover; }
+  .ts .ts-gn-author p { margin: 0; color: var(--tss-text, rgba(246,250,247,.75)); line-height: 1.6; font-size: 15px; }
+  .ts .ts-gn-author p + p { margin-top: .45rem; }
+  .ts .ts-gn-author b { color: #f6faf7; }
+  .ts .ts-gn-audio { margin-top: 1.5rem; padding: 1rem 1.2rem; border-radius: 18px; }
+  .ts .ts-gn-audio audio { width: 100%; margin-top: .6rem; }
+  .ts .ts-gn-reihe { margin-top: 1.25rem; }
+  .ts .ts-gn-reihe ul { margin: .7rem 0 0; padding: 0; list-style: none; border-top: 1px solid var(--ts-line, rgba(255,255,255,.08)); }
+  .ts .ts-gn-reihe li { display: flex; justify-content: space-between; gap: 1rem; padding: .85rem 0; border-bottom: 1px solid var(--ts-line, rgba(255,255,255,.08)); }
+  .ts .ts-gn-reihe a { color: #f6faf7; font: 700 1.05rem/1.3 var(--ts-font-display, 'Syne', sans-serif); text-decoration: none; }
+  .ts .ts-gn-reihe a:hover { color: #6ee7b7; }
+  .ts .ts-gn-reihe .ts-label { color: var(--ts-muted, #9aaba3); white-space: nowrap; }
   /* Nachtmodus: dunkler, wärmer, größer – zum Vorlesen im abgedunkelten Kinderzimmer */
   html.ts-gn-dark .ts-gn-page { background: #050505; }
   html.ts-gn-dark .ts .ts-gn-text p { color: #e9dcc0; }
@@ -218,7 +232,7 @@
 </style>
 
 <nav class="ts ts-khr" aria-label="Kreativhafen">
-  <div class="ts-container"><div class="ts-khr__bar"><a href="/kreativhafen">Übersicht</a><a href="/malbuecher">Malbücher</a><a href="/romane">Romane</a><a href="/ausmalbilder">Ausmalbilder <i>gratis</i></a><a href="/gute-nacht-geschichten">Gute-Nacht-Geschichten <i>gratis</i></a></div></div>
+  <div class="ts-container"><div class="ts-khr__bar"><a href="/kreativhafen">Übersicht</a><a href="/gute-nacht-geschichten">Gute-Nacht-Geschichten <i>gratis</i></a><a href="/ausmalbilder">Ausmalbilder <i>gratis</i></a><a href="/malbuecher">Malbücher</a><a href="/romane">Romane</a></div></div>
 </nav>
 <script>
 /* Reiter: aktiven Bereich markieren (Geschichten-Seiten gehören zu „Gute-Nacht-Geschichten“) */
@@ -284,7 +298,7 @@ window.tsKhPrint = (svg, name, paket) => {
   const rots = [-1.4, 1.1, -.7, 1.3, -1, .8];
   const md = (() => { const d = new Date(); return (d.getMonth() + 1) * 100 + d.getDate(); })();
   const FEN = {"halloween": [1001, 1031], "laterne": [1101, 1111], "advent": [1112, 1224], "anhaenger": [1201, 1224], "winter": [1225, 228]};
-  const inWin = ([a, b]) => a <= b ? md >= a && md <= b : md >= a || md <= b;
+  const inWin = w => { if (!w) return false; const [a, b] = w; return a <= b ? md >= a && md <= b : md >= a || md <= b; };
   const saisonPaket = () => { for (const id in FEN) if (inWin(FEN[id])) return id; return 'hafen'; };
   const icoP = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9V3h12v6"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><path d="M6 14h12v7H6z"/></svg>';
   const icoB = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m19 11-8-8-8.6 8.6a2 2 0 0 0 0 2.8l5.2 5.2a2 2 0 0 0 2.8 0L19 11Z"/><path d="M22 20a2 2 0 1 1-4 0c0-1.6 1.7-2.4 2-4 .3 1.6 2 2.4 2 4Z"/></svg>';
@@ -320,9 +334,9 @@ window.tsKhPrint = (svg, name, paket) => {
     if (packsEl) packsEl.innerHTML = k.pakete.map(p => `
       <article id="paket-${p.id}" class="ts-am-pack ts-glass" style="--c:${p.farbe}">
         <div class="ts-am-pack__img"><img src="${BASIS + p.karte}" alt="${esc(p.name)}: ${esc(p.sub)}" loading="lazy" width="1200" height="800">
-          <span class="ts-label ts-am-pack__nr">${p.nr}</span><span class="ts-label ts-am-pack__tag">${inWin(FEN[p.id] || [0, -1]) ? 'Jetzt dran' : esc(p.saison === 'ganzjährig' ? 'Ganzjährig' : p.saison)}</span></div>
+          <span class="ts-label ts-am-pack__nr">${p.nr}</span><span class="ts-label ts-am-pack__tag">${inWin(FEN[p.id]) ? 'Jetzt dran' : esc(p.saison === 'ganzjährig' ? 'Ganzjährig' : p.saison)}</span></div>
         <div class="ts-am-pack__body">
-          <h3 class="ts-am-pack__t">${esc(p.name)}<i>.</i></h3>
+          <h3 class="ts-am-pack__t">${esc(p.name)}${/[!?.]$/.test(p.name) ? '' : '<i>.</i>'}</h3>
           <p class="ts-am-pack__s">${esc(p.kurz)}</p>
           <div class="ts-am-pack__acts">
             <a class="ts-am-mini ts-am-mini--hi" href="${BASIS + p.pdf}" download>${icoD}PDF${p.pdf_mb ? ' · ' + String(p.pdf_mb).replace('.', ',') + ' MB' : ''}</a>

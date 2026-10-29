@@ -23,7 +23,10 @@ BUNT = os.path.join(HERE, '..', '02-bilder', 'motive-ausgemalt')
 
 
 def mini(svg):
-    svg = re.sub(r'(\d+\.\d+)', lambda m: str(round(float(m.group(1)))), svg)
+    """SVG verkleinern: nur Pfad-/Formkoordinaten runden (nie Transformationen!), Leerraum sparen."""
+    rnd = lambda m: str(round(float(m.group(0))))
+    svg = re.sub(r'(\s(?:d|points|cx|cy|r|rx|ry|x|y|width|height|x1|y1|x2|y2)=")([^"]*)(")',
+                 lambda m: m.group(1) + re.sub(r'-?\d+\.\d+', rnd, m.group(2)) + m.group(3), svg)
     return re.sub(r'\s+', ' ', svg).replace('> <', '><')
 
 
@@ -49,15 +52,20 @@ def karte(p, dst):
     D.Draw(glow).ellipse((W * .2, H * .25, W * .8, H * 1.2), fill=120)
     glow = glow.filter(F.GaussianBlur(120))
     bg = Image.composite(Image.new('RGB', (W, H), acc), bg, glow.point(lambda v: v * .45))
-    for i, (k, x, y, w, rot) in enumerate([(p['cover'][0], 120, 210, 330, -7), (p['cover'][2], 750, 220, 330, 6), (p['cover'][1], 400, 120, 400, 0)]):
+    teile = []
+    for k, x, y, w, rot in [(p['cover'][0], 120, 210, 330, -7), (p['cover'][2], 750, 220, 330, 6), (p['cover'][1], 400, 120, 400, 0)]:
         m = Image.open(os.path.join(BUNT, k + '.png')).convert('RGB')
         m = m.resize((w, round(w * 1.1)), Image.LANCZOS)
         card = Image.new('RGB', (w + 24, round(w * 1.1) + 24), (251, 249, 244)); card.paste(m, (12, 12))
         mask = Image.new('L', card.size, 255)
         card = card.rotate(rot, expand=True, resample=Image.BICUBIC, fillcolor=(0, 0, 0))
         mask = mask.rotate(rot, expand=True, resample=Image.BICUBIC)
-        sh = Image.new('L', card.size, 0); sh.paste(mask.point(lambda v: v * .6), (0, 0)); sh = sh.filter(F.GaussianBlur(26))
-        bg.paste((0, 0, 0), (x + 10, y + 34), sh)
+        teile.append((card, mask, x, y))
+    # erst alle Schatten (nur auf den Hintergrund), dann die Karten
+    for card, mask, x, y in teile:
+        sh = Image.new('L', (W, H), 0); sh.paste(mask.point(lambda v: v * .55), (x + 8, y + 30))
+        bg.paste((0, 0, 0), (0, 0), sh.filter(F.GaussianBlur(30)))
+    for card, mask, x, y in teile:
         bg.paste(card, (x, y), mask)
     bg.save(dst, 'WEBP', quality=80, method=6)
 

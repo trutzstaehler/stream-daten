@@ -32,8 +32,8 @@ def name_von(key):
 
 
 # ======================================================================= Reiter-Leiste
-REITER = [('/kreativhafen', 'Übersicht'), ('/malbuecher', 'Malbücher'), ('/romane', 'Romane'),
-          ('/ausmalbilder', 'Ausmalbilder', 'gratis'), ('/gute-nacht-geschichten', 'Gute-Nacht-Geschichten', 'gratis')]
+REITER = [('/kreativhafen', 'Übersicht'), ('/gute-nacht-geschichten', 'Gute-Nacht-Geschichten', 'gratis'),
+          ('/ausmalbilder', 'Ausmalbilder', 'gratis'), ('/malbuecher', 'Malbücher'), ('/romane', 'Romane')]
 
 REITER_CSS = '''
   .ts-khr { position: relative; z-index: 3; padding-top: calc(var(--ts-header-space, 96px) + 1rem); }
@@ -106,7 +106,8 @@ KH_CSS = WEB.CSS.replace('</style>', REITER_CSS + r'''
   .ts-am-gal { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(.6rem, 1.4vw, 1rem); margin-top: 1.5rem; min-height: 200px; }
   .ts .ts-am-tile { position: relative; margin: 0; padding: .55rem .55rem .6rem; border-radius: 8px; background: #fbf9f4; box-shadow: 0 24px 50px -28px rgba(0,0,0,.85); transform: rotate(var(--r, 0deg)); transition: transform .45s var(--ts-ease-out); }
   .ts .ts-am-tile:hover { transform: rotate(0deg) translateY(-4px); }
-  .ts-am-tile svg { display: block; width: 100% !important; height: auto !important; }
+  .ts-am-tile > svg { display: block; width: 100% !important; height: auto !important; }
+  .ts .ts-am-tile__acts svg { width: 15px !important; height: 15px !important; flex: none; }
   .ts-am-tile__acts { display: grid; grid-template-columns: 1fr 1fr; gap: .35rem; margin-top: .45rem; }
   .ts .ts-am-tile__acts button { display: inline-flex; align-items: center; justify-content: center; gap: .3rem; padding: 8px 6px; border-radius: 999px; border: 1px solid #d7d3c8; background: #fff; color: #1b1f1c; font: 600 11.5px/1 var(--ts-font-body, Inter, sans-serif); cursor: pointer; }
   .ts .ts-am-tile__acts button:hover { background: #1b1f1c; color: #fff; border-color: #1b1f1c; }
@@ -150,6 +151,19 @@ KH_CSS = WEB.CSS.replace('</style>', REITER_CSS + r'''
   .ts-gn-motiv { display: grid; gap: 1.25rem; margin-top: 1.25rem; padding: 1.4rem 1.5rem; border-radius: 22px; align-items: center; }
   .ts .ts-gn-motiv__img { max-width: 220px; padding: .5rem; border-radius: 8px; background: #fbf9f4; transform: rotate(-2deg); box-shadow: 0 30px 50px -26px rgba(0,0,0,.9); }
   .ts .ts-gn-motiv__img svg { display: block; width: 100% !important; height: auto !important; }
+  .ts .ts-gn-author { display: grid; grid-template-columns: 72px 1fr; gap: 1.1rem; align-items: start; margin-top: 1.25rem; padding: 1.4rem 1.5rem; border-radius: 22px; }
+  .ts .ts-gn-author img { width: 72px !important; height: 72px !important; border-radius: 50%; object-fit: cover; }
+  .ts .ts-gn-author p { margin: 0; color: var(--tss-text, rgba(246,250,247,.75)); line-height: 1.6; font-size: 15px; }
+  .ts .ts-gn-author p + p { margin-top: .45rem; }
+  .ts .ts-gn-author b { color: #f6faf7; }
+  .ts .ts-gn-audio { margin-top: 1.5rem; padding: 1rem 1.2rem; border-radius: 18px; }
+  .ts .ts-gn-audio audio { width: 100%; margin-top: .6rem; }
+  .ts .ts-gn-reihe { margin-top: 1.25rem; }
+  .ts .ts-gn-reihe ul { margin: .7rem 0 0; padding: 0; list-style: none; border-top: 1px solid var(--ts-line, rgba(255,255,255,.08)); }
+  .ts .ts-gn-reihe li { display: flex; justify-content: space-between; gap: 1rem; padding: .85rem 0; border-bottom: 1px solid var(--ts-line, rgba(255,255,255,.08)); }
+  .ts .ts-gn-reihe a { color: #f6faf7; font: 700 1.05rem/1.3 var(--ts-font-display, 'Syne', sans-serif); text-decoration: none; }
+  .ts .ts-gn-reihe a:hover { color: #6ee7b7; }
+  .ts .ts-gn-reihe .ts-label { color: var(--ts-muted, #9aaba3); white-space: nowrap; }
   /* Nachtmodus: dunkler, wärmer, größer – zum Vorlesen im abgedunkelten Kinderzimmer */
   html.ts-gn-dark .ts-gn-page { background: #050505; }
   html.ts-gn-dark .ts .ts-gn-text p { color: #e9dcc0; }
@@ -222,7 +236,7 @@ GALERIE_JS = r'''
   const rots = [-1.4, 1.1, -.7, 1.3, -1, .8];
   const md = (() => { const d = new Date(); return (d.getMonth() + 1) * 100 + d.getDate(); })();
   const FEN = __FENSTER__;
-  const inWin = ([a, b]) => a <= b ? md >= a && md <= b : md >= a || md <= b;
+  const inWin = w => { if (!w) return false; const [a, b] = w; return a <= b ? md >= a && md <= b : md >= a || md <= b; };
   const saisonPaket = () => { for (const id in FEN) if (inWin(FEN[id])) return id; return 'hafen'; };
   const icoP = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9V3h12v6"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><path d="M6 14h12v7H6z"/></svg>';
   const icoB = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m19 11-8-8-8.6 8.6a2 2 0 0 0 0 2.8l5.2 5.2a2 2 0 0 0 2.8 0L19 11Z"/><path d="M22 20a2 2 0 1 1-4 0c0-1.6 1.7-2.4 2-4 .3 1.6 2 2.4 2 4Z"/></svg>';
@@ -258,9 +272,9 @@ GALERIE_JS = r'''
     if (packsEl) packsEl.innerHTML = k.pakete.map(p => `
       <article id="paket-${p.id}" class="ts-am-pack ts-glass" style="--c:${p.farbe}">
         <div class="ts-am-pack__img"><img src="${BASIS + p.karte}" alt="${esc(p.name)}: ${esc(p.sub)}" loading="lazy" width="1200" height="800">
-          <span class="ts-label ts-am-pack__nr">${p.nr}</span><span class="ts-label ts-am-pack__tag">${inWin(FEN[p.id] || [0, -1]) ? 'Jetzt dran' : esc(p.saison === 'ganzjährig' ? 'Ganzjährig' : p.saison)}</span></div>
+          <span class="ts-label ts-am-pack__nr">${p.nr}</span><span class="ts-label ts-am-pack__tag">${inWin(FEN[p.id]) ? 'Jetzt dran' : esc(p.saison === 'ganzjährig' ? 'Ganzjährig' : p.saison)}</span></div>
         <div class="ts-am-pack__body">
-          <h3 class="ts-am-pack__t">${esc(p.name)}<i>.</i></h3>
+          <h3 class="ts-am-pack__t">${esc(p.name)}${/[!?.]$/.test(p.name) ? '' : '<i>.</i>'}</h3>
           <p class="ts-am-pack__s">${esc(p.kurz)}</p>
           <div class="ts-am-pack__acts">
             <a class="ts-am-mini ts-am-mini--hi" href="${BASIS + p.pdf}" download>${icoD}PDF${p.pdf_mb ? ' · ' + String(p.pdf_mb).replace('.', ',') + ' MB' : ''}</a>
@@ -438,12 +452,13 @@ def heute_js():
   /* Filter + Suche */
   const f = document.querySelector('[data-gn-filter]'); if (!f) return;
   const q = document.querySelector('[data-gn-q]');
-  let thema = 'alle', dauer = 'alle', alter = 'alle';
+  let thema = 'alle', dauer = 'alle', alter = 'alle', form = 'alle';
   const ok = c => {
     const z = +c.dataset.zeit, a = +c.dataset.alter, s = (q && q.value || '').trim().toLowerCase();
     return (thema === 'alle' || c.dataset.themen.split(',').includes(thema))
       && (dauer === 'alle' || (dauer === 'kurz' ? z <= 3 : dauer === 'mittel' ? z >= 4 && z <= 6 : z >= 7))
       && (alter === 'alle' || a <= +alter && (alter !== '2' || a <= 2))
+      && (form === 'alle' || c.dataset.form === form)
       && (!s || c.dataset.suche.includes(s));
   };
   const apply = () => {
@@ -453,8 +468,8 @@ def heute_js():
   };
   f.addEventListener('click', e => {
     const b = e.target.closest('button'); if (!b) return;
-    for (const k of ['thema', 'dauer', 'alter']) if (b.dataset[k]) {
-      if (k === 'thema') thema = b.dataset[k]; if (k === 'dauer') dauer = b.dataset[k]; if (k === 'alter') alter = b.dataset[k];
+    for (const k of ['thema', 'dauer', 'alter', 'form']) if (b.dataset[k]) {
+      if (k === 'thema') thema = b.dataset[k]; if (k === 'dauer') dauer = b.dataset[k]; if (k === 'alter') alter = b.dataset[k]; if (k === 'form') form = b.dataset[k];
       f.querySelectorAll(`[data-${k}]`).forEach(x => x.setAttribute('aria-pressed', x === b));
     }
     apply();
@@ -474,7 +489,7 @@ FAQ_GN = [
     ('Wie lang sind die Gute-Nacht-Geschichten?', 'Es gibt ganz kurze Geschichten mit 1–2 Minuten für die Kleinsten, die meisten dauern 4–5 Minuten, und für größere Kinder gibt es längere mit 7–9 Minuten. Mit dem Filter „Länge“ findest du die passende.'),
     ('Für welches Alter sind die Geschichten?', 'Für Kinder von etwa 2 bis 7 Jahren. Bei jeder Geschichte steht ein Alter. Alle sind ruhig, enden friedlich und kommen ohne Gruselmomente aus.'),
     ('Was ist der Nachtmodus?', 'Auf jeder Geschichten-Seite gibt es einen Nachtmodus: Die Seite wird dunkler und wärmer, auf Wunsch auch die Schrift größer – angenehm zum Vorlesen im abgedunkelten Kinderzimmer.'),
-    ('Kann ich die Geschichten ausdrucken?', 'Ja. Jede Geschichte hat einen Druck-Knopf und ein PDF mit der Geschichte und dem passenden Ausmalbild.'),
+    ('Muss ich etwas herunterladen?', 'Nein. Alle Geschichten liest du direkt hier auf der Seite – am Handy, Tablet oder Computer. Wer mag, kann eine Geschichte über den Druck-Knopf auch auf Papier bringen.'),
     ('Gibt es die Geschichten auch zum Anhören?', 'Auf jeder Seite gibt es „Vorlesen lassen“ – dann liest die Computerstimme deines Geräts vor. Selbst eingesprochene Hörgeschichten sind in Planung.'),
     ('Sind die Geschichten kostenlos?', 'Ja, alle Geschichten sind kostenlos und ohne Anmeldung. Ihr dürft sie zu Hause, in der Kita und in der Schule vorlesen. Bitte teilt den Link, statt die Texte zu kopieren.'),
 ]
@@ -483,7 +498,7 @@ SEO_TEXT = [
     ('Warum Gute-Nacht-Geschichten so gut tun',
      'Eine Geschichte vor dem Schlafen ist mehr als Unterhaltung: Sie ist ein fester Moment, in dem der Tag leiser wird. Kinder kuscheln sich an, hören eine vertraute Stimme und kommen zur Ruhe. Ganz nebenbei wachsen Wortschatz, Fantasie und Konzentration – und die Bindung zwischen euch.'),
     ('Welche Themen passen zum Einschlafen?',
-     'Am besten Geschichten mit kleinen, lösbaren Problemen und einem warmen Ende: Freundschaft, Mut, Gefühle, Tiere, Fahrzeuge oder ein bisschen Fantasie. Unsere Geschichten werden zum Schluss immer langsamer und leiser – wie ein Lied, das ausklingt. Viele spielen im Hamburger Hafen, bei Möwe Mats und ihren Freunden.'),
+     'Am besten Geschichten mit kleinen, lösbaren Problemen und einem warmen Ende: Freundschaft, Mut, Gefühle, Tiere, Fahrzeuge oder ein bisschen Fantasie. Die meisten unserer Geschichten werden zum Schluss langsamer und leiser – wie ein Lied, das ausklingt. Andere enden mit einem Lacher oder mit Vorfreude auf morgen. Viele spielen im Hamburger Hafen, bei Möwe Mats und ihren Freunden.'),
     ('Für welches Alter sind welche Geschichten?',
      'Für 2-Jährige gibt es ganz kurze Geschichten mit Wiederholungen und Geräuschen zum Mitmachen. Ab 3 Jahren passen die meisten Geschichten mit 4–5 Minuten. Ab 5 Jahren dürfen es längere Abenteuer mit 7–9 Minuten sein.'),
     ('Wie lang sollte eine Gute-Nacht-Geschichte sein?',
@@ -497,11 +512,11 @@ def karte_geschichte(g, r=-2):
     themen = ','.join(g['themen'])
     such = ' '.join([g['titel'], g['teaser'], themen, g.get('reihe', '')] + g['absaetze'][:3]).lower()
     return (f'<a class="ts-gn-card ts-glass" href="{GESCH_URL}{g["slug"]}" data-gn-card data-themen="{esc(themen)}" data-zeit="{g["lesezeit"]}" '
-            f'data-alter="{g["alter"]}" data-saison="{saison_von(g)}" data-suche="{esc(such)}" '
+            f'data-alter="{g["alter"]}" data-form="{esc(g["form"])}" data-saison="{saison_von(g)}" data-suche="{esc(such)}" '
             f'data-titel="{esc(g["titel"])}" data-teaser="{esc(g["teaser"])}">'
             f'<div class="ts-gn-card__img"><img src="{BASIS}ausmalbilder/bilder/bunt/{g["motiv"]}.webp" alt="" loading="lazy" width="360" height="396" style="--r:{r}deg"></div>'
             f'<div class="ts-gn-card__body"><h3 class="ts-gn-card__t">{esc(g["titel"])}</h3><p class="ts-gn-card__s">{esc(g["teaser"])}</p>'
-            f'<p class="ts-label ts-gn-card__m">{g["lesezeit"]} Min. · ab {g["alter"]} Jahren{" · Reihe " + esc(g["reihe"]) if g.get("reihe") else ""}</p></div></a>')
+            f'<p class="ts-label ts-gn-card__m">{g["lesezeit"]} Min. · ab {g["alter"]} J. · {esc(g["form"])}</p></div></a>')
 
 
 def seite_geschichten():
@@ -511,6 +526,7 @@ def seite_geschichten():
     def chips(key, items):
         return ''.join(f'<button type="button" data-{key}="{v}" aria-pressed="{str(v == "alle").lower()}">{esc(t)}</button>' for v, t in items)
     fil = (chips('dauer', DAUER) + '<span style="width:100%;height:0"></span>' + chips('alter', ALTER) +
+           '<span style="width:100%;height:0"></span>' + chips('form', [('alle', 'Jede Art')] + [(f_, f_) for f_ in sorted({g['form'] for g in GESCHICHTEN})]) +
            '<span style="width:100%;height:0"></span>' + chips('thema', [('alle', 'Alle Themen')] + [(t, t) for t in themen]))
     figuren = ''.join(f'<button type="button" class="ts-gn-fig" data-gn-figur="{esc(s)}"><img src="{BASIS}ausmalbilder/bilder/bunt/{m}.webp" alt="" loading="lazy" width="120" height="132">'
                       f'<b>{esc(n)}</b><span>{esc(t)}</span></button>' for n, m, t, s in FIGUREN)
@@ -592,7 +608,7 @@ def seite_geschichten():
     <div class="tss-steps">
       <div class="tss-step"><h3>Licht runter</h3><p>Nur noch eine kleine Lampe an – oder den Nachtmodus auf der Geschichten-Seite einschalten.</p></div>
       <div class="tss-step"><h3>Langsam lesen</h3><p>Ruhig und leise, mit Pausen. Gegen Ende darf die Stimme immer langsamer werden.</p></div>
-      <div class="tss-step"><h3>Immer gleich enden</h3><p>Jede Geschichte endet mit einem Gute-Nacht-Satz. Sagt ihn zusammen – das wird euer Ritual.</p></div>
+      <div class="tss-step"><h3>Euer eigener Schluss</h3><p>Erfindet einen Gute-Nacht-Satz, den ihr nach jeder Geschichte gemeinsam sagt – so wird das Vorlesen zu eurem Ritual.</p></div>
     </div>
   </section>
 
@@ -638,11 +654,16 @@ STORY_JS = r'''
   if (!('speechSynthesis' in window)) sp.hidden = true;
   else sp.addEventListener('click', () => {
     if (speechSynthesis.speaking) { speechSynthesis.cancel(); sp.setAttribute('aria-pressed', 'false'); return; }
-    const t = [...txt.querySelectorAll('p')].map(p => p.textContent).join(' ') + ' ' + root.querySelector('[data-gn-night]').textContent;
+    const t = [...txt.querySelectorAll('p')].map(p => p.textContent).join(' ') + ' ' + ((root.querySelector('[data-gn-night]') || {}).textContent || '');
     const u = new SpeechSynthesisUtterance(t); u.lang = 'de-DE'; u.rate = .85; u.pitch = 1;
     const v = speechSynthesis.getVoices().find(v => /^de/i.test(v.lang)); if (v) u.voice = v;
     u.onend = () => sp.setAttribute('aria-pressed', 'false');
     speechSynthesis.speak(u); sp.setAttribute('aria-pressed', 'true');
+  });
+  const sh = root.querySelector('[data-gn="share"]');
+  if (sh) sh.addEventListener('click', async () => {
+    const data = { title: document.title, text: 'Eine Gute-Nacht-Geschichte zum Vorlesen:', url: location.href };
+    try { if (navigator.share) await navigator.share(data); else { await navigator.clipboard.writeText(location.href); sh.textContent = 'Link kopiert ✓'; } } catch (e) {}
   });
   const mp = root.querySelector('[data-gn="motiv"]');
   if (mp) mp.addEventListener('click', () => window.tsKhPrint(root.querySelector('.ts-gn-motiv__img').innerHTML, mp.dataset.name, mp.dataset.titel));
@@ -656,7 +677,6 @@ def geschichte_block(g):
     svg = WEB.mini(K.motif_svg(g['motiv'], with_name=True, w=1000, h=1100)).replace('<svg ', "<svg role='img' aria-label='Ausmalbild " + esc(name_von(g['motiv'])) + "' ", 1)
     absaetze = ''.join(f'<p>{esc(a)}</p>' for a in g['absaetze'])
     fragen = ''.join(f'<li>{esc(f)}</li>' for f in g['fragen'])
-    pdf = f'{BASIS}geschichten/pdf/{g["slug"]}.pdf'
     moon = '<svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg>'
     ld = {'@context': 'https://schema.org', '@type': 'ShortStory', 'name': g['titel'], 'headline': g['titel'], 'description': g['teaser'],
           'inLanguage': 'de', 'author': {'@type': 'Person', 'name': 'Trutz Stähler', 'url': f'https://{KAT.DOMAIN}/ueber-mich'},
@@ -665,6 +685,15 @@ def geschichte_block(g):
           'keywords': ', '.join(g['themen']), 'image': f'{BASIS}ausmalbilder/bilder/bunt/{g["motiv"]}.webp',
           'url': f'https://{KAT.DOMAIN}{GESCH_URL}{g["slug"]}', 'wordCount': sum(len(a.split()) for a in g['absaetze'])}
     ico = lambda d: f'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true">{d}</svg>'
+    gn_html = f'<p class="ts-gn-night ts-glass" data-gn-night>{moon}<span>{esc(g["gute_nacht"])}</span></p>' if g['gute_nacht'] else ''
+    fr_html = (f'<div class="ts-gn-ask ts-glass ts-gn-dim"><p class="ts-label ts-muted">[ Zum Reden danach ]</p><ul>{fragen}</ul></div>') if g['fragen'] else ''
+    audio = (f'<div class="ts-gn-audio ts-glass ts-gn-noprint"><p class="ts-label ts-muted">[ Papa liest vor ]</p>'
+             f'<audio controls preload="none" src="{esc(g["audio"])}"></audio></div>') if g.get('audio') else ''
+    buch = ('/romane', 'Für Größere: Kinderkrimi „Maria Holm“') if g['alter'] >= 5 else ('/malbuecher', 'Die Kritzelbücher ansehen')
+    reihe = [x for x in GESCHICHTEN if g.get('reihe') and x.get('reihe') == g['reihe'] and x is not g]
+    reihe_html = ('<div class="ts-gn-reihe ts-gn-dim ts-gn-noprint"><p class="ts-label ts-muted">[ Mehr aus der Reihe „' + esc(g['reihe']) + '“ ]</p><ul>' +
+                  ''.join(f'<li><a href="{GESCH_URL}{x["slug"]}">{esc(x["titel"])}</a><span class="ts-label">{x["lesezeit"]} Min.</span></li>' for x in reihe) +
+                  '</ul></div>') if reihe else ''
     return f'''<!-- =====================================================================
   GUTE-NACHT-GESCHICHTE „{g['titel']}“  ·  Blog-Beitrag {GESCH_URL}{g['slug']}
   Einfügen: Beitrag öffnen → Inhalt löschen → Code-Block → alles einfügen.
@@ -676,7 +705,7 @@ def geschichte_block(g):
   <div class="ts-container tss--top">
     <div class="ts-gn-story">
       <div class="tss-kicker ts-gn-dim"><p class="ts-label ts-muted"><a href="/gute-nacht-geschichten" style="color:inherit">← Alle Gute-Nacht-Geschichten</a></p><p class="ts-label ts-muted">Geschichte {i + 1:02d} / {len(GESCHICHTEN):02d}</p></div>
-      <ul class="ts-gn-meta ts-gn-dim"><li class="ts-label">Ab {g['alter']} Jahren</li><li class="ts-label">{g['lesezeit']} Min. Vorlesezeit</li>{''.join(f'<li class="ts-label">{esc(t)}</li>' for t in g['themen'])}</ul>
+      <ul class="ts-gn-meta ts-gn-dim"><li class="ts-label">{esc(g['form'])}</li><li class="ts-label">Ab {g['alter']} Jahren</li><li class="ts-label">{g['lesezeit']} Min. Vorlesezeit</li>{''.join(f'<li class="ts-label">{esc(t)}</li>' for t in g['themen'])}</ul>
       <h1 id="ts-gn-h" class="ts-gn-h1">{esc(g['titel'])}<i>.</i></h1>
       <p class="ts-gn-lead ts-gn-dim">{esc(g['teaser'])}</p>
       <div class="ts-gn-tools" role="toolbar" aria-label="Lesehilfen">
@@ -685,11 +714,11 @@ def geschichte_block(g):
         <button type="button" data-gn="plus" aria-label="Schrift größer">A+</button>
         <button type="button" data-gn="speak" aria-pressed="false">{ico('<path d="M11 5 6 9H2v6h4l5 4V5Z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M19 5a10 10 0 0 1 0 14"/>')}Vorlesen lassen</button>
         <button type="button" data-gn="print">{ico('<path d="M6 9V3h12v6"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><path d="M6 14h12v7H6z"/>')}Drucken</button>
-        <a href="{pdf}" download>{ico('<path d="M12 3v12M7 10l5 5 5-5M5 21h14"/>')}PDF</a>
       </div>
+      {audio}
       <div class="ts-gn-text">{absaetze}</div>
-      <p class="ts-gn-night ts-glass" data-gn-night>{moon}<span>{esc(g['gute_nacht'])}</span></p>
-      <div class="ts-gn-ask ts-glass ts-gn-dim"><p class="ts-label ts-muted">[ Zum Reden danach ]</p><ul>{fragen}</ul></div>
+      {gn_html}
+      {fr_html}
       <div class="ts-gn-motiv ts-glass ts-gn-dim">
         <div class="ts-gn-motiv__img">{svg}</div>
         <div><p class="ts-label ts-muted">[ Das Ausmalbild zur Geschichte ]</p>
@@ -699,6 +728,16 @@ def geschichte_block(g):
             <a class="ts-am-mini" href="/ausmalbilder?motiv={g['motiv']}#ts-am-malen">Online ausmalen</a>
           </div></div>
       </div>
+      <div class="ts-gn-author ts-glass ts-gn-dim ts-gn-noprint">
+        <img src="https://images.squarespace-cdn.com/content/v1/6869717aa7c996116c8c8a56/ffc25dc6-15ea-4d07-ab0d-6173fde95edf/IMG_3686.jpeg?format=300w" alt="Trutz Stähler" width="72" height="72" loading="lazy">
+        <div><p class="ts-label ts-muted">[ Aus dem Kreativhafen ]</p>
+          <p><b>Trutz Stähler</b> – Papa aus Hamburg, Autor der Kritzelbücher und des Kinderkrimis „Maria Holm“. Im Kreativhafen entstehen Geschichten zum Vorlesen und Ausmalbilder zum Weitermalen.</p>
+          <div class="ts-am__ctas" style="margin-top:.9rem">
+            <button type="button" class="ts-am-mini" data-gn="share">Mit Freunden teilen</button>
+            <a class="ts-am-mini" href="{buch[0]}">{esc(buch[1])}</a>
+          </div></div>
+      </div>
+      {reihe_html}
     </div>
   </div>
   <section class="ts-container ts-am__block ts-am__end ts-gn-noprint ts-gn-dim" aria-label="Weitere Geschichten">
@@ -771,6 +810,7 @@ def preview(name, block, title, basis_local):
     os.makedirs(PREV, exist_ok=True)
     assets = os.path.join(HERE, 'vorschau-assets')
     gcss = open(os.path.join(assets, 'global.css'), encoding='utf-8').read()
+    gcss += open(os.path.join(assets, 'kreativhafen-seite.css'), encoding='utf-8').read()   # Karten-Optik der Seite /kreativhafen
     gjs = open(os.path.join(assets, 'global.js'), encoding='utf-8').read()
     doc = f'''<!doctype html><html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Vorschau – {esc(title)}</title>

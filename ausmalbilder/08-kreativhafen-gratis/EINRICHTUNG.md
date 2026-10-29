@@ -44,7 +44,7 @@ Jede Geschichte bekommt ihre eigene Seite. So findet Google jede einzelne, genau
 
 **Ausführliche Schritt-für-Schritt-Anleitung mit Steckbrief für jede Geschichte: `ANLEITUNG_BLOG-GESCHICHTEN.md`.**
 
-Kurz: Blog „Geschichten“ unter „Nicht verlinkt“ anlegen, URL-Slug `geschichten`. Für jede Geschichte einen Beitrag mit Titel, URL-Slug, Code-Block, Auszug, Beitragsbild und SEO-Texten. Squarespaces eigener Titel und das Datum werden vom Code-Block automatisch ausgeblendet.
+Kurz: Blog „Geschichten“ unter „Nicht verlinkt“ anlegen, URL-Slug `geschichten`. Für jede Geschichte einen Beitrag mit Titel, URL-Slug, Code-Block, Auszug, Beitragsbild und SEO-Texten. Einmalig den Inhalt von `06_custom-css_blog-geschichten.css` unter **Design → Benutzerdefiniertes CSS** einfügen: Das blendet Squarespaces eigenen Beitragstitel aus und gibt der Reiter-Leiste die volle Breite.
 
 | # | Titel | URL-Slug | Code-Block | Vorschaubild | Teaser (Auszug/SEO) |
 |---|---|---|---|---|---|

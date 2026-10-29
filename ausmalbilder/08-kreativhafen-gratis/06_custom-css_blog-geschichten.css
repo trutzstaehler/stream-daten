@@ -1,0 +1,10 @@
+/* Kreativhafen – Gute-Nacht-Geschichten im Blog. Einmal einfügen unter: Website → Design → Benutzerdefiniertes CSS */
+body:has([data-gn-story]) .blog-item-top-wrapper,
+body:has([data-gn-story]) .blog-item-author-profile-wrapper,
+body:has([data-gn-story]) .item-pagination,
+body:has([data-gn-story]) .blog-item-pagination { display: none !important; }
+body:has([data-gn-story]) .blog-item-wrapper,
+body:has([data-gn-story]) .blog-item-inner-wrapper,
+body:has([data-gn-story]) .blog-item-content-wrapper { padding-top: 0 !important; margin-top: 0 !important; }
+body:has([data-gn-story]) .blog-item-content .sqs-block { padding-top: 0 !important; padding-bottom: 0 !important; }
+body:has([data-gn-story]) .ts-khr { width: 100vw; margin-left: calc(50% - 50vw); }

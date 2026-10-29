@@ -1,0 +1,275 @@
+<!-- =====================================================================
+  AUSMALBILDER – Zusatzinfos für das Produkt „24 Türchen“ (/store/p/ausmalbilder-adventskalender)
+  Einfügen: Produkt bearbeiten → Bereich „Zusätzliche Informationen“ → Code-Block → alles einfügen.
+====================================================================== -->
+
+<style>
+  /* ===== Ausmalbilder (ts-am) – nutzt die ts-/tss-Bausteine der Seite ===== */
+  .ts-am { position: relative; isolation: isolate; overflow: hidden; overflow: clip; }
+  .ts-am__orb { position: absolute; z-index: -1; right: -14%; top: 0; width: 56vw; height: 56vw; max-width: 860px; max-height: 860px; border-radius: 50%; pointer-events: none;
+    background: radial-gradient(circle, rgba(46, 140, 108, .28) 0%, rgba(46, 140, 108, .16) 24%, rgba(46, 140, 108, .06) 46%, rgba(46, 140, 108, 0) 70%); }
+  .ts-am .ts-line { padding-bottom: .16em; margin-bottom: -.16em; }
+  .ts-am__ctas { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.75rem; }
+  .ts .ts-am__chips { display: flex; flex-wrap: wrap; gap: .5rem; margin: 1.5rem 0 0; padding: 0; list-style: none; }
+  .ts .ts-am__chips li { padding: 8px 13px; border-radius: 999px; border: 1px solid var(--ts-line-strong, rgba(255,255,255,.14)); color: var(--ts-text, #f6faf7); font-size: 10.5px; }
+  .ts-am__block { padding-top: clamp(4.5rem, 8vw, 7.5rem); }
+  .ts-am__blockhead { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; padding-bottom: 1.25rem; border-bottom: 1px solid var(--tss-line, rgba(255,255,255,.1)); }
+  .ts .ts-am__h2 { margin-top: clamp(1.75rem, 3vw, 2.5rem); font-family: var(--ts-font-display, 'Syne', sans-serif); font-weight: 800; font-size: clamp(2rem, 5vw, 4.4rem); line-height: .98; letter-spacing: -0.03em; }
+  .ts .ts-am__h2 i { font-style: normal; color: var(--tss-acc, #6ee7b7); }
+  .ts .ts-am__sub { margin-top: .9rem; max-width: 42rem; color: var(--tss-text, rgba(246,250,247,.72)); font-size: clamp(15px, 1.3vw, 17.5px); line-height: 1.65; }
+  .ts-am__end { padding-bottom: clamp(6rem, 11vw, 10rem); }
+
+  /* Saison-Leiste */
+  .ts-am-season { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(230px, 1fr); gap: 1px; margin: 2rem 0 0; padding: 0; list-style: none;
+    overflow-x: auto; scroll-snap-type: x mandatory; background: var(--tss-line, rgba(255,255,255,.1)); border: 1px solid var(--tss-line, rgba(255,255,255,.1)); scrollbar-width: thin; }
+  .ts-am-season li { scroll-snap-align: start; background: var(--ts-bg, #060608); }
+  .ts .ts-am-season a { position: relative; display: flex; flex-direction: column; gap: .55rem; height: 100%; min-height: 190px; padding: 1.4rem 1.3rem 1.3rem; color: inherit; text-decoration: none; transition: background .3s; }
+  .ts .ts-am-season a::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 3px; background: var(--c); opacity: .35; transition: opacity .3s; }
+  .ts .ts-am-season a:hover { background: rgba(255,255,255,.03); }
+  .ts .ts-am-season a:hover::before, .ts-am-season .is-now a::before { opacity: 1; }
+  .ts-am-season__date { color: var(--c); }
+  .ts .ts-am-season__name { font: 800 clamp(1.1rem, 1.35vw, 1.32rem)/1.08 var(--ts-font-display, 'Syne', sans-serif); letter-spacing: -0.025em; overflow-wrap: anywhere; hyphens: auto; }
+  .ts .ts-am-season__sub { color: var(--tss-text, rgba(246,250,247,.72)); font-size: 14px; line-height: 1.5; }
+  .ts .ts-am-season__state { margin-top: auto; display: inline-flex; align-self: flex-start; align-items: center; gap: .45rem; padding: 6px 11px; border-radius: 999px;
+    border: 1px solid var(--tss-line, rgba(255,255,255,.1)); color: var(--ts-muted, #9aaba3); font-size: 10px; white-space: nowrap; }
+  .ts-am-season .is-now .ts-am-season__state { border-color: var(--c); color: #060608; background: var(--c); }
+  .ts-am-season .is-now .ts-am-season__state::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: #060608; animation: ts-am-pulse 1.6s infinite; }
+  .ts-am-season .is-past { opacity: .5; }
+  @keyframes ts-am-pulse { 50% { opacity: .25; } }
+
+  /* Highlight-Karte (Saisonpaket) */
+  .ts .ts-am-bundle { display: grid; gap: 2rem; margin-top: 2rem; padding: clamp(1.5rem, 4vw, 3rem); border-radius: 26px; align-items: center; }
+  .ts .ts-am-bundle__price { display: flex; align-items: baseline; gap: .8rem; margin-top: 1.2rem; font: 800 clamp(2rem, 4vw, 3rem)/1 var(--ts-font-display, 'Syne', sans-serif); letter-spacing: -0.03em; }
+  .ts .ts-am-bundle__price s { font-size: .45em; color: var(--ts-muted, #9aaba3); font-weight: 700; }
+  .ts-am-bundle__art { position: relative; min-height: 260px; }
+  .ts .ts-am-bundle__art img { position: absolute; width: 46% !important; height: auto !important; border-radius: 8px; background: #fbf9f4; padding: 6px; box-shadow: 0 30px 60px -30px rgba(0,0,0,.9); }
+  .ts-am-bundle__art img:nth-child(1) { left: 0; top: 12%; transform: rotate(-6deg); }
+  .ts-am-bundle__art img:nth-child(2) { left: 27%; top: 0; transform: rotate(2deg); z-index: 2; }
+  .ts-am-bundle__art img:nth-child(3) { right: 0; top: 16%; transform: rotate(7deg); }
+
+  /* Ausmal-Widget (wie im Kritzelbuch) */
+  .ts-am-pick { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1.5rem; }
+  .ts .ts-am-pick button { padding: 9px 14px; border-radius: 999px; border: 1px solid var(--ts-line-strong, rgba(255,255,255,.14)); background: transparent; color: var(--ts-text, #f6faf7);
+    font: 600 11px/1 var(--ts-font-mono, 'JetBrains Mono', monospace); letter-spacing: .12em; text-transform: uppercase; cursor: pointer; transition: background .25s, color .25s, border-color .25s; }
+  .ts .ts-am-pick button:hover { border-color: rgba(110, 231, 183, .45); }
+  .ts .ts-am-pick button[aria-pressed="true"] { background: #f6faf7; color: #060608; border-color: #f6faf7; }
+  .ts-paint { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1.25rem; margin-top: 1.5rem; align-items: start; }
+  .ts-paint__paper { position: relative; padding: clamp(.6rem, 1.6vw, 1.25rem); border-radius: 8px; background: #fbf9f4; box-shadow: 0 1px 0 rgba(255,255,255,.7) inset, 0 40px 80px -36px rgba(0,0,0,.9), 0 2px 8px rgba(0,0,0,.35); }
+  .ts-paint__canvas { display: block; width: 100%; height: auto; aspect-ratio: 1000 / 1100; border-radius: 4px; cursor: crosshair; touch-action: pan-y; background: #fff; }
+  .ts-paint.is-brush .ts-paint__canvas { touch-action: none; }
+  .ts .ts-paint__done { position: absolute; left: 50%; top: 1rem; transform: translate(-50%, -10px); padding: 8px 14px; border-radius: 999px; background: #1d4d3f; color: #f6faf7; font-size: 11px; opacity: 0; pointer-events: none; transition: opacity .3s, transform .4s var(--ts-ease-out); white-space: nowrap; }
+  .ts .ts-paint__done.is-on { opacity: 1; transform: translate(-50%, 0); }
+  .ts-paint__tools { display: grid; gap: 1rem; padding: 1.1rem; border-radius: 22px; }
+  .ts .ts-paint__label { color: var(--ts-muted, #9aaba3); font-size: 10.5px; }
+  .ts-paint__swatches { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: .5rem; margin-top: .5rem; }
+  .ts .ts-paint__sw { position: relative; aspect-ratio: 1; width: 100%; border-radius: 50%; border: 2px solid rgba(255,255,255,.14); background: var(--c); cursor: pointer; transition: transform .25s var(--ts-ease-out), border-color .2s; }
+  .ts .ts-paint__sw:hover { transform: scale(1.08); }
+  .ts .ts-paint__sw[aria-pressed="true"] { border-color: #f6faf7; transform: scale(1.12); box-shadow: 0 0 0 3px rgba(110,231,183,.45); }
+  .ts-paint__modes, .ts-paint__acts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .5rem; margin-top: .5rem; }
+  .ts-paint__acts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .ts .ts-paint__btn { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .35rem; min-height: 64px; padding: .6rem .4rem; border-radius: 16px; border: 1px solid var(--ts-line-strong, rgba(255,255,255,.14)); background: rgba(255,255,255,.03); color: var(--ts-text, #f6faf7); font: 500 12.5px/1.15 var(--ts-font-body, Inter, sans-serif); cursor: pointer; transition: background .25s, border-color .25s, color .25s; }
+  .ts .ts-paint__btn:hover { border-color: rgba(110,231,183,.45); }
+  .ts .ts-paint__btn[aria-pressed="true"] { background: #f6faf7; color: #060608; border-color: #f6faf7; }
+  .ts .ts-paint__btn:disabled { opacity: .35; cursor: default; }
+  .ts .ts-paint__size { display: flex; align-items: center; gap: .75rem; margin-top: .5rem; }
+  .ts-paint__size input { flex: 1; accent-color: #6ee7b7; }
+  .ts .ts-paint__hint { color: var(--ts-muted, #9aaba3); font-size: 13px; line-height: 1.5; }
+
+  /* Motiv-Parade */
+  .ts-am-zoo { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(.6rem, 1.6vw, 1.1rem); margin-top: 2rem; }
+  .ts .ts-am-zoo figure { margin: 0; padding: clamp(.4rem, 1vw, .7rem); border-radius: 6px; background: #fbf9f4; transform: rotate(var(--r, 0deg)); box-shadow: 0 24px 50px -28px rgba(0,0,0,.85); transition: transform .5s var(--ts-ease-out); }
+  .ts .ts-am-zoo figure:hover { transform: rotate(0deg) translateY(-5px) scale(1.03); }
+  .ts-am-zoo svg, .ts-am-zoo img { display: block; width: 100% !important; height: auto !important; }
+  .ts .ts-am-zoo figcaption { margin-top: .35rem; text-align: center; font: 800 clamp(8px, .9vw, 12px)/1 var(--ts-font-display, 'Syne', sans-serif); letter-spacing: 0; text-transform: uppercase; color: #1b1f1c; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .ts .ts-am-zoo figcaption.is-long { font-size: clamp(6.5px, .68vw, 9.5px); }
+  .ts .ts-am-zoo .ts-am-door { position: relative; }
+  .ts .ts-am-zoo .ts-am-door b { position: absolute; left: .45rem; top: .4rem; min-width: 1.9rem; height: 1.9rem; display: grid; place-items: center; border-radius: 999px; background: #060608; color: #f6faf7; font: 700 12px/1 var(--ts-font-mono, monospace); }
+
+  /* Gratis + Kita */
+  .ts .ts-am-split { display: grid; gap: 2rem; margin-top: 2rem; padding: clamp(1.5rem, 3.5vw, 2.75rem); border-radius: 26px; align-items: center; }
+  .ts-am-thumbs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .8rem; }
+  .ts .ts-am-thumbs img { display: block; width: 100% !important; height: auto !important; border-radius: 6px; background: #fbf9f4; padding: 5px; box-shadow: 0 24px 50px -28px rgba(0,0,0,.85); }
+  .ts-am-thumbs img:nth-child(1) { transform: rotate(-3deg); } .ts-am-thumbs img:nth-child(2) { transform: translateY(-8px) rotate(1.5deg); } .ts-am-thumbs img:nth-child(3) { transform: rotate(2.5deg); }
+  .ts .ts-am-note { margin-top: 1rem; color: rgba(246,250,247,.5); font-size: 13px; line-height: 1.6; }
+  .ts .ts-am-list { list-style: none; margin: 1.25rem 0 0; padding: 0; display: grid; gap: .7rem; }
+  .ts .ts-am-list li { position: relative; padding-left: 1.6rem; color: var(--tss-text, rgba(246,250,247,.72)); line-height: 1.55; }
+  .ts .ts-am-list li::before { content: ""; position: absolute; left: 0; top: .5em; width: 8px; height: 8px; border-radius: 50%; background: var(--tss-acc, #6ee7b7); }
+  .ts .ts-am-list b { color: #f6faf7; }
+  .ts .ts-am-final { margin-top: clamp(3rem, 6vw, 5rem); padding: clamp(1.75rem, 4vw, 3rem); border-radius: 26px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1.5rem; }
+  .ts .ts-am-final p { font: 800 clamp(1.5rem, 3vw, 2.4rem)/1.05 var(--ts-font-display, 'Syne', sans-serif); letter-spacing: -0.025em; margin: 0; }
+
+  @media (min-width: 640px) {
+    .ts-am-zoo { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  }
+  @media (min-width: 1024px) {
+    .ts-paint { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 2rem; }
+    .ts-paint__tools { position: sticky; top: 110px; }
+    .ts .ts-am-bundle, .ts .ts-am-split { grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); gap: 3rem; }
+    .ts-am-zoo { grid-template-columns: repeat(var(--cols, 6), minmax(0, 1fr)); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .ts .ts-am-zoo figure, .ts-am-bundle__art img, .ts-am-thumbs img { transform: none !important; }
+    .ts-am-season .is-now .ts-am-season__state::before { animation: none; }
+  }
+</style>
+
+<div class="ts ts-am" style="--tss-acc:#e8505b">
+
+  <section id="ts-am-malen" class="ts-container ts-am__block" aria-labelledby="ts-am-malen-t">
+    <div class="ts-am__blockhead ts-reveal"><p class="ts-label ts-muted">[ Probier&#x27;s aus ]</p><p class="ts-label ts-muted">Motiv aus dem Paket</p></div>
+    <h2 id="ts-am-malen-t" class="ts-am__h2 ts-reveal">Erst mal ausprobieren<i>.</i></h2>
+    <p class="ts-am__sub ts-reveal">Ein paar Motive aus diesem Paket kannst du hier direkt ausmalen: Farbe antippen, ins Bild tippen – fertig. Speichern und Drucken geht auch.</p>
+    <div class="ts-paint" data-am-paint data-default="ad11">
+      <script type="application/json">[{"key": "ad11", "name": "Rentier", "file": "rentier", "src": "data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 1000 1100\" width=\"1000\" height=\"1100\"><g stroke=\"%23111111\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><g transform=\"translate(60 0) scale(.88)\"><path d=\"M410 330 C390 240 340 180 270 150\" fill=\"none\" stroke=\"%23111111\" stroke-width=\"68\"/><path d=\"M372 238 C320 230 270 250 235 285\" fill=\"none\" stroke=\"%23111111\" stroke-width=\"68\"/><path d=\"M335 190 C330 140 345 105 370 80\" fill=\"none\" stroke=\"%23111111\" stroke-width=\"68\"/><path d=\"M590 330 C610 240 660 180 730 150\" fill=\"none\" stroke=\"%23111111\" stroke-width=\"68\"/><path d=\"M628 238 C680 230 730 250 765 285\" fill=\"none\" stroke=\"%23111111\" stroke-width=\"68\"/><path d=\"M665 190 C670 140 655 105 630 80\" fill=\"none\" stroke=\"%23111111\" stroke-width=\"68\"/><path d=\"M410 330 C390 240 340 180 270 150\" fill=\"none\" stroke=\"%23fff\" stroke-width=\"46\"/><path d=\"M372 238 C320 230 270 250 235 285\" fill=\"none\" stroke=\"%23fff\" stroke-width=\"46\"/><path d=\"M335 190 C330 140 345 105 370 80\" fill=\"none\" stroke=\"%23fff\" stroke-width=\"46\"/><path d=\"M590 330 C610 240 660 180 730 150\" fill=\"none\" stroke=\"%23fff\" stroke-width=\"46\"/><path d=\"M628 238 C680 230 730 250 765 285\" fill=\"none\" stroke=\"%23fff\" stroke-width=\"46\"/><path d=\"M665 190 C670 140 655 105 630 80\" fill=\"none\" stroke=\"%23fff\" stroke-width=\"46\"/><path d=\"M390 720 L378 850 L622 850 L610 720 Z\" fill=\"%23fff\" stroke-width=\"11\" /><g transform=\"translate(270 410) rotate(25)\"><path d=\"M-95 0 Q-19 -55 95 0 Q-19 55 -95 0 Z\" fill=\"%23fff\" stroke-width=\"11\"/><path d=\"M-66 0 L62 0\" fill=\"none\" stroke-width=\"5\"/></g><g transform=\"translate(730 410) rotate(-25)\"><path d=\"M-95 0 Q-19 -55 95 0 Q-19 55 -95 0 Z\" fill=\"%23fff\" stroke-width=\"11\"/><path d=\"M-66 0 L62 0\" fill=\"none\" stroke-width=\"5\"/></g><ellipse cx=\"500\" cy=\"520\" rx=\"215\" ry=\"230\" fill=\"%23fff\" stroke-width=\"11\"/><ellipse cx=\"500\" cy=\"670\" rx=\"150\" ry=\"108\" fill=\"%23fff\" stroke-width=\"11\"/><ellipse cx=\"420\" cy=\"480\" rx=\"22\" ry=\"28\" fill=\"%23111111\" stroke-width=\"0\"/><circle cx=\"413\" cy=\"470\" r=\"9\" fill=\"%23fff\" stroke=\"none\"/><circle cx=\"427\" cy=\"489\" r=\"4\" fill=\"%23fff\" stroke=\"none\"/><ellipse cx=\"580\" cy=\"480\" rx=\"22\" ry=\"28\" fill=\"%23111111\" stroke-width=\"0\"/><circle cx=\"573\" cy=\"470\" r=\"9\" fill=\"%23fff\" stroke=\"none\"/><circle cx=\"587\" cy=\"489\" r=\"4\" fill=\"%23fff\" stroke=\"none\"/><ellipse cx=\"345\" cy=\"560\" rx=\"22\" ry=\"12\" fill=\"%23fff\" stroke-width=\"5\"/><ellipse cx=\"655\" cy=\"560\" rx=\"22\" ry=\"12\" fill=\"%23fff\" stroke-width=\"5\"/><circle cx=\"500\" cy=\"625\" r=\"50\" fill=\"%23fff\" stroke-width=\"11\"/><path d=\"M470 712 Q500 738 530 712\" fill=\"none\" stroke-width=\"7\"/><path d=\"M545 840 L520 965 L620 965 L625 830 Z\" fill=\"%23fff\" stroke-width=\"11\" /><path d=\"M545 935 L612 935\" fill=\"none\" stroke-width=\"7\"/><path d=\"M345 785 Q500 835 655 785 L665 855 Q500 905 335 855 Z\" fill=\"%23fff\" stroke-width=\"11\" /><path d=\"M140 524 Q144 556 176 560 Q144 564 140 596 Q136 564 104 560 Q136 556 140 524 Z\" fill=\"%23fff\" stroke-width=\"7\" /><path d=\"M860 530 Q863 557 890 560 Q863 563 860 590 Q857 563 830 560 Q857 557 860 530 Z\" fill=\"%23fff\" stroke-width=\"7\" /><path d=\"M500 120 Q503 147 530 150 Q503 153 500 180 Q497 153 470 150 Q497 147 500 120 Z\" fill=\"%23fff\" stroke-width=\"7\" /></g><g transform=\"translate(134.7 1055) scale(0.17281 -0.17281)\" fill=\"%23fff\" stroke=\"%23111111\" stroke-width=\"138.88\" stroke-linejoin=\"round\" paint-order=\"stroke\"><path transform=\"translate(0 0)\" d=\"M126 -8Q81 -8 62 6Q43 19 39 40Q35 62 35 84V600Q35 622 39 643Q43 664 62 678Q81 691 127 691H328Q366 691 410 676Q454 660 493 628Q532 596 557 548Q582 500 582 434Q582 388 568 348Q555 308 528 276Q502 243 464 218Q427 194 379 180H218V83Q218 61 214 40Q210 19 191 6Q172 -8 126 -8ZM545 16Q500 -18 474 -12Q448 -5 418 35L234 285L442 311L566 144Q586 115 592 95Q597 75 586 57Q575 39 545 16ZM218 362H328Q337 362 350 366Q362 369 373 378Q384 386 392 400Q399 414 399 435Q399 456 389 472Q379 489 362 498Q346 508 326 508H218Z\"/><path transform=\"translate(644 0)\" d=\"M129 -9Q84 -9 65 4Q46 18 42 40Q38 61 38 83V600Q38 652 58 672Q79 691 132 691H498Q521 691 542 687Q562 683 576 664Q589 645 589 599Q589 554 576 535Q562 516 541 512Q520 508 497 508H221V419H406Q429 419 447 416Q465 412 476 396Q487 380 487 340Q487 302 476 286Q465 269 446 266Q427 263 404 263H221V174H498Q521 174 542 170Q562 166 576 147Q589 128 589 82Q589 37 576 18Q562 -1 541 -5Q520 -9 497 -9Z\"/><path transform=\"translate(1287 0)\" d=\"M118 -9Q74 -9 55 4Q36 18 32 39Q28 60 28 83V602Q28 624 32 644Q36 664 56 677Q75 690 120 690Q164 690 180 679Q196 668 209 651L459 315V602Q459 624 464 644Q468 664 487 677Q506 690 551 690Q597 690 616 676Q634 663 638 642Q642 621 642 598V82Q642 60 638 39Q634 18 615 4Q596 -9 550 -9Q516 -9 498 -4Q481 2 469 18L210 360V82Q210 60 206 39Q202 18 183 4Q164 -9 118 -9Z\"/><path transform=\"translate(1997 0)\" d=\"M549 692Q568 692 585 689Q602 686 614 670Q625 654 625 615Q625 577 614 560Q602 544 584 541Q567 538 548 538H410V80Q410 58 406 38Q402 17 384 4Q365 -9 319 -9Q275 -9 256 4Q237 18 234 38Q230 59 230 81V538H91Q73 538 56 542Q38 545 26 561Q15 577 15 616Q15 654 26 670Q38 686 56 689Q74 692 92 692Z\"/><path transform=\"translate(2677 0)\" d=\"M119 -9Q74 -9 55 4Q36 18 32 40Q28 61 28 83V600Q28 622 32 643Q36 664 55 678Q74 691 120 691Q166 691 184 678Q203 664 207 643Q211 622 211 599V82Q211 60 207 39Q203 18 184 4Q165 -9 119 -9Z\"/><path transform=\"translate(2956 0)\" d=\"M129 -9Q84 -9 65 4Q46 18 42 40Q38 61 38 83V600Q38 652 58 672Q79 691 132 691H498Q521 691 542 687Q562 683 576 664Q589 645 589 599Q589 554 576 535Q562 516 541 512Q520 508 497 508H221V419H406Q429 419 447 416Q465 412 476 396Q487 380 487 340Q487 302 476 286Q465 269 446 266Q427 263 404 263H221V174H498Q521 174 542 170Q562 166 576 147Q589 128 589 82Q589 37 576 18Q562 -1 541 -5Q520 -9 497 -9Z\"/><path transform=\"translate(3599 0)\" d=\"M126 -8Q81 -8 62 6Q43 19 39 40Q35 62 35 84V600Q35 622 39 643Q43 664 62 678Q81 691 127 691H328Q366 691 410 676Q454 660 493 628Q532 596 557 548Q582 500 582 434Q582 388 568 348Q555 308 528 276Q502 243 464 218Q427 194 379 180H218V83Q218 61 214 40Q210 19 191 6Q172 -8 126 -8ZM545 16Q500 -18 474 -12Q448 -5 418 35L234 285L442 311L566 144Q586 115 592 95Q597 75 586 57Q575 39 545 16ZM218 362H328Q337 362 350 366Q362 369 373 378Q384 386 392 400Q399 414 399 435Q399 456 389 472Q379 489 362 498Q346 508 326 508H218Z\"/></g></g></svg>", "saison": "advent", "paket": "24 Türchen"}, {"key": "ad06", "name": "Nikolaus", "file": "nikolaus", "src": "data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 1000 1100\" width=\"1000\" height=\"1100\"><g stroke=\"%23111111\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><g transform=\"translate(60 0) scale(.88)\"><path d=\"M200 965 C210 830 300 765 420 755 L580 755 C700 765 790 830 800 965 Z\" fill=\"%23fff\" stroke-width=\"11\" /><rect x=\"465\" y=\"860\" width=\"70\" height=\"110\" rx=\"8\" fill=\"%23fff\" stroke-width=\"8\"/><path d=\"M300 330 C315 170 440 92 575 105 C705 118 790 230 812 400 C780 340 735 312 690 312 L705 330 Z\" fill=\"%23fff\" stroke-width=\"11\" /><circle cx=\"500\" cy=\"470\" r=\"195\" fill=\"%23fff\" stroke-width=\"11\"/><path d=\"M707 434 Q762 500 708 568 Q743 652 677 692 Q686 781 618 787 Q601 867 542 838 Q500 897 458 838 Q399 867 382 787 Q314 781 323 692 Q257 652 292 568 Q238 500 293 434 C320 540 420 575 500 575 C580 575 680 540 707 434 Z\" fill=\"%23fff\" stroke-width=\"11\" /><path d=\"M470 700 Q500 722 530 700\" fill=\"none\" stroke-width=\"7\"/><path d=\"M500 585 C470 556 400 556 378 600 C402 632 466 634 500 606 Z\" fill=\"%23fff\" stroke-width=\"9\" /><path d=\"M500 585 C530 556 600 556 622 600 C598 632 534 634 500 606 Z\" fill=\"%23fff\" stroke-width=\"9\" /><circle cx=\"500\" cy=\"552\" r=\"30\" fill=\"%23fff\" stroke-width=\"9\"/><path d=\"M478 660 Q500 676 522 660\" fill=\"none\" stroke-width=\"7\"/><ellipse cx=\"420\" cy=\"452\" rx=\"25\" ry=\"32\" fill=\"%23111111\" stroke-width=\"0\"/><circle cx=\"412\" cy=\"440\" r=\"10\" fill=\"%23fff\" stroke=\"none\"/><circle cx=\"428\" cy=\"463\" r=\"5\" fill=\"%23fff\" stroke=\"none\"/><ellipse cx=\"580\" cy=\"452\" rx=\"25\" ry=\"32\" fill=\"%23111111\" stroke-width=\"0\"/><circle cx=\"572\" cy=\"440\" r=\"10\" fill=\"%23fff\" stroke=\"none\"/><circle cx=\"588\" cy=\"463\" r=\"5\" fill=\"%23fff\" stroke=\"none\"/><ellipse cx=\"352\" cy=\"520\" rx=\"24\" ry=\"13\" fill=\"%23fff\" stroke-width=\"5\"/><ellipse cx=\"648\" cy=\"520\" rx=\"24\" ry=\"13\" fill=\"%23fff\" stroke-width=\"5\"/><path d=\"M385 392 Q420 372 455 390\" fill=\"none\" stroke-width=\"7\"/><path d=\"M545 390 Q580 372 615 392\" fill=\"none\" stroke-width=\"7\"/><path d=\"M280 320 Q300 290 340 296 Q375 276 410 294 Q455 276 500 292 Q545 276 590 294 Q625 276 660 296 Q700 290 720 320 L720 365 Q705 395 665 386 Q625 405 585 386 Q545 405 500 388 Q455 405 415 386 Q375 405 335 386 Q295 395 280 365 Z\" fill=\"%23fff\" stroke-width=\"11\" /><circle cx=\"812\" cy=\"410\" r=\"62\" fill=\"%23fff\" stroke-width=\"11\"/><path d=\"M150 164 Q154 196 186 200 Q154 204 150 236 Q146 204 114 200 Q146 196 150 164 Z\" fill=\"%23fff\" stroke-width=\"7\" /><path d=\"M880 172 Q883 197 908 200 Q883 203 880 228 Q877 203 852 200 Q877 197 880 172 Z\" fill=\"%23fff\" stroke-width=\"7\" /><path d=\"M140 614 Q143 637 166 640 Q143 643 140 666 Q137 643 114 640 Q137 637 140 614 Z\" fill=\"%23fff\" stroke-width=\"7\" /></g><g transform=\"translate(66.4 1055) scale(0.17281 -0.17281)\" fill=\"%23fff\" stroke=\"%23111111\" stroke-width=\"138.88\" stroke-linejoin=\"round\" paint-order=\"stroke\"><path transform=\"translate(0 0)\" d=\"M118 -9Q74 -9 55 4Q36 18 32 39Q28 60 28 83V602Q28 624 32 644Q36 664 56 677Q75 690 120 690Q164 690 180 679Q196 668 209 651L459 315V602Q459 624 464 644Q468 664 487 677Q506 690 551 690Q597 690 616 676Q634 663 638 642Q642 621 642 598V82Q642 60 638 39Q634 18 615 4Q596 -9 550 -9Q516 -9 498 -4Q481 2 469 18L210 360V82Q210 60 206 39Q202 18 183 4Q164 -9 118 -9Z\"/><path transform=\"translate(710 0)\" d=\"M119 -9Q74 -9 55 4Q36 18 32 40Q28 61 28 83V600Q28 622 32 643Q36 664 55 678Q74 691 120 691Q166 691 184 678Q203 664 207 643Q211 622 211 599V82Q211 60 207 39Q203 18 184 4Q165 -9 119 -9Z\"/><path transform=\"translate(989 0)\" d=\"M131 -9Q86 -9 67 4Q48 18 44 40Q40 61 40 83V600Q40 622 44 643Q48 664 67 678Q86 691 132 691Q178 691 196 678Q215 664 219 643Q223 622 223 599V461L397 660Q420 685 440 695Q460 705 481 699Q502 693 527 669Q568 632 569 604Q570 576 536 540L340 340L537 143Q574 106 572 76Q569 47 528 13Q498 -11 477 -17Q456 -23 438 -12Q420 -2 398 24L223 223V82Q223 60 219 39Q215 18 196 4Q177 -9 131 -9Z\"/><path transform=\"translate(1626 0)\" d=\"M365 -20Q292 -20 228 8Q165 35 117 84Q69 133 42 198Q14 262 14 335Q14 411 40 477Q67 543 114 593Q161 643 224 671Q286 699 357 699Q430 699 494 672Q557 644 605 595Q653 546 680 480Q707 415 707 339Q707 265 680 200Q654 135 606 86Q559 36 498 8Q436 -20 365 -20ZM360 163Q394 163 424 176Q454 190 476 214Q499 237 512 270Q524 302 524 339Q524 376 511 408Q498 440 476 464Q453 489 424 502Q394 516 361 516Q327 516 298 502Q268 489 246 464Q223 440 210 408Q197 376 197 339Q197 303 210 271Q223 239 246 214Q268 190 298 176Q327 163 360 163Z\"/><path transform=\"translate(2387 0)\" d=\"M141 -9Q96 -9 77 4Q58 18 54 40Q50 61 50 83V600Q50 622 54 643Q58 664 77 678Q96 691 142 691Q188 691 206 678Q225 664 229 643Q233 622 233 599V147H477Q496 147 514 144Q531 141 542 124Q554 108 554 69Q554 31 542 14Q530 -2 512 -6Q495 -9 476 -9Z\"/><path transform=\"translate(2996 0)\" d=\"M690 118Q705 88 706 67Q707 46 693 30Q679 14 648 -2Q600 -25 574 -16Q548 -8 525 41L355 389L187 40Q163 -7 137 -16Q111 -24 64 -1Q33 14 18 30Q4 46 5 67Q6 88 21 118L272 638Q284 662 308 676Q331 691 356 691Q374 691 390 684Q405 678 418 666Q431 654 439 637ZM197 136 273 292H438L514 136Z\"/><path transform=\"translate(3747 0)\" d=\"M336 -20Q260 -20 202 10Q145 41 106 91Q67 141 48 201Q28 261 28 320V600Q28 623 32 644Q36 665 55 678Q74 692 120 692Q166 692 185 678Q204 665 208 644Q212 623 212 599V320Q212 287 223 251Q234 215 262 190Q289 164 339 164Q377 164 405 184Q433 203 448 238Q464 274 464 321V605Q464 627 468 646Q473 666 492 679Q511 692 556 692Q602 692 620 678Q639 664 643 643Q647 622 647 599V318Q647 258 627 198Q607 139 568 90Q528 40 470 10Q412 -20 336 -20Z\"/><path transform=\"translate(4462 0)\" d=\"M271 -19Q210 -19 168 -4Q125 11 98 32Q71 52 57 69Q43 86 40 90Q20 115 16 135Q11 155 22 175Q32 195 57 219Q80 241 102 244Q124 246 146 234Q167 222 187 199Q211 172 228 162Q245 153 267 153Q294 153 311 160Q328 166 336 180Q344 193 344 214Q344 231 327 240Q310 250 282 257Q255 264 221 272Q187 281 154 295Q134 303 115 315Q96 327 80 342Q63 358 51 380Q39 401 32 428Q26 455 26 489Q26 550 56 598Q87 646 140 674Q194 702 262 702Q311 702 346 694Q381 686 404 675Q426 664 438 654Q450 645 453 642Q486 612 489 590Q492 569 465 529Q435 486 406 480Q377 475 339 499Q331 505 323 512Q315 520 302 526Q288 531 261 531Q251 531 241 528Q231 524 224 518Q217 513 212 505Q208 497 208 488Q208 467 224 456Q240 444 266 438Q293 432 325 426Q357 420 390 410Q417 401 442 387Q467 373 486 351Q505 329 516 296Q528 264 528 217Q528 152 503 106Q478 61 438 34Q399 6 354 -6Q310 -19 271 -19Z\"/></g></g></svg>", "saison": "advent", "paket": "24 Türchen"}, {"key": "ad24", "name": "Tannenbaum", "file": "tannenbaum", "src": "data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 1000 1100\" width=\"1000\" height=\"1100\"><g stroke=\"%23111111\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><g transform=\"translate(60 0) scale(.88)\"><rect x=\"450\" y=\"720\" width=\"100\" height=\"110\" rx=\"10\" fill=\"%23fff\" stroke-width=\"11\"/><path d=\"M500 440 L830 740 Q748 780 665 740 Q582 780 500 740 Q418 780 335 740 Q252 780 170 740 Z\" fill=\"%23fff\" stroke-width=\"11\" /><path d=\"M500 300 L760 560 Q695 600 630 560 Q565 600 500 560 Q435 600 370 560 Q305 600 240 560 Z\" fill=\"%23fff\" stroke-width=\"11\" /><path d=\"M500 170 L690 400 Q642 440 595 400 Q548 440 500 400 Q452 440 405 400 Q358 440 310 400 Z\" fill=\"%23fff\" stroke-width=\"11\" /><ellipse cx=\"438\" cy=\"470\" rx=\"21\" ry=\"27\" fill=\"%23111111\" stroke-width=\"0\"/><circle cx=\"431\" cy=\"460\" r=\"8\" fill=\"%23fff\" stroke=\"none\"/><circle cx=\"445\" cy=\"479\" r=\"4\" fill=\"%23fff\" stroke=\"none\"/><ellipse cx=\"562\" cy=\"470\" rx=\"21\" ry=\"27\" fill=\"%23111111\" stroke-width=\"0\"/><circle cx=\"555\" cy=\"460\" r=\"8\" fill=\"%23fff\" stroke=\"none\"/><circle cx=\"569\" cy=\"479\" r=\"4\" fill=\"%23fff\" stroke=\"none\"/><path d=\"M478 504 Q500 498 522 504 Q520 538 500 538 Q480 538 478 504 Z\" fill=\"%23fff\" stroke-width=\"7.0\" /><path d=\"M490 529 Q500 520 510 529\" fill=\"none\" stroke-width=\"5.0\"/><ellipse cx=\"404\" cy=\"504\" rx=\"19\" ry=\"10\" fill=\"%23fff\" stroke-width=\"5.0\"/><ellipse cx=\"596\" cy=\"504\" rx=\"19\" ry=\"10\" fill=\"%23fff\" stroke-width=\"5.0\"/><circle cx=\"420\" cy=\"330\" r=\"30\" fill=\"%23fff\" stroke-width=\"11\"/><circle cx=\"590\" cy=\"345\" r=\"30\" fill=\"%23fff\" stroke-width=\"11\"/><circle cx=\"385\" cy=\"640\" r=\"30\" fill=\"%23fff\" stroke-width=\"11\"/><circle cx=\"620\" cy=\"650\" r=\"30\" fill=\"%23fff\" stroke-width=\"11\"/><circle cx=\"500\" cy=\"680\" r=\"30\" fill=\"%23fff\" stroke-width=\"11\"/><path d=\"M497 71 Q500 65 503 71 L521 111 Q524 118 530 118 L574 123 Q581 124 576 128 L543 158 Q538 162 540 169 L548 212 Q550 219 544 215 L506 194 Q500 190 494 194 L456 215 Q450 219 452 212 L460 169 Q462 162 457 158 L424 128 Q419 124 426 123 L470 118 Q476 118 479 111 Z\" fill=\"%23fff\" stroke-width=\"11\" /><rect x=\"150\" y=\"760\" width=\"200\" height=\"160\" rx=\"12\" fill=\"%23fff\" stroke-width=\"11\"/><rect x=\"140\" y=\"730\" width=\"220\" height=\"50\" rx=\"12\" fill=\"%23fff\" stroke-width=\"11\"/><rect x=\"230\" y=\"730\" width=\"40\" height=\"190\" rx=\"4\" fill=\"%23fff\" stroke-width=\"11\"/><path d=\"M250 730 C200 670 160 690 190 725 Z\" fill=\"%23fff\" stroke-width=\"11\" /><path d=\"M250 730 C300 670 340 690 310 725 Z\" fill=\"%23fff\" stroke-width=\"11\" /><rect x=\"650\" y=\"790\" width=\"220\" height=\"130\" rx=\"12\" fill=\"%23fff\" stroke-width=\"11\"/><rect x=\"640\" y=\"765\" width=\"240\" height=\"45\" rx=\"12\" fill=\"%23fff\" stroke-width=\"11\"/><rect x=\"740\" y=\"765\" width=\"40\" height=\"155\" rx=\"4\" fill=\"%23fff\" stroke-width=\"11\"/><path d=\"M760 765 C710 710 680 730 705 762 Z\" fill=\"%23fff\" stroke-width=\"11\" /><path d=\"M760 765 C810 710 840 730 815 762 Z\" fill=\"%23fff\" stroke-width=\"11\" /><path d=\"M170 186 Q174 216 204 220 Q174 224 170 254 Q166 224 136 220 Q166 216 170 186 Z\" fill=\"%23fff\" stroke-width=\"7\" /><path d=\"M840 222 Q843 247 868 250 Q843 253 840 278 Q837 253 812 250 Q837 247 840 222 Z\" fill=\"%23fff\" stroke-width=\"7\" /></g><g transform=\"translate(38.1 1036.4) scale(0.12985 -0.12985)\" fill=\"%23fff\" stroke=\"%23111111\" stroke-width=\"184.83\" stroke-linejoin=\"round\" paint-order=\"stroke\"><path transform=\"translate(0 0)\" d=\"M549 692Q568 692 585 689Q602 686 614 670Q625 654 625 615Q625 577 614 560Q602 544 584 541Q567 538 548 538H410V80Q410 58 406 38Q402 17 384 4Q365 -9 319 -9Q275 -9 256 4Q237 18 234 38Q230 59 230 81V538H91Q73 538 56 542Q38 545 26 561Q15 577 15 616Q15 654 26 670Q38 686 56 689Q74 692 92 692Z\"/><path transform=\"translate(680 0)\" d=\"M690 118Q705 88 706 67Q707 46 693 30Q679 14 648 -2Q600 -25 574 -16Q548 -8 525 41L355 389L187 40Q163 -7 137 -16Q111 -24 64 -1Q33 14 18 30Q4 46 5 67Q6 88 21 118L272 638Q284 662 308 676Q331 691 356 691Q374 691 390 684Q405 678 418 666Q431 654 439 637ZM197 136 273 292H438L514 136Z\"/><path transform=\"translate(1431 0)\" d=\"M118 -9Q74 -9 55 4Q36 18 32 39Q28 60 28 83V602Q28 624 32 644Q36 664 56 677Q75 690 120 690Q164 690 180 679Q196 668 209 651L459 315V602Q459 624 464 644Q468 664 487 677Q506 690 551 690Q597 690 616 676Q634 663 638 642Q642 621 642 598V82Q642 60 638 39Q634 18 615 4Q596 -9 550 -9Q516 -9 498 -4Q481 2 469 18L210 360V82Q210 60 206 39Q202 18 183 4Q164 -9 118 -9Z\"/><path transform=\"translate(2141 0)\" d=\"M118 -9Q74 -9 55 4Q36 18 32 39Q28 60 28 83V602Q28 624 32 644Q36 664 56 677Q75 690 120 690Q164 690 180 679Q196 668 209 651L459 315V602Q459 624 464 644Q468 664 487 677Q506 690 551 690Q597 690 616 676Q634 663 638 642Q642 621 642 598V82Q642 60 638 39Q634 18 615 4Q596 -9 550 -9Q516 -9 498 -4Q481 2 469 18L210 360V82Q210 60 206 39Q202 18 183 4Q164 -9 118 -9Z\"/><path transform=\"translate(2851 0)\" d=\"M129 -9Q84 -9 65 4Q46 18 42 40Q38 61 38 83V600Q38 652 58 672Q79 691 132 691H498Q521 691 542 687Q562 683 576 664Q589 645 589 599Q589 554 576 535Q562 516 541 512Q520 508 497 508H221V419H406Q429 419 447 416Q465 412 476 396Q487 380 487 340Q487 302 476 286Q465 269 446 266Q427 263 404 263H221V174H498Q521 174 542 170Q562 166 576 147Q589 128 589 82Q589 37 576 18Q562 -1 541 -5Q520 -9 497 -9Z\"/><path transform=\"translate(3494 0)\" d=\"M118 -9Q74 -9 55 4Q36 18 32 39Q28 60 28 83V602Q28 624 32 644Q36 664 56 677Q75 690 120 690Q164 690 180 679Q196 668 209 651L459 315V602Q459 624 464 644Q468 664 487 677Q506 690 551 690Q597 690 616 676Q634 663 638 642Q642 621 642 598V82Q642 60 638 39Q634 18 615 4Q596 -9 550 -9Q516 -9 498 -4Q481 2 469 18L210 360V82Q210 60 206 39Q202 18 183 4Q164 -9 118 -9Z\"/><path transform=\"translate(4204 0)\" d=\"M121 -8Q76 -8 57 6Q38 19 34 40Q30 62 30 85V601Q30 623 34 644Q38 665 57 678Q76 692 122 692H356Q417 692 465 662Q513 633 541 584Q569 535 569 478Q569 459 566 440Q562 420 554 402Q547 383 536 366Q553 345 565 320Q577 296 583 270Q589 245 589 219Q588 171 570 130Q553 88 522 58Q491 27 451 10Q411 -8 366 -8ZM213 175H356Q363 175 375 178Q387 180 396 192Q406 203 406 230Q406 244 404 254Q401 263 396 268Q391 274 384 276Q378 279 370 280Q361 281 351 281H338Q298 281 281 298Q264 315 264 358Q264 399 282 416Q301 432 343 432H355Q363 432 369 433Q375 434 378 438Q382 442 384 450Q386 457 386 470Q386 493 376 501Q365 509 334 509H213Z\"/><path transform=\"translate(4853 0)\" d=\"M690 118Q705 88 706 67Q707 46 693 30Q679 14 648 -2Q600 -25 574 -16Q548 -8 525 41L355 389L187 40Q163 -7 137 -16Q111 -24 64 -1Q33 14 18 30Q4 46 5 67Q6 88 21 118L272 638Q284 662 308 676Q331 691 356 691Q374 691 390 684Q405 678 418 666Q431 654 439 637ZM197 136 273 292H438L514 136Z\"/><path transform=\"translate(5604 0)\" d=\"M336 -20Q260 -20 202 10Q145 41 106 91Q67 141 48 201Q28 261 28 320V600Q28 623 32 644Q36 665 55 678Q74 692 120 692Q166 692 185 678Q204 665 208 644Q212 623 212 599V320Q212 287 223 251Q234 215 262 190Q289 164 339 164Q377 164 405 184Q433 203 448 238Q464 274 464 321V605Q464 627 468 646Q473 666 492 679Q511 692 556 692Q602 692 620 678Q639 664 643 643Q647 622 647 599V318Q647 258 627 198Q607 139 568 90Q528 40 470 10Q412 -20 336 -20Z\"/><path transform=\"translate(6319 0)\" d=\"M118 -8Q74 -8 55 5Q36 18 32 39Q28 60 28 84V600Q28 622 32 642Q36 663 55 676Q74 690 120 690Q151 690 166 686Q180 682 186 676Q193 670 200 662L407 396H401L607 661Q617 672 626 678Q634 684 648 687Q663 690 690 690Q735 690 754 676Q773 663 777 642Q781 621 781 598V82Q781 60 777 39Q773 18 754 5Q735 -8 689 -8Q644 -8 625 6Q606 19 602 40Q598 62 598 84V368L481 209Q477 204 469 194Q461 184 446 176Q431 168 404 168Q377 168 362 176Q346 184 338 194Q330 203 326 209L210 367V82Q210 60 206 39Q202 18 183 5Q164 -8 118 -8Z\"/></g></g></svg>", "saison": "advent", "paket": "24 Türchen"}]</script>
+      <div>
+        <div class="ts-am-pick" role="group" aria-label="Motiv wählen" data-am-pick></div>
+        <div class="ts-paint__paper ts-reveal" style="margin-top:1rem">
+          <canvas class="ts-paint__canvas" width="1000" height="1100" role="img" aria-label="Ausmalbild"></canvas>
+          <p class="ts-label ts-paint__done" data-paint-msg aria-live="polite"></p>
+        </div>
+      </div>
+      <div class="ts-paint__tools ts-glass ts-reveal">
+        <div><p class="ts-label ts-paint__label">Farbe</p><div class="ts-paint__swatches" role="group" aria-label="Farben" data-paint-colors></div></div>
+        <div>
+          <p class="ts-label ts-paint__label">Werkzeug</p>
+          <div class="ts-paint__modes" role="group" aria-label="Werkzeug">
+            <button type="button" class="ts-paint__btn" data-mode="fill" aria-pressed="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m19 11-8-8-8.6 8.6a2 2 0 0 0 0 2.8l5.2 5.2a2 2 0 0 0 2.8 0L19 11Z"/><path d="m5 2 5 5M2 13h15M22 20a2 2 0 1 1-4 0c0-1.6 1.7-2.4 2-4 .3 1.6 2 2.4 2 4Z"/></svg>Farbeimer</button>
+            <button type="button" class="ts-paint__btn" data-mode="brush" aria-pressed="false"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M9.06 11.9 17.1 3.86a2.83 2.83 0 1 1 4 4l-8.04 8.04"/><path d="M7.07 14.94c-1.66 0-3 1.35-3 3.02 0 1.33-2.5 1.52-2 2.02 1.08 1.1 2.49 2.02 4 2.02 2.2 0 4-1.8 4-4.04a3.01 3.01 0 0 0-3-3.02Z"/></svg>Pinsel</button>
+            <button type="button" class="ts-paint__btn" data-mode="erase" aria-pressed="false"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m7 21-4.3-4.3a1 1 0 0 1 0-1.4l10-10a1 1 0 0 1 1.4 0l5.6 5.6a1 1 0 0 1 0 1.4L11 21M22 21H7M5 11l9 9"/></svg>Radierer</button>
+          </div>
+          <label class="ts-paint__size"><span class="ts-label ts-paint__label">Pinsel</span><input type="range" min="6" max="60" value="22" data-paint-size aria-label="Pinselgröße"></label>
+        </div>
+        <div class="ts-paint__acts">
+          <button type="button" class="ts-paint__btn" data-act="undo" disabled><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M9 14 4 9l5-5"/><path d="M4 9h10.5a5.5 5.5 0 0 1 0 11H11"/></svg>Zurück</button>
+          <button type="button" class="ts-paint__btn" data-act="clear"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg>Neu</button>
+          <button type="button" class="ts-paint__btn" data-act="save"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>Speichern</button>
+          <button type="button" class="ts-paint__btn" data-act="print"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M6 9V3h12v6"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><path d="M6 14h12v7H6z"/></svg>Drucken</button>
+        </div>
+        <p class="ts-paint__hint">Tipp: Am Handy einfach mit dem Finger tippen. Dein Bild bleibt auf diesem Gerät gespeichert, bis du „Neu“ drückst.</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<script>
+/* Ausmalen: Farbeimer, Pinsel, Radierer, Zurück, Neu, Speichern, Drucken – mehrere Motive zur Auswahl */
+(() => {
+  document.querySelectorAll('[data-am-paint]').forEach(root => {
+    const MOTIVE = JSON.parse(root.querySelector('script[type="application/json"]').textContent);
+    const COLORS = ['#e8505b', '#f6a33b', '#f7d046', '#8bc34a', '#2e9e6a', '#5ec8e5', '#3f7fd9', '#9b6ad6', '#f29bc4', '#a0683f', '#7d7d7d', '#2b2b2b'];
+    const NAMES = ['Rot', 'Orange', 'Gelb', 'Hellgrün', 'Grün', 'Hellblau', 'Blau', 'Lila', 'Rosa', 'Braun', 'Grau', 'Schwarz'];
+    const cv = root.querySelector('canvas'), ctx = cv.getContext('2d');
+    const W = cv.width, H = cv.height;
+    const paint = document.createElement('canvas'); paint.width = W; paint.height = H;
+    const pctx = paint.getContext('2d', { willReadFrequently: true });
+    const msg = root.querySelector('[data-paint-msg]'), undoBtn = root.querySelector('[data-act="undo"]'), size = root.querySelector('[data-paint-size]');
+    const pick = root.querySelector('[data-am-pick]');
+    let wall = null, color = COLORS[2], mode = 'fill', stack = [], drawing = false, last = null, msgT, cur = null, img = null;
+
+    /* Saison-Motiv zuerst: data-default oder Saison nach Datum */
+    const seasonKey = () => {
+      const d = new Date(), md = (d.getMonth() + 1) * 100 + d.getDate();
+      const s = md >= 1001 && md <= 1031 ? 'halloween' : md >= 1101 && md <= 1111 ? 'laterne' : md >= 1112 && md <= 1224 ? 'advent' : (md >= 1225 || md <= 228) ? 'winter' : null;
+      const m = MOTIVE.find(x => x.saison === s); return m ? m.key : MOTIVE[0].key;
+    };
+
+    const sw = root.querySelector('[data-paint-colors]');
+    sw.innerHTML = COLORS.map((c, i) => `<button type="button" class="ts-paint__sw" style="--c:${c}" data-c="${c}" aria-label="${NAMES[i]}" aria-pressed="${c === color}"></button>`).join('');
+    sw.addEventListener('click', e => {
+      const b = e.target.closest('[data-c]'); if (!b) return;
+      color = b.dataset.c; sw.querySelectorAll('[data-c]').forEach(x => x.setAttribute('aria-pressed', x === b));
+      if (mode === 'erase') setMode('fill');
+    });
+    const setMode = m => {
+      mode = m; root.classList.toggle('is-brush', m !== 'fill');
+      root.querySelectorAll('[data-mode]').forEach(b => b.setAttribute('aria-pressed', b.dataset.mode === m));
+    };
+    root.querySelectorAll('[data-mode]').forEach(b => b.addEventListener('click', () => setMode(b.dataset.mode)));
+
+    const say = (t, ms = 1600) => { msg.textContent = t; msg.classList.add('is-on'); clearTimeout(msgT); msgT = setTimeout(() => msg.classList.remove('is-on'), ms); };
+    const render = () => { ctx.globalCompositeOperation = 'source-over'; ctx.drawImage(paint, 0, 0); if (img) { ctx.globalCompositeOperation = 'multiply'; ctx.drawImage(img, 0, 0, W, H); } ctx.globalCompositeOperation = 'source-over'; };
+    const key = () => 'ts-am-' + cur.key;
+    const store = () => { try { localStorage.setItem(key(), paint.toDataURL('image/png')); } catch (e) {} };
+    const push = () => { stack.push(pctx.getImageData(0, 0, W, H)); if (stack.length > 20) stack.shift(); undoBtn.disabled = false; };
+    const hex = c => [1, 3, 5].map(i => parseInt(c.slice(i, i + 2), 16));
+
+    /* Farbeimer: füllt die Fläche innerhalb der schwarzen Linien */
+    const fill = (x, y) => {
+      x = Math.round(x); y = Math.round(y);
+      if (!wall || x < 0 || y < 0 || x >= W || y >= H || wall[y * W + x]) return false;
+      push();
+      const id = pctx.getImageData(0, 0, W, H), d = id.data, [r, g, b] = mode === 'erase' ? [255, 255, 255] : hex(color);
+      const seen = new Uint8Array(W * H), q = new Int32Array(W * H); let h = 0, t = 0;
+      q[t++] = y * W + x; seen[y * W + x] = 1;
+      while (h < t) {
+        const p = q[h++], px = p % W;
+        const o = p * 4; d[o] = r; d[o + 1] = g; d[o + 2] = b; d[o + 3] = 255;
+        const n = [px > 0 ? p - 1 : -1, px < W - 1 ? p + 1 : -1, p - W, p + W];
+        for (let k = 0; k < 4; k++) { const v = n[k]; if (v >= 0 && v < W * H && !seen[v]) { seen[v] = 1; if (!wall[v]) q[t++] = v; else { const vo = v * 4; d[vo] = r; d[vo + 1] = g; d[vo + 2] = b; d[vo + 3] = 255; } } }
+      }
+      pctx.putImageData(id, 0, 0); render(); store(); return true;
+    };
+    const pos = e => { const r = cv.getBoundingClientRect(); return [(e.clientX - r.left) * W / r.width, (e.clientY - r.top) * H / r.height]; };
+    const stroke = (a, b) => {
+      pctx.strokeStyle = mode === 'erase' ? '#ffffff' : color; pctx.lineCap = 'round'; pctx.lineJoin = 'round';
+      pctx.lineWidth = +size.value * (mode === 'erase' ? 1.4 : 1);
+      pctx.beginPath(); pctx.moveTo(a[0], a[1]); pctx.lineTo(b[0], b[1]); pctx.stroke(); render();
+    };
+    cv.addEventListener('pointerdown', e => {
+      if (!wall) return;
+      if (mode === 'fill') { if (fill(...pos(e))) { let tip = true; try { tip = !sessionStorage.getItem('ts-am-tip'); sessionStorage.setItem('ts-am-tip', '1'); } catch (er) {} if (tip) say('Toll! Nächste Fläche antippen'); } return; }
+      e.preventDefault(); cv.setPointerCapture(e.pointerId); push(); drawing = true; last = pos(e); stroke(last, [last[0] + .01, last[1]]);
+    });
+    cv.addEventListener('pointermove', e => { if (!drawing) return; const p = pos(e); stroke(last, p); last = p; });
+    const end = () => { if (drawing) { drawing = false; store(); } };
+    cv.addEventListener('pointerup', end); cv.addEventListener('pointercancel', end); cv.addEventListener('pointerleave', end);
+
+    undoBtn.addEventListener('click', () => { const s = stack.pop(); if (s) { pctx.putImageData(s, 0, 0); render(); store(); } undoBtn.disabled = !stack.length; });
+    root.querySelector('[data-act="clear"]').addEventListener('click', () => { push(); pctx.fillStyle = '#fff'; pctx.fillRect(0, 0, W, H); render(); try { localStorage.removeItem(key()); } catch (e) {} say('Neues Blatt'); });
+    const compose = () => {
+      const out = document.createElement('canvas'); out.width = W; out.height = H + 70; const o = out.getContext('2d');
+      o.fillStyle = '#fff'; o.fillRect(0, 0, out.width, out.height); o.drawImage(cv, 0, 0);
+      o.fillStyle = '#7d7d7d'; o.font = '500 20px Inter, Arial, sans-serif'; o.textAlign = 'center';
+      o.fillText(cur.paket + ' · trutzstaehler.de', W / 2, H + 44);
+      return out.toDataURL('image/png');
+    };
+    root.querySelector('[data-act="save"]').addEventListener('click', () => {
+      const a = document.createElement('a'); a.download = 'mein-' + cur.file + '.png'; a.href = compose(); document.body.appendChild(a); a.click(); a.remove(); say('Bild gespeichert');
+    });
+    root.querySelector('[data-act="print"]').addEventListener('click', () => {
+      const w = window.open('', '_blank');
+      if (!w) { say('Pop-up blockiert – nutze „Speichern“', 4000); return; }
+      w.document.write('<!doctype html><html lang="de"><head><meta charset="utf-8"><title>Mein Ausmalbild</title><style>@page{margin:10mm}html,body{margin:0;height:100%;background:#fff}body{display:flex;align-items:center;justify-content:center}img{display:block;max-width:100%;max-height:100vh;object-fit:contain}</style></head><body><img alt="Mein ausgemaltes Bild"></body></html>');
+      w.document.close();
+      const im = w.document.querySelector('img'), go = () => { w.focus(); w.print(); };
+      w.onafterprint = () => w.close();
+      im.onload = go; im.src = compose();
+      say('Druckansicht geöffnet');
+    });
+
+    /* Motiv laden: Linien als Wände merken, gespeichertes Bild wiederherstellen */
+    const load = k => {
+      cur = MOTIVE.find(m => m.key === k) || MOTIVE[0]; stack = []; undoBtn.disabled = true; wall = null;
+      cv.setAttribute('aria-label', 'Ausmalbild ' + cur.name + ' – tippe hinein, um Flächen auszumalen');
+      if (pick) pick.querySelectorAll('[data-k]').forEach(b => b.setAttribute('aria-pressed', b.dataset.k === cur.key));
+      const im = new Image();
+      im.onload = () => {
+        img = im;
+        const t = document.createElement('canvas'); t.width = W; t.height = H; const tc = t.getContext('2d');
+        tc.fillStyle = '#fff'; tc.fillRect(0, 0, W, H); tc.drawImage(im, 0, 0, W, H);
+        const d = tc.getImageData(0, 0, W, H).data; wall = new Uint8Array(W * H);
+        for (let i = 0; i < W * H; i++) wall[i] = d[i * 4] < 140 ? 1 : 0;
+        pctx.fillStyle = '#fff'; pctx.fillRect(0, 0, W, H);
+        let saved = null; try { saved = localStorage.getItem(key()); } catch (e) {}
+        if (saved) { const s = new Image(); s.onload = () => { pctx.drawImage(s, 0, 0); render(); }; s.src = saved; } else render();
+      };
+      im.src = cur.src;
+    };
+    if (pick) {
+      pick.innerHTML = MOTIVE.map(m => `<button type="button" data-k="${m.key}" aria-pressed="false">${m.name}</button>`).join('');
+      pick.addEventListener('click', e => { const b = e.target.closest('[data-k]'); if (b) load(b.dataset.k); });
+    }
+    load(root.dataset.default || seasonKey());
+  });
+})();
+</script>

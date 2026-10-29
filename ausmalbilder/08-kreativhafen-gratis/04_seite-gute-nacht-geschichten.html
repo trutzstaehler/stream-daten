@@ -1,0 +1,427 @@
+<!-- =====================================================================
+  KREATIVHAFEN – Seite /gute-nacht-geschichten (Übersicht)  ·  Code-Block, alles einfügen
+  Die einzelnen Geschichten liegen als Blog-Beiträge unter /geschichten/<name>.
+====================================================================== -->
+
+<style>
+  /* ===== Ausmalbilder (ts-am) – nutzt die ts-/tss-Bausteine der Seite ===== */
+  .ts-am { position: relative; isolation: isolate; overflow: hidden; overflow: clip; }
+  .ts-am__orb { position: absolute; z-index: -1; right: -14%; top: 0; width: 56vw; height: 56vw; max-width: 860px; max-height: 860px; border-radius: 50%; pointer-events: none;
+    background: radial-gradient(circle, rgba(46, 140, 108, .28) 0%, rgba(46, 140, 108, .16) 24%, rgba(46, 140, 108, .06) 46%, rgba(46, 140, 108, 0) 70%); }
+  .ts-am .ts-line { padding-bottom: .16em; margin-bottom: -.16em; }
+  .ts-am__ctas { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.75rem; }
+  .ts .ts-am__chips { display: flex; flex-wrap: wrap; gap: .5rem; margin: 1.5rem 0 0; padding: 0; list-style: none; }
+  .ts .ts-am__chips li { padding: 8px 13px; border-radius: 999px; border: 1px solid var(--ts-line-strong, rgba(255,255,255,.14)); color: var(--ts-text, #f6faf7); font-size: 10.5px; }
+  .ts-am__block { padding-top: clamp(4.5rem, 8vw, 7.5rem); }
+  .ts-am__blockhead { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; padding-bottom: 1.25rem; border-bottom: 1px solid var(--tss-line, rgba(255,255,255,.1)); }
+  .ts .ts-am__h2 { margin-top: clamp(1.75rem, 3vw, 2.5rem); font-family: var(--ts-font-display, 'Syne', sans-serif); font-weight: 800; font-size: clamp(2rem, 5vw, 4.4rem); line-height: .98; letter-spacing: -0.03em; }
+  .ts .ts-am__h2 i { font-style: normal; color: var(--tss-acc, #6ee7b7); }
+  .ts .ts-am__sub { margin-top: .9rem; max-width: 42rem; color: var(--tss-text, rgba(246,250,247,.72)); font-size: clamp(15px, 1.3vw, 17.5px); line-height: 1.65; }
+  .ts-am__end { padding-bottom: clamp(6rem, 11vw, 10rem); }
+
+  /* Saison-Leiste */
+  .ts-am-season { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(230px, 1fr); gap: 1px; margin: 2rem 0 0; padding: 0; list-style: none;
+    overflow-x: auto; scroll-snap-type: x mandatory; background: var(--tss-line, rgba(255,255,255,.1)); border: 1px solid var(--tss-line, rgba(255,255,255,.1)); scrollbar-width: thin; }
+  .ts-am-season li { scroll-snap-align: start; background: var(--ts-bg, #060608); }
+  .ts .ts-am-season a { position: relative; display: flex; flex-direction: column; gap: .55rem; height: 100%; min-height: 190px; padding: 1.4rem 1.3rem 1.3rem; color: inherit; text-decoration: none; transition: background .3s; }
+  .ts .ts-am-season a::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 3px; background: var(--c); opacity: .35; transition: opacity .3s; }
+  .ts .ts-am-season a:hover { background: rgba(255,255,255,.03); }
+  .ts .ts-am-season a:hover::before, .ts-am-season .is-now a::before { opacity: 1; }
+  .ts-am-season__date { color: var(--c); }
+  .ts .ts-am-season__name { font: 800 clamp(1.1rem, 1.35vw, 1.32rem)/1.08 var(--ts-font-display, 'Syne', sans-serif); letter-spacing: -0.025em; overflow-wrap: anywhere; hyphens: auto; }
+  .ts .ts-am-season__sub { color: var(--tss-text, rgba(246,250,247,.72)); font-size: 14px; line-height: 1.5; }
+  .ts .ts-am-season__state { margin-top: auto; display: inline-flex; align-self: flex-start; align-items: center; gap: .45rem; padding: 6px 11px; border-radius: 999px;
+    border: 1px solid var(--tss-line, rgba(255,255,255,.1)); color: var(--ts-muted, #9aaba3); font-size: 10px; white-space: nowrap; }
+  .ts-am-season .is-now .ts-am-season__state { border-color: var(--c); color: #060608; background: var(--c); }
+  .ts-am-season .is-now .ts-am-season__state::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: #060608; animation: ts-am-pulse 1.6s infinite; }
+  .ts-am-season .is-past { opacity: .5; }
+  @keyframes ts-am-pulse { 50% { opacity: .25; } }
+
+  /* Highlight-Karte (Saisonpaket) */
+  .ts .ts-am-bundle { display: grid; gap: 2rem; margin-top: 2rem; padding: clamp(1.5rem, 4vw, 3rem); border-radius: 26px; align-items: center; }
+  .ts .ts-am-bundle__price { display: flex; align-items: baseline; gap: .8rem; margin-top: 1.2rem; font: 800 clamp(2rem, 4vw, 3rem)/1 var(--ts-font-display, 'Syne', sans-serif); letter-spacing: -0.03em; }
+  .ts .ts-am-bundle__price s { font-size: .45em; color: var(--ts-muted, #9aaba3); font-weight: 700; }
+  .ts-am-bundle__art { position: relative; min-height: 260px; }
+  .ts .ts-am-bundle__art img { position: absolute; width: 46% !important; height: auto !important; border-radius: 8px; background: #fbf9f4; padding: 6px; box-shadow: 0 30px 60px -30px rgba(0,0,0,.9); }
+  .ts-am-bundle__art img:nth-child(1) { left: 0; top: 12%; transform: rotate(-6deg); }
+  .ts-am-bundle__art img:nth-child(2) { left: 27%; top: 0; transform: rotate(2deg); z-index: 2; }
+  .ts-am-bundle__art img:nth-child(3) { right: 0; top: 16%; transform: rotate(7deg); }
+
+  /* Ausmal-Widget (wie im Kritzelbuch) */
+  .ts-am-pick { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1.5rem; }
+  .ts .ts-am-pick button { padding: 9px 14px; border-radius: 999px; border: 1px solid var(--ts-line-strong, rgba(255,255,255,.14)); background: transparent; color: var(--ts-text, #f6faf7);
+    font: 600 11px/1 var(--ts-font-mono, 'JetBrains Mono', monospace); letter-spacing: .12em; text-transform: uppercase; cursor: pointer; transition: background .25s, color .25s, border-color .25s; }
+  .ts .ts-am-pick button:hover { border-color: rgba(110, 231, 183, .45); }
+  .ts .ts-am-pick button[aria-pressed="true"] { background: #f6faf7; color: #060608; border-color: #f6faf7; }
+  .ts-paint { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1.25rem; margin-top: 1.5rem; align-items: start; }
+  .ts-paint__paper { position: relative; padding: clamp(.6rem, 1.6vw, 1.25rem); border-radius: 8px; background: #fbf9f4; box-shadow: 0 1px 0 rgba(255,255,255,.7) inset, 0 40px 80px -36px rgba(0,0,0,.9), 0 2px 8px rgba(0,0,0,.35); }
+  .ts-paint__canvas { display: block; width: 100%; height: auto; aspect-ratio: 1000 / 1100; border-radius: 4px; cursor: crosshair; touch-action: pan-y; background: #fff; }
+  .ts-paint.is-brush .ts-paint__canvas { touch-action: none; }
+  .ts .ts-paint__done { position: absolute; left: 50%; top: 1rem; transform: translate(-50%, -10px); padding: 8px 14px; border-radius: 999px; background: #1d4d3f; color: #f6faf7; font-size: 11px; opacity: 0; pointer-events: none; transition: opacity .3s, transform .4s var(--ts-ease-out); white-space: nowrap; }
+  .ts .ts-paint__done.is-on { opacity: 1; transform: translate(-50%, 0); }
+  .ts-paint__tools { display: grid; gap: 1rem; padding: 1.1rem; border-radius: 22px; }
+  .ts .ts-paint__label { color: var(--ts-muted, #9aaba3); font-size: 10.5px; }
+  .ts-paint__swatches { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: .5rem; margin-top: .5rem; }
+  .ts .ts-paint__sw { position: relative; aspect-ratio: 1; width: 100%; border-radius: 50%; border: 2px solid rgba(255,255,255,.14); background: var(--c); cursor: pointer; transition: transform .25s var(--ts-ease-out), border-color .2s; }
+  .ts .ts-paint__sw:hover { transform: scale(1.08); }
+  .ts .ts-paint__sw[aria-pressed="true"] { border-color: #f6faf7; transform: scale(1.12); box-shadow: 0 0 0 3px rgba(110,231,183,.45); }
+  .ts-paint__modes, .ts-paint__acts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .5rem; margin-top: .5rem; }
+  .ts-paint__acts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .ts .ts-paint__btn { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .35rem; min-height: 64px; padding: .6rem .4rem; border-radius: 16px; border: 1px solid var(--ts-line-strong, rgba(255,255,255,.14)); background: rgba(255,255,255,.03); color: var(--ts-text, #f6faf7); font: 500 12.5px/1.15 var(--ts-font-body, Inter, sans-serif); cursor: pointer; transition: background .25s, border-color .25s, color .25s; }
+  .ts .ts-paint__btn:hover { border-color: rgba(110,231,183,.45); }
+  .ts .ts-paint__btn[aria-pressed="true"] { background: #f6faf7; color: #060608; border-color: #f6faf7; }
+  .ts .ts-paint__btn:disabled { opacity: .35; cursor: default; }
+  .ts .ts-paint__size { display: flex; align-items: center; gap: .75rem; margin-top: .5rem; }
+  .ts-paint__size input { flex: 1; accent-color: #6ee7b7; }
+  .ts .ts-paint__hint { color: var(--ts-muted, #9aaba3); font-size: 13px; line-height: 1.5; }
+
+  /* Motiv-Parade */
+  .ts-am-zoo { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(.6rem, 1.6vw, 1.1rem); margin-top: 2rem; }
+  .ts .ts-am-zoo figure { margin: 0; padding: clamp(.4rem, 1vw, .7rem); border-radius: 6px; background: #fbf9f4; transform: rotate(var(--r, 0deg)); box-shadow: 0 24px 50px -28px rgba(0,0,0,.85); transition: transform .5s var(--ts-ease-out); }
+  .ts .ts-am-zoo figure:hover { transform: rotate(0deg) translateY(-5px) scale(1.03); }
+  .ts-am-zoo svg, .ts-am-zoo img { display: block; width: 100% !important; height: auto !important; }
+  .ts .ts-am-zoo figcaption { margin-top: .35rem; text-align: center; font: 800 clamp(8px, .9vw, 12px)/1 var(--ts-font-display, 'Syne', sans-serif); letter-spacing: 0; text-transform: uppercase; color: #1b1f1c; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .ts .ts-am-zoo figcaption.is-long { font-size: clamp(6.5px, .68vw, 9.5px); }
+  .ts .ts-am-zoo .ts-am-door { position: relative; }
+  .ts .ts-am-zoo .ts-am-door b { position: absolute; left: .45rem; top: .4rem; min-width: 1.9rem; height: 1.9rem; display: grid; place-items: center; border-radius: 999px; background: #060608; color: #f6faf7; font: 700 12px/1 var(--ts-font-mono, monospace); }
+
+  /* Gratis + Kita */
+  .ts .ts-am-split { display: grid; gap: 2rem; margin-top: 2rem; padding: clamp(1.5rem, 3.5vw, 2.75rem); border-radius: 26px; align-items: center; }
+  .ts-am-thumbs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .8rem; }
+  .ts .ts-am-thumbs img { display: block; width: 100% !important; height: auto !important; border-radius: 6px; background: #fbf9f4; padding: 5px; box-shadow: 0 24px 50px -28px rgba(0,0,0,.85); }
+  .ts-am-thumbs img:nth-child(1) { transform: rotate(-3deg); } .ts-am-thumbs img:nth-child(2) { transform: translateY(-8px) rotate(1.5deg); } .ts-am-thumbs img:nth-child(3) { transform: rotate(2.5deg); }
+  .ts .ts-am-note { margin-top: 1rem; color: rgba(246,250,247,.5); font-size: 13px; line-height: 1.6; }
+  .ts .ts-am-list { list-style: none; margin: 1.25rem 0 0; padding: 0; display: grid; gap: .7rem; }
+  .ts .ts-am-list li { position: relative; padding-left: 1.6rem; color: var(--tss-text, rgba(246,250,247,.72)); line-height: 1.55; }
+  .ts .ts-am-list li::before { content: ""; position: absolute; left: 0; top: .5em; width: 8px; height: 8px; border-radius: 50%; background: var(--tss-acc, #6ee7b7); }
+  .ts .ts-am-list b { color: #f6faf7; }
+  .ts .ts-am-final { margin-top: clamp(3rem, 6vw, 5rem); padding: clamp(1.75rem, 4vw, 3rem); border-radius: 26px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1.5rem; }
+  .ts .ts-am-final p { font: 800 clamp(1.5rem, 3vw, 2.4rem)/1.05 var(--ts-font-display, 'Syne', sans-serif); letter-spacing: -0.025em; margin: 0; }
+
+  @media (min-width: 640px) {
+    .ts-am-zoo { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  }
+  @media (min-width: 1024px) {
+    .ts-paint { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 2rem; }
+    .ts-paint__tools { position: sticky; top: 110px; }
+    .ts .ts-am-bundle, .ts .ts-am-split { grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); gap: 3rem; }
+    .ts-am-zoo { grid-template-columns: repeat(var(--cols, 6), minmax(0, 1fr)); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .ts .ts-am-zoo figure, .ts-am-bundle__art img, .ts-am-thumbs img { transform: none !important; }
+    .ts-am-season .is-now .ts-am-season__state::before { animation: none; }
+  }
+
+  .ts-khr { position: relative; z-index: 3; padding-top: calc(var(--ts-header-space, 96px) + 1rem); }
+  .ts-khr__bar { display: flex; gap: .4rem; overflow-x: auto; scrollbar-width: none; padding: .35rem; border: 1px solid var(--ts-line, rgba(255,255,255,.08)); border-radius: 999px; background: rgba(255,255,255,.025); width: max-content; max-width: 100%; }
+  .ts-khr__bar::-webkit-scrollbar { display: none; }
+  .ts .ts-khr__bar a { display: inline-flex; align-items: center; gap: .45rem; padding: 10px 16px; border-radius: 999px; color: var(--ts-muted, #9aaba3); text-decoration: none; white-space: nowrap; font: 500 14px/1 var(--ts-font-body, Inter, sans-serif); transition: background .25s, color .25s; }
+  .ts .ts-khr__bar a:hover { color: var(--ts-text, #f6faf7); background: rgba(255,255,255,.04); }
+  .ts .ts-khr__bar a[aria-current="page"] { background: #f6faf7; color: #060608; }
+  .ts .ts-khr__bar a i { font-style: normal; padding: 3px 7px; border-radius: 999px; background: rgba(110,231,183,.16); color: #6ee7b7; font: 700 9.5px/1 var(--ts-font-mono, monospace); letter-spacing: .1em; text-transform: uppercase; }
+  .ts .ts-khr__bar a[aria-current="page"] i { background: #1d4d3f; color: #f6faf7; }
+
+  /* ---------- Kreativhafen gratis ---------- */
+  .ts-kh2 .tss--top { padding-top: clamp(2rem, 4vw, 3rem); }
+  .ts-am-packs { display: grid; gap: 1rem; margin-top: 2rem; grid-template-columns: minmax(0, 1fr); }
+  .ts .ts-am-pack { display: flex; flex-direction: column; border-radius: 22px; overflow: hidden; scroll-margin-top: 120px; }
+  .ts-am-pack__img { position: relative; aspect-ratio: 3 / 2; background: #0b100e; overflow: hidden; }
+  .ts .ts-am-pack__img img { display: block; width: 100% !important; height: 100% !important; object-fit: cover; transition: transform .7s var(--ts-ease-out); }
+  .ts-am-pack:hover .ts-am-pack__img img { transform: scale(1.04); }
+  .ts .ts-am-pack__nr { position: absolute; left: 1rem; top: .9rem; color: rgba(246,250,247,.6); }
+  .ts .ts-am-pack__tag { position: absolute; right: .9rem; top: .8rem; padding: 6px 11px; border-radius: 999px; background: rgba(6,6,8,.65); border: 1px solid var(--c); color: var(--c); font-size: 10px; }
+  .ts-am-pack__body { display: flex; flex-direction: column; gap: .55rem; flex: 1; padding: 1.25rem 1.35rem 1.4rem; }
+  .ts .ts-am-pack__t { font: 800 clamp(1.3rem, 1.8vw, 1.6rem)/1.05 var(--ts-font-display, 'Syne', sans-serif); letter-spacing: -0.025em; margin: 0; }
+  .ts .ts-am-pack__t i { font-style: normal; color: var(--c); }
+  .ts .ts-am-pack__s { color: var(--ts-muted, #9aaba3); font-size: 14px; line-height: 1.55; margin: 0; }
+  .ts-am-pack__acts { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: auto; padding-top: .9rem; }
+  .ts .ts-am-mini { display: inline-flex; align-items: center; gap: .45rem; padding: 10px 14px; border-radius: 999px; border: 1px solid var(--ts-line-strong, rgba(255,255,255,.14)); background: transparent; color: var(--ts-text, #f6faf7); font: 600 13px/1 var(--ts-font-body, Inter, sans-serif); text-decoration: none; cursor: pointer; transition: background .25s, color .25s, border-color .25s; }
+  .ts .ts-am-mini:hover { border-color: rgba(110,231,183,.5); }
+  .ts .ts-am-mini--hi { background: #f6faf7; color: #060608; border-color: #f6faf7; }
+  .ts .ts-am-mini--hi:hover { background: #6ee7b7; border-color: #6ee7b7; }
+  .ts .ts-am-mini svg { flex: none; }
+  /* Galerie */
+  .ts-am-filter { display: flex; gap: .45rem; overflow-x: auto; scrollbar-width: none; margin-top: 1.5rem; padding-bottom: .25rem; }
+  .ts-am-filter::-webkit-scrollbar { display: none; }
+  .ts .ts-am-filter button { flex: none; padding: 9px 14px; border-radius: 999px; border: 1px solid var(--ts-line-strong, rgba(255,255,255,.14)); background: transparent; color: var(--ts-text, #f6faf7); font: 600 11px/1 var(--ts-font-mono, monospace); letter-spacing: .1em; text-transform: uppercase; cursor: pointer; }
+  .ts .ts-am-filter button[aria-pressed="true"] { background: #f6faf7; color: #060608; border-color: #f6faf7; }
+  .ts-am-gal { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(.6rem, 1.4vw, 1rem); margin-top: 1.5rem; min-height: 200px; }
+  .ts .ts-am-tile { position: relative; margin: 0; padding: .55rem .55rem .6rem; border-radius: 8px; background: #fbf9f4; box-shadow: 0 24px 50px -28px rgba(0,0,0,.85); transform: rotate(var(--r, 0deg)); transition: transform .45s var(--ts-ease-out); }
+  .ts .ts-am-tile:hover { transform: rotate(0deg) translateY(-4px); }
+  .ts-am-tile > svg { display: block; width: 100% !important; height: auto !important; }
+  .ts .ts-am-tile__acts svg { width: 15px !important; height: 15px !important; flex: none; }
+  .ts-am-tile__acts { display: grid; grid-template-columns: 1fr 1fr; gap: .35rem; margin-top: .45rem; }
+  .ts .ts-am-tile__acts button { display: inline-flex; align-items: center; justify-content: center; gap: .3rem; padding: 8px 6px; border-radius: 999px; border: 1px solid #d7d3c8; background: #fff; color: #1b1f1c; font: 600 11.5px/1 var(--ts-font-body, Inter, sans-serif); cursor: pointer; }
+  .ts .ts-am-tile__acts button:hover { background: #1b1f1c; color: #fff; border-color: #1b1f1c; }
+  .ts .ts-am-gal__msg { grid-column: 1 / -1; color: var(--ts-muted, #9aaba3); }
+  /* Geschichten: Karten wie bei Zitronenbande/Zwergenstark – Bild, Titel, Alter · Dauer */
+  .ts-gn-grid { display: grid; gap: clamp(.75rem, 2vw, 1.25rem); margin-top: 1.5rem; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .ts .ts-gn-card { display: flex; flex-direction: column; border-radius: 18px; overflow: hidden; color: inherit; text-decoration: none; border: 1px solid var(--ts-line, rgba(255,255,255,.08)); background: rgba(255,255,255,.025); transition: transform .5s var(--ts-ease-out), border-color .25s; }
+  .ts .ts-gn-card:hover { transform: translateY(-4px); border-color: rgba(110,231,183,.45); }
+  .ts-gn-card[hidden] { display: none !important; }
+  .ts .ts-gn-card img { display: block; width: 100% !important; height: auto !important; aspect-ratio: 4 / 3; object-fit: cover; background: #1f2a44; }
+  .ts-gn-card__body { display: flex; flex-direction: column; gap: .4rem; flex: 1; padding: .85rem 1rem 1rem; }
+  .ts .ts-gn-card__t { margin: 0; font: 700 clamp(.98rem, 1.45vw, 1.18rem)/1.22 var(--ts-font-display, 'Syne', sans-serif); letter-spacing: -0.01em; }
+  .ts .ts-gn-card__m { margin: auto 0 0; color: var(--ts-muted, #9aaba3); font: 500 13px/1.35 var(--ts-font-body, Inter, sans-serif); }
+  /* Übersicht */
+  .ts .ts-gn-intro { max-width: 46rem; margin: 1.25rem 0 0; color: var(--tss-text, rgba(246,250,247,.78)); font-size: clamp(16px, 1.35vw, 18px); line-height: 1.7; }
+  .ts-gn-jump { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1.5rem; }
+  .ts .ts-gn-jump a { padding: 10px 15px; border-radius: 999px; border: 1px solid var(--ts-line-strong, rgba(255,255,255,.14)); color: var(--ts-text, #f6faf7); text-decoration: none; font: 600 13px/1 var(--ts-font-body, Inter, sans-serif); }
+  .ts .ts-gn-jump a:hover { border-color: rgba(110,231,183,.5); }
+  .ts .ts-gn-jump a:first-child { background: #f6faf7; color: #060608; border-color: #f6faf7; }
+  .ts-gn-bar { display: flex; flex-wrap: wrap; align-items: center; gap: .75rem 1.25rem; margin-top: 1.5rem; }
+  .ts-gn-filter { display: flex; flex-wrap: wrap; align-items: center; gap: .45rem; }
+  .ts .ts-gn-filter b { margin-right: .25rem; font: 600 14px/1 var(--ts-font-body, Inter, sans-serif); }
+  .ts .ts-gn-filter button { padding: 9px 14px; border-radius: 999px; border: 1px solid var(--ts-line-strong, rgba(255,255,255,.14)); background: transparent; color: var(--ts-text, #f6faf7); font: 600 13px/1 var(--ts-font-body, Inter, sans-serif); cursor: pointer; }
+  .ts .ts-gn-filter button[aria-pressed="true"] { background: #f6faf7; color: #060608; border-color: #f6faf7; }
+  .ts-gn-search { display: flex; align-items: center; gap: .6rem; flex: 1 1 16rem; max-width: 24rem; padding: .2rem .2rem .2rem 1rem; border-radius: 999px; border: 1px solid var(--ts-line-strong, rgba(255,255,255,.14)); }
+  .ts .ts-gn-search input { flex: 1; min-width: 0; padding: 10px 0; border: 0; background: transparent; color: var(--ts-text, #f6faf7); font: 500 15px/1 var(--ts-font-body, Inter, sans-serif); outline: none; }
+  .ts .ts-gn-search input::placeholder { color: var(--ts-muted, #9aaba3); }
+  .ts .ts-gn-state { margin: 1rem 0 0; color: var(--ts-muted, #9aaba3); font-size: 14px; }
+  .ts .ts-gn-state button { margin-left: .5rem; padding: 0; border: 0; background: none; color: #6ee7b7; font: inherit; text-decoration: underline; cursor: pointer; }
+  .ts-gn-morebtn { display: flex; justify-content: center; margin-top: 2rem; }
+  .ts-gn-figs { display: grid; grid-template-columns: minmax(0, 1fr); gap: .8rem; margin-top: 2rem; }
+  .ts-gn-page .ts-am__h2 { font-size: clamp(1.75rem, 4.6vw, 3.4rem); hyphens: auto; -webkit-hyphens: auto; overflow-wrap: break-word; }
+  .ts .ts-gn-fig { display: grid; grid-template-columns: 64px 1fr; grid-template-rows: auto auto; column-gap: .9rem; align-items: center; text-align: left; padding: .8rem; border-radius: 18px; border: 1px solid var(--ts-line, rgba(255,255,255,.08)); background: rgba(255,255,255,.02); color: inherit; text-decoration: none; transition: border-color .25s, transform .4s var(--ts-ease-out); }
+  .ts .ts-gn-fig:hover { border-color: rgba(110,231,183,.45); transform: translateY(-3px); }
+  .ts .ts-gn-fig img { grid-row: 1 / 3; width: 64px !important; height: 64px !important; object-fit: cover; border-radius: 50%; }
+  .ts .ts-gn-fig b { font: 700 15px/1.2 var(--ts-font-display, 'Syne', sans-serif); }
+  .ts .ts-gn-fig span { color: var(--ts-muted, #9aaba3); font-size: 13px; line-height: 1.4; }
+  .ts .ts-gn-seo { margin-top: 2rem; max-width: 52rem; }
+  .ts .ts-gn-seo h3 { margin: 2rem 0 .6rem; font: 700 1.2rem/1.25 var(--ts-font-display, 'Syne', sans-serif); }
+  .ts .ts-gn-seo h3:first-child { margin-top: 0; }
+  .ts .ts-gn-seo p, .ts .ts-gn-seo li { color: var(--tss-text, rgba(246,250,247,.75)); line-height: 1.75; }
+  .ts .ts-gn-seo p { margin: 0 0 1rem; }
+  .ts .ts-gn-seo ul { margin: 0 0 1rem; padding-left: 1.2rem; }
+  .ts .ts-gn-seo b { color: #f6faf7; }
+  .ts .ts-gn-seo a { color: #6ee7b7; }
+  /* Einzelne Geschichte */
+  .ts-gn-story { max-width: 44rem; margin: 0 auto; }
+  .ts .ts-gn-crumb { margin: 0; color: var(--ts-muted, #9aaba3); font-size: 13.5px; line-height: 1.5; }
+  .ts .ts-gn-crumb a { color: inherit; text-decoration: none; }
+  .ts .ts-gn-crumb a:hover { color: #6ee7b7; }
+  .ts .ts-gn-crumb span { margin: 0 .4rem; opacity: .6; }
+  .ts .ts-gn-h1 i { font-style: normal; color: #6ee7b7; }
+  .ts .ts-gn-h1.ts-gn-h1--page { max-width: 18ch; margin-top: 2rem; font-size: clamp(2.3rem, 6.4vw, 5.4rem); }
+  .ts .ts-gn-h1 { margin: 1rem 0 0; font: 800 clamp(2rem, 5.4vw, 3.8rem)/1.02 var(--ts-font-display, 'Syne', sans-serif); letter-spacing: -0.03em; }
+  .ts-gn-by { display: flex; align-items: center; gap: .8rem; margin-top: 1.2rem; }
+  .ts .ts-gn-by img { width: 46px !important; height: 46px !important; border-radius: 50%; object-fit: cover; }
+  .ts .ts-gn-by p { margin: 0; font-size: 15px; line-height: 1.35; }
+  .ts .ts-gn-by small { display: block; color: var(--ts-muted, #9aaba3); font-size: 13px; }
+  .ts .ts-gn-facts { display: flex; flex-wrap: wrap; gap: .5rem 1.4rem; margin: 1.3rem 0 0; padding: .9rem 0; list-style: none; border-top: 1px solid var(--ts-line, rgba(255,255,255,.08)); border-bottom: 1px solid var(--ts-line, rgba(255,255,255,.08)); font-size: 15px; }
+  .ts .ts-gn-facts a { color: inherit; }
+  .ts .ts-gn-hero { display: block; width: 100% !important; height: auto !important; aspect-ratio: 4 / 3; margin-top: 1.5rem; border-radius: 22px; object-fit: cover; }
+  .ts .ts-gn-about { margin-top: 1.5rem; padding: 1.2rem 1.4rem; border-radius: 18px; border-left: 3px solid #6ee7b7; background: rgba(110,231,183,.06); }
+  .ts .ts-gn-about h2 { margin: 0 0 .5rem; font: 700 1.05rem/1.2 var(--ts-font-display, 'Syne', sans-serif); }
+  .ts .ts-gn-about p { margin: 0; color: var(--tss-text, rgba(246,250,247,.8)); line-height: 1.65; }
+  .ts-gn-tools { position: sticky; top: calc(var(--ts-header-space, 96px) - 16px); z-index: 4; display: flex; flex-wrap: wrap; align-items: center; gap: .35rem; margin-top: 1.5rem; padding: .4rem; border-radius: 999px; border: 1px solid var(--ts-line, rgba(255,255,255,.08)); background: rgba(6,6,8,.85); backdrop-filter: blur(12px); width: max-content; max-width: 100%; }
+  .ts .ts-gn-tools button { display: inline-flex; align-items: center; gap: .4rem; padding: 9px 13px; border-radius: 999px; border: 1px solid transparent; background: transparent; color: var(--ts-text, #f6faf7); font: 500 13.5px/1 var(--ts-font-body, Inter, sans-serif); cursor: pointer; }
+  .ts .ts-gn-tools button:hover { border-color: var(--ts-line-strong, rgba(255,255,255,.14)); }
+  .ts .ts-gn-tools button[aria-pressed="true"] { background: #f6faf7; color: #060608; }
+  .ts .ts-gn-tools span { padding: 0 .2rem 0 .5rem; color: var(--ts-muted, #9aaba3); font-size: 13px; }
+  .ts .ts-gn-tools i { width: 1px; height: 20px; margin: 0 .2rem; background: var(--ts-line-strong, rgba(255,255,255,.14)); }
+  @media (max-width: 520px) { .ts-gn-tools { border-radius: 18px; } .ts .ts-gn-tools i { display: none; } }
+  .ts-gn-text { --gn-size: 19px; margin-top: 2rem; }
+  .ts .ts-gn-text > p { margin: 0 0 1.15em; font: 400 var(--gn-size)/1.85 var(--ts-font-body, Inter, sans-serif); color: #e7ece9; }
+  .ts .ts-gn-tip { margin: 1.8em 0; padding: 1rem 1.2rem; border-radius: 14px; border: 1px dashed var(--ts-line-strong, rgba(255,255,255,.18)); font-size: 15px; line-height: 1.55; color: var(--tss-text, rgba(246,250,247,.8)); }
+  .ts .ts-gn-tip b { margin-right: .5rem; padding: 3px 8px; border-radius: 6px; background: #6ee7b7; color: #060608; font: 700 11px/1 var(--ts-font-mono, monospace); letter-spacing: .1em; vertical-align: 1px; }
+  .ts .ts-gn-tip a { color: #6ee7b7; }
+  .ts .ts-gn-night { display: flex; align-items: center; gap: 1rem; margin: 2.25rem 0 0; padding: 1.3rem 1.5rem; border-radius: 22px; font: 700 clamp(1.1rem, 2vw, 1.4rem)/1.35 var(--ts-font-display, 'Syne', sans-serif); }
+  .ts .ts-gn-night svg { flex: none; color: #f7d046; }
+  .ts .ts-gn-ask { margin-top: 1.25rem; padding: 1.3rem 1.5rem; border-radius: 22px; }
+  .ts .ts-gn-ask h2 { margin: 0; font: 700 1.05rem/1.2 var(--ts-font-display, 'Syne', sans-serif); }
+  .ts .ts-gn-ask ul { margin: .8rem 0 0; padding: 0; list-style: none; display: grid; gap: .55rem; }
+  .ts .ts-gn-ask li { position: relative; padding-left: 1.5rem; color: var(--tss-text, rgba(246,250,247,.8)); line-height: 1.55; }
+  .ts .ts-gn-ask li::before { content: "?"; position: absolute; left: 0; top: 0; color: #6ee7b7; font-weight: 800; }
+  .ts .ts-gn-end { margin: 2.5rem 0 0; text-align: center; color: var(--ts-muted, #9aaba3); font: 600 12px/1 var(--ts-font-mono, monospace); letter-spacing: .3em; }
+  .ts-gn-more { display: flex; justify-content: center; margin-top: 2rem; }
+  .ts .ts-gn-like { margin-top: 2.5rem; padding: clamp(1.3rem, 3vw, 2rem); border-radius: 22px; }
+  .ts .ts-gn-like > h2 { margin: 0; font: 800 clamp(1.4rem, 2.6vw, 1.9rem)/1.1 var(--ts-font-display, 'Syne', sans-serif); letter-spacing: -0.02em; }
+  .ts .ts-gn-book { display: grid; grid-template-columns: 72px 1fr; gap: 1rem; align-items: start; margin-top: 1.25rem; }
+  .ts .ts-gn-book__ico { display: grid; place-items: center; width: 72px; height: 92px; border-radius: 6px 12px 12px 6px; background: linear-gradient(135deg, #2e9e6a, #1d4d3f); box-shadow: inset 6px 0 0 rgba(0,0,0,.25); font-size: 30px; }
+  .ts .ts-gn-book h3 { margin: 0; font: 700 1.1rem/1.25 var(--ts-font-display, 'Syne', sans-serif); }
+  .ts .ts-gn-book p { margin: .4rem 0 0; color: var(--tss-text, rgba(246,250,247,.75)); line-height: 1.6; font-size: 15px; }
+  .ts .ts-gn-share { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem; margin-top: 1.5rem; padding-top: 1.25rem; border-top: 1px solid var(--ts-line, rgba(255,255,255,.08)); }
+  .ts .ts-gn-share > span { margin-right: .4rem; font: 600 14px/1 var(--ts-font-body, Inter, sans-serif); }
+  .ts .ts-gn-audio { margin-top: 1.5rem; padding: 1rem 1.2rem; border-radius: 18px; }
+  .ts .ts-gn-audio audio { width: 100%; margin-top: .6rem; }
+  .ts .ts-gn-reihe { margin-top: 2rem; }
+  .ts .ts-gn-reihe h2 { margin: 0; font: 700 1.15rem/1.2 var(--ts-font-display, 'Syne', sans-serif); }
+  .ts .ts-gn-reihe ul { margin: .8rem 0 0; padding: 0; list-style: none; border-top: 1px solid var(--ts-line, rgba(255,255,255,.08)); }
+  .ts .ts-gn-reihe li { display: flex; justify-content: space-between; gap: 1rem; padding: .85rem 0; border-bottom: 1px solid var(--ts-line, rgba(255,255,255,.08)); }
+  .ts .ts-gn-reihe a { color: #f6faf7; font: 600 1rem/1.3 var(--ts-font-body, Inter, sans-serif); text-decoration: none; }
+  .ts .ts-gn-reihe a:hover { color: #6ee7b7; }
+  .ts .ts-gn-reihe span { color: var(--ts-muted, #9aaba3); white-space: nowrap; font-size: 14px; }
+  .ts-gn-glance { display: grid; gap: 1.5rem; margin-top: 1.75rem; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .ts .ts-gn-glance h3 { margin: 0 0 .7rem; color: var(--ts-muted, #9aaba3); font: 600 11px/1.3 var(--ts-font-mono, monospace); letter-spacing: .14em; text-transform: uppercase; }
+  .ts .ts-gn-glance ul { margin: 0; padding: 0; list-style: none; display: grid; gap: .5rem; }
+  .ts .ts-gn-glance a { color: var(--ts-text, #f6faf7); text-decoration: none; font-size: 15px; }
+  .ts .ts-gn-glance a:hover { color: #6ee7b7; }
+  /* Nachtmodus: dunkler, wärmer – zum Vorlesen im abgedunkelten Kinderzimmer */
+  html.ts-gn-dark .ts-gn-page { background: #050505; }
+  html.ts-gn-dark .ts .ts-gn-text > p { color: #e9dcc0; }
+  html.ts-gn-dark .ts-gn-dim, html.ts-gn-dark .ts-gn-tip { opacity: .25; transition: opacity .4s; }
+  html.ts-gn-dark .ts-gn-hero { filter: brightness(.45); }
+  html.ts-gn-dark .ts-khr, html.ts-gn-dark .ts-header { opacity: .25; }
+  @media (min-width: 640px) {
+    .ts-am-gal { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .ts-am-packs { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .ts-gn-glance { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .ts-gn-figs { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (min-width: 900px) {
+    .ts-gn-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .ts-gn-grid--4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .ts-gn-figs { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  }
+  @media (min-width: 1024px) {
+    .ts-am-gal { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+    .ts-am-packs { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  }
+  @media print {
+    .ts-khr, .ts-gn-tools, .ts-gn-noprint, .ts-gn-tip, .ts-gn-hero, header, footer, #footer-sections, .ts-header { display: none !important; }
+    .ts .ts-gn-text > p { color: #111 !important; font-size: 13pt !important; }
+    .ts .ts-gn-h1, .ts .ts-gn-night, .ts .ts-gn-ask, .ts .ts-gn-ask li, .ts .ts-gn-about, .ts .ts-gn-about p, .ts .ts-gn-facts { color: #111 !important; background: none !important; }
+    body, .ts-gn-page { background: #fff !important; }
+  }
+</style>
+
+<nav class="ts ts-khr" aria-label="Kreativhafen">
+  <div class="ts-container"><div class="ts-khr__bar"><a href="/kreativhafen">Übersicht</a><a href="/gute-nacht-geschichten">Gute-Nacht-Geschichten <i>gratis</i></a><a href="/ausmalbilder">Ausmalbilder <i>gratis</i></a><a href="/malbuecher">Malbücher</a><a href="/romane">Romane</a></div></div>
+</nav>
+<script>
+/* Reiter: aktiven Bereich markieren (Geschichten-Seiten gehören zu „Gute-Nacht-Geschichten“) */
+(() => {
+  const p = location.pathname.replace(/\/+$/, '') || '/';
+  document.querySelectorAll('.ts-khr__bar a').forEach(a => {
+    const h = a.getAttribute('href');
+    if (p === h || (h === '/gute-nacht-geschichten' && p.indexOf('/geschichten') === 0)) { a.setAttribute('aria-current', 'page'); a.scrollIntoView({ block: 'nearest', inline: 'center' }); }
+  });
+})();
+</script>
+<div class="ts ts-am tss ts-bleed ts-kh2 ts-gn-page" style="padding-top:0">
+  <div class="ts-am__orb" aria-hidden="true"></div>
+  <section class="ts-container tss--top" aria-labelledby="ts-gn-title" style="padding-bottom:0">
+    <div class="tss-kicker"><p class="ts-label ts-muted">[ Gratis Gute-Nacht-Geschichten lesen ]</p><p class="ts-label ts-muted">Ohne Download · ohne Anmeldung</p></div>
+    <h1 id="ts-gn-title" class="ts-gn-h1 ts-gn-h1--page">Gute-Nacht-Geschichten für Kinder zum Vorlesen<i>.</i></h1>
+    <p class="ts-gn-intro">Hier findest du 24 kostenlose Gute-Nacht-Geschichten für Kinder von 2 bis 7 Jahren. Alle selbst geschrieben und direkt hier zum Vorlesen. Entdecke die Reihe rund um Möwe Mats aus dem Hamburger Hafen oder filtere nach Vorlesedauer.</p>
+    <nav class="ts-gn-jump" aria-label="Schnell finden"><a href="#ts-gn-alle">Alle Geschichten</a><a href="/gute-nacht-geschichten?dauer=kurz#ts-gn-alle">Kurze Geschichten</a><a href="/gute-nacht-geschichten?suche=Mats#ts-gn-alle">Möwe Mats</a><a href="/gute-nacht-geschichten?thema=Jahreszeiten#ts-gn-alle">Herbst &amp; Winter</a></nav>
+  </section>
+
+  <section class="ts-container ts-am__block" aria-labelledby="ts-gn-lieb-t">
+    <h2 id="ts-gn-lieb-t" class="ts-am__h2">Unsere Lieblingsgeschichten</h2>
+    <div class="ts-gn-grid"><a class="ts-gn-card" href="/geschichten/moewe-mats-will-nicht-schlafen"><img src="https://raw.githubusercontent.com/trutzstaehler/stream-daten/main/kreativhafen/geschichten/bilder/moewe-mats-will-nicht-schlafen.webp" alt="" loading="lazy" width="800" height="600"><div class="ts-gn-card__body"><h3 class="ts-gn-card__t">Möwe Mats will nicht schlafen</h3><p class="ts-gn-card__m">ab 3 Jahren · ca. 4 Min.</p></div></a><a class="ts-gn-card" href="/geschichten/funki-der-kleine-drache"><img src="https://raw.githubusercontent.com/trutzstaehler/stream-daten/main/kreativhafen/geschichten/bilder/funki-der-kleine-drache.webp" alt="" loading="lazy" width="800" height="600"><div class="ts-gn-card__body"><h3 class="ts-gn-card__t">Funki, der kleine Drache</h3><p class="ts-gn-card__m">ab 3 Jahren · ca. 5 Min.</p></div></a><a class="ts-gn-card" href="/geschichten/bagger-bruno-macht-feierabend"><img src="https://raw.githubusercontent.com/trutzstaehler/stream-daten/main/kreativhafen/geschichten/bilder/bagger-bruno-macht-feierabend.webp" alt="" loading="lazy" width="800" height="600"><div class="ts-gn-card__body"><h3 class="ts-gn-card__t">Bagger Bruno macht Feierabend</h3><p class="ts-gn-card__m">ab 3 Jahren · ca. 4 Min.</p></div></a><a class="ts-gn-card" href="/geschichten/ella-fliegt-zum-mond"><img src="https://raw.githubusercontent.com/trutzstaehler/stream-daten/main/kreativhafen/geschichten/bilder/ella-fliegt-zum-mond.webp" alt="" loading="lazy" width="800" height="600"><div class="ts-gn-card__body"><h3 class="ts-gn-card__t">Ella fliegt zum Mond</h3><p class="ts-gn-card__m">ab 3 Jahren · ca. 5 Min.</p></div></a><a class="ts-gn-card" href="/geschichten/das-kleine-gespenst-huhu"><img src="https://raw.githubusercontent.com/trutzstaehler/stream-daten/main/kreativhafen/geschichten/bilder/das-kleine-gespenst-huhu.webp" alt="" loading="lazy" width="800" height="600"><div class="ts-gn-card__body"><h3 class="ts-gn-card__t">Das kleine Gespenst Huhu</h3><p class="ts-gn-card__m">ab 3 Jahren · ca. 5 Min.</p></div></a><a class="ts-gn-card" href="/geschichten/teddy-haelt-wache"><img src="https://raw.githubusercontent.com/trutzstaehler/stream-daten/main/kreativhafen/geschichten/bilder/teddy-haelt-wache.webp" alt="" loading="lazy" width="800" height="600"><div class="ts-gn-card__body"><h3 class="ts-gn-card__t">Teddy hält Wache</h3><p class="ts-gn-card__m">ab 3 Jahren · ca. 4 Min.</p></div></a></div>
+  </section>
+
+  <section class="ts-container ts-am__block" data-gn-saison hidden aria-labelledby="ts-gn-saison-t">
+    <h2 id="ts-gn-saison-t" class="ts-am__h2" data-t>Passend zur Jahreszeit</h2>
+    <p class="ts-am__sub" data-s></p>
+    <div class="ts-gn-grid ts-gn-grid--4"></div>
+  </section>
+
+  <section id="ts-gn-alle" class="ts-container ts-am__block" aria-labelledby="ts-gn-alle-t" style="scroll-margin-top:110px">
+    <h2 id="ts-gn-alle-t" class="ts-am__h2">Alle Gute-Nacht-Geschichten</h2>
+    <p class="ts-am__sub">Hier findest du alle unsere Gute-Nacht-Geschichten – von den neuesten bis zu den kürzesten. Filtere nach Vorlesedauer, um die passende Geschichte für heute Abend zu finden.</p>
+    <div class="ts-gn-bar">
+      <div class="ts-gn-filter" role="group" aria-label="Vorlesedauer"><b>Vorlesedauer:</b><button type="button" data-dauer="alle" aria-pressed="true">Alle</button><button type="button" data-dauer="kurz" aria-pressed="false">1–3 Min.</button><button type="button" data-dauer="mittel" aria-pressed="false">4–6 Min.</button><button type="button" data-dauer="lang" aria-pressed="false">ab 7 Min.</button></div>
+      <label class="ts-gn-search"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>
+        <input type="search" placeholder="Suchen: Möwe, Drache, Bagger …" aria-label="Geschichten durchsuchen" data-gn-q></label>
+    </div>
+    <p class="ts-gn-state" data-gn-state aria-live="polite">24 Geschichten</p>
+    <div class="ts-gn-grid"><a class="ts-gn-card" href="/geschichten/moewe-mats-will-nicht-schlafen" data-gn-card data-themen="Hafen,Tiere,Einschlafen" data-zeit="4" data-alter="3" data-saison="" data-suche="möwe mats will nicht schlafen im hafen ist abends noch so viel los – da kann möwe mats doch unmöglich schlafen gehen! oder leuchtet der hafen vielleicht auch ohne sie weiter? hafen,tiere,einschlafen  am hamburger hafen wohnt eine kleine möwe. sie heißt mats. mats hat weiße federn, graue flügel und gelbe füße, die immer ein bisschen tapsen. tap, tap, tap. am liebsten sitzt mats auf einem dicken poller direkt an der elbe. von dort kann sie alles sehen: die großen schiffe, die kleinen boote, die kräne und die menschen, die winken. eines abends wird der himmel orange, dann rosa, dann lila. die sonne sinkt langsam hinter die kräne."><img src="https://raw.githubusercontent.com/trutzstaehler/stream-daten/main/kreativhafen/geschichten/bilder/moewe-mats-will-nicht-schlafen.webp" alt="" loading="lazy" width="800" height="600"><div class="ts-gn-card__body"><h3 class="ts-gn-card__t">Möwe Mats will nicht schlafen</h3><p class="ts-gn-card__m">ab 3 Jahren · ca. 4 Min.</p></div></a><a class="ts-gn-card" href="/geschichten/leuchtturm-lotte-und-der-nebel" data-gn-card data-themen="Hafen,Mut,Gefühle" data-zeit="4" data-alter="3" data-saison="" data-suche="leuchtturm lotte und der nebel leuchtturm lotte findet ihr licht viel zu klein. doch in einer nebligen nacht braucht ein kleines boot genau dieses licht, um nach hause zu finden. hafen,mut,gefühle  ganz am ende des hafens, da, wo die elbe breit wird, steht ein kleiner leuchtturm. er hat rote und weiße streifen und oben ein rundes fenster. das ist lotte. jeden abend, wenn es dunkel wird, macht lotte ihr licht an. blink. pause. blink. pause. aber lotte ist nicht zufrieden. denn weiter draußen an der küste stehen große leuchttürme. die sind riesig, und ihr licht strahlt weit über das meer."><img src="https://raw.githubusercontent.com/trutzstaehler/stream-daten/main/kreativhafen/geschichten/bilder/leuchtturm-lotte-und-der-nebel.webp" alt="" loading="lazy" width="800" height="600"><div class="ts-gn-card__body"><h3 class="ts-gn-card__t">Leuchtturm Lotte und der Nebel</h3><p class="ts-gn-card__m">ab 3 Jahren · ca. 4 Min.</p></div></a><a class="ts-gn-card" href="/geschichten/die-faehre-frieda-faehrt-nach-hause" data-gn-card data-themen="Hafen,Familie,Einschlafen" data-zeit="4" data-alter="3" data-saison="" data-suche="die fähre frieda fährt nach hause es ist die letzte fahrt des tages: hafenfähre frieda bringt alle nach hause – müde menschen, einen schnarchenden hund und ein kind mit einer roten mütze. hafen,familie,einschlafen  im hamburger hafen fährt eine fähre hin und her. sie ist weiß und grün und hat viele runde fenster. sie heißt frieda. den ganzen tag bringt frieda menschen über die elbe. von einem anleger zum nächsten. hin und her, hin und her. tuuut, ruft frieda, wenn sie ablegt. jetzt ist es abend. die sonne ist schon untergegangen, und die hafenlichter leuchten. es ist friedas letzte fahrt für heute."><img src="https://raw.githubusercontent.com/trutzstaehler/stream-daten/main/kreativhafen/geschichten/bilder/die-faehre-frieda-faehrt-nach-hause.webp" alt="" loading="lazy" width="800" height="600"><div class="ts-gn-card__body"><h3 class="ts-gn-card__t">Die Fähre Frieda fährt nach Hause</h3><p class="ts-gn-card__m">ab 3 Jahren · ca. 4 Min.</p></div></a><a class="ts-gn-card" href="/geschichten/ein-schlaflied-fuer-kran-karl" data-gn-card data-themen="Hafen,Freundschaft,Einschlafen" data-zeit="4" data-alter="3" data-saison="" data-suche="ein schlaflied für kran karl kran karl ist der größte kran im hafen – und heute abend ist er so müde wie noch nie. zum glück hat ein kind am ufer eine idee. hafen,freundschaft,einschlafen  im hamburger hafen stehen viele kräne. sie sind groß und haben lange arme, mit denen sie container von den schiffen heben. der größte von allen heißt karl. karl ist blau und hat einen arm, der fast bis zu den wolken reicht. den ganzen tag arbeitet karl. er hebt einen roten container. hoch, hoch, hoch. dreht sich. surrr. und setzt ihn ab. plong."><img src="https://raw.githubusercontent.com/trutzstaehler/stream-daten/main/kreativhafen/geschichten/bilder/ein-schlaflied-fuer-kran-karl.webp" alt="" loading="lazy" width="800" height="600"><div class="ts-gn-card__body"><h3 class="ts-gn-card__t">Ein Schlaflied für Kran Karl</h3><p class="ts-gn-card__m">ab 3 Jahren · ca. 4 Min.</p></div></a><a class="ts-gn-card" href="/geschichten/das-kleine-gespenst-huhu" data-gn-card data-themen="Jahreszeiten,Gefühle,Freundschaft" data-zeit="5" data-alter="3" data-saison="1001-1031" data-suche="das kleine gespenst huhu huhu ist ein gespenst – und fürchtet sich vor allem. sogar vor sich selbst im spiegel. doch in der halloween-nacht klopft jemand an seine tür. jahreszeiten,gefühle,freundschaft  auf dem dachboden eines alten, schiefen hauses in hamburg wohnte ein kleines gespenst. es hieß huhu. huhu war weiß und weich wie ein frisch gewaschenes bettlaken, und wenn es durch die luft schwebte, flatterte sein saum ganz leise: flapp, flapp, flapp. eigentlich sollen gespenster ja andere erschrecken. aber huhu war anders. huhu erschrak sich selbst. vor allem. wenn der wind ums dach pfiff, zog es die decke über den kopf. wenn eine maus durch die kisten huschte, rief es: „huch!“ und wenn der mond durch das runde fenster schien und einen langen schatten an die wand malte, versteckte es sich hinter dem alten schaukelstuhl."><img src="https://raw.githubusercontent.com/trutzstaehler/stream-daten/main/kreativhafen/geschichten/bilder/das-kleine-gespenst-huhu.webp" alt="" loading="lazy" width="800" height="600"><div class="ts-gn-card__body"><h3 class="ts-gn-card__t">Das kleine Gespenst Huhu</h3><p class="ts-gn-card__m">ab 3 Jahren · ca. 5 Min.</p></div></a><a class="ts-gn-card" href="/geschichten/die-laterne-die-sich-vor-dem-wind-fuerchtete" data-gn-card data-themen="Jahreszeiten,Mut,Gefühle" data-zeit="4" data-alter="3" data-saison="1020-1111" data-suche="die laterne, die sich vor dem wind fürchtete lina die laterne soll beim laternenumzug leuchten. doch draußen weht der novemberwind – und lina hat angst, dass er ihr licht auspustet. jahreszeiten,mut,gefühle  auf dem küchentisch lag eine neue laterne. sie war rund und orange, mit einem gelben mond und drei kleinen sternen darauf. jonas hatte sie selbst gebastelt, mit viel kleber und ein bisschen hilfe von papa. die laterne hieß lina. lina war sehr stolz. „heute abend ist laternenumzug“, flüsterte sie. „heute abend darf ich zum ersten mal leuchten.“ doch dann hörte sie etwas am fenster. es rüttelte. es pfiff. es heulte ein bisschen: huuuuuh."><img src="https://raw.githubusercontent.com/trutzstaehler/stream-daten/main/kreativhafen/geschichten/bilder/die-laterne-die-sich-vor-dem-wind-fuerchtete.webp" alt="" loading="lazy" width="800" height="600"><div class="ts-gn-card__body"><h3 class="ts-gn-card__t">Die Laterne, die sich vor dem Wind fürchtete</h3><p class="ts-gn-card__m">ab 3 Jahren · ca. 4 Min.</p></div></a><a class="ts-gn-card" href="/geschichten/wichtel-wilbur-und-das-warten" data-gn-card data-themen="Jahreszeiten,Gefühle,Familie" data-zeit="5" data-alter="4" data-saison="1112-1224" data-suche="wichtel wilbur und das warten jede nacht bewacht der kleine wichtel wilbur ein türchen im adventskalender. doch das warten fällt ihm so schwer – bis er entdeckt, wie schön es sein kann. jahreszeiten,gefühle,familie  hinter dem adventskalender von familie petersen wohnte ein wichtel. er war nicht größer als ein teelöffel, hatte eine rote zipfelmütze, einen weißen bart und schuhe, die bei jedem schritt leise tapp, tapp machten. er hieß wilbur. wilbur hatte eine wichtige aufgabe. jede nacht im dezember musste er ein türchen bewachen. immer das türchen, das am nächsten morgen geöffnet werden durfte. in der ersten nacht war das türchen nummer eins. wilbur stellte sich davor, verschränkte die arme und hielt wache. er war sehr gespannt. „was wohl dahinter ist?“, murmelte er. „ein stern? ein schokoladenstückchen? ein winziges rentier?“"><img src="https://raw.githubusercontent.com/trutzstaehler/stream-daten/main/kreativhafen/geschichten/bilder/wichtel-wilbur-und-das-warten.webp" alt="" loading="lazy" width="800" height="600"><div class="ts-gn-card__body"><h3 class="ts-gn-card__t">Wichtel Wilbur und das Warten</h3><p class="ts-gn-card__m">ab 4 Jahren · ca. 5 Min.</p></div></a><a class="ts-gn-card" href="/geschichten/der-schneemann-der-die-sterne-sehen-wollte" data-gn-card data-themen="Jahreszeiten,Freundschaft,Einschlafen" data-zeit="4" data-alter="3" data-saison="1201-228" data-suche="der schneemann, der die sterne sehen wollte schneemann kalle steht im garten und schaut jede nacht zu den sternen hinauf. wie gern würde er sie einmal von nahem sehen! zum glück hat er gute freunde. jahreszeiten,freundschaft,einschlafen  an einem kalten wintertag bauten noah und seine schwester amira einen schneemann. er bekam drei dicke kugeln, zwei kohlestückchen als augen, eine möhre als nase und einen gestreiften schal, der ihm fast bis zu den füßen reichte. oben auf den kopf setzten sie ihm einen alten schwarzen hut. „du heißt kalle“, sagte amira und klopfte ihm sanft auf den bauch. „pass gut auf unseren garten auf.“ kalle nahm seine aufgabe sehr ernst. den ganzen tag schaute er den spatzen zu, die im futterhäuschen pickten. er sah, wie die nachbarskatze über den zaun balancierte. und er hörte, wie in der ferne die schiffe auf der elbe tuteten."><img src="https://raw.githubusercontent.com/trutzstaehler/stream-daten/main/kreativhafen/geschichten/bilder/der-schneemann-der-die-sterne-sehen-wollte.webp" alt="" loading="lazy" width="800" height="600"><div class="ts-gn-card__body"><h3 class="ts-gn-card__t">Der Schneemann, der die Sterne sehen wollte</h3><p class="ts-gn-card__m">ab 3 Jahren · ca. 4 Min.</p></div></a><a class="ts-gn-card" href="/geschichten/funki-der-kleine-drache" data-gn-card data-themen="Fantasie,Gefühle,Freundschaft" data-zeit="5" data-alter="3" data-saison="" data-suche="funki, der kleine drache alle drachen im tal können feuer spucken – nur funki nicht. aus seinem maul kommt bloß warme luft. doch in einer eisigen nacht wird genau das zu etwas ganz besonderem. fantasie,gefühle,freundschaft  hinter den sieben grünen hügeln liegt ein tal, in dem die drachen wohnen. große drachen, kleine drachen, rote, blaue und gepunktete drachen. und alle können eines ganz besonders gut: feuer spucken. fffffuuuusch! so klingt es, wenn die großen drachen am morgen ihre flammen in den himmel pusten. dann leuchtet das ganze tal orange, und die vögel singen besonders laut. auch funki wohnt in diesem tal. funki ist ein kleiner grüner drache mit runden flügeln und einem schwanz, der immer ein bisschen wackelt, wenn er sich freut."><img src="https://raw.githubusercontent.com/trutzstaehler/stream-daten/main/kreativhafen/geschichten/bilder/funki-der-kleine-drache.webp" alt="" loading="lazy" width="800" height="600"><div class="ts-gn-card__body"><h3 class="ts-gn-card__t">Funki, der kleine Drache</h3><p class="ts-gn-card__m">ab 3 Jahren · ca. 5 Min.</p></div></a><a class="ts-gn-card" href="/geschichten/ella-fliegt-zum-mond" data-gn-card data-themen="Weltraum,Einschlafen,Fantasie" data-zeit="5" data-alter="3" data-saison="" data-suche="ella fliegt zum mond ella kann nicht einschlafen – also baut sie aus ihrem bett eine rakete. gemeinsam mit kuschelhase momo fliegt sie bis zum mond, um ihm persönlich gute nacht zu sagen. weltraum,einschlafen,fantasie  es ist schon dunkel draußen. das licht im flur ist aus, und im haus ist es ganz still. nur ella liegt in ihrem bett und hat die augen weit offen. „ich bin noch gar nicht müde“, flüstert sie zu momo. momo ist ihr kuschelhase. er hat ein ohr, das immer nach oben steht, und eins, das immer nach unten hängt. durch das fenster scheint der mond. rund und hell hängt er über den dächern, wie eine große silberne lampe."><img src="https://raw.githubusercontent.com/trutzstaehler/stream-daten/main/kreativhafen/geschichten/bilder/ella-fliegt-zum-mond.webp" alt="" loading="lazy" width="800" height="600"><div class="ts-gn-card__body"><h3 class="ts-gn-card__t">Ella fliegt zum Mond</h3><p class="ts-gn-card__m">ab 3 Jahren · ca. 5 Min.</p></div></a><a class="ts-gn-card" href="/geschichten/bagger-bruno-macht-feierabend" data-gn-card data-themen="Fahrzeuge,Einschlafen" data-zeit="4" data-alter="3" data-saison="" data-suche="bagger bruno macht feierabend bagger bruno liebt seine baustelle so sehr, dass er abends einfach nicht aufhören will zu baggern. bis ein alter kran ihm verrät, was bagger in der nacht schönes erleben. fahrzeuge,einschlafen  am rand der stadt gibt es eine große baustelle. dort wird ein neues haus gebaut, mit vielen fenstern und einem roten dach. und mittendrin arbeitet bagger bruno. bruno ist ein gelber bagger mit einer großen schaufel und zwei runden scheinwerfer-augen. er liebt seine arbeit. brumm, brumm, macht sein motor. ratsch, macht seine schaufel, wenn sie in die erde greift. und rummmms, wenn er die erde auf den großen haufen kippt."><img src="https://raw.githubusercontent.com/trutzstaehler/stream-daten/main/kreativhafen/geschichten/bilder/bagger-bruno-macht-feierabend.webp" alt="" loading="lazy" width="800" height="600"><div class="ts-gn-card__body"><h3 class="ts-gn-card__t">Bagger Bruno macht Feierabend</h3><p class="ts-gn-card__m">ab 3 Jahren · ca. 4 Min.</p></div></a><a class="ts-gn-card" href="/geschichten/teddy-haelt-wache" data-gn-card data-themen="Familie,Einschlafen,Mut" data-zeit="4" data-alter="3" data-saison="1112-1224" data-suche="teddy hält wache jede nacht, wenn noah schläft, öffnet sein teddy brummel ganz leise die augen. denn er hat eine wichtige aufgabe: er hält wache. und dabei entdeckt er, wie friedlich die nacht sein kann. familie,einschlafen,mut  auf noahs bett, gleich neben dem kissen, sitzt ein teddy. er heißt brummel. er hat braunes, schon ein bisschen zerknautschtes fell, ein knopfauge, das etwas lockerer ist als das andere, und eine rote fliege um den hals. am tag ist brummel ein ganz normaler teddy. er wird umarmt, herumgetragen, mal unter den arm geklemmt und mal auf die schaukel gesetzt. aber in der nacht hat brummel eine ganz besondere aufgabe."><img src="https://raw.githubusercontent.com/trutzstaehler/stream-daten/main/kreativhafen/geschichten/bilder/teddy-haelt-wache.webp" alt="" loading="lazy" width="800" height="600"><div class="ts-gn-card__body"><h3 class="ts-gn-card__t">Teddy hält Wache</h3><p class="ts-gn-card__m">ab 3 Jahren · ca. 4 Min.</p></div></a><a class="ts-gn-card" href="/geschichten/mats-und-das-schietwetter" data-gn-card data-themen="Hafen,Gefühle,Jahreszeiten" data-zeit="4" data-alter="3" data-saison="" data-suche="mats und das schietwetter regen, wind und graue wolken über dem hafen – möwe mats findet das wetter doof. bis sie merkt, wie gemütlich regen klingen kann. hafen,gefühle,jahreszeiten möwe mats am hamburger hafen ist heute alles grau. der himmel ist grau, die elbe ist grau, sogar die kräne sehen grau aus. und es regnet. plitsch, platsch. plitsch, platsch. möwe mats sitzt auf ihrem dicken poller an der kaimauer. ihre weißen federn sind nass. ihre gelben füße sind nass. sogar ihr schnabel tropft. tropf, tropf."><img src="https://raw.githubusercontent.com/trutzstaehler/stream-daten/main/kreativhafen/geschichten/bilder/mats-und-das-schietwetter.webp" alt="" loading="lazy" width="800" height="600"><div class="ts-gn-card__body"><h3 class="ts-gn-card__t">Mats und das Schietwetter</h3><p class="ts-gn-card__m">ab 3 Jahren · ca. 4 Min.</p></div></a><a class="ts-gn-card" href="/geschichten/mats-sucht-ihre-lieblingsfeder" data-gn-card data-themen="Hafen,Freundschaft,Tiere" data-zeit="4" data-alter="3" data-saison="" data-suche="mats sucht ihre lieblingsfeder mats hat eine ganz besondere feder mit einem silbernen glanz – und plötzlich ist sie weg! der ganze hafen hilft beim suchen. hafen,freundschaft,tiere möwe mats möwe mats hat viele federn. weiße federn am bauch, graue federn an den flügeln und ganz kleine, weiche federn am hals. aber eine feder ist ganz besonders. sie sitzt ganz oben auf mats’ kopf und schimmert silbern, wenn die sonne darauf scheint. das ist mats’ lieblingsfeder. eines morgens sitzt mats auf ihrem poller an der elbe und putzt sich. putz, putz, putz. da merkt sie es: die lieblingsfeder ist weg!"><img src="https://raw.githubusercontent.com/trutzstaehler/stream-daten/main/kreativhafen/geschichten/bilder/mats-sucht-ihre-lieblingsfeder.webp" alt="" loading="lazy" width="800" height="600"><div class="ts-gn-card__body"><h3 class="ts-gn-card__t">Mats sucht ihre Lieblingsfeder</h3><p class="ts-gn-card__m">ab 3 Jahren · ca. 4 Min.</p></div></a><a class="ts-gn-card" href="/geschichten/mats-hat-geburtstag" data-gn-card data-themen="Hafen,Familie,Freundschaft" data-zeit="4" data-alter="3" data-saison="" data-suche="mats hat geburtstag heute ist mats’ geburtstag! am hamburger hafen wird gefeiert – mit fischbrötchen-torte, hupkonzert und einem lichtgeschenk von lotte. hafen,familie,freundschaft möwe mats an diesem morgen wacht möwe mats ganz früh auf. die sonne kitzelt sie am schnabel. und mama möwe singt. „hoch soll sie fliegen, hoch soll sie fliegen, dreimal hoch!“ mats reißt die augen auf. „heute ist mein geburtstag!“"><img src="https://raw.githubusercontent.com/trutzstaehler/stream-daten/main/kreativhafen/geschichten/bilder/mats-hat-geburtstag.webp" alt="" loading="lazy" width="800" height="600"><div class="ts-gn-card__body"><h3 class="ts-gn-card__t">Mats hat Geburtstag</h3><p class="ts-gn-card__m">ab 3 Jahren · ca. 4 Min.</p></div></a><a class="ts-gn-card" href="/geschichten/mats-und-die-sternschnuppe" data-gn-card data-themen="Hafen,Einschlafen,Familie" data-zeit="4" data-alter="3" data-saison="" data-suche="mats und die sternschnuppe in einer klaren nacht saust eine sternschnuppe über den hafen. mats darf sich etwas wünschen – aber was nur? hafen,einschlafen,familie möwe mats es ist eine klare nacht am hamburger hafen. keine einzige wolke ist am himmel. dafür so viele sterne, dass mats sie gar nicht zählen kann. mats sitzt mit mama möwe im nest auf dem dach des lagerhauses. sie schauen zusammen nach oben. „mama, was ist das für ein stern, der so hell ist?“"><img src="https://raw.githubusercontent.com/trutzstaehler/stream-daten/main/kreativhafen/geschichten/bilder/mats-und-die-sternschnuppe.webp" alt="" loading="lazy" width="800" height="600"><div class="ts-gn-card__body"><h3 class="ts-gn-card__t">Mats und die Sternschnuppe</h3><p class="ts-gn-card__m">ab 3 Jahren · ca. 4 Min.</p></div></a><a class="ts-gn-card" href="/geschichten/das-kleine-auto-faehrt-nach-hause" data-gn-card data-themen="Fahrzeuge,Einschlafen" data-zeit="2" data-alter="2" data-saison="" data-suche="das kleine auto fährt nach hause den ganzen tag ist das kleine auto gefahren. jetzt wird es dunkel – zeit, nach hause zu fahren und allen gute nacht zu sagen. fahrzeuge,einschlafen  das ist das kleine auto. es hat vier runde räder und zwei große augen. den ganzen tag ist es gefahren. brumm, brumm. zum bäcker. brumm, brumm. zum spielplatz. brumm, brumm. zur oma. jetzt wird der himmel dunkel. die lampen an der straße gehen an. eine. zwei. drei."><img src="https://raw.githubusercontent.com/trutzstaehler/stream-daten/main/kreativhafen/geschichten/bilder/das-kleine-auto-faehrt-nach-hause.webp" alt="" loading="lazy" width="800" height="600"><div class="ts-gn-card__body"><h3 class="ts-gn-card__t">Das kleine Auto fährt nach Hause</h3><p class="ts-gn-card__m">ab 2 Jahren · ca. 2 Min.</p></div></a><a class="ts-gn-card" href="/geschichten/gute-nacht-obstkorb" data-gn-card data-themen="Einschlafen,Fantasie" data-zeit="2" data-alter="2" data-saison="" data-suche="gute nacht, obstkorb in der küche steht ein obstkorb. apfel, banane und die zwei kirschen sind schon ganz müde – und sagen sich gute nacht. einschlafen,fantasie  in der küche steht ein korb. im korb wohnt das obst. da ist der rote apfel. rund und glatt. da ist die gelbe banane. lang und krumm."><img src="https://raw.githubusercontent.com/trutzstaehler/stream-daten/main/kreativhafen/geschichten/bilder/gute-nacht-obstkorb.webp" alt="" loading="lazy" width="800" height="600"><div class="ts-gn-card__body"><h3 class="ts-gn-card__t">Gute Nacht, Obstkorb</h3><p class="ts-gn-card__m">ab 2 Jahren · ca. 2 Min.</p></div></a><a class="ts-gn-card" href="/geschichten/das-flugzeug-landet-am-abend" data-gn-card data-themen="Fahrzeuge,Einschlafen" data-zeit="2" data-alter="2" data-saison="" data-suche="das flugzeug landet am abend hoch über den wolken fliegt ein kleines flugzeug. jetzt geht die sonne unter – und das flugzeug fliegt nach hause. fahrzeuge,einschlafen  hoch oben am himmel fliegt ein kleines flugzeug. es hat zwei flügel und viele runde fenster. den ganzen tag ist es geflogen. über die berge. über das meer. über die wolken. wuuusch. jetzt wird die sonne ganz rot. dann geht sie unter."><img src="https://raw.githubusercontent.com/trutzstaehler/stream-daten/main/kreativhafen/geschichten/bilder/das-flugzeug-landet-am-abend.webp" alt="" loading="lazy" width="800" height="600"><div class="ts-gn-card__body"><h3 class="ts-gn-card__t">Das Flugzeug landet am Abend</h3><p class="ts-gn-card__m">ab 2 Jahren · ca. 2 Min.</p></div></a><a class="ts-gn-card" href="/geschichten/die-luftballons-wollen-noch-nicht-schlafen" data-gn-card data-themen="Gefühle,Einschlafen" data-zeit="2" data-alter="2" data-saison="" data-suche="die luftballons wollen noch nicht schlafen die party ist vorbei, aber die drei luftballons wollen noch weiter tanzen. bis sie merken, wie gemütlich es auch ganz ruhig sein kann. gefühle,einschlafen  heute war eine party. mit kuchen, mit musik und mit drei luftballons. ein roter ballon. ein gelber ballon. ein grüner ballon. den ganzen tag haben sie getanzt. hoch und runter. hin und her. hüpf, hüpf, hüpf."><img src="https://raw.githubusercontent.com/trutzstaehler/stream-daten/main/kreativhafen/geschichten/bilder/die-luftballons-wollen-noch-nicht-schlafen.webp" alt="" loading="lazy" width="800" height="600"><div class="ts-gn-card__body"><h3 class="ts-gn-card__t">Die Luftballons wollen noch nicht schlafen</h3><p class="ts-gn-card__m">ab 2 Jahren · ca. 2 Min.</p></div></a><a class="ts-gn-card" href="/geschichten/ritter-rasmus-und-die-angst-vor-dem-dunkeln" data-gn-card data-themen="Mut,Fantasie,Gefühle" data-zeit="7" data-alter="5" data-saison="" data-suche="ritter rasmus und die angst vor dem dunkeln rasmus ist der kleinste ritter der burg – und nachts knarrt und knackt es überall. mit schild, holzschwert und laterne macht er sich auf, das geheimnis der geräusche zu lüften. mut,fantasie,gefühle  auf einem grünen hügel, gleich hinter dem großen wald, steht eine burg. sie hat vier dicke türme, eine zugbrücke, die beim hochziehen „rattattatt“ macht, und eine fahne mit einem lachenden löwen darauf. in dieser burg wohnt rasmus. rasmus ist ein ritter. ein echter ritter, mit einem helm, der ein kleines bisschen zu groß ist, einem schild mit einem herz darauf und einem holzschwert, das er selbst geschnitzt hat. rasmus ist der kleinste ritter der ganzen burg. aber er ist auch der schnellste beim treppenrennen, der beste beim äpfel-jonglieren und der mutigste, wenn es darum geht, die burgkatze mimi von der mauer zu holen."><img src="https://raw.githubusercontent.com/trutzstaehler/stream-daten/main/kreativhafen/geschichten/bilder/ritter-rasmus-und-die-angst-vor-dem-dunkeln.webp" alt="" loading="lazy" width="800" height="600"><div class="ts-gn-card__body"><h3 class="ts-gn-card__t">Ritter Rasmus und die Angst vor dem Dunkeln</h3><p class="ts-gn-card__m">ab 5 Jahren · ca. 7 Min.</p></div></a><a class="ts-gn-card" href="/geschichten/nixe-nele-schwimmt-in-den-hafen" data-gn-card data-themen="Hafen,Freundschaft,Fantasie" data-zeit="7" data-alter="5" data-saison="" data-suche="nixe nele schwimmt in den hafen die kleine meerjungfrau nele will wissen, wohin die großen schiffe fahren. also schwimmt sie von der nordsee die elbe hinauf – bis mitten in den hamburger hafen. hafen,freundschaft,fantasie  weit draußen in der nordsee, da, wo das wasser grün und grau und manchmal ein bisschen silbern ist, wohnt eine kleine meerjungfrau. sie heißt nele. nele hat lange haare, in denen immer ein bisschen seetang hängt, und eine schwanzflosse mit glitzernden schuppen. wenn sie schnell schwimmt, sieht es aus, als würde ein regenbogen durchs wasser flitzen. neles lieblingsplatz ist eine alte muschelbank. von dort kann sie die großen schiffe sehen, die oben über das wasser fahren. riesige schiffe mit bunten kisten darauf, rot, blau, grün und gelb – so hoch gestapelt wie bauklötze."><img src="https://raw.githubusercontent.com/trutzstaehler/stream-daten/main/kreativhafen/geschichten/bilder/nixe-nele-schwimmt-in-den-hafen.webp" alt="" loading="lazy" width="800" height="600"><div class="ts-gn-card__body"><h3 class="ts-gn-card__t">Nixe Nele schwimmt in den Hafen</h3><p class="ts-gn-card__m">ab 5 Jahren · ca. 7 Min.</p></div></a><a class="ts-gn-card" href="/geschichten/robo-lernt-traeumen" data-gn-card data-themen="Weltraum,Einschlafen,Gefühle" data-zeit="7" data-alter="5" data-saison="" data-suche="robo lernt träumen robo ist ein kleiner roboter, der alles kann – nur nicht schlafen. denn er hat keinen aus-knopf zum träumen. oder vielleicht doch? weltraum,einschlafen,gefühle  im kinderzimmer von lio, ganz oben im regal zwischen den bilderbüchern, wohnt ein kleiner roboter. er heißt robo. robo hat einen eckigen kopf, zwei runde augen, die blau leuchten, und eine kleine antenne, die wackelt, wenn er sich freut. auf seinem bauch sind drei knöpfe: ein roter, ein gelber und ein grüner. robo kann ganz viel. er kann rechnen, schneller als jeder taschenrechner. er kann lio beim aufräumen helfen und die bauklötze nach farben sortieren. er kann piepsen, blinken und sogar ein bisschen tanzen. bip-bup, bip-bup."><img src="https://raw.githubusercontent.com/trutzstaehler/stream-daten/main/kreativhafen/geschichten/bilder/robo-lernt-traeumen.webp" alt="" loading="lazy" width="800" height="600"><div class="ts-gn-card__body"><h3 class="ts-gn-card__t">Robo lernt träumen</h3><p class="ts-gn-card__m">ab 5 Jahren · ca. 7 Min.</p></div></a><a class="ts-gn-card" href="/geschichten/das-einhorn-das-seinen-regenbogen-verlor" data-gn-card data-themen="Fantasie,Freundschaft,Gefühle" data-zeit="7" data-alter="5" data-saison="" data-suche="das einhorn, das seinen regenbogen verlor einhorn fiona kann regenbögen an den himmel zaubern – bis ihr eines morgens die farben fehlen. zum glück helfen ihr ihre freunde, sie wiederzufinden. fantasie,freundschaft,gefühle  hinter den sieben hügeln, wo die wiesen besonders weich sind und die blumen besonders gut duften, wohnt ein kleines einhorn. es heißt fiona. fiona hat ein weißes fell, eine lockige mähne und ein goldenes horn auf der stirn. und dieses horn kann etwas ganz besonderes: immer wenn es nach einem regen die sonne kitzelt, zaubert fiona einen regenbogen an den himmel. rot, orange, gelb, grün, blau und lila. ein bogen, so schön, dass alle tiere auf der wiese stehen bleiben und staunen. der igel hört auf zu schnüffeln, die hasen hören auf zu hoppeln, und selbst die alte schildkröte tilda, die sonst immer müde ist, macht die augen ganz weit auf."><img src="https://raw.githubusercontent.com/trutzstaehler/stream-daten/main/kreativhafen/geschichten/bilder/das-einhorn-das-seinen-regenbogen-verlor.webp" alt="" loading="lazy" width="800" height="600"><div class="ts-gn-card__body"><h3 class="ts-gn-card__t">Das Einhorn, das seinen Regenbogen verlor</h3><p class="ts-gn-card__m">ab 5 Jahren · ca. 7 Min.</p></div></a></div>
+    <div class="ts-gn-morebtn"><button type="button" class="ts-am-mini" data-gn-more hidden>Mehr Geschichten anzeigen</button></div>
+  </section>
+
+  <section class="ts-container ts-am__block" aria-labelledby="ts-gn-fig-t">
+    <h2 id="ts-gn-fig-t" class="ts-am__h2">Beliebte Figuren</h2>
+    <div class="ts-gn-figs"><a class="ts-gn-fig" href="/gute-nacht-geschichten?suche=Mats#ts-gn-alle"><img src="https://raw.githubusercontent.com/trutzstaehler/stream-daten/main/kreativhafen/geschichten/bilder/moewe-mats-will-nicht-schlafen.webp" alt="" loading="lazy" width="120" height="120"><b>Möwe Mats</b><span>Die neugierige Möwe vom Hamburger Hafen – mit eigener Reihe.</span></a><a class="ts-gn-fig" href="/gute-nacht-geschichten?suche=Lotte#ts-gn-alle"><img src="https://raw.githubusercontent.com/trutzstaehler/stream-daten/main/kreativhafen/geschichten/bilder/leuchtturm-lotte-und-der-nebel.webp" alt="" loading="lazy" width="120" height="120"><b>Leuchtturm Lotte</b><span>Ihr Licht ist klein, ihr Herz ist groß.</span></a><a class="ts-gn-fig" href="/gute-nacht-geschichten?suche=Frieda#ts-gn-alle"><img src="https://raw.githubusercontent.com/trutzstaehler/stream-daten/main/kreativhafen/geschichten/bilder/die-faehre-frieda-faehrt-nach-hause.webp" alt="" loading="lazy" width="120" height="120"><b>Fähre Frieda</b><span>Bringt jeden Abend alle sicher nach Hause.</span></a><a class="ts-gn-fig" href="/gute-nacht-geschichten?suche=Karl#ts-gn-alle"><img src="https://raw.githubusercontent.com/trutzstaehler/stream-daten/main/kreativhafen/geschichten/bilder/ein-schlaflied-fuer-kran-karl.webp" alt="" loading="lazy" width="120" height="120"><b>Kran Karl</b><span>Der größte Kran im Hafen – und der müdeste.</span></a><a class="ts-gn-fig" href="/gute-nacht-geschichten?suche=Funki#ts-gn-alle"><img src="https://raw.githubusercontent.com/trutzstaehler/stream-daten/main/kreativhafen/geschichten/bilder/funki-der-kleine-drache.webp" alt="" loading="lazy" width="120" height="120"><b>Funki</b><span>Der kleine Drache, der kein Feuer spucken kann.</span></a><a class="ts-gn-fig" href="/gute-nacht-geschichten?suche=Bruno#ts-gn-alle"><img src="https://raw.githubusercontent.com/trutzstaehler/stream-daten/main/kreativhafen/geschichten/bilder/bagger-bruno-macht-feierabend.webp" alt="" loading="lazy" width="120" height="120"><b>Bagger Bruno</b><span>Will nie Feierabend machen.</span></a><a class="ts-gn-fig" href="/gute-nacht-geschichten?suche=Wilbur#ts-gn-alle"><img src="https://raw.githubusercontent.com/trutzstaehler/stream-daten/main/kreativhafen/geschichten/bilder/wichtel-wilbur-und-das-warten.webp" alt="" loading="lazy" width="120" height="120"><b>Wichtel Wilbur</b><span>Bewacht im Advent jede Nacht ein Türchen.</span></a><a class="ts-gn-fig" href="/gute-nacht-geschichten?suche=Huhu#ts-gn-alle"><img src="https://raw.githubusercontent.com/trutzstaehler/stream-daten/main/kreativhafen/geschichten/bilder/das-kleine-gespenst-huhu.webp" alt="" loading="lazy" width="120" height="120"><b>Gespenst Huhu</b><span>Fürchtet sich vor allem – sogar vor sich selbst.</span></a></div>
+  </section>
+
+  <section class="ts-container ts-am__block" aria-label="Rund ums Vorlesen">
+    <div class="ts-gn-seo"><h3>Du suchst eine Gute-Nacht-Geschichte zum Vorlesen?</h3>
+<p>Dann bist du hier richtig. Im Kreativhafen findest du 24 kostenlose Gute-Nacht-Geschichten für Kinder von 2 bis 7 Jahren – alle selbst geschrieben und direkt hier lesbar. Ohne Download, ohne Anmeldung. Nutze den Filter „Vorlesedauer“, um die passende Einschlafgeschichte für heute Abend zu finden: kurz (1–3 Min.), mittel (4–6 Min.) oder etwas länger.</p>
+<h3>Wovon handeln unsere Gute-Nacht-Geschichten?</h3>
+<p>Je nachdem, was dein Kind gerade liebt, findest du hier die passende Geschichte:</p>
+<ul>
+<li><b>Hamburger Hafen:</b> Möwe Mats, Leuchtturm Lotte, Fähre Frieda und Kran Karl erleben kleine, ruhige Abenteuer zwischen Containern und Elbe. <a href="/gute-nacht-geschichten?thema=Hafen#ts-gn-alle">Zu den Hafengeschichten</a></li>
+<li><b>Fahrzeuge:</b> Bagger, Auto und Flugzeug machen Feierabend – perfekt für kleine Fahrzeug-Fans.</li>
+<li><b>Fantasie &amp; Märchen:</b> Drache Funki, Nixe Nele, ein Einhorn und ein Ritter, der sich vor dem Dunkeln fürchtet.</li>
+<li><b>Jahreszeiten:</b> Ein kleines Gespenst im Herbst, eine Laterne im November, Wichtel Wilbur im Advent und ein Schneemann im Winter.</li>
+</ul>
+<h3>Kurze Gute-Nacht-Geschichten für müde Abende</h3>
+<p>Manchmal ist schon die Zahnbürste zu viel. Für solche Abende gibt es 4 ganz kurze Geschichten mit 1–3 Minuten – mit Wiederholungen und Geräuschen zum Mitmachen, ideal schon für 2-Jährige. <a href="/gute-nacht-geschichten?dauer=kurz#ts-gn-alle">Kurze Geschichten anzeigen</a></p>
+<h3>Wer schreibt die Geschichten?</h3>
+<p>Die Geschichten entstehen im Kreativhafen von Trutz Stähler – Papa aus Hamburg und Autor der Kritzelbücher und des Kinderkrimis „Maria Holm“. Neue Geschichten kommen regelmäßig dazu.</p></div>
+  </section>
+
+  <section class="ts-container ts-am__block ts-am__end" aria-labelledby="ts-gn-faq-t">
+    <h2 id="ts-gn-faq-t" class="ts-am__h2" style="margin-bottom:1.5rem">FAQ – Gute-Nacht-Geschichten im Kreativhafen</h2>
+    <div class="tss-faq"><details><summary>Warum sind Gute-Nacht-Geschichten so wichtig für Kinder?</summary><p>Eine Geschichte vor dem Schlafen ist ein fester, ruhiger Moment am Ende des Tages. Kinder kommen zur Ruhe, fühlen sich geborgen und verarbeiten, was sie erlebt haben. Ganz nebenbei wachsen Wortschatz, Fantasie und Konzentration – und die Nähe zwischen euch.</p></details><details><summary>Wie lang sollte eine Gute-Nacht-Geschichte sein?</summary><p>So lang, wie euer Kind gut zuhören kann. Für 2-Jährige reichen 1–2 Minuten, ab 3 Jahren passen 4–5 Minuten, größere Kinder mögen auch 7 Minuten und mehr. Mit dem Filter „Vorlesedauer“ findest du schnell die passende Länge.</p></details><details><summary>Welche Themen eignen sich zum Einschlafen?</summary><p>Geschichten mit kleinen, lösbaren Problemen und einem warmen Ende: Freundschaft, Mut, Gefühle, Tiere, Fahrzeuge oder ein bisschen Fantasie. Spannung darf sein – aber am Schluss ist alles gut.</p></details><details><summary>Wie wird das Vorlesen am Abend besonders entspannt?</summary><p>Licht runter, kuscheln, langsam und leise lesen. Gegen Ende darf die Stimme immer ruhiger werden. Auf jeder Geschichten-Seite gibt es einen Nachtmodus, der die Seite dunkel und die Schrift warm macht.</p></details><details><summary>Muss ich etwas herunterladen oder mich anmelden?</summary><p>Nein. Alle Geschichten liest du direkt hier auf der Seite – am Handy, Tablet oder Computer. Kostenlos und ohne Anmeldung.</p></details><details><summary>Darf ich die Geschichten in der Kita oder Schule vorlesen?</summary><p>Ja, sehr gern – zu Hause, in der Kita, in der Schule oder in der Bücherei. Bitte teilt den Link zur Geschichte, statt die Texte zu kopieren.</p></details></div>
+    <div class="ts-am-final ts-glass">
+      <p>Noch mehr zum Vorlesen und Malen: meine Bücher.</p>
+      <a href="/malbuecher" class="ts-btn ts-btn--primary ts-magnetic"><span class="ts-btn__inner"><span class="ts-roll"><span data-text="Zu den Büchern">Zu den Büchern</span></span><svg class="ts-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+    </div>
+  </section>
+</div>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "CollectionPage", "name": "Gute-Nacht-Geschichten für Kinder zum Vorlesen", "url": "https://trutzstaehler.de/gute-nacht-geschichten", "inLanguage": "de", "isAccessibleForFree": true, "mainEntity": {"@type": "ItemList", "numberOfItems": 24, "itemListElement": [{"@type": "ListItem", "position": 1, "url": "https://trutzstaehler.de/geschichten/moewe-mats-will-nicht-schlafen", "name": "Möwe Mats will nicht schlafen"}, {"@type": "ListItem", "position": 2, "url": "https://trutzstaehler.de/geschichten/leuchtturm-lotte-und-der-nebel", "name": "Leuchtturm Lotte und der Nebel"}, {"@type": "ListItem", "position": 3, "url": "https://trutzstaehler.de/geschichten/die-faehre-frieda-faehrt-nach-hause", "name": "Die Fähre Frieda fährt nach Hause"}, {"@type": "ListItem", "position": 4, "url": "https://trutzstaehler.de/geschichten/ein-schlaflied-fuer-kran-karl", "name": "Ein Schlaflied für Kran Karl"}, {"@type": "ListItem", "position": 5, "url": "https://trutzstaehler.de/geschichten/das-kleine-gespenst-huhu", "name": "Das kleine Gespenst Huhu"}, {"@type": "ListItem", "position": 6, "url": "https://trutzstaehler.de/geschichten/die-laterne-die-sich-vor-dem-wind-fuerchtete", "name": "Die Laterne, die sich vor dem Wind fürchtete"}, {"@type": "ListItem", "position": 7, "url": "https://trutzstaehler.de/geschichten/wichtel-wilbur-und-das-warten", "name": "Wichtel Wilbur und das Warten"}, {"@type": "ListItem", "position": 8, "url": "https://trutzstaehler.de/geschichten/der-schneemann-der-die-sterne-sehen-wollte", "name": "Der Schneemann, der die Sterne sehen wollte"}, {"@type": "ListItem", "position": 9, "url": "https://trutzstaehler.de/geschichten/funki-der-kleine-drache", "name": "Funki, der kleine Drache"}, {"@type": "ListItem", "position": 10, "url": "https://trutzstaehler.de/geschichten/ella-fliegt-zum-mond", "name": "Ella fliegt zum Mond"}, {"@type": "ListItem", "position": 11, "url": "https://trutzstaehler.de/geschichten/bagger-bruno-macht-feierabend", "name": "Bagger Bruno macht Feierabend"}, {"@type": "ListItem", "position": 12, "url": "https://trutzstaehler.de/geschichten/teddy-haelt-wache", "name": "Teddy hält Wache"}, {"@type": "ListItem", "position": 13, "url": "https://trutzstaehler.de/geschichten/mats-und-das-schietwetter", "name": "Mats und das Schietwetter"}, {"@type": "ListItem", "position": 14, "url": "https://trutzstaehler.de/geschichten/mats-sucht-ihre-lieblingsfeder", "name": "Mats sucht ihre Lieblingsfeder"}, {"@type": "ListItem", "position": 15, "url": "https://trutzstaehler.de/geschichten/mats-hat-geburtstag", "name": "Mats hat Geburtstag"}, {"@type": "ListItem", "position": 16, "url": "https://trutzstaehler.de/geschichten/mats-und-die-sternschnuppe", "name": "Mats und die Sternschnuppe"}, {"@type": "ListItem", "position": 17, "url": "https://trutzstaehler.de/geschichten/das-kleine-auto-faehrt-nach-hause", "name": "Das kleine Auto fährt nach Hause"}, {"@type": "ListItem", "position": 18, "url": "https://trutzstaehler.de/geschichten/gute-nacht-obstkorb", "name": "Gute Nacht, Obstkorb"}, {"@type": "ListItem", "position": 19, "url": "https://trutzstaehler.de/geschichten/das-flugzeug-landet-am-abend", "name": "Das Flugzeug landet am Abend"}, {"@type": "ListItem", "position": 20, "url": "https://trutzstaehler.de/geschichten/die-luftballons-wollen-noch-nicht-schlafen", "name": "Die Luftballons wollen noch nicht schlafen"}, {"@type": "ListItem", "position": 21, "url": "https://trutzstaehler.de/geschichten/ritter-rasmus-und-die-angst-vor-dem-dunkeln", "name": "Ritter Rasmus und die Angst vor dem Dunkeln"}, {"@type": "ListItem", "position": 22, "url": "https://trutzstaehler.de/geschichten/nixe-nele-schwimmt-in-den-hafen", "name": "Nixe Nele schwimmt in den Hafen"}, {"@type": "ListItem", "position": 23, "url": "https://trutzstaehler.de/geschichten/robo-lernt-traeumen", "name": "Robo lernt träumen"}, {"@type": "ListItem", "position": 24, "url": "https://trutzstaehler.de/geschichten/das-einhorn-das-seinen-regenbogen-verlor", "name": "Das Einhorn, das seinen Regenbogen verlor"}]}}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Warum sind Gute-Nacht-Geschichten so wichtig für Kinder?", "acceptedAnswer": {"@type": "Answer", "text": "Eine Geschichte vor dem Schlafen ist ein fester, ruhiger Moment am Ende des Tages. Kinder kommen zur Ruhe, fühlen sich geborgen und verarbeiten, was sie erlebt haben. Ganz nebenbei wachsen Wortschatz, Fantasie und Konzentration – und die Nähe zwischen euch."}}, {"@type": "Question", "name": "Wie lang sollte eine Gute-Nacht-Geschichte sein?", "acceptedAnswer": {"@type": "Answer", "text": "So lang, wie euer Kind gut zuhören kann. Für 2-Jährige reichen 1–2 Minuten, ab 3 Jahren passen 4–5 Minuten, größere Kinder mögen auch 7 Minuten und mehr. Mit dem Filter „Vorlesedauer“ findest du schnell die passende Länge."}}, {"@type": "Question", "name": "Welche Themen eignen sich zum Einschlafen?", "acceptedAnswer": {"@type": "Answer", "text": "Geschichten mit kleinen, lösbaren Problemen und einem warmen Ende: Freundschaft, Mut, Gefühle, Tiere, Fahrzeuge oder ein bisschen Fantasie. Spannung darf sein – aber am Schluss ist alles gut."}}, {"@type": "Question", "name": "Wie wird das Vorlesen am Abend besonders entspannt?", "acceptedAnswer": {"@type": "Answer", "text": "Licht runter, kuscheln, langsam und leise lesen. Gegen Ende darf die Stimme immer ruhiger werden. Auf jeder Geschichten-Seite gibt es einen Nachtmodus, der die Seite dunkel und die Schrift warm macht."}}, {"@type": "Question", "name": "Muss ich etwas herunterladen oder mich anmelden?", "acceptedAnswer": {"@type": "Answer", "text": "Nein. Alle Geschichten liest du direkt hier auf der Seite – am Handy, Tablet oder Computer. Kostenlos und ohne Anmeldung."}}, {"@type": "Question", "name": "Darf ich die Geschichten in der Kita oder Schule vorlesen?", "acceptedAnswer": {"@type": "Answer", "text": "Ja, sehr gern – zu Hause, in der Kita, in der Schule oder in der Bücherei. Bitte teilt den Link zur Geschichte, statt die Texte zu kopieren."}}]}</script>
+
+<script>
+/* Gute-Nacht-Geschichten: Auswahl zum Monat, Vorlesedauer-Filter, Suche, „Mehr anzeigen“, Links ?dauer= ?alter= ?thema= ?suche= */
+(() => {
+  const all = document.getElementById('ts-gn-alle'); if (!all) return;
+  const cards = [...all.querySelectorAll('[data-gn-card]')];
+  const d = new Date(), md = (d.getMonth() + 1) * 100 + d.getDate();
+  const inWin = s => { if (!s) return false; const [a, b] = s.split('-').map(Number); return a <= b ? md >= a && md <= b : md >= a || md <= b; };
+  /* Beliebt im <Monat> */
+  const MON = ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'];
+  const TXT = { 9: 'Bunte Blätter, Kürbisse und die ersten dunklen Abende: Diese Geschichten passen jetzt perfekt.',
+    10: 'Laternen, Nebel und Kerzenlicht: Geschichten für die ruhigen Novemberabende.',
+    11: 'Die Zeit des Wartens: Geschichten für die Adventsabende – mit Wichtel Wilbur und Co.',
+    0: 'Kalt draußen, warm im Bett: Wintergeschichten zum Einkuscheln.', 1: 'Kalt draußen, warm im Bett: Wintergeschichten zum Einkuscheln.' };
+  const sb = document.querySelector('[data-gn-saison]'), saison = cards.filter(c => inWin(c.dataset.saison));
+  if (sb && saison.length) {
+    sb.querySelector('[data-t]').textContent = 'Beliebt im ' + MON[d.getMonth()];
+    sb.querySelector('[data-s]').textContent = TXT[d.getMonth()] || 'Diese Geschichten passen gerade besonders gut.';
+    sb.querySelector('.ts-gn-grid').append(...saison.slice(0, 4).map(c => { const k = c.cloneNode(true); k.removeAttribute('data-gn-card'); k.hidden = false; return k; }));
+    sb.hidden = false;
+  }
+  /* Filter */
+  const q = all.querySelector('[data-gn-q]'), more = all.querySelector('[data-gn-more]'), state = all.querySelector('[data-gn-state]');
+  const P = new URLSearchParams(location.search);
+  let dauer = P.get('dauer') || 'alle', alter = P.get('alter') || '', thema = P.get('thema') || '', offen = false;
+  if (P.get('suche') && q) q.value = P.get('suche');
+  const ALT = { 2: 'für 2-Jährige', 3: 'für 3- bis 4-Jährige', 5: 'ab 5 Jahren' };
+  const ok = c => {
+    const z = +c.dataset.zeit, a = +c.dataset.alter, s = (q && q.value || '').trim().toLowerCase();
+    return (dauer === 'alle' || (dauer === 'kurz' ? z <= 3 : dauer === 'mittel' ? z >= 4 && z <= 6 : z >= 7))
+      && (!alter || (alter === '2' ? a <= 2 : alter === '3' ? a >= 3 && a <= 4 : a >= 5))
+      && (!thema || c.dataset.themen.split(',').includes(thema))
+      && (!s || c.dataset.suche.includes(s));
+  };
+  const apply = () => {
+    const aktiv = dauer !== 'alle' || alter || thema || (q && q.value.trim());
+    let n = 0, shown = 0;
+    cards.forEach(c => { const v = ok(c); if (v) n++; const zeig = v && (aktiv || offen || n <= 12); c.hidden = !zeig; if (zeig) shown++; });
+    if (more) more.hidden = !!aktiv || offen || n <= 12;
+    all.querySelectorAll('[data-dauer]').forEach(b => b.setAttribute('aria-pressed', b.dataset.dauer === dauer));
+    const teile = []; if (thema) teile.push('Thema „' + thema + '“'); if (alter) teile.push(ALT[alter] || '');
+    if (q && q.value.trim()) teile.push('Suche „' + q.value.trim() + '“');
+    state.innerHTML = '';
+    state.append(n + (n === 1 ? ' Geschichte' : ' Geschichten') + (teile.length ? ' · ' + teile.join(' · ') : ''));
+    if (aktiv) { const r = document.createElement('button'); r.type = 'button'; r.textContent = 'Alle zeigen'; r.onclick = () => { dauer = 'alle'; alter = thema = ''; if (q) q.value = ''; history.replaceState(null, '', location.pathname + '#ts-gn-alle'); apply(); }; state.append(r); }
+    if (!n) state.append(' – probier eine andere Länge oder ein anderes Wort.');
+  };
+  all.querySelectorAll('[data-dauer]').forEach(b => b.addEventListener('click', () => { dauer = b.dataset.dauer; apply(); }));
+  if (q) q.addEventListener('input', apply);
+  if (more) more.addEventListener('click', () => { offen = true; apply(); });
+  /* Figuren und Sprunglinks auf derselben Seite: ohne Neuladen filtern */
+  document.querySelectorAll('a[href^="/gute-nacht-geschichten?"]').forEach(a => a.addEventListener('click', e => {
+    if (location.pathname.replace(/\/+$/, '') !== '/gute-nacht-geschichten') return;
+    e.preventDefault(); const p = new URLSearchParams(a.getAttribute('href').split('?')[1].split('#')[0]);
+    dauer = p.get('dauer') || 'alle'; alter = p.get('alter') || ''; thema = p.get('thema') || ''; if (q) q.value = p.get('suche') || '';
+    apply(); all.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }));
+  apply();
+})();
+</script>

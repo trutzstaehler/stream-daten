@@ -1,0 +1,387 @@
+<!-- =====================================================================
+  GUTE-NACHT-GESCHICHTE „Die Laterne, die sich vor dem Wind fürchtete“  ·  Blog-Beitrag /geschichten/die-laterne-die-sich-vor-dem-wind-fuerchtete
+  Einfügen: Beitrag öffnen → Inhalt löschen → Code-Block → alles einfügen.
+====================================================================== -->
+
+<style>
+  /* ===== Ausmalbilder (ts-am) – nutzt die ts-/tss-Bausteine der Seite ===== */
+  .ts-am { position: relative; isolation: isolate; overflow: hidden; overflow: clip; }
+  .ts-am__orb { position: absolute; z-index: -1; right: -14%; top: 0; width: 56vw; height: 56vw; max-width: 860px; max-height: 860px; border-radius: 50%; pointer-events: none;
+    background: radial-gradient(circle, rgba(46, 140, 108, .28) 0%, rgba(46, 140, 108, .16) 24%, rgba(46, 140, 108, .06) 46%, rgba(46, 140, 108, 0) 70%); }
+  .ts-am .ts-line { padding-bottom: .16em; margin-bottom: -.16em; }
+  .ts-am__ctas { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.75rem; }
+  .ts .ts-am__chips { display: flex; flex-wrap: wrap; gap: .5rem; margin: 1.5rem 0 0; padding: 0; list-style: none; }
+  .ts .ts-am__chips li { padding: 8px 13px; border-radius: 999px; border: 1px solid var(--ts-line-strong, rgba(255,255,255,.14)); color: var(--ts-text, #f6faf7); font-size: 10.5px; }
+  .ts-am__block { padding-top: clamp(4.5rem, 8vw, 7.5rem); }
+  .ts-am__blockhead { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; padding-bottom: 1.25rem; border-bottom: 1px solid var(--tss-line, rgba(255,255,255,.1)); }
+  .ts .ts-am__h2 { margin-top: clamp(1.75rem, 3vw, 2.5rem); font-family: var(--ts-font-display, 'Syne', sans-serif); font-weight: 800; font-size: clamp(2rem, 5vw, 4.4rem); line-height: .98; letter-spacing: -0.03em; }
+  .ts .ts-am__h2 i { font-style: normal; color: var(--tss-acc, #6ee7b7); }
+  .ts .ts-am__sub { margin-top: .9rem; max-width: 42rem; color: var(--tss-text, rgba(246,250,247,.72)); font-size: clamp(15px, 1.3vw, 17.5px); line-height: 1.65; }
+  .ts-am__end { padding-bottom: clamp(6rem, 11vw, 10rem); }
+
+  /* Saison-Leiste */
+  .ts-am-season { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(230px, 1fr); gap: 1px; margin: 2rem 0 0; padding: 0; list-style: none;
+    overflow-x: auto; scroll-snap-type: x mandatory; background: var(--tss-line, rgba(255,255,255,.1)); border: 1px solid var(--tss-line, rgba(255,255,255,.1)); scrollbar-width: thin; }
+  .ts-am-season li { scroll-snap-align: start; background: var(--ts-bg, #060608); }
+  .ts .ts-am-season a { position: relative; display: flex; flex-direction: column; gap: .55rem; height: 100%; min-height: 190px; padding: 1.4rem 1.3rem 1.3rem; color: inherit; text-decoration: none; transition: background .3s; }
+  .ts .ts-am-season a::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 3px; background: var(--c); opacity: .35; transition: opacity .3s; }
+  .ts .ts-am-season a:hover { background: rgba(255,255,255,.03); }
+  .ts .ts-am-season a:hover::before, .ts-am-season .is-now a::before { opacity: 1; }
+  .ts-am-season__date { color: var(--c); }
+  .ts .ts-am-season__name { font: 800 clamp(1.1rem, 1.35vw, 1.32rem)/1.08 var(--ts-font-display, 'Syne', sans-serif); letter-spacing: -0.025em; overflow-wrap: anywhere; hyphens: auto; }
+  .ts .ts-am-season__sub { color: var(--tss-text, rgba(246,250,247,.72)); font-size: 14px; line-height: 1.5; }
+  .ts .ts-am-season__state { margin-top: auto; display: inline-flex; align-self: flex-start; align-items: center; gap: .45rem; padding: 6px 11px; border-radius: 999px;
+    border: 1px solid var(--tss-line, rgba(255,255,255,.1)); color: var(--ts-muted, #9aaba3); font-size: 10px; white-space: nowrap; }
+  .ts-am-season .is-now .ts-am-season__state { border-color: var(--c); color: #060608; background: var(--c); }
+  .ts-am-season .is-now .ts-am-season__state::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: #060608; animation: ts-am-pulse 1.6s infinite; }
+  .ts-am-season .is-past { opacity: .5; }
+  @keyframes ts-am-pulse { 50% { opacity: .25; } }
+
+  /* Highlight-Karte (Saisonpaket) */
+  .ts .ts-am-bundle { display: grid; gap: 2rem; margin-top: 2rem; padding: clamp(1.5rem, 4vw, 3rem); border-radius: 26px; align-items: center; }
+  .ts .ts-am-bundle__price { display: flex; align-items: baseline; gap: .8rem; margin-top: 1.2rem; font: 800 clamp(2rem, 4vw, 3rem)/1 var(--ts-font-display, 'Syne', sans-serif); letter-spacing: -0.03em; }
+  .ts .ts-am-bundle__price s { font-size: .45em; color: var(--ts-muted, #9aaba3); font-weight: 700; }
+  .ts-am-bundle__art { position: relative; min-height: 260px; }
+  .ts .ts-am-bundle__art img { position: absolute; width: 46% !important; height: auto !important; border-radius: 8px; background: #fbf9f4; padding: 6px; box-shadow: 0 30px 60px -30px rgba(0,0,0,.9); }
+  .ts-am-bundle__art img:nth-child(1) { left: 0; top: 12%; transform: rotate(-6deg); }
+  .ts-am-bundle__art img:nth-child(2) { left: 27%; top: 0; transform: rotate(2deg); z-index: 2; }
+  .ts-am-bundle__art img:nth-child(3) { right: 0; top: 16%; transform: rotate(7deg); }
+
+  /* Ausmal-Widget (wie im Kritzelbuch) */
+  .ts-am-pick { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1.5rem; }
+  .ts .ts-am-pick button { padding: 9px 14px; border-radius: 999px; border: 1px solid var(--ts-line-strong, rgba(255,255,255,.14)); background: transparent; color: var(--ts-text, #f6faf7);
+    font: 600 11px/1 var(--ts-font-mono, 'JetBrains Mono', monospace); letter-spacing: .12em; text-transform: uppercase; cursor: pointer; transition: background .25s, color .25s, border-color .25s; }
+  .ts .ts-am-pick button:hover { border-color: rgba(110, 231, 183, .45); }
+  .ts .ts-am-pick button[aria-pressed="true"] { background: #f6faf7; color: #060608; border-color: #f6faf7; }
+  .ts-paint { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1.25rem; margin-top: 1.5rem; align-items: start; }
+  .ts-paint__paper { position: relative; padding: clamp(.6rem, 1.6vw, 1.25rem); border-radius: 8px; background: #fbf9f4; box-shadow: 0 1px 0 rgba(255,255,255,.7) inset, 0 40px 80px -36px rgba(0,0,0,.9), 0 2px 8px rgba(0,0,0,.35); }
+  .ts-paint__canvas { display: block; width: 100%; height: auto; aspect-ratio: 1000 / 1100; border-radius: 4px; cursor: crosshair; touch-action: pan-y; background: #fff; }
+  .ts-paint.is-brush .ts-paint__canvas { touch-action: none; }
+  .ts .ts-paint__done { position: absolute; left: 50%; top: 1rem; transform: translate(-50%, -10px); padding: 8px 14px; border-radius: 999px; background: #1d4d3f; color: #f6faf7; font-size: 11px; opacity: 0; pointer-events: none; transition: opacity .3s, transform .4s var(--ts-ease-out); white-space: nowrap; }
+  .ts .ts-paint__done.is-on { opacity: 1; transform: translate(-50%, 0); }
+  .ts-paint__tools { display: grid; gap: 1rem; padding: 1.1rem; border-radius: 22px; }
+  .ts .ts-paint__label { color: var(--ts-muted, #9aaba3); font-size: 10.5px; }
+  .ts-paint__swatches { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: .5rem; margin-top: .5rem; }
+  .ts .ts-paint__sw { position: relative; aspect-ratio: 1; width: 100%; border-radius: 50%; border: 2px solid rgba(255,255,255,.14); background: var(--c); cursor: pointer; transition: transform .25s var(--ts-ease-out), border-color .2s; }
+  .ts .ts-paint__sw:hover { transform: scale(1.08); }
+  .ts .ts-paint__sw[aria-pressed="true"] { border-color: #f6faf7; transform: scale(1.12); box-shadow: 0 0 0 3px rgba(110,231,183,.45); }
+  .ts-paint__modes, .ts-paint__acts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .5rem; margin-top: .5rem; }
+  .ts-paint__acts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .ts .ts-paint__btn { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .35rem; min-height: 64px; padding: .6rem .4rem; border-radius: 16px; border: 1px solid var(--ts-line-strong, rgba(255,255,255,.14)); background: rgba(255,255,255,.03); color: var(--ts-text, #f6faf7); font: 500 12.5px/1.15 var(--ts-font-body, Inter, sans-serif); cursor: pointer; transition: background .25s, border-color .25s, color .25s; }
+  .ts .ts-paint__btn:hover { border-color: rgba(110,231,183,.45); }
+  .ts .ts-paint__btn[aria-pressed="true"] { background: #f6faf7; color: #060608; border-color: #f6faf7; }
+  .ts .ts-paint__btn:disabled { opacity: .35; cursor: default; }
+  .ts .ts-paint__size { display: flex; align-items: center; gap: .75rem; margin-top: .5rem; }
+  .ts-paint__size input { flex: 1; accent-color: #6ee7b7; }
+  .ts .ts-paint__hint { color: var(--ts-muted, #9aaba3); font-size: 13px; line-height: 1.5; }
+
+  /* Motiv-Parade */
+  .ts-am-zoo { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(.6rem, 1.6vw, 1.1rem); margin-top: 2rem; }
+  .ts .ts-am-zoo figure { margin: 0; padding: clamp(.4rem, 1vw, .7rem); border-radius: 6px; background: #fbf9f4; transform: rotate(var(--r, 0deg)); box-shadow: 0 24px 50px -28px rgba(0,0,0,.85); transition: transform .5s var(--ts-ease-out); }
+  .ts .ts-am-zoo figure:hover { transform: rotate(0deg) translateY(-5px) scale(1.03); }
+  .ts-am-zoo svg, .ts-am-zoo img { display: block; width: 100% !important; height: auto !important; }
+  .ts .ts-am-zoo figcaption { margin-top: .35rem; text-align: center; font: 800 clamp(8px, .9vw, 12px)/1 var(--ts-font-display, 'Syne', sans-serif); letter-spacing: 0; text-transform: uppercase; color: #1b1f1c; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .ts .ts-am-zoo figcaption.is-long { font-size: clamp(6.5px, .68vw, 9.5px); }
+  .ts .ts-am-zoo .ts-am-door { position: relative; }
+  .ts .ts-am-zoo .ts-am-door b { position: absolute; left: .45rem; top: .4rem; min-width: 1.9rem; height: 1.9rem; display: grid; place-items: center; border-radius: 999px; background: #060608; color: #f6faf7; font: 700 12px/1 var(--ts-font-mono, monospace); }
+
+  /* Gratis + Kita */
+  .ts .ts-am-split { display: grid; gap: 2rem; margin-top: 2rem; padding: clamp(1.5rem, 3.5vw, 2.75rem); border-radius: 26px; align-items: center; }
+  .ts-am-thumbs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .8rem; }
+  .ts .ts-am-thumbs img { display: block; width: 100% !important; height: auto !important; border-radius: 6px; background: #fbf9f4; padding: 5px; box-shadow: 0 24px 50px -28px rgba(0,0,0,.85); }
+  .ts-am-thumbs img:nth-child(1) { transform: rotate(-3deg); } .ts-am-thumbs img:nth-child(2) { transform: translateY(-8px) rotate(1.5deg); } .ts-am-thumbs img:nth-child(3) { transform: rotate(2.5deg); }
+  .ts .ts-am-note { margin-top: 1rem; color: rgba(246,250,247,.5); font-size: 13px; line-height: 1.6; }
+  .ts .ts-am-list { list-style: none; margin: 1.25rem 0 0; padding: 0; display: grid; gap: .7rem; }
+  .ts .ts-am-list li { position: relative; padding-left: 1.6rem; color: var(--tss-text, rgba(246,250,247,.72)); line-height: 1.55; }
+  .ts .ts-am-list li::before { content: ""; position: absolute; left: 0; top: .5em; width: 8px; height: 8px; border-radius: 50%; background: var(--tss-acc, #6ee7b7); }
+  .ts .ts-am-list b { color: #f6faf7; }
+  .ts .ts-am-final { margin-top: clamp(3rem, 6vw, 5rem); padding: clamp(1.75rem, 4vw, 3rem); border-radius: 26px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1.5rem; }
+  .ts .ts-am-final p { font: 800 clamp(1.5rem, 3vw, 2.4rem)/1.05 var(--ts-font-display, 'Syne', sans-serif); letter-spacing: -0.025em; margin: 0; }
+
+  @media (min-width: 640px) {
+    .ts-am-zoo { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  }
+  @media (min-width: 1024px) {
+    .ts-paint { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 2rem; }
+    .ts-paint__tools { position: sticky; top: 110px; }
+    .ts .ts-am-bundle, .ts .ts-am-split { grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); gap: 3rem; }
+    .ts-am-zoo { grid-template-columns: repeat(var(--cols, 6), minmax(0, 1fr)); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .ts .ts-am-zoo figure, .ts-am-bundle__art img, .ts-am-thumbs img { transform: none !important; }
+    .ts-am-season .is-now .ts-am-season__state::before { animation: none; }
+  }
+
+  .ts-khr { position: relative; z-index: 3; padding-top: calc(var(--ts-header-space, 96px) + 1rem); }
+  .ts-khr__bar { display: flex; gap: .4rem; overflow-x: auto; scrollbar-width: none; padding: .35rem; border: 1px solid var(--ts-line, rgba(255,255,255,.08)); border-radius: 999px; background: rgba(255,255,255,.025); width: max-content; max-width: 100%; }
+  .ts-khr__bar::-webkit-scrollbar { display: none; }
+  .ts .ts-khr__bar a { display: inline-flex; align-items: center; gap: .45rem; padding: 10px 16px; border-radius: 999px; color: var(--ts-muted, #9aaba3); text-decoration: none; white-space: nowrap; font: 500 14px/1 var(--ts-font-body, Inter, sans-serif); transition: background .25s, color .25s; }
+  .ts .ts-khr__bar a:hover { color: var(--ts-text, #f6faf7); background: rgba(255,255,255,.04); }
+  .ts .ts-khr__bar a[aria-current="page"] { background: #f6faf7; color: #060608; }
+  .ts .ts-khr__bar a i { font-style: normal; padding: 3px 7px; border-radius: 999px; background: rgba(110,231,183,.16); color: #6ee7b7; font: 700 9.5px/1 var(--ts-font-mono, monospace); letter-spacing: .1em; text-transform: uppercase; }
+  .ts .ts-khr__bar a[aria-current="page"] i { background: #1d4d3f; color: #f6faf7; }
+
+  /* ---------- Kreativhafen gratis ---------- */
+  .ts-kh2 .tss--top { padding-top: clamp(2rem, 4vw, 3rem); }
+  .ts-am-packs { display: grid; gap: 1rem; margin-top: 2rem; grid-template-columns: minmax(0, 1fr); }
+  .ts .ts-am-pack { display: flex; flex-direction: column; border-radius: 22px; overflow: hidden; scroll-margin-top: 120px; }
+  .ts-am-pack__img { position: relative; aspect-ratio: 3 / 2; background: #0b100e; overflow: hidden; }
+  .ts .ts-am-pack__img img { display: block; width: 100% !important; height: 100% !important; object-fit: cover; transition: transform .7s var(--ts-ease-out); }
+  .ts-am-pack:hover .ts-am-pack__img img { transform: scale(1.04); }
+  .ts .ts-am-pack__nr { position: absolute; left: 1rem; top: .9rem; color: rgba(246,250,247,.6); }
+  .ts .ts-am-pack__tag { position: absolute; right: .9rem; top: .8rem; padding: 6px 11px; border-radius: 999px; background: rgba(6,6,8,.65); border: 1px solid var(--c); color: var(--c); font-size: 10px; }
+  .ts-am-pack__body { display: flex; flex-direction: column; gap: .55rem; flex: 1; padding: 1.25rem 1.35rem 1.4rem; }
+  .ts .ts-am-pack__t { font: 800 clamp(1.3rem, 1.8vw, 1.6rem)/1.05 var(--ts-font-display, 'Syne', sans-serif); letter-spacing: -0.025em; margin: 0; }
+  .ts .ts-am-pack__t i { font-style: normal; color: var(--c); }
+  .ts .ts-am-pack__s { color: var(--ts-muted, #9aaba3); font-size: 14px; line-height: 1.55; margin: 0; }
+  .ts-am-pack__acts { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: auto; padding-top: .9rem; }
+  .ts .ts-am-mini { display: inline-flex; align-items: center; gap: .45rem; padding: 10px 14px; border-radius: 999px; border: 1px solid var(--ts-line-strong, rgba(255,255,255,.14)); background: transparent; color: var(--ts-text, #f6faf7); font: 600 13px/1 var(--ts-font-body, Inter, sans-serif); text-decoration: none; cursor: pointer; transition: background .25s, color .25s, border-color .25s; }
+  .ts .ts-am-mini:hover { border-color: rgba(110,231,183,.5); }
+  .ts .ts-am-mini--hi { background: #f6faf7; color: #060608; border-color: #f6faf7; }
+  .ts .ts-am-mini--hi:hover { background: #6ee7b7; border-color: #6ee7b7; }
+  .ts .ts-am-mini svg { flex: none; }
+  /* Galerie */
+  .ts-am-filter { display: flex; gap: .45rem; overflow-x: auto; scrollbar-width: none; margin-top: 1.5rem; padding-bottom: .25rem; }
+  .ts-am-filter::-webkit-scrollbar { display: none; }
+  .ts .ts-am-filter button { flex: none; padding: 9px 14px; border-radius: 999px; border: 1px solid var(--ts-line-strong, rgba(255,255,255,.14)); background: transparent; color: var(--ts-text, #f6faf7); font: 600 11px/1 var(--ts-font-mono, monospace); letter-spacing: .1em; text-transform: uppercase; cursor: pointer; }
+  .ts .ts-am-filter button[aria-pressed="true"] { background: #f6faf7; color: #060608; border-color: #f6faf7; }
+  .ts-am-gal { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(.6rem, 1.4vw, 1rem); margin-top: 1.5rem; min-height: 200px; }
+  .ts .ts-am-tile { position: relative; margin: 0; padding: .55rem .55rem .6rem; border-radius: 8px; background: #fbf9f4; box-shadow: 0 24px 50px -28px rgba(0,0,0,.85); transform: rotate(var(--r, 0deg)); transition: transform .45s var(--ts-ease-out); }
+  .ts .ts-am-tile:hover { transform: rotate(0deg) translateY(-4px); }
+  .ts-am-tile > svg { display: block; width: 100% !important; height: auto !important; }
+  .ts .ts-am-tile__acts svg { width: 15px !important; height: 15px !important; flex: none; }
+  .ts-am-tile__acts { display: grid; grid-template-columns: 1fr 1fr; gap: .35rem; margin-top: .45rem; }
+  .ts .ts-am-tile__acts button { display: inline-flex; align-items: center; justify-content: center; gap: .3rem; padding: 8px 6px; border-radius: 999px; border: 1px solid #d7d3c8; background: #fff; color: #1b1f1c; font: 600 11.5px/1 var(--ts-font-body, Inter, sans-serif); cursor: pointer; }
+  .ts .ts-am-tile__acts button:hover { background: #1b1f1c; color: #fff; border-color: #1b1f1c; }
+  .ts .ts-am-gal__msg { grid-column: 1 / -1; color: var(--ts-muted, #9aaba3); }
+  /* Geschichten: Karten wie bei Zitronenbande/Zwergenstark – Bild, Titel, Alter · Dauer */
+  .ts-gn-grid { display: grid; gap: clamp(.75rem, 2vw, 1.25rem); margin-top: 1.5rem; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .ts .ts-gn-card { display: flex; flex-direction: column; border-radius: 18px; overflow: hidden; color: inherit; text-decoration: none; border: 1px solid var(--ts-line, rgba(255,255,255,.08)); background: rgba(255,255,255,.025); transition: transform .5s var(--ts-ease-out), border-color .25s; }
+  .ts .ts-gn-card:hover { transform: translateY(-4px); border-color: rgba(110,231,183,.45); }
+  .ts-gn-card[hidden] { display: none !important; }
+  .ts .ts-gn-card img { display: block; width: 100% !important; height: auto !important; aspect-ratio: 4 / 3; object-fit: cover; background: #1f2a44; }
+  .ts-gn-card__body { display: flex; flex-direction: column; gap: .4rem; flex: 1; padding: .85rem 1rem 1rem; }
+  .ts .ts-gn-card__t { margin: 0; font: 700 clamp(.98rem, 1.45vw, 1.18rem)/1.22 var(--ts-font-display, 'Syne', sans-serif); letter-spacing: -0.01em; }
+  .ts .ts-gn-card__m { margin: auto 0 0; color: var(--ts-muted, #9aaba3); font: 500 13px/1.35 var(--ts-font-body, Inter, sans-serif); }
+  /* Übersicht */
+  .ts .ts-gn-intro { max-width: 46rem; margin: 1.25rem 0 0; color: var(--tss-text, rgba(246,250,247,.78)); font-size: clamp(16px, 1.35vw, 18px); line-height: 1.7; }
+  .ts-gn-jump { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1.5rem; }
+  .ts .ts-gn-jump a { padding: 10px 15px; border-radius: 999px; border: 1px solid var(--ts-line-strong, rgba(255,255,255,.14)); color: var(--ts-text, #f6faf7); text-decoration: none; font: 600 13px/1 var(--ts-font-body, Inter, sans-serif); }
+  .ts .ts-gn-jump a:hover { border-color: rgba(110,231,183,.5); }
+  .ts .ts-gn-jump a:first-child { background: #f6faf7; color: #060608; border-color: #f6faf7; }
+  .ts-gn-bar { display: flex; flex-wrap: wrap; align-items: center; gap: .75rem 1.25rem; margin-top: 1.5rem; }
+  .ts-gn-filter { display: flex; flex-wrap: wrap; align-items: center; gap: .45rem; }
+  .ts .ts-gn-filter b { margin-right: .25rem; font: 600 14px/1 var(--ts-font-body, Inter, sans-serif); }
+  .ts .ts-gn-filter button { padding: 9px 14px; border-radius: 999px; border: 1px solid var(--ts-line-strong, rgba(255,255,255,.14)); background: transparent; color: var(--ts-text, #f6faf7); font: 600 13px/1 var(--ts-font-body, Inter, sans-serif); cursor: pointer; }
+  .ts .ts-gn-filter button[aria-pressed="true"] { background: #f6faf7; color: #060608; border-color: #f6faf7; }
+  .ts-gn-search { display: flex; align-items: center; gap: .6rem; flex: 1 1 16rem; max-width: 24rem; padding: .2rem .2rem .2rem 1rem; border-radius: 999px; border: 1px solid var(--ts-line-strong, rgba(255,255,255,.14)); }
+  .ts .ts-gn-search input { flex: 1; min-width: 0; padding: 10px 0; border: 0; background: transparent; color: var(--ts-text, #f6faf7); font: 500 15px/1 var(--ts-font-body, Inter, sans-serif); outline: none; }
+  .ts .ts-gn-search input::placeholder { color: var(--ts-muted, #9aaba3); }
+  .ts .ts-gn-state { margin: 1rem 0 0; color: var(--ts-muted, #9aaba3); font-size: 14px; }
+  .ts .ts-gn-state button { margin-left: .5rem; padding: 0; border: 0; background: none; color: #6ee7b7; font: inherit; text-decoration: underline; cursor: pointer; }
+  .ts-gn-morebtn { display: flex; justify-content: center; margin-top: 2rem; }
+  .ts-gn-figs { display: grid; grid-template-columns: minmax(0, 1fr); gap: .8rem; margin-top: 2rem; }
+  .ts-gn-page .ts-am__h2 { font-size: clamp(1.75rem, 4.6vw, 3.4rem); hyphens: auto; -webkit-hyphens: auto; overflow-wrap: break-word; }
+  .ts .ts-gn-fig { display: grid; grid-template-columns: 64px 1fr; grid-template-rows: auto auto; column-gap: .9rem; align-items: center; text-align: left; padding: .8rem; border-radius: 18px; border: 1px solid var(--ts-line, rgba(255,255,255,.08)); background: rgba(255,255,255,.02); color: inherit; text-decoration: none; transition: border-color .25s, transform .4s var(--ts-ease-out); }
+  .ts .ts-gn-fig:hover { border-color: rgba(110,231,183,.45); transform: translateY(-3px); }
+  .ts .ts-gn-fig img { grid-row: 1 / 3; width: 64px !important; height: 64px !important; object-fit: cover; border-radius: 50%; }
+  .ts .ts-gn-fig b { font: 700 15px/1.2 var(--ts-font-display, 'Syne', sans-serif); }
+  .ts .ts-gn-fig span { color: var(--ts-muted, #9aaba3); font-size: 13px; line-height: 1.4; }
+  .ts .ts-gn-seo { margin-top: 2rem; max-width: 52rem; }
+  .ts .ts-gn-seo h3 { margin: 2rem 0 .6rem; font: 700 1.2rem/1.25 var(--ts-font-display, 'Syne', sans-serif); }
+  .ts .ts-gn-seo h3:first-child { margin-top: 0; }
+  .ts .ts-gn-seo p, .ts .ts-gn-seo li { color: var(--tss-text, rgba(246,250,247,.75)); line-height: 1.75; }
+  .ts .ts-gn-seo p { margin: 0 0 1rem; }
+  .ts .ts-gn-seo ul { margin: 0 0 1rem; padding-left: 1.2rem; }
+  .ts .ts-gn-seo b { color: #f6faf7; }
+  .ts .ts-gn-seo a { color: #6ee7b7; }
+  /* Einzelne Geschichte */
+  .ts-gn-story { max-width: 44rem; margin: 0 auto; }
+  .ts .ts-gn-crumb { margin: 0; color: var(--ts-muted, #9aaba3); font-size: 13.5px; line-height: 1.5; }
+  .ts .ts-gn-crumb a { color: inherit; text-decoration: none; }
+  .ts .ts-gn-crumb a:hover { color: #6ee7b7; }
+  .ts .ts-gn-crumb span { margin: 0 .4rem; opacity: .6; }
+  .ts .ts-gn-h1 i { font-style: normal; color: #6ee7b7; }
+  .ts .ts-gn-h1.ts-gn-h1--page { max-width: 18ch; margin-top: 2rem; font-size: clamp(2.3rem, 6.4vw, 5.4rem); }
+  .ts .ts-gn-h1 { margin: 1rem 0 0; font: 800 clamp(2rem, 5.4vw, 3.8rem)/1.02 var(--ts-font-display, 'Syne', sans-serif); letter-spacing: -0.03em; }
+  .ts-gn-by { display: flex; align-items: center; gap: .8rem; margin-top: 1.2rem; }
+  .ts .ts-gn-by img { width: 46px !important; height: 46px !important; border-radius: 50%; object-fit: cover; }
+  .ts .ts-gn-by p { margin: 0; font-size: 15px; line-height: 1.35; }
+  .ts .ts-gn-by small { display: block; color: var(--ts-muted, #9aaba3); font-size: 13px; }
+  .ts .ts-gn-facts { display: flex; flex-wrap: wrap; gap: .5rem 1.4rem; margin: 1.3rem 0 0; padding: .9rem 0; list-style: none; border-top: 1px solid var(--ts-line, rgba(255,255,255,.08)); border-bottom: 1px solid var(--ts-line, rgba(255,255,255,.08)); font-size: 15px; }
+  .ts .ts-gn-facts a { color: inherit; }
+  .ts .ts-gn-hero { display: block; width: 100% !important; height: auto !important; aspect-ratio: 4 / 3; margin-top: 1.5rem; border-radius: 22px; object-fit: cover; }
+  .ts .ts-gn-about { margin-top: 1.5rem; padding: 1.2rem 1.4rem; border-radius: 18px; border-left: 3px solid #6ee7b7; background: rgba(110,231,183,.06); }
+  .ts .ts-gn-about h2 { margin: 0 0 .5rem; font: 700 1.05rem/1.2 var(--ts-font-display, 'Syne', sans-serif); }
+  .ts .ts-gn-about p { margin: 0; color: var(--tss-text, rgba(246,250,247,.8)); line-height: 1.65; }
+  .ts-gn-tools { position: sticky; top: calc(var(--ts-header-space, 96px) - 16px); z-index: 4; display: flex; flex-wrap: wrap; align-items: center; gap: .35rem; margin-top: 1.5rem; padding: .4rem; border-radius: 999px; border: 1px solid var(--ts-line, rgba(255,255,255,.08)); background: rgba(6,6,8,.85); backdrop-filter: blur(12px); width: max-content; max-width: 100%; }
+  .ts .ts-gn-tools button { display: inline-flex; align-items: center; gap: .4rem; padding: 9px 13px; border-radius: 999px; border: 1px solid transparent; background: transparent; color: var(--ts-text, #f6faf7); font: 500 13.5px/1 var(--ts-font-body, Inter, sans-serif); cursor: pointer; }
+  .ts .ts-gn-tools button:hover { border-color: var(--ts-line-strong, rgba(255,255,255,.14)); }
+  .ts .ts-gn-tools button[aria-pressed="true"] { background: #f6faf7; color: #060608; }
+  .ts .ts-gn-tools span { padding: 0 .2rem 0 .5rem; color: var(--ts-muted, #9aaba3); font-size: 13px; }
+  .ts .ts-gn-tools i { width: 1px; height: 20px; margin: 0 .2rem; background: var(--ts-line-strong, rgba(255,255,255,.14)); }
+  @media (max-width: 520px) { .ts-gn-tools { border-radius: 18px; } .ts .ts-gn-tools i { display: none; } }
+  .ts-gn-text { --gn-size: 19px; margin-top: 2rem; }
+  .ts .ts-gn-text > p { margin: 0 0 1.15em; font: 400 var(--gn-size)/1.85 var(--ts-font-body, Inter, sans-serif); color: #e7ece9; }
+  .ts .ts-gn-tip { margin: 1.8em 0; padding: 1rem 1.2rem; border-radius: 14px; border: 1px dashed var(--ts-line-strong, rgba(255,255,255,.18)); font-size: 15px; line-height: 1.55; color: var(--tss-text, rgba(246,250,247,.8)); }
+  .ts .ts-gn-tip b { margin-right: .5rem; padding: 3px 8px; border-radius: 6px; background: #6ee7b7; color: #060608; font: 700 11px/1 var(--ts-font-mono, monospace); letter-spacing: .1em; vertical-align: 1px; }
+  .ts .ts-gn-tip a { color: #6ee7b7; }
+  .ts .ts-gn-night { display: flex; align-items: center; gap: 1rem; margin: 2.25rem 0 0; padding: 1.3rem 1.5rem; border-radius: 22px; font: 700 clamp(1.1rem, 2vw, 1.4rem)/1.35 var(--ts-font-display, 'Syne', sans-serif); }
+  .ts .ts-gn-night svg { flex: none; color: #f7d046; }
+  .ts .ts-gn-ask { margin-top: 1.25rem; padding: 1.3rem 1.5rem; border-radius: 22px; }
+  .ts .ts-gn-ask h2 { margin: 0; font: 700 1.05rem/1.2 var(--ts-font-display, 'Syne', sans-serif); }
+  .ts .ts-gn-ask ul { margin: .8rem 0 0; padding: 0; list-style: none; display: grid; gap: .55rem; }
+  .ts .ts-gn-ask li { position: relative; padding-left: 1.5rem; color: var(--tss-text, rgba(246,250,247,.8)); line-height: 1.55; }
+  .ts .ts-gn-ask li::before { content: "?"; position: absolute; left: 0; top: 0; color: #6ee7b7; font-weight: 800; }
+  .ts .ts-gn-end { margin: 2.5rem 0 0; text-align: center; color: var(--ts-muted, #9aaba3); font: 600 12px/1 var(--ts-font-mono, monospace); letter-spacing: .3em; }
+  .ts-gn-more { display: flex; justify-content: center; margin-top: 2rem; }
+  .ts .ts-gn-like { margin-top: 2.5rem; padding: clamp(1.3rem, 3vw, 2rem); border-radius: 22px; }
+  .ts .ts-gn-like > h2 { margin: 0; font: 800 clamp(1.4rem, 2.6vw, 1.9rem)/1.1 var(--ts-font-display, 'Syne', sans-serif); letter-spacing: -0.02em; }
+  .ts .ts-gn-book { display: grid; grid-template-columns: 72px 1fr; gap: 1rem; align-items: start; margin-top: 1.25rem; }
+  .ts .ts-gn-book__ico { display: grid; place-items: center; width: 72px; height: 92px; border-radius: 6px 12px 12px 6px; background: linear-gradient(135deg, #2e9e6a, #1d4d3f); box-shadow: inset 6px 0 0 rgba(0,0,0,.25); font-size: 30px; }
+  .ts .ts-gn-book h3 { margin: 0; font: 700 1.1rem/1.25 var(--ts-font-display, 'Syne', sans-serif); }
+  .ts .ts-gn-book p { margin: .4rem 0 0; color: var(--tss-text, rgba(246,250,247,.75)); line-height: 1.6; font-size: 15px; }
+  .ts .ts-gn-share { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem; margin-top: 1.5rem; padding-top: 1.25rem; border-top: 1px solid var(--ts-line, rgba(255,255,255,.08)); }
+  .ts .ts-gn-share > span { margin-right: .4rem; font: 600 14px/1 var(--ts-font-body, Inter, sans-serif); }
+  .ts .ts-gn-audio { margin-top: 1.5rem; padding: 1rem 1.2rem; border-radius: 18px; }
+  .ts .ts-gn-audio audio { width: 100%; margin-top: .6rem; }
+  .ts .ts-gn-reihe { margin-top: 2rem; }
+  .ts .ts-gn-reihe h2 { margin: 0; font: 700 1.15rem/1.2 var(--ts-font-display, 'Syne', sans-serif); }
+  .ts .ts-gn-reihe ul { margin: .8rem 0 0; padding: 0; list-style: none; border-top: 1px solid var(--ts-line, rgba(255,255,255,.08)); }
+  .ts .ts-gn-reihe li { display: flex; justify-content: space-between; gap: 1rem; padding: .85rem 0; border-bottom: 1px solid var(--ts-line, rgba(255,255,255,.08)); }
+  .ts .ts-gn-reihe a { color: #f6faf7; font: 600 1rem/1.3 var(--ts-font-body, Inter, sans-serif); text-decoration: none; }
+  .ts .ts-gn-reihe a:hover { color: #6ee7b7; }
+  .ts .ts-gn-reihe span { color: var(--ts-muted, #9aaba3); white-space: nowrap; font-size: 14px; }
+  .ts-gn-glance { display: grid; gap: 1.5rem; margin-top: 1.75rem; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .ts .ts-gn-glance h3 { margin: 0 0 .7rem; color: var(--ts-muted, #9aaba3); font: 600 11px/1.3 var(--ts-font-mono, monospace); letter-spacing: .14em; text-transform: uppercase; }
+  .ts .ts-gn-glance ul { margin: 0; padding: 0; list-style: none; display: grid; gap: .5rem; }
+  .ts .ts-gn-glance a { color: var(--ts-text, #f6faf7); text-decoration: none; font-size: 15px; }
+  .ts .ts-gn-glance a:hover { color: #6ee7b7; }
+  /* Nachtmodus: dunkler, wärmer – zum Vorlesen im abgedunkelten Kinderzimmer */
+  html.ts-gn-dark .ts-gn-page { background: #050505; }
+  html.ts-gn-dark .ts .ts-gn-text > p { color: #e9dcc0; }
+  html.ts-gn-dark .ts-gn-dim, html.ts-gn-dark .ts-gn-tip { opacity: .25; transition: opacity .4s; }
+  html.ts-gn-dark .ts-gn-hero { filter: brightness(.45); }
+  html.ts-gn-dark .ts-khr, html.ts-gn-dark .ts-header { opacity: .25; }
+  @media (min-width: 640px) {
+    .ts-am-gal { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .ts-am-packs { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .ts-gn-glance { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .ts-gn-figs { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (min-width: 900px) {
+    .ts-gn-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .ts-gn-grid--4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .ts-gn-figs { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  }
+  @media (min-width: 1024px) {
+    .ts-am-gal { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+    .ts-am-packs { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  }
+  @media print {
+    .ts-khr, .ts-gn-tools, .ts-gn-noprint, .ts-gn-tip, .ts-gn-hero, header, footer, #footer-sections, .ts-header { display: none !important; }
+    .ts .ts-gn-text > p { color: #111 !important; font-size: 13pt !important; }
+    .ts .ts-gn-h1, .ts .ts-gn-night, .ts .ts-gn-ask, .ts .ts-gn-ask li, .ts .ts-gn-about, .ts .ts-gn-about p, .ts .ts-gn-facts { color: #111 !important; background: none !important; }
+    body, .ts-gn-page { background: #fff !important; }
+  }
+</style>
+
+<nav class="ts ts-khr" aria-label="Kreativhafen">
+  <div class="ts-container"><div class="ts-khr__bar"><a href="/kreativhafen">Übersicht</a><a href="/gute-nacht-geschichten">Gute-Nacht-Geschichten <i>gratis</i></a><a href="/ausmalbilder">Ausmalbilder <i>gratis</i></a><a href="/malbuecher">Malbücher</a><a href="/romane">Romane</a></div></div>
+</nav>
+<script>
+/* Reiter: aktiven Bereich markieren (Geschichten-Seiten gehören zu „Gute-Nacht-Geschichten“) */
+(() => {
+  const p = location.pathname.replace(/\/+$/, '') || '/';
+  document.querySelectorAll('.ts-khr__bar a').forEach(a => {
+    const h = a.getAttribute('href');
+    if (p === h || (h === '/gute-nacht-geschichten' && p.indexOf('/geschichten') === 0)) { a.setAttribute('aria-current', 'page'); a.scrollIntoView({ block: 'nearest', inline: 'center' }); }
+  });
+})();
+</script>
+<article class="ts ts-am tss ts-bleed ts-kh2 ts-gn-page" style="padding-top:0" data-gn-story aria-labelledby="ts-gn-h">
+  <div class="ts-am__orb ts-gn-dim" aria-hidden="true"></div>
+  <div class="ts-container tss--top">
+    <div class="ts-gn-story">
+      <nav class="ts-gn-crumb ts-gn-dim" aria-label="Brotkrumen"><a href="/kreativhafen">Kreativhafen</a><span>›</span><a href="/gute-nacht-geschichten">Gute-Nacht-Geschichten</a><span>›</span>Die Laterne, die sich vor dem Wind fürchtete</nav>
+      <h1 id="ts-gn-h" class="ts-gn-h1">Die Laterne, die sich vor dem Wind fürchtete</h1>
+      <div class="ts-gn-by ts-gn-dim"><img src="https://images.squarespace-cdn.com/content/v1/6869717aa7c996116c8c8a56/ffc25dc6-15ea-4d07-ab0d-6173fde95edf/IMG_3686.jpeg?format=300w" alt="" width="46" height="46" loading="lazy"><p>von <b>Trutz Stähler</b><small>Papa aus Hamburg · schreibt Kinderbücher</small></p></div>
+      <ul class="ts-gn-facts ts-gn-dim"><li>🎯 ab 3 Jahren</li><li>🕔 ca. 4 Minuten Vorlesedauer</li></ul>
+      <img class="ts-gn-hero" src="https://raw.githubusercontent.com/trutzstaehler/stream-daten/main/kreativhafen/geschichten/bilder/die-laterne-die-sich-vor-dem-wind-fuerchtete.webp" alt="Illustration zur Gute-Nacht-Geschichte „Die Laterne, die sich vor dem Wind fürchtete“" width="800" height="600">
+      <div class="ts-gn-about ts-gn-dim"><h2>Darum geht’s</h2><p>Lina die Laterne soll beim Laternenumzug leuchten. Doch draußen weht der Novemberwind – und Lina hat Angst, dass er ihr Licht auspustet.</p></div>
+      <div class="ts-gn-tools" role="toolbar" aria-label="Lesehilfen">
+        <button type="button" data-gn="speak" aria-pressed="false"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><path d="M11 5 6 9H2v6h4l5 4V5Z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M19 5a10 10 0 0 1 0 14"/></svg>Vorlesen</button>
+        <i aria-hidden="true"></i><span>Schrift</span>
+        <button type="button" data-gn="minus" aria-label="Schrift kleiner">A−</button>
+        <button type="button" data-gn="plus" aria-label="Schrift größer">A+</button>
+        <i aria-hidden="true"></i>
+        <button type="button" data-gn="night" aria-pressed="false"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg>Nachtmodus</button>
+      </div>
+      
+      <div class="ts-gn-text"><p>Auf dem Küchentisch lag eine neue Laterne. Sie war rund und orange, mit einem gelben Mond und drei kleinen Sternen darauf. Jonas hatte sie selbst gebastelt, mit viel Kleber und ein bisschen Hilfe von Papa. Die Laterne hieß Lina.</p><p>Lina war sehr stolz. „Heute Abend ist Laternenumzug“, flüsterte sie. „Heute Abend darf ich zum ersten Mal leuchten.“</p><p>Doch dann hörte sie etwas am Fenster. Es rüttelte. Es pfiff. Es heulte ein bisschen: Huuuuuh.</p><p>„Was ist das?“, fragte Lina erschrocken.</p><p>„Das ist der Novemberwind“, sagte der alte Kochtopf auf dem Herd. „Der weht jedes Jahr um diese Zeit über Hamburg. Er kommt von der Elbe herauf und will überall mitspielen.“</p><p>Lina wurde ganz blass, so blass eine Laterne eben werden kann. „Und wenn er mein Licht auspustet?“, fragte sie leise. „Und wenn er mich zerknittert? Ich bin doch nur aus Papier.“</p><p>Darauf wusste der Kochtopf keine Antwort. Er blubberte nur ein bisschen vor sich hin.</p><p>Als es draußen dunkel wurde, zog Jonas seine Mütze auf und seine dicke Jacke an. Papa steckte ein kleines Licht in Lina hinein. Ein elektrisches Lämpchen, das ganz warm und gelb schimmerte. Lina leuchtete. Ihr Mond glühte, und ihre Sterne funkelten.</p><p>„Bist du bereit?“, fragte Jonas und hielt den Laternenstab ganz fest.</p><p>„Nein“, flüsterte Lina. Aber das hörte Jonas nicht.</p><p>Vor der Tür wartete schon der Wind. Er zupfte an Jonas’ Schal und wirbelte ein paar bunte Blätter durch die Luft. Dann kam er näher und stupste Lina an. Lina schaukelte hin und her.</p><aside class="ts-gn-tip ts-gn-noprint"><b>TIPP</b>Mit dem Mond-Knopf oben wird die Seite dunkel und die Schrift warm – angenehm zum Vorlesen im abgedunkelten Kinderzimmer.</aside><p>„Oh nein, oh nein“, dachte Lina. „Jetzt pustet er mich aus.“</p><p>Aber ihr Licht leuchtete weiter. Es flackerte nicht einmal. Denn das kleine Lämpchen in ihrem Bauch war gut geschützt, und Jonas hielt den Stab ganz ruhig.</p><p>Auf der Straße warteten schon die anderen Kinder. Da waren Mia mit einer Igel-Laterne, Emre mit einer Sonnen-Laterne und die kleine Tilda, deren Laterne aussah wie ein Fisch. Alle Laternen schaukelten im Wind. Alle leuchteten.</p><p>Dann fingen die Kinder an zu singen: „Laterne, Laterne, Sonne, Mond und Sterne …“</p><p>Und während sie sangen und langsam durch die Straßen gingen, merkte Lina etwas Seltsames. Der Wind pustete sie gar nicht aus. Er schaukelte sie nur. Hin und her. Hin und her. Ganz so, als wollte er tanzen.</p><p>„Du willst gar nicht mein Licht nehmen“, flüsterte Lina. „Du willst nur mitspielen.“</p><p>„Huuuuuh“, machte der Wind. Und diesmal klang es gar nicht mehr unheimlich. Es klang wie ein freundliches Summen, das zum Lied der Kinder passte.</p><p>Da hörte Lina auf, sich zu fürchten. Sie ließ sich vom Wind schaukeln und leuchtete so hell sie nur konnte. Und neben ihr schaukelten die Igel-Laterne, die Sonnen-Laterne und die Fisch-Laterne. Eine lange Reihe aus kleinen Lichtern zog durch die dunkle Stadt.</p><p>Am Ende des Umzugs gab es warmen Kakao. Jonas hielt Lina noch ein bisschen höher, damit Oma sie von Weitem sehen konnte. Und Oma winkte.</p><p>Zu Hause stellte Jonas Lina vorsichtig auf die Fensterbank. Papa knipste das Lämpchen aus. Draußen wehte der Wind noch ein letztes Mal am Fenster vorbei. Ganz leise. Fast wie ein Gute-Nacht-Gruß.</p><p>„Bis nächstes Jahr“, flüsterte Lina. Und dann schlief sie ein, mit einem gelben Mond und drei kleinen Sternen auf dem Bauch.</p></div>
+      <p class="ts-gn-night ts-glass" data-gn-night><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg><span>Sonne, Mond und Sterne schlafen jetzt. Und du schläfst auch. Gute Nacht.</span></p>
+      
+      <p class="ts-gn-end ts-gn-dim" aria-hidden="true">✦ ENDE ✦</p>
+      <div class="ts-gn-more ts-gn-noprint"><a href="/gute-nacht-geschichten" class="ts-btn ts-btn--primary ts-magnetic"><span class="ts-btn__inner"><span class="ts-roll"><span data-text="Mehr Geschichten lesen">Mehr Geschichten lesen</span></span><svg class="ts-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></div>
+      <div class="ts-gn-like ts-glass ts-gn-dim ts-gn-noprint">
+        <h2>Hat dir die Geschichte gefallen<i style="font-style:normal;color:#6ee7b7">?</i></h2>
+        <div class="ts-gn-book"><span class="ts-gn-book__ico" aria-hidden="true">✏️</span>
+          <div><h3>Die Kritzelbücher</h3><p>Zum Kritzeln, Malen und Weiterdenken – die Malbücher von Trutz für kleine Künstlerinnen und Künstler.</p>
+            <div class="ts-am__ctas" style="margin-top:.9rem"><a class="ts-am-mini ts-am-mini--hi" href="/malbuecher">Mehr dazu</a></div></div></div>
+        <div class="ts-gn-share"><span>Mit Freunden teilen</span>
+          <button type="button" class="ts-am-mini" data-gn="share">Link teilen</button>
+          <a class="ts-am-mini" data-gn="wa" href="https://wa.me/" target="_blank" rel="noopener">WhatsApp</a></div>
+      </div>
+      
+    </div>
+  </div>
+  <section class="ts-container ts-am__block ts-gn-noprint ts-gn-dim" aria-labelledby="ts-gn-weitere-t">
+    <h2 id="ts-gn-weitere-t" class="ts-am__h2">Weitere Gute-Nacht-Geschichten</h2>
+    <p class="ts-am__sub">Mehr Einschlafgeschichten findest du in unserer Sammlung: <a href="/gute-nacht-geschichten" style="color:#6ee7b7">Alle Gute-Nacht-Geschichten →</a></p>
+    <div class="ts-gn-grid ts-gn-grid--4"><a class="ts-gn-card" href="/geschichten/leuchtturm-lotte-und-der-nebel"><img src="https://raw.githubusercontent.com/trutzstaehler/stream-daten/main/kreativhafen/geschichten/bilder/leuchtturm-lotte-und-der-nebel.webp" alt="" loading="lazy" width="800" height="600"><div class="ts-gn-card__body"><h3 class="ts-gn-card__t">Leuchtturm Lotte und der Nebel</h3><p class="ts-gn-card__m">ab 3 Jahren · ca. 4 Min.</p></div></a><a class="ts-gn-card" href="/geschichten/das-kleine-gespenst-huhu"><img src="https://raw.githubusercontent.com/trutzstaehler/stream-daten/main/kreativhafen/geschichten/bilder/das-kleine-gespenst-huhu.webp" alt="" loading="lazy" width="800" height="600"><div class="ts-gn-card__body"><h3 class="ts-gn-card__t">Das kleine Gespenst Huhu</h3><p class="ts-gn-card__m">ab 3 Jahren · ca. 5 Min.</p></div></a><a class="ts-gn-card" href="/geschichten/mats-und-das-schietwetter"><img src="https://raw.githubusercontent.com/trutzstaehler/stream-daten/main/kreativhafen/geschichten/bilder/mats-und-das-schietwetter.webp" alt="" loading="lazy" width="800" height="600"><div class="ts-gn-card__body"><h3 class="ts-gn-card__t">Mats und das Schietwetter</h3><p class="ts-gn-card__m">ab 3 Jahren · ca. 4 Min.</p></div></a><a class="ts-gn-card" href="/geschichten/wichtel-wilbur-und-das-warten"><img src="https://raw.githubusercontent.com/trutzstaehler/stream-daten/main/kreativhafen/geschichten/bilder/wichtel-wilbur-und-das-warten.webp" alt="" loading="lazy" width="800" height="600"><div class="ts-gn-card__body"><h3 class="ts-gn-card__t">Wichtel Wilbur und das Warten</h3><p class="ts-gn-card__m">ab 4 Jahren · ca. 5 Min.</p></div></a></div>
+  </section>
+  <section class="ts-container ts-am__block ts-am__end ts-gn-noprint ts-gn-dim" aria-labelledby="ts-gn-glance-t">
+    <h2 id="ts-gn-glance-t" class="ts-am__h2">Geschichten auf einen Blick</h2>
+    <div class="ts-gn-glance"><div><h3>Nach Dauer</h3><ul><li><a href="/gute-nacht-geschichten?dauer=kurz#ts-gn-alle">Kurz (1–3 Minuten)</a></li><li><a href="/gute-nacht-geschichten?dauer=mittel#ts-gn-alle">Mittel (4–6 Minuten)</a></li><li><a href="/gute-nacht-geschichten?dauer=lang#ts-gn-alle">Lang (ab 7 Minuten)</a></li></ul></div><div><h3>Nach Alter</h3><ul><li><a href="/gute-nacht-geschichten?alter=2#ts-gn-alle">Für 2-Jährige</a></li><li><a href="/gute-nacht-geschichten?alter=3#ts-gn-alle">Für 3- bis 4-Jährige</a></li><li><a href="/gute-nacht-geschichten?alter=5#ts-gn-alle">Ab 5 Jahren</a></li></ul></div><div><h3>Nach Thema</h3><ul><li><a href="/gute-nacht-geschichten?thema=Hafen#ts-gn-alle">Hamburger Hafen</a></li><li><a href="/gute-nacht-geschichten?thema=Jahreszeiten#ts-gn-alle">Jahreszeiten</a></li><li><a href="/gute-nacht-geschichten?thema=Fahrzeuge#ts-gn-alle">Fahrzeuge</a></li><li><a href="/gute-nacht-geschichten?thema=Weltraum#ts-gn-alle">Weltraum</a></li><li><a href="/gute-nacht-geschichten?thema=Gefühle#ts-gn-alle">Mut &amp; Gefühle</a></li><li><a href="/gute-nacht-geschichten?thema=Freundschaft#ts-gn-alle">Freundschaft</a></li></ul></div><div><h3>Nach Figur</h3><ul><li><a href="/gute-nacht-geschichten?suche=Mats#ts-gn-alle">Möwe Mats</a></li><li><a href="/gute-nacht-geschichten?suche=Funki#ts-gn-alle">Funki, der Drache</a></li><li><a href="/gute-nacht-geschichten?suche=Lotte#ts-gn-alle">Leuchtturm Lotte</a></li><li><a href="/gute-nacht-geschichten?suche=Bruno#ts-gn-alle">Bagger Bruno</a></li></ul></div></div>
+  </section>
+</article>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "ShortStory", "name": "Die Laterne, die sich vor dem Wind fürchtete", "headline": "Die Laterne, die sich vor dem Wind fürchtete", "description": "Lina die Laterne soll beim Laternenumzug leuchten. Doch draußen weht der Novemberwind – und Lina hat Angst, dass er ihr Licht auspustet.", "inLanguage": "de", "author": {"@type": "Person", "name": "Trutz Stähler", "url": "https://trutzstaehler.de/ueber-mich"}, "publisher": {"@type": "Organization", "name": "Kreativhafen"}, "isAccessibleForFree": true, "typicalAgeRange": "3-7", "timeRequired": "PT4M", "genre": "Gute-Nacht-Geschichte", "keywords": "Jahreszeiten, Mut, Gefühle", "image": "https://raw.githubusercontent.com/trutzstaehler/stream-daten/main/kreativhafen/geschichten/bilder/die-laterne-die-sich-vor-dem-wind-fuerchtete.webp", "url": "https://trutzstaehler.de/geschichten/die-laterne-die-sich-vor-dem-wind-fuerchtete", "wordCount": 527}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Kreativhafen", "item": "https://trutzstaehler.de/kreativhafen"}, {"@type": "ListItem", "position": 2, "name": "Gute-Nacht-Geschichten", "item": "https://trutzstaehler.de/gute-nacht-geschichten"}, {"@type": "ListItem", "position": 3, "name": "Die Laterne, die sich vor dem Wind fürchtete"}]}</script>
+
+<script>
+/* Geschichte: Vorlesen lassen, Schriftgröße, Nachtmodus, Teilen */
+(() => {
+  const root = document.querySelector('[data-gn-story]'); if (!root) return;
+  const txt = root.querySelector('.ts-gn-text'), h = document.documentElement;
+  const night = root.querySelector('[data-gn="night"]');
+  const setNight = on => { h.classList.toggle('ts-gn-dark', on); night.setAttribute('aria-pressed', on); try { localStorage.setItem('ts-gn-night', on ? '1' : ''); } catch (e) {} };
+  night.addEventListener('click', () => setNight(!h.classList.contains('ts-gn-dark')));
+  try { if (localStorage.getItem('ts-gn-night')) setNight(true); } catch (e) {}
+  let size = 19; try { size = +localStorage.getItem('ts-gn-size') || 19; } catch (e) {}
+  const setSize = s => { size = Math.max(16, Math.min(28, s)); txt.style.setProperty('--gn-size', size + 'px'); try { localStorage.setItem('ts-gn-size', size); } catch (e) {} };
+  setSize(size);
+  root.querySelector('[data-gn="plus"]').addEventListener('click', () => setSize(size + 2));
+  root.querySelector('[data-gn="minus"]').addEventListener('click', () => setSize(size - 2));
+  /* Vorlesen lassen (Computerstimme des Geräts, falls vorhanden) */
+  const sp = root.querySelector('[data-gn="speak"]');
+  if (!('speechSynthesis' in window)) sp.hidden = true;
+  else {
+    addEventListener('pagehide', () => speechSynthesis.cancel());
+    sp.addEventListener('click', () => {
+      if (speechSynthesis.speaking) { speechSynthesis.cancel(); sp.setAttribute('aria-pressed', 'false'); return; }
+      const t = root.querySelector('.ts-gn-h1').textContent + '. ' + [...txt.querySelectorAll(':scope > p')].map(p => p.textContent).join(' ') + ' ' + ((root.querySelector('[data-gn-night]') || {}).textContent || '');
+      const u = new SpeechSynthesisUtterance(t); u.lang = 'de-DE'; u.rate = .85; u.pitch = 1;
+      const v = speechSynthesis.getVoices().find(v => /^de/i.test(v.lang)); if (v) u.voice = v;
+      u.onend = () => sp.setAttribute('aria-pressed', 'false');
+      speechSynthesis.speak(u); sp.setAttribute('aria-pressed', 'true');
+    });
+  }
+  const sh = root.querySelector('[data-gn="share"]');
+  if (sh) sh.addEventListener('click', async () => {
+    const data = { title: document.title, text: 'Eine Gute-Nacht-Geschichte zum Vorlesen:', url: location.href };
+    try { if (navigator.share) await navigator.share(data); else { await navigator.clipboard.writeText(location.href); sh.textContent = 'Link kopiert ✓'; } } catch (e) {}
+  });
+  const wa = root.querySelector('[data-gn="wa"]');
+  if (wa) wa.href = 'https://wa.me/?text=' + encodeURIComponent('Eine schöne Gute-Nacht-Geschichte zum Vorlesen: ' + location.href);
+})();
+</script>

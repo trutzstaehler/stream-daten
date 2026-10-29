@@ -1,0 +1,680 @@
+{
+ "stand": "2026-10-29",
+ "basis": "https://raw.githubusercontent.com/trutzstaehler/stream-daten/main/kreativhafen/",
+ "alle_zip": "ausmalbilder/pdf/Alle-Ausmalbilder_Kreativhafen.zip",
+ "alle_zip_mb": 5.3,
+ "pakete": [
+  {
+   "id": "halloween",
+   "nr": "01",
+   "name": "Kleine Gruselfreunde",
+   "sub": "Halloween-Ausmalbilder",
+   "farbe": "#f6a33b",
+   "saison": "Halloween",
+   "kurz": "Kürbis, Gespenst & Co. – 10 freundliche Halloween-Motive, die kein bisschen gruselig sind.",
+   "extras": [
+    "Deckblatt zum Ausmalen",
+    "Mal-Urkunde zum Schluss"
+   ],
+   "anzahl": 10,
+   "seiten": null,
+   "pdf": "ausmalbilder/pdf/Halloween-Ausmalbilder_Kleine-Gruselfreunde.pdf",
+   "pdf_mb": 0.6,
+   "karte": "ausmalbilder/bilder/karte-halloween.webp",
+   "motive": [
+    {
+     "key": "hw01",
+     "name": "Kürbis"
+    },
+    {
+     "key": "hw02",
+     "name": "Gespenst"
+    },
+    {
+     "key": "hw03",
+     "name": "Fledermaus"
+    },
+    {
+     "key": "hw04",
+     "name": "Katze"
+    },
+    {
+     "key": "hw05",
+     "name": "Spinne"
+    },
+    {
+     "key": "hw06",
+     "name": "Hexenhut"
+    },
+    {
+     "key": "hw07",
+     "name": "Hexenkessel"
+    },
+    {
+     "key": "hw08",
+     "name": "Bonbons"
+    },
+    {
+     "key": "hw09",
+     "name": "Monster"
+    },
+    {
+     "key": "hw10",
+     "name": "Spukhaus"
+    }
+   ]
+  },
+  {
+   "id": "laterne",
+   "nr": "02",
+   "name": "Laterne, Laterne",
+   "sub": "Ausmalbilder zu St. Martin",
+   "farbe": "#f7d046",
+   "saison": "St. Martin",
+   "kurz": "Sonne, Mond und Sterne – 8 Motive plus Bastelvorlage für die eigene Laterne.",
+   "extras": [
+    "Laternen-Bastelvorlage (zum Ausmalen, Ausschneiden, Kleben)",
+    "Liedblatt „Laterne, Laterne“",
+    "Deckblatt zum Ausmalen",
+    "Mal-Urkunde zum Schluss"
+   ],
+   "anzahl": 8,
+   "seiten": null,
+   "pdf": "ausmalbilder/pdf/St-Martin-Ausmalbilder_Laterne-Laterne.pdf",
+   "pdf_mb": 1.0,
+   "karte": "ausmalbilder/bilder/karte-laterne.webp",
+   "motive": [
+    {
+     "key": "lt01",
+     "name": "Laterne"
+    },
+    {
+     "key": "lt02",
+     "name": "Sonne"
+    },
+    {
+     "key": "lt03",
+     "name": "Mond"
+    },
+    {
+     "key": "lt04",
+     "name": "Stern"
+    },
+    {
+     "key": "lt05",
+     "name": "Fliegenpilz"
+    },
+    {
+     "key": "lt06",
+     "name": "Kastanie"
+    },
+    {
+     "key": "lt07",
+     "name": "Herbstblatt"
+    },
+    {
+     "key": "lt08",
+     "name": "Drachen"
+    }
+   ]
+  },
+  {
+   "id": "advent",
+   "nr": "03",
+   "name": "24 Türchen",
+   "sub": "Adventskalender zum Ausmalen",
+   "farbe": "#e8505b",
+   "saison": "Advent",
+   "kurz": "Jeden Tag ein Bild: 24 Weihnachtsmotive vom Adventskranz bis zum Tannenbaum.",
+   "extras": [
+    "Türchen-Plan zum Abhaken",
+    "Nummer auf jeder Seite (1–24)",
+    "Deckblatt zum Ausmalen",
+    "Mal-Urkunde an Heiligabend"
+   ],
+   "anzahl": 24,
+   "seiten": null,
+   "pdf": "ausmalbilder/pdf/Adventskalender-zum-Ausmalen_24-Tuerchen.pdf",
+   "pdf_mb": 1.1,
+   "karte": "ausmalbilder/bilder/karte-advent.webp",
+   "motive": [
+    {
+     "key": "ad01",
+     "name": "Adventskranz"
+    },
+    {
+     "key": "ad02",
+     "name": "Kerze"
+    },
+    {
+     "key": "ad03",
+     "name": "Plätzchen"
+    },
+    {
+     "key": "ad04",
+     "name": "Lebkuchenmann"
+    },
+    {
+     "key": "ad05",
+     "name": "Stiefel"
+    },
+    {
+     "key": "ad06",
+     "name": "Nikolaus"
+    },
+    {
+     "key": "ad07",
+     "name": "Zuckerstange"
+    },
+    {
+     "key": "ad08",
+     "name": "Glocke"
+    },
+    {
+     "key": "ad09",
+     "name": "Kugel"
+    },
+    {
+     "key": "ad10",
+     "name": "Geschenk"
+    },
+    {
+     "key": "ad11",
+     "name": "Rentier"
+    },
+    {
+     "key": "ad12",
+     "name": "Schlitten"
+    },
+    {
+     "key": "ad13",
+     "name": "Wichtel"
+    },
+    {
+     "key": "ad14",
+     "name": "Lebkuchenhaus"
+    },
+    {
+     "key": "ad15",
+     "name": "Socke"
+    },
+    {
+     "key": "ad16",
+     "name": "Kakao"
+    },
+    {
+     "key": "ad17",
+     "name": "Teddy"
+    },
+    {
+     "key": "ad18",
+     "name": "Eisenbahn"
+    },
+    {
+     "key": "ad19",
+     "name": "Engel"
+    },
+    {
+     "key": "ad20",
+     "name": "Nussknacker"
+    },
+    {
+     "key": "ad21",
+     "name": "Stechpalme"
+    },
+    {
+     "key": "ad22",
+     "name": "Schneekugel"
+    },
+    {
+     "key": "ad23",
+     "name": "Wunschzettel"
+    },
+    {
+     "key": "ad24",
+     "name": "Tannenbaum"
+    }
+   ]
+  },
+  {
+   "id": "winter",
+   "nr": "04",
+   "name": "Winterzeit",
+   "sub": "Ausmalbilder für Winter & Silvester",
+   "farbe": "#5ec8e5",
+   "saison": "Winter & Silvester",
+   "kurz": "Schneemann, Eisbär und Glücksschwein – 10 Motive für kalte Tage und Silvester.",
+   "extras": [
+    "Glücksbringer für Silvester",
+    "Deckblatt zum Ausmalen",
+    "Mal-Urkunde zum Schluss"
+   ],
+   "anzahl": 10,
+   "seiten": null,
+   "pdf": "ausmalbilder/pdf/Winter-Ausmalbilder_Winterzeit.pdf",
+   "pdf_mb": 0.7,
+   "karte": "ausmalbilder/bilder/karte-winter.webp",
+   "motive": [
+    {
+     "key": "wi01",
+     "name": "Schneemann"
+    },
+    {
+     "key": "wi02",
+     "name": "Schneeflocke"
+    },
+    {
+     "key": "wi03",
+     "name": "Mütze"
+    },
+    {
+     "key": "wi04",
+     "name": "Handschuh"
+    },
+    {
+     "key": "wi05",
+     "name": "Eisbär"
+    },
+    {
+     "key": "wi06",
+     "name": "Iglu"
+    },
+    {
+     "key": "wi07",
+     "name": "Schlittschuh"
+    },
+    {
+     "key": "wi08",
+     "name": "Glücksschwein"
+    },
+    {
+     "key": "wi09",
+     "name": "Kleeblatt"
+    },
+    {
+     "key": "wi10",
+     "name": "Rakete"
+    }
+   ]
+  },
+  {
+   "id": "anhaenger",
+   "nr": "05",
+   "name": "Für dich!",
+   "sub": "Geschenkanhänger & Karten zum Ausmalen",
+   "farbe": "#f29bc4",
+   "saison": "Weihnachten",
+   "kurz": "16 Anhänger und 4 Karten – Kinder malen, die Geschenke werden persönlich.",
+   "extras": [
+    "16 Geschenkanhänger mit „Für“ und „Von“",
+    "4 Karten: 2× Weihnachten, Neujahr, Danke"
+   ],
+   "anzahl": 0,
+   "seiten": null,
+   "pdf": "ausmalbilder/pdf/Geschenkanhaenger-zum-Ausmalen_Fuer-dich.pdf",
+   "pdf_mb": 0.5,
+   "karte": "ausmalbilder/bilder/karte-anhaenger.webp",
+   "motive": []
+  },
+  {
+   "id": "hafen",
+   "nr": "06",
+   "name": "Moin, Hafen!",
+   "sub": "Ausmalbilder aus dem Hamburger Hafen",
+   "farbe": "#3f7fd9",
+   "saison": "ganzjährig",
+   "kurz": "Containerschiff, Leuchtturm, Möwe und Michel – 10 Motive aus dem Hamburger Hafen.",
+   "extras": [
+    "Deckblatt zum Ausmalen",
+    "Mal-Urkunde zum Schluss"
+   ],
+   "anzahl": 10,
+   "seiten": null,
+   "pdf": "ausmalbilder/pdf/Hafen-Ausmalbilder_Moin-Hafen.pdf",
+   "pdf_mb": 0.6,
+   "karte": "ausmalbilder/bilder/karte-hafen.webp",
+   "motive": [
+    {
+     "key": "hf01",
+     "name": "Schiff"
+    },
+    {
+     "key": "hf02",
+     "name": "Leuchtturm"
+    },
+    {
+     "key": "hf03",
+     "name": "Möwe"
+    },
+    {
+     "key": "hf04",
+     "name": "Anker"
+    },
+    {
+     "key": "hf05",
+     "name": "Kran"
+    },
+    {
+     "key": "hf06",
+     "name": "Fähre"
+    },
+    {
+     "key": "hf07",
+     "name": "Fischbrötchen"
+    },
+    {
+     "key": "hf08",
+     "name": "Rettungsring"
+    },
+    {
+     "key": "hf09",
+     "name": "Kapitän"
+    },
+    {
+     "key": "hf10",
+     "name": "Michel"
+    }
+   ]
+  },
+  {
+   "id": "fahrzeuge",
+   "nr": "07",
+   "name": "Brumm, brumm!",
+   "sub": "Fahrzeuge zum Ausmalen",
+   "farbe": "#ff7a59",
+   "saison": "ganzjährig",
+   "kurz": "Bagger, Feuerwehr, Traktor & Co. – 10 Fahrzeuge mit freundlichen Gesichtern.",
+   "extras": [
+    "Deckblatt zum Ausmalen",
+    "Mal-Urkunde zum Schluss"
+   ],
+   "anzahl": 10,
+   "seiten": null,
+   "pdf": "ausmalbilder/pdf/Fahrzeuge-Ausmalbilder_Brumm-brumm.pdf",
+   "pdf_mb": 0.6,
+   "karte": "ausmalbilder/bilder/karte-fahrzeuge.webp",
+   "motive": [
+    {
+     "key": "fz01",
+     "name": "Auto"
+    },
+    {
+     "key": "fz02",
+     "name": "Feuerwehr"
+    },
+    {
+     "key": "fz03",
+     "name": "Bagger"
+    },
+    {
+     "key": "fz04",
+     "name": "Traktor"
+    },
+    {
+     "key": "fz05",
+     "name": "Bus"
+    },
+    {
+     "key": "fz06",
+     "name": "Flugzeug"
+    },
+    {
+     "key": "fz07",
+     "name": "Hubschrauber"
+    },
+    {
+     "key": "fz08",
+     "name": "Polizei"
+    },
+    {
+     "key": "fz09",
+     "name": "Müllauto"
+    },
+    {
+     "key": "fz10",
+     "name": "Fahrrad"
+    }
+   ]
+  },
+  {
+   "id": "weltraum",
+   "nr": "08",
+   "name": "Ab ins All!",
+   "sub": "Weltraum-Ausmalbilder",
+   "farbe": "#9b6ad6",
+   "saison": "ganzjährig",
+   "kurz": "Astronautin, Raumschiff, Alien und Roboter – 10 Motive für kleine Sternenfahrer.",
+   "extras": [
+    "Deckblatt zum Ausmalen",
+    "Mal-Urkunde zum Schluss"
+   ],
+   "anzahl": 10,
+   "seiten": null,
+   "pdf": "ausmalbilder/pdf/Weltraum-Ausmalbilder_Ab-ins-All.pdf",
+   "pdf_mb": 0.7,
+   "karte": "ausmalbilder/bilder/karte-weltraum.webp",
+   "motive": [
+    {
+     "key": "wr01",
+     "name": "Astronaut"
+    },
+    {
+     "key": "wr02",
+     "name": "Raumschiff"
+    },
+    {
+     "key": "wr03",
+     "name": "Planet"
+    },
+    {
+     "key": "wr04",
+     "name": "Ufo"
+    },
+    {
+     "key": "wr05",
+     "name": "Alien"
+    },
+    {
+     "key": "wr06",
+     "name": "Roboter"
+    },
+    {
+     "key": "wr07",
+     "name": "Satellit"
+    },
+    {
+     "key": "wr08",
+     "name": "Sternschnuppe"
+    },
+    {
+     "key": "wr09",
+     "name": "Teleskop"
+    },
+    {
+     "key": "wr10",
+     "name": "Mondauto"
+    }
+   ]
+  },
+  {
+   "id": "fantasie",
+   "nr": "09",
+   "name": "Es war einmal",
+   "sub": "Märchen & Fantasie zum Ausmalen",
+   "farbe": "#c084fc",
+   "saison": "ganzjährig",
+   "kurz": "Einhorn, Drache, Burg und Fee – 10 Motive aus dem Märchenland.",
+   "extras": [
+    "Deckblatt zum Ausmalen",
+    "Mal-Urkunde zum Schluss"
+   ],
+   "anzahl": 10,
+   "seiten": null,
+   "pdf": "ausmalbilder/pdf/Maerchen-Ausmalbilder_Es-war-einmal.pdf",
+   "pdf_mb": 0.7,
+   "karte": "ausmalbilder/bilder/karte-fantasie.webp",
+   "motive": [
+    {
+     "key": "mf01",
+     "name": "Einhorn"
+    },
+    {
+     "key": "mf02",
+     "name": "Drache"
+    },
+    {
+     "key": "mf03",
+     "name": "Burg"
+    },
+    {
+     "key": "mf04",
+     "name": "Krone"
+    },
+    {
+     "key": "mf05",
+     "name": "Zauberhut"
+    },
+    {
+     "key": "mf06",
+     "name": "Fee"
+    },
+    {
+     "key": "mf07",
+     "name": "Ritter"
+    },
+    {
+     "key": "mf08",
+     "name": "Meerjungfrau"
+    },
+    {
+     "key": "mf09",
+     "name": "Schatzkiste"
+    },
+    {
+     "key": "mf10",
+     "name": "Regenbogen"
+    }
+   ]
+  },
+  {
+   "id": "obst",
+   "nr": "10",
+   "name": "Knackig & bunt",
+   "sub": "Obst & Gemüse zum Ausmalen",
+   "farbe": "#8bc34a",
+   "saison": "ganzjährig",
+   "kurz": "Apfel, Banane, Karotte & Co. – 10 Früchte und Gemüse mit Gesicht.",
+   "extras": [
+    "Deckblatt zum Ausmalen",
+    "Mal-Urkunde zum Schluss"
+   ],
+   "anzahl": 10,
+   "seiten": null,
+   "pdf": "ausmalbilder/pdf/Obst-und-Gemuese-Ausmalbilder_Knackig-und-bunt.pdf",
+   "pdf_mb": 0.6,
+   "karte": "ausmalbilder/bilder/karte-obst.webp",
+   "motive": [
+    {
+     "key": "og01",
+     "name": "Apfel"
+    },
+    {
+     "key": "og02",
+     "name": "Banane"
+    },
+    {
+     "key": "og03",
+     "name": "Erdbeere"
+    },
+    {
+     "key": "og04",
+     "name": "Birne"
+    },
+    {
+     "key": "og05",
+     "name": "Karotte"
+    },
+    {
+     "key": "og06",
+     "name": "Tomate"
+    },
+    {
+     "key": "og07",
+     "name": "Ananas"
+    },
+    {
+     "key": "og08",
+     "name": "Wassermelone"
+    },
+    {
+     "key": "og09",
+     "name": "Brokkoli"
+    },
+    {
+     "key": "og10",
+     "name": "Kirschen"
+    }
+   ]
+  },
+  {
+   "id": "party",
+   "nr": "11",
+   "name": "Hurra, Party!",
+   "sub": "Geburtstag & Party zum Ausmalen",
+   "farbe": "#f29bc4",
+   "saison": "ganzjährig",
+   "kurz": "Torte, Luftballons, Partyhut – 10 Motive für den Kindergeburtstag.",
+   "extras": [
+    "Deckblatt zum Ausmalen",
+    "Mal-Urkunde zum Schluss"
+   ],
+   "anzahl": 10,
+   "seiten": null,
+   "pdf": "ausmalbilder/pdf/Geburtstag-Ausmalbilder_Hurra-Party.pdf",
+   "pdf_mb": 0.6,
+   "karte": "ausmalbilder/bilder/karte-party.webp",
+   "motive": [
+    {
+     "key": "gb01",
+     "name": "Torte"
+    },
+    {
+     "key": "gb02",
+     "name": "Luftballons"
+    },
+    {
+     "key": "gb03",
+     "name": "Partyhut"
+    },
+    {
+     "key": "gb04",
+     "name": "Muffin"
+    },
+    {
+     "key": "gb05",
+     "name": "Eiswaffel"
+    },
+    {
+     "key": "gb06",
+     "name": "Lolli"
+    },
+    {
+     "key": "gb07",
+     "name": "Tröte"
+    },
+    {
+     "key": "gb08",
+     "name": "Girlande"
+    },
+    {
+     "key": "gb09",
+     "name": "Pizza"
+    },
+    {
+     "key": "gb10",
+     "name": "Popcorn"
+    }
+   ]
+  }
+ ]
+}

@@ -299,6 +299,11 @@
   });
 })();
 </script>
+<style>
+  /* Im Squarespace-Blog: eigenen Beitragstitel, Datum/Autor und Vor/Zurück-Leiste ausblenden – die Geschichte bringt alles selbst mit */
+  body:has([data-gn-story]) .blog-item-top-wrapper, body:has([data-gn-story]) .blog-item-author-profile-wrapper,
+  body:has([data-gn-story]) .item-pagination, body:has([data-gn-story]) .blog-item-pagination { display: none !important; }
+</style>
 <article class="ts ts-am tss ts-bleed ts-kh2 ts-gn-page" style="padding-top:0" data-gn-story aria-labelledby="ts-gn-h">
   <div class="ts-am__orb ts-gn-dim" aria-hidden="true"></div>
   <div class="ts-container tss--top">

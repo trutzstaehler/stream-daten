@@ -10,7 +10,7 @@ N = sum(len(p['motive']) for p in KAT.ALLE_PAKETE)
 
 zeilen = []
 for i, g in enumerate(ALLE, 1):
-    zeilen.append(f"| {i:02d} | {g['titel']} | `{g['slug']}` | `geschichten/{i:02d}_{g['slug']}.html` | `kreativhafen/geschichten/bilder/{g['slug']}.webp` | {g['teaser']} |")
+    zeilen.append(f"| {i:02d} | {g['titel']} | `{g['slug']}` | `geschichten/{i:02d}_{g['slug']}.html` | `{g['slug']}.jpg` | {g['teaser']} |")
 
 doc = f'''# Kreativhafen gratis: Einrichtung
 
@@ -20,17 +20,12 @@ Alle Code-Blöcke liegen in diesem Ordner (`08-kreativhafen-gratis/`). Die Reihe
 
 ---
 
-## Schritt 0: Daten auf GitHub freischalten (einmalig, wichtig!)
+## Schritt 0: Daten auf GitHub ✓ erledigt
 
-Ausmalbilder, PDFs und Vorschaubilder lädt die Seite, wie deine Twitch-Seite die Datei `helden.json`, aus deinem Repo:
+Ausmalbilder, PDFs und Bilder lädt die Seite, wie deine Twitch-Seite die Datei `helden.json`, aus deinem Repo:
 `{KAT.GRATIS_URL_BASIS}`
 
-Die Dateien liegen im Ordner `kreativhafen/` im Branch **`ausmalbilder-saison-2026`**. Damit die Adresse oben funktioniert, muss der Ordner in **`main`** liegen:
-
-1. Auf GitHub `trutzstaehler/stream-daten` öffnen → „Compare & pull request“ für `ausmalbilder-saison-2026` → Pull Request erstellen → **Merge**. (Ich kann den Pull Request auch für dich anlegen.)
-2. Kurz testen: `{KAT.GRATIS_URL_BASIS}ausmalbilder/daten/katalog.json` im Browser öffnen. Es muss Text erscheinen, kein „404“.
-
-Solange das nicht passiert ist, zeigen die Ausmalbilder-Seite und die Bilder „konnten nicht geladen werden“.
+Der Ordner `kreativhafen/` ist seit Pull Request #2 in **`main`** und online abrufbar. Test: `{KAT.GRATIS_URL_BASIS}ausmalbilder/daten/katalog.json` zeigt Text, kein „404“.
 
 ---
 
@@ -61,15 +56,9 @@ Auf beiden Seiten ganz oben denselben Reiter-Block (`01_…`) einfügen. Dann is
 
 Jede Geschichte bekommt ihre eigene Seite. So findet Google jede einzelne, genau wie bei Zitronenbande und Zwergenstark.
 
-1. **Seiten → + → Blog** anlegen, Name „Geschichten“, URL-Slug **`geschichten`**, nicht in der Navigation anzeigen (die Übersicht ist `/gute-nacht-geschichten`).
-2. Für jede Geschichte einen **Beitrag** anlegen:
-   - **Titel** = Titel der Geschichte
-   - **URL** (Beitragseinstellungen → Inhalt) = Slug aus der Tabelle
-   - **Inhalt:** alles löschen → Code-Block → Inhalt der Datei aus der Tabelle einfügen
-   - **Auszug / SEO-Beschreibung** = Teaser aus der Tabelle
-   - **Vorschaubild** = Bild aus der Tabelle (für Google und Social Media)
-   - **Autor:** Trutz Stähler
-3. Wenn dein Blog-Layout Titel und Datum über dem Beitrag anzeigt, im Blog-Design „Titel/Datum/Autor ausblenden“ wählen. Die Geschichte bringt ihre eigene Überschrift mit.
+**Ausführliche Schritt-für-Schritt-Anleitung mit Steckbrief für jede Geschichte: `ANLEITUNG_BLOG-GESCHICHTEN.md`.**
+
+Kurz: Blog „Geschichten“ unter „Nicht verlinkt“ anlegen, URL-Slug `geschichten`. Für jede Geschichte einen Beitrag mit Titel, URL-Slug, Code-Block, Auszug, Beitragsbild und SEO-Texten. Squarespaces eigener Titel und das Datum werden vom Code-Block automatisch ausgeblendet.
 
 | # | Titel | URL-Slug | Code-Block | Vorschaubild | Teaser (Auszug/SEO) |
 |---|---|---|---|---|---|
@@ -116,6 +105,7 @@ python3 geschichten_bilder.py # Illustrationen der Geschichten (Farben passend z
 python3 gratis_pdf.py         # PDFs + ZIP der Ausmalbilder
 python3 kreativhafen_web.py   # alle Code-Blöcke + Vorschau
 python3 kh_doku.py            # diese Anleitung
+python3 blog_anleitung.py     # Anleitung + Steckbriefe für den Blog
 ```
 '''
 open(os.path.join(OUT, 'EINRICHTUNG.md'), 'w', encoding='utf-8').write(doc)

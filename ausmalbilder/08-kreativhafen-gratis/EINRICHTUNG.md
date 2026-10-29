@@ -6,17 +6,12 @@ Alle Code-Blöcke liegen in diesem Ordner (`08-kreativhafen-gratis/`). Die Reihe
 
 ---
 
-## Schritt 0: Daten auf GitHub freischalten (einmalig, wichtig!)
+## Schritt 0: Daten auf GitHub ✓ erledigt
 
-Ausmalbilder, PDFs und Vorschaubilder lädt die Seite, wie deine Twitch-Seite die Datei `helden.json`, aus deinem Repo:
+Ausmalbilder, PDFs und Bilder lädt die Seite, wie deine Twitch-Seite die Datei `helden.json`, aus deinem Repo:
 `https://raw.githubusercontent.com/trutzstaehler/stream-daten/main/kreativhafen/`
 
-Die Dateien liegen im Ordner `kreativhafen/` im Branch **`ausmalbilder-saison-2026`**. Damit die Adresse oben funktioniert, muss der Ordner in **`main`** liegen:
-
-1. Auf GitHub `trutzstaehler/stream-daten` öffnen → „Compare & pull request“ für `ausmalbilder-saison-2026` → Pull Request erstellen → **Merge**. (Ich kann den Pull Request auch für dich anlegen.)
-2. Kurz testen: `https://raw.githubusercontent.com/trutzstaehler/stream-daten/main/kreativhafen/ausmalbilder/daten/katalog.json` im Browser öffnen. Es muss Text erscheinen, kein „404“.
-
-Solange das nicht passiert ist, zeigen die Ausmalbilder-Seite und die Bilder „konnten nicht geladen werden“.
+Der Ordner `kreativhafen/` ist seit Pull Request #2 in **`main`** und online abrufbar. Test: `https://raw.githubusercontent.com/trutzstaehler/stream-daten/main/kreativhafen/ausmalbilder/daten/katalog.json` zeigt Text, kein „404“.
 
 ---
 
@@ -47,42 +42,36 @@ Auf beiden Seiten ganz oben denselben Reiter-Block (`01_…`) einfügen. Dann is
 
 Jede Geschichte bekommt ihre eigene Seite. So findet Google jede einzelne, genau wie bei Zitronenbande und Zwergenstark.
 
-1. **Seiten → + → Blog** anlegen, Name „Geschichten“, URL-Slug **`geschichten`**, nicht in der Navigation anzeigen (die Übersicht ist `/gute-nacht-geschichten`).
-2. Für jede Geschichte einen **Beitrag** anlegen:
-   - **Titel** = Titel der Geschichte
-   - **URL** (Beitragseinstellungen → Inhalt) = Slug aus der Tabelle
-   - **Inhalt:** alles löschen → Code-Block → Inhalt der Datei aus der Tabelle einfügen
-   - **Auszug / SEO-Beschreibung** = Teaser aus der Tabelle
-   - **Vorschaubild** = Bild aus der Tabelle (für Google und Social Media)
-   - **Autor:** Trutz Stähler
-3. Wenn dein Blog-Layout Titel und Datum über dem Beitrag anzeigt, im Blog-Design „Titel/Datum/Autor ausblenden“ wählen. Die Geschichte bringt ihre eigene Überschrift mit.
+**Ausführliche Schritt-für-Schritt-Anleitung mit Steckbrief für jede Geschichte: `ANLEITUNG_BLOG-GESCHICHTEN.md`.**
+
+Kurz: Blog „Geschichten“ unter „Nicht verlinkt“ anlegen, URL-Slug `geschichten`. Für jede Geschichte einen Beitrag mit Titel, URL-Slug, Code-Block, Auszug, Beitragsbild und SEO-Texten. Squarespaces eigener Titel und das Datum werden vom Code-Block automatisch ausgeblendet.
 
 | # | Titel | URL-Slug | Code-Block | Vorschaubild | Teaser (Auszug/SEO) |
 |---|---|---|---|---|---|
-| 01 | Möwe Mats will nicht schlafen | `moewe-mats-will-nicht-schlafen` | `geschichten/01_moewe-mats-will-nicht-schlafen.html` | `kreativhafen/geschichten/bilder/moewe-mats-will-nicht-schlafen.webp` | Im Hafen ist abends noch so viel los – da kann Möwe Mats doch unmöglich schlafen gehen! Oder leuchtet der Hafen vielleicht auch ohne sie weiter? |
-| 02 | Leuchtturm Lotte und der Nebel | `leuchtturm-lotte-und-der-nebel` | `geschichten/02_leuchtturm-lotte-und-der-nebel.html` | `kreativhafen/geschichten/bilder/leuchtturm-lotte-und-der-nebel.webp` | Leuchtturm Lotte findet ihr Licht viel zu klein. Doch in einer nebligen Nacht braucht ein kleines Boot genau dieses Licht, um nach Hause zu finden. |
-| 03 | Die Fähre Frieda fährt nach Hause | `die-faehre-frieda-faehrt-nach-hause` | `geschichten/03_die-faehre-frieda-faehrt-nach-hause.html` | `kreativhafen/geschichten/bilder/die-faehre-frieda-faehrt-nach-hause.webp` | Es ist die letzte Fahrt des Tages: Hafenfähre Frieda bringt alle nach Hause – müde Menschen, einen schnarchenden Hund und ein Kind mit einer roten Mütze. |
-| 04 | Ein Schlaflied für Kran Karl | `ein-schlaflied-fuer-kran-karl` | `geschichten/04_ein-schlaflied-fuer-kran-karl.html` | `kreativhafen/geschichten/bilder/ein-schlaflied-fuer-kran-karl.webp` | Kran Karl ist der größte Kran im Hafen – und heute Abend ist er so müde wie noch nie. Zum Glück hat ein Kind am Ufer eine Idee. |
-| 05 | Das kleine Gespenst Huhu | `das-kleine-gespenst-huhu` | `geschichten/05_das-kleine-gespenst-huhu.html` | `kreativhafen/geschichten/bilder/das-kleine-gespenst-huhu.webp` | Huhu ist ein Gespenst – und fürchtet sich vor allem. Sogar vor sich selbst im Spiegel. Doch in der Halloween-Nacht klopft jemand an seine Tür. |
-| 06 | Die Laterne, die sich vor dem Wind fürchtete | `die-laterne-die-sich-vor-dem-wind-fuerchtete` | `geschichten/06_die-laterne-die-sich-vor-dem-wind-fuerchtete.html` | `kreativhafen/geschichten/bilder/die-laterne-die-sich-vor-dem-wind-fuerchtete.webp` | Lina die Laterne soll beim Laternenumzug leuchten. Doch draußen weht der Novemberwind – und Lina hat Angst, dass er ihr Licht auspustet. |
-| 07 | Wichtel Wilbur und das Warten | `wichtel-wilbur-und-das-warten` | `geschichten/07_wichtel-wilbur-und-das-warten.html` | `kreativhafen/geschichten/bilder/wichtel-wilbur-und-das-warten.webp` | Jede Nacht bewacht der kleine Wichtel Wilbur ein Türchen im Adventskalender. Doch das Warten fällt ihm so schwer – bis er entdeckt, wie schön es sein kann. |
-| 08 | Der Schneemann, der die Sterne sehen wollte | `der-schneemann-der-die-sterne-sehen-wollte` | `geschichten/08_der-schneemann-der-die-sterne-sehen-wollte.html` | `kreativhafen/geschichten/bilder/der-schneemann-der-die-sterne-sehen-wollte.webp` | Schneemann Kalle steht im Garten und schaut jede Nacht zu den Sternen hinauf. Wie gern würde er sie einmal von Nahem sehen! Zum Glück hat er gute Freunde. |
-| 09 | Funki, der kleine Drache | `funki-der-kleine-drache` | `geschichten/09_funki-der-kleine-drache.html` | `kreativhafen/geschichten/bilder/funki-der-kleine-drache.webp` | Alle Drachen im Tal können Feuer spucken – nur Funki nicht. Aus seinem Maul kommt bloß warme Luft. Doch in einer eisigen Nacht wird genau das zu etwas ganz Besonderem. |
-| 10 | Ella fliegt zum Mond | `ella-fliegt-zum-mond` | `geschichten/10_ella-fliegt-zum-mond.html` | `kreativhafen/geschichten/bilder/ella-fliegt-zum-mond.webp` | Ella kann nicht einschlafen – also baut sie aus ihrem Bett eine Rakete. Gemeinsam mit Kuschelhase Momo fliegt sie bis zum Mond, um ihm persönlich gute Nacht zu sagen. |
-| 11 | Bagger Bruno macht Feierabend | `bagger-bruno-macht-feierabend` | `geschichten/11_bagger-bruno-macht-feierabend.html` | `kreativhafen/geschichten/bilder/bagger-bruno-macht-feierabend.webp` | Bagger Bruno liebt seine Baustelle so sehr, dass er abends einfach nicht aufhören will zu baggern. Bis ein alter Kran ihm verrät, was Bagger in der Nacht Schönes erleben. |
-| 12 | Teddy hält Wache | `teddy-haelt-wache` | `geschichten/12_teddy-haelt-wache.html` | `kreativhafen/geschichten/bilder/teddy-haelt-wache.webp` | Jede Nacht, wenn Noah schläft, öffnet sein Teddy Brummel ganz leise die Augen. Denn er hat eine wichtige Aufgabe: Er hält Wache. Und dabei entdeckt er, wie friedlich die Nacht sein kann. |
-| 13 | Mats und das Schietwetter | `mats-und-das-schietwetter` | `geschichten/13_mats-und-das-schietwetter.html` | `kreativhafen/geschichten/bilder/mats-und-das-schietwetter.webp` | Regen, Wind und graue Wolken über dem Hafen – Möwe Mats findet das Wetter doof. Bis sie merkt, wie gemütlich Regen klingen kann. |
-| 14 | Mats sucht ihre Lieblingsfeder | `mats-sucht-ihre-lieblingsfeder` | `geschichten/14_mats-sucht-ihre-lieblingsfeder.html` | `kreativhafen/geschichten/bilder/mats-sucht-ihre-lieblingsfeder.webp` | Mats hat eine ganz besondere Feder mit einem silbernen Glanz – und plötzlich ist sie weg! Der ganze Hafen hilft beim Suchen. |
-| 15 | Mats hat Geburtstag | `mats-hat-geburtstag` | `geschichten/15_mats-hat-geburtstag.html` | `kreativhafen/geschichten/bilder/mats-hat-geburtstag.webp` | Heute ist Mats’ Geburtstag! Am Hamburger Hafen wird gefeiert – mit Fischbrötchen-Torte, Hupkonzert und einem Lichtgeschenk von Lotte. |
-| 16 | Mats und die Sternschnuppe | `mats-und-die-sternschnuppe` | `geschichten/16_mats-und-die-sternschnuppe.html` | `kreativhafen/geschichten/bilder/mats-und-die-sternschnuppe.webp` | In einer klaren Nacht saust eine Sternschnuppe über den Hafen. Mats darf sich etwas wünschen – aber was nur? |
-| 17 | Das kleine Auto fährt nach Hause | `das-kleine-auto-faehrt-nach-hause` | `geschichten/17_das-kleine-auto-faehrt-nach-hause.html` | `kreativhafen/geschichten/bilder/das-kleine-auto-faehrt-nach-hause.webp` | Den ganzen Tag ist das kleine Auto gefahren. Jetzt wird es dunkel – Zeit, nach Hause zu fahren und allen gute Nacht zu sagen. |
-| 18 | Gute Nacht, Obstkorb | `gute-nacht-obstkorb` | `geschichten/18_gute-nacht-obstkorb.html` | `kreativhafen/geschichten/bilder/gute-nacht-obstkorb.webp` | In der Küche steht ein Obstkorb. Apfel, Banane und die zwei Kirschen sind schon ganz müde – und sagen sich gute Nacht. |
-| 19 | Das Flugzeug landet am Abend | `das-flugzeug-landet-am-abend` | `geschichten/19_das-flugzeug-landet-am-abend.html` | `kreativhafen/geschichten/bilder/das-flugzeug-landet-am-abend.webp` | Hoch über den Wolken fliegt ein kleines Flugzeug. Jetzt geht die Sonne unter – und das Flugzeug fliegt nach Hause. |
-| 20 | Die Luftballons wollen noch nicht schlafen | `die-luftballons-wollen-noch-nicht-schlafen` | `geschichten/20_die-luftballons-wollen-noch-nicht-schlafen.html` | `kreativhafen/geschichten/bilder/die-luftballons-wollen-noch-nicht-schlafen.webp` | Die Party ist vorbei, aber die drei Luftballons wollen noch weiter tanzen. Bis sie merken, wie gemütlich es auch ganz ruhig sein kann. |
-| 21 | Ritter Rasmus und die Angst vor dem Dunkeln | `ritter-rasmus-und-die-angst-vor-dem-dunkeln` | `geschichten/21_ritter-rasmus-und-die-angst-vor-dem-dunkeln.html` | `kreativhafen/geschichten/bilder/ritter-rasmus-und-die-angst-vor-dem-dunkeln.webp` | Rasmus ist der kleinste Ritter der Burg – und nachts knarrt und knackt es überall. Mit Schild, Holzschwert und Laterne macht er sich auf, das Geheimnis der Geräusche zu lüften. |
-| 22 | Nixe Nele schwimmt in den Hafen | `nixe-nele-schwimmt-in-den-hafen` | `geschichten/22_nixe-nele-schwimmt-in-den-hafen.html` | `kreativhafen/geschichten/bilder/nixe-nele-schwimmt-in-den-hafen.webp` | Die kleine Meerjungfrau Nele will wissen, wohin die großen Schiffe fahren. Also schwimmt sie von der Nordsee die Elbe hinauf – bis mitten in den Hamburger Hafen. |
-| 23 | Robo lernt träumen | `robo-lernt-traeumen` | `geschichten/23_robo-lernt-traeumen.html` | `kreativhafen/geschichten/bilder/robo-lernt-traeumen.webp` | Robo ist ein kleiner Roboter, der alles kann – nur nicht schlafen. Denn er hat keinen Aus-Knopf zum Träumen. Oder vielleicht doch? |
-| 24 | Das Einhorn, das seinen Regenbogen verlor | `das-einhorn-das-seinen-regenbogen-verlor` | `geschichten/24_das-einhorn-das-seinen-regenbogen-verlor.html` | `kreativhafen/geschichten/bilder/das-einhorn-das-seinen-regenbogen-verlor.webp` | Einhorn Fiona kann Regenbögen an den Himmel zaubern – bis ihr eines Morgens die Farben fehlen. Zum Glück helfen ihr ihre Freunde, sie wiederzufinden. |
+| 01 | Möwe Mats will nicht schlafen | `moewe-mats-will-nicht-schlafen` | `geschichten/01_moewe-mats-will-nicht-schlafen.html` | `moewe-mats-will-nicht-schlafen.jpg` | Im Hafen ist abends noch so viel los – da kann Möwe Mats doch unmöglich schlafen gehen! Oder leuchtet der Hafen vielleicht auch ohne sie weiter? |
+| 02 | Leuchtturm Lotte und der Nebel | `leuchtturm-lotte-und-der-nebel` | `geschichten/02_leuchtturm-lotte-und-der-nebel.html` | `leuchtturm-lotte-und-der-nebel.jpg` | Leuchtturm Lotte findet ihr Licht viel zu klein. Doch in einer nebligen Nacht braucht ein kleines Boot genau dieses Licht, um nach Hause zu finden. |
+| 03 | Die Fähre Frieda fährt nach Hause | `die-faehre-frieda-faehrt-nach-hause` | `geschichten/03_die-faehre-frieda-faehrt-nach-hause.html` | `die-faehre-frieda-faehrt-nach-hause.jpg` | Es ist die letzte Fahrt des Tages: Hafenfähre Frieda bringt alle nach Hause – müde Menschen, einen schnarchenden Hund und ein Kind mit einer roten Mütze. |
+| 04 | Ein Schlaflied für Kran Karl | `ein-schlaflied-fuer-kran-karl` | `geschichten/04_ein-schlaflied-fuer-kran-karl.html` | `ein-schlaflied-fuer-kran-karl.jpg` | Kran Karl ist der größte Kran im Hafen – und heute Abend ist er so müde wie noch nie. Zum Glück hat ein Kind am Ufer eine Idee. |
+| 05 | Das kleine Gespenst Huhu | `das-kleine-gespenst-huhu` | `geschichten/05_das-kleine-gespenst-huhu.html` | `das-kleine-gespenst-huhu.jpg` | Huhu ist ein Gespenst – und fürchtet sich vor allem. Sogar vor sich selbst im Spiegel. Doch in der Halloween-Nacht klopft jemand an seine Tür. |
+| 06 | Die Laterne, die sich vor dem Wind fürchtete | `die-laterne-die-sich-vor-dem-wind-fuerchtete` | `geschichten/06_die-laterne-die-sich-vor-dem-wind-fuerchtete.html` | `die-laterne-die-sich-vor-dem-wind-fuerchtete.jpg` | Lina die Laterne soll beim Laternenumzug leuchten. Doch draußen weht der Novemberwind – und Lina hat Angst, dass er ihr Licht auspustet. |
+| 07 | Wichtel Wilbur und das Warten | `wichtel-wilbur-und-das-warten` | `geschichten/07_wichtel-wilbur-und-das-warten.html` | `wichtel-wilbur-und-das-warten.jpg` | Jede Nacht bewacht der kleine Wichtel Wilbur ein Türchen im Adventskalender. Doch das Warten fällt ihm so schwer – bis er entdeckt, wie schön es sein kann. |
+| 08 | Der Schneemann, der die Sterne sehen wollte | `der-schneemann-der-die-sterne-sehen-wollte` | `geschichten/08_der-schneemann-der-die-sterne-sehen-wollte.html` | `der-schneemann-der-die-sterne-sehen-wollte.jpg` | Schneemann Kalle steht im Garten und schaut jede Nacht zu den Sternen hinauf. Wie gern würde er sie einmal von Nahem sehen! Zum Glück hat er gute Freunde. |
+| 09 | Funki, der kleine Drache | `funki-der-kleine-drache` | `geschichten/09_funki-der-kleine-drache.html` | `funki-der-kleine-drache.jpg` | Alle Drachen im Tal können Feuer spucken – nur Funki nicht. Aus seinem Maul kommt bloß warme Luft. Doch in einer eisigen Nacht wird genau das zu etwas ganz Besonderem. |
+| 10 | Ella fliegt zum Mond | `ella-fliegt-zum-mond` | `geschichten/10_ella-fliegt-zum-mond.html` | `ella-fliegt-zum-mond.jpg` | Ella kann nicht einschlafen – also baut sie aus ihrem Bett eine Rakete. Gemeinsam mit Kuschelhase Momo fliegt sie bis zum Mond, um ihm persönlich gute Nacht zu sagen. |
+| 11 | Bagger Bruno macht Feierabend | `bagger-bruno-macht-feierabend` | `geschichten/11_bagger-bruno-macht-feierabend.html` | `bagger-bruno-macht-feierabend.jpg` | Bagger Bruno liebt seine Baustelle so sehr, dass er abends einfach nicht aufhören will zu baggern. Bis ein alter Kran ihm verrät, was Bagger in der Nacht Schönes erleben. |
+| 12 | Teddy hält Wache | `teddy-haelt-wache` | `geschichten/12_teddy-haelt-wache.html` | `teddy-haelt-wache.jpg` | Jede Nacht, wenn Noah schläft, öffnet sein Teddy Brummel ganz leise die Augen. Denn er hat eine wichtige Aufgabe: Er hält Wache. Und dabei entdeckt er, wie friedlich die Nacht sein kann. |
+| 13 | Mats und das Schietwetter | `mats-und-das-schietwetter` | `geschichten/13_mats-und-das-schietwetter.html` | `mats-und-das-schietwetter.jpg` | Regen, Wind und graue Wolken über dem Hafen – Möwe Mats findet das Wetter doof. Bis sie merkt, wie gemütlich Regen klingen kann. |
+| 14 | Mats sucht ihre Lieblingsfeder | `mats-sucht-ihre-lieblingsfeder` | `geschichten/14_mats-sucht-ihre-lieblingsfeder.html` | `mats-sucht-ihre-lieblingsfeder.jpg` | Mats hat eine ganz besondere Feder mit einem silbernen Glanz – und plötzlich ist sie weg! Der ganze Hafen hilft beim Suchen. |
+| 15 | Mats hat Geburtstag | `mats-hat-geburtstag` | `geschichten/15_mats-hat-geburtstag.html` | `mats-hat-geburtstag.jpg` | Heute ist Mats’ Geburtstag! Am Hamburger Hafen wird gefeiert – mit Fischbrötchen-Torte, Hupkonzert und einem Lichtgeschenk von Lotte. |
+| 16 | Mats und die Sternschnuppe | `mats-und-die-sternschnuppe` | `geschichten/16_mats-und-die-sternschnuppe.html` | `mats-und-die-sternschnuppe.jpg` | In einer klaren Nacht saust eine Sternschnuppe über den Hafen. Mats darf sich etwas wünschen – aber was nur? |
+| 17 | Das kleine Auto fährt nach Hause | `das-kleine-auto-faehrt-nach-hause` | `geschichten/17_das-kleine-auto-faehrt-nach-hause.html` | `das-kleine-auto-faehrt-nach-hause.jpg` | Den ganzen Tag ist das kleine Auto gefahren. Jetzt wird es dunkel – Zeit, nach Hause zu fahren und allen gute Nacht zu sagen. |
+| 18 | Gute Nacht, Obstkorb | `gute-nacht-obstkorb` | `geschichten/18_gute-nacht-obstkorb.html` | `gute-nacht-obstkorb.jpg` | In der Küche steht ein Obstkorb. Apfel, Banane und die zwei Kirschen sind schon ganz müde – und sagen sich gute Nacht. |
+| 19 | Das Flugzeug landet am Abend | `das-flugzeug-landet-am-abend` | `geschichten/19_das-flugzeug-landet-am-abend.html` | `das-flugzeug-landet-am-abend.jpg` | Hoch über den Wolken fliegt ein kleines Flugzeug. Jetzt geht die Sonne unter – und das Flugzeug fliegt nach Hause. |
+| 20 | Die Luftballons wollen noch nicht schlafen | `die-luftballons-wollen-noch-nicht-schlafen` | `geschichten/20_die-luftballons-wollen-noch-nicht-schlafen.html` | `die-luftballons-wollen-noch-nicht-schlafen.jpg` | Die Party ist vorbei, aber die drei Luftballons wollen noch weiter tanzen. Bis sie merken, wie gemütlich es auch ganz ruhig sein kann. |
+| 21 | Ritter Rasmus und die Angst vor dem Dunkeln | `ritter-rasmus-und-die-angst-vor-dem-dunkeln` | `geschichten/21_ritter-rasmus-und-die-angst-vor-dem-dunkeln.html` | `ritter-rasmus-und-die-angst-vor-dem-dunkeln.jpg` | Rasmus ist der kleinste Ritter der Burg – und nachts knarrt und knackt es überall. Mit Schild, Holzschwert und Laterne macht er sich auf, das Geheimnis der Geräusche zu lüften. |
+| 22 | Nixe Nele schwimmt in den Hafen | `nixe-nele-schwimmt-in-den-hafen` | `geschichten/22_nixe-nele-schwimmt-in-den-hafen.html` | `nixe-nele-schwimmt-in-den-hafen.jpg` | Die kleine Meerjungfrau Nele will wissen, wohin die großen Schiffe fahren. Also schwimmt sie von der Nordsee die Elbe hinauf – bis mitten in den Hamburger Hafen. |
+| 23 | Robo lernt träumen | `robo-lernt-traeumen` | `geschichten/23_robo-lernt-traeumen.html` | `robo-lernt-traeumen.jpg` | Robo ist ein kleiner Roboter, der alles kann – nur nicht schlafen. Denn er hat keinen Aus-Knopf zum Träumen. Oder vielleicht doch? |
+| 24 | Das Einhorn, das seinen Regenbogen verlor | `das-einhorn-das-seinen-regenbogen-verlor` | `geschichten/24_das-einhorn-das-seinen-regenbogen-verlor.html` | `das-einhorn-das-seinen-regenbogen-verlor.jpg` | Einhorn Fiona kann Regenbögen an den Himmel zaubern – bis ihr eines Morgens die Farben fehlen. Zum Glück helfen ihr ihre Freunde, sie wiederzufinden. |
 
 ## Schritt 6: Startseite
 
@@ -125,4 +114,5 @@ python3 geschichten_bilder.py # Illustrationen der Geschichten (Farben passend z
 python3 gratis_pdf.py         # PDFs + ZIP der Ausmalbilder
 python3 kreativhafen_web.py   # alle Code-Blöcke + Vorschau
 python3 kh_doku.py            # diese Anleitung
+python3 blog_anleitung.py     # Anleitung + Steckbriefe für den Blog
 ```

@@ -1,0 +1,315 @@
+<!-- =====================================================================
+  KREATIVHAFEN – Seite /gute-nacht-geschichten (Übersicht)  ·  Code-Block, alles einfügen
+  Die einzelnen Geschichten liegen als Blog-Beiträge unter /geschichten/<name>.
+====================================================================== -->
+
+<style>
+  /* ===== Ausmalbilder (ts-am) – nutzt die ts-/tss-Bausteine der Seite ===== */
+  .ts-am { position: relative; isolation: isolate; overflow: hidden; overflow: clip; }
+  .ts-am__orb { position: absolute; z-index: -1; right: -14%; top: 0; width: 56vw; height: 56vw; max-width: 860px; max-height: 860px; border-radius: 50%; pointer-events: none;
+    background: radial-gradient(circle, rgba(46, 140, 108, .28) 0%, rgba(46, 140, 108, .16) 24%, rgba(46, 140, 108, .06) 46%, rgba(46, 140, 108, 0) 70%); }
+  .ts-am .ts-line { padding-bottom: .16em; margin-bottom: -.16em; }
+  .ts-am__ctas { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.75rem; }
+  .ts .ts-am__chips { display: flex; flex-wrap: wrap; gap: .5rem; margin: 1.5rem 0 0; padding: 0; list-style: none; }
+  .ts .ts-am__chips li { padding: 8px 13px; border-radius: 999px; border: 1px solid var(--ts-line-strong, rgba(255,255,255,.14)); color: var(--ts-text, #f6faf7); font-size: 10.5px; }
+  .ts-am__block { padding-top: clamp(4.5rem, 8vw, 7.5rem); }
+  .ts-am__blockhead { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; padding-bottom: 1.25rem; border-bottom: 1px solid var(--tss-line, rgba(255,255,255,.1)); }
+  .ts .ts-am__h2 { margin-top: clamp(1.75rem, 3vw, 2.5rem); font-family: var(--ts-font-display, 'Syne', sans-serif); font-weight: 800; font-size: clamp(2rem, 5vw, 4.4rem); line-height: .98; letter-spacing: -0.03em; }
+  .ts .ts-am__h2 i { font-style: normal; color: var(--tss-acc, #6ee7b7); }
+  .ts .ts-am__sub { margin-top: .9rem; max-width: 42rem; color: var(--tss-text, rgba(246,250,247,.72)); font-size: clamp(15px, 1.3vw, 17.5px); line-height: 1.65; }
+  .ts-am__end { padding-bottom: clamp(6rem, 11vw, 10rem); }
+
+  /* Saison-Leiste */
+  .ts-am-season { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(230px, 1fr); gap: 1px; margin: 2rem 0 0; padding: 0; list-style: none;
+    overflow-x: auto; scroll-snap-type: x mandatory; background: var(--tss-line, rgba(255,255,255,.1)); border: 1px solid var(--tss-line, rgba(255,255,255,.1)); scrollbar-width: thin; }
+  .ts-am-season li { scroll-snap-align: start; background: var(--ts-bg, #060608); }
+  .ts .ts-am-season a { position: relative; display: flex; flex-direction: column; gap: .55rem; height: 100%; min-height: 190px; padding: 1.4rem 1.3rem 1.3rem; color: inherit; text-decoration: none; transition: background .3s; }
+  .ts .ts-am-season a::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 3px; background: var(--c); opacity: .35; transition: opacity .3s; }
+  .ts .ts-am-season a:hover { background: rgba(255,255,255,.03); }
+  .ts .ts-am-season a:hover::before, .ts-am-season .is-now a::before { opacity: 1; }
+  .ts-am-season__date { color: var(--c); }
+  .ts .ts-am-season__name { font: 800 clamp(1.1rem, 1.35vw, 1.32rem)/1.08 var(--ts-font-display, 'Syne', sans-serif); letter-spacing: -0.025em; overflow-wrap: anywhere; hyphens: auto; }
+  .ts .ts-am-season__sub { color: var(--tss-text, rgba(246,250,247,.72)); font-size: 14px; line-height: 1.5; }
+  .ts .ts-am-season__state { margin-top: auto; display: inline-flex; align-self: flex-start; align-items: center; gap: .45rem; padding: 6px 11px; border-radius: 999px;
+    border: 1px solid var(--tss-line, rgba(255,255,255,.1)); color: var(--ts-muted, #9aaba3); font-size: 10px; white-space: nowrap; }
+  .ts-am-season .is-now .ts-am-season__state { border-color: var(--c); color: #060608; background: var(--c); }
+  .ts-am-season .is-now .ts-am-season__state::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: #060608; animation: ts-am-pulse 1.6s infinite; }
+  .ts-am-season .is-past { opacity: .5; }
+  @keyframes ts-am-pulse { 50% { opacity: .25; } }
+
+  /* Highlight-Karte (Saisonpaket) */
+  .ts .ts-am-bundle { display: grid; gap: 2rem; margin-top: 2rem; padding: clamp(1.5rem, 4vw, 3rem); border-radius: 26px; align-items: center; }
+  .ts .ts-am-bundle__price { display: flex; align-items: baseline; gap: .8rem; margin-top: 1.2rem; font: 800 clamp(2rem, 4vw, 3rem)/1 var(--ts-font-display, 'Syne', sans-serif); letter-spacing: -0.03em; }
+  .ts .ts-am-bundle__price s { font-size: .45em; color: var(--ts-muted, #9aaba3); font-weight: 700; }
+  .ts-am-bundle__art { position: relative; min-height: 260px; }
+  .ts .ts-am-bundle__art img { position: absolute; width: 46% !important; height: auto !important; border-radius: 8px; background: #fbf9f4; padding: 6px; box-shadow: 0 30px 60px -30px rgba(0,0,0,.9); }
+  .ts-am-bundle__art img:nth-child(1) { left: 0; top: 12%; transform: rotate(-6deg); }
+  .ts-am-bundle__art img:nth-child(2) { left: 27%; top: 0; transform: rotate(2deg); z-index: 2; }
+  .ts-am-bundle__art img:nth-child(3) { right: 0; top: 16%; transform: rotate(7deg); }
+
+  /* Ausmal-Widget (wie im Kritzelbuch) */
+  .ts-am-pick { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1.5rem; }
+  .ts .ts-am-pick button { padding: 9px 14px; border-radius: 999px; border: 1px solid var(--ts-line-strong, rgba(255,255,255,.14)); background: transparent; color: var(--ts-text, #f6faf7);
+    font: 600 11px/1 var(--ts-font-mono, 'JetBrains Mono', monospace); letter-spacing: .12em; text-transform: uppercase; cursor: pointer; transition: background .25s, color .25s, border-color .25s; }
+  .ts .ts-am-pick button:hover { border-color: rgba(110, 231, 183, .45); }
+  .ts .ts-am-pick button[aria-pressed="true"] { background: #f6faf7; color: #060608; border-color: #f6faf7; }
+  .ts-paint { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1.25rem; margin-top: 1.5rem; align-items: start; }
+  .ts-paint__paper { position: relative; padding: clamp(.6rem, 1.6vw, 1.25rem); border-radius: 8px; background: #fbf9f4; box-shadow: 0 1px 0 rgba(255,255,255,.7) inset, 0 40px 80px -36px rgba(0,0,0,.9), 0 2px 8px rgba(0,0,0,.35); }
+  .ts-paint__canvas { display: block; width: 100%; height: auto; aspect-ratio: 1000 / 1100; border-radius: 4px; cursor: crosshair; touch-action: pan-y; background: #fff; }
+  .ts-paint.is-brush .ts-paint__canvas { touch-action: none; }
+  .ts .ts-paint__done { position: absolute; left: 50%; top: 1rem; transform: translate(-50%, -10px); padding: 8px 14px; border-radius: 999px; background: #1d4d3f; color: #f6faf7; font-size: 11px; opacity: 0; pointer-events: none; transition: opacity .3s, transform .4s var(--ts-ease-out); white-space: nowrap; }
+  .ts .ts-paint__done.is-on { opacity: 1; transform: translate(-50%, 0); }
+  .ts-paint__tools { display: grid; gap: 1rem; padding: 1.1rem; border-radius: 22px; }
+  .ts .ts-paint__label { color: var(--ts-muted, #9aaba3); font-size: 10.5px; }
+  .ts-paint__swatches { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: .5rem; margin-top: .5rem; }
+  .ts .ts-paint__sw { position: relative; aspect-ratio: 1; width: 100%; border-radius: 50%; border: 2px solid rgba(255,255,255,.14); background: var(--c); cursor: pointer; transition: transform .25s var(--ts-ease-out), border-color .2s; }
+  .ts .ts-paint__sw:hover { transform: scale(1.08); }
+  .ts .ts-paint__sw[aria-pressed="true"] { border-color: #f6faf7; transform: scale(1.12); box-shadow: 0 0 0 3px rgba(110,231,183,.45); }
+  .ts-paint__modes, .ts-paint__acts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .5rem; margin-top: .5rem; }
+  .ts-paint__acts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .ts .ts-paint__btn { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .35rem; min-height: 64px; padding: .6rem .4rem; border-radius: 16px; border: 1px solid var(--ts-line-strong, rgba(255,255,255,.14)); background: rgba(255,255,255,.03); color: var(--ts-text, #f6faf7); font: 500 12.5px/1.15 var(--ts-font-body, Inter, sans-serif); cursor: pointer; transition: background .25s, border-color .25s, color .25s; }
+  .ts .ts-paint__btn:hover { border-color: rgba(110,231,183,.45); }
+  .ts .ts-paint__btn[aria-pressed="true"] { background: #f6faf7; color: #060608; border-color: #f6faf7; }
+  .ts .ts-paint__btn:disabled { opacity: .35; cursor: default; }
+  .ts .ts-paint__size { display: flex; align-items: center; gap: .75rem; margin-top: .5rem; }
+  .ts-paint__size input { flex: 1; accent-color: #6ee7b7; }
+  .ts .ts-paint__hint { color: var(--ts-muted, #9aaba3); font-size: 13px; line-height: 1.5; }
+
+  /* Motiv-Parade */
+  .ts-am-zoo { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(.6rem, 1.6vw, 1.1rem); margin-top: 2rem; }
+  .ts .ts-am-zoo figure { margin: 0; padding: clamp(.4rem, 1vw, .7rem); border-radius: 6px; background: #fbf9f4; transform: rotate(var(--r, 0deg)); box-shadow: 0 24px 50px -28px rgba(0,0,0,.85); transition: transform .5s var(--ts-ease-out); }
+  .ts .ts-am-zoo figure:hover { transform: rotate(0deg) translateY(-5px) scale(1.03); }
+  .ts-am-zoo svg, .ts-am-zoo img { display: block; width: 100% !important; height: auto !important; }
+  .ts .ts-am-zoo figcaption { margin-top: .35rem; text-align: center; font: 800 clamp(8px, .9vw, 12px)/1 var(--ts-font-display, 'Syne', sans-serif); letter-spacing: 0; text-transform: uppercase; color: #1b1f1c; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .ts .ts-am-zoo figcaption.is-long { font-size: clamp(6.5px, .68vw, 9.5px); }
+  .ts .ts-am-zoo .ts-am-door { position: relative; }
+  .ts .ts-am-zoo .ts-am-door b { position: absolute; left: .45rem; top: .4rem; min-width: 1.9rem; height: 1.9rem; display: grid; place-items: center; border-radius: 999px; background: #060608; color: #f6faf7; font: 700 12px/1 var(--ts-font-mono, monospace); }
+
+  /* Gratis + Kita */
+  .ts .ts-am-split { display: grid; gap: 2rem; margin-top: 2rem; padding: clamp(1.5rem, 3.5vw, 2.75rem); border-radius: 26px; align-items: center; }
+  .ts-am-thumbs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .8rem; }
+  .ts .ts-am-thumbs img { display: block; width: 100% !important; height: auto !important; border-radius: 6px; background: #fbf9f4; padding: 5px; box-shadow: 0 24px 50px -28px rgba(0,0,0,.85); }
+  .ts-am-thumbs img:nth-child(1) { transform: rotate(-3deg); } .ts-am-thumbs img:nth-child(2) { transform: translateY(-8px) rotate(1.5deg); } .ts-am-thumbs img:nth-child(3) { transform: rotate(2.5deg); }
+  .ts .ts-am-note { margin-top: 1rem; color: rgba(246,250,247,.5); font-size: 13px; line-height: 1.6; }
+  .ts .ts-am-list { list-style: none; margin: 1.25rem 0 0; padding: 0; display: grid; gap: .7rem; }
+  .ts .ts-am-list li { position: relative; padding-left: 1.6rem; color: var(--tss-text, rgba(246,250,247,.72)); line-height: 1.55; }
+  .ts .ts-am-list li::before { content: ""; position: absolute; left: 0; top: .5em; width: 8px; height: 8px; border-radius: 50%; background: var(--tss-acc, #6ee7b7); }
+  .ts .ts-am-list b { color: #f6faf7; }
+  .ts .ts-am-final { margin-top: clamp(3rem, 6vw, 5rem); padding: clamp(1.75rem, 4vw, 3rem); border-radius: 26px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1.5rem; }
+  .ts .ts-am-final p { font: 800 clamp(1.5rem, 3vw, 2.4rem)/1.05 var(--ts-font-display, 'Syne', sans-serif); letter-spacing: -0.025em; margin: 0; }
+
+  @media (min-width: 640px) {
+    .ts-am-zoo { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  }
+  @media (min-width: 1024px) {
+    .ts-paint { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 2rem; }
+    .ts-paint__tools { position: sticky; top: 110px; }
+    .ts .ts-am-bundle, .ts .ts-am-split { grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); gap: 3rem; }
+    .ts-am-zoo { grid-template-columns: repeat(var(--cols, 6), minmax(0, 1fr)); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .ts .ts-am-zoo figure, .ts-am-bundle__art img, .ts-am-thumbs img { transform: none !important; }
+    .ts-am-season .is-now .ts-am-season__state::before { animation: none; }
+  }
+
+  .ts-khr { position: relative; z-index: 3; padding-top: calc(var(--ts-header-space, 96px) + 1rem); }
+  .ts-khr__bar { display: flex; gap: .4rem; overflow-x: auto; scrollbar-width: none; padding: .35rem; border: 1px solid var(--ts-line, rgba(255,255,255,.08)); border-radius: 999px; background: rgba(255,255,255,.025); width: max-content; max-width: 100%; }
+  .ts-khr__bar::-webkit-scrollbar { display: none; }
+  .ts .ts-khr__bar a { display: inline-flex; align-items: center; gap: .45rem; padding: 10px 16px; border-radius: 999px; color: var(--ts-muted, #9aaba3); text-decoration: none; white-space: nowrap; font: 500 14px/1 var(--ts-font-body, Inter, sans-serif); transition: background .25s, color .25s; }
+  .ts .ts-khr__bar a:hover { color: var(--ts-text, #f6faf7); background: rgba(255,255,255,.04); }
+  .ts .ts-khr__bar a[aria-current="page"] { background: #f6faf7; color: #060608; }
+  .ts .ts-khr__bar a i { font-style: normal; padding: 3px 7px; border-radius: 999px; background: rgba(110,231,183,.16); color: #6ee7b7; font: 700 9.5px/1 var(--ts-font-mono, monospace); letter-spacing: .1em; text-transform: uppercase; }
+  .ts .ts-khr__bar a[aria-current="page"] i { background: #1d4d3f; color: #f6faf7; }
+
+  /* ---------- Kreativhafen gratis ---------- */
+  .ts-kh2 .tss--top { padding-top: clamp(2rem, 4vw, 3rem); }
+  .ts-am-packs { display: grid; gap: 1rem; margin-top: 2rem; grid-template-columns: minmax(0, 1fr); }
+  .ts .ts-am-pack { display: flex; flex-direction: column; border-radius: 22px; overflow: hidden; scroll-margin-top: 120px; }
+  .ts-am-pack__img { position: relative; aspect-ratio: 3 / 2; background: #0b100e; overflow: hidden; }
+  .ts .ts-am-pack__img img { display: block; width: 100% !important; height: 100% !important; object-fit: cover; transition: transform .7s var(--ts-ease-out); }
+  .ts-am-pack:hover .ts-am-pack__img img { transform: scale(1.04); }
+  .ts .ts-am-pack__nr { position: absolute; left: 1rem; top: .9rem; color: rgba(246,250,247,.6); }
+  .ts .ts-am-pack__tag { position: absolute; right: .9rem; top: .8rem; padding: 6px 11px; border-radius: 999px; background: rgba(6,6,8,.65); border: 1px solid var(--c); color: var(--c); font-size: 10px; }
+  .ts-am-pack__body { display: flex; flex-direction: column; gap: .55rem; flex: 1; padding: 1.25rem 1.35rem 1.4rem; }
+  .ts .ts-am-pack__t { font: 800 clamp(1.3rem, 1.8vw, 1.6rem)/1.05 var(--ts-font-display, 'Syne', sans-serif); letter-spacing: -0.025em; margin: 0; }
+  .ts .ts-am-pack__t i { font-style: normal; color: var(--c); }
+  .ts .ts-am-pack__s { color: var(--ts-muted, #9aaba3); font-size: 14px; line-height: 1.55; margin: 0; }
+  .ts-am-pack__acts { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: auto; padding-top: .9rem; }
+  .ts .ts-am-mini { display: inline-flex; align-items: center; gap: .45rem; padding: 10px 14px; border-radius: 999px; border: 1px solid var(--ts-line-strong, rgba(255,255,255,.14)); background: transparent; color: var(--ts-text, #f6faf7); font: 600 13px/1 var(--ts-font-body, Inter, sans-serif); text-decoration: none; cursor: pointer; transition: background .25s, color .25s, border-color .25s; }
+  .ts .ts-am-mini:hover { border-color: rgba(110,231,183,.5); }
+  .ts .ts-am-mini--hi { background: #f6faf7; color: #060608; border-color: #f6faf7; }
+  .ts .ts-am-mini--hi:hover { background: #6ee7b7; border-color: #6ee7b7; }
+  .ts .ts-am-mini svg { flex: none; }
+  /* Galerie */
+  .ts-am-filter { display: flex; gap: .45rem; overflow-x: auto; scrollbar-width: none; margin-top: 1.5rem; padding-bottom: .25rem; }
+  .ts-am-filter::-webkit-scrollbar { display: none; }
+  .ts .ts-am-filter button { flex: none; padding: 9px 14px; border-radius: 999px; border: 1px solid var(--ts-line-strong, rgba(255,255,255,.14)); background: transparent; color: var(--ts-text, #f6faf7); font: 600 11px/1 var(--ts-font-mono, monospace); letter-spacing: .1em; text-transform: uppercase; cursor: pointer; }
+  .ts .ts-am-filter button[aria-pressed="true"] { background: #f6faf7; color: #060608; border-color: #f6faf7; }
+  .ts-am-gal { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(.6rem, 1.4vw, 1rem); margin-top: 1.5rem; min-height: 200px; }
+  .ts .ts-am-tile { position: relative; margin: 0; padding: .55rem .55rem .6rem; border-radius: 8px; background: #fbf9f4; box-shadow: 0 24px 50px -28px rgba(0,0,0,.85); transform: rotate(var(--r, 0deg)); transition: transform .45s var(--ts-ease-out); }
+  .ts .ts-am-tile:hover { transform: rotate(0deg) translateY(-4px); }
+  .ts-am-tile svg { display: block; width: 100% !important; height: auto !important; }
+  .ts-am-tile__acts { display: grid; grid-template-columns: 1fr 1fr; gap: .35rem; margin-top: .45rem; }
+  .ts .ts-am-tile__acts button { display: inline-flex; align-items: center; justify-content: center; gap: .3rem; padding: 8px 6px; border-radius: 999px; border: 1px solid #d7d3c8; background: #fff; color: #1b1f1c; font: 600 11.5px/1 var(--ts-font-body, Inter, sans-serif); cursor: pointer; }
+  .ts .ts-am-tile__acts button:hover { background: #1b1f1c; color: #fff; border-color: #1b1f1c; }
+  .ts .ts-am-gal__msg { grid-column: 1 / -1; color: var(--ts-muted, #9aaba3); }
+  /* Geschichten */
+  .ts-gn-today { display: grid; gap: 1.5rem; margin-top: 2rem; padding: clamp(1.25rem, 3.5vw, 2.5rem); border-radius: 26px; align-items: center; }
+  .ts .ts-gn-today img { display: block; width: 100% !important; max-width: 340px; height: auto !important; margin: 0 auto; border-radius: 10px; background: #fbf9f4; padding: 8px; transform: rotate(-2deg); box-shadow: 0 40px 70px -30px rgba(0,0,0,.9); }
+  .ts .ts-gn-meta { display: flex; flex-wrap: wrap; gap: .45rem; margin: 1rem 0 0; padding: 0; list-style: none; }
+  .ts .ts-gn-meta li { padding: 6px 11px; border-radius: 999px; border: 1px solid var(--ts-line-strong, rgba(255,255,255,.14)); color: var(--ts-text, #f6faf7); font-size: 10.5px; }
+  .ts-gn-filter { display: flex; flex-wrap: wrap; gap: .45rem; margin-top: 1.5rem; }
+  .ts .ts-gn-filter button { padding: 9px 14px; border-radius: 999px; border: 1px solid var(--ts-line-strong, rgba(255,255,255,.14)); background: transparent; color: var(--ts-text, #f6faf7); font: 600 11px/1 var(--ts-font-mono, monospace); letter-spacing: .1em; text-transform: uppercase; cursor: pointer; }
+  .ts .ts-gn-filter button[aria-pressed="true"] { background: #f6faf7; color: #060608; border-color: #f6faf7; }
+  .ts-gn-grid { display: grid; gap: 1rem; margin-top: 1.5rem; grid-template-columns: minmax(0, 1fr); }
+  .ts .ts-gn-card { display: flex; flex-direction: column; border-radius: 22px; overflow: hidden; color: inherit; text-decoration: none; transition: transform .5s var(--ts-ease-out); }
+  .ts .ts-gn-card:hover { transform: translateY(-4px); }
+  .ts-gn-card[hidden] { display: none !important; }
+  .ts .ts-gn-card__img { display: grid; place-items: center; aspect-ratio: 16 / 10; background: radial-gradient(70% 80% at 50% 100%, rgba(46,140,108,.35), transparent 70%), linear-gradient(180deg, rgba(29,77,63,.25), rgba(12,17,15,.4)); }
+  .ts .ts-gn-card__img img { width: 46% !important; height: auto !important; border-radius: 8px; background: #fbf9f4; padding: 5px; transform: rotate(var(--r, -2deg)); box-shadow: 0 30px 50px -26px rgba(0,0,0,.9); }
+  .ts-gn-card__body { display: flex; flex-direction: column; gap: .5rem; flex: 1; padding: 1.2rem 1.35rem 1.4rem; }
+  .ts .ts-gn-card__t { margin: 0; font: 800 clamp(1.2rem, 1.7vw, 1.45rem)/1.1 var(--ts-font-display, 'Syne', sans-serif); letter-spacing: -0.02em; }
+  .ts .ts-gn-card__s { margin: 0; color: var(--ts-muted, #9aaba3); font-size: 14.5px; line-height: 1.6; }
+  .ts .ts-gn-card__m { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: auto; padding-top: .8rem; color: #6ee7b7; }
+  /* Einzelne Geschichte */
+  .ts-gn-story { max-width: 46rem; margin: 0 auto; }
+  .ts .ts-gn-h1 { margin: 1.25rem 0 0; font: 800 clamp(2.2rem, 6vw, 4.6rem)/.98 var(--ts-font-display, 'Syne', sans-serif); letter-spacing: -0.035em; }
+  .ts .ts-gn-h1 i { font-style: normal; color: #6ee7b7; }
+  .ts .ts-gn-lead { margin-top: 1rem; color: var(--ts-muted, #9aaba3); font-size: clamp(16px, 1.4vw, 19px); line-height: 1.65; }
+  .ts-gn-tools { position: sticky; top: calc(var(--ts-header-space, 96px) - 16px); z-index: 4; display: flex; flex-wrap: wrap; gap: .45rem; margin-top: 1.5rem; padding: .5rem; border-radius: 999px; border: 1px solid var(--ts-line, rgba(255,255,255,.08)); background: rgba(6,6,8,.82); backdrop-filter: blur(12px); width: max-content; max-width: 100%; }
+  .ts .ts-gn-tools button, .ts .ts-gn-tools a { display: inline-flex; align-items: center; gap: .4rem; padding: 9px 13px; border-radius: 999px; border: 1px solid transparent; background: transparent; color: var(--ts-text, #f6faf7); font: 500 13px/1 var(--ts-font-body, Inter, sans-serif); text-decoration: none; cursor: pointer; }
+  .ts .ts-gn-tools button:hover, .ts .ts-gn-tools a:hover { border-color: var(--ts-line-strong, rgba(255,255,255,.14)); }
+  .ts .ts-gn-tools button[aria-pressed="true"] { background: #f6faf7; color: #060608; }
+  .ts-gn-text { --gn-size: 19px; margin-top: 2.25rem; }
+  .ts .ts-gn-text p { margin: 0 0 1.15em; font: 400 var(--gn-size)/1.85 var(--ts-font-body, Inter, sans-serif); color: #e7ece9; }
+  .ts .ts-gn-text p:first-child::first-letter { float: left; margin: .08em .12em 0 0; font: 800 3.4em/.8 var(--ts-font-display, 'Syne', sans-serif); color: #6ee7b7; }
+  .ts .ts-gn-night { display: flex; align-items: center; gap: 1rem; margin: 2.5rem 0 0; padding: 1.4rem 1.5rem; border-radius: 22px; font: 700 clamp(1.15rem, 2vw, 1.45rem)/1.35 var(--ts-font-display, 'Syne', sans-serif); letter-spacing: -0.01em; }
+  .ts .ts-gn-night svg { flex: none; color: #f7d046; }
+  .ts .ts-gn-ask { margin-top: 1.25rem; padding: 1.4rem 1.5rem; border-radius: 22px; }
+  .ts .ts-gn-ask ul { margin: .8rem 0 0; padding: 0; list-style: none; display: grid; gap: .55rem; }
+  .ts .ts-gn-ask li { position: relative; padding-left: 1.5rem; color: var(--tss-text, rgba(246,250,247,.8)); line-height: 1.55; }
+  .ts .ts-gn-ask li::before { content: "?"; position: absolute; left: 0; top: 0; color: #6ee7b7; font-weight: 800; }
+  .ts-gn-motiv { display: grid; gap: 1.25rem; margin-top: 1.25rem; padding: 1.4rem 1.5rem; border-radius: 22px; align-items: center; }
+  .ts .ts-gn-motiv__img { max-width: 220px; padding: .5rem; border-radius: 8px; background: #fbf9f4; transform: rotate(-2deg); box-shadow: 0 30px 50px -26px rgba(0,0,0,.9); }
+  .ts .ts-gn-motiv__img svg { display: block; width: 100% !important; height: auto !important; }
+  /* Nachtmodus: dunkler, wärmer, größer – zum Vorlesen im abgedunkelten Kinderzimmer */
+  html.ts-gn-dark .ts-gn-page { background: #050505; }
+  html.ts-gn-dark .ts .ts-gn-text p { color: #e9dcc0; }
+  html.ts-gn-dark .ts .ts-gn-text p:first-child::first-letter { color: #f7d046; }
+  html.ts-gn-dark .ts-gn-dim { opacity: .25; transition: opacity .4s; }
+  html.ts-gn-dark .ts-khr, html.ts-gn-dark .ts-header { opacity: .25; }
+  @media (min-width: 640px) {
+    .ts-am-gal { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .ts-am-packs, .ts-gn-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (min-width: 1024px) {
+    .ts-am-gal { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+    .ts-am-packs, .ts-gn-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .ts-gn-today { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 3rem; }
+    .ts-gn-motiv { grid-template-columns: 220px minmax(0, 1fr); }
+  }
+  @media print {
+    .ts-khr, .ts-gn-tools, .ts-gn-noprint, header, footer, #footer-sections, .ts-header { display: none !important; }
+    .ts .ts-gn-text p { color: #111 !important; font-size: 13pt !important; }
+    .ts .ts-gn-h1, .ts .ts-gn-night, .ts .ts-gn-ask, .ts .ts-gn-ask li { color: #111 !important; background: none !important; border: 0 !important; }
+    .ts-gn-motiv { page-break-before: always; }
+    body, .ts-gn-page { background: #fff !important; }
+  }
+</style>
+
+<nav class="ts ts-khr" aria-label="Kreativhafen">
+  <div class="ts-container"><div class="ts-khr__bar"><a href="/kreativhafen">Übersicht</a><a href="/malbuecher">Malbücher</a><a href="/romane">Romane</a><a href="/ausmalbilder">Ausmalbilder <i>gratis</i></a><a href="/gute-nacht-geschichten">Gute-Nacht-Geschichten <i>gratis</i></a></div></div>
+</nav>
+<script>
+/* Reiter: aktiven Bereich markieren (Geschichten-Seiten gehören zu „Gute-Nacht-Geschichten“) */
+(() => {
+  const p = location.pathname.replace(/\/+$/, '') || '/';
+  document.querySelectorAll('.ts-khr__bar a').forEach(a => {
+    const h = a.getAttribute('href');
+    if (p === h || (h === '/gute-nacht-geschichten' && p.indexOf('/geschichten') === 0)) { a.setAttribute('aria-current', 'page'); a.scrollIntoView({ block: 'nearest', inline: 'center' }); }
+  });
+})();
+</script>
+<div class="ts ts-am tss ts-bleed ts-kh2 ts-gn-page" style="padding-top:0">
+  <div class="ts-am__orb" aria-hidden="true"></div>
+  <section class="ts-container tss--top" aria-labelledby="ts-gn-title" style="padding-bottom:0">
+    <div class="tss-kicker"><p class="ts-label ts-muted">[ Kreativhafen — Vorlesen ]</p><p class="ts-label ts-muted">Kostenlos · 12 Geschichten</p></div>
+    <div class="tss-head">
+      <h1 id="ts-gn-title" class="tss-h1" data-ts-fit>Gute-Nacht-<br>Geschichten<i>.</i></h1>
+      <div>
+        <p class="tss-lead">Kurze Geschichten zum Vorlesen – ruhig, warm und mit einem leisen Ende, das müde macht. Von der Möwe im Hamburger Hafen bis zum kleinen Drachen. Und zu jeder Geschichte gibt es ein Ausmalbild für den nächsten Morgen.</p>
+        <ul class="ts-am__chips"><li class="ts-label">Kostenlos</li><li class="ts-label">3–5 Minuten</li><li class="ts-label">Ab 3 Jahren</li><li class="ts-label">Mit Nachtmodus</li></ul>
+      </div>
+    </div>
+    <div class="ts-gn-today ts-glass ts-reveal" data-gn-today>
+      <a data-href href="#" aria-hidden="true" tabindex="-1"><img src="" alt="" width="360" height="396"></a>
+      <div>
+        <p class="ts-label ts-muted">[ Für heute Abend ]</p>
+        <h2 class="ts-am__h2" data-t>…</h2>
+        <p class="ts-am__sub" data-s></p>
+        <p class="ts-label" style="margin-top:1rem;color:#6ee7b7" data-m></p>
+        <div class="ts-am__ctas"><a href="#" class="ts-btn ts-btn--primary ts-magnetic" data-href><span class="ts-btn__inner"><span class="ts-roll"><span data-text="Jetzt vorlesen">Jetzt vorlesen</span></span><svg width="16" height="16" class="ts-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg></span></a></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="ts-gn-alle" class="ts-container ts-am__block" aria-labelledby="ts-gn-alle-t">
+    <div class="ts-am__blockhead"><p class="ts-label ts-muted">[ Alle Geschichten ]</p><p class="ts-label ts-muted" data-gn-count>12 Geschichten</p></div>
+    <h2 id="ts-gn-alle-t" class="ts-am__h2">Welche soll es heute sein<i>?</i></h2>
+    <div class="ts-gn-filter" data-gn-filter role="group" aria-label="Filter"><button type="button" data-thema="alle" aria-pressed="true">Alle Themen</button><button type="button" data-thema="Einschlafen" aria-pressed="false">Einschlafen</button><button type="button" data-thema="Fahrzeuge" aria-pressed="false">Fahrzeuge</button><button type="button" data-thema="Familie" aria-pressed="false">Familie</button><button type="button" data-thema="Fantasie" aria-pressed="false">Fantasie</button><button type="button" data-thema="Freundschaft" aria-pressed="false">Freundschaft</button><button type="button" data-thema="Gefühle" aria-pressed="false">Gefühle</button><button type="button" data-thema="Hafen" aria-pressed="false">Hafen</button><button type="button" data-thema="Jahreszeiten" aria-pressed="false">Jahreszeiten</button><button type="button" data-thema="Mut" aria-pressed="false">Mut</button><button type="button" data-thema="Tiere" aria-pressed="false">Tiere</button><button type="button" data-thema="Weltraum" aria-pressed="false">Weltraum</button><span style="width:100%"></span><button type="button" data-zeit="alle" aria-pressed="true">Jede Länge</button><button type="button" data-zeit="4" aria-pressed="false">Bis 4 Minuten</button><button type="button" data-zeit="5" aria-pressed="false">Bis 5 Minuten</button></div>
+    <div class="ts-gn-grid"><a class="ts-gn-card ts-glass" href="/geschichten/moewe-mats-will-nicht-schlafen" data-gn-card data-themen="Hafen,Tiere,Einschlafen" data-zeit="4" data-titel="Möwe Mats will nicht schlafen" data-teaser="Im Hafen ist abends noch so viel los – da kann Möwe Mats doch unmöglich schlafen gehen! Oder leuchtet der Hafen vielleicht auch ohne sie weiter?"><div class="ts-gn-card__img"><img src="https://raw.githubusercontent.com/trutzstaehler/stream-daten/main/kreativhafen/ausmalbilder/bilder/bunt/hf03.webp" alt="" loading="lazy" width="360" height="396" style="--r:-2deg"></div><div class="ts-gn-card__body"><h3 class="ts-gn-card__t">Möwe Mats will nicht schlafen</h3><p class="ts-gn-card__s">Im Hafen ist abends noch so viel los – da kann Möwe Mats doch unmöglich schlafen gehen! Oder leuchtet der Hafen vielleicht auch ohne sie weiter?</p><p class="ts-label ts-gn-card__m">4 Min. · ab 3 Jahren · Hafen, Tiere</p></div></a><a class="ts-gn-card ts-glass" href="/geschichten/leuchtturm-lotte-und-der-nebel" data-gn-card data-themen="Hafen,Mut,Gefühle" data-zeit="4" data-titel="Leuchtturm Lotte und der Nebel" data-teaser="Leuchtturm Lotte findet ihr Licht viel zu klein. Doch in einer nebligen Nacht braucht ein kleines Boot genau dieses Licht, um nach Hause zu finden."><div class="ts-gn-card__img"><img src="https://raw.githubusercontent.com/trutzstaehler/stream-daten/main/kreativhafen/ausmalbilder/bilder/bunt/hf02.webp" alt="" loading="lazy" width="360" height="396" style="--r:1.5deg"></div><div class="ts-gn-card__body"><h3 class="ts-gn-card__t">Leuchtturm Lotte und der Nebel</h3><p class="ts-gn-card__s">Leuchtturm Lotte findet ihr Licht viel zu klein. Doch in einer nebligen Nacht braucht ein kleines Boot genau dieses Licht, um nach Hause zu finden.</p><p class="ts-label ts-gn-card__m">4 Min. · ab 3 Jahren · Hafen, Mut</p></div></a><a class="ts-gn-card ts-glass" href="/geschichten/die-faehre-frieda-faehrt-nach-hause" data-gn-card data-themen="Hafen,Familie,Einschlafen" data-zeit="4" data-titel="Die Fähre Frieda fährt nach Hause" data-teaser="Es ist die letzte Fahrt des Tages: Hafenfähre Frieda bringt alle nach Hause – müde Menschen, einen schnarchenden Hund und ein Kind mit einer roten Mütze."><div class="ts-gn-card__img"><img src="https://raw.githubusercontent.com/trutzstaehler/stream-daten/main/kreativhafen/ausmalbilder/bilder/bunt/hf06.webp" alt="" loading="lazy" width="360" height="396" style="--r:-1deg"></div><div class="ts-gn-card__body"><h3 class="ts-gn-card__t">Die Fähre Frieda fährt nach Hause</h3><p class="ts-gn-card__s">Es ist die letzte Fahrt des Tages: Hafenfähre Frieda bringt alle nach Hause – müde Menschen, einen schnarchenden Hund und ein Kind mit einer roten Mütze.</p><p class="ts-label ts-gn-card__m">4 Min. · ab 3 Jahren · Hafen, Familie</p></div></a><a class="ts-gn-card ts-glass" href="/geschichten/ein-schlaflied-fuer-kran-karl" data-gn-card data-themen="Hafen,Freundschaft,Einschlafen" data-zeit="4" data-titel="Ein Schlaflied für Kran Karl" data-teaser="Kran Karl ist der größte Kran im Hafen – und heute Abend ist er so müde wie noch nie. Zum Glück hat ein Kind am Ufer eine Idee."><div class="ts-gn-card__img"><img src="https://raw.githubusercontent.com/trutzstaehler/stream-daten/main/kreativhafen/ausmalbilder/bilder/bunt/hf05.webp" alt="" loading="lazy" width="360" height="396" style="--r:2deg"></div><div class="ts-gn-card__body"><h3 class="ts-gn-card__t">Ein Schlaflied für Kran Karl</h3><p class="ts-gn-card__s">Kran Karl ist der größte Kran im Hafen – und heute Abend ist er so müde wie noch nie. Zum Glück hat ein Kind am Ufer eine Idee.</p><p class="ts-label ts-gn-card__m">4 Min. · ab 3 Jahren · Hafen, Freundschaft</p></div></a><a class="ts-gn-card ts-glass" href="/geschichten/das-kleine-gespenst-huhu" data-gn-card data-themen="Jahreszeiten,Gefühle,Freundschaft" data-zeit="5" data-titel="Das kleine Gespenst Huhu" data-teaser="Huhu ist ein Gespenst – und fürchtet sich vor allem. Sogar vor sich selbst im Spiegel. Doch in der Halloween-Nacht klopft jemand an seine Tür."><div class="ts-gn-card__img"><img src="https://raw.githubusercontent.com/trutzstaehler/stream-daten/main/kreativhafen/ausmalbilder/bilder/bunt/hw02.webp" alt="" loading="lazy" width="360" height="396" style="--r:-2deg"></div><div class="ts-gn-card__body"><h3 class="ts-gn-card__t">Das kleine Gespenst Huhu</h3><p class="ts-gn-card__s">Huhu ist ein Gespenst – und fürchtet sich vor allem. Sogar vor sich selbst im Spiegel. Doch in der Halloween-Nacht klopft jemand an seine Tür.</p><p class="ts-label ts-gn-card__m">5 Min. · ab 3 Jahren · Jahreszeiten, Gefühle</p></div></a><a class="ts-gn-card ts-glass" href="/geschichten/die-laterne-die-sich-vor-dem-wind-fuerchtete" data-gn-card data-themen="Jahreszeiten,Mut,Gefühle" data-zeit="4" data-titel="Die Laterne, die sich vor dem Wind fürchtete" data-teaser="Lina die Laterne soll beim Laternenumzug leuchten. Doch draußen weht der Novemberwind – und Lina hat Angst, dass er ihr Licht auspustet."><div class="ts-gn-card__img"><img src="https://raw.githubusercontent.com/trutzstaehler/stream-daten/main/kreativhafen/ausmalbilder/bilder/bunt/lt01.webp" alt="" loading="lazy" width="360" height="396" style="--r:1.5deg"></div><div class="ts-gn-card__body"><h3 class="ts-gn-card__t">Die Laterne, die sich vor dem Wind fürchtete</h3><p class="ts-gn-card__s">Lina die Laterne soll beim Laternenumzug leuchten. Doch draußen weht der Novemberwind – und Lina hat Angst, dass er ihr Licht auspustet.</p><p class="ts-label ts-gn-card__m">4 Min. · ab 3 Jahren · Jahreszeiten, Mut</p></div></a><a class="ts-gn-card ts-glass" href="/geschichten/wichtel-wilbur-und-das-warten" data-gn-card data-themen="Jahreszeiten,Gefühle,Familie" data-zeit="5" data-titel="Wichtel Wilbur und das Warten" data-teaser="Jede Nacht bewacht der kleine Wichtel Wilbur ein Türchen im Adventskalender. Doch das Warten fällt ihm so schwer – bis er entdeckt, wie schön es sein kann."><div class="ts-gn-card__img"><img src="https://raw.githubusercontent.com/trutzstaehler/stream-daten/main/kreativhafen/ausmalbilder/bilder/bunt/ad13.webp" alt="" loading="lazy" width="360" height="396" style="--r:-1deg"></div><div class="ts-gn-card__body"><h3 class="ts-gn-card__t">Wichtel Wilbur und das Warten</h3><p class="ts-gn-card__s">Jede Nacht bewacht der kleine Wichtel Wilbur ein Türchen im Adventskalender. Doch das Warten fällt ihm so schwer – bis er entdeckt, wie schön es sein kann.</p><p class="ts-label ts-gn-card__m">5 Min. · ab 4 Jahren · Jahreszeiten, Gefühle</p></div></a><a class="ts-gn-card ts-glass" href="/geschichten/der-schneemann-der-die-sterne-sehen-wollte" data-gn-card data-themen="Jahreszeiten,Freundschaft,Einschlafen" data-zeit="4" data-titel="Der Schneemann, der die Sterne sehen wollte" data-teaser="Schneemann Kalle steht im Garten und schaut jede Nacht zu den Sternen hinauf. Wie gern würde er sie einmal von Nahem sehen! Zum Glück hat er gute Freunde."><div class="ts-gn-card__img"><img src="https://raw.githubusercontent.com/trutzstaehler/stream-daten/main/kreativhafen/ausmalbilder/bilder/bunt/wi01.webp" alt="" loading="lazy" width="360" height="396" style="--r:2deg"></div><div class="ts-gn-card__body"><h3 class="ts-gn-card__t">Der Schneemann, der die Sterne sehen wollte</h3><p class="ts-gn-card__s">Schneemann Kalle steht im Garten und schaut jede Nacht zu den Sternen hinauf. Wie gern würde er sie einmal von Nahem sehen! Zum Glück hat er gute Freunde.</p><p class="ts-label ts-gn-card__m">4 Min. · ab 3 Jahren · Jahreszeiten, Freundschaft</p></div></a><a class="ts-gn-card ts-glass" href="/geschichten/funki-der-kleine-drache" data-gn-card data-themen="Fantasie,Gefühle,Freundschaft" data-zeit="5" data-titel="Funki, der kleine Drache" data-teaser="Alle Drachen im Tal können Feuer spucken – nur Funki nicht. Aus seinem Maul kommt bloß warme Luft. Doch in einer eisigen Nacht wird genau das zu etwas ganz Besonderem."><div class="ts-gn-card__img"><img src="https://raw.githubusercontent.com/trutzstaehler/stream-daten/main/kreativhafen/ausmalbilder/bilder/bunt/mf02.webp" alt="" loading="lazy" width="360" height="396" style="--r:-2deg"></div><div class="ts-gn-card__body"><h3 class="ts-gn-card__t">Funki, der kleine Drache</h3><p class="ts-gn-card__s">Alle Drachen im Tal können Feuer spucken – nur Funki nicht. Aus seinem Maul kommt bloß warme Luft. Doch in einer eisigen Nacht wird genau das zu etwas ganz Besonderem.</p><p class="ts-label ts-gn-card__m">5 Min. · ab 3 Jahren · Fantasie, Gefühle</p></div></a><a class="ts-gn-card ts-glass" href="/geschichten/ella-fliegt-zum-mond" data-gn-card data-themen="Weltraum,Einschlafen,Fantasie" data-zeit="5" data-titel="Ella fliegt zum Mond" data-teaser="Ella kann nicht einschlafen – also baut sie aus ihrem Bett eine Rakete. Gemeinsam mit Kuschelhase Momo fliegt sie bis zum Mond, um ihm persönlich gute Nacht zu sagen."><div class="ts-gn-card__img"><img src="https://raw.githubusercontent.com/trutzstaehler/stream-daten/main/kreativhafen/ausmalbilder/bilder/bunt/wr01.webp" alt="" loading="lazy" width="360" height="396" style="--r:1.5deg"></div><div class="ts-gn-card__body"><h3 class="ts-gn-card__t">Ella fliegt zum Mond</h3><p class="ts-gn-card__s">Ella kann nicht einschlafen – also baut sie aus ihrem Bett eine Rakete. Gemeinsam mit Kuschelhase Momo fliegt sie bis zum Mond, um ihm persönlich gute Nacht zu sagen.</p><p class="ts-label ts-gn-card__m">5 Min. · ab 3 Jahren · Weltraum, Einschlafen</p></div></a><a class="ts-gn-card ts-glass" href="/geschichten/bagger-bruno-macht-feierabend" data-gn-card data-themen="Fahrzeuge,Einschlafen" data-zeit="4" data-titel="Bagger Bruno macht Feierabend" data-teaser="Bagger Bruno liebt seine Baustelle so sehr, dass er abends einfach nicht aufhören will zu baggern. Bis ein alter Kran ihm verrät, was Bagger in der Nacht Schönes erleben."><div class="ts-gn-card__img"><img src="https://raw.githubusercontent.com/trutzstaehler/stream-daten/main/kreativhafen/ausmalbilder/bilder/bunt/fz03.webp" alt="" loading="lazy" width="360" height="396" style="--r:-1deg"></div><div class="ts-gn-card__body"><h3 class="ts-gn-card__t">Bagger Bruno macht Feierabend</h3><p class="ts-gn-card__s">Bagger Bruno liebt seine Baustelle so sehr, dass er abends einfach nicht aufhören will zu baggern. Bis ein alter Kran ihm verrät, was Bagger in der Nacht Schönes erleben.</p><p class="ts-label ts-gn-card__m">4 Min. · ab 3 Jahren · Fahrzeuge, Einschlafen</p></div></a><a class="ts-gn-card ts-glass" href="/geschichten/teddy-haelt-wache" data-gn-card data-themen="Familie,Einschlafen,Mut" data-zeit="4" data-titel="Teddy hält Wache" data-teaser="Jede Nacht, wenn Noah schläft, öffnet sein Teddy Brummel ganz leise die Augen. Denn er hat eine wichtige Aufgabe: Er hält Wache. Und dabei entdeckt er, wie friedlich die Nacht sein kann."><div class="ts-gn-card__img"><img src="https://raw.githubusercontent.com/trutzstaehler/stream-daten/main/kreativhafen/ausmalbilder/bilder/bunt/ad17.webp" alt="" loading="lazy" width="360" height="396" style="--r:2deg"></div><div class="ts-gn-card__body"><h3 class="ts-gn-card__t">Teddy hält Wache</h3><p class="ts-gn-card__s">Jede Nacht, wenn Noah schläft, öffnet sein Teddy Brummel ganz leise die Augen. Denn er hat eine wichtige Aufgabe: Er hält Wache. Und dabei entdeckt er, wie friedlich die Nacht sein kann.</p><p class="ts-label ts-gn-card__m">4 Min. · ab 3 Jahren · Familie, Einschlafen</p></div></a></div>
+  </section>
+
+  <section class="ts-container ts-am__block" aria-labelledby="ts-gn-tipps-t">
+    <div class="ts-am__blockhead"><p class="ts-label ts-muted">[ Vorlese-Tipps ]</p><p class="ts-label ts-muted">01 / 03</p></div>
+    <h2 id="ts-gn-tipps-t" class="ts-am__h2" style="margin-bottom:2rem">So wird’s gemütlich<i>.</i></h2>
+    <div class="tss-steps">
+      <div class="tss-step"><h3>Licht runter</h3><p>Nur noch eine kleine Lampe an – oder den Nachtmodus auf der Geschichten-Seite einschalten.</p></div>
+      <div class="tss-step"><h3>Langsam lesen</h3><p>Ruhig und leise, mit Pausen. Gegen Ende darf die Stimme immer langsamer werden.</p></div>
+      <div class="tss-step"><h3>Immer gleich enden</h3><p>Jede Geschichte endet mit einem Gute-Nacht-Satz. Sagt ihn zusammen – das wird euer Ritual.</p></div>
+    </div>
+  </section>
+
+  <section class="ts-container ts-am__block ts-am__end" aria-labelledby="ts-gn-faq-t">
+    <div class="ts-am__blockhead"><p class="ts-label ts-muted">[ Fragen &amp; Antworten ]</p></div>
+    <h2 id="ts-gn-faq-t" class="ts-am__h2" style="margin-bottom:1.5rem">Gut zu wissen<i>.</i></h2>
+    <div class="tss-faq"><details><summary>Wie lang sind die Gute-Nacht-Geschichten?</summary><p>Zwischen 3 und 5 Minuten Vorlesezeit – genau richtig für das Abendritual, auch an müden Tagen.</p></details><details><summary>Für welches Alter sind die Geschichten?</summary><p>Für Kinder von etwa 3 bis 6 Jahren. Die Geschichten sind ruhig, enden immer friedlich und kommen ohne Gruselmomente aus.</p></details><details><summary>Was ist der Nachtmodus?</summary><p>Auf jeder Geschichten-Seite gibt es einen Nachtmodus: Die Seite wird dunkler und wärmer, die Schrift größer – angenehm zum Vorlesen im abgedunkelten Kinderzimmer.</p></details><details><summary>Kann ich die Geschichten ausdrucken?</summary><p>Ja. Jede Geschichte hat einen Druck-Knopf und ein PDF mit der Geschichte und dem passenden Ausmalbild.</p></details><details><summary>Sind die Geschichten kostenlos?</summary><p>Ja, alle Geschichten sind kostenlos. Ihr dürft sie zu Hause, in der Kita und in der Schule vorlesen. Bitte teilt den Link statt die Texte zu kopieren.</p></details></div>
+    <div class="ts-am-final ts-glass">
+      <p>Morgen früh: Ausmalbild dazu?</p>
+      <a href="/ausmalbilder" class="ts-btn ts-btn--primary ts-magnetic"><span class="ts-btn__inner"><span class="ts-roll"><span data-text="Zu den Ausmalbildern">Zu den Ausmalbildern</span></span><svg class="ts-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+    </div>
+  </section>
+</div>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "ItemList", "name": "Gute-Nacht-Geschichten zum Vorlesen – Kreativhafen", "itemListElement": [{"@type": "ListItem", "position": 1, "url": "https://trutzstaehler.de/geschichten/moewe-mats-will-nicht-schlafen", "name": "Möwe Mats will nicht schlafen"}, {"@type": "ListItem", "position": 2, "url": "https://trutzstaehler.de/geschichten/leuchtturm-lotte-und-der-nebel", "name": "Leuchtturm Lotte und der Nebel"}, {"@type": "ListItem", "position": 3, "url": "https://trutzstaehler.de/geschichten/die-faehre-frieda-faehrt-nach-hause", "name": "Die Fähre Frieda fährt nach Hause"}, {"@type": "ListItem", "position": 4, "url": "https://trutzstaehler.de/geschichten/ein-schlaflied-fuer-kran-karl", "name": "Ein Schlaflied für Kran Karl"}, {"@type": "ListItem", "position": 5, "url": "https://trutzstaehler.de/geschichten/das-kleine-gespenst-huhu", "name": "Das kleine Gespenst Huhu"}, {"@type": "ListItem", "position": 6, "url": "https://trutzstaehler.de/geschichten/die-laterne-die-sich-vor-dem-wind-fuerchtete", "name": "Die Laterne, die sich vor dem Wind fürchtete"}, {"@type": "ListItem", "position": 7, "url": "https://trutzstaehler.de/geschichten/wichtel-wilbur-und-das-warten", "name": "Wichtel Wilbur und das Warten"}, {"@type": "ListItem", "position": 8, "url": "https://trutzstaehler.de/geschichten/der-schneemann-der-die-sterne-sehen-wollte", "name": "Der Schneemann, der die Sterne sehen wollte"}, {"@type": "ListItem", "position": 9, "url": "https://trutzstaehler.de/geschichten/funki-der-kleine-drache", "name": "Funki, der kleine Drache"}, {"@type": "ListItem", "position": 10, "url": "https://trutzstaehler.de/geschichten/ella-fliegt-zum-mond", "name": "Ella fliegt zum Mond"}, {"@type": "ListItem", "position": 11, "url": "https://trutzstaehler.de/geschichten/bagger-bruno-macht-feierabend", "name": "Bagger Bruno macht Feierabend"}, {"@type": "ListItem", "position": 12, "url": "https://trutzstaehler.de/geschichten/teddy-haelt-wache", "name": "Teddy hält Wache"}]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Wie lang sind die Gute-Nacht-Geschichten?", "acceptedAnswer": {"@type": "Answer", "text": "Zwischen 3 und 5 Minuten Vorlesezeit – genau richtig für das Abendritual, auch an müden Tagen."}}, {"@type": "Question", "name": "Für welches Alter sind die Geschichten?", "acceptedAnswer": {"@type": "Answer", "text": "Für Kinder von etwa 3 bis 6 Jahren. Die Geschichten sind ruhig, enden immer friedlich und kommen ohne Gruselmomente aus."}}, {"@type": "Question", "name": "Was ist der Nachtmodus?", "acceptedAnswer": {"@type": "Answer", "text": "Auf jeder Geschichten-Seite gibt es einen Nachtmodus: Die Seite wird dunkler und wärmer, die Schrift größer – angenehm zum Vorlesen im abgedunkelten Kinderzimmer."}}, {"@type": "Question", "name": "Kann ich die Geschichten ausdrucken?", "acceptedAnswer": {"@type": "Answer", "text": "Ja. Jede Geschichte hat einen Druck-Knopf und ein PDF mit der Geschichte und dem passenden Ausmalbild."}}, {"@type": "Question", "name": "Sind die Geschichten kostenlos?", "acceptedAnswer": {"@type": "Answer", "text": "Ja, alle Geschichten sind kostenlos. Ihr dürft sie zu Hause, in der Kita und in der Schule vorlesen. Bitte teilt den Link statt die Texte zu kopieren."}}]}</script>
+
+<script>
+/* Geschichte für heute Abend (wechselt täglich) + Filter */
+(() => {
+  const cards = [...document.querySelectorAll('[data-gn-card]')];
+  const box = document.querySelector('[data-gn-today]');
+  if (box && cards.length) {
+    const d = new Date(), n = Math.floor((d - new Date(d.getFullYear(), 0, 0)) / 864e5);
+    const c = cards[n % cards.length];
+    box.querySelector('[data-t]').textContent = c.dataset.titel;
+    box.querySelector('[data-s]').textContent = c.dataset.teaser;
+    box.querySelector('[data-m]').innerHTML = c.querySelector('.ts-gn-card__m').innerHTML;
+    const img = box.querySelector('img'); img.src = c.querySelector('img').src; img.alt = c.dataset.titel;
+    box.querySelectorAll('[data-href]').forEach(a => a.href = c.getAttribute('href'));
+  }
+  const f = document.querySelector('[data-gn-filter]'); if (!f) return;
+  let thema = 'alle', zeit = 'alle';
+  const apply = () => {
+    let n = 0;
+    cards.forEach(c => { const ok = (thema === 'alle' || c.dataset.themen.split(',').includes(thema)) && (zeit === 'alle' || +c.dataset.zeit <= +zeit); c.hidden = !ok; if (ok) n++; });
+    const e = document.querySelector('[data-gn-count]'); if (e) e.textContent = n + (n === 1 ? ' Geschichte' : ' Geschichten');
+  };
+  f.addEventListener('click', e => {
+    const b = e.target.closest('button'); if (!b) return;
+    if (b.dataset.thema) { thema = b.dataset.thema; f.querySelectorAll('[data-thema]').forEach(x => x.setAttribute('aria-pressed', x === b)); }
+    if (b.dataset.zeit) { zeit = b.dataset.zeit; f.querySelectorAll('[data-zeit]').forEach(x => x.setAttribute('aria-pressed', x === b)); }
+    apply();
+  });
+  apply();
+})();
+</script>

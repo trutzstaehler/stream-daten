@@ -97,6 +97,50 @@ KITA = dict(
     intro='Alle Ausmalbilder der Saison für eure ganze Einrichtung: das komplette Saisonpaket plus Lizenzurkunde – kopieren für alle Gruppen, so oft ihr wollt, ohne Ablaufdatum.',
 )
 
+# ---------------------------------------------------------------------------
+# Ganzjaehrige Pakete (ab Version „Kreativhafen gratis“)
+GANZJAHR = [
+    dict(id='hafen', nr='06', name='Moin, Hafen!', sub='Ausmalbilder aus dem Hamburger Hafen',
+         titel_lettering=['MOIN,', 'HAFEN!'], farbe='#3f7fd9', saison='ganzjährig',
+         motive=[f'hf{i:02d}' for i in range(1, 11)], cover=['hf03', 'hf01', 'hf02'],
+         extras=['Deckblatt zum Ausmalen', 'Mal-Urkunde zum Schluss'],
+         kurz='Containerschiff, Leuchtturm, Möwe und Michel – 10 Motive aus dem Hamburger Hafen.',
+         intro='Moin aus dem Kreativhafen! Containerschiff, Leuchtturm, Hafenfähre, Möwe, Kapitän und natürlich der Michel: zehn Motive direkt von der Elbe.'),
+    dict(id='fahrzeuge', nr='07', name='Brumm, brumm!', sub='Fahrzeuge zum Ausmalen',
+         titel_lettering=['BRUMM,', 'BRUMM!'], farbe='#ff7a59', saison='ganzjährig',
+         motive=[f'fz{i:02d}' for i in range(1, 11)], cover=['fz03', 'fz02', 'fz06'],
+         extras=['Deckblatt zum Ausmalen', 'Mal-Urkunde zum Schluss'],
+         kurz='Bagger, Feuerwehr, Traktor & Co. – 10 Fahrzeuge mit freundlichen Gesichtern.',
+         intro='Tatü-tata und brumm, brumm: Feuerwehr, Bagger, Traktor, Bus, Flugzeug, Hubschrauber und mehr – zehn Fahrzeuge zum Ausmalen.'),
+    dict(id='weltraum', nr='08', name='Ab ins All!', sub='Weltraum-Ausmalbilder',
+         titel_lettering=['AB INS', 'ALL!'], farbe='#9b6ad6', saison='ganzjährig',
+         motive=[f'wr{i:02d}' for i in range(1, 11)], cover=['wr05', 'wr01', 'wr02'],
+         extras=['Deckblatt zum Ausmalen', 'Mal-Urkunde zum Schluss'],
+         kurz='Astronautin, Raumschiff, Alien und Roboter – 10 Motive für kleine Sternenfahrer.',
+         intro='3, 2, 1 – Start! Astronautin, Raumschiff, Planet mit Ring, ein freundliches Alien, Roboter und Mondauto: zehn Motive für kleine Sternenfahrerinnen und Sternenfahrer.'),
+    dict(id='fantasie', nr='09', name='Es war einmal', sub='Märchen & Fantasie zum Ausmalen',
+         titel_lettering=['ES WAR', 'EINMAL'], farbe='#c084fc', saison='ganzjährig',
+         motive=[f'mf{i:02d}' for i in range(1, 11)], cover=['mf01', 'mf03', 'mf02'],
+         extras=['Deckblatt zum Ausmalen', 'Mal-Urkunde zum Schluss'],
+         kurz='Einhorn, Drache, Burg und Fee – 10 Motive aus dem Märchenland.',
+         intro='Es war einmal … ein Einhorn, ein kleiner Drache, eine Burg, eine Fee und ein Ritter. Zehn Motive aus dem Märchenland – mit Schatzkiste und Regenbogen.'),
+    dict(id='obst', nr='10', name='Knackig & bunt', sub='Obst & Gemüse zum Ausmalen',
+         titel_lettering=['KNACKIG', '& BUNT'], farbe='#8bc34a', saison='ganzjährig',
+         motive=[f'og{i:02d}' for i in range(1, 11)], cover=['og02', 'og01', 'og03'],
+         extras=['Deckblatt zum Ausmalen', 'Mal-Urkunde zum Schluss'],
+         kurz='Apfel, Banane, Karotte & Co. – 10 Früchte und Gemüse mit Gesicht.',
+         intro='Welche Farbe hat eine Banane? Und welche eine Karotte? Zehn Obst- und Gemüsesorten mit Gesicht – zum Ausmalen und Mitlesen.'),
+    dict(id='party', nr='11', name='Hurra, Party!', sub='Geburtstag & Party zum Ausmalen',
+         titel_lettering=['HURRA,', 'PARTY!'], farbe='#f29bc4', saison='ganzjährig',
+         motive=[f'gb{i:02d}' for i in range(1, 11)], cover=['gb02', 'gb01', 'gb03'],
+         extras=['Deckblatt zum Ausmalen', 'Mal-Urkunde zum Schluss'],
+         kurz='Torte, Luftballons, Partyhut – 10 Motive für den Kindergeburtstag.',
+         intro='Torte, Luftballons, Partyhut, Muffin und Popcorn: zehn Motive für Kindergeburtstag, Party und alle Tage, an denen gefeiert wird.'),
+]
+
+ALLE_PAKETE = PAKETE + GANZJAHR      # 11 Pakete, alle kostenlos
+GRATIS_URL_BASIS = 'https://raw.githubusercontent.com/trutzstaehler/stream-daten/main/kreativhafen/'
+
 GRATIS = dict(
     id='probier', name='Probierpaket', sub='3 Ausmalbilder gratis',
     motive=['hw01', 'lt01', 'ad24'],
@@ -127,7 +171,7 @@ ALLE_IDS = [p['id'] for p in PAKETE]
 
 
 def paket(pid):
-    for p in PAKETE + [BUNDLE, KITA]:
+    for p in ALLE_PAKETE + [BUNDLE, KITA]:
         if p['id'] == pid:
             return p
     raise KeyError(pid)

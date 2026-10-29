@@ -145,7 +145,17 @@ def page_urkunde(p):
 def page_eltern(p, lizenz='privat', extra='', mehr=True):
     andere = [q for q in KAT.PAKETE if q['id'] != p['id']]
     more = ''.join(f'<div><b>{esc(q["name"])}</b><br>{esc(q["sub"])}</div>' for q in andere)
-    if lizenz == 'kita':
+    if lizenz == 'gratis':
+        liz = ('<p><b>Kostenlos für euch:</b> Druckt die Seiten so oft aus, wie ihr möchtet – zu Hause, in Kita, Schule, '
+               'Hort oder Verein. Bitte teilt den <b>Link</b> statt der Datei und verkauft die Bilder nicht. '
+               f'Neue Motive gibt es auf {KAT.DOMAIN}/ausmalbilder.</p>')
+        mehr_html = ('<h2>Mehr aus dem Kreativhafen</h2>'
+                     f'<p><b>{sum(len(q["motive"]) for q in KAT.ALLE_PAKETE)} Ausmalbilder in {len(KAT.ALLE_PAKETE)} Themen</b> – vom Hamburger Hafen bis zum Weltraum, '
+                     'jedes Motiv auch einzeln zum Drucken oder direkt im Browser zum Ausmalen.</p>'
+                     '<p><b>Gute-Nacht-Geschichten zum Vorlesen</b> – kurz, ruhig und mit passendem Ausmalbild.</p>'
+                     '<p><b>Die Kritzelbücher</b> mit 50 Tieren oder 50 Dinos – gedruckt und gebunden.</p>'
+                     f'<p style="margin-top:4mm">Alles auf <b>{KAT.DOMAIN}/kreativhafen</b></p>') if mehr else ''
+    elif lizenz == 'kita':
         liz = ('<p><b>Kita-Lizenz:</b> Ihr dürft alle Seiten für die Kinder <b>einer Einrichtung</b> (ein Standort, alle Gruppen) '
                'beliebig oft ausdrucken und kopieren – ohne Ablaufdatum. Nicht erlaubt: Weitergabe an andere Einrichtungen, '
                'Veröffentlichung (z. B. im Netz oder in Elternbriefen als Datei) und Weiterverkauf. Die Lizenzurkunde liegt bei.</p>')
@@ -153,7 +163,8 @@ def page_eltern(p, lizenz='privat', extra='', mehr=True):
         liz = ('<p><b>Für eure Familie:</b> Druckt die Seiten so oft aus, wie ihr möchtet – für eure eigenen Kinder, Enkel, '
                'Patenkinder. Bitte nicht weitergeben, hochladen oder verkaufen. Für Kita, Schule, Hort oder Verein gibt es die '
                f'<b>Kita-Lizenz</b> auf {KAT.DOMAIN}/shop/ausmalbilder.</p>')
-    mehr_html = (f'<h2>Mehr aus dem Kreativhafen</h2><div class="more">{more}</div>'
+    if lizenz != 'gratis':
+      mehr_html = (f'<h2>Mehr aus dem Kreativhafen</h2><div class="more">{more}</div>'
                  f'<p style="margin-top:4mm">Alle Pakete, die Kita-Lizenz und Bilder zum Ausmalen direkt im Browser: <b>{KAT.DOMAIN}/shop/ausmalbilder</b></p>') if mehr else ''
     body = f'''
 <span class="lbl k">[ Für Eltern · Großeltern · Erzieher:innen ]</span>

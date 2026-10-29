@@ -1,0 +1,315 @@
+<!-- =====================================================================
+  GUTE-NACHT-GESCHICHTE „Der Schneemann, der die Sterne sehen wollte“  ·  Blog-Beitrag /geschichten/der-schneemann-der-die-sterne-sehen-wollte
+  Einfügen: Beitrag öffnen → Inhalt löschen → Code-Block → alles einfügen.
+====================================================================== -->
+
+<style>
+  /* ===== Ausmalbilder (ts-am) – nutzt die ts-/tss-Bausteine der Seite ===== */
+  .ts-am { position: relative; isolation: isolate; overflow: hidden; overflow: clip; }
+  .ts-am__orb { position: absolute; z-index: -1; right: -14%; top: 0; width: 56vw; height: 56vw; max-width: 860px; max-height: 860px; border-radius: 50%; pointer-events: none;
+    background: radial-gradient(circle, rgba(46, 140, 108, .28) 0%, rgba(46, 140, 108, .16) 24%, rgba(46, 140, 108, .06) 46%, rgba(46, 140, 108, 0) 70%); }
+  .ts-am .ts-line { padding-bottom: .16em; margin-bottom: -.16em; }
+  .ts-am__ctas { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.75rem; }
+  .ts .ts-am__chips { display: flex; flex-wrap: wrap; gap: .5rem; margin: 1.5rem 0 0; padding: 0; list-style: none; }
+  .ts .ts-am__chips li { padding: 8px 13px; border-radius: 999px; border: 1px solid var(--ts-line-strong, rgba(255,255,255,.14)); color: var(--ts-text, #f6faf7); font-size: 10.5px; }
+  .ts-am__block { padding-top: clamp(4.5rem, 8vw, 7.5rem); }
+  .ts-am__blockhead { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; padding-bottom: 1.25rem; border-bottom: 1px solid var(--tss-line, rgba(255,255,255,.1)); }
+  .ts .ts-am__h2 { margin-top: clamp(1.75rem, 3vw, 2.5rem); font-family: var(--ts-font-display, 'Syne', sans-serif); font-weight: 800; font-size: clamp(2rem, 5vw, 4.4rem); line-height: .98; letter-spacing: -0.03em; }
+  .ts .ts-am__h2 i { font-style: normal; color: var(--tss-acc, #6ee7b7); }
+  .ts .ts-am__sub { margin-top: .9rem; max-width: 42rem; color: var(--tss-text, rgba(246,250,247,.72)); font-size: clamp(15px, 1.3vw, 17.5px); line-height: 1.65; }
+  .ts-am__end { padding-bottom: clamp(6rem, 11vw, 10rem); }
+
+  /* Saison-Leiste */
+  .ts-am-season { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(230px, 1fr); gap: 1px; margin: 2rem 0 0; padding: 0; list-style: none;
+    overflow-x: auto; scroll-snap-type: x mandatory; background: var(--tss-line, rgba(255,255,255,.1)); border: 1px solid var(--tss-line, rgba(255,255,255,.1)); scrollbar-width: thin; }
+  .ts-am-season li { scroll-snap-align: start; background: var(--ts-bg, #060608); }
+  .ts .ts-am-season a { position: relative; display: flex; flex-direction: column; gap: .55rem; height: 100%; min-height: 190px; padding: 1.4rem 1.3rem 1.3rem; color: inherit; text-decoration: none; transition: background .3s; }
+  .ts .ts-am-season a::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 3px; background: var(--c); opacity: .35; transition: opacity .3s; }
+  .ts .ts-am-season a:hover { background: rgba(255,255,255,.03); }
+  .ts .ts-am-season a:hover::before, .ts-am-season .is-now a::before { opacity: 1; }
+  .ts-am-season__date { color: var(--c); }
+  .ts .ts-am-season__name { font: 800 clamp(1.1rem, 1.35vw, 1.32rem)/1.08 var(--ts-font-display, 'Syne', sans-serif); letter-spacing: -0.025em; overflow-wrap: anywhere; hyphens: auto; }
+  .ts .ts-am-season__sub { color: var(--tss-text, rgba(246,250,247,.72)); font-size: 14px; line-height: 1.5; }
+  .ts .ts-am-season__state { margin-top: auto; display: inline-flex; align-self: flex-start; align-items: center; gap: .45rem; padding: 6px 11px; border-radius: 999px;
+    border: 1px solid var(--tss-line, rgba(255,255,255,.1)); color: var(--ts-muted, #9aaba3); font-size: 10px; white-space: nowrap; }
+  .ts-am-season .is-now .ts-am-season__state { border-color: var(--c); color: #060608; background: var(--c); }
+  .ts-am-season .is-now .ts-am-season__state::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: #060608; animation: ts-am-pulse 1.6s infinite; }
+  .ts-am-season .is-past { opacity: .5; }
+  @keyframes ts-am-pulse { 50% { opacity: .25; } }
+
+  /* Highlight-Karte (Saisonpaket) */
+  .ts .ts-am-bundle { display: grid; gap: 2rem; margin-top: 2rem; padding: clamp(1.5rem, 4vw, 3rem); border-radius: 26px; align-items: center; }
+  .ts .ts-am-bundle__price { display: flex; align-items: baseline; gap: .8rem; margin-top: 1.2rem; font: 800 clamp(2rem, 4vw, 3rem)/1 var(--ts-font-display, 'Syne', sans-serif); letter-spacing: -0.03em; }
+  .ts .ts-am-bundle__price s { font-size: .45em; color: var(--ts-muted, #9aaba3); font-weight: 700; }
+  .ts-am-bundle__art { position: relative; min-height: 260px; }
+  .ts .ts-am-bundle__art img { position: absolute; width: 46% !important; height: auto !important; border-radius: 8px; background: #fbf9f4; padding: 6px; box-shadow: 0 30px 60px -30px rgba(0,0,0,.9); }
+  .ts-am-bundle__art img:nth-child(1) { left: 0; top: 12%; transform: rotate(-6deg); }
+  .ts-am-bundle__art img:nth-child(2) { left: 27%; top: 0; transform: rotate(2deg); z-index: 2; }
+  .ts-am-bundle__art img:nth-child(3) { right: 0; top: 16%; transform: rotate(7deg); }
+
+  /* Ausmal-Widget (wie im Kritzelbuch) */
+  .ts-am-pick { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1.5rem; }
+  .ts .ts-am-pick button { padding: 9px 14px; border-radius: 999px; border: 1px solid var(--ts-line-strong, rgba(255,255,255,.14)); background: transparent; color: var(--ts-text, #f6faf7);
+    font: 600 11px/1 var(--ts-font-mono, 'JetBrains Mono', monospace); letter-spacing: .12em; text-transform: uppercase; cursor: pointer; transition: background .25s, color .25s, border-color .25s; }
+  .ts .ts-am-pick button:hover { border-color: rgba(110, 231, 183, .45); }
+  .ts .ts-am-pick button[aria-pressed="true"] { background: #f6faf7; color: #060608; border-color: #f6faf7; }
+  .ts-paint { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1.25rem; margin-top: 1.5rem; align-items: start; }
+  .ts-paint__paper { position: relative; padding: clamp(.6rem, 1.6vw, 1.25rem); border-radius: 8px; background: #fbf9f4; box-shadow: 0 1px 0 rgba(255,255,255,.7) inset, 0 40px 80px -36px rgba(0,0,0,.9), 0 2px 8px rgba(0,0,0,.35); }
+  .ts-paint__canvas { display: block; width: 100%; height: auto; aspect-ratio: 1000 / 1100; border-radius: 4px; cursor: crosshair; touch-action: pan-y; background: #fff; }
+  .ts-paint.is-brush .ts-paint__canvas { touch-action: none; }
+  .ts .ts-paint__done { position: absolute; left: 50%; top: 1rem; transform: translate(-50%, -10px); padding: 8px 14px; border-radius: 999px; background: #1d4d3f; color: #f6faf7; font-size: 11px; opacity: 0; pointer-events: none; transition: opacity .3s, transform .4s var(--ts-ease-out); white-space: nowrap; }
+  .ts .ts-paint__done.is-on { opacity: 1; transform: translate(-50%, 0); }
+  .ts-paint__tools { display: grid; gap: 1rem; padding: 1.1rem; border-radius: 22px; }
+  .ts .ts-paint__label { color: var(--ts-muted, #9aaba3); font-size: 10.5px; }
+  .ts-paint__swatches { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: .5rem; margin-top: .5rem; }
+  .ts .ts-paint__sw { position: relative; aspect-ratio: 1; width: 100%; border-radius: 50%; border: 2px solid rgba(255,255,255,.14); background: var(--c); cursor: pointer; transition: transform .25s var(--ts-ease-out), border-color .2s; }
+  .ts .ts-paint__sw:hover { transform: scale(1.08); }
+  .ts .ts-paint__sw[aria-pressed="true"] { border-color: #f6faf7; transform: scale(1.12); box-shadow: 0 0 0 3px rgba(110,231,183,.45); }
+  .ts-paint__modes, .ts-paint__acts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .5rem; margin-top: .5rem; }
+  .ts-paint__acts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .ts .ts-paint__btn { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .35rem; min-height: 64px; padding: .6rem .4rem; border-radius: 16px; border: 1px solid var(--ts-line-strong, rgba(255,255,255,.14)); background: rgba(255,255,255,.03); color: var(--ts-text, #f6faf7); font: 500 12.5px/1.15 var(--ts-font-body, Inter, sans-serif); cursor: pointer; transition: background .25s, border-color .25s, color .25s; }
+  .ts .ts-paint__btn:hover { border-color: rgba(110,231,183,.45); }
+  .ts .ts-paint__btn[aria-pressed="true"] { background: #f6faf7; color: #060608; border-color: #f6faf7; }
+  .ts .ts-paint__btn:disabled { opacity: .35; cursor: default; }
+  .ts .ts-paint__size { display: flex; align-items: center; gap: .75rem; margin-top: .5rem; }
+  .ts-paint__size input { flex: 1; accent-color: #6ee7b7; }
+  .ts .ts-paint__hint { color: var(--ts-muted, #9aaba3); font-size: 13px; line-height: 1.5; }
+
+  /* Motiv-Parade */
+  .ts-am-zoo { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(.6rem, 1.6vw, 1.1rem); margin-top: 2rem; }
+  .ts .ts-am-zoo figure { margin: 0; padding: clamp(.4rem, 1vw, .7rem); border-radius: 6px; background: #fbf9f4; transform: rotate(var(--r, 0deg)); box-shadow: 0 24px 50px -28px rgba(0,0,0,.85); transition: transform .5s var(--ts-ease-out); }
+  .ts .ts-am-zoo figure:hover { transform: rotate(0deg) translateY(-5px) scale(1.03); }
+  .ts-am-zoo svg, .ts-am-zoo img { display: block; width: 100% !important; height: auto !important; }
+  .ts .ts-am-zoo figcaption { margin-top: .35rem; text-align: center; font: 800 clamp(8px, .9vw, 12px)/1 var(--ts-font-display, 'Syne', sans-serif); letter-spacing: 0; text-transform: uppercase; color: #1b1f1c; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .ts .ts-am-zoo figcaption.is-long { font-size: clamp(6.5px, .68vw, 9.5px); }
+  .ts .ts-am-zoo .ts-am-door { position: relative; }
+  .ts .ts-am-zoo .ts-am-door b { position: absolute; left: .45rem; top: .4rem; min-width: 1.9rem; height: 1.9rem; display: grid; place-items: center; border-radius: 999px; background: #060608; color: #f6faf7; font: 700 12px/1 var(--ts-font-mono, monospace); }
+
+  /* Gratis + Kita */
+  .ts .ts-am-split { display: grid; gap: 2rem; margin-top: 2rem; padding: clamp(1.5rem, 3.5vw, 2.75rem); border-radius: 26px; align-items: center; }
+  .ts-am-thumbs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .8rem; }
+  .ts .ts-am-thumbs img { display: block; width: 100% !important; height: auto !important; border-radius: 6px; background: #fbf9f4; padding: 5px; box-shadow: 0 24px 50px -28px rgba(0,0,0,.85); }
+  .ts-am-thumbs img:nth-child(1) { transform: rotate(-3deg); } .ts-am-thumbs img:nth-child(2) { transform: translateY(-8px) rotate(1.5deg); } .ts-am-thumbs img:nth-child(3) { transform: rotate(2.5deg); }
+  .ts .ts-am-note { margin-top: 1rem; color: rgba(246,250,247,.5); font-size: 13px; line-height: 1.6; }
+  .ts .ts-am-list { list-style: none; margin: 1.25rem 0 0; padding: 0; display: grid; gap: .7rem; }
+  .ts .ts-am-list li { position: relative; padding-left: 1.6rem; color: var(--tss-text, rgba(246,250,247,.72)); line-height: 1.55; }
+  .ts .ts-am-list li::before { content: ""; position: absolute; left: 0; top: .5em; width: 8px; height: 8px; border-radius: 50%; background: var(--tss-acc, #6ee7b7); }
+  .ts .ts-am-list b { color: #f6faf7; }
+  .ts .ts-am-final { margin-top: clamp(3rem, 6vw, 5rem); padding: clamp(1.75rem, 4vw, 3rem); border-radius: 26px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1.5rem; }
+  .ts .ts-am-final p { font: 800 clamp(1.5rem, 3vw, 2.4rem)/1.05 var(--ts-font-display, 'Syne', sans-serif); letter-spacing: -0.025em; margin: 0; }
+
+  @media (min-width: 640px) {
+    .ts-am-zoo { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  }
+  @media (min-width: 1024px) {
+    .ts-paint { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 2rem; }
+    .ts-paint__tools { position: sticky; top: 110px; }
+    .ts .ts-am-bundle, .ts .ts-am-split { grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); gap: 3rem; }
+    .ts-am-zoo { grid-template-columns: repeat(var(--cols, 6), minmax(0, 1fr)); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .ts .ts-am-zoo figure, .ts-am-bundle__art img, .ts-am-thumbs img { transform: none !important; }
+    .ts-am-season .is-now .ts-am-season__state::before { animation: none; }
+  }
+
+  .ts-khr { position: relative; z-index: 3; padding-top: calc(var(--ts-header-space, 96px) + 1rem); }
+  .ts-khr__bar { display: flex; gap: .4rem; overflow-x: auto; scrollbar-width: none; padding: .35rem; border: 1px solid var(--ts-line, rgba(255,255,255,.08)); border-radius: 999px; background: rgba(255,255,255,.025); width: max-content; max-width: 100%; }
+  .ts-khr__bar::-webkit-scrollbar { display: none; }
+  .ts .ts-khr__bar a { display: inline-flex; align-items: center; gap: .45rem; padding: 10px 16px; border-radius: 999px; color: var(--ts-muted, #9aaba3); text-decoration: none; white-space: nowrap; font: 500 14px/1 var(--ts-font-body, Inter, sans-serif); transition: background .25s, color .25s; }
+  .ts .ts-khr__bar a:hover { color: var(--ts-text, #f6faf7); background: rgba(255,255,255,.04); }
+  .ts .ts-khr__bar a[aria-current="page"] { background: #f6faf7; color: #060608; }
+  .ts .ts-khr__bar a i { font-style: normal; padding: 3px 7px; border-radius: 999px; background: rgba(110,231,183,.16); color: #6ee7b7; font: 700 9.5px/1 var(--ts-font-mono, monospace); letter-spacing: .1em; text-transform: uppercase; }
+  .ts .ts-khr__bar a[aria-current="page"] i { background: #1d4d3f; color: #f6faf7; }
+
+  /* ---------- Kreativhafen gratis ---------- */
+  .ts-kh2 .tss--top { padding-top: clamp(2rem, 4vw, 3rem); }
+  .ts-am-packs { display: grid; gap: 1rem; margin-top: 2rem; grid-template-columns: minmax(0, 1fr); }
+  .ts .ts-am-pack { display: flex; flex-direction: column; border-radius: 22px; overflow: hidden; scroll-margin-top: 120px; }
+  .ts-am-pack__img { position: relative; aspect-ratio: 3 / 2; background: #0b100e; overflow: hidden; }
+  .ts .ts-am-pack__img img { display: block; width: 100% !important; height: 100% !important; object-fit: cover; transition: transform .7s var(--ts-ease-out); }
+  .ts-am-pack:hover .ts-am-pack__img img { transform: scale(1.04); }
+  .ts .ts-am-pack__nr { position: absolute; left: 1rem; top: .9rem; color: rgba(246,250,247,.6); }
+  .ts .ts-am-pack__tag { position: absolute; right: .9rem; top: .8rem; padding: 6px 11px; border-radius: 999px; background: rgba(6,6,8,.65); border: 1px solid var(--c); color: var(--c); font-size: 10px; }
+  .ts-am-pack__body { display: flex; flex-direction: column; gap: .55rem; flex: 1; padding: 1.25rem 1.35rem 1.4rem; }
+  .ts .ts-am-pack__t { font: 800 clamp(1.3rem, 1.8vw, 1.6rem)/1.05 var(--ts-font-display, 'Syne', sans-serif); letter-spacing: -0.025em; margin: 0; }
+  .ts .ts-am-pack__t i { font-style: normal; color: var(--c); }
+  .ts .ts-am-pack__s { color: var(--ts-muted, #9aaba3); font-size: 14px; line-height: 1.55; margin: 0; }
+  .ts-am-pack__acts { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: auto; padding-top: .9rem; }
+  .ts .ts-am-mini { display: inline-flex; align-items: center; gap: .45rem; padding: 10px 14px; border-radius: 999px; border: 1px solid var(--ts-line-strong, rgba(255,255,255,.14)); background: transparent; color: var(--ts-text, #f6faf7); font: 600 13px/1 var(--ts-font-body, Inter, sans-serif); text-decoration: none; cursor: pointer; transition: background .25s, color .25s, border-color .25s; }
+  .ts .ts-am-mini:hover { border-color: rgba(110,231,183,.5); }
+  .ts .ts-am-mini--hi { background: #f6faf7; color: #060608; border-color: #f6faf7; }
+  .ts .ts-am-mini--hi:hover { background: #6ee7b7; border-color: #6ee7b7; }
+  .ts .ts-am-mini svg { flex: none; }
+  /* Galerie */
+  .ts-am-filter { display: flex; gap: .45rem; overflow-x: auto; scrollbar-width: none; margin-top: 1.5rem; padding-bottom: .25rem; }
+  .ts-am-filter::-webkit-scrollbar { display: none; }
+  .ts .ts-am-filter button { flex: none; padding: 9px 14px; border-radius: 999px; border: 1px solid var(--ts-line-strong, rgba(255,255,255,.14)); background: transparent; color: var(--ts-text, #f6faf7); font: 600 11px/1 var(--ts-font-mono, monospace); letter-spacing: .1em; text-transform: uppercase; cursor: pointer; }
+  .ts .ts-am-filter button[aria-pressed="true"] { background: #f6faf7; color: #060608; border-color: #f6faf7; }
+  .ts-am-gal { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(.6rem, 1.4vw, 1rem); margin-top: 1.5rem; min-height: 200px; }
+  .ts .ts-am-tile { position: relative; margin: 0; padding: .55rem .55rem .6rem; border-radius: 8px; background: #fbf9f4; box-shadow: 0 24px 50px -28px rgba(0,0,0,.85); transform: rotate(var(--r, 0deg)); transition: transform .45s var(--ts-ease-out); }
+  .ts .ts-am-tile:hover { transform: rotate(0deg) translateY(-4px); }
+  .ts-am-tile svg { display: block; width: 100% !important; height: auto !important; }
+  .ts-am-tile__acts { display: grid; grid-template-columns: 1fr 1fr; gap: .35rem; margin-top: .45rem; }
+  .ts .ts-am-tile__acts button { display: inline-flex; align-items: center; justify-content: center; gap: .3rem; padding: 8px 6px; border-radius: 999px; border: 1px solid #d7d3c8; background: #fff; color: #1b1f1c; font: 600 11.5px/1 var(--ts-font-body, Inter, sans-serif); cursor: pointer; }
+  .ts .ts-am-tile__acts button:hover { background: #1b1f1c; color: #fff; border-color: #1b1f1c; }
+  .ts .ts-am-gal__msg { grid-column: 1 / -1; color: var(--ts-muted, #9aaba3); }
+  /* Geschichten */
+  .ts-gn-today { display: grid; gap: 1.5rem; margin-top: 2rem; padding: clamp(1.25rem, 3.5vw, 2.5rem); border-radius: 26px; align-items: center; }
+  .ts .ts-gn-today img { display: block; width: 100% !important; max-width: 340px; height: auto !important; margin: 0 auto; border-radius: 10px; background: #fbf9f4; padding: 8px; transform: rotate(-2deg); box-shadow: 0 40px 70px -30px rgba(0,0,0,.9); }
+  .ts .ts-gn-meta { display: flex; flex-wrap: wrap; gap: .45rem; margin: 1rem 0 0; padding: 0; list-style: none; }
+  .ts .ts-gn-meta li { padding: 6px 11px; border-radius: 999px; border: 1px solid var(--ts-line-strong, rgba(255,255,255,.14)); color: var(--ts-text, #f6faf7); font-size: 10.5px; }
+  .ts-gn-filter { display: flex; flex-wrap: wrap; gap: .45rem; margin-top: 1.5rem; }
+  .ts .ts-gn-filter button { padding: 9px 14px; border-radius: 999px; border: 1px solid var(--ts-line-strong, rgba(255,255,255,.14)); background: transparent; color: var(--ts-text, #f6faf7); font: 600 11px/1 var(--ts-font-mono, monospace); letter-spacing: .1em; text-transform: uppercase; cursor: pointer; }
+  .ts .ts-gn-filter button[aria-pressed="true"] { background: #f6faf7; color: #060608; border-color: #f6faf7; }
+  .ts-gn-grid { display: grid; gap: 1rem; margin-top: 1.5rem; grid-template-columns: minmax(0, 1fr); }
+  .ts .ts-gn-card { display: flex; flex-direction: column; border-radius: 22px; overflow: hidden; color: inherit; text-decoration: none; transition: transform .5s var(--ts-ease-out); }
+  .ts .ts-gn-card:hover { transform: translateY(-4px); }
+  .ts-gn-card[hidden] { display: none !important; }
+  .ts .ts-gn-card__img { display: grid; place-items: center; aspect-ratio: 16 / 10; background: radial-gradient(70% 80% at 50% 100%, rgba(46,140,108,.35), transparent 70%), linear-gradient(180deg, rgba(29,77,63,.25), rgba(12,17,15,.4)); }
+  .ts .ts-gn-card__img img { width: 46% !important; height: auto !important; border-radius: 8px; background: #fbf9f4; padding: 5px; transform: rotate(var(--r, -2deg)); box-shadow: 0 30px 50px -26px rgba(0,0,0,.9); }
+  .ts-gn-card__body { display: flex; flex-direction: column; gap: .5rem; flex: 1; padding: 1.2rem 1.35rem 1.4rem; }
+  .ts .ts-gn-card__t { margin: 0; font: 800 clamp(1.2rem, 1.7vw, 1.45rem)/1.1 var(--ts-font-display, 'Syne', sans-serif); letter-spacing: -0.02em; }
+  .ts .ts-gn-card__s { margin: 0; color: var(--ts-muted, #9aaba3); font-size: 14.5px; line-height: 1.6; }
+  .ts .ts-gn-card__m { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: auto; padding-top: .8rem; color: #6ee7b7; }
+  /* Einzelne Geschichte */
+  .ts-gn-story { max-width: 46rem; margin: 0 auto; }
+  .ts .ts-gn-h1 { margin: 1.25rem 0 0; font: 800 clamp(2.2rem, 6vw, 4.6rem)/.98 var(--ts-font-display, 'Syne', sans-serif); letter-spacing: -0.035em; }
+  .ts .ts-gn-h1 i { font-style: normal; color: #6ee7b7; }
+  .ts .ts-gn-lead { margin-top: 1rem; color: var(--ts-muted, #9aaba3); font-size: clamp(16px, 1.4vw, 19px); line-height: 1.65; }
+  .ts-gn-tools { position: sticky; top: calc(var(--ts-header-space, 96px) - 16px); z-index: 4; display: flex; flex-wrap: wrap; gap: .45rem; margin-top: 1.5rem; padding: .5rem; border-radius: 999px; border: 1px solid var(--ts-line, rgba(255,255,255,.08)); background: rgba(6,6,8,.82); backdrop-filter: blur(12px); width: max-content; max-width: 100%; }
+  .ts .ts-gn-tools button, .ts .ts-gn-tools a { display: inline-flex; align-items: center; gap: .4rem; padding: 9px 13px; border-radius: 999px; border: 1px solid transparent; background: transparent; color: var(--ts-text, #f6faf7); font: 500 13px/1 var(--ts-font-body, Inter, sans-serif); text-decoration: none; cursor: pointer; }
+  .ts .ts-gn-tools button:hover, .ts .ts-gn-tools a:hover { border-color: var(--ts-line-strong, rgba(255,255,255,.14)); }
+  .ts .ts-gn-tools button[aria-pressed="true"] { background: #f6faf7; color: #060608; }
+  .ts-gn-text { --gn-size: 19px; margin-top: 2.25rem; }
+  .ts .ts-gn-text p { margin: 0 0 1.15em; font: 400 var(--gn-size)/1.85 var(--ts-font-body, Inter, sans-serif); color: #e7ece9; }
+  .ts .ts-gn-text p:first-child::first-letter { float: left; margin: .08em .12em 0 0; font: 800 3.4em/.8 var(--ts-font-display, 'Syne', sans-serif); color: #6ee7b7; }
+  .ts .ts-gn-night { display: flex; align-items: center; gap: 1rem; margin: 2.5rem 0 0; padding: 1.4rem 1.5rem; border-radius: 22px; font: 700 clamp(1.15rem, 2vw, 1.45rem)/1.35 var(--ts-font-display, 'Syne', sans-serif); letter-spacing: -0.01em; }
+  .ts .ts-gn-night svg { flex: none; color: #f7d046; }
+  .ts .ts-gn-ask { margin-top: 1.25rem; padding: 1.4rem 1.5rem; border-radius: 22px; }
+  .ts .ts-gn-ask ul { margin: .8rem 0 0; padding: 0; list-style: none; display: grid; gap: .55rem; }
+  .ts .ts-gn-ask li { position: relative; padding-left: 1.5rem; color: var(--tss-text, rgba(246,250,247,.8)); line-height: 1.55; }
+  .ts .ts-gn-ask li::before { content: "?"; position: absolute; left: 0; top: 0; color: #6ee7b7; font-weight: 800; }
+  .ts-gn-motiv { display: grid; gap: 1.25rem; margin-top: 1.25rem; padding: 1.4rem 1.5rem; border-radius: 22px; align-items: center; }
+  .ts .ts-gn-motiv__img { max-width: 220px; padding: .5rem; border-radius: 8px; background: #fbf9f4; transform: rotate(-2deg); box-shadow: 0 30px 50px -26px rgba(0,0,0,.9); }
+  .ts .ts-gn-motiv__img svg { display: block; width: 100% !important; height: auto !important; }
+  /* Nachtmodus: dunkler, wärmer, größer – zum Vorlesen im abgedunkelten Kinderzimmer */
+  html.ts-gn-dark .ts-gn-page { background: #050505; }
+  html.ts-gn-dark .ts .ts-gn-text p { color: #e9dcc0; }
+  html.ts-gn-dark .ts .ts-gn-text p:first-child::first-letter { color: #f7d046; }
+  html.ts-gn-dark .ts-gn-dim { opacity: .25; transition: opacity .4s; }
+  html.ts-gn-dark .ts-khr, html.ts-gn-dark .ts-header { opacity: .25; }
+  @media (min-width: 640px) {
+    .ts-am-gal { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .ts-am-packs, .ts-gn-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (min-width: 1024px) {
+    .ts-am-gal { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+    .ts-am-packs, .ts-gn-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .ts-gn-today { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 3rem; }
+    .ts-gn-motiv { grid-template-columns: 220px minmax(0, 1fr); }
+  }
+  @media print {
+    .ts-khr, .ts-gn-tools, .ts-gn-noprint, header, footer, #footer-sections, .ts-header { display: none !important; }
+    .ts .ts-gn-text p { color: #111 !important; font-size: 13pt !important; }
+    .ts .ts-gn-h1, .ts .ts-gn-night, .ts .ts-gn-ask, .ts .ts-gn-ask li { color: #111 !important; background: none !important; border: 0 !important; }
+    .ts-gn-motiv { page-break-before: always; }
+    body, .ts-gn-page { background: #fff !important; }
+  }
+</style>
+
+<div class="ts-kh2 ts-gn-page">
+<nav class="ts ts-khr" aria-label="Kreativhafen">
+  <div class="ts-container"><div class="ts-khr__bar"><a href="/kreativhafen">Übersicht</a><a href="/malbuecher">Malbücher</a><a href="/romane">Romane</a><a href="/ausmalbilder">Ausmalbilder <i>gratis</i></a><a href="/gute-nacht-geschichten">Gute-Nacht-Geschichten <i>gratis</i></a></div></div>
+</nav>
+<script>
+/* Reiter: aktiven Bereich markieren (Geschichten-Seiten gehören zu „Gute-Nacht-Geschichten“) */
+(() => {
+  const p = location.pathname.replace(/\/+$/, '') || '/';
+  document.querySelectorAll('.ts-khr__bar a').forEach(a => {
+    const h = a.getAttribute('href');
+    if (p === h || (h === '/gute-nacht-geschichten' && p.indexOf('/geschichten') === 0)) { a.setAttribute('aria-current', 'page'); a.scrollIntoView({ block: 'nearest', inline: 'center' }); }
+  });
+})();
+</script>
+<article class="ts ts-am tss ts-bleed" style="padding-top:0" data-gn-story aria-labelledby="ts-gn-h">
+  <div class="ts-am__orb ts-gn-dim" aria-hidden="true"></div>
+  <div class="ts-container tss--top">
+    <div class="ts-gn-story">
+      <div class="tss-kicker ts-gn-dim"><p class="ts-label ts-muted"><a href="/gute-nacht-geschichten" style="color:inherit">← Alle Gute-Nacht-Geschichten</a></p><p class="ts-label ts-muted">Geschichte 08 / 12</p></div>
+      <ul class="ts-gn-meta ts-gn-dim"><li class="ts-label">Ab 3 Jahren</li><li class="ts-label">4 Min. Vorlesezeit</li><li class="ts-label">Jahreszeiten</li><li class="ts-label">Freundschaft</li><li class="ts-label">Einschlafen</li></ul>
+      <h1 id="ts-gn-h" class="ts-gn-h1">Der Schneemann, der die Sterne sehen wollte<i>.</i></h1>
+      <p class="ts-gn-lead ts-gn-dim">Schneemann Kalle steht im Garten und schaut jede Nacht zu den Sternen hinauf. Wie gern würde er sie einmal von Nahem sehen! Zum Glück hat er gute Freunde.</p>
+      <div class="ts-gn-tools" role="toolbar" aria-label="Lesehilfen">
+        <button type="button" data-gn="night" aria-pressed="false"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg>Nachtmodus</button>
+        <button type="button" data-gn="minus" aria-label="Schrift kleiner">A−</button>
+        <button type="button" data-gn="plus" aria-label="Schrift größer">A+</button>
+        <button type="button" data-gn="speak" aria-pressed="false"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><path d="M11 5 6 9H2v6h4l5 4V5Z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M19 5a10 10 0 0 1 0 14"/></svg>Vorlesen lassen</button>
+        <button type="button" data-gn="print"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><path d="M6 9V3h12v6"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><path d="M6 14h12v7H6z"/></svg>Drucken</button>
+        <a href="https://raw.githubusercontent.com/trutzstaehler/stream-daten/main/kreativhafen/geschichten/pdf/der-schneemann-der-die-sterne-sehen-wollte.pdf" download><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>PDF</a>
+      </div>
+      <div class="ts-gn-text"><p>An einem kalten Wintertag bauten Noah und seine Schwester Amira einen Schneemann. Er bekam drei dicke Kugeln, zwei Kohlestückchen als Augen, eine Möhre als Nase und einen gestreiften Schal, der ihm fast bis zu den Füßen reichte. Oben auf den Kopf setzten sie ihm einen alten schwarzen Hut.</p><p>„Du heißt Kalle“, sagte Amira und klopfte ihm sanft auf den Bauch. „Pass gut auf unseren Garten auf.“</p><p>Kalle nahm seine Aufgabe sehr ernst. Den ganzen Tag schaute er den Spatzen zu, die im Futterhäuschen pickten. Er sah, wie die Nachbarskatze über den Zaun balancierte. Und er hörte, wie in der Ferne die Schiffe auf der Elbe tuteten.</p><p>Doch als es Abend wurde und Noah und Amira ins Haus gingen, geschah etwas Wunderbares. Der Himmel wurde dunkelblau. Und dann ging ein Licht an. Und noch eins. Und noch eins. Bis über dem ganzen Garten Tausende kleine Sterne funkelten.</p><p>„Oh“, flüsterte Kalle. „Wie schön ihr seid.“</p><p>Von da an wartete Kalle jeden Tag auf die Nacht. Und jede Nacht schaute er zu den Sternen hinauf. Er fand einen Stern, der ein bisschen bläulich schimmerte. Er fand einen, der immer ein wenig zwinkerte. Und er fand einen ganz kleinen, der fast unsichtbar war.</p><p>„Wenn ich doch nur einmal näher dran sein könnte“, seufzte er. „Nur ein kleines bisschen. Aber ich bin ja aus Schnee. Ich kann nicht fliegen. Ich kann nicht klettern. Ich kann nicht mal laufen.“</p><p>Das hörte die alte Eule, die im Apfelbaum wohnte. Sie klapperte mit dem Schnabel. „Warum so traurig, Schneemann?“</p><p>„Ich möchte die Sterne von Nahem sehen“, sagte Kalle. „Aber sie sind so weit weg.“</p><p>Die Eule überlegte. Dann flog sie davon, ohne etwas zu sagen. Kalle war ein bisschen enttäuscht.</p><p>Am nächsten Morgen war es sehr kalt. So kalt, dass Noah und Amira mit roten Wangen in den Garten gerannt kamen. Sie trugen einen großen Eimer Wasser.</p><p>„Die Eule hat uns geweckt“, rief Amira. „Sie hat die ganze Zeit ans Fenster geklopft. Und dann haben wir gesehen, wie traurig du guckst.“</p><p>„Wir haben eine Idee“, sagte Noah.</p><p>Die beiden Kinder holten eine große, flache Schale aus dem Schuppen und stellten sie direkt vor Kalle in den Schnee. Dann gossen sie vorsichtig das Wasser hinein. Und weil es so kalt war, wurde das Wasser ganz langsam zu Eis. Glatt und klar wie ein Spiegel.</p><p>„So“, sagte Amira zufrieden. „Jetzt musst du nur warten, bis es dunkel wird.“</p><p>Kalle wartete. Die Spatzen pickten. Die Katze balancierte. Die Schiffe tuteten. Und endlich wurde der Himmel wieder dunkelblau.</p><p>Kalle schaute nach unten. Und da – in der glatten Eisfläche direkt vor seinen Füßen – funkelten sie. Der bläuliche Stern. Der zwinkernde Stern. Und sogar der ganz kleine, fast unsichtbare. Sie waren ganz nah. So nah, dass Kalle sie fast mit seiner Möhrennase berühren konnte.</p><p>„Sie sind zu mir gekommen“, flüsterte er. „Die Sterne sind zu mir gekommen.“</p><p>Im Apfelbaum plusterte sich die Eule zufrieden auf. Und hinter dem Fenster drückten Noah und Amira ihre Nasen an die Scheibe und winkten.</p><p>Die ganze Nacht schaute Kalle in seinen kleinen Sternenspiegel. Und irgendwann, als der Mond hoch über dem Garten stand, fielen ihm ganz langsam die Kohleaugen zu. Denn auch Schneemänner werden müde, wenn sie glücklich sind.</p><p>Über ihm funkelten die Sterne am Himmel. Unter ihm funkelten die Sterne im Eis. Und mittendrin träumte ein Schneemann namens Kalle vom Fliegen.</p></div>
+      <p class="ts-gn-night ts-glass" data-gn-night><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg><span>Sterne oben, Sterne unten – und du mittendrin. Schlaf gut und träum was Schönes.</span></p>
+      <div class="ts-gn-ask ts-glass ts-gn-dim"><p class="ts-label ts-muted">[ Zum Reden danach ]</p><ul><li>Welchen Stern würdest du dir am Himmel aussuchen?</li><li>Wie haben Noah, Amira und die Eule Kalle geholfen?</li><li>Was möchtest du gern einmal ganz von Nahem sehen?</li></ul></div>
+      <div class="ts-gn-motiv ts-glass ts-gn-dim">
+        <div class="ts-gn-motiv__img"><svg role='img' aria-label='Ausmalbild Schneemann' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 1100' width='1000' height='1100'><g stroke='#111111' stroke-linecap='round' stroke-linejoin='round'><g transform='translate(60 0) scale(.88)'><path d='M330 600 L170 480' fill='none' stroke='#111111' stroke-width='46'/><path d='M330 600 L170 480' fill='none' stroke='#fff' stroke-width='28'/><path d='M215 515 L175 430' fill='none' stroke='#111111' stroke-width='46'/><path d='M215 515 L175 430' fill='none' stroke='#fff' stroke-width='28'/><path d='M235 530 L150 535' fill='none' stroke='#111111' stroke-width='46'/><path d='M235 530 L150 535' fill='none' stroke='#fff' stroke-width='28'/><g transform='translate(1000 0) scale(-1 1)'><path d='M330 600 L170 480' fill='none' stroke='#111111' stroke-width='46'/><path d='M330 600 L170 480' fill='none' stroke='#fff' stroke-width='28'/></g><g transform='translate(1000 0) scale(-1 1)'><path d='M215 515 L175 430' fill='none' stroke='#111111' stroke-width='46'/><path d='M215 515 L175 430' fill='none' stroke='#fff' stroke-width='28'/></g><g transform='translate(1000 0) scale(-1 1)'><path d='M235 530 L150 535' fill='none' stroke='#111111' stroke-width='46'/><path d='M235 530 L150 535' fill='none' stroke='#fff' stroke-width='28'/></g><circle cx='500' cy='710' r='205' fill='#fff' stroke-width='11'/><path d='M560 520 L640 520 C660 600 650 680 640 720 L585 720 C590 660 580 590 560 520 Z' fill='#fff' stroke-width='11' /><path d='M592 690 L640 690' fill='none' stroke-width='7'/><circle cx='500' cy='620' r='22' fill='#fff' stroke-width='11'/><circle cx='500' cy='720' r='22' fill='#fff' stroke-width='11'/><circle cx='500' cy='810' r='22' fill='#fff' stroke-width='11'/><circle cx='500' cy='385' r='155' fill='#fff' stroke-width='11'/><path d='M360 470 Q500 540 640 470 L650 520 Q500 590 350 520 Z' fill='#fff' stroke-width='11' /><rect x='365' y='220' width='270' height='42' rx='18' fill='#fff' stroke-width='11'/><rect x='400' y='85' width='200' height='150' rx='14' fill='#fff' stroke-width='11'/><rect x='400' y='180' width='200' height='40' rx='0' fill='#fff' stroke-width='7'/><ellipse cx='445' cy='360' rx='22' ry='28' fill='#111111' stroke-width='0'/><circle cx='438' cy='350' r='9' fill='#fff' stroke='none'/><circle cx='452' cy='369' r='4' fill='#fff' stroke='none'/><ellipse cx='555' cy='360' rx='22' ry='28' fill='#111111' stroke-width='0'/><circle cx='548' cy='350' r='9' fill='#fff' stroke='none'/><circle cx='562' cy='369' r='4' fill='#fff' stroke='none'/><path d='M495 392 L600 412 L495 425 Q482 408 495 392 Z' fill='#fff' stroke-width='7' /><path d='M465 448 Q500 470 535 448' fill='none' stroke-width='7'/><ellipse cx='395' cy='412' rx='20' ry='10' fill='#fff' stroke-width='5'/><ellipse cx='605' cy='440' rx='20' ry='10' fill='#fff' stroke-width='5'/><path d='M150 166 Q154 196 184 200 Q154 204 150 234 Q146 204 116 200 Q146 196 150 166 Z' fill='#fff' stroke-width='7' /><path d='M850 182 Q853 207 878 210 Q853 213 850 238 Q847 213 822 210 Q847 207 850 182 Z' fill='#fff' stroke-width='7' /><path d='M860 800 Q863 827 890 830 Q863 833 860 860 Q857 833 830 830 Q857 827 860 800 Z' fill='#fff' stroke-width='7' /><path d='M140 804 Q143 827 166 830 Q143 833 140 856 Q137 833 114 830 Q137 827 140 804 Z' fill='#fff' stroke-width='7' /></g><g transform='translate(38 1038) scale(0 -0)' fill='#fff' stroke='#111111' stroke-width='179' stroke-linejoin='round' paint-order='stroke'><path transform='translate(0 0)' d='M271 -19Q210 -19 168 -4Q125 11 98 32Q71 52 57 69Q43 86 40 90Q20 115 16 135Q11 155 22 175Q32 195 57 219Q80 241 102 244Q124 246 146 234Q167 222 187 199Q211 172 228 162Q245 153 267 153Q294 153 311 160Q328 166 336 180Q344 193 344 214Q344 231 327 240Q310 250 282 257Q255 264 221 272Q187 281 154 295Q134 303 115 315Q96 327 80 342Q63 358 51 380Q39 401 32 428Q26 455 26 489Q26 550 56 598Q87 646 140 674Q194 702 262 702Q311 702 346 694Q381 686 404 675Q426 664 438 654Q450 645 453 642Q486 612 489 590Q492 569 465 529Q435 486 406 480Q377 475 339 499Q331 505 323 512Q315 520 302 526Q288 531 261 531Q251 531 241 528Q231 524 224 518Q217 513 212 505Q208 497 208 488Q208 467 224 456Q240 444 266 438Q293 432 325 426Q357 420 390 410Q417 401 442 387Q467 373 486 351Q505 329 516 296Q528 264 528 217Q528 152 503 106Q478 61 438 34Q399 6 354 -6Q310 -19 271 -19Z'/><path transform='translate(582 0)' d='M376 -19Q337 -19 289 -6Q241 6 192 33Q144 60 104 103Q63 146 38 206Q14 266 14 345Q14 421 38 479Q63 537 103 579Q143 621 192 647Q240 673 289 686Q338 698 379 698Q430 698 469 686Q508 673 532 660Q557 646 563 642Q583 629 600 614Q618 598 618 572Q618 559 612 545Q607 531 596 516Q576 488 558 475Q541 462 524 462Q511 462 499 468Q487 474 470 485Q463 490 452 496Q441 503 422 508Q403 514 372 514Q346 514 316 504Q285 495 258 474Q231 454 214 420Q197 387 197 340Q197 292 214 259Q232 226 259 206Q286 185 316 176Q347 166 372 166Q398 166 416 170Q434 175 448 183Q463 191 475 199Q486 207 499 213Q512 219 525 219Q542 219 559 205Q576 191 595 162Q606 145 612 130Q617 116 617 104Q617 79 600 64Q582 49 562 37Q555 33 532 19Q509 5 470 -7Q431 -19 376 -19Z'/><path transform='translate(1253 0)' d='M530 -8Q485 -8 466 6Q447 19 443 40Q439 62 439 84V600Q439 622 443 643Q447 664 466 678Q485 691 531 691Q577 691 596 678Q614 664 618 643Q622 622 622 599V83Q622 61 618 40Q614 19 595 6Q576 -8 530 -8ZM119 -8Q74 -8 55 6Q36 19 32 40Q28 62 28 84V600Q28 622 32 643Q36 664 55 678Q74 691 120 691Q166 691 184 678Q203 664 207 643Q211 622 211 599V83Q211 61 207 40Q203 19 184 6Q165 -8 119 -8ZM195 263V419H455V263Z'/><path transform='translate(1943 0)' d='M118 -9Q74 -9 55 4Q36 18 32 39Q28 60 28 83V602Q28 624 32 644Q36 664 56 677Q75 690 120 690Q164 690 180 679Q196 668 209 651L459 315V602Q459 624 464 644Q468 664 487 677Q506 690 551 690Q597 690 616 676Q634 663 638 642Q642 621 642 598V82Q642 60 638 39Q634 18 615 4Q596 -9 550 -9Q516 -9 498 -4Q481 2 469 18L210 360V82Q210 60 206 39Q202 18 183 4Q164 -9 118 -9Z'/><path transform='translate(2653 0)' d='M129 -9Q84 -9 65 4Q46 18 42 40Q38 61 38 83V600Q38 652 58 672Q79 691 132 691H498Q521 691 542 687Q562 683 576 664Q589 645 589 599Q589 554 576 535Q562 516 541 512Q520 508 497 508H221V419H406Q429 419 447 416Q465 412 476 396Q487 380 487 340Q487 302 476 286Q465 269 446 266Q427 263 404 263H221V174H498Q521 174 542 170Q562 166 576 147Q589 128 589 82Q589 37 576 18Q562 -1 541 -5Q520 -9 497 -9Z'/><path transform='translate(3296 0)' d='M129 -9Q84 -9 65 4Q46 18 42 40Q38 61 38 83V600Q38 652 58 672Q79 691 132 691H498Q521 691 542 687Q562 683 576 664Q589 645 589 599Q589 554 576 535Q562 516 541 512Q520 508 497 508H221V419H406Q429 419 447 416Q465 412 476 396Q487 380 487 340Q487 302 476 286Q465 269 446 266Q427 263 404 263H221V174H498Q521 174 542 170Q562 166 576 147Q589 128 589 82Q589 37 576 18Q562 -1 541 -5Q520 -9 497 -9Z'/><path transform='translate(3939 0)' d='M118 -8Q74 -8 55 5Q36 18 32 39Q28 60 28 84V600Q28 622 32 642Q36 663 55 676Q74 690 120 690Q151 690 166 686Q180 682 186 676Q193 670 200 662L407 396H401L607 661Q617 672 626 678Q634 684 648 687Q663 690 690 690Q735 690 754 676Q773 663 777 642Q781 621 781 598V82Q781 60 777 39Q773 18 754 5Q735 -8 689 -8Q644 -8 625 6Q606 19 602 40Q598 62 598 84V368L481 209Q477 204 469 194Q461 184 446 176Q431 168 404 168Q377 168 362 176Q346 184 338 194Q330 203 326 209L210 367V82Q210 60 206 39Q202 18 183 5Q164 -8 118 -8Z'/><path transform='translate(4788 0)' d='M690 118Q705 88 706 67Q707 46 693 30Q679 14 648 -2Q600 -25 574 -16Q548 -8 525 41L355 389L187 40Q163 -7 137 -16Q111 -24 64 -1Q33 14 18 30Q4 46 5 67Q6 88 21 118L272 638Q284 662 308 676Q331 691 356 691Q374 691 390 684Q405 678 418 666Q431 654 439 637ZM197 136 273 292H438L514 136Z'/><path transform='translate(5539 0)' d='M118 -9Q74 -9 55 4Q36 18 32 39Q28 60 28 83V602Q28 624 32 644Q36 664 56 677Q75 690 120 690Q164 690 180 679Q196 668 209 651L459 315V602Q459 624 464 644Q468 664 487 677Q506 690 551 690Q597 690 616 676Q634 663 638 642Q642 621 642 598V82Q642 60 638 39Q634 18 615 4Q596 -9 550 -9Q516 -9 498 -4Q481 2 469 18L210 360V82Q210 60 206 39Q202 18 183 4Q164 -9 118 -9Z'/><path transform='translate(6249 0)' d='M118 -9Q74 -9 55 4Q36 18 32 39Q28 60 28 83V602Q28 624 32 644Q36 664 56 677Q75 690 120 690Q164 690 180 679Q196 668 209 651L459 315V602Q459 624 464 644Q468 664 487 677Q506 690 551 690Q597 690 616 676Q634 663 638 642Q642 621 642 598V82Q642 60 638 39Q634 18 615 4Q596 -9 550 -9Q516 -9 498 -4Q481 2 469 18L210 360V82Q210 60 206 39Q202 18 183 4Q164 -9 118 -9Z'/></g></g></svg></div>
+        <div><p class="ts-label ts-muted">[ Das Ausmalbild zur Geschichte ]</p>
+          <h2 class="ts-am__h2" style="font-size:clamp(1.5rem,3vw,2.2rem);margin-top:.8rem">Morgen früh: Schneemann ausmalen<i>.</i></h2>
+          <div class="ts-am__ctas ts-gn-noprint">
+            <button type="button" class="ts-am-mini ts-am-mini--hi" data-gn="motiv" data-name="Schneemann" data-titel="Der Schneemann, der die Sterne sehen wollte">Ausmalbild drucken</button>
+            <a class="ts-am-mini" href="/ausmalbilder?motiv=wi01#ts-am-malen">Online ausmalen</a>
+          </div></div>
+      </div>
+    </div>
+  </div>
+  <section class="ts-container ts-am__block ts-am__end ts-gn-noprint ts-gn-dim" aria-label="Weitere Geschichten">
+    <div class="ts-am__blockhead"><p class="ts-label ts-muted">[ Noch eine? ]</p><p class="ts-label ts-muted"><a href="/gute-nacht-geschichten" style="color:inherit">Alle Geschichten →</a></p></div>
+    <div class="ts-gn-grid" style="margin-top:1.5rem"><a class="ts-gn-card ts-glass" href="/geschichten/ein-schlaflied-fuer-kran-karl" data-gn-card data-themen="Hafen,Freundschaft,Einschlafen" data-zeit="4" data-titel="Ein Schlaflied für Kran Karl" data-teaser="Kran Karl ist der größte Kran im Hafen – und heute Abend ist er so müde wie noch nie. Zum Glück hat ein Kind am Ufer eine Idee."><div class="ts-gn-card__img"><img src="https://raw.githubusercontent.com/trutzstaehler/stream-daten/main/kreativhafen/ausmalbilder/bilder/bunt/hf05.webp" alt="" loading="lazy" width="360" height="396" style="--r:-2deg"></div><div class="ts-gn-card__body"><h3 class="ts-gn-card__t">Ein Schlaflied für Kran Karl</h3><p class="ts-gn-card__s">Kran Karl ist der größte Kran im Hafen – und heute Abend ist er so müde wie noch nie. Zum Glück hat ein Kind am Ufer eine Idee.</p><p class="ts-label ts-gn-card__m">4 Min. · ab 3 Jahren · Hafen, Freundschaft</p></div></a><a class="ts-gn-card ts-glass" href="/geschichten/das-kleine-gespenst-huhu" data-gn-card data-themen="Jahreszeiten,Gefühle,Freundschaft" data-zeit="5" data-titel="Das kleine Gespenst Huhu" data-teaser="Huhu ist ein Gespenst – und fürchtet sich vor allem. Sogar vor sich selbst im Spiegel. Doch in der Halloween-Nacht klopft jemand an seine Tür."><div class="ts-gn-card__img"><img src="https://raw.githubusercontent.com/trutzstaehler/stream-daten/main/kreativhafen/ausmalbilder/bilder/bunt/hw02.webp" alt="" loading="lazy" width="360" height="396" style="--r:1.5deg"></div><div class="ts-gn-card__body"><h3 class="ts-gn-card__t">Das kleine Gespenst Huhu</h3><p class="ts-gn-card__s">Huhu ist ein Gespenst – und fürchtet sich vor allem. Sogar vor sich selbst im Spiegel. Doch in der Halloween-Nacht klopft jemand an seine Tür.</p><p class="ts-label ts-gn-card__m">5 Min. · ab 3 Jahren · Jahreszeiten, Gefühle</p></div></a></div>
+  </section>
+</article>
+</div>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "ShortStory", "name": "Der Schneemann, der die Sterne sehen wollte", "headline": "Der Schneemann, der die Sterne sehen wollte", "description": "Schneemann Kalle steht im Garten und schaut jede Nacht zu den Sternen hinauf. Wie gern würde er sie einmal von Nahem sehen! Zum Glück hat er gute Freunde.", "inLanguage": "de", "author": {"@type": "Person", "name": "Trutz Stähler", "url": "https://trutzstaehler.de/ueber-mich"}, "publisher": {"@type": "Organization", "name": "Kreativhafen"}, "isAccessibleForFree": true, "typicalAgeRange": "3-6", "timeRequired": "PT4M", "genre": "Gute-Nacht-Geschichte", "keywords": "Jahreszeiten, Freundschaft, Einschlafen", "image": "https://raw.githubusercontent.com/trutzstaehler/stream-daten/main/kreativhafen/ausmalbilder/bilder/bunt/wi01.webp", "url": "https://trutzstaehler.de/geschichten/der-schneemann-der-die-sterne-sehen-wollte", "wordCount": 556}</script>
+<script>
+/* Ein Motiv als A4-Seite drucken (öffnet ein Druckfenster) */
+window.tsKhPrint = (svg, name, paket) => {
+  const w = window.open('', '_blank');
+  if (!w) { alert('Bitte Pop-ups für diese Seite erlauben, um zu drucken.'); return; }
+  w.document.write('<!doctype html><html lang="de"><head><meta charset="utf-8"><title>' + name + ' – Ausmalbild</title>' +
+    '<style>@page{size:A4;margin:12mm}html,body{margin:0;background:#fff}body{display:flex;flex-direction:column;align-items:center;justify-content:center;height:96vh;font:500 9pt Arial,sans-serif;color:#888}' +
+    'svg{width:100%;max-height:88vh}p{margin:3mm 0 0;letter-spacing:.12em;text-transform:uppercase}</style></head><body>' + svg +
+    '<p>' + (paket ? paket + ' · ' : '') + 'trutzstaehler.de/ausmalbilder</p></body></html>');
+  w.document.close();
+  w.onafterprint = () => w.close();
+  setTimeout(() => { w.focus(); w.print(); }, 350);
+};
+</script>
+
+<script>
+/* Geschichte: Nachtmodus, Schriftgröße, Vorlesen lassen, Drucken, Ausmalbild drucken */
+(() => {
+  const root = document.querySelector('[data-gn-story]'); if (!root) return;
+  const txt = root.querySelector('.ts-gn-text'), h = document.documentElement;
+  const night = root.querySelector('[data-gn="night"]');
+  const setNight = on => { h.classList.toggle('ts-gn-dark', on); night.setAttribute('aria-pressed', on); try { localStorage.setItem('ts-gn-night', on ? '1' : ''); } catch (e) {} };
+  night.addEventListener('click', () => setNight(!h.classList.contains('ts-gn-dark')));
+  try { if (localStorage.getItem('ts-gn-night')) setNight(true); } catch (e) {}
+  let size = 19; try { size = +localStorage.getItem('ts-gn-size') || 19; } catch (e) {}
+  const setSize = s => { size = Math.max(16, Math.min(28, s)); txt.style.setProperty('--gn-size', size + 'px'); try { localStorage.setItem('ts-gn-size', size); } catch (e) {} };
+  setSize(size);
+  root.querySelector('[data-gn="plus"]').addEventListener('click', () => setSize(size + 2));
+  root.querySelector('[data-gn="minus"]').addEventListener('click', () => setSize(size - 2));
+  root.querySelector('[data-gn="print"]').addEventListener('click', () => window.print());
+  /* Vorlesen lassen (Computerstimme des Geräts, falls vorhanden) */
+  const sp = root.querySelector('[data-gn="speak"]');
+  if (!('speechSynthesis' in window)) sp.hidden = true;
+  else sp.addEventListener('click', () => {
+    if (speechSynthesis.speaking) { speechSynthesis.cancel(); sp.setAttribute('aria-pressed', 'false'); return; }
+    const t = [...txt.querySelectorAll('p')].map(p => p.textContent).join(' ') + ' ' + root.querySelector('[data-gn-night]').textContent;
+    const u = new SpeechSynthesisUtterance(t); u.lang = 'de-DE'; u.rate = .85; u.pitch = 1;
+    const v = speechSynthesis.getVoices().find(v => /^de/i.test(v.lang)); if (v) u.voice = v;
+    u.onend = () => sp.setAttribute('aria-pressed', 'false');
+    speechSynthesis.speak(u); sp.setAttribute('aria-pressed', 'true');
+  });
+  const mp = root.querySelector('[data-gn="motiv"]');
+  if (mp) mp.addEventListener('click', () => window.tsKhPrint(root.querySelector('.ts-gn-motiv__img').innerHTML, mp.dataset.name, mp.dataset.titel));
+})();
+</script>

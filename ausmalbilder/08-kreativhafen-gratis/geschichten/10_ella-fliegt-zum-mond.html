@@ -300,9 +300,15 @@
 })();
 </script>
 <style>
-  /* Im Squarespace-Blog: eigenen Beitragstitel, Datum/Autor und Vor/Zurück-Leiste ausblenden – die Geschichte bringt alles selbst mit */
-  body:has([data-gn-story]) .blog-item-top-wrapper, body:has([data-gn-story]) .blog-item-author-profile-wrapper,
-  body:has([data-gn-story]) .item-pagination, body:has([data-gn-story]) .blog-item-pagination { display: none !important; }
+body:has([data-gn-story]) .blog-item-top-wrapper,
+body:has([data-gn-story]) .blog-item-author-profile-wrapper,
+body:has([data-gn-story]) .item-pagination,
+body:has([data-gn-story]) .blog-item-pagination { display: none !important; }
+body:has([data-gn-story]) .blog-item-wrapper,
+body:has([data-gn-story]) .blog-item-inner-wrapper,
+body:has([data-gn-story]) .blog-item-content-wrapper { padding-top: 0 !important; margin-top: 0 !important; }
+body:has([data-gn-story]) .blog-item-content .sqs-block { padding-top: 0 !important; padding-bottom: 0 !important; }
+body:has([data-gn-story]) .ts-khr { width: 100vw; margin-left: calc(50% - 50vw); }
 </style>
 <article class="ts ts-am tss ts-bleed ts-kh2 ts-gn-page" style="padding-top:0" data-gn-story aria-labelledby="ts-gn-h">
   <div class="ts-am__orb ts-gn-dim" aria-hidden="true"></div>

@@ -23,7 +23,8 @@ Jede Geschichte bekommt eine **eigene Seite** unter `trutzstaehler.de/geschichte
 5. Die **Beispiel-Beiträge**, die Squarespace mitliefert, löschen.
 6. Optional: In den Blog-Einstellungen **Kommentare** einschalten (wie „Was sagst du zur Geschichte?“ bei Zitronenbande). Wenn du das nicht willst, einfach aus lassen.
 
-**Titel und Datum doppelt?** Musst du nicht ausblenden. Jeder Geschichten-Block blendet den Squarespace-Beitragstitel, Datum/Autor und die Vor/Zurück-Leiste auf seiner Seite automatisch aus. Die Geschichte zeigt ihren eigenen Titel, Autor und „Weitere Gute-Nacht-Geschichten“.
+7. **Wichtig, einmalig: CSS eintragen.** Öffne **Website → Design → Benutzerdefiniertes CSS** und füge den Inhalt der Datei `06_custom-css_blog-geschichten.css` ein (ans Ende, falls dort schon etwas steht) → Speichern.
+   Das blendet bei allen Geschichten den Squarespace-Beitragstitel, Datum/Autor und die Vor/Zurück-Leiste aus und gibt der Reiter-Leiste die volle Breite. Ohne diesen Schritt steht der Titel doppelt da und die Reiter-Leiste ist ein kleines, seitlich rollendes Fenster. (Die neuen Geschichten-Blöcke enthalten das CSS zusätzlich selbst; der Eintrag im Design sorgt dafür, dass es auch bei bereits eingefügten älteren Blöcken greift.)
 
 ---
 

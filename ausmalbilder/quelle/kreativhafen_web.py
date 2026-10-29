@@ -717,6 +717,21 @@ STORY_JS = r'''
 </script>'''
 
 
+# Im Squarespace-Blog: eigenen Beitragstitel, Datum/Autor, Abstände und Vor/Zurück-Leiste ausblenden,
+# Reiter-Leiste auf volle Breite – steckt in jeder Geschichte und als 06_custom-css_… für „Benutzerdefiniertes CSS“
+BLOG_CSS = '''
+body:has([data-gn-story]) .blog-item-top-wrapper,
+body:has([data-gn-story]) .blog-item-author-profile-wrapper,
+body:has([data-gn-story]) .item-pagination,
+body:has([data-gn-story]) .blog-item-pagination { display: none !important; }
+body:has([data-gn-story]) .blog-item-wrapper,
+body:has([data-gn-story]) .blog-item-inner-wrapper,
+body:has([data-gn-story]) .blog-item-content-wrapper { padding-top: 0 !important; margin-top: 0 !important; }
+body:has([data-gn-story]) .blog-item-content .sqs-block { padding-top: 0 !important; padding-bottom: 0 !important; }
+body:has([data-gn-story]) .ts-khr { width: 100vw; margin-left: calc(50% - 50vw); }
+'''
+
+
 def tipp(g, i):
     """TIPP-Kasten mitten im Text (wie bei Zitronenbande) – wechselt von Geschichte zu Geschichte."""
     if g.get('reihe'):
@@ -777,11 +792,7 @@ def geschichte_block(g):
 ====================================================================== -->
 {KH_CSS}
 {reiter_html()}
-<style>
-  /* Im Squarespace-Blog: eigenen Beitragstitel, Datum/Autor und Vor/Zurück-Leiste ausblenden – die Geschichte bringt alles selbst mit */
-  body:has([data-gn-story]) .blog-item-top-wrapper, body:has([data-gn-story]) .blog-item-author-profile-wrapper,
-  body:has([data-gn-story]) .item-pagination, body:has([data-gn-story]) .blog-item-pagination {{ display: none !important; }}
-</style>
+<style>{BLOG_CSS}</style>
 <article class="ts ts-am tss ts-bleed ts-kh2 ts-gn-page" style="padding-top:0" data-gn-story aria-labelledby="ts-gn-h">
   <div class="ts-am__orb ts-gn-dim" aria-hidden="true"></div>
   <div class="ts-container tss--top">
@@ -921,6 +932,8 @@ def main(basis_local='http://localhost:8765/kreativhafen/'):
         files[f'03-{i}_seite-ausmalbilder_teil-{i}-von-{len(am)}.html'] = t
     for g in GESCHICHTEN:
         files[f'geschichten/{GESCHICHTEN.index(g) + 1:02d}_{g["slug"]}.html'] = geschichte_block(g)
+    open(os.path.join(OUT, '06_custom-css_blog-geschichten.css'), 'w', encoding='utf-8').write(
+        '/* Kreativhafen – Gute-Nacht-Geschichten im Blog. Einmal einfügen unter: Website → Design → Benutzerdefiniertes CSS */' + BLOG_CSS)
     for n, c in files.items():
         open(os.path.join(OUT, n), 'w', encoding='utf-8').write(c)
         print(f'{n:78s} {len(c.encode()) / 1024:6.1f} KB')

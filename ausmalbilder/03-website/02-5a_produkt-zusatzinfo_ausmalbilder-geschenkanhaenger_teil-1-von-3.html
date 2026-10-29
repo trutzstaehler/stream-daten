@@ -1,0 +1,275 @@
+<!-- =====================================================================
+  AUSMALBILDER – Zusatzinfos für das Produkt „Für dich!“ (/store/p/ausmalbilder-geschenkanhaenger)
+  Einfügen: Produkt bearbeiten → Bereich „Zusätzliche Informationen“ → Code-Block → alles einfügen.
+====================================================================== -->
+
+<style>
+  /* ===== Ausmalbilder (ts-am) – nutzt die ts-/tss-Bausteine der Seite ===== */
+  .ts-am { position: relative; isolation: isolate; overflow: hidden; overflow: clip; }
+  .ts-am__orb { position: absolute; z-index: -1; right: -14%; top: 0; width: 56vw; height: 56vw; max-width: 860px; max-height: 860px; border-radius: 50%; pointer-events: none;
+    background: radial-gradient(circle, rgba(46, 140, 108, .28) 0%, rgba(46, 140, 108, .16) 24%, rgba(46, 140, 108, .06) 46%, rgba(46, 140, 108, 0) 70%); }
+  .ts-am .ts-line { padding-bottom: .16em; margin-bottom: -.16em; }
+  .ts-am__ctas { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.75rem; }
+  .ts .ts-am__chips { display: flex; flex-wrap: wrap; gap: .5rem; margin: 1.5rem 0 0; padding: 0; list-style: none; }
+  .ts .ts-am__chips li { padding: 8px 13px; border-radius: 999px; border: 1px solid var(--ts-line-strong, rgba(255,255,255,.14)); color: var(--ts-text, #f6faf7); font-size: 10.5px; }
+  .ts-am__block { padding-top: clamp(4.5rem, 8vw, 7.5rem); }
+  .ts-am__blockhead { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; padding-bottom: 1.25rem; border-bottom: 1px solid var(--tss-line, rgba(255,255,255,.1)); }
+  .ts .ts-am__h2 { margin-top: clamp(1.75rem, 3vw, 2.5rem); font-family: var(--ts-font-display, 'Syne', sans-serif); font-weight: 800; font-size: clamp(2rem, 5vw, 4.4rem); line-height: .98; letter-spacing: -0.03em; }
+  .ts .ts-am__h2 i { font-style: normal; color: var(--tss-acc, #6ee7b7); }
+  .ts .ts-am__sub { margin-top: .9rem; max-width: 42rem; color: var(--tss-text, rgba(246,250,247,.72)); font-size: clamp(15px, 1.3vw, 17.5px); line-height: 1.65; }
+  .ts-am__end { padding-bottom: clamp(6rem, 11vw, 10rem); }
+
+  /* Saison-Leiste */
+  .ts-am-season { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(230px, 1fr); gap: 1px; margin: 2rem 0 0; padding: 0; list-style: none;
+    overflow-x: auto; scroll-snap-type: x mandatory; background: var(--tss-line, rgba(255,255,255,.1)); border: 1px solid var(--tss-line, rgba(255,255,255,.1)); scrollbar-width: thin; }
+  .ts-am-season li { scroll-snap-align: start; background: var(--ts-bg, #060608); }
+  .ts .ts-am-season a { position: relative; display: flex; flex-direction: column; gap: .55rem; height: 100%; min-height: 190px; padding: 1.4rem 1.3rem 1.3rem; color: inherit; text-decoration: none; transition: background .3s; }
+  .ts .ts-am-season a::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 3px; background: var(--c); opacity: .35; transition: opacity .3s; }
+  .ts .ts-am-season a:hover { background: rgba(255,255,255,.03); }
+  .ts .ts-am-season a:hover::before, .ts-am-season .is-now a::before { opacity: 1; }
+  .ts-am-season__date { color: var(--c); }
+  .ts .ts-am-season__name { font: 800 clamp(1.1rem, 1.35vw, 1.32rem)/1.08 var(--ts-font-display, 'Syne', sans-serif); letter-spacing: -0.025em; overflow-wrap: anywhere; hyphens: auto; }
+  .ts .ts-am-season__sub { color: var(--tss-text, rgba(246,250,247,.72)); font-size: 14px; line-height: 1.5; }
+  .ts .ts-am-season__state { margin-top: auto; display: inline-flex; align-self: flex-start; align-items: center; gap: .45rem; padding: 6px 11px; border-radius: 999px;
+    border: 1px solid var(--tss-line, rgba(255,255,255,.1)); color: var(--ts-muted, #9aaba3); font-size: 10px; white-space: nowrap; }
+  .ts-am-season .is-now .ts-am-season__state { border-color: var(--c); color: #060608; background: var(--c); }
+  .ts-am-season .is-now .ts-am-season__state::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: #060608; animation: ts-am-pulse 1.6s infinite; }
+  .ts-am-season .is-past { opacity: .5; }
+  @keyframes ts-am-pulse { 50% { opacity: .25; } }
+
+  /* Highlight-Karte (Saisonpaket) */
+  .ts .ts-am-bundle { display: grid; gap: 2rem; margin-top: 2rem; padding: clamp(1.5rem, 4vw, 3rem); border-radius: 26px; align-items: center; }
+  .ts .ts-am-bundle__price { display: flex; align-items: baseline; gap: .8rem; margin-top: 1.2rem; font: 800 clamp(2rem, 4vw, 3rem)/1 var(--ts-font-display, 'Syne', sans-serif); letter-spacing: -0.03em; }
+  .ts .ts-am-bundle__price s { font-size: .45em; color: var(--ts-muted, #9aaba3); font-weight: 700; }
+  .ts-am-bundle__art { position: relative; min-height: 260px; }
+  .ts .ts-am-bundle__art img { position: absolute; width: 46% !important; height: auto !important; border-radius: 8px; background: #fbf9f4; padding: 6px; box-shadow: 0 30px 60px -30px rgba(0,0,0,.9); }
+  .ts-am-bundle__art img:nth-child(1) { left: 0; top: 12%; transform: rotate(-6deg); }
+  .ts-am-bundle__art img:nth-child(2) { left: 27%; top: 0; transform: rotate(2deg); z-index: 2; }
+  .ts-am-bundle__art img:nth-child(3) { right: 0; top: 16%; transform: rotate(7deg); }
+
+  /* Ausmal-Widget (wie im Kritzelbuch) */
+  .ts-am-pick { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1.5rem; }
+  .ts .ts-am-pick button { padding: 9px 14px; border-radius: 999px; border: 1px solid var(--ts-line-strong, rgba(255,255,255,.14)); background: transparent; color: var(--ts-text, #f6faf7);
+    font: 600 11px/1 var(--ts-font-mono, 'JetBrains Mono', monospace); letter-spacing: .12em; text-transform: uppercase; cursor: pointer; transition: background .25s, color .25s, border-color .25s; }
+  .ts .ts-am-pick button:hover { border-color: rgba(110, 231, 183, .45); }
+  .ts .ts-am-pick button[aria-pressed="true"] { background: #f6faf7; color: #060608; border-color: #f6faf7; }
+  .ts-paint { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1.25rem; margin-top: 1.5rem; align-items: start; }
+  .ts-paint__paper { position: relative; padding: clamp(.6rem, 1.6vw, 1.25rem); border-radius: 8px; background: #fbf9f4; box-shadow: 0 1px 0 rgba(255,255,255,.7) inset, 0 40px 80px -36px rgba(0,0,0,.9), 0 2px 8px rgba(0,0,0,.35); }
+  .ts-paint__canvas { display: block; width: 100%; height: auto; aspect-ratio: 1000 / 1100; border-radius: 4px; cursor: crosshair; touch-action: pan-y; background: #fff; }
+  .ts-paint.is-brush .ts-paint__canvas { touch-action: none; }
+  .ts .ts-paint__done { position: absolute; left: 50%; top: 1rem; transform: translate(-50%, -10px); padding: 8px 14px; border-radius: 999px; background: #1d4d3f; color: #f6faf7; font-size: 11px; opacity: 0; pointer-events: none; transition: opacity .3s, transform .4s var(--ts-ease-out); white-space: nowrap; }
+  .ts .ts-paint__done.is-on { opacity: 1; transform: translate(-50%, 0); }
+  .ts-paint__tools { display: grid; gap: 1rem; padding: 1.1rem; border-radius: 22px; }
+  .ts .ts-paint__label { color: var(--ts-muted, #9aaba3); font-size: 10.5px; }
+  .ts-paint__swatches { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: .5rem; margin-top: .5rem; }
+  .ts .ts-paint__sw { position: relative; aspect-ratio: 1; width: 100%; border-radius: 50%; border: 2px solid rgba(255,255,255,.14); background: var(--c); cursor: pointer; transition: transform .25s var(--ts-ease-out), border-color .2s; }
+  .ts .ts-paint__sw:hover { transform: scale(1.08); }
+  .ts .ts-paint__sw[aria-pressed="true"] { border-color: #f6faf7; transform: scale(1.12); box-shadow: 0 0 0 3px rgba(110,231,183,.45); }
+  .ts-paint__modes, .ts-paint__acts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .5rem; margin-top: .5rem; }
+  .ts-paint__acts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .ts .ts-paint__btn { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .35rem; min-height: 64px; padding: .6rem .4rem; border-radius: 16px; border: 1px solid var(--ts-line-strong, rgba(255,255,255,.14)); background: rgba(255,255,255,.03); color: var(--ts-text, #f6faf7); font: 500 12.5px/1.15 var(--ts-font-body, Inter, sans-serif); cursor: pointer; transition: background .25s, border-color .25s, color .25s; }
+  .ts .ts-paint__btn:hover { border-color: rgba(110,231,183,.45); }
+  .ts .ts-paint__btn[aria-pressed="true"] { background: #f6faf7; color: #060608; border-color: #f6faf7; }
+  .ts .ts-paint__btn:disabled { opacity: .35; cursor: default; }
+  .ts .ts-paint__size { display: flex; align-items: center; gap: .75rem; margin-top: .5rem; }
+  .ts-paint__size input { flex: 1; accent-color: #6ee7b7; }
+  .ts .ts-paint__hint { color: var(--ts-muted, #9aaba3); font-size: 13px; line-height: 1.5; }
+
+  /* Motiv-Parade */
+  .ts-am-zoo { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(.6rem, 1.6vw, 1.1rem); margin-top: 2rem; }
+  .ts .ts-am-zoo figure { margin: 0; padding: clamp(.4rem, 1vw, .7rem); border-radius: 6px; background: #fbf9f4; transform: rotate(var(--r, 0deg)); box-shadow: 0 24px 50px -28px rgba(0,0,0,.85); transition: transform .5s var(--ts-ease-out); }
+  .ts .ts-am-zoo figure:hover { transform: rotate(0deg) translateY(-5px) scale(1.03); }
+  .ts-am-zoo svg, .ts-am-zoo img { display: block; width: 100% !important; height: auto !important; }
+  .ts .ts-am-zoo figcaption { margin-top: .35rem; text-align: center; font: 800 clamp(8px, .9vw, 12px)/1 var(--ts-font-display, 'Syne', sans-serif); letter-spacing: 0; text-transform: uppercase; color: #1b1f1c; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .ts .ts-am-zoo figcaption.is-long { font-size: clamp(6.5px, .68vw, 9.5px); }
+  .ts .ts-am-zoo .ts-am-door { position: relative; }
+  .ts .ts-am-zoo .ts-am-door b { position: absolute; left: .45rem; top: .4rem; min-width: 1.9rem; height: 1.9rem; display: grid; place-items: center; border-radius: 999px; background: #060608; color: #f6faf7; font: 700 12px/1 var(--ts-font-mono, monospace); }
+
+  /* Gratis + Kita */
+  .ts .ts-am-split { display: grid; gap: 2rem; margin-top: 2rem; padding: clamp(1.5rem, 3.5vw, 2.75rem); border-radius: 26px; align-items: center; }
+  .ts-am-thumbs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .8rem; }
+  .ts .ts-am-thumbs img { display: block; width: 100% !important; height: auto !important; border-radius: 6px; background: #fbf9f4; padding: 5px; box-shadow: 0 24px 50px -28px rgba(0,0,0,.85); }
+  .ts-am-thumbs img:nth-child(1) { transform: rotate(-3deg); } .ts-am-thumbs img:nth-child(2) { transform: translateY(-8px) rotate(1.5deg); } .ts-am-thumbs img:nth-child(3) { transform: rotate(2.5deg); }
+  .ts .ts-am-note { margin-top: 1rem; color: rgba(246,250,247,.5); font-size: 13px; line-height: 1.6; }
+  .ts .ts-am-list { list-style: none; margin: 1.25rem 0 0; padding: 0; display: grid; gap: .7rem; }
+  .ts .ts-am-list li { position: relative; padding-left: 1.6rem; color: var(--tss-text, rgba(246,250,247,.72)); line-height: 1.55; }
+  .ts .ts-am-list li::before { content: ""; position: absolute; left: 0; top: .5em; width: 8px; height: 8px; border-radius: 50%; background: var(--tss-acc, #6ee7b7); }
+  .ts .ts-am-list b { color: #f6faf7; }
+  .ts .ts-am-final { margin-top: clamp(3rem, 6vw, 5rem); padding: clamp(1.75rem, 4vw, 3rem); border-radius: 26px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1.5rem; }
+  .ts .ts-am-final p { font: 800 clamp(1.5rem, 3vw, 2.4rem)/1.05 var(--ts-font-display, 'Syne', sans-serif); letter-spacing: -0.025em; margin: 0; }
+
+  @media (min-width: 640px) {
+    .ts-am-zoo { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  }
+  @media (min-width: 1024px) {
+    .ts-paint { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 2rem; }
+    .ts-paint__tools { position: sticky; top: 110px; }
+    .ts .ts-am-bundle, .ts .ts-am-split { grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); gap: 3rem; }
+    .ts-am-zoo { grid-template-columns: repeat(var(--cols, 6), minmax(0, 1fr)); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .ts .ts-am-zoo figure, .ts-am-bundle__art img, .ts-am-thumbs img { transform: none !important; }
+    .ts-am-season .is-now .ts-am-season__state::before { animation: none; }
+  }
+</style>
+
+<div class="ts ts-am" style="--tss-acc:#f29bc4">
+
+  <section id="ts-am-malen" class="ts-container ts-am__block" aria-labelledby="ts-am-malen-t">
+    <div class="ts-am__blockhead ts-reveal"><p class="ts-label ts-muted">[ Probier&#x27;s aus ]</p><p class="ts-label ts-muted">Motiv aus dem Paket</p></div>
+    <h2 id="ts-am-malen-t" class="ts-am__h2 ts-reveal">Erst mal ausprobieren<i>.</i></h2>
+    <p class="ts-am__sub ts-reveal">Ein paar Motive aus diesem Paket kannst du hier direkt ausmalen: Farbe antippen, ins Bild tippen – fertig. Speichern und Drucken geht auch.</p>
+    <div class="ts-paint" data-am-paint data-default="ad10">
+      <script type="application/json">[{"key": "ad10", "name": "Geschenk", "file": "geschenk", "src": "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 1100' width='1000' height='1100'><g stroke='%23111111' stroke-linecap='round' stroke-linejoin='round'><g transform='translate(60 0) scale(.88)'><rect x='230' y='500' width='540' height='400' rx='16' fill='%23fff' stroke-width='11'/><rect x='605' y='500' width='80' height='400' rx='0' fill='%23fff' stroke-width='8'/><rect x='190' y='375' width='620' height='135' rx='18' fill='%23fff' stroke-width='11'/><rect x='595' y='375' width='100' height='135' rx='0' fill='%23fff' stroke-width='8'/><path d='M628 374 L544 534 L594 512 L613 563 L660 389 Z' fill='%23fff' stroke-width='9' /><path d='M662 374 L746 534 L696 512 L677 563 L630 389 Z' fill='%23fff' stroke-width='9' /><path d='M645 360 C587 258 456 273 464 360 C471 440 587 432 645 360 Z' fill='%23fff' stroke-width='9' /><path d='M645 360 C703 258 834 273 826 360 C819 440 703 432 645 360 Z' fill='%23fff' stroke-width='9' /><ellipse cx='645' cy='360' rx='44' ry='38' fill='%23fff' stroke-width='9'/><ellipse cx='316' cy='690' rx='27' ry='35' fill='%23111111' stroke-width='0'/><circle cx='307' cy='677' r='11' fill='%23fff' stroke='none'/><circle cx='326' cy='702' r='5' fill='%23fff' stroke='none'/><ellipse cx='504' cy='690' rx='27' ry='35' fill='%23111111' stroke-width='0'/><circle cx='494' cy='677' r='11' fill='%23fff' stroke='none'/><circle cx='513' cy='702' r='5' fill='%23fff' stroke='none'/><path d='M381 734 Q410 726 439 734 Q436 778 410 778 Q384 778 381 734 Z' fill='%23fff' stroke-width='9' /><path d='M397 767 Q410 755 423 767' fill='none' stroke-width='6'/><ellipse cx='272' cy='734' rx='25' ry='13' fill='%23fff' stroke-width='6'/><ellipse cx='548' cy='734' rx='25' ry='13' fill='%23fff' stroke-width='6'/><path d='M140 220 Q144 256 180 260 Q144 264 140 300 Q136 264 100 260 Q136 256 140 220 Z' fill='%23fff' stroke-width='7' /><path d='M380 212 Q383 237 408 240 Q383 243 380 268 Q377 243 352 240 Q377 237 380 212 Z' fill='%23fff' stroke-width='7' /><path d='M880 528 Q884 556 912 560 Q884 564 880 592 Q876 564 848 560 Q876 556 880 528 Z' fill='%23fff' stroke-width='7' /><path d='M130 794 Q133 817 156 820 Q133 823 130 846 Q127 823 104 820 Q127 817 130 794 Z' fill='%23fff' stroke-width='7' /></g><g transform='translate(42 1055) scale(0 -0)' fill='%23fff' stroke='%23111111' stroke-width='139' stroke-linejoin='round' paint-order='stroke'><path transform='translate(0 0)' d='M387 -19Q315 -19 252 10Q188 39 139 90Q90 141 62 208Q35 275 35 351Q35 424 63 488Q91 551 140 600Q190 648 255 676Q320 703 394 703Q426 703 463 697Q500 691 536 678Q571 666 597 648Q618 634 636 618Q653 602 653 578Q653 566 647 552Q641 538 630 522Q611 494 592 482Q573 469 556 469Q545 469 534 474Q522 480 502 492Q496 496 479 502Q462 509 438 514Q415 520 389 520Q342 520 303 498Q264 475 241 436Q218 397 218 349Q218 300 242 258Q266 217 306 192Q345 166 391 166Q409 166 426 167Q444 168 461 171Q478 174 491 179V265H417Q399 265 383 268Q367 272 357 288Q347 304 347 343Q347 382 358 398Q369 414 386 417Q403 420 420 420H595Q635 419 651 406Q667 392 670 373Q674 354 674 333V128Q674 100 650 70Q626 41 585 20Q560 7 529 -2Q498 -10 462 -14Q427 -19 387 -19Z'/><path transform='translate(759 0)' d='M129 -9Q84 -9 65 4Q46 18 42 40Q38 61 38 83V600Q38 652 58 672Q79 691 132 691H498Q521 691 542 687Q562 683 576 664Q589 645 589 599Q589 554 576 535Q562 516 541 512Q520 508 497 508H221V419H406Q429 419 447 416Q465 412 476 396Q487 380 487 340Q487 302 476 286Q465 269 446 266Q427 263 404 263H221V174H498Q521 174 542 170Q562 166 576 147Q589 128 589 82Q589 37 576 18Q562 -1 541 -5Q520 -9 497 -9Z'/><path transform='translate(1402 0)' d='M271 -19Q210 -19 168 -4Q125 11 98 32Q71 52 57 69Q43 86 40 90Q20 115 16 135Q11 155 22 175Q32 195 57 219Q80 241 102 244Q124 246 146 234Q167 222 187 199Q211 172 228 162Q245 153 267 153Q294 153 311 160Q328 166 336 180Q344 193 344 214Q344 231 327 240Q310 250 282 257Q255 264 221 272Q187 281 154 295Q134 303 115 315Q96 327 80 342Q63 358 51 380Q39 401 32 428Q26 455 26 489Q26 550 56 598Q87 646 140 674Q194 702 262 702Q311 702 346 694Q381 686 404 675Q426 664 438 654Q450 645 453 642Q486 612 489 590Q492 569 465 529Q435 486 406 480Q377 475 339 499Q331 505 323 512Q315 520 302 526Q288 531 261 531Q251 531 241 528Q231 524 224 518Q217 513 212 505Q208 497 208 488Q208 467 224 456Q240 444 266 438Q293 432 325 426Q357 420 390 410Q417 401 442 387Q467 373 486 351Q505 329 516 296Q528 264 528 217Q528 152 503 106Q478 61 438 34Q399 6 354 -6Q310 -19 271 -19Z'/><path transform='translate(1984 0)' d='M376 -19Q337 -19 289 -6Q241 6 192 33Q144 60 104 103Q63 146 38 206Q14 266 14 345Q14 421 38 479Q63 537 103 579Q143 621 192 647Q240 673 289 686Q338 698 379 698Q430 698 469 686Q508 673 532 660Q557 646 563 642Q583 629 600 614Q618 598 618 572Q618 559 612 545Q607 531 596 516Q576 488 558 475Q541 462 524 462Q511 462 499 468Q487 474 470 485Q463 490 452 496Q441 503 422 508Q403 514 372 514Q346 514 316 504Q285 495 258 474Q231 454 214 420Q197 387 197 340Q197 292 214 259Q232 226 259 206Q286 185 316 176Q347 166 372 166Q398 166 416 170Q434 175 448 183Q463 191 475 199Q486 207 499 213Q512 219 525 219Q542 219 559 205Q576 191 595 162Q606 145 612 130Q617 116 617 104Q617 79 600 64Q582 49 562 37Q555 33 532 19Q509 5 470 -7Q431 -19 376 -19Z'/><path transform='translate(2655 0)' d='M530 -8Q485 -8 466 6Q447 19 443 40Q439 62 439 84V600Q439 622 443 643Q447 664 466 678Q485 691 531 691Q577 691 596 678Q614 664 618 643Q622 622 622 599V83Q622 61 618 40Q614 19 595 6Q576 -8 530 -8ZM119 -8Q74 -8 55 6Q36 19 32 40Q28 62 28 84V600Q28 622 32 643Q36 664 55 678Q74 691 120 691Q166 691 184 678Q203 664 207 643Q211 622 211 599V83Q211 61 207 40Q203 19 184 6Q165 -8 119 -8ZM195 263V419H455V263Z'/><path transform='translate(3345 0)' d='M129 -9Q84 -9 65 4Q46 18 42 40Q38 61 38 83V600Q38 652 58 672Q79 691 132 691H498Q521 691 542 687Q562 683 576 664Q589 645 589 599Q589 554 576 535Q562 516 541 512Q520 508 497 508H221V419H406Q429 419 447 416Q465 412 476 396Q487 380 487 340Q487 302 476 286Q465 269 446 266Q427 263 404 263H221V174H498Q521 174 542 170Q562 166 576 147Q589 128 589 82Q589 37 576 18Q562 -1 541 -5Q520 -9 497 -9Z'/><path transform='translate(3988 0)' d='M118 -9Q74 -9 55 4Q36 18 32 39Q28 60 28 83V602Q28 624 32 644Q36 664 56 677Q75 690 120 690Q164 690 180 679Q196 668 209 651L459 315V602Q459 624 464 644Q468 664 487 677Q506 690 551 690Q597 690 616 676Q634 663 638 642Q642 621 642 598V82Q642 60 638 39Q634 18 615 4Q596 -9 550 -9Q516 -9 498 -4Q481 2 469 18L210 360V82Q210 60 206 39Q202 18 183 4Q164 -9 118 -9Z'/><path transform='translate(4698 0)' d='M131 -9Q86 -9 67 4Q48 18 44 40Q40 61 40 83V600Q40 622 44 643Q48 664 67 678Q86 691 132 691Q178 691 196 678Q215 664 219 643Q223 622 223 599V461L397 660Q420 685 440 695Q460 705 481 699Q502 693 527 669Q568 632 569 604Q570 576 536 540L340 340L537 143Q574 106 572 76Q569 47 528 13Q498 -11 477 -17Q456 -23 438 -12Q420 -2 398 24L223 223V82Q223 60 219 39Q215 18 196 4Q177 -9 131 -9Z'/></g></g></svg>", "saison": "advent", "paket": "24 Türchen"}, {"key": "ad09", "name": "Kugel", "file": "kugel", "src": "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 1100' width='1000' height='1100'><g stroke='%23111111' stroke-linecap='round' stroke-linejoin='round'><g transform='translate(60 0) scale(.88)'><path d='M500 60 L500 190' fill='none' stroke-width='7'/><circle cx='500' cy='175' r='40' fill='%23fff' stroke-width='11'/><circle cx='500' cy='565' r='330' fill='%23fff' stroke-width='11'/><path d='M189 455 Q241 425 293 455 Q344 485 396 455 Q448 425 500 455 Q552 485 604 455 Q656 425 707 455 Q759 485 811 455' fill='none' stroke-width='8'/><path d='M195 690 Q246 660 296 690 Q347 720 398 690 Q449 660 500 690 Q551 720 602 690 Q653 660 704 690 Q754 720 805 690' fill='none' stroke-width='8'/><ellipse cx='414' cy='560' rx='25' ry='32' fill='%23111111' stroke-width='0'/><circle cx='405' cy='548' r='10' fill='%23fff' stroke='none'/><circle cx='422' cy='571' r='5' fill='%23fff' stroke='none'/><ellipse cx='586' cy='560' rx='25' ry='32' fill='%23111111' stroke-width='0'/><circle cx='578' cy='548' r='10' fill='%23fff' stroke='none'/><circle cx='595' cy='571' r='5' fill='%23fff' stroke='none'/><path d='M480 606 Q500 630 520 606' fill='none' stroke-width='8'/><ellipse cx='373' cy='601' rx='23' ry='12' fill='%23fff' stroke-width='6'/><ellipse cx='627' cy='601' rx='23' ry='12' fill='%23fff' stroke-width='6'/><path d='M400 308 Q404 336 432 340 Q404 344 400 372 Q396 344 368 340 Q396 336 400 308 Z' fill='%23fff' stroke-width='6' /><path d='M500 274 Q503 297 526 300 Q503 303 500 326 Q497 303 474 300 Q497 297 500 274 Z' fill='%23fff' stroke-width='6' /><path d='M600 308 Q604 336 632 340 Q604 344 600 372 Q596 344 568 340 Q596 336 600 308 Z' fill='%23fff' stroke-width='6' /><circle cx='370' cy='790' r='26' fill='%23fff' stroke-width='7'/><circle cx='500' cy='820' r='26' fill='%23fff' stroke-width='7'/><circle cx='630' cy='790' r='26' fill='%23fff' stroke-width='7'/><rect x='425' y='210' width='150' height='70' rx='12' fill='%23fff' stroke-width='11'/><path d='M465 220 L465 270' fill='none' stroke-width='6'/><path d='M535 220 L535 270' fill='none' stroke-width='6'/><path d='M140 260 Q144 296 180 300 Q144 304 140 340 Q136 304 100 300 Q136 296 140 260 Z' fill='%23fff' stroke-width='7' /><path d='M870 298 Q874 326 902 330 Q874 334 870 362 Q866 334 838 330 Q866 326 870 298 Z' fill='%23fff' stroke-width='7' /><path d='M860 834 Q863 857 886 860 Q863 863 860 886 Q857 863 834 860 Q857 857 860 834 Z' fill='%23fff' stroke-width='7' /></g><g transform='translate(211 1055) scale(0 -0)' fill='%23fff' stroke='%23111111' stroke-width='139' stroke-linejoin='round' paint-order='stroke'><path transform='translate(0 0)' d='M131 -9Q86 -9 67 4Q48 18 44 40Q40 61 40 83V600Q40 622 44 643Q48 664 67 678Q86 691 132 691Q178 691 196 678Q215 664 219 643Q223 622 223 599V461L397 660Q420 685 440 695Q460 705 481 699Q502 693 527 669Q568 632 569 604Q570 576 536 540L340 340L537 143Q574 106 572 76Q569 47 528 13Q498 -11 477 -17Q456 -23 438 -12Q420 -2 398 24L223 223V82Q223 60 219 39Q215 18 196 4Q177 -9 131 -9Z'/><path transform='translate(637 0)' d='M336 -20Q260 -20 202 10Q145 41 106 91Q67 141 48 201Q28 261 28 320V600Q28 623 32 644Q36 665 55 678Q74 692 120 692Q166 692 185 678Q204 665 208 644Q212 623 212 599V320Q212 287 223 251Q234 215 262 190Q289 164 339 164Q377 164 405 184Q433 203 448 238Q464 274 464 321V605Q464 627 468 646Q473 666 492 679Q511 692 556 692Q602 692 620 678Q639 664 643 643Q647 622 647 599V318Q647 258 627 198Q607 139 568 90Q528 40 470 10Q412 -20 336 -20Z'/><path transform='translate(1352 0)' d='M387 -19Q315 -19 252 10Q188 39 139 90Q90 141 62 208Q35 275 35 351Q35 424 63 488Q91 551 140 600Q190 648 255 676Q320 703 394 703Q426 703 463 697Q500 691 536 678Q571 666 597 648Q618 634 636 618Q653 602 653 578Q653 566 647 552Q641 538 630 522Q611 494 592 482Q573 469 556 469Q545 469 534 474Q522 480 502 492Q496 496 479 502Q462 509 438 514Q415 520 389 520Q342 520 303 498Q264 475 241 436Q218 397 218 349Q218 300 242 258Q266 217 306 192Q345 166 391 166Q409 166 426 167Q444 168 461 171Q478 174 491 179V265H417Q399 265 383 268Q367 272 357 288Q347 304 347 343Q347 382 358 398Q369 414 386 417Q403 420 420 420H595Q635 419 651 406Q667 392 670 373Q674 354 674 333V128Q674 100 650 70Q626 41 585 20Q560 7 529 -2Q498 -10 462 -14Q427 -19 387 -19Z'/><path transform='translate(2111 0)' d='M129 -9Q84 -9 65 4Q46 18 42 40Q38 61 38 83V600Q38 652 58 672Q79 691 132 691H498Q521 691 542 687Q562 683 576 664Q589 645 589 599Q589 554 576 535Q562 516 541 512Q520 508 497 508H221V419H406Q429 419 447 416Q465 412 476 396Q487 380 487 340Q487 302 476 286Q465 269 446 266Q427 263 404 263H221V174H498Q521 174 542 170Q562 166 576 147Q589 128 589 82Q589 37 576 18Q562 -1 541 -5Q520 -9 497 -9Z'/><path transform='translate(2754 0)' d='M141 -9Q96 -9 77 4Q58 18 54 40Q50 61 50 83V600Q50 622 54 643Q58 664 77 678Q96 691 142 691Q188 691 206 678Q225 664 229 643Q233 622 233 599V147H477Q496 147 514 144Q531 141 542 124Q554 108 554 69Q554 31 542 14Q530 -2 512 -6Q495 -9 476 -9Z'/></g></g></svg>", "saison": "advent", "paket": "24 Türchen"}]</script>
+      <div>
+        <div class="ts-am-pick" role="group" aria-label="Motiv wählen" data-am-pick></div>
+        <div class="ts-paint__paper ts-reveal" style="margin-top:1rem">
+          <canvas class="ts-paint__canvas" width="1000" height="1100" role="img" aria-label="Ausmalbild"></canvas>
+          <p class="ts-label ts-paint__done" data-paint-msg aria-live="polite"></p>
+        </div>
+      </div>
+      <div class="ts-paint__tools ts-glass ts-reveal">
+        <div><p class="ts-label ts-paint__label">Farbe</p><div class="ts-paint__swatches" role="group" aria-label="Farben" data-paint-colors></div></div>
+        <div>
+          <p class="ts-label ts-paint__label">Werkzeug</p>
+          <div class="ts-paint__modes" role="group" aria-label="Werkzeug">
+            <button type="button" class="ts-paint__btn" data-mode="fill" aria-pressed="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m19 11-8-8-8.6 8.6a2 2 0 0 0 0 2.8l5.2 5.2a2 2 0 0 0 2.8 0L19 11Z"/><path d="m5 2 5 5M2 13h15M22 20a2 2 0 1 1-4 0c0-1.6 1.7-2.4 2-4 .3 1.6 2 2.4 2 4Z"/></svg>Farbeimer</button>
+            <button type="button" class="ts-paint__btn" data-mode="brush" aria-pressed="false"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M9.06 11.9 17.1 3.86a2.83 2.83 0 1 1 4 4l-8.04 8.04"/><path d="M7.07 14.94c-1.66 0-3 1.35-3 3.02 0 1.33-2.5 1.52-2 2.02 1.08 1.1 2.49 2.02 4 2.02 2.2 0 4-1.8 4-4.04a3.01 3.01 0 0 0-3-3.02Z"/></svg>Pinsel</button>
+            <button type="button" class="ts-paint__btn" data-mode="erase" aria-pressed="false"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m7 21-4.3-4.3a1 1 0 0 1 0-1.4l10-10a1 1 0 0 1 1.4 0l5.6 5.6a1 1 0 0 1 0 1.4L11 21M22 21H7M5 11l9 9"/></svg>Radierer</button>
+          </div>
+          <label class="ts-paint__size"><span class="ts-label ts-paint__label">Pinsel</span><input type="range" min="6" max="60" value="22" data-paint-size aria-label="Pinselgröße"></label>
+        </div>
+        <div class="ts-paint__acts">
+          <button type="button" class="ts-paint__btn" data-act="undo" disabled><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M9 14 4 9l5-5"/><path d="M4 9h10.5a5.5 5.5 0 0 1 0 11H11"/></svg>Zurück</button>
+          <button type="button" class="ts-paint__btn" data-act="clear"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg>Neu</button>
+          <button type="button" class="ts-paint__btn" data-act="save"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>Speichern</button>
+          <button type="button" class="ts-paint__btn" data-act="print"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M6 9V3h12v6"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><path d="M6 14h12v7H6z"/></svg>Drucken</button>
+        </div>
+        <p class="ts-paint__hint">Tipp: Am Handy einfach mit dem Finger tippen. Dein Bild bleibt auf diesem Gerät gespeichert, bis du „Neu“ drückst.</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<script>
+/* Ausmalen: Farbeimer, Pinsel, Radierer, Zurück, Neu, Speichern, Drucken – mehrere Motive zur Auswahl */
+(() => {
+  document.querySelectorAll('[data-am-paint]').forEach(root => {
+    const MOTIVE = JSON.parse(root.querySelector('script[type="application/json"]').textContent);
+    const COLORS = ['#e8505b', '#f6a33b', '#f7d046', '#8bc34a', '#2e9e6a', '#5ec8e5', '#3f7fd9', '#9b6ad6', '#f29bc4', '#a0683f', '#7d7d7d', '#2b2b2b'];
+    const NAMES = ['Rot', 'Orange', 'Gelb', 'Hellgrün', 'Grün', 'Hellblau', 'Blau', 'Lila', 'Rosa', 'Braun', 'Grau', 'Schwarz'];
+    const cv = root.querySelector('canvas'), ctx = cv.getContext('2d');
+    const W = cv.width, H = cv.height;
+    const paint = document.createElement('canvas'); paint.width = W; paint.height = H;
+    const pctx = paint.getContext('2d', { willReadFrequently: true });
+    const msg = root.querySelector('[data-paint-msg]'), undoBtn = root.querySelector('[data-act="undo"]'), size = root.querySelector('[data-paint-size]');
+    const pick = root.querySelector('[data-am-pick]');
+    let wall = null, color = COLORS[2], mode = 'fill', stack = [], drawing = false, last = null, msgT, cur = null, img = null;
+
+    /* Saison-Motiv zuerst: data-default oder Saison nach Datum */
+    const seasonKey = () => {
+      const d = new Date(), md = (d.getMonth() + 1) * 100 + d.getDate();
+      const s = md >= 1001 && md <= 1031 ? 'halloween' : md >= 1101 && md <= 1111 ? 'laterne' : md >= 1112 && md <= 1224 ? 'advent' : (md >= 1225 || md <= 228) ? 'winter' : null;
+      const m = MOTIVE.find(x => x.saison === s); return m ? m.key : MOTIVE[0].key;
+    };
+
+    const sw = root.querySelector('[data-paint-colors]');
+    sw.innerHTML = COLORS.map((c, i) => `<button type="button" class="ts-paint__sw" style="--c:${c}" data-c="${c}" aria-label="${NAMES[i]}" aria-pressed="${c === color}"></button>`).join('');
+    sw.addEventListener('click', e => {
+      const b = e.target.closest('[data-c]'); if (!b) return;
+      color = b.dataset.c; sw.querySelectorAll('[data-c]').forEach(x => x.setAttribute('aria-pressed', x === b));
+      if (mode === 'erase') setMode('fill');
+    });
+    const setMode = m => {
+      mode = m; root.classList.toggle('is-brush', m !== 'fill');
+      root.querySelectorAll('[data-mode]').forEach(b => b.setAttribute('aria-pressed', b.dataset.mode === m));
+    };
+    root.querySelectorAll('[data-mode]').forEach(b => b.addEventListener('click', () => setMode(b.dataset.mode)));
+
+    const say = (t, ms = 1600) => { msg.textContent = t; msg.classList.add('is-on'); clearTimeout(msgT); msgT = setTimeout(() => msg.classList.remove('is-on'), ms); };
+    const render = () => { ctx.globalCompositeOperation = 'source-over'; ctx.drawImage(paint, 0, 0); if (img) { ctx.globalCompositeOperation = 'multiply'; ctx.drawImage(img, 0, 0, W, H); } ctx.globalCompositeOperation = 'source-over'; };
+    const key = () => 'ts-am-' + cur.key;
+    const store = () => { try { localStorage.setItem(key(), paint.toDataURL('image/png')); } catch (e) {} };
+    const push = () => { stack.push(pctx.getImageData(0, 0, W, H)); if (stack.length > 20) stack.shift(); undoBtn.disabled = false; };
+    const hex = c => [1, 3, 5].map(i => parseInt(c.slice(i, i + 2), 16));
+
+    /* Farbeimer: füllt die Fläche innerhalb der schwarzen Linien */
+    const fill = (x, y) => {
+      x = Math.round(x); y = Math.round(y);
+      if (!wall || x < 0 || y < 0 || x >= W || y >= H || wall[y * W + x]) return false;
+      push();
+      const id = pctx.getImageData(0, 0, W, H), d = id.data, [r, g, b] = mode === 'erase' ? [255, 255, 255] : hex(color);
+      const seen = new Uint8Array(W * H), q = new Int32Array(W * H); let h = 0, t = 0;
+      q[t++] = y * W + x; seen[y * W + x] = 1;
+      while (h < t) {
+        const p = q[h++], px = p % W;
+        const o = p * 4; d[o] = r; d[o + 1] = g; d[o + 2] = b; d[o + 3] = 255;
+        const n = [px > 0 ? p - 1 : -1, px < W - 1 ? p + 1 : -1, p - W, p + W];
+        for (let k = 0; k < 4; k++) { const v = n[k]; if (v >= 0 && v < W * H && !seen[v]) { seen[v] = 1; if (!wall[v]) q[t++] = v; else { const vo = v * 4; d[vo] = r; d[vo + 1] = g; d[vo + 2] = b; d[vo + 3] = 255; } } }
+      }
+      pctx.putImageData(id, 0, 0); render(); store(); return true;
+    };
+    const pos = e => { const r = cv.getBoundingClientRect(); return [(e.clientX - r.left) * W / r.width, (e.clientY - r.top) * H / r.height]; };
+    const stroke = (a, b) => {
+      pctx.strokeStyle = mode === 'erase' ? '#ffffff' : color; pctx.lineCap = 'round'; pctx.lineJoin = 'round';
+      pctx.lineWidth = +size.value * (mode === 'erase' ? 1.4 : 1);
+      pctx.beginPath(); pctx.moveTo(a[0], a[1]); pctx.lineTo(b[0], b[1]); pctx.stroke(); render();
+    };
+    cv.addEventListener('pointerdown', e => {
+      if (!wall) return;
+      if (mode === 'fill') { if (fill(...pos(e))) { let tip = true; try { tip = !sessionStorage.getItem('ts-am-tip'); sessionStorage.setItem('ts-am-tip', '1'); } catch (er) {} if (tip) say('Toll! Nächste Fläche antippen'); } return; }
+      e.preventDefault(); cv.setPointerCapture(e.pointerId); push(); drawing = true; last = pos(e); stroke(last, [last[0] + .01, last[1]]);
+    });
+    cv.addEventListener('pointermove', e => { if (!drawing) return; const p = pos(e); stroke(last, p); last = p; });
+    const end = () => { if (drawing) { drawing = false; store(); } };
+    cv.addEventListener('pointerup', end); cv.addEventListener('pointercancel', end); cv.addEventListener('pointerleave', end);
+
+    undoBtn.addEventListener('click', () => { const s = stack.pop(); if (s) { pctx.putImageData(s, 0, 0); render(); store(); } undoBtn.disabled = !stack.length; });
+    root.querySelector('[data-act="clear"]').addEventListener('click', () => { push(); pctx.fillStyle = '#fff'; pctx.fillRect(0, 0, W, H); render(); try { localStorage.removeItem(key()); } catch (e) {} say('Neues Blatt'); });
+    const compose = () => {
+      const out = document.createElement('canvas'); out.width = W; out.height = H + 70; const o = out.getContext('2d');
+      o.fillStyle = '#fff'; o.fillRect(0, 0, out.width, out.height); o.drawImage(cv, 0, 0);
+      o.fillStyle = '#7d7d7d'; o.font = '500 20px Inter, Arial, sans-serif'; o.textAlign = 'center';
+      o.fillText(cur.paket + ' · trutzstaehler.de', W / 2, H + 44);
+      return out.toDataURL('image/png');
+    };
+    root.querySelector('[data-act="save"]').addEventListener('click', () => {
+      const a = document.createElement('a'); a.download = 'mein-' + cur.file + '.png'; a.href = compose(); document.body.appendChild(a); a.click(); a.remove(); say('Bild gespeichert');
+    });
+    root.querySelector('[data-act="print"]').addEventListener('click', () => {
+      const w = window.open('', '_blank');
+      if (!w) { say('Pop-up blockiert – nutze „Speichern“', 4000); return; }
+      w.document.write('<!doctype html><html lang="de"><head><meta charset="utf-8"><title>Mein Ausmalbild</title><style>@page{margin:10mm}html,body{margin:0;height:100%;background:#fff}body{display:flex;align-items:center;justify-content:center}img{display:block;max-width:100%;max-height:100vh;object-fit:contain}</style></head><body><img alt="Mein ausgemaltes Bild"></body></html>');
+      w.document.close();
+      const im = w.document.querySelector('img'), go = () => { w.focus(); w.print(); };
+      w.onafterprint = () => w.close();
+      im.onload = go; im.src = compose();
+      say('Druckansicht geöffnet');
+    });
+
+    /* Motiv laden: Linien als Wände merken, gespeichertes Bild wiederherstellen */
+    const load = k => {
+      cur = MOTIVE.find(m => m.key === k) || MOTIVE[0]; stack = []; undoBtn.disabled = true; wall = null;
+      cv.setAttribute('aria-label', 'Ausmalbild ' + cur.name + ' – tippe hinein, um Flächen auszumalen');
+      if (pick) pick.querySelectorAll('[data-k]').forEach(b => b.setAttribute('aria-pressed', b.dataset.k === cur.key));
+      const im = new Image();
+      im.onload = () => {
+        img = im;
+        const t = document.createElement('canvas'); t.width = W; t.height = H; const tc = t.getContext('2d');
+        tc.fillStyle = '#fff'; tc.fillRect(0, 0, W, H); tc.drawImage(im, 0, 0, W, H);
+        const d = tc.getImageData(0, 0, W, H).data; wall = new Uint8Array(W * H);
+        for (let i = 0; i < W * H; i++) wall[i] = d[i * 4] < 140 ? 1 : 0;
+        pctx.fillStyle = '#fff'; pctx.fillRect(0, 0, W, H);
+        let saved = null; try { saved = localStorage.getItem(key()); } catch (e) {}
+        if (saved) { const s = new Image(); s.onload = () => { pctx.drawImage(s, 0, 0); render(); }; s.src = saved; } else render();
+      };
+      im.src = cur.src;
+    };
+    if (pick) {
+      pick.innerHTML = MOTIVE.map(m => `<button type="button" data-k="${m.key}" aria-pressed="false">${m.name}</button>`).join('');
+      pick.addEventListener('click', e => { const b = e.target.closest('[data-k]'); if (b) load(b.dataset.k); });
+    }
+    load(root.dataset.default || seasonKey());
+  });
+})();
+</script>

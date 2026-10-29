@@ -10,7 +10,7 @@ N = sum(len(p['motive']) for p in KAT.ALLE_PAKETE)
 
 zeilen = []
 for i, g in enumerate(ALLE, 1):
-    zeilen.append(f"| {i:02d} | {g['titel']} | `{g['slug']}` | `geschichten/{i:02d}_{g['slug']}.html` | `02-bilder/motive-ausgemalt/{g['motiv']}.png` | {g['teaser']} |")
+    zeilen.append(f"| {i:02d} | {g['titel']} | `{g['slug']}` | `geschichten/{i:02d}_{g['slug']}.html` | `kreativhafen/geschichten/bilder/{g['slug']}.webp` | {g['teaser']} |")
 
 doc = f'''# Kreativhafen gratis: Einrichtung
 
@@ -55,7 +55,7 @@ Auf beiden Seiten ganz oben denselben Reiter-Block (`01_…`) einfügen. Dann is
 
 1. Neue Seite, URL-Slug `gute-nacht-geschichten`, ein Code-Block: `04_seite-gute-nacht-geschichten.html`.
 2. SEO-Titel: `Gute-Nacht-Geschichten zum Vorlesen – kostenlos | Kreativhafen`
-3. SEO-Beschreibung: `{len(ALLE)} kostenlose Gute-Nacht-Geschichten zum Vorlesen für Kinder von 2 bis 7: kurz, ruhig und mit Ausmalbild. Von Möwe Mats aus dem Hamburger Hafen bis zum Drachen Funki.`
+3. SEO-Beschreibung: `{len(ALLE)} kostenlose Gute-Nacht-Geschichten zum Vorlesen für Kinder von 2 bis 7: direkt online lesen, mit Vorlesedauer und Nachtmodus. Von Möwe Mats aus dem Hamburger Hafen bis zum Drachen Funki.`
 
 ## Schritt 5: Die {len(ALLE)} Geschichten (Blog „Geschichten“)
 
@@ -87,12 +87,15 @@ Jede Geschichte bekommt ihre eigene Seite. So findet Google jede einzelne, genau
   - „PDF“ lädt die Datei
   - „Drucken“ öffnet die Druckansicht
   - „Ausmalen“ holt das Motiv ins Mal-Werkzeug
-- `/gute-nacht-geschichten`: Suche und Filter funktionieren, „Für heute Abend“ zeigt eine Geschichte
+- `/gute-nacht-geschichten`:
+  - Lieblingsgeschichten und „Beliebt im <Monat>“ mit Bildern
+  - Filter „Vorlesedauer“ und Suche funktionieren, „Mehr Geschichten anzeigen“ klappt die Liste auf
+  - Links wie `/gute-nacht-geschichten?dauer=kurz` filtern direkt
 - eine Geschichte öffnen und prüfen:
   - Nachtmodus
   - A−/A+
-  - „Vorlesen lassen“
-  - Ausmalbild drucken
+  - „Vorlesen“
+  - Brotkrumen, „Weitere Gute-Nacht-Geschichten“ und „Geschichten auf einen Blick“ am Ende
 - alles auch am Handy
 
 ---
@@ -102,12 +105,14 @@ Jede Geschichte bekommt ihre eigene Seite. So findet Google jede einzelne, genau
 1. **Datenschutzerklärung:** Die Seiten laden Bilder und Daten von **GitHub** (`raw.githubusercontent.com`, GitHub Inc., USA). Dabei wird die IP-Adresse der Besucher an GitHub übertragen. Deine Twitch-Seite macht das schon heute mit `helden.json`. Prüfe, ob GitHub in deiner Datenschutzerklärung steht, und ergänze sonst einen Absatz. Dazu ein Satz zum Mal-Werkzeug und zum Nachtmodus: *„Das Mal-Werkzeug und die Leseeinstellungen speichern Daten ausschließlich lokal in deinem Browser (localStorage); es wird nichts an uns übertragen.“*
 2. **Die Geschichten und Motive habe ich als KI geschrieben bzw. gezeichnet.** Lies jede Geschichte vor dem Veröffentlichen einmal selbst und passe sie an deine Art zu erzählen an. Dann sind es wirklich deine Geschichten. Rein KI-generierte Texte und Bilder sind nach deutschem Recht wahrscheinlich nicht urheberrechtlich geschützt. Durch deine Überarbeitung wird deine Position stärker.
 3. **„Vorlesen lassen“** nutzt die eingebaute Computerstimme des Geräts. Die Qualität hängt vom Gerät ab. Eigene Aufnahmen („Papa liest vor“) lassen sich später einfach ergänzen: In `quelle/geschichten/*.py` bei der Geschichte `audio='https://…/datei.mp3'` eintragen und neu erzeugen. Dann erscheint ein Audio-Player über dem Text.
+4. **Aufbau der Geschichten** folgt Zitronenbande und Zwergenstark: Brotkrumen → Titel → Autor → Alter und Vorlesedauer → Bild → „Darum geht’s“ → Vorlesen/Schrift/Nachtmodus → Text mit TIPP-Kasten → „Mehr Geschichten lesen“ → „Hat dir die Geschichte gefallen?“ mit Buch-Tipp und Teilen → weitere Geschichten → „Geschichten auf einen Blick“. Kein Ausmalbild, kein Download.
 
 ## Neu erzeugen nach Änderungen
 
 ```bash
 cd ausmalbilder/quelle
 python3 export.py             # Motive/Bilder für GitHub (Ordner kreativhafen/)
+python3 geschichten_bilder.py # Illustrationen der Geschichten (Farben passend zum Text)
 python3 gratis_pdf.py         # PDFs + ZIP der Ausmalbilder
 python3 kreativhafen_web.py   # alle Code-Blöcke + Vorschau
 python3 kh_doku.py            # diese Anleitung

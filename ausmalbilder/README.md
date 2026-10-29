@@ -6,7 +6,7 @@
 | Bereich | Adresse | Inhalt |
 |---|---|---|
 | Kreativhafen (Hauptkategorie) | `/kreativhafen` | Reiter-Leiste + neues Regal „Gratis im Hafen“ unter den Büchern |
-| Gute-Nacht-Geschichten | `/gute-nacht-geschichten` + `/geschichten/…` | 24 Geschichten direkt zum Lesen: Suche, Filter (Länge, Alter, Art, Thema), Saison-Block, Figuren, Nachtmodus, Vorlesen lassen, Ausmalbild zur Geschichte |
+| Gute-Nacht-Geschichten | `/gute-nacht-geschichten` + `/geschichten/…` | 24 Geschichten direkt zum Lesen, aufgebaut wie Zitronenbande/Zwergenstark: Lieblingsgeschichten, „Beliebt im Monat“, Filter Vorlesedauer + Suche, Figuren; je Geschichte eigene Illustration, Darum geht’s, Vorlesen, Schrift, Nachtmodus, TIPP, Buch-Tipp, Teilen, weitere Geschichten. Kein Ausmalbild, kein Download |
 | Ausmalbilder | `/ausmalbilder` | 112 Motive in 11 Themen, PDF je Paket + Gesamt-ZIP, jedes Motiv einzeln drucken, Mal-Werkzeug im Browser |
 | Bücher | `/malbuecher`, `/romane` | deine bestehenden Seiten, jetzt mit Reiter-Leiste |
 

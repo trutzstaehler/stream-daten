@@ -154,79 +154,134 @@
   .ts .ts-am-tile__acts button { display: inline-flex; align-items: center; justify-content: center; gap: .3rem; padding: 8px 6px; border-radius: 999px; border: 1px solid #d7d3c8; background: #fff; color: #1b1f1c; font: 600 11.5px/1 var(--ts-font-body, Inter, sans-serif); cursor: pointer; }
   .ts .ts-am-tile__acts button:hover { background: #1b1f1c; color: #fff; border-color: #1b1f1c; }
   .ts .ts-am-gal__msg { grid-column: 1 / -1; color: var(--ts-muted, #9aaba3); }
-  /* Geschichten */
-  .ts-gn-today { display: grid; gap: 1.5rem; margin-top: 2rem; padding: clamp(1.25rem, 3.5vw, 2.5rem); border-radius: 26px; align-items: center; }
-  .ts .ts-gn-today img { display: block; width: 100% !important; max-width: 340px; height: auto !important; margin: 0 auto; border-radius: 10px; background: #fbf9f4; padding: 8px; transform: rotate(-2deg); box-shadow: 0 40px 70px -30px rgba(0,0,0,.9); }
-  .ts .ts-gn-meta { display: flex; flex-wrap: wrap; gap: .45rem; margin: 1rem 0 0; padding: 0; list-style: none; }
-  .ts .ts-gn-meta li { padding: 6px 11px; border-radius: 999px; border: 1px solid var(--ts-line-strong, rgba(255,255,255,.14)); color: var(--ts-text, #f6faf7); font-size: 10.5px; }
-  .ts-gn-filter { display: flex; flex-wrap: wrap; gap: .45rem; margin-top: 1.5rem; }
-  .ts .ts-gn-filter button { padding: 9px 14px; border-radius: 999px; border: 1px solid var(--ts-line-strong, rgba(255,255,255,.14)); background: transparent; color: var(--ts-text, #f6faf7); font: 600 11px/1 var(--ts-font-mono, monospace); letter-spacing: .1em; text-transform: uppercase; cursor: pointer; }
-  .ts .ts-gn-filter button[aria-pressed="true"] { background: #f6faf7; color: #060608; border-color: #f6faf7; }
-  .ts-gn-grid { display: grid; gap: 1rem; margin-top: 1.5rem; grid-template-columns: minmax(0, 1fr); }
-  .ts .ts-gn-card { display: flex; flex-direction: column; border-radius: 22px; overflow: hidden; color: inherit; text-decoration: none; transition: transform .5s var(--ts-ease-out); }
-  .ts .ts-gn-card:hover { transform: translateY(-4px); }
+  /* Geschichten: Karten wie bei Zitronenbande/Zwergenstark – Bild, Titel, Alter · Dauer */
+  .ts-gn-grid { display: grid; gap: clamp(.75rem, 2vw, 1.25rem); margin-top: 1.5rem; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .ts .ts-gn-card { display: flex; flex-direction: column; border-radius: 18px; overflow: hidden; color: inherit; text-decoration: none; border: 1px solid var(--ts-line, rgba(255,255,255,.08)); background: rgba(255,255,255,.025); transition: transform .5s var(--ts-ease-out), border-color .25s; }
+  .ts .ts-gn-card:hover { transform: translateY(-4px); border-color: rgba(110,231,183,.45); }
   .ts-gn-card[hidden] { display: none !important; }
-  .ts .ts-gn-card__img { display: grid; place-items: center; aspect-ratio: 16 / 10; background: radial-gradient(70% 80% at 50% 100%, rgba(46,140,108,.35), transparent 70%), linear-gradient(180deg, rgba(29,77,63,.25), rgba(12,17,15,.4)); }
-  .ts .ts-gn-card__img img { width: 46% !important; height: auto !important; border-radius: 8px; background: #fbf9f4; padding: 5px; transform: rotate(var(--r, -2deg)); box-shadow: 0 30px 50px -26px rgba(0,0,0,.9); }
-  .ts-gn-card__body { display: flex; flex-direction: column; gap: .5rem; flex: 1; padding: 1.2rem 1.35rem 1.4rem; }
-  .ts .ts-gn-card__t { margin: 0; font: 800 clamp(1.2rem, 1.7vw, 1.45rem)/1.1 var(--ts-font-display, 'Syne', sans-serif); letter-spacing: -0.02em; }
-  .ts .ts-gn-card__s { margin: 0; color: var(--ts-muted, #9aaba3); font-size: 14.5px; line-height: 1.6; }
-  .ts .ts-gn-card__m { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: auto; padding-top: .8rem; color: #6ee7b7; }
+  .ts .ts-gn-card img { display: block; width: 100% !important; height: auto !important; aspect-ratio: 4 / 3; object-fit: cover; background: #1f2a44; }
+  .ts-gn-card__body { display: flex; flex-direction: column; gap: .4rem; flex: 1; padding: .85rem 1rem 1rem; }
+  .ts .ts-gn-card__t { margin: 0; font: 700 clamp(.98rem, 1.45vw, 1.18rem)/1.22 var(--ts-font-display, 'Syne', sans-serif); letter-spacing: -0.01em; }
+  .ts .ts-gn-card__m { margin: auto 0 0; color: var(--ts-muted, #9aaba3); font: 500 13px/1.35 var(--ts-font-body, Inter, sans-serif); }
+  /* Übersicht */
+  .ts .ts-gn-intro { max-width: 46rem; margin: 1.25rem 0 0; color: var(--tss-text, rgba(246,250,247,.78)); font-size: clamp(16px, 1.35vw, 18px); line-height: 1.7; }
+  .ts-gn-jump { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1.5rem; }
+  .ts .ts-gn-jump a { padding: 10px 15px; border-radius: 999px; border: 1px solid var(--ts-line-strong, rgba(255,255,255,.14)); color: var(--ts-text, #f6faf7); text-decoration: none; font: 600 13px/1 var(--ts-font-body, Inter, sans-serif); }
+  .ts .ts-gn-jump a:hover { border-color: rgba(110,231,183,.5); }
+  .ts .ts-gn-jump a:first-child { background: #f6faf7; color: #060608; border-color: #f6faf7; }
+  .ts-gn-bar { display: flex; flex-wrap: wrap; align-items: center; gap: .75rem 1.25rem; margin-top: 1.5rem; }
+  .ts-gn-filter { display: flex; flex-wrap: wrap; align-items: center; gap: .45rem; }
+  .ts .ts-gn-filter b { margin-right: .25rem; font: 600 14px/1 var(--ts-font-body, Inter, sans-serif); }
+  .ts .ts-gn-filter button { padding: 9px 14px; border-radius: 999px; border: 1px solid var(--ts-line-strong, rgba(255,255,255,.14)); background: transparent; color: var(--ts-text, #f6faf7); font: 600 13px/1 var(--ts-font-body, Inter, sans-serif); cursor: pointer; }
+  .ts .ts-gn-filter button[aria-pressed="true"] { background: #f6faf7; color: #060608; border-color: #f6faf7; }
+  .ts-gn-search { display: flex; align-items: center; gap: .6rem; flex: 1 1 16rem; max-width: 24rem; padding: .2rem .2rem .2rem 1rem; border-radius: 999px; border: 1px solid var(--ts-line-strong, rgba(255,255,255,.14)); }
+  .ts .ts-gn-search input { flex: 1; min-width: 0; padding: 10px 0; border: 0; background: transparent; color: var(--ts-text, #f6faf7); font: 500 15px/1 var(--ts-font-body, Inter, sans-serif); outline: none; }
+  .ts .ts-gn-search input::placeholder { color: var(--ts-muted, #9aaba3); }
+  .ts .ts-gn-state { margin: 1rem 0 0; color: var(--ts-muted, #9aaba3); font-size: 14px; }
+  .ts .ts-gn-state button { margin-left: .5rem; padding: 0; border: 0; background: none; color: #6ee7b7; font: inherit; text-decoration: underline; cursor: pointer; }
+  .ts-gn-morebtn { display: flex; justify-content: center; margin-top: 2rem; }
+  .ts-gn-figs { display: grid; grid-template-columns: minmax(0, 1fr); gap: .8rem; margin-top: 2rem; }
+  .ts-gn-page .ts-am__h2 { font-size: clamp(1.75rem, 4.6vw, 3.4rem); hyphens: auto; -webkit-hyphens: auto; overflow-wrap: break-word; }
+  .ts .ts-gn-fig { display: grid; grid-template-columns: 64px 1fr; grid-template-rows: auto auto; column-gap: .9rem; align-items: center; text-align: left; padding: .8rem; border-radius: 18px; border: 1px solid var(--ts-line, rgba(255,255,255,.08)); background: rgba(255,255,255,.02); color: inherit; text-decoration: none; transition: border-color .25s, transform .4s var(--ts-ease-out); }
+  .ts .ts-gn-fig:hover { border-color: rgba(110,231,183,.45); transform: translateY(-3px); }
+  .ts .ts-gn-fig img { grid-row: 1 / 3; width: 64px !important; height: 64px !important; object-fit: cover; border-radius: 50%; }
+  .ts .ts-gn-fig b { font: 700 15px/1.2 var(--ts-font-display, 'Syne', sans-serif); }
+  .ts .ts-gn-fig span { color: var(--ts-muted, #9aaba3); font-size: 13px; line-height: 1.4; }
+  .ts .ts-gn-seo { margin-top: 2rem; max-width: 52rem; }
+  .ts .ts-gn-seo h3 { margin: 2rem 0 .6rem; font: 700 1.2rem/1.25 var(--ts-font-display, 'Syne', sans-serif); }
+  .ts .ts-gn-seo h3:first-child { margin-top: 0; }
+  .ts .ts-gn-seo p, .ts .ts-gn-seo li { color: var(--tss-text, rgba(246,250,247,.75)); line-height: 1.75; }
+  .ts .ts-gn-seo p { margin: 0 0 1rem; }
+  .ts .ts-gn-seo ul { margin: 0 0 1rem; padding-left: 1.2rem; }
+  .ts .ts-gn-seo b { color: #f6faf7; }
+  .ts .ts-gn-seo a { color: #6ee7b7; }
   /* Einzelne Geschichte */
-  .ts-gn-story { max-width: 46rem; margin: 0 auto; }
-  .ts .ts-gn-h1 { margin: 1.25rem 0 0; font: 800 clamp(2.2rem, 6vw, 4.6rem)/.98 var(--ts-font-display, 'Syne', sans-serif); letter-spacing: -0.035em; }
+  .ts-gn-story { max-width: 44rem; margin: 0 auto; }
+  .ts .ts-gn-crumb { margin: 0; color: var(--ts-muted, #9aaba3); font-size: 13.5px; line-height: 1.5; }
+  .ts .ts-gn-crumb a { color: inherit; text-decoration: none; }
+  .ts .ts-gn-crumb a:hover { color: #6ee7b7; }
+  .ts .ts-gn-crumb span { margin: 0 .4rem; opacity: .6; }
   .ts .ts-gn-h1 i { font-style: normal; color: #6ee7b7; }
-  .ts .ts-gn-lead { margin-top: 1rem; color: var(--ts-muted, #9aaba3); font-size: clamp(16px, 1.4vw, 19px); line-height: 1.65; }
-  .ts-gn-tools { position: sticky; top: calc(var(--ts-header-space, 96px) - 16px); z-index: 4; display: flex; flex-wrap: wrap; gap: .45rem; margin-top: 1.5rem; padding: .5rem; border-radius: 999px; border: 1px solid var(--ts-line, rgba(255,255,255,.08)); background: rgba(6,6,8,.82); backdrop-filter: blur(12px); width: max-content; max-width: 100%; }
-  .ts .ts-gn-tools button, .ts .ts-gn-tools a { display: inline-flex; align-items: center; gap: .4rem; padding: 9px 13px; border-radius: 999px; border: 1px solid transparent; background: transparent; color: var(--ts-text, #f6faf7); font: 500 13px/1 var(--ts-font-body, Inter, sans-serif); text-decoration: none; cursor: pointer; }
-  .ts .ts-gn-tools button:hover, .ts .ts-gn-tools a:hover { border-color: var(--ts-line-strong, rgba(255,255,255,.14)); }
+  .ts .ts-gn-h1.ts-gn-h1--page { max-width: 18ch; margin-top: 2rem; font-size: clamp(2.3rem, 6.4vw, 5.4rem); }
+  .ts .ts-gn-h1 { margin: 1rem 0 0; font: 800 clamp(2rem, 5.4vw, 3.8rem)/1.02 var(--ts-font-display, 'Syne', sans-serif); letter-spacing: -0.03em; }
+  .ts-gn-by { display: flex; align-items: center; gap: .8rem; margin-top: 1.2rem; }
+  .ts .ts-gn-by img { width: 46px !important; height: 46px !important; border-radius: 50%; object-fit: cover; }
+  .ts .ts-gn-by p { margin: 0; font-size: 15px; line-height: 1.35; }
+  .ts .ts-gn-by small { display: block; color: var(--ts-muted, #9aaba3); font-size: 13px; }
+  .ts .ts-gn-facts { display: flex; flex-wrap: wrap; gap: .5rem 1.4rem; margin: 1.3rem 0 0; padding: .9rem 0; list-style: none; border-top: 1px solid var(--ts-line, rgba(255,255,255,.08)); border-bottom: 1px solid var(--ts-line, rgba(255,255,255,.08)); font-size: 15px; }
+  .ts .ts-gn-facts a { color: inherit; }
+  .ts .ts-gn-hero { display: block; width: 100% !important; height: auto !important; aspect-ratio: 4 / 3; margin-top: 1.5rem; border-radius: 22px; object-fit: cover; }
+  .ts .ts-gn-about { margin-top: 1.5rem; padding: 1.2rem 1.4rem; border-radius: 18px; border-left: 3px solid #6ee7b7; background: rgba(110,231,183,.06); }
+  .ts .ts-gn-about h2 { margin: 0 0 .5rem; font: 700 1.05rem/1.2 var(--ts-font-display, 'Syne', sans-serif); }
+  .ts .ts-gn-about p { margin: 0; color: var(--tss-text, rgba(246,250,247,.8)); line-height: 1.65; }
+  .ts-gn-tools { position: sticky; top: calc(var(--ts-header-space, 96px) - 16px); z-index: 4; display: flex; flex-wrap: wrap; align-items: center; gap: .35rem; margin-top: 1.5rem; padding: .4rem; border-radius: 999px; border: 1px solid var(--ts-line, rgba(255,255,255,.08)); background: rgba(6,6,8,.85); backdrop-filter: blur(12px); width: max-content; max-width: 100%; }
+  .ts .ts-gn-tools button { display: inline-flex; align-items: center; gap: .4rem; padding: 9px 13px; border-radius: 999px; border: 1px solid transparent; background: transparent; color: var(--ts-text, #f6faf7); font: 500 13.5px/1 var(--ts-font-body, Inter, sans-serif); cursor: pointer; }
+  .ts .ts-gn-tools button:hover { border-color: var(--ts-line-strong, rgba(255,255,255,.14)); }
   .ts .ts-gn-tools button[aria-pressed="true"] { background: #f6faf7; color: #060608; }
-  .ts-gn-text { --gn-size: 19px; margin-top: 2.25rem; }
-  .ts .ts-gn-text p { margin: 0 0 1.15em; font: 400 var(--gn-size)/1.85 var(--ts-font-body, Inter, sans-serif); color: #e7ece9; }
-  .ts .ts-gn-text p:first-child::first-letter { float: left; margin: .08em .12em 0 0; font: 800 3.4em/.8 var(--ts-font-display, 'Syne', sans-serif); color: #6ee7b7; }
-  .ts .ts-gn-night { display: flex; align-items: center; gap: 1rem; margin: 2.5rem 0 0; padding: 1.4rem 1.5rem; border-radius: 22px; font: 700 clamp(1.15rem, 2vw, 1.45rem)/1.35 var(--ts-font-display, 'Syne', sans-serif); letter-spacing: -0.01em; }
+  .ts .ts-gn-tools span { padding: 0 .2rem 0 .5rem; color: var(--ts-muted, #9aaba3); font-size: 13px; }
+  .ts .ts-gn-tools i { width: 1px; height: 20px; margin: 0 .2rem; background: var(--ts-line-strong, rgba(255,255,255,.14)); }
+  @media (max-width: 520px) { .ts-gn-tools { border-radius: 18px; } .ts .ts-gn-tools i { display: none; } }
+  .ts-gn-text { --gn-size: 19px; margin-top: 2rem; }
+  .ts .ts-gn-text > p { margin: 0 0 1.15em; font: 400 var(--gn-size)/1.85 var(--ts-font-body, Inter, sans-serif); color: #e7ece9; }
+  .ts .ts-gn-tip { margin: 1.8em 0; padding: 1rem 1.2rem; border-radius: 14px; border: 1px dashed var(--ts-line-strong, rgba(255,255,255,.18)); font-size: 15px; line-height: 1.55; color: var(--tss-text, rgba(246,250,247,.8)); }
+  .ts .ts-gn-tip b { margin-right: .5rem; padding: 3px 8px; border-radius: 6px; background: #6ee7b7; color: #060608; font: 700 11px/1 var(--ts-font-mono, monospace); letter-spacing: .1em; vertical-align: 1px; }
+  .ts .ts-gn-tip a { color: #6ee7b7; }
+  .ts .ts-gn-night { display: flex; align-items: center; gap: 1rem; margin: 2.25rem 0 0; padding: 1.3rem 1.5rem; border-radius: 22px; font: 700 clamp(1.1rem, 2vw, 1.4rem)/1.35 var(--ts-font-display, 'Syne', sans-serif); }
   .ts .ts-gn-night svg { flex: none; color: #f7d046; }
-  .ts .ts-gn-ask { margin-top: 1.25rem; padding: 1.4rem 1.5rem; border-radius: 22px; }
+  .ts .ts-gn-ask { margin-top: 1.25rem; padding: 1.3rem 1.5rem; border-radius: 22px; }
+  .ts .ts-gn-ask h2 { margin: 0; font: 700 1.05rem/1.2 var(--ts-font-display, 'Syne', sans-serif); }
   .ts .ts-gn-ask ul { margin: .8rem 0 0; padding: 0; list-style: none; display: grid; gap: .55rem; }
   .ts .ts-gn-ask li { position: relative; padding-left: 1.5rem; color: var(--tss-text, rgba(246,250,247,.8)); line-height: 1.55; }
   .ts .ts-gn-ask li::before { content: "?"; position: absolute; left: 0; top: 0; color: #6ee7b7; font-weight: 800; }
-  .ts-gn-motiv { display: grid; gap: 1.25rem; margin-top: 1.25rem; padding: 1.4rem 1.5rem; border-radius: 22px; align-items: center; }
-  .ts .ts-gn-motiv__img { max-width: 220px; padding: .5rem; border-radius: 8px; background: #fbf9f4; transform: rotate(-2deg); box-shadow: 0 30px 50px -26px rgba(0,0,0,.9); }
-  .ts .ts-gn-motiv__img svg { display: block; width: 100% !important; height: auto !important; }
-  .ts .ts-gn-author { display: grid; grid-template-columns: 72px 1fr; gap: 1.1rem; align-items: start; margin-top: 1.25rem; padding: 1.4rem 1.5rem; border-radius: 22px; }
-  .ts .ts-gn-author img { width: 72px !important; height: 72px !important; border-radius: 50%; object-fit: cover; }
-  .ts .ts-gn-author p { margin: 0; color: var(--tss-text, rgba(246,250,247,.75)); line-height: 1.6; font-size: 15px; }
-  .ts .ts-gn-author p + p { margin-top: .45rem; }
-  .ts .ts-gn-author b { color: #f6faf7; }
+  .ts .ts-gn-end { margin: 2.5rem 0 0; text-align: center; color: var(--ts-muted, #9aaba3); font: 600 12px/1 var(--ts-font-mono, monospace); letter-spacing: .3em; }
+  .ts-gn-more { display: flex; justify-content: center; margin-top: 2rem; }
+  .ts .ts-gn-like { margin-top: 2.5rem; padding: clamp(1.3rem, 3vw, 2rem); border-radius: 22px; }
+  .ts .ts-gn-like > h2 { margin: 0; font: 800 clamp(1.4rem, 2.6vw, 1.9rem)/1.1 var(--ts-font-display, 'Syne', sans-serif); letter-spacing: -0.02em; }
+  .ts .ts-gn-book { display: grid; grid-template-columns: 72px 1fr; gap: 1rem; align-items: start; margin-top: 1.25rem; }
+  .ts .ts-gn-book__ico { display: grid; place-items: center; width: 72px; height: 92px; border-radius: 6px 12px 12px 6px; background: linear-gradient(135deg, #2e9e6a, #1d4d3f); box-shadow: inset 6px 0 0 rgba(0,0,0,.25); font-size: 30px; }
+  .ts .ts-gn-book h3 { margin: 0; font: 700 1.1rem/1.25 var(--ts-font-display, 'Syne', sans-serif); }
+  .ts .ts-gn-book p { margin: .4rem 0 0; color: var(--tss-text, rgba(246,250,247,.75)); line-height: 1.6; font-size: 15px; }
+  .ts .ts-gn-share { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem; margin-top: 1.5rem; padding-top: 1.25rem; border-top: 1px solid var(--ts-line, rgba(255,255,255,.08)); }
+  .ts .ts-gn-share > span { margin-right: .4rem; font: 600 14px/1 var(--ts-font-body, Inter, sans-serif); }
   .ts .ts-gn-audio { margin-top: 1.5rem; padding: 1rem 1.2rem; border-radius: 18px; }
   .ts .ts-gn-audio audio { width: 100%; margin-top: .6rem; }
-  .ts .ts-gn-reihe { margin-top: 1.25rem; }
-  .ts .ts-gn-reihe ul { margin: .7rem 0 0; padding: 0; list-style: none; border-top: 1px solid var(--ts-line, rgba(255,255,255,.08)); }
+  .ts .ts-gn-reihe { margin-top: 2rem; }
+  .ts .ts-gn-reihe h2 { margin: 0; font: 700 1.15rem/1.2 var(--ts-font-display, 'Syne', sans-serif); }
+  .ts .ts-gn-reihe ul { margin: .8rem 0 0; padding: 0; list-style: none; border-top: 1px solid var(--ts-line, rgba(255,255,255,.08)); }
   .ts .ts-gn-reihe li { display: flex; justify-content: space-between; gap: 1rem; padding: .85rem 0; border-bottom: 1px solid var(--ts-line, rgba(255,255,255,.08)); }
-  .ts .ts-gn-reihe a { color: #f6faf7; font: 700 1.05rem/1.3 var(--ts-font-display, 'Syne', sans-serif); text-decoration: none; }
+  .ts .ts-gn-reihe a { color: #f6faf7; font: 600 1rem/1.3 var(--ts-font-body, Inter, sans-serif); text-decoration: none; }
   .ts .ts-gn-reihe a:hover { color: #6ee7b7; }
-  .ts .ts-gn-reihe .ts-label { color: var(--ts-muted, #9aaba3); white-space: nowrap; }
-  /* Nachtmodus: dunkler, wärmer, größer – zum Vorlesen im abgedunkelten Kinderzimmer */
+  .ts .ts-gn-reihe span { color: var(--ts-muted, #9aaba3); white-space: nowrap; font-size: 14px; }
+  .ts-gn-glance { display: grid; gap: 1.5rem; margin-top: 1.75rem; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .ts .ts-gn-glance h3 { margin: 0 0 .7rem; color: var(--ts-muted, #9aaba3); font: 600 11px/1.3 var(--ts-font-mono, monospace); letter-spacing: .14em; text-transform: uppercase; }
+  .ts .ts-gn-glance ul { margin: 0; padding: 0; list-style: none; display: grid; gap: .5rem; }
+  .ts .ts-gn-glance a { color: var(--ts-text, #f6faf7); text-decoration: none; font-size: 15px; }
+  .ts .ts-gn-glance a:hover { color: #6ee7b7; }
+  /* Nachtmodus: dunkler, wärmer – zum Vorlesen im abgedunkelten Kinderzimmer */
   html.ts-gn-dark .ts-gn-page { background: #050505; }
-  html.ts-gn-dark .ts .ts-gn-text p { color: #e9dcc0; }
-  html.ts-gn-dark .ts .ts-gn-text p:first-child::first-letter { color: #f7d046; }
-  html.ts-gn-dark .ts-gn-dim { opacity: .25; transition: opacity .4s; }
+  html.ts-gn-dark .ts .ts-gn-text > p { color: #e9dcc0; }
+  html.ts-gn-dark .ts-gn-dim, html.ts-gn-dark .ts-gn-tip { opacity: .25; transition: opacity .4s; }
+  html.ts-gn-dark .ts-gn-hero { filter: brightness(.45); }
   html.ts-gn-dark .ts-khr, html.ts-gn-dark .ts-header { opacity: .25; }
   @media (min-width: 640px) {
     .ts-am-gal { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-    .ts-am-packs, .ts-gn-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .ts-am-packs { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .ts-gn-glance { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .ts-gn-figs { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (min-width: 900px) {
+    .ts-gn-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .ts-gn-grid--4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .ts-gn-figs { grid-template-columns: repeat(4, minmax(0, 1fr)); }
   }
   @media (min-width: 1024px) {
     .ts-am-gal { grid-template-columns: repeat(5, minmax(0, 1fr)); }
-    .ts-am-packs, .ts-gn-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-    .ts-gn-today { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 3rem; }
-    .ts-gn-motiv { grid-template-columns: 220px minmax(0, 1fr); }
+    .ts-am-packs { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   }
   @media print {
-    .ts-khr, .ts-gn-tools, .ts-gn-noprint, header, footer, #footer-sections, .ts-header { display: none !important; }
-    .ts .ts-gn-text p { color: #111 !important; font-size: 13pt !important; }
-    .ts .ts-gn-h1, .ts .ts-gn-night, .ts .ts-gn-ask, .ts .ts-gn-ask li { color: #111 !important; background: none !important; border: 0 !important; }
-    .ts-gn-motiv { page-break-before: always; }
+    .ts-khr, .ts-gn-tools, .ts-gn-noprint, .ts-gn-tip, .ts-gn-hero, header, footer, #footer-sections, .ts-header { display: none !important; }
+    .ts .ts-gn-text > p { color: #111 !important; font-size: 13pt !important; }
+    .ts .ts-gn-h1, .ts .ts-gn-night, .ts .ts-gn-ask, .ts .ts-gn-ask li, .ts .ts-gn-about, .ts .ts-gn-about p, .ts .ts-gn-facts { color: #111 !important; background: none !important; }
     body, .ts-gn-page { background: #fff !important; }
   }
 </style>
@@ -248,65 +303,53 @@
   <div class="ts-am__orb ts-gn-dim" aria-hidden="true"></div>
   <div class="ts-container tss--top">
     <div class="ts-gn-story">
-      <div class="tss-kicker ts-gn-dim"><p class="ts-label ts-muted"><a href="/gute-nacht-geschichten" style="color:inherit">← Alle Gute-Nacht-Geschichten</a></p><p class="ts-label ts-muted">Geschichte 18 / 24</p></div>
-      <ul class="ts-gn-meta ts-gn-dim"><li class="ts-label">Mitmachgeschichte</li><li class="ts-label">Ab 2 Jahren</li><li class="ts-label">2 Min. Vorlesezeit</li><li class="ts-label">Einschlafen</li><li class="ts-label">Fantasie</li></ul>
-      <h1 id="ts-gn-h" class="ts-gn-h1">Gute Nacht, Obstkorb<i>.</i></h1>
-      <p class="ts-gn-lead ts-gn-dim">In der Küche steht ein Obstkorb. Apfel, Banane und die zwei Kirschen sind schon ganz müde – und sagen sich gute Nacht.</p>
+      <nav class="ts-gn-crumb ts-gn-dim" aria-label="Brotkrumen"><a href="/kreativhafen">Kreativhafen</a><span>›</span><a href="/gute-nacht-geschichten">Gute-Nacht-Geschichten</a><span>›</span>Gute Nacht, Obstkorb</nav>
+      <h1 id="ts-gn-h" class="ts-gn-h1">Gute Nacht, Obstkorb</h1>
+      <div class="ts-gn-by ts-gn-dim"><img src="https://images.squarespace-cdn.com/content/v1/6869717aa7c996116c8c8a56/ffc25dc6-15ea-4d07-ab0d-6173fde95edf/IMG_3686.jpeg?format=300w" alt="" width="46" height="46" loading="lazy"><p>von <b>Trutz Stähler</b><small>Papa aus Hamburg · schreibt Kinderbücher</small></p></div>
+      <ul class="ts-gn-facts ts-gn-dim"><li>🎯 ab 2 Jahren</li><li>🕔 ca. 2 Minuten Vorlesedauer</li></ul>
+      <img class="ts-gn-hero" src="https://raw.githubusercontent.com/trutzstaehler/stream-daten/main/kreativhafen/geschichten/bilder/gute-nacht-obstkorb.webp" alt="Illustration zur Gute-Nacht-Geschichte „Gute Nacht, Obstkorb“" width="800" height="600">
+      <div class="ts-gn-about ts-gn-dim"><h2>Darum geht’s</h2><p>In der Küche steht ein Obstkorb. Apfel, Banane und die zwei Kirschen sind schon ganz müde – und sagen sich gute Nacht.</p></div>
       <div class="ts-gn-tools" role="toolbar" aria-label="Lesehilfen">
-        <button type="button" data-gn="night" aria-pressed="false"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg>Nachtmodus</button>
+        <button type="button" data-gn="speak" aria-pressed="false"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><path d="M11 5 6 9H2v6h4l5 4V5Z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M19 5a10 10 0 0 1 0 14"/></svg>Vorlesen</button>
+        <i aria-hidden="true"></i><span>Schrift</span>
         <button type="button" data-gn="minus" aria-label="Schrift kleiner">A−</button>
         <button type="button" data-gn="plus" aria-label="Schrift größer">A+</button>
-        <button type="button" data-gn="speak" aria-pressed="false"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><path d="M11 5 6 9H2v6h4l5 4V5Z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M19 5a10 10 0 0 1 0 14"/></svg>Vorlesen lassen</button>
-        <button type="button" data-gn="print"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><path d="M6 9V3h12v6"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><path d="M6 14h12v7H6z"/></svg>Drucken</button>
+        <i aria-hidden="true"></i>
+        <button type="button" data-gn="night" aria-pressed="false"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg>Nachtmodus</button>
       </div>
       
-      <div class="ts-gn-text"><p>In der Küche steht ein Korb. Im Korb wohnt das Obst.</p><p>Da ist der rote Apfel. Rund und glatt.</p><p>Da ist die gelbe Banane. Lang und krumm.</p><p>Und da sind die zwei Kirschen. Klein und rot. Sie halten sich immer an den Stielen fest.</p><p>Heute war viel los in der Küche. Klapper, klapper, machten die Teller. Blubb, blubb, machte der Topf.</p><p>Jetzt ist es Abend. Das Licht in der Küche geht aus. Klick.</p><p>Der Apfel gähnt. Haaaa. „Ich bin müde“, sagt der Apfel. „Gute Nacht, Banane.“</p><p>„Gute Nacht, Apfel“, sagt die Banane. Sie gähnt auch. Haaaa. „Gute Nacht, Kirschen.“</p><p>„Gute Nacht, Banane“, sagen die Kirschen. Und dann sagen sie leise zueinander: „Gute Nacht, Kirsche.“ – „Gute Nacht, Kirsche.“</p><p>Die Banane legt sich ein bisschen krumm hin. Genau so, wie sie es mag.</p><p>Der Apfel kuschelt sich an die Banane.</p><p>Die Kirschen halten sich an den Stielen fest. Ganz fest.</p><p>Durch das Fenster schaut der Mond herein. „Gute Nacht, Obstkorb“, flüstert der Mond.</p><p>Aber das hört niemand mehr. Denn im Obstkorb schlafen alle.</p></div>
+      <div class="ts-gn-text"><p>In der Küche steht ein Korb. Im Korb wohnt das Obst.</p><p>Da ist der rote Apfel. Rund und glatt.</p><p>Da ist die gelbe Banane. Lang und krumm.</p><p>Und da sind die zwei Kirschen. Klein und rot. Sie halten sich immer an den Stielen fest.</p><p>Heute war viel los in der Küche. Klapper, klapper, machten die Teller. Blubb, blubb, machte der Topf.</p><p>Jetzt ist es Abend. Das Licht in der Küche geht aus. Klick.</p><p>Der Apfel gähnt. Haaaa. „Ich bin müde“, sagt der Apfel. „Gute Nacht, Banane.“</p><aside class="ts-gn-tip ts-gn-noprint"><b>TIPP</b>Mit dem Mond-Knopf oben wird die Seite dunkel und die Schrift warm – angenehm zum Vorlesen im abgedunkelten Kinderzimmer.</aside><p>„Gute Nacht, Apfel“, sagt die Banane. Sie gähnt auch. Haaaa. „Gute Nacht, Kirschen.“</p><p>„Gute Nacht, Banane“, sagen die Kirschen. Und dann sagen sie leise zueinander: „Gute Nacht, Kirsche.“ – „Gute Nacht, Kirsche.“</p><p>Die Banane legt sich ein bisschen krumm hin. Genau so, wie sie es mag.</p><p>Der Apfel kuschelt sich an die Banane.</p><p>Die Kirschen halten sich an den Stielen fest. Ganz fest.</p><p>Durch das Fenster schaut der Mond herein. „Gute Nacht, Obstkorb“, flüstert der Mond.</p><p>Aber das hört niemand mehr. Denn im Obstkorb schlafen alle.</p></div>
       
-      <div class="ts-gn-ask ts-glass ts-gn-dim"><p class="ts-label ts-muted">[ Zum Reden danach ]</p><ul><li>Welches Obst ist rund, welches ist krumm?</li><li>Was isst du morgen zum Frühstück?</li></ul></div>
-      <div class="ts-gn-motiv ts-glass ts-gn-dim">
-        <div class="ts-gn-motiv__img"><svg role='img' aria-label='Ausmalbild Apfel' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1100" width="1000" height="1100"><g stroke="#111111" stroke-linecap="round" stroke-linejoin="round"><g transform="translate(60 0) scale(.88)"><path d="M488 300 C486 240 496 185 526 140 L566 158 C540 200 528 248 530 300 Z" fill="#fff" stroke-width="11" /><path d="M200 380 C150 540 220 760 360 805 C420 822 460 795 500 795 C540 795 580 822 640 805 C780 760 850 540 800 380 C750 225 575 228 500 290 C425 228 250 225 200 380 Z" fill="#fff" stroke-width="11" /><path d="M548 214 C600 128 718 118 772 168 C712 210 624 238 556 228 Z" fill="#fff" stroke-width="11" /><path d="M570 222 C630 196 690 178 740 172" fill="none" stroke-width="7"/><ellipse cx="310" cy="420" rx="46" ry="26" fill="#fff" stroke-width="7" transform="rotate(-40 310 420)"/><ellipse cx="406" cy="540" rx="27" ry="35" fill="#111111" stroke-width="0"/><circle cx="397" cy="527" r="11" fill="#fff" stroke="none"/><circle cx="416" cy="552" r="5" fill="#fff" stroke="none"/><ellipse cx="594" cy="540" rx="27" ry="35" fill="#111111" stroke-width="0"/><circle cx="584" cy="527" r="11" fill="#fff" stroke="none"/><circle cx="603" cy="552" r="5" fill="#fff" stroke="none"/><path d="M471 584 Q500 576 529 584 Q526 628 500 628 Q474 628 471 584 Z" fill="#fff" stroke-width="9.1" /><path d="M487 617 Q500 605 513 617" fill="none" stroke-width="6.5"/><ellipse cx="362" cy="584" rx="25" ry="13" fill="#fff" stroke-width="6.5"/><ellipse cx="638" cy="584" rx="25" ry="13" fill="#fff" stroke-width="6.5"/><path d="M140 186 Q144 216 174 220 Q144 224 140 254 Q136 224 106 220 Q136 216 140 186 Z" fill="#fff" stroke-width="7" /><path d="M860 274 Q863 297 886 300 Q863 303 860 326 Q857 303 834 300 Q857 297 860 274 Z" fill="#fff" stroke-width="7" /><path d="M880 790 Q883 817 910 820 Q883 823 880 850 Q877 823 850 820 Q877 817 880 790 Z" fill="#fff" stroke-width="7" /></g><g transform="translate(220 1055) scale(0.17281 -0.17281)" fill="#fff" stroke="#111111" stroke-width="138.88" stroke-linejoin="round" paint-order="stroke"><path transform="translate(0 0)" d="M690 118Q705 88 706 67Q707 46 693 30Q679 14 648 -2Q600 -25 574 -16Q548 -8 525 41L355 389L187 40Q163 -7 137 -16Q111 -24 64 -1Q33 14 18 30Q4 46 5 67Q6 88 21 118L272 638Q284 662 308 676Q331 691 356 691Q374 691 390 684Q405 678 418 666Q431 654 439 637ZM197 136 273 292H438L514 136Z"/><path transform="translate(751 0)" d="M126 -8Q81 -8 62 6Q43 19 39 40Q35 62 35 84V600Q35 622 39 643Q43 664 62 678Q81 691 127 691H326Q364 691 408 676Q452 660 492 628Q531 596 556 548Q581 500 581 434Q581 369 556 321Q531 273 492 242Q452 210 408 194Q364 179 325 179H218V83Q218 61 214 40Q210 19 191 6Q172 -8 126 -8ZM218 362H326Q339 362 356 368Q373 375 386 391Q399 407 399 435Q399 456 389 472Q379 489 362 498Q346 508 325 508H218Z"/><path transform="translate(1386 0)" d="M129 -9Q84 -9 65 4Q46 18 42 40Q38 61 38 83V600Q38 652 58 672Q79 691 132 691H498Q521 691 542 687Q562 683 575 664Q588 645 588 599Q588 554 574 535Q561 516 540 512Q519 508 496 508H221V419H405Q428 419 446 416Q465 412 476 396Q486 379 486 339Q486 301 475 285Q464 269 446 266Q427 263 404 263H221V82Q221 60 217 39Q213 18 194 4Q175 -9 129 -9Z"/><path transform="translate(2039 0)" d="M129 -9Q84 -9 65 4Q46 18 42 40Q38 61 38 83V600Q38 652 58 672Q79 691 132 691H498Q521 691 542 687Q562 683 576 664Q589 645 589 599Q589 554 576 535Q562 516 541 512Q520 508 497 508H221V419H406Q429 419 447 416Q465 412 476 396Q487 380 487 340Q487 302 476 286Q465 269 446 266Q427 263 404 263H221V174H498Q521 174 542 170Q562 166 576 147Q589 128 589 82Q589 37 576 18Q562 -1 541 -5Q520 -9 497 -9Z"/><path transform="translate(2682 0)" d="M141 -9Q96 -9 77 4Q58 18 54 40Q50 61 50 83V600Q50 622 54 643Q58 664 77 678Q96 691 142 691Q188 691 206 678Q225 664 229 643Q233 622 233 599V147H477Q496 147 514 144Q531 141 542 124Q554 108 554 69Q554 31 542 14Q530 -2 512 -6Q495 -9 476 -9Z"/></g></g></svg></div>
-        <div><p class="ts-label ts-muted">[ Das Ausmalbild zur Geschichte ]</p>
-          <h2 class="ts-am__h2" style="font-size:clamp(1.5rem,3vw,2.2rem);margin-top:.8rem">Morgen früh: Apfel ausmalen<i>.</i></h2>
-          <div class="ts-am__ctas ts-gn-noprint">
-            <button type="button" class="ts-am-mini ts-am-mini--hi" data-gn="motiv" data-name="Apfel" data-titel="Gute Nacht, Obstkorb">Ausmalbild drucken</button>
-            <a class="ts-am-mini" href="/ausmalbilder?motiv=og01#ts-am-malen">Online ausmalen</a>
-          </div></div>
-      </div>
-      <div class="ts-gn-author ts-glass ts-gn-dim ts-gn-noprint">
-        <img src="https://images.squarespace-cdn.com/content/v1/6869717aa7c996116c8c8a56/ffc25dc6-15ea-4d07-ab0d-6173fde95edf/IMG_3686.jpeg?format=300w" alt="Trutz Stähler" width="72" height="72" loading="lazy">
-        <div><p class="ts-label ts-muted">[ Aus dem Kreativhafen ]</p>
-          <p><b>Trutz Stähler</b> – Papa aus Hamburg, Autor der Kritzelbücher und des Kinderkrimis „Maria Holm“. Im Kreativhafen entstehen Geschichten zum Vorlesen und Ausmalbilder zum Weitermalen.</p>
-          <div class="ts-am__ctas" style="margin-top:.9rem">
-            <button type="button" class="ts-am-mini" data-gn="share">Mit Freunden teilen</button>
-            <a class="ts-am-mini" href="/malbuecher">Die Kritzelbücher ansehen</a>
-          </div></div>
+      <div class="ts-gn-ask ts-glass ts-gn-dim"><h2>Zum Reden danach</h2><ul><li>Welches Obst ist rund, welches ist krumm?</li><li>Was isst du morgen zum Frühstück?</li></ul></div>
+      <p class="ts-gn-end ts-gn-dim" aria-hidden="true">✦ ENDE ✦</p>
+      <div class="ts-gn-more ts-gn-noprint"><a href="/gute-nacht-geschichten" class="ts-btn ts-btn--primary ts-magnetic"><span class="ts-btn__inner"><span class="ts-roll"><span data-text="Mehr Geschichten lesen">Mehr Geschichten lesen</span></span><svg class="ts-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></div>
+      <div class="ts-gn-like ts-glass ts-gn-dim ts-gn-noprint">
+        <h2>Hat dir die Geschichte gefallen<i style="font-style:normal;color:#6ee7b7">?</i></h2>
+        <div class="ts-gn-book"><span class="ts-gn-book__ico" aria-hidden="true">✏️</span>
+          <div><h3>Die Kritzelbücher</h3><p>Zum Kritzeln, Malen und Weiterdenken – die Malbücher von Trutz für kleine Künstlerinnen und Künstler.</p>
+            <div class="ts-am__ctas" style="margin-top:.9rem"><a class="ts-am-mini ts-am-mini--hi" href="/malbuecher">Mehr dazu</a></div></div></div>
+        <div class="ts-gn-share"><span>Mit Freunden teilen</span>
+          <button type="button" class="ts-am-mini" data-gn="share">Link teilen</button>
+          <a class="ts-am-mini" data-gn="wa" href="https://wa.me/" target="_blank" rel="noopener">WhatsApp</a></div>
       </div>
       
     </div>
   </div>
-  <section class="ts-container ts-am__block ts-am__end ts-gn-noprint ts-gn-dim" aria-label="Weitere Geschichten">
-    <div class="ts-am__blockhead"><p class="ts-label ts-muted">[ Noch eine? ]</p><p class="ts-label ts-muted"><a href="/gute-nacht-geschichten" style="color:inherit">Alle Geschichten →</a></p></div>
-    <div class="ts-gn-grid" style="margin-top:1.5rem"><a class="ts-gn-card ts-glass" href="/geschichten/ella-fliegt-zum-mond" data-gn-card data-themen="Weltraum,Einschlafen,Fantasie" data-zeit="5" data-alter="3" data-form="Fantasiereise" data-saison="" data-suche="ella fliegt zum mond ella kann nicht einschlafen – also baut sie aus ihrem bett eine rakete. gemeinsam mit kuschelhase momo fliegt sie bis zum mond, um ihm persönlich gute nacht zu sagen. weltraum,einschlafen,fantasie  es ist schon dunkel draußen. das licht im flur ist aus, und im haus ist es ganz still. nur ella liegt in ihrem bett und hat die augen weit offen. „ich bin noch gar nicht müde“, flüstert sie zu momo. momo ist ihr kuschelhase. er hat ein ohr, das immer nach oben steht, und eins, das immer nach unten hängt. durch das fenster scheint der mond. rund und hell hängt er über den dächern, wie eine große silberne lampe." data-titel="Ella fliegt zum Mond" data-teaser="Ella kann nicht einschlafen – also baut sie aus ihrem Bett eine Rakete. Gemeinsam mit Kuschelhase Momo fliegt sie bis zum Mond, um ihm persönlich gute Nacht zu sagen."><div class="ts-gn-card__img"><img src="https://raw.githubusercontent.com/trutzstaehler/stream-daten/main/kreativhafen/ausmalbilder/bilder/bunt/wr01.webp" alt="" loading="lazy" width="360" height="396" style="--r:-2deg"></div><div class="ts-gn-card__body"><h3 class="ts-gn-card__t">Ella fliegt zum Mond</h3><p class="ts-gn-card__s">Ella kann nicht einschlafen – also baut sie aus ihrem Bett eine Rakete. Gemeinsam mit Kuschelhase Momo fliegt sie bis zum Mond, um ihm persönlich gute Nacht zu sagen.</p><p class="ts-label ts-gn-card__m">5 Min. · ab 3 J. · Fantasiereise</p></div></a><a class="ts-gn-card ts-glass" href="/geschichten/moewe-mats-will-nicht-schlafen" data-gn-card data-themen="Hafen,Tiere,Einschlafen" data-zeit="4" data-alter="3" data-form="Tiergeschichte" data-saison="" data-suche="möwe mats will nicht schlafen im hafen ist abends noch so viel los – da kann möwe mats doch unmöglich schlafen gehen! oder leuchtet der hafen vielleicht auch ohne sie weiter? hafen,tiere,einschlafen  am hamburger hafen wohnt eine kleine möwe. sie heißt mats. mats hat weiße federn, graue flügel und gelbe füße, die immer ein bisschen tapsen. tap, tap, tap. am liebsten sitzt mats auf einem dicken poller direkt an der elbe. von dort kann sie alles sehen: die großen schiffe, die kleinen boote, die kräne und die menschen, die winken. eines abends wird der himmel orange, dann rosa, dann lila. die sonne sinkt langsam hinter die kräne." data-titel="Möwe Mats will nicht schlafen" data-teaser="Im Hafen ist abends noch so viel los – da kann Möwe Mats doch unmöglich schlafen gehen! Oder leuchtet der Hafen vielleicht auch ohne sie weiter?"><div class="ts-gn-card__img"><img src="https://raw.githubusercontent.com/trutzstaehler/stream-daten/main/kreativhafen/ausmalbilder/bilder/bunt/hf03.webp" alt="" loading="lazy" width="360" height="396" style="--r:1.5deg"></div><div class="ts-gn-card__body"><h3 class="ts-gn-card__t">Möwe Mats will nicht schlafen</h3><p class="ts-gn-card__s">Im Hafen ist abends noch so viel los – da kann Möwe Mats doch unmöglich schlafen gehen! Oder leuchtet der Hafen vielleicht auch ohne sie weiter?</p><p class="ts-label ts-gn-card__m">4 Min. · ab 3 J. · Tiergeschichte</p></div></a></div>
+  <section class="ts-container ts-am__block ts-gn-noprint ts-gn-dim" aria-labelledby="ts-gn-weitere-t">
+    <h2 id="ts-gn-weitere-t" class="ts-am__h2">Weitere Gute-Nacht-Geschichten</h2>
+    <p class="ts-am__sub">Mehr Einschlafgeschichten findest du in unserer Sammlung: <a href="/gute-nacht-geschichten" style="color:#6ee7b7">Alle Gute-Nacht-Geschichten →</a></p>
+    <div class="ts-gn-grid ts-gn-grid--4"><a class="ts-gn-card" href="/geschichten/ella-fliegt-zum-mond"><img src="https://raw.githubusercontent.com/trutzstaehler/stream-daten/main/kreativhafen/geschichten/bilder/ella-fliegt-zum-mond.webp" alt="" loading="lazy" width="800" height="600"><div class="ts-gn-card__body"><h3 class="ts-gn-card__t">Ella fliegt zum Mond</h3><p class="ts-gn-card__m">ab 3 Jahren · ca. 5 Min.</p></div></a><a class="ts-gn-card" href="/geschichten/das-kleine-auto-faehrt-nach-hause"><img src="https://raw.githubusercontent.com/trutzstaehler/stream-daten/main/kreativhafen/geschichten/bilder/das-kleine-auto-faehrt-nach-hause.webp" alt="" loading="lazy" width="800" height="600"><div class="ts-gn-card__body"><h3 class="ts-gn-card__t">Das kleine Auto fährt nach Hause</h3><p class="ts-gn-card__m">ab 2 Jahren · ca. 2 Min.</p></div></a><a class="ts-gn-card" href="/geschichten/das-flugzeug-landet-am-abend"><img src="https://raw.githubusercontent.com/trutzstaehler/stream-daten/main/kreativhafen/geschichten/bilder/das-flugzeug-landet-am-abend.webp" alt="" loading="lazy" width="800" height="600"><div class="ts-gn-card__body"><h3 class="ts-gn-card__t">Das Flugzeug landet am Abend</h3><p class="ts-gn-card__m">ab 2 Jahren · ca. 2 Min.</p></div></a><a class="ts-gn-card" href="/geschichten/die-luftballons-wollen-noch-nicht-schlafen"><img src="https://raw.githubusercontent.com/trutzstaehler/stream-daten/main/kreativhafen/geschichten/bilder/die-luftballons-wollen-noch-nicht-schlafen.webp" alt="" loading="lazy" width="800" height="600"><div class="ts-gn-card__body"><h3 class="ts-gn-card__t">Die Luftballons wollen noch nicht schlafen</h3><p class="ts-gn-card__m">ab 2 Jahren · ca. 2 Min.</p></div></a></div>
+  </section>
+  <section class="ts-container ts-am__block ts-am__end ts-gn-noprint ts-gn-dim" aria-labelledby="ts-gn-glance-t">
+    <h2 id="ts-gn-glance-t" class="ts-am__h2">Geschichten auf einen Blick</h2>
+    <div class="ts-gn-glance"><div><h3>Nach Dauer</h3><ul><li><a href="/gute-nacht-geschichten?dauer=kurz#ts-gn-alle">Kurz (1–3 Minuten)</a></li><li><a href="/gute-nacht-geschichten?dauer=mittel#ts-gn-alle">Mittel (4–6 Minuten)</a></li><li><a href="/gute-nacht-geschichten?dauer=lang#ts-gn-alle">Lang (ab 7 Minuten)</a></li></ul></div><div><h3>Nach Alter</h3><ul><li><a href="/gute-nacht-geschichten?alter=2#ts-gn-alle">Für 2-Jährige</a></li><li><a href="/gute-nacht-geschichten?alter=3#ts-gn-alle">Für 3- bis 4-Jährige</a></li><li><a href="/gute-nacht-geschichten?alter=5#ts-gn-alle">Ab 5 Jahren</a></li></ul></div><div><h3>Nach Thema</h3><ul><li><a href="/gute-nacht-geschichten?thema=Hafen#ts-gn-alle">Hamburger Hafen</a></li><li><a href="/gute-nacht-geschichten?thema=Jahreszeiten#ts-gn-alle">Jahreszeiten</a></li><li><a href="/gute-nacht-geschichten?thema=Fahrzeuge#ts-gn-alle">Fahrzeuge</a></li><li><a href="/gute-nacht-geschichten?thema=Weltraum#ts-gn-alle">Weltraum</a></li><li><a href="/gute-nacht-geschichten?thema=Gefühle#ts-gn-alle">Mut &amp; Gefühle</a></li><li><a href="/gute-nacht-geschichten?thema=Freundschaft#ts-gn-alle">Freundschaft</a></li></ul></div><div><h3>Nach Figur</h3><ul><li><a href="/gute-nacht-geschichten?suche=Mats#ts-gn-alle">Möwe Mats</a></li><li><a href="/gute-nacht-geschichten?suche=Funki#ts-gn-alle">Funki, der Drache</a></li><li><a href="/gute-nacht-geschichten?suche=Lotte#ts-gn-alle">Leuchtturm Lotte</a></li><li><a href="/gute-nacht-geschichten?suche=Bruno#ts-gn-alle">Bagger Bruno</a></li></ul></div></div>
   </section>
 </article>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "ShortStory", "name": "Gute Nacht, Obstkorb", "headline": "Gute Nacht, Obstkorb", "description": "In der Küche steht ein Obstkorb. Apfel, Banane und die zwei Kirschen sind schon ganz müde – und sagen sich gute Nacht.", "inLanguage": "de", "author": {"@type": "Person", "name": "Trutz Stähler", "url": "https://trutzstaehler.de/ueber-mich"}, "publisher": {"@type": "Organization", "name": "Kreativhafen"}, "isAccessibleForFree": true, "typicalAgeRange": "2-6", "timeRequired": "PT2M", "genre": "Gute-Nacht-Geschichte", "keywords": "Einschlafen, Fantasie", "image": "https://raw.githubusercontent.com/trutzstaehler/stream-daten/main/kreativhafen/ausmalbilder/bilder/bunt/og01.webp", "url": "https://trutzstaehler.de/geschichten/gute-nacht-obstkorb", "wordCount": 172}</script>
-<script>
-/* Ein Motiv als A4-Seite drucken (öffnet ein Druckfenster) */
-window.tsKhPrint = (svg, name, paket) => {
-  const w = window.open('', '_blank');
-  if (!w) { alert('Bitte Pop-ups für diese Seite erlauben, um zu drucken.'); return; }
-  w.document.write('<!doctype html><html lang="de"><head><meta charset="utf-8"><title>' + name + ' – Ausmalbild</title>' +
-    '<style>@page{size:A4;margin:12mm}html,body{margin:0;background:#fff}body{display:flex;flex-direction:column;align-items:center;justify-content:center;height:96vh;font:500 9pt Arial,sans-serif;color:#888}' +
-    'svg{width:100%;max-height:88vh}p{margin:3mm 0 0;letter-spacing:.12em;text-transform:uppercase}</style></head><body>' + svg +
-    '<p>' + (paket ? paket + ' · ' : '') + 'trutzstaehler.de/ausmalbilder</p></body></html>');
-  w.document.close();
-  w.onafterprint = () => w.close();
-  setTimeout(() => { w.focus(); w.print(); }, 350);
-};
-</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "ShortStory", "name": "Gute Nacht, Obstkorb", "headline": "Gute Nacht, Obstkorb", "description": "In der Küche steht ein Obstkorb. Apfel, Banane und die zwei Kirschen sind schon ganz müde – und sagen sich gute Nacht.", "inLanguage": "de", "author": {"@type": "Person", "name": "Trutz Stähler", "url": "https://trutzstaehler.de/ueber-mich"}, "publisher": {"@type": "Organization", "name": "Kreativhafen"}, "isAccessibleForFree": true, "typicalAgeRange": "2-7", "timeRequired": "PT2M", "genre": "Gute-Nacht-Geschichte", "keywords": "Einschlafen, Fantasie", "image": "https://raw.githubusercontent.com/trutzstaehler/stream-daten/main/kreativhafen/geschichten/bilder/gute-nacht-obstkorb.webp", "url": "https://trutzstaehler.de/geschichten/gute-nacht-obstkorb", "wordCount": 172}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Kreativhafen", "item": "https://trutzstaehler.de/kreativhafen"}, {"@type": "ListItem", "position": 2, "name": "Gute-Nacht-Geschichten", "item": "https://trutzstaehler.de/gute-nacht-geschichten"}, {"@type": "ListItem", "position": 3, "name": "Gute Nacht, Obstkorb"}]}</script>
 
 <script>
-/* Geschichte: Nachtmodus, Schriftgröße, Vorlesen lassen, Drucken, Ausmalbild drucken */
+/* Geschichte: Vorlesen lassen, Schriftgröße, Nachtmodus, Teilen */
 (() => {
   const root = document.querySelector('[data-gn-story]'); if (!root) return;
   const txt = root.querySelector('.ts-gn-text'), h = document.documentElement;
@@ -319,24 +362,26 @@ window.tsKhPrint = (svg, name, paket) => {
   setSize(size);
   root.querySelector('[data-gn="plus"]').addEventListener('click', () => setSize(size + 2));
   root.querySelector('[data-gn="minus"]').addEventListener('click', () => setSize(size - 2));
-  root.querySelector('[data-gn="print"]').addEventListener('click', () => window.print());
   /* Vorlesen lassen (Computerstimme des Geräts, falls vorhanden) */
   const sp = root.querySelector('[data-gn="speak"]');
   if (!('speechSynthesis' in window)) sp.hidden = true;
-  else sp.addEventListener('click', () => {
-    if (speechSynthesis.speaking) { speechSynthesis.cancel(); sp.setAttribute('aria-pressed', 'false'); return; }
-    const t = [...txt.querySelectorAll('p')].map(p => p.textContent).join(' ') + ' ' + ((root.querySelector('[data-gn-night]') || {}).textContent || '');
-    const u = new SpeechSynthesisUtterance(t); u.lang = 'de-DE'; u.rate = .85; u.pitch = 1;
-    const v = speechSynthesis.getVoices().find(v => /^de/i.test(v.lang)); if (v) u.voice = v;
-    u.onend = () => sp.setAttribute('aria-pressed', 'false');
-    speechSynthesis.speak(u); sp.setAttribute('aria-pressed', 'true');
-  });
+  else {
+    addEventListener('pagehide', () => speechSynthesis.cancel());
+    sp.addEventListener('click', () => {
+      if (speechSynthesis.speaking) { speechSynthesis.cancel(); sp.setAttribute('aria-pressed', 'false'); return; }
+      const t = root.querySelector('.ts-gn-h1').textContent + '. ' + [...txt.querySelectorAll(':scope > p')].map(p => p.textContent).join(' ') + ' ' + ((root.querySelector('[data-gn-night]') || {}).textContent || '');
+      const u = new SpeechSynthesisUtterance(t); u.lang = 'de-DE'; u.rate = .85; u.pitch = 1;
+      const v = speechSynthesis.getVoices().find(v => /^de/i.test(v.lang)); if (v) u.voice = v;
+      u.onend = () => sp.setAttribute('aria-pressed', 'false');
+      speechSynthesis.speak(u); sp.setAttribute('aria-pressed', 'true');
+    });
+  }
   const sh = root.querySelector('[data-gn="share"]');
   if (sh) sh.addEventListener('click', async () => {
     const data = { title: document.title, text: 'Eine Gute-Nacht-Geschichte zum Vorlesen:', url: location.href };
     try { if (navigator.share) await navigator.share(data); else { await navigator.clipboard.writeText(location.href); sh.textContent = 'Link kopiert ✓'; } } catch (e) {}
   });
-  const mp = root.querySelector('[data-gn="motiv"]');
-  if (mp) mp.addEventListener('click', () => window.tsKhPrint(root.querySelector('.ts-gn-motiv__img').innerHTML, mp.dataset.name, mp.dataset.titel));
+  const wa = root.querySelector('[data-gn="wa"]');
+  if (wa) wa.href = 'https://wa.me/?text=' + encodeURIComponent('Eine schöne Gute-Nacht-Geschichte zum Vorlesen: ' + location.href);
 })();
 </script>

@@ -112,79 +112,134 @@ KH_CSS = WEB.CSS.replace('</style>', REITER_CSS + r'''
   .ts .ts-am-tile__acts button { display: inline-flex; align-items: center; justify-content: center; gap: .3rem; padding: 8px 6px; border-radius: 999px; border: 1px solid #d7d3c8; background: #fff; color: #1b1f1c; font: 600 11.5px/1 var(--ts-font-body, Inter, sans-serif); cursor: pointer; }
   .ts .ts-am-tile__acts button:hover { background: #1b1f1c; color: #fff; border-color: #1b1f1c; }
   .ts .ts-am-gal__msg { grid-column: 1 / -1; color: var(--ts-muted, #9aaba3); }
-  /* Geschichten */
-  .ts-gn-today { display: grid; gap: 1.5rem; margin-top: 2rem; padding: clamp(1.25rem, 3.5vw, 2.5rem); border-radius: 26px; align-items: center; }
-  .ts .ts-gn-today img { display: block; width: 100% !important; max-width: 340px; height: auto !important; margin: 0 auto; border-radius: 10px; background: #fbf9f4; padding: 8px; transform: rotate(-2deg); box-shadow: 0 40px 70px -30px rgba(0,0,0,.9); }
-  .ts .ts-gn-meta { display: flex; flex-wrap: wrap; gap: .45rem; margin: 1rem 0 0; padding: 0; list-style: none; }
-  .ts .ts-gn-meta li { padding: 6px 11px; border-radius: 999px; border: 1px solid var(--ts-line-strong, rgba(255,255,255,.14)); color: var(--ts-text, #f6faf7); font-size: 10.5px; }
-  .ts-gn-filter { display: flex; flex-wrap: wrap; gap: .45rem; margin-top: 1.5rem; }
-  .ts .ts-gn-filter button { padding: 9px 14px; border-radius: 999px; border: 1px solid var(--ts-line-strong, rgba(255,255,255,.14)); background: transparent; color: var(--ts-text, #f6faf7); font: 600 11px/1 var(--ts-font-mono, monospace); letter-spacing: .1em; text-transform: uppercase; cursor: pointer; }
-  .ts .ts-gn-filter button[aria-pressed="true"] { background: #f6faf7; color: #060608; border-color: #f6faf7; }
-  .ts-gn-grid { display: grid; gap: 1rem; margin-top: 1.5rem; grid-template-columns: minmax(0, 1fr); }
-  .ts .ts-gn-card { display: flex; flex-direction: column; border-radius: 22px; overflow: hidden; color: inherit; text-decoration: none; transition: transform .5s var(--ts-ease-out); }
-  .ts .ts-gn-card:hover { transform: translateY(-4px); }
+  /* Geschichten: Karten wie bei Zitronenbande/Zwergenstark – Bild, Titel, Alter · Dauer */
+  .ts-gn-grid { display: grid; gap: clamp(.75rem, 2vw, 1.25rem); margin-top: 1.5rem; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .ts .ts-gn-card { display: flex; flex-direction: column; border-radius: 18px; overflow: hidden; color: inherit; text-decoration: none; border: 1px solid var(--ts-line, rgba(255,255,255,.08)); background: rgba(255,255,255,.025); transition: transform .5s var(--ts-ease-out), border-color .25s; }
+  .ts .ts-gn-card:hover { transform: translateY(-4px); border-color: rgba(110,231,183,.45); }
   .ts-gn-card[hidden] { display: none !important; }
-  .ts .ts-gn-card__img { display: grid; place-items: center; aspect-ratio: 16 / 10; background: radial-gradient(70% 80% at 50% 100%, rgba(46,140,108,.35), transparent 70%), linear-gradient(180deg, rgba(29,77,63,.25), rgba(12,17,15,.4)); }
-  .ts .ts-gn-card__img img { width: 46% !important; height: auto !important; border-radius: 8px; background: #fbf9f4; padding: 5px; transform: rotate(var(--r, -2deg)); box-shadow: 0 30px 50px -26px rgba(0,0,0,.9); }
-  .ts-gn-card__body { display: flex; flex-direction: column; gap: .5rem; flex: 1; padding: 1.2rem 1.35rem 1.4rem; }
-  .ts .ts-gn-card__t { margin: 0; font: 800 clamp(1.2rem, 1.7vw, 1.45rem)/1.1 var(--ts-font-display, 'Syne', sans-serif); letter-spacing: -0.02em; }
-  .ts .ts-gn-card__s { margin: 0; color: var(--ts-muted, #9aaba3); font-size: 14.5px; line-height: 1.6; }
-  .ts .ts-gn-card__m { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: auto; padding-top: .8rem; color: #6ee7b7; }
+  .ts .ts-gn-card img { display: block; width: 100% !important; height: auto !important; aspect-ratio: 4 / 3; object-fit: cover; background: #1f2a44; }
+  .ts-gn-card__body { display: flex; flex-direction: column; gap: .4rem; flex: 1; padding: .85rem 1rem 1rem; }
+  .ts .ts-gn-card__t { margin: 0; font: 700 clamp(.98rem, 1.45vw, 1.18rem)/1.22 var(--ts-font-display, 'Syne', sans-serif); letter-spacing: -0.01em; }
+  .ts .ts-gn-card__m { margin: auto 0 0; color: var(--ts-muted, #9aaba3); font: 500 13px/1.35 var(--ts-font-body, Inter, sans-serif); }
+  /* Übersicht */
+  .ts .ts-gn-intro { max-width: 46rem; margin: 1.25rem 0 0; color: var(--tss-text, rgba(246,250,247,.78)); font-size: clamp(16px, 1.35vw, 18px); line-height: 1.7; }
+  .ts-gn-jump { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1.5rem; }
+  .ts .ts-gn-jump a { padding: 10px 15px; border-radius: 999px; border: 1px solid var(--ts-line-strong, rgba(255,255,255,.14)); color: var(--ts-text, #f6faf7); text-decoration: none; font: 600 13px/1 var(--ts-font-body, Inter, sans-serif); }
+  .ts .ts-gn-jump a:hover { border-color: rgba(110,231,183,.5); }
+  .ts .ts-gn-jump a:first-child { background: #f6faf7; color: #060608; border-color: #f6faf7; }
+  .ts-gn-bar { display: flex; flex-wrap: wrap; align-items: center; gap: .75rem 1.25rem; margin-top: 1.5rem; }
+  .ts-gn-filter { display: flex; flex-wrap: wrap; align-items: center; gap: .45rem; }
+  .ts .ts-gn-filter b { margin-right: .25rem; font: 600 14px/1 var(--ts-font-body, Inter, sans-serif); }
+  .ts .ts-gn-filter button { padding: 9px 14px; border-radius: 999px; border: 1px solid var(--ts-line-strong, rgba(255,255,255,.14)); background: transparent; color: var(--ts-text, #f6faf7); font: 600 13px/1 var(--ts-font-body, Inter, sans-serif); cursor: pointer; }
+  .ts .ts-gn-filter button[aria-pressed="true"] { background: #f6faf7; color: #060608; border-color: #f6faf7; }
+  .ts-gn-search { display: flex; align-items: center; gap: .6rem; flex: 1 1 16rem; max-width: 24rem; padding: .2rem .2rem .2rem 1rem; border-radius: 999px; border: 1px solid var(--ts-line-strong, rgba(255,255,255,.14)); }
+  .ts .ts-gn-search input { flex: 1; min-width: 0; padding: 10px 0; border: 0; background: transparent; color: var(--ts-text, #f6faf7); font: 500 15px/1 var(--ts-font-body, Inter, sans-serif); outline: none; }
+  .ts .ts-gn-search input::placeholder { color: var(--ts-muted, #9aaba3); }
+  .ts .ts-gn-state { margin: 1rem 0 0; color: var(--ts-muted, #9aaba3); font-size: 14px; }
+  .ts .ts-gn-state button { margin-left: .5rem; padding: 0; border: 0; background: none; color: #6ee7b7; font: inherit; text-decoration: underline; cursor: pointer; }
+  .ts-gn-morebtn { display: flex; justify-content: center; margin-top: 2rem; }
+  .ts-gn-figs { display: grid; grid-template-columns: minmax(0, 1fr); gap: .8rem; margin-top: 2rem; }
+  .ts-gn-page .ts-am__h2 { font-size: clamp(1.75rem, 4.6vw, 3.4rem); hyphens: auto; -webkit-hyphens: auto; overflow-wrap: break-word; }
+  .ts .ts-gn-fig { display: grid; grid-template-columns: 64px 1fr; grid-template-rows: auto auto; column-gap: .9rem; align-items: center; text-align: left; padding: .8rem; border-radius: 18px; border: 1px solid var(--ts-line, rgba(255,255,255,.08)); background: rgba(255,255,255,.02); color: inherit; text-decoration: none; transition: border-color .25s, transform .4s var(--ts-ease-out); }
+  .ts .ts-gn-fig:hover { border-color: rgba(110,231,183,.45); transform: translateY(-3px); }
+  .ts .ts-gn-fig img { grid-row: 1 / 3; width: 64px !important; height: 64px !important; object-fit: cover; border-radius: 50%; }
+  .ts .ts-gn-fig b { font: 700 15px/1.2 var(--ts-font-display, 'Syne', sans-serif); }
+  .ts .ts-gn-fig span { color: var(--ts-muted, #9aaba3); font-size: 13px; line-height: 1.4; }
+  .ts .ts-gn-seo { margin-top: 2rem; max-width: 52rem; }
+  .ts .ts-gn-seo h3 { margin: 2rem 0 .6rem; font: 700 1.2rem/1.25 var(--ts-font-display, 'Syne', sans-serif); }
+  .ts .ts-gn-seo h3:first-child { margin-top: 0; }
+  .ts .ts-gn-seo p, .ts .ts-gn-seo li { color: var(--tss-text, rgba(246,250,247,.75)); line-height: 1.75; }
+  .ts .ts-gn-seo p { margin: 0 0 1rem; }
+  .ts .ts-gn-seo ul { margin: 0 0 1rem; padding-left: 1.2rem; }
+  .ts .ts-gn-seo b { color: #f6faf7; }
+  .ts .ts-gn-seo a { color: #6ee7b7; }
   /* Einzelne Geschichte */
-  .ts-gn-story { max-width: 46rem; margin: 0 auto; }
-  .ts .ts-gn-h1 { margin: 1.25rem 0 0; font: 800 clamp(2.2rem, 6vw, 4.6rem)/.98 var(--ts-font-display, 'Syne', sans-serif); letter-spacing: -0.035em; }
+  .ts-gn-story { max-width: 44rem; margin: 0 auto; }
+  .ts .ts-gn-crumb { margin: 0; color: var(--ts-muted, #9aaba3); font-size: 13.5px; line-height: 1.5; }
+  .ts .ts-gn-crumb a { color: inherit; text-decoration: none; }
+  .ts .ts-gn-crumb a:hover { color: #6ee7b7; }
+  .ts .ts-gn-crumb span { margin: 0 .4rem; opacity: .6; }
   .ts .ts-gn-h1 i { font-style: normal; color: #6ee7b7; }
-  .ts .ts-gn-lead { margin-top: 1rem; color: var(--ts-muted, #9aaba3); font-size: clamp(16px, 1.4vw, 19px); line-height: 1.65; }
-  .ts-gn-tools { position: sticky; top: calc(var(--ts-header-space, 96px) - 16px); z-index: 4; display: flex; flex-wrap: wrap; gap: .45rem; margin-top: 1.5rem; padding: .5rem; border-radius: 999px; border: 1px solid var(--ts-line, rgba(255,255,255,.08)); background: rgba(6,6,8,.82); backdrop-filter: blur(12px); width: max-content; max-width: 100%; }
-  .ts .ts-gn-tools button, .ts .ts-gn-tools a { display: inline-flex; align-items: center; gap: .4rem; padding: 9px 13px; border-radius: 999px; border: 1px solid transparent; background: transparent; color: var(--ts-text, #f6faf7); font: 500 13px/1 var(--ts-font-body, Inter, sans-serif); text-decoration: none; cursor: pointer; }
-  .ts .ts-gn-tools button:hover, .ts .ts-gn-tools a:hover { border-color: var(--ts-line-strong, rgba(255,255,255,.14)); }
+  .ts .ts-gn-h1.ts-gn-h1--page { max-width: 18ch; margin-top: 2rem; font-size: clamp(2.3rem, 6.4vw, 5.4rem); }
+  .ts .ts-gn-h1 { margin: 1rem 0 0; font: 800 clamp(2rem, 5.4vw, 3.8rem)/1.02 var(--ts-font-display, 'Syne', sans-serif); letter-spacing: -0.03em; }
+  .ts-gn-by { display: flex; align-items: center; gap: .8rem; margin-top: 1.2rem; }
+  .ts .ts-gn-by img { width: 46px !important; height: 46px !important; border-radius: 50%; object-fit: cover; }
+  .ts .ts-gn-by p { margin: 0; font-size: 15px; line-height: 1.35; }
+  .ts .ts-gn-by small { display: block; color: var(--ts-muted, #9aaba3); font-size: 13px; }
+  .ts .ts-gn-facts { display: flex; flex-wrap: wrap; gap: .5rem 1.4rem; margin: 1.3rem 0 0; padding: .9rem 0; list-style: none; border-top: 1px solid var(--ts-line, rgba(255,255,255,.08)); border-bottom: 1px solid var(--ts-line, rgba(255,255,255,.08)); font-size: 15px; }
+  .ts .ts-gn-facts a { color: inherit; }
+  .ts .ts-gn-hero { display: block; width: 100% !important; height: auto !important; aspect-ratio: 4 / 3; margin-top: 1.5rem; border-radius: 22px; object-fit: cover; }
+  .ts .ts-gn-about { margin-top: 1.5rem; padding: 1.2rem 1.4rem; border-radius: 18px; border-left: 3px solid #6ee7b7; background: rgba(110,231,183,.06); }
+  .ts .ts-gn-about h2 { margin: 0 0 .5rem; font: 700 1.05rem/1.2 var(--ts-font-display, 'Syne', sans-serif); }
+  .ts .ts-gn-about p { margin: 0; color: var(--tss-text, rgba(246,250,247,.8)); line-height: 1.65; }
+  .ts-gn-tools { position: sticky; top: calc(var(--ts-header-space, 96px) - 16px); z-index: 4; display: flex; flex-wrap: wrap; align-items: center; gap: .35rem; margin-top: 1.5rem; padding: .4rem; border-radius: 999px; border: 1px solid var(--ts-line, rgba(255,255,255,.08)); background: rgba(6,6,8,.85); backdrop-filter: blur(12px); width: max-content; max-width: 100%; }
+  .ts .ts-gn-tools button { display: inline-flex; align-items: center; gap: .4rem; padding: 9px 13px; border-radius: 999px; border: 1px solid transparent; background: transparent; color: var(--ts-text, #f6faf7); font: 500 13.5px/1 var(--ts-font-body, Inter, sans-serif); cursor: pointer; }
+  .ts .ts-gn-tools button:hover { border-color: var(--ts-line-strong, rgba(255,255,255,.14)); }
   .ts .ts-gn-tools button[aria-pressed="true"] { background: #f6faf7; color: #060608; }
-  .ts-gn-text { --gn-size: 19px; margin-top: 2.25rem; }
-  .ts .ts-gn-text p { margin: 0 0 1.15em; font: 400 var(--gn-size)/1.85 var(--ts-font-body, Inter, sans-serif); color: #e7ece9; }
-  .ts .ts-gn-text p:first-child::first-letter { float: left; margin: .08em .12em 0 0; font: 800 3.4em/.8 var(--ts-font-display, 'Syne', sans-serif); color: #6ee7b7; }
-  .ts .ts-gn-night { display: flex; align-items: center; gap: 1rem; margin: 2.5rem 0 0; padding: 1.4rem 1.5rem; border-radius: 22px; font: 700 clamp(1.15rem, 2vw, 1.45rem)/1.35 var(--ts-font-display, 'Syne', sans-serif); letter-spacing: -0.01em; }
+  .ts .ts-gn-tools span { padding: 0 .2rem 0 .5rem; color: var(--ts-muted, #9aaba3); font-size: 13px; }
+  .ts .ts-gn-tools i { width: 1px; height: 20px; margin: 0 .2rem; background: var(--ts-line-strong, rgba(255,255,255,.14)); }
+  @media (max-width: 520px) { .ts-gn-tools { border-radius: 18px; } .ts .ts-gn-tools i { display: none; } }
+  .ts-gn-text { --gn-size: 19px; margin-top: 2rem; }
+  .ts .ts-gn-text > p { margin: 0 0 1.15em; font: 400 var(--gn-size)/1.85 var(--ts-font-body, Inter, sans-serif); color: #e7ece9; }
+  .ts .ts-gn-tip { margin: 1.8em 0; padding: 1rem 1.2rem; border-radius: 14px; border: 1px dashed var(--ts-line-strong, rgba(255,255,255,.18)); font-size: 15px; line-height: 1.55; color: var(--tss-text, rgba(246,250,247,.8)); }
+  .ts .ts-gn-tip b { margin-right: .5rem; padding: 3px 8px; border-radius: 6px; background: #6ee7b7; color: #060608; font: 700 11px/1 var(--ts-font-mono, monospace); letter-spacing: .1em; vertical-align: 1px; }
+  .ts .ts-gn-tip a { color: #6ee7b7; }
+  .ts .ts-gn-night { display: flex; align-items: center; gap: 1rem; margin: 2.25rem 0 0; padding: 1.3rem 1.5rem; border-radius: 22px; font: 700 clamp(1.1rem, 2vw, 1.4rem)/1.35 var(--ts-font-display, 'Syne', sans-serif); }
   .ts .ts-gn-night svg { flex: none; color: #f7d046; }
-  .ts .ts-gn-ask { margin-top: 1.25rem; padding: 1.4rem 1.5rem; border-radius: 22px; }
+  .ts .ts-gn-ask { margin-top: 1.25rem; padding: 1.3rem 1.5rem; border-radius: 22px; }
+  .ts .ts-gn-ask h2 { margin: 0; font: 700 1.05rem/1.2 var(--ts-font-display, 'Syne', sans-serif); }
   .ts .ts-gn-ask ul { margin: .8rem 0 0; padding: 0; list-style: none; display: grid; gap: .55rem; }
   .ts .ts-gn-ask li { position: relative; padding-left: 1.5rem; color: var(--tss-text, rgba(246,250,247,.8)); line-height: 1.55; }
   .ts .ts-gn-ask li::before { content: "?"; position: absolute; left: 0; top: 0; color: #6ee7b7; font-weight: 800; }
-  .ts-gn-motiv { display: grid; gap: 1.25rem; margin-top: 1.25rem; padding: 1.4rem 1.5rem; border-radius: 22px; align-items: center; }
-  .ts .ts-gn-motiv__img { max-width: 220px; padding: .5rem; border-radius: 8px; background: #fbf9f4; transform: rotate(-2deg); box-shadow: 0 30px 50px -26px rgba(0,0,0,.9); }
-  .ts .ts-gn-motiv__img svg { display: block; width: 100% !important; height: auto !important; }
-  .ts .ts-gn-author { display: grid; grid-template-columns: 72px 1fr; gap: 1.1rem; align-items: start; margin-top: 1.25rem; padding: 1.4rem 1.5rem; border-radius: 22px; }
-  .ts .ts-gn-author img { width: 72px !important; height: 72px !important; border-radius: 50%; object-fit: cover; }
-  .ts .ts-gn-author p { margin: 0; color: var(--tss-text, rgba(246,250,247,.75)); line-height: 1.6; font-size: 15px; }
-  .ts .ts-gn-author p + p { margin-top: .45rem; }
-  .ts .ts-gn-author b { color: #f6faf7; }
+  .ts .ts-gn-end { margin: 2.5rem 0 0; text-align: center; color: var(--ts-muted, #9aaba3); font: 600 12px/1 var(--ts-font-mono, monospace); letter-spacing: .3em; }
+  .ts-gn-more { display: flex; justify-content: center; margin-top: 2rem; }
+  .ts .ts-gn-like { margin-top: 2.5rem; padding: clamp(1.3rem, 3vw, 2rem); border-radius: 22px; }
+  .ts .ts-gn-like > h2 { margin: 0; font: 800 clamp(1.4rem, 2.6vw, 1.9rem)/1.1 var(--ts-font-display, 'Syne', sans-serif); letter-spacing: -0.02em; }
+  .ts .ts-gn-book { display: grid; grid-template-columns: 72px 1fr; gap: 1rem; align-items: start; margin-top: 1.25rem; }
+  .ts .ts-gn-book__ico { display: grid; place-items: center; width: 72px; height: 92px; border-radius: 6px 12px 12px 6px; background: linear-gradient(135deg, #2e9e6a, #1d4d3f); box-shadow: inset 6px 0 0 rgba(0,0,0,.25); font-size: 30px; }
+  .ts .ts-gn-book h3 { margin: 0; font: 700 1.1rem/1.25 var(--ts-font-display, 'Syne', sans-serif); }
+  .ts .ts-gn-book p { margin: .4rem 0 0; color: var(--tss-text, rgba(246,250,247,.75)); line-height: 1.6; font-size: 15px; }
+  .ts .ts-gn-share { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem; margin-top: 1.5rem; padding-top: 1.25rem; border-top: 1px solid var(--ts-line, rgba(255,255,255,.08)); }
+  .ts .ts-gn-share > span { margin-right: .4rem; font: 600 14px/1 var(--ts-font-body, Inter, sans-serif); }
   .ts .ts-gn-audio { margin-top: 1.5rem; padding: 1rem 1.2rem; border-radius: 18px; }
   .ts .ts-gn-audio audio { width: 100%; margin-top: .6rem; }
-  .ts .ts-gn-reihe { margin-top: 1.25rem; }
-  .ts .ts-gn-reihe ul { margin: .7rem 0 0; padding: 0; list-style: none; border-top: 1px solid var(--ts-line, rgba(255,255,255,.08)); }
+  .ts .ts-gn-reihe { margin-top: 2rem; }
+  .ts .ts-gn-reihe h2 { margin: 0; font: 700 1.15rem/1.2 var(--ts-font-display, 'Syne', sans-serif); }
+  .ts .ts-gn-reihe ul { margin: .8rem 0 0; padding: 0; list-style: none; border-top: 1px solid var(--ts-line, rgba(255,255,255,.08)); }
   .ts .ts-gn-reihe li { display: flex; justify-content: space-between; gap: 1rem; padding: .85rem 0; border-bottom: 1px solid var(--ts-line, rgba(255,255,255,.08)); }
-  .ts .ts-gn-reihe a { color: #f6faf7; font: 700 1.05rem/1.3 var(--ts-font-display, 'Syne', sans-serif); text-decoration: none; }
+  .ts .ts-gn-reihe a { color: #f6faf7; font: 600 1rem/1.3 var(--ts-font-body, Inter, sans-serif); text-decoration: none; }
   .ts .ts-gn-reihe a:hover { color: #6ee7b7; }
-  .ts .ts-gn-reihe .ts-label { color: var(--ts-muted, #9aaba3); white-space: nowrap; }
-  /* Nachtmodus: dunkler, wärmer, größer – zum Vorlesen im abgedunkelten Kinderzimmer */
+  .ts .ts-gn-reihe span { color: var(--ts-muted, #9aaba3); white-space: nowrap; font-size: 14px; }
+  .ts-gn-glance { display: grid; gap: 1.5rem; margin-top: 1.75rem; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .ts .ts-gn-glance h3 { margin: 0 0 .7rem; color: var(--ts-muted, #9aaba3); font: 600 11px/1.3 var(--ts-font-mono, monospace); letter-spacing: .14em; text-transform: uppercase; }
+  .ts .ts-gn-glance ul { margin: 0; padding: 0; list-style: none; display: grid; gap: .5rem; }
+  .ts .ts-gn-glance a { color: var(--ts-text, #f6faf7); text-decoration: none; font-size: 15px; }
+  .ts .ts-gn-glance a:hover { color: #6ee7b7; }
+  /* Nachtmodus: dunkler, wärmer – zum Vorlesen im abgedunkelten Kinderzimmer */
   html.ts-gn-dark .ts-gn-page { background: #050505; }
-  html.ts-gn-dark .ts .ts-gn-text p { color: #e9dcc0; }
-  html.ts-gn-dark .ts .ts-gn-text p:first-child::first-letter { color: #f7d046; }
-  html.ts-gn-dark .ts-gn-dim { opacity: .25; transition: opacity .4s; }
+  html.ts-gn-dark .ts .ts-gn-text > p { color: #e9dcc0; }
+  html.ts-gn-dark .ts-gn-dim, html.ts-gn-dark .ts-gn-tip { opacity: .25; transition: opacity .4s; }
+  html.ts-gn-dark .ts-gn-hero { filter: brightness(.45); }
   html.ts-gn-dark .ts-khr, html.ts-gn-dark .ts-header { opacity: .25; }
   @media (min-width: 640px) {
     .ts-am-gal { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-    .ts-am-packs, .ts-gn-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .ts-am-packs { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .ts-gn-glance { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .ts-gn-figs { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (min-width: 900px) {
+    .ts-gn-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .ts-gn-grid--4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .ts-gn-figs { grid-template-columns: repeat(4, minmax(0, 1fr)); }
   }
   @media (min-width: 1024px) {
     .ts-am-gal { grid-template-columns: repeat(5, minmax(0, 1fr)); }
-    .ts-am-packs, .ts-gn-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-    .ts-gn-today { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 3rem; }
-    .ts-gn-motiv { grid-template-columns: 220px minmax(0, 1fr); }
+    .ts-am-packs { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   }
   @media print {
-    .ts-khr, .ts-gn-tools, .ts-gn-noprint, header, footer, #footer-sections, .ts-header { display: none !important; }
-    .ts .ts-gn-text p { color: #111 !important; font-size: 13pt !important; }
-    .ts .ts-gn-h1, .ts .ts-gn-night, .ts .ts-gn-ask, .ts .ts-gn-ask li { color: #111 !important; background: none !important; border: 0 !important; }
-    .ts-gn-motiv { page-break-before: always; }
+    .ts-khr, .ts-gn-tools, .ts-gn-noprint, .ts-gn-tip, .ts-gn-hero, header, footer, #footer-sections, .ts-header { display: none !important; }
+    .ts .ts-gn-text > p { color: #111 !important; font-size: 13pt !important; }
+    .ts .ts-gn-h1, .ts .ts-gn-night, .ts .ts-gn-ask, .ts .ts-gn-ask li, .ts .ts-gn-about, .ts .ts-gn-about p, .ts .ts-gn-facts { color: #111 !important; background: none !important; }
     body, .ts-gn-page { background: #fff !important; }
   }
 </style>''')
@@ -323,10 +378,7 @@ def seite_ausmalbilder():
         saison += (f'<li data-from="{a}" data-to="{b}" data-fest="{WEB.FEST[pid]}"{adv} style="--c:{p["farbe"]}"><a href="#paket-{pid}" data-ts-no-trans>'
                    f'<span class="ts-label ts-am-season__date">{esc(SAISON_LABEL[pid])}</span><span class="ts-am-season__name">{esc(p["name"])}</span>'
                    f'<span class="ts-am-season__sub">{esc(p["sub"])}</span><span class="ts-label ts-am-season__state" data-state>PDF gratis</span></a></li>')
-    teaser = GESCHICHTEN[:3]
-    gcards = ''.join(f'''<a class="ts-gn-card ts-glass" href="{GESCH_URL}{g['slug']}"><div class="ts-gn-card__img"><img src="{BASIS}ausmalbilder/bilder/bunt/{g['motiv']}.webp" alt="" loading="lazy" width="360" height="396" style="--r:{r}deg"></div>
-      <div class="ts-gn-card__body"><h3 class="ts-gn-card__t">{esc(g['titel'])}</h3><p class="ts-gn-card__s">{esc(g['teaser'])}</p><p class="ts-label ts-gn-card__m">{g['lesezeit']} Min. · ab {g['alter']} Jahren</p></div></a>'''
-                     for g, r in zip(teaser, (-2, 1.5, -1)))
+    gcards = ''.join(karte_geschichte(g_von(s), False) for s in LIEBLINGE[:3])
     faq = ''.join(f'<details><summary>{esc(q)}</summary><p>{a}</p></details>' for q, a in FAQ_AM)
     ld = {'@context': 'https://schema.org', '@type': 'CollectionPage', 'name': 'Ausmalbilder kostenlos zum Ausdrucken – Kreativhafen',
           'description': f'{N_MOTIVE} kostenlose Ausmalbilder für Kinder ab 2 Jahren in {N_PAKETE} Themen.', 'inLanguage': 'de',
@@ -372,9 +424,9 @@ def seite_ausmalbilder():
                  'Farbe antippen, dann ins Bild tippen – der Farbeimer füllt die ganze Fläche. In der Galerie oben holt „Ausmalen“ jedes Motiv hierher.', 'ts-am-malen')}
 
   <section class="ts-container ts-am__block" aria-labelledby="ts-am-gn-t">
-    <div class="ts-am__blockhead"><p class="ts-label ts-muted">[ Erst vorlesen, dann ausmalen ]</p><p class="ts-label ts-muted">Gute-Nacht-Geschichten</p></div>
-    <h2 id="ts-am-gn-t" class="ts-am__h2">Zu jeder Geschichte ein Bild<i>.</i></h2>
-    <p class="ts-am__sub">Kurze Geschichten zum Vorlesen – und am nächsten Morgen wird die Hauptfigur ausgemalt.</p>
+    <div class="ts-am__blockhead"><p class="ts-label ts-muted">[ Auch im Kreativhafen ]</p><p class="ts-label ts-muted">Gute-Nacht-Geschichten</p></div>
+    <h2 id="ts-am-gn-t" class="ts-am__h2">Und abends: vorlesen<i>.</i></h2>
+    <p class="ts-am__sub">Kostenlose Gute-Nacht-Geschichten – direkt auf der Seite lesen, ohne Download.</p>
     <div class="ts-gn-grid">{gcards}</div>
     <div class="ts-am__ctas">{btn('Alle Gute-Nacht-Geschichten', '/gute-nacht-geschichten')}</div>
   </section>
@@ -401,19 +453,39 @@ def seite_ausmalbilder():
 
 
 # ======================================================================= Geschichten (Übersicht)
+# Aufbau nach dem Vorbild von zitronenbande.de und zwergenstark.de:
+# Einleitung → Lieblingsgeschichten → passend zum Monat → alle Geschichten mit Vorlesedauer-Filter → Figuren → Ratgeber-Text → FAQ
 SAISON_FENSTER = {'hw': (1001, 1031), 'lt': (1020, 1111), 'ad': (1112, 1224), 'wi': (1201, 228)}
-DAUER = [('alle', 'Jede Länge'), ('kurz', 'Kurz · 1–3 Min.'), ('mittel', 'Mittel · 4–6 Min.'), ('lang', 'Lang · ab 7 Min.')]
-ALTER = [('alle', 'Jedes Alter'), ('2', 'Für 2-Jährige'), ('4', 'Für 3–4-Jährige'), ('9', 'Ab 5 Jahren')]
+DAUER = [('alle', 'Alle'), ('kurz', '1–3 Min.'), ('mittel', '4–6 Min.'), ('lang', 'ab 7 Min.')]
+LIEBLINGE = ['moewe-mats-will-nicht-schlafen', 'funki-der-kleine-drache', 'bagger-bruno-macht-feierabend',
+             'ella-fliegt-zum-mond', 'das-kleine-gespenst-huhu', 'teddy-haelt-wache']
 FIGUREN = [
-    ('Möwe Mats', 'hf03', 'Die neugierige Möwe vom Hamburger Hafen – mit eigener Geschichten-Reihe.', 'Mats'),
-    ('Leuchtturm Lotte', 'hf02', 'Ihr Licht ist klein, ihr Herz ist groß.', 'Lotte'),
-    ('Fähre Frieda', 'hf06', 'Bringt jeden Abend alle sicher nach Hause.', 'Frieda'),
-    ('Kran Karl', 'hf05', 'Der größte Kran im Hafen – und der müdeste.', 'Karl'),
-    ('Funki', 'mf02', 'Der kleine Drache, der kein Feuer spucken kann.', 'Funki'),
-    ('Bagger Bruno', 'fz03', 'Will nie Feierabend machen.', 'Bruno'),
-    ('Wichtel Wilbur', 'ad13', 'Bewacht im Advent jede Nacht ein Türchen.', 'Wilbur'),
-    ('Gespenst Huhu', 'hw02', 'Fürchtet sich vor allem – sogar vor sich selbst.', 'Huhu'),
+    ('Möwe Mats', 'moewe-mats-will-nicht-schlafen', 'Die neugierige Möwe vom Hamburger Hafen – mit eigener Reihe.', 'Mats'),
+    ('Leuchtturm Lotte', 'leuchtturm-lotte-und-der-nebel', 'Ihr Licht ist klein, ihr Herz ist groß.', 'Lotte'),
+    ('Fähre Frieda', 'die-faehre-frieda-faehrt-nach-hause', 'Bringt jeden Abend alle sicher nach Hause.', 'Frieda'),
+    ('Kran Karl', 'ein-schlaflied-fuer-kran-karl', 'Der größte Kran im Hafen – und der müdeste.', 'Karl'),
+    ('Funki', 'funki-der-kleine-drache', 'Der kleine Drache, der kein Feuer spucken kann.', 'Funki'),
+    ('Bagger Bruno', 'bagger-bruno-macht-feierabend', 'Will nie Feierabend machen.', 'Bruno'),
+    ('Wichtel Wilbur', 'wichtel-wilbur-und-das-warten', 'Bewacht im Advent jede Nacht ein Türchen.', 'Wilbur'),
+    ('Gespenst Huhu', 'das-kleine-gespenst-huhu', 'Fürchtet sich vor allem – sogar vor sich selbst.', 'Huhu'),
 ]
+# „Geschichten auf einen Blick“ (unter jeder Geschichte und als Sprungziele der Übersicht)
+GLANCE = [
+    ('Nach Dauer', [('Kurz (1–3 Minuten)', 'dauer=kurz'), ('Mittel (4–6 Minuten)', 'dauer=mittel'), ('Lang (ab 7 Minuten)', 'dauer=lang')]),
+    ('Nach Alter', [('Für 2-Jährige', 'alter=2'), ('Für 3- bis 4-Jährige', 'alter=3'), ('Ab 5 Jahren', 'alter=5')]),
+    ('Nach Thema', [('Hamburger Hafen', 'thema=Hafen'), ('Jahreszeiten', 'thema=Jahreszeiten'), ('Fahrzeuge', 'thema=Fahrzeuge'),
+                    ('Weltraum', 'thema=Weltraum'), ('Mut & Gefühle', 'thema=Gefühle'), ('Freundschaft', 'thema=Freundschaft')]),
+    ('Nach Figur', [('Möwe Mats', 'suche=Mats'), ('Funki, der Drache', 'suche=Funki'), ('Leuchtturm Lotte', 'suche=Lotte'), ('Bagger Bruno', 'suche=Bruno')]),
+]
+AUTOR_IMG = 'https://images.squarespace-cdn.com/content/v1/6869717aa7c996116c8c8a56/ffc25dc6-15ea-4d07-ab0d-6173fde95edf/IMG_3686.jpeg?format=300w'
+
+
+def bild_url(g):
+    return f'{BASIS}geschichten/bilder/{g["slug"]}.webp'
+
+
+def g_von(slug):
+    return next(g for g in GESCHICHTEN if g['slug'] == slug)
 
 
 def saison_von(g):
@@ -421,64 +493,69 @@ def saison_von(g):
     return f'{w[0]}-{w[1]}' if w else ''
 
 
+def glance_html():
+    cols = ''.join(f'<div><h3>{esc(h)}</h3><ul>' + ''.join(f'<li><a href="/gute-nacht-geschichten?{q}#ts-gn-alle">{esc(t)}</a></li>' for t, q in links) + '</ul></div>'
+                   for h, links in GLANCE)
+    return f'<div class="ts-gn-glance">{cols}</div>'
+
+
 def heute_js():
     return r'''
 <script>
-/* Gute-Nacht-Geschichten: Geschichte für heute Abend, Saison-Auswahl, Suche und Filter */
+/* Gute-Nacht-Geschichten: Auswahl zum Monat, Vorlesedauer-Filter, Suche, „Mehr anzeigen“, Links ?dauer= ?alter= ?thema= ?suche= */
 (() => {
-  const cards = [...document.querySelectorAll('#ts-gn-alle [data-gn-card]')];
+  const all = document.getElementById('ts-gn-alle'); if (!all) return;
+  const cards = [...all.querySelectorAll('[data-gn-card]')];
   const d = new Date(), md = (d.getMonth() + 1) * 100 + d.getDate();
   const inWin = s => { if (!s) return false; const [a, b] = s.split('-').map(Number); return a <= b ? md >= a && md <= b : md >= a || md <= b; };
-  /* Saison-Block */
-  const sb = document.querySelector('[data-gn-saison]');
-  const saison = cards.filter(c => inWin(c.dataset.saison));
+  /* Beliebt im <Monat> */
+  const MON = ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'];
+  const TXT = { 9: 'Bunte Blätter, Kürbisse und die ersten dunklen Abende: Diese Geschichten passen jetzt perfekt.',
+    10: 'Laternen, Nebel und Kerzenlicht: Geschichten für die ruhigen Novemberabende.',
+    11: 'Die Zeit des Wartens: Geschichten für die Adventsabende – mit Wichtel Wilbur und Co.',
+    0: 'Kalt draußen, warm im Bett: Wintergeschichten zum Einkuscheln.', 1: 'Kalt draußen, warm im Bett: Wintergeschichten zum Einkuscheln.' };
+  const sb = document.querySelector('[data-gn-saison]'), saison = cards.filter(c => inWin(c.dataset.saison));
   if (sb && saison.length) {
-    const m = d.getMonth();
-    sb.querySelector('[data-t]').innerHTML = (m === 9 || m === 10 ? 'Geschichten für den Herbst' : m === 11 ? 'Geschichten für den Advent' : 'Geschichten für den Winter') + '<i>.</i>';
-    sb.querySelector('.ts-gn-grid').append(...saison.slice(0, 3).map(c => c.cloneNode(true)));
+    sb.querySelector('[data-t]').textContent = 'Beliebt im ' + MON[d.getMonth()];
+    sb.querySelector('[data-s]').textContent = TXT[d.getMonth()] || 'Diese Geschichten passen gerade besonders gut.';
+    sb.querySelector('.ts-gn-grid').append(...saison.slice(0, 4).map(c => { const k = c.cloneNode(true); k.removeAttribute('data-gn-card'); k.hidden = false; return k; }));
     sb.hidden = false;
   }
-  /* Geschichte für heute Abend: Saison zuerst, sonst wechselnd nach Tag */
-  const box = document.querySelector('[data-gn-today]');
-  if (box && cards.length) {
-    const pool = saison.length ? saison : cards, n = Math.floor((d - new Date(d.getFullYear(), 0, 0)) / 864e5);
-    const c = pool[n % pool.length];
-    box.querySelector('[data-t]').textContent = c.dataset.titel;
-    box.querySelector('[data-s]').textContent = c.dataset.teaser;
-    box.querySelector('[data-m]').innerHTML = c.querySelector('.ts-gn-card__m').innerHTML;
-    const img = box.querySelector('img'); img.src = c.querySelector('img').src; img.alt = c.dataset.titel;
-    box.querySelectorAll('[data-href]').forEach(a => a.href = c.getAttribute('href'));
-  }
-  /* Filter + Suche */
-  const f = document.querySelector('[data-gn-filter]'); if (!f) return;
-  const q = document.querySelector('[data-gn-q]');
-  let thema = 'alle', dauer = 'alle', alter = 'alle', form = 'alle';
+  /* Filter */
+  const q = all.querySelector('[data-gn-q]'), more = all.querySelector('[data-gn-more]'), state = all.querySelector('[data-gn-state]');
+  const P = new URLSearchParams(location.search);
+  let dauer = P.get('dauer') || 'alle', alter = P.get('alter') || '', thema = P.get('thema') || '', offen = false;
+  if (P.get('suche') && q) q.value = P.get('suche');
+  const ALT = { 2: 'für 2-Jährige', 3: 'für 3- bis 4-Jährige', 5: 'ab 5 Jahren' };
   const ok = c => {
     const z = +c.dataset.zeit, a = +c.dataset.alter, s = (q && q.value || '').trim().toLowerCase();
-    return (thema === 'alle' || c.dataset.themen.split(',').includes(thema))
-      && (dauer === 'alle' || (dauer === 'kurz' ? z <= 3 : dauer === 'mittel' ? z >= 4 && z <= 6 : z >= 7))
-      && (alter === 'alle' || a <= +alter && (alter !== '2' || a <= 2))
-      && (form === 'alle' || c.dataset.form === form)
+    return (dauer === 'alle' || (dauer === 'kurz' ? z <= 3 : dauer === 'mittel' ? z >= 4 && z <= 6 : z >= 7))
+      && (!alter || (alter === '2' ? a <= 2 : alter === '3' ? a >= 3 && a <= 4 : a >= 5))
+      && (!thema || c.dataset.themen.split(',').includes(thema))
       && (!s || c.dataset.suche.includes(s));
   };
   const apply = () => {
-    let n = 0; cards.forEach(c => { const v = ok(c); c.hidden = !v; if (v) n++; });
-    const e = document.querySelector('[data-gn-count]'); if (e) e.textContent = n + (n === 1 ? ' Geschichte' : ' Geschichten');
-    const leer = document.querySelector('[data-gn-leer]'); if (leer) leer.hidden = n > 0;
+    const aktiv = dauer !== 'alle' || alter || thema || (q && q.value.trim());
+    let n = 0, shown = 0;
+    cards.forEach(c => { const v = ok(c); if (v) n++; const zeig = v && (aktiv || offen || n <= 12); c.hidden = !zeig; if (zeig) shown++; });
+    if (more) more.hidden = !!aktiv || offen || n <= 12;
+    all.querySelectorAll('[data-dauer]').forEach(b => b.setAttribute('aria-pressed', b.dataset.dauer === dauer));
+    const teile = []; if (thema) teile.push('Thema „' + thema + '“'); if (alter) teile.push(ALT[alter] || '');
+    if (q && q.value.trim()) teile.push('Suche „' + q.value.trim() + '“');
+    state.innerHTML = '';
+    state.append(n + (n === 1 ? ' Geschichte' : ' Geschichten') + (teile.length ? ' · ' + teile.join(' · ') : ''));
+    if (aktiv) { const r = document.createElement('button'); r.type = 'button'; r.textContent = 'Alle zeigen'; r.onclick = () => { dauer = 'alle'; alter = thema = ''; if (q) q.value = ''; history.replaceState(null, '', location.pathname + '#ts-gn-alle'); apply(); }; state.append(r); }
+    if (!n) state.append(' – probier eine andere Länge oder ein anderes Wort.');
   };
-  f.addEventListener('click', e => {
-    const b = e.target.closest('button'); if (!b) return;
-    for (const k of ['thema', 'dauer', 'alter', 'form']) if (b.dataset[k]) {
-      if (k === 'thema') thema = b.dataset[k]; if (k === 'dauer') dauer = b.dataset[k]; if (k === 'alter') alter = b.dataset[k]; if (k === 'form') form = b.dataset[k];
-      f.querySelectorAll(`[data-${k}]`).forEach(x => x.setAttribute('aria-pressed', x === b));
-    }
-    apply();
-  });
+  all.querySelectorAll('[data-dauer]').forEach(b => b.addEventListener('click', () => { dauer = b.dataset.dauer; apply(); }));
   if (q) q.addEventListener('input', apply);
-  /* Figuren: Klick sucht nach der Figur */
-  document.querySelectorAll('[data-gn-figur]').forEach(b => b.addEventListener('click', () => {
-    if (!q) return; q.value = b.dataset.gnFigur; apply();
-    document.getElementById('ts-gn-alle').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  if (more) more.addEventListener('click', () => { offen = true; apply(); });
+  /* Figuren und Sprunglinks auf derselben Seite: ohne Neuladen filtern */
+  document.querySelectorAll('a[href^="/gute-nacht-geschichten?"]').forEach(a => a.addEventListener('click', e => {
+    if (location.pathname.replace(/\/+$/, '') !== '/gute-nacht-geschichten') return;
+    e.preventDefault(); const p = new URLSearchParams(a.getAttribute('href').split('?')[1].split('#')[0]);
+    dauer = p.get('dauer') || 'alle'; alter = p.get('alter') || ''; thema = p.get('thema') || ''; if (q) q.value = p.get('suche') || '';
+    apply(); all.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }));
   apply();
 })();
@@ -486,145 +563,112 @@ def heute_js():
 
 
 FAQ_GN = [
-    ('Wie lang sind die Gute-Nacht-Geschichten?', 'Es gibt ganz kurze Geschichten mit 1–2 Minuten für die Kleinsten, die meisten dauern 4–5 Minuten, und für größere Kinder gibt es längere mit 7–9 Minuten. Mit dem Filter „Länge“ findest du die passende.'),
-    ('Für welches Alter sind die Geschichten?', 'Für Kinder von etwa 2 bis 7 Jahren. Bei jeder Geschichte steht ein Alter. Alle sind ruhig, enden friedlich und kommen ohne Gruselmomente aus.'),
-    ('Was ist der Nachtmodus?', 'Auf jeder Geschichten-Seite gibt es einen Nachtmodus: Die Seite wird dunkler und wärmer, auf Wunsch auch die Schrift größer – angenehm zum Vorlesen im abgedunkelten Kinderzimmer.'),
-    ('Muss ich etwas herunterladen?', 'Nein. Alle Geschichten liest du direkt hier auf der Seite – am Handy, Tablet oder Computer. Wer mag, kann eine Geschichte über den Druck-Knopf auch auf Papier bringen.'),
-    ('Gibt es die Geschichten auch zum Anhören?', 'Auf jeder Seite gibt es „Vorlesen lassen“ – dann liest die Computerstimme deines Geräts vor. Selbst eingesprochene Hörgeschichten sind in Planung.'),
-    ('Sind die Geschichten kostenlos?', 'Ja, alle Geschichten sind kostenlos und ohne Anmeldung. Ihr dürft sie zu Hause, in der Kita und in der Schule vorlesen. Bitte teilt den Link, statt die Texte zu kopieren.'),
-]
-
-SEO_TEXT = [
-    ('Warum Gute-Nacht-Geschichten so gut tun',
-     'Eine Geschichte vor dem Schlafen ist mehr als Unterhaltung: Sie ist ein fester Moment, in dem der Tag leiser wird. Kinder kuscheln sich an, hören eine vertraute Stimme und kommen zur Ruhe. Ganz nebenbei wachsen Wortschatz, Fantasie und Konzentration – und die Bindung zwischen euch.'),
-    ('Welche Themen passen zum Einschlafen?',
-     'Am besten Geschichten mit kleinen, lösbaren Problemen und einem warmen Ende: Freundschaft, Mut, Gefühle, Tiere, Fahrzeuge oder ein bisschen Fantasie. Die meisten unserer Geschichten werden zum Schluss langsamer und leiser – wie ein Lied, das ausklingt. Andere enden mit einem Lacher oder mit Vorfreude auf morgen. Viele spielen im Hamburger Hafen, bei Möwe Mats und ihren Freunden.'),
-    ('Für welches Alter sind welche Geschichten?',
-     'Für 2-Jährige gibt es ganz kurze Geschichten mit Wiederholungen und Geräuschen zum Mitmachen. Ab 3 Jahren passen die meisten Geschichten mit 4–5 Minuten. Ab 5 Jahren dürfen es längere Abenteuer mit 7–9 Minuten sein.'),
-    ('Wie lang sollte eine Gute-Nacht-Geschichte sein?',
-     'So lang, wie euer Kind gut zuhören kann – und kurz genug, dass es noch gemütlich bleibt. An müden Tagen lieber eine kurze Geschichte, am Wochenende darf es eine längere sein. Der Filter oben hilft beim Aussuchen.'),
-    ('Wer schreibt die Geschichten?',
-     'Die Geschichten entstehen im Kreativhafen von Trutz, Papa aus Hamburg und Autor der Kritzelbücher und des Kinderkrimis „Maria Holm“. Zu jeder Geschichte gibt es ein passendes Ausmalbild – damit sie am nächsten Morgen weitergeht.'),
+    ('Warum sind Gute-Nacht-Geschichten so wichtig für Kinder?', 'Eine Geschichte vor dem Schlafen ist ein fester, ruhiger Moment am Ende des Tages. Kinder kommen zur Ruhe, fühlen sich geborgen und verarbeiten, was sie erlebt haben. Ganz nebenbei wachsen Wortschatz, Fantasie und Konzentration – und die Nähe zwischen euch.'),
+    ('Wie lang sollte eine Gute-Nacht-Geschichte sein?', 'So lang, wie euer Kind gut zuhören kann. Für 2-Jährige reichen 1–2 Minuten, ab 3 Jahren passen 4–5 Minuten, größere Kinder mögen auch 7 Minuten und mehr. Mit dem Filter „Vorlesedauer“ findest du schnell die passende Länge.'),
+    ('Welche Themen eignen sich zum Einschlafen?', 'Geschichten mit kleinen, lösbaren Problemen und einem warmen Ende: Freundschaft, Mut, Gefühle, Tiere, Fahrzeuge oder ein bisschen Fantasie. Spannung darf sein – aber am Schluss ist alles gut.'),
+    ('Wie wird das Vorlesen am Abend besonders entspannt?', 'Licht runter, kuscheln, langsam und leise lesen. Gegen Ende darf die Stimme immer ruhiger werden. Auf jeder Geschichten-Seite gibt es einen Nachtmodus, der die Seite dunkel und die Schrift warm macht.'),
+    ('Muss ich etwas herunterladen oder mich anmelden?', 'Nein. Alle Geschichten liest du direkt hier auf der Seite – am Handy, Tablet oder Computer. Kostenlos und ohne Anmeldung.'),
+    ('Darf ich die Geschichten in der Kita oder Schule vorlesen?', 'Ja, sehr gern – zu Hause, in der Kita, in der Schule oder in der Bücherei. Bitte teilt den Link zur Geschichte, statt die Texte zu kopieren.'),
 ]
 
 
-def karte_geschichte(g, r=-2):
+def seo_html():
+    n = len(GESCHICHTEN)
+    kurz = sum(g['lesezeit'] <= 3 for g in GESCHICHTEN)
+    return f'''<h3>Du suchst eine Gute-Nacht-Geschichte zum Vorlesen?</h3>
+<p>Dann bist du hier richtig. Im Kreativhafen findest du {n} kostenlose Gute-Nacht-Geschichten für Kinder von 2 bis 7 Jahren – alle selbst geschrieben und direkt hier lesbar. Ohne Download, ohne Anmeldung. Nutze den Filter „Vorlesedauer“, um die passende Einschlafgeschichte für heute Abend zu finden: kurz (1–3 Min.), mittel (4–6 Min.) oder etwas länger.</p>
+<h3>Wovon handeln unsere Gute-Nacht-Geschichten?</h3>
+<p>Je nachdem, was dein Kind gerade liebt, findest du hier die passende Geschichte:</p>
+<ul>
+<li><b>Hamburger Hafen:</b> Möwe Mats, Leuchtturm Lotte, Fähre Frieda und Kran Karl erleben kleine, ruhige Abenteuer zwischen Containern und Elbe. <a href="/gute-nacht-geschichten?thema=Hafen#ts-gn-alle">Zu den Hafengeschichten</a></li>
+<li><b>Fahrzeuge:</b> Bagger, Auto und Flugzeug machen Feierabend – perfekt für kleine Fahrzeug-Fans.</li>
+<li><b>Fantasie &amp; Märchen:</b> Drache Funki, Nixe Nele, ein Einhorn und ein Ritter, der sich vor dem Dunkeln fürchtet.</li>
+<li><b>Jahreszeiten:</b> Ein kleines Gespenst im Herbst, eine Laterne im November, Wichtel Wilbur im Advent und ein Schneemann im Winter.</li>
+</ul>
+<h3>Kurze Gute-Nacht-Geschichten für müde Abende</h3>
+<p>Manchmal ist schon die Zahnbürste zu viel. Für solche Abende gibt es {kurz} ganz kurze Geschichten mit 1–3 Minuten – mit Wiederholungen und Geräuschen zum Mitmachen, ideal schon für 2-Jährige. <a href="/gute-nacht-geschichten?dauer=kurz#ts-gn-alle">Kurze Geschichten anzeigen</a></p>
+<h3>Wer schreibt die Geschichten?</h3>
+<p>Die Geschichten entstehen im Kreativhafen von Trutz Stähler – Papa aus Hamburg und Autor der Kritzelbücher und des Kinderkrimis „Maria Holm“. Neue Geschichten kommen regelmäßig dazu.</p>'''
+
+
+def karte_geschichte(g, haupt=True):
     themen = ','.join(g['themen'])
     such = ' '.join([g['titel'], g['teaser'], themen, g.get('reihe', '')] + g['absaetze'][:3]).lower()
-    return (f'<a class="ts-gn-card ts-glass" href="{GESCH_URL}{g["slug"]}" data-gn-card data-themen="{esc(themen)}" data-zeit="{g["lesezeit"]}" '
-            f'data-alter="{g["alter"]}" data-form="{esc(g["form"])}" data-saison="{saison_von(g)}" data-suche="{esc(such)}" '
-            f'data-titel="{esc(g["titel"])}" data-teaser="{esc(g["teaser"])}">'
-            f'<div class="ts-gn-card__img"><img src="{BASIS}ausmalbilder/bilder/bunt/{g["motiv"]}.webp" alt="" loading="lazy" width="360" height="396" style="--r:{r}deg"></div>'
-            f'<div class="ts-gn-card__body"><h3 class="ts-gn-card__t">{esc(g["titel"])}</h3><p class="ts-gn-card__s">{esc(g["teaser"])}</p>'
-            f'<p class="ts-label ts-gn-card__m">{g["lesezeit"]} Min. · ab {g["alter"]} J. · {esc(g["form"])}</p></div></a>')
+    data = (f' data-gn-card data-themen="{esc(themen)}" data-zeit="{g["lesezeit"]}" data-alter="{g["alter"]}" '
+            f'data-saison="{saison_von(g)}" data-suche="{esc(such)}"') if haupt else ''
+    return (f'<a class="ts-gn-card" href="{GESCH_URL}{g["slug"]}"{data}>'
+            f'<img src="{bild_url(g)}" alt="" loading="lazy" width="800" height="600">'
+            f'<div class="ts-gn-card__body"><h3 class="ts-gn-card__t">{esc(g["titel"])}</h3>'
+            f'<p class="ts-gn-card__m">ab {g["alter"]} Jahren · ca. {g["lesezeit"]} Min.</p></div></a>')
 
 
 def seite_geschichten():
-    themen = sorted({t for g in GESCHICHTEN for t in g['themen']})
-    cards = ''.join(karte_geschichte(g, [-2, 1.5, -1, 2][i % 4]) for i, g in enumerate(GESCHICHTEN))
-    zeiten = sorted({g['lesezeit'] for g in GESCHICHTEN})
-    def chips(key, items):
-        return ''.join(f'<button type="button" data-{key}="{v}" aria-pressed="{str(v == "alle").lower()}">{esc(t)}</button>' for v, t in items)
-    fil = (chips('dauer', DAUER) + '<span style="width:100%;height:0"></span>' + chips('alter', ALTER) +
-           '<span style="width:100%;height:0"></span>' + chips('form', [('alle', 'Jede Art')] + [(f_, f_) for f_ in sorted({g['form'] for g in GESCHICHTEN})]) +
-           '<span style="width:100%;height:0"></span>' + chips('thema', [('alle', 'Alle Themen')] + [(t, t) for t in themen]))
-    figuren = ''.join(f'<button type="button" class="ts-gn-fig" data-gn-figur="{esc(s)}"><img src="{BASIS}ausmalbilder/bilder/bunt/{m}.webp" alt="" loading="lazy" width="120" height="132">'
-                      f'<b>{esc(n)}</b><span>{esc(t)}</span></button>' for n, m, t, s in FIGUREN)
+    n = len(GESCHICHTEN)
+    lieblinge = ''.join(karte_geschichte(g_von(s), False) for s in LIEBLINGE)
+    cards = ''.join(karte_geschichte(g) for g in GESCHICHTEN)
+    dauer = ''.join(f'<button type="button" data-dauer="{v}" aria-pressed="{str(v == "alle").lower()}">{esc(t)}</button>' for v, t in DAUER)
+    figuren = ''.join(f'<a class="ts-gn-fig" href="/gute-nacht-geschichten?suche={esc(s)}#ts-gn-alle"><img src="{bild_url(g_von(slug))}" alt="" loading="lazy" width="120" height="120">'
+                      f'<b>{esc(nm)}</b><span>{esc(t)}</span></a>' for nm, slug, t, s in FIGUREN)
     faq = ''.join(f'<details><summary>{esc(q)}</summary><p>{a}</p></details>' for q, a in FAQ_GN)
-    seo = ''.join(f'<h3>{esc(h)}</h3><p>{esc(t)}</p>' for h, t in SEO_TEXT)
-    ld = {'@context': 'https://schema.org', '@type': 'ItemList', 'name': 'Gute-Nacht-Geschichten zum Vorlesen – Kreativhafen',
-          'itemListElement': [{'@type': 'ListItem', 'position': i, 'url': f'https://{KAT.DOMAIN}{GESCH_URL}{g["slug"]}', 'name': g['titel']}
-                              for i, g in enumerate(GESCHICHTEN, 1)]}
-    moon = '<svg width="16" height="16" class="ts-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg>'
+    ld = {'@context': 'https://schema.org', '@type': 'CollectionPage', 'name': 'Gute-Nacht-Geschichten für Kinder zum Vorlesen',
+          'url': f'https://{KAT.DOMAIN}/gute-nacht-geschichten', 'inLanguage': 'de', 'isAccessibleForFree': True,
+          'mainEntity': {'@type': 'ItemList', 'numberOfItems': n,
+                         'itemListElement': [{'@type': 'ListItem', 'position': i, 'url': f'https://{KAT.DOMAIN}{GESCH_URL}{g["slug"]}', 'name': g['titel']}
+                                             for i, g in enumerate(GESCHICHTEN, 1)]}}
     return f'''<!-- =====================================================================
   KREATIVHAFEN – Seite /gute-nacht-geschichten (Übersicht)  ·  Code-Block, alles einfügen
   Die einzelnen Geschichten liegen als Blog-Beiträge unter {GESCH_URL}<name>.
 ====================================================================== -->
 {KH_CSS}
-<style>
-  .ts-gn-search {{ display: flex; align-items: center; gap: .6rem; margin-top: 1.5rem; padding: .35rem .35rem .35rem 1.1rem; border-radius: 999px; border: 1px solid var(--ts-line-strong, rgba(255,255,255,.14)); max-width: 34rem; }}
-  .ts .ts-gn-search input {{ flex: 1; min-width: 0; padding: 11px 0; border: 0; background: transparent; color: var(--ts-text, #f6faf7); font: 500 15px/1 var(--ts-font-body, Inter, sans-serif); outline: none; }}
-  .ts .ts-gn-search input::placeholder {{ color: var(--ts-muted, #9aaba3); }}
-  .ts-gn-figs {{ display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .8rem; margin-top: 2rem; }}
-  .ts .ts-gn-fig {{ display: grid; grid-template-columns: 64px 1fr; grid-template-rows: auto auto; column-gap: .9rem; align-items: center; text-align: left; padding: .8rem; border-radius: 18px; border: 1px solid var(--ts-line, rgba(255,255,255,.08)); background: rgba(255,255,255,.02); color: inherit; cursor: pointer; transition: border-color .25s, transform .4s var(--ts-ease-out); }}
-  .ts .ts-gn-fig:hover {{ border-color: rgba(110,231,183,.45); transform: translateY(-3px); }}
-  .ts .ts-gn-fig img {{ grid-row: 1 / 3; width: 64px !important; height: 64px !important; object-fit: cover; object-position: top; border-radius: 50%; background: #fbf9f4; }}
-  .ts .ts-gn-fig b {{ font: 700 15px/1.2 var(--ts-font-display, 'Syne', sans-serif); }}
-  .ts .ts-gn-fig span {{ color: var(--ts-muted, #9aaba3); font-size: 13px; line-height: 1.4; }}
-  .ts .ts-gn-seo {{ columns: 1; column-gap: 3rem; margin-top: 2rem; }}
-  .ts .ts-gn-seo h3 {{ margin: 0 0 .5rem; font: 700 1.15rem/1.25 var(--ts-font-display, 'Syne', sans-serif); break-after: avoid; }}
-  .ts .ts-gn-seo p {{ margin: 0 0 1.6rem; color: var(--tss-text, rgba(246,250,247,.72)); line-height: 1.7; break-inside: avoid; }}
-  @media (min-width: 900px) {{ .ts-gn-figs {{ grid-template-columns: repeat(4, minmax(0, 1fr)); }} .ts .ts-gn-seo {{ columns: 2; }} }}
-</style>
 {reiter_html()}
 <div class="ts ts-am tss ts-bleed ts-kh2 ts-gn-page" style="padding-top:0">
   <div class="ts-am__orb" aria-hidden="true"></div>
   <section class="ts-container tss--top" aria-labelledby="ts-gn-title" style="padding-bottom:0">
-    <div class="tss-kicker"><p class="ts-label ts-muted">[ Kreativhafen — Vorlesen ]</p><p class="ts-label ts-muted">Kostenlos · ohne Anmeldung</p></div>
-    <div class="tss-head">
-      <h1 id="ts-gn-title" class="tss-h1" data-ts-fit>Gute-Nacht-<br>Geschichten<i>.</i></h1>
-      <div>
-        <p class="tss-lead">{len(GESCHICHTEN)} kostenlose Gute-Nacht-Geschichten zum Vorlesen – ruhig, warm und mit einem leisen Ende, das müde macht. Von Möwe Mats im Hamburger Hafen bis zum kleinen Drachen Funki. Zu jeder Geschichte gibt es ein Ausmalbild für den nächsten Morgen.</p>
-        <ul class="ts-am__chips"><li class="ts-label">Kostenlos</li><li class="ts-label">{min(zeiten)}–{max(zeiten)} Minuten</li><li class="ts-label">Ab 2 Jahren</li><li class="ts-label">Mit Nachtmodus</li></ul>
-      </div>
-    </div>
-    <div class="ts-gn-today ts-glass ts-reveal" data-gn-today>
-      <a data-href href="#" aria-hidden="true" tabindex="-1"><img src="" alt="" width="360" height="396"></a>
-      <div>
-        <p class="ts-label ts-muted">[ Für heute Abend ]</p>
-        <h2 class="ts-am__h2" data-t>…</h2>
-        <p class="ts-am__sub" data-s></p>
-        <p class="ts-label" style="margin-top:1rem;color:#6ee7b7" data-m></p>
-        <div class="ts-am__ctas">{btn('Jetzt vorlesen', '#', True, moon, ' data-href')}</div>
-      </div>
-    </div>
+    <div class="tss-kicker"><p class="ts-label ts-muted">[ Gratis Gute-Nacht-Geschichten lesen ]</p><p class="ts-label ts-muted">Ohne Download · ohne Anmeldung</p></div>
+    <h1 id="ts-gn-title" class="ts-gn-h1 ts-gn-h1--page">Gute-Nacht-Geschichten für Kinder zum Vorlesen<i>.</i></h1>
+    <p class="ts-gn-intro">Hier findest du {n} kostenlose Gute-Nacht-Geschichten für Kinder von 2 bis 7 Jahren. Alle selbst geschrieben und direkt hier zum Vorlesen. Entdecke die Reihe rund um Möwe Mats aus dem Hamburger Hafen oder filtere nach Vorlesedauer.</p>
+    <nav class="ts-gn-jump" aria-label="Schnell finden"><a href="#ts-gn-alle">Alle Geschichten</a><a href="/gute-nacht-geschichten?dauer=kurz#ts-gn-alle">Kurze Geschichten</a><a href="/gute-nacht-geschichten?suche=Mats#ts-gn-alle">Möwe Mats</a><a href="/gute-nacht-geschichten?thema=Jahreszeiten#ts-gn-alle">Herbst &amp; Winter</a></nav>
   </section>
 
-  <section class="ts-container ts-am__block" data-gn-saison hidden aria-label="Passend zur Jahreszeit">
-    <div class="ts-am__blockhead"><p class="ts-label ts-muted">[ Passend zur Jahreszeit ]</p></div>
-    <h2 class="ts-am__h2" data-t>Geschichten für die Saison<i>.</i></h2>
-    <div class="ts-gn-grid"></div>
+  <section class="ts-container ts-am__block" aria-labelledby="ts-gn-lieb-t">
+    <h2 id="ts-gn-lieb-t" class="ts-am__h2">Unsere Lieblingsgeschichten</h2>
+    <div class="ts-gn-grid">{lieblinge}</div>
   </section>
 
-  <section id="ts-gn-alle" class="ts-container ts-am__block" aria-labelledby="ts-gn-alle-t">
-    <div class="ts-am__blockhead"><p class="ts-label ts-muted">[ Alle Geschichten ]</p><p class="ts-label ts-muted" data-gn-count>{len(GESCHICHTEN)} Geschichten</p></div>
-    <h2 id="ts-gn-alle-t" class="ts-am__h2">Welche soll es heute sein<i>?</i></h2>
-    <label class="ts-gn-search"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>
-      <input type="search" placeholder="Suchen: Möwe, Drache, Bagger …" aria-label="Geschichten durchsuchen" data-gn-q></label>
-    <div class="ts-gn-filter" data-gn-filter role="group" aria-label="Filter">{fil}</div>
+  <section class="ts-container ts-am__block" data-gn-saison hidden aria-labelledby="ts-gn-saison-t">
+    <h2 id="ts-gn-saison-t" class="ts-am__h2" data-t>Passend zur Jahreszeit</h2>
+    <p class="ts-am__sub" data-s></p>
+    <div class="ts-gn-grid ts-gn-grid--4"></div>
+  </section>
+
+  <section id="ts-gn-alle" class="ts-container ts-am__block" aria-labelledby="ts-gn-alle-t" style="scroll-margin-top:110px">
+    <h2 id="ts-gn-alle-t" class="ts-am__h2">Alle Gute-Nacht-Geschichten</h2>
+    <p class="ts-am__sub">Hier findest du alle unsere Gute-Nacht-Geschichten – von den neuesten bis zu den kürzesten. Filtere nach Vorlesedauer, um die passende Geschichte für heute Abend zu finden.</p>
+    <div class="ts-gn-bar">
+      <div class="ts-gn-filter" role="group" aria-label="Vorlesedauer"><b>Vorlesedauer:</b>{dauer}</div>
+      <label class="ts-gn-search"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>
+        <input type="search" placeholder="Suchen: Möwe, Drache, Bagger …" aria-label="Geschichten durchsuchen" data-gn-q></label>
+    </div>
+    <p class="ts-gn-state" data-gn-state aria-live="polite">{n} Geschichten</p>
     <div class="ts-gn-grid">{cards}</div>
-    <p class="ts-label ts-muted" data-gn-leer hidden style="margin-top:1.5rem">Keine Geschichte passt – probier einen anderen Filter.</p>
+    <div class="ts-gn-morebtn"><button type="button" class="ts-am-mini" data-gn-more hidden>Mehr Geschichten anzeigen</button></div>
   </section>
 
   <section class="ts-container ts-am__block" aria-labelledby="ts-gn-fig-t">
-    <div class="ts-am__blockhead"><p class="ts-label ts-muted">[ Unsere Figuren ]</p><p class="ts-label ts-muted">Antippen zum Finden</p></div>
-    <h2 id="ts-gn-fig-t" class="ts-am__h2">Wer wohnt im Kreativhafen<i>?</i></h2>
+    <h2 id="ts-gn-fig-t" class="ts-am__h2">Beliebte Figuren</h2>
     <div class="ts-gn-figs">{figuren}</div>
   </section>
 
-  <section class="ts-container ts-am__block" aria-labelledby="ts-gn-tipps-t">
-    <div class="ts-am__blockhead"><p class="ts-label ts-muted">[ Vorlese-Tipps ]</p><p class="ts-label ts-muted">01 / 03</p></div>
-    <h2 id="ts-gn-tipps-t" class="ts-am__h2" style="margin-bottom:2rem">So wird’s gemütlich<i>.</i></h2>
-    <div class="tss-steps">
-      <div class="tss-step"><h3>Licht runter</h3><p>Nur noch eine kleine Lampe an – oder den Nachtmodus auf der Geschichten-Seite einschalten.</p></div>
-      <div class="tss-step"><h3>Langsam lesen</h3><p>Ruhig und leise, mit Pausen. Gegen Ende darf die Stimme immer langsamer werden.</p></div>
-      <div class="tss-step"><h3>Euer eigener Schluss</h3><p>Erfindet einen Gute-Nacht-Satz, den ihr nach jeder Geschichte gemeinsam sagt – so wird das Vorlesen zu eurem Ritual.</p></div>
-    </div>
-  </section>
-
-  <section class="ts-container ts-am__block" aria-labelledby="ts-gn-seo-t">
-    <div class="ts-am__blockhead"><p class="ts-label ts-muted">[ Rund ums Vorlesen ]</p></div>
-    <h2 id="ts-gn-seo-t" class="ts-am__h2">Du suchst eine Gute-Nacht-Geschichte<i>?</i></h2>
-    <div class="ts-gn-seo">{seo}</div>
+  <section class="ts-container ts-am__block" aria-label="Rund ums Vorlesen">
+    <div class="ts-gn-seo">{seo_html()}</div>
   </section>
 
   <section class="ts-container ts-am__block ts-am__end" aria-labelledby="ts-gn-faq-t">
-    <div class="ts-am__blockhead"><p class="ts-label ts-muted">[ Fragen &amp; Antworten ]</p></div>
-    <h2 id="ts-gn-faq-t" class="ts-am__h2" style="margin-bottom:1.5rem">Gut zu wissen<i>.</i></h2>
+    <h2 id="ts-gn-faq-t" class="ts-am__h2" style="margin-bottom:1.5rem">FAQ – Gute-Nacht-Geschichten im Kreativhafen</h2>
     <div class="tss-faq">{faq}</div>
     <div class="ts-am-final ts-glass">
-      <p>Morgen früh: Ausmalbild dazu?</p>
-      {btn('Zu den Ausmalbildern', '/ausmalbilder')}
+      <p>Noch mehr zum Vorlesen und Malen: meine Bücher.</p>
+      {btn('Zu den Büchern', '/malbuecher')}
     </div>
   </section>
 </div>
@@ -635,7 +679,7 @@ def seite_geschichten():
 
 STORY_JS = r'''
 <script>
-/* Geschichte: Nachtmodus, Schriftgröße, Vorlesen lassen, Drucken, Ausmalbild drucken */
+/* Geschichte: Vorlesen lassen, Schriftgröße, Nachtmodus, Teilen */
 (() => {
   const root = document.querySelector('[data-gn-story]'); if (!root) return;
   const txt = root.querySelector('.ts-gn-text'), h = document.documentElement;
@@ -648,52 +692,85 @@ STORY_JS = r'''
   setSize(size);
   root.querySelector('[data-gn="plus"]').addEventListener('click', () => setSize(size + 2));
   root.querySelector('[data-gn="minus"]').addEventListener('click', () => setSize(size - 2));
-  root.querySelector('[data-gn="print"]').addEventListener('click', () => window.print());
   /* Vorlesen lassen (Computerstimme des Geräts, falls vorhanden) */
   const sp = root.querySelector('[data-gn="speak"]');
   if (!('speechSynthesis' in window)) sp.hidden = true;
-  else sp.addEventListener('click', () => {
-    if (speechSynthesis.speaking) { speechSynthesis.cancel(); sp.setAttribute('aria-pressed', 'false'); return; }
-    const t = [...txt.querySelectorAll('p')].map(p => p.textContent).join(' ') + ' ' + ((root.querySelector('[data-gn-night]') || {}).textContent || '');
-    const u = new SpeechSynthesisUtterance(t); u.lang = 'de-DE'; u.rate = .85; u.pitch = 1;
-    const v = speechSynthesis.getVoices().find(v => /^de/i.test(v.lang)); if (v) u.voice = v;
-    u.onend = () => sp.setAttribute('aria-pressed', 'false');
-    speechSynthesis.speak(u); sp.setAttribute('aria-pressed', 'true');
-  });
+  else {
+    addEventListener('pagehide', () => speechSynthesis.cancel());
+    sp.addEventListener('click', () => {
+      if (speechSynthesis.speaking) { speechSynthesis.cancel(); sp.setAttribute('aria-pressed', 'false'); return; }
+      const t = root.querySelector('.ts-gn-h1').textContent + '. ' + [...txt.querySelectorAll(':scope > p')].map(p => p.textContent).join(' ') + ' ' + ((root.querySelector('[data-gn-night]') || {}).textContent || '');
+      const u = new SpeechSynthesisUtterance(t); u.lang = 'de-DE'; u.rate = .85; u.pitch = 1;
+      const v = speechSynthesis.getVoices().find(v => /^de/i.test(v.lang)); if (v) u.voice = v;
+      u.onend = () => sp.setAttribute('aria-pressed', 'false');
+      speechSynthesis.speak(u); sp.setAttribute('aria-pressed', 'true');
+    });
+  }
   const sh = root.querySelector('[data-gn="share"]');
   if (sh) sh.addEventListener('click', async () => {
     const data = { title: document.title, text: 'Eine Gute-Nacht-Geschichte zum Vorlesen:', url: location.href };
     try { if (navigator.share) await navigator.share(data); else { await navigator.clipboard.writeText(location.href); sh.textContent = 'Link kopiert ✓'; } } catch (e) {}
   });
-  const mp = root.querySelector('[data-gn="motiv"]');
-  if (mp) mp.addEventListener('click', () => window.tsKhPrint(root.querySelector('.ts-gn-motiv__img').innerHTML, mp.dataset.name, mp.dataset.titel));
+  const wa = root.querySelector('[data-gn="wa"]');
+  if (wa) wa.href = 'https://wa.me/?text=' + encodeURIComponent('Eine schöne Gute-Nacht-Geschichte zum Vorlesen: ' + location.href);
 })();
 </script>'''
 
 
+def tipp(g, i):
+    """TIPP-Kasten mitten im Text (wie bei Zitronenbande) – wechselt von Geschichte zu Geschichte."""
+    if g.get('reihe'):
+        return f'Diese Geschichte gehört zur Reihe <a href="/gute-nacht-geschichten?suche=Mats#ts-gn-alle">„{esc(g["reihe"])}“</a> – es gibt noch mehr Abenteuer mit der kleinen Möwe.'
+    opts = [
+        'Kennst du schon <a href="/gute-nacht-geschichten?suche=Mats#ts-gn-alle">Möwe Mats</a>? Die neugierige Möwe aus dem Hamburger Hafen hat eine eigene Geschichten-Reihe.',
+        'Mit dem Mond-Knopf oben wird die Seite dunkel und die Schrift warm – angenehm zum Vorlesen im abgedunkelten Kinderzimmer.',
+        'An müden Abenden: Unsere <a href="/gute-nacht-geschichten?dauer=kurz#ts-gn-alle">kurzen Gute-Nacht-Geschichten</a> dauern nur 1–3 Minuten.',
+        'Lust auf mehr zum Lesen und Malen? Schau dir meine <a href="/malbuecher">Bücher im Kreativhafen</a> an.',
+    ]
+    if 'Mats' in ' '.join(g['absaetze']):        # Mats kommt schon vor → nicht auf Mats hinweisen
+        opts = opts[1:]
+    return opts[i % len(opts)]
+
+
 def geschichte_block(g):
     i = GESCHICHTEN.index(g)
-    verwandt = sorted([x for x in GESCHICHTEN if x is not g], key=lambda x: -len(set(x['themen']) & set(g['themen'])))[:2]
-    svg = WEB.mini(K.motif_svg(g['motiv'], with_name=True, w=1000, h=1100)).replace('<svg ', "<svg role='img' aria-label='Ausmalbild " + esc(name_von(g['motiv'])) + "' ", 1)
-    absaetze = ''.join(f'<p>{esc(a)}</p>' for a in g['absaetze'])
+    # weitere Geschichten: erst gleiche Themen, dann ähnliches Alter (wie „Weitere Gute-Nacht-Geschichten“ bei Zitronenbande)
+    weitere = sorted([x for x in GESCHICHTEN if x is not g],
+                     key=lambda x: (-len(set(x['themen']) & set(g['themen'])), abs(x['alter'] - g['alter']), GESCHICHTEN.index(x)))[:4]
+    abs_ = g['absaetze']
+    mitte = max(2, len(abs_) // 2)
+    absaetze = (''.join(f'<p>{esc(a)}</p>' for a in abs_[:mitte]) +
+                f'<aside class="ts-gn-tip ts-gn-noprint"><b>TIPP</b>{tipp(g, i)}</aside>' +
+                ''.join(f'<p>{esc(a)}</p>' for a in abs_[mitte:]))
     fragen = ''.join(f'<li>{esc(f)}</li>' for f in g['fragen'])
     moon = '<svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg>'
     ld = {'@context': 'https://schema.org', '@type': 'ShortStory', 'name': g['titel'], 'headline': g['titel'], 'description': g['teaser'],
           'inLanguage': 'de', 'author': {'@type': 'Person', 'name': 'Trutz Stähler', 'url': f'https://{KAT.DOMAIN}/ueber-mich'},
           'publisher': {'@type': 'Organization', 'name': 'Kreativhafen'}, 'isAccessibleForFree': True,
-          'typicalAgeRange': f'{g["alter"]}-6', 'timeRequired': f'PT{g["lesezeit"]}M', 'genre': 'Gute-Nacht-Geschichte',
-          'keywords': ', '.join(g['themen']), 'image': f'{BASIS}ausmalbilder/bilder/bunt/{g["motiv"]}.webp',
+          'typicalAgeRange': f'{g["alter"]}-7', 'timeRequired': f'PT{g["lesezeit"]}M', 'genre': 'Gute-Nacht-Geschichte',
+          'keywords': ', '.join(g['themen']), 'image': bild_url(g),
           'url': f'https://{KAT.DOMAIN}{GESCH_URL}{g["slug"]}', 'wordCount': sum(len(a.split()) for a in g['absaetze'])}
+    crumbs = {'@context': 'https://schema.org', '@type': 'BreadcrumbList', 'itemListElement': [
+        {'@type': 'ListItem', 'position': 1, 'name': 'Kreativhafen', 'item': f'https://{KAT.DOMAIN}/kreativhafen'},
+        {'@type': 'ListItem', 'position': 2, 'name': 'Gute-Nacht-Geschichten', 'item': f'https://{KAT.DOMAIN}/gute-nacht-geschichten'},
+        {'@type': 'ListItem', 'position': 3, 'name': g['titel']}]}
     ico = lambda d: f'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true">{d}</svg>'
     gn_html = f'<p class="ts-gn-night ts-glass" data-gn-night>{moon}<span>{esc(g["gute_nacht"])}</span></p>' if g['gute_nacht'] else ''
-    fr_html = (f'<div class="ts-gn-ask ts-glass ts-gn-dim"><p class="ts-label ts-muted">[ Zum Reden danach ]</p><ul>{fragen}</ul></div>') if g['fragen'] else ''
-    audio = (f'<div class="ts-gn-audio ts-glass ts-gn-noprint"><p class="ts-label ts-muted">[ Papa liest vor ]</p>'
+    fr_html = (f'<div class="ts-gn-ask ts-glass ts-gn-dim"><h2>Zum Reden danach</h2><ul>{fragen}</ul></div>') if g['fragen'] else ''
+    audio = (f'<div class="ts-gn-audio ts-glass ts-gn-noprint"><p class="ts-label ts-muted">[ Zum Anhören ]</p>'
              f'<audio controls preload="none" src="{esc(g["audio"])}"></audio></div>') if g.get('audio') else ''
-    buch = ('/romane', 'Für Größere: Kinderkrimi „Maria Holm“') if g['alter'] >= 5 else ('/malbuecher', 'Die Kritzelbücher ansehen')
-    reihe = [x for x in GESCHICHTEN if g.get('reihe') and x.get('reihe') == g['reihe'] and x is not g]
-    reihe_html = ('<div class="ts-gn-reihe ts-gn-dim ts-gn-noprint"><p class="ts-label ts-muted">[ Mehr aus der Reihe „' + esc(g['reihe']) + '“ ]</p><ul>' +
-                  ''.join(f'<li><a href="{GESCH_URL}{x["slug"]}">{esc(x["titel"])}</a><span class="ts-label">{x["lesezeit"]} Min.</span></li>' for x in reihe) +
+    if g['alter'] >= 5:
+        buch = ('/romane', '🔎', 'Maria Holm – der Kinderkrimi', 'Spannend, aber nicht zu gruselig: Der Kinderkrimi von Trutz für Leseratten und Rätselfans.')
+    else:
+        buch = ('/malbuecher', '✏️', 'Die Kritzelbücher', 'Zum Kritzeln, Malen und Weiterdenken – die Malbücher von Trutz für kleine Künstlerinnen und Künstler.')
+    reihe = [x for x in GESCHICHTEN if g.get('reihe') and x.get('reihe') == g['reihe']]
+    reihe_html = ('<div class="ts-gn-reihe ts-gn-dim ts-gn-noprint"><h2>Alle Geschichten der Reihe „' + esc(g['reihe']) + '“</h2><ul>' +
+                  ''.join((f'<li><b>{esc(x["titel"])}</b><span>du liest gerade</span></li>' if x is g else
+                           f'<li><a href="{GESCH_URL}{x["slug"]}">{esc(x["titel"])}</a><span>ca. {x["lesezeit"]} Min.</span></li>') for x in reihe) +
                   '</ul></div>') if reihe else ''
+    facts = f'<li>🎯 ab {g["alter"]} Jahren</li><li>🕔 ca. {g["lesezeit"]} Minuten Vorlesedauer</li>'
+    if g.get('reihe'):
+        facts += f'<li>📚 Reihe: <a href="/gute-nacht-geschichten?suche=Mats#ts-gn-alle">{esc(g["reihe"])}</a></li>'
     return f'''<!-- =====================================================================
   GUTE-NACHT-GESCHICHTE „{g['titel']}“  ·  Blog-Beitrag {GESCH_URL}{g['slug']}
   Einfügen: Beitrag öffnen → Inhalt löschen → Code-Block → alles einfügen.
@@ -704,49 +781,50 @@ def geschichte_block(g):
   <div class="ts-am__orb ts-gn-dim" aria-hidden="true"></div>
   <div class="ts-container tss--top">
     <div class="ts-gn-story">
-      <div class="tss-kicker ts-gn-dim"><p class="ts-label ts-muted"><a href="/gute-nacht-geschichten" style="color:inherit">← Alle Gute-Nacht-Geschichten</a></p><p class="ts-label ts-muted">Geschichte {i + 1:02d} / {len(GESCHICHTEN):02d}</p></div>
-      <ul class="ts-gn-meta ts-gn-dim"><li class="ts-label">{esc(g['form'])}</li><li class="ts-label">Ab {g['alter']} Jahren</li><li class="ts-label">{g['lesezeit']} Min. Vorlesezeit</li>{''.join(f'<li class="ts-label">{esc(t)}</li>' for t in g['themen'])}</ul>
-      <h1 id="ts-gn-h" class="ts-gn-h1">{esc(g['titel'])}<i>.</i></h1>
-      <p class="ts-gn-lead ts-gn-dim">{esc(g['teaser'])}</p>
+      <nav class="ts-gn-crumb ts-gn-dim" aria-label="Brotkrumen"><a href="/kreativhafen">Kreativhafen</a><span>›</span><a href="/gute-nacht-geschichten">Gute-Nacht-Geschichten</a><span>›</span>{esc(g['titel'])}</nav>
+      <h1 id="ts-gn-h" class="ts-gn-h1">{esc(g['titel'])}</h1>
+      <div class="ts-gn-by ts-gn-dim"><img src="{AUTOR_IMG}" alt="" width="46" height="46" loading="lazy"><p>von <b>Trutz Stähler</b><small>Papa aus Hamburg · schreibt Kinderbücher</small></p></div>
+      <ul class="ts-gn-facts ts-gn-dim">{facts}</ul>
+      <img class="ts-gn-hero" src="{bild_url(g)}" alt="Illustration zur Gute-Nacht-Geschichte „{esc(g['titel'])}“" width="800" height="600">
+      <div class="ts-gn-about ts-gn-dim"><h2>Darum geht’s</h2><p>{esc(g['teaser'])}</p></div>
       <div class="ts-gn-tools" role="toolbar" aria-label="Lesehilfen">
-        <button type="button" data-gn="night" aria-pressed="false">{ico('<path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/>')}Nachtmodus</button>
+        <button type="button" data-gn="speak" aria-pressed="false">{ico('<path d="M11 5 6 9H2v6h4l5 4V5Z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M19 5a10 10 0 0 1 0 14"/>')}Vorlesen</button>
+        <i aria-hidden="true"></i><span>Schrift</span>
         <button type="button" data-gn="minus" aria-label="Schrift kleiner">A−</button>
         <button type="button" data-gn="plus" aria-label="Schrift größer">A+</button>
-        <button type="button" data-gn="speak" aria-pressed="false">{ico('<path d="M11 5 6 9H2v6h4l5 4V5Z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M19 5a10 10 0 0 1 0 14"/>')}Vorlesen lassen</button>
-        <button type="button" data-gn="print">{ico('<path d="M6 9V3h12v6"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><path d="M6 14h12v7H6z"/>')}Drucken</button>
+        <i aria-hidden="true"></i>
+        <button type="button" data-gn="night" aria-pressed="false">{ico('<path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/>')}Nachtmodus</button>
       </div>
       {audio}
       <div class="ts-gn-text">{absaetze}</div>
       {gn_html}
       {fr_html}
-      <div class="ts-gn-motiv ts-glass ts-gn-dim">
-        <div class="ts-gn-motiv__img">{svg}</div>
-        <div><p class="ts-label ts-muted">[ Das Ausmalbild zur Geschichte ]</p>
-          <h2 class="ts-am__h2" style="font-size:clamp(1.5rem,3vw,2.2rem);margin-top:.8rem">Morgen früh: {esc(name_von(g['motiv']))} ausmalen<i>.</i></h2>
-          <div class="ts-am__ctas ts-gn-noprint">
-            <button type="button" class="ts-am-mini ts-am-mini--hi" data-gn="motiv" data-name="{esc(name_von(g['motiv']))}" data-titel="{esc(g['titel'])}">Ausmalbild drucken</button>
-            <a class="ts-am-mini" href="/ausmalbilder?motiv={g['motiv']}#ts-am-malen">Online ausmalen</a>
-          </div></div>
-      </div>
-      <div class="ts-gn-author ts-glass ts-gn-dim ts-gn-noprint">
-        <img src="https://images.squarespace-cdn.com/content/v1/6869717aa7c996116c8c8a56/ffc25dc6-15ea-4d07-ab0d-6173fde95edf/IMG_3686.jpeg?format=300w" alt="Trutz Stähler" width="72" height="72" loading="lazy">
-        <div><p class="ts-label ts-muted">[ Aus dem Kreativhafen ]</p>
-          <p><b>Trutz Stähler</b> – Papa aus Hamburg, Autor der Kritzelbücher und des Kinderkrimis „Maria Holm“. Im Kreativhafen entstehen Geschichten zum Vorlesen und Ausmalbilder zum Weitermalen.</p>
-          <div class="ts-am__ctas" style="margin-top:.9rem">
-            <button type="button" class="ts-am-mini" data-gn="share">Mit Freunden teilen</button>
-            <a class="ts-am-mini" href="{buch[0]}">{esc(buch[1])}</a>
-          </div></div>
+      <p class="ts-gn-end ts-gn-dim" aria-hidden="true">✦ ENDE ✦</p>
+      <div class="ts-gn-more ts-gn-noprint">{btn('Mehr Geschichten lesen', '/gute-nacht-geschichten')}</div>
+      <div class="ts-gn-like ts-glass ts-gn-dim ts-gn-noprint">
+        <h2>Hat dir die Geschichte gefallen<i style="font-style:normal;color:#6ee7b7">?</i></h2>
+        <div class="ts-gn-book"><span class="ts-gn-book__ico" aria-hidden="true">{buch[1]}</span>
+          <div><h3>{esc(buch[2])}</h3><p>{esc(buch[3])}</p>
+            <div class="ts-am__ctas" style="margin-top:.9rem"><a class="ts-am-mini ts-am-mini--hi" href="{buch[0]}">Mehr dazu</a></div></div></div>
+        <div class="ts-gn-share"><span>Mit Freunden teilen</span>
+          <button type="button" class="ts-am-mini" data-gn="share">Link teilen</button>
+          <a class="ts-am-mini" data-gn="wa" href="https://wa.me/" target="_blank" rel="noopener">WhatsApp</a></div>
       </div>
       {reihe_html}
     </div>
   </div>
-  <section class="ts-container ts-am__block ts-am__end ts-gn-noprint ts-gn-dim" aria-label="Weitere Geschichten">
-    <div class="ts-am__blockhead"><p class="ts-label ts-muted">[ Noch eine? ]</p><p class="ts-label ts-muted"><a href="/gute-nacht-geschichten" style="color:inherit">Alle Geschichten →</a></p></div>
-    <div class="ts-gn-grid" style="margin-top:1.5rem">{''.join(karte_geschichte(x, r) for x, r in zip(verwandt, (-2, 1.5)))}</div>
+  <section class="ts-container ts-am__block ts-gn-noprint ts-gn-dim" aria-labelledby="ts-gn-weitere-t">
+    <h2 id="ts-gn-weitere-t" class="ts-am__h2">Weitere Gute-Nacht-Geschichten</h2>
+    <p class="ts-am__sub">Mehr Einschlafgeschichten findest du in unserer Sammlung: <a href="/gute-nacht-geschichten" style="color:#6ee7b7">Alle Gute-Nacht-Geschichten →</a></p>
+    <div class="ts-gn-grid ts-gn-grid--4">{''.join(karte_geschichte(x, False) for x in weitere)}</div>
+  </section>
+  <section class="ts-container ts-am__block ts-am__end ts-gn-noprint ts-gn-dim" aria-labelledby="ts-gn-glance-t">
+    <h2 id="ts-gn-glance-t" class="ts-am__h2">Geschichten auf einen Blick</h2>
+    {glance_html()}
   </section>
 </article>
 <script type="application/ld+json">{json.dumps(ld, ensure_ascii=False)}</script>
-<script>{PRINT_JS}</script>
+<script type="application/ld+json">{json.dumps(crumbs, ensure_ascii=False)}</script>
 {STORY_JS}'''
 
 
@@ -779,11 +857,11 @@ def regal_block():
       <a href="/gute-nacht-geschichten" class="ts-kh-card ts-glass ts-tilt">
         <div class="ts-kh-card__stage ts-kh-card__stage--art">
           <span class="ts-label ts-kh-card__num">04</span><span class="ts-label ts-kh-card__tag">Gratis</span>
-          <img src="{BASIS}ausmalbilder/bilder/bunt/hf03.webp" alt="Möwe Mats aus den Gute-Nacht-Geschichten" loading="lazy" style="background:#fbf9f4;padding:8px;max-height:70% !important">
+          <img src="{BASIS}geschichten/bilder/moewe-mats-will-nicht-schlafen.webp" alt="Möwe Mats aus den Gute-Nacht-Geschichten" loading="lazy">
         </div>
         <div class="ts-kh-card__body">
           <h3 class="ts-kh-card__title">Gute-Nacht-Geschichten</h3>
-          <p class="ts-kh-card__text">{len(GESCHICHTEN)} kurze Geschichten zum Vorlesen – ruhig, warm und mit einem Ausmalbild für den nächsten Morgen. Mit Nachtmodus.</p>
+          <p class="ts-kh-card__text">{len(GESCHICHTEN)} Gute-Nacht-Geschichten zum Vorlesen – direkt auf der Seite, ohne Download. Mit Vorlesedauer, Nachtmodus und Vorlese-Funktion.</p>
           <div class="ts-kh-card__foot"><span class="ts-kh-card__more">Jetzt vorlesen</span><span class="ts-kh-card__go"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
         </div>
       </a>

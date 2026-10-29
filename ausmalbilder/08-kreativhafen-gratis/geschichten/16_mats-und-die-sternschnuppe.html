@@ -154,79 +154,134 @@
   .ts .ts-am-tile__acts button { display: inline-flex; align-items: center; justify-content: center; gap: .3rem; padding: 8px 6px; border-radius: 999px; border: 1px solid #d7d3c8; background: #fff; color: #1b1f1c; font: 600 11.5px/1 var(--ts-font-body, Inter, sans-serif); cursor: pointer; }
   .ts .ts-am-tile__acts button:hover { background: #1b1f1c; color: #fff; border-color: #1b1f1c; }
   .ts .ts-am-gal__msg { grid-column: 1 / -1; color: var(--ts-muted, #9aaba3); }
-  /* Geschichten */
-  .ts-gn-today { display: grid; gap: 1.5rem; margin-top: 2rem; padding: clamp(1.25rem, 3.5vw, 2.5rem); border-radius: 26px; align-items: center; }
-  .ts .ts-gn-today img { display: block; width: 100% !important; max-width: 340px; height: auto !important; margin: 0 auto; border-radius: 10px; background: #fbf9f4; padding: 8px; transform: rotate(-2deg); box-shadow: 0 40px 70px -30px rgba(0,0,0,.9); }
-  .ts .ts-gn-meta { display: flex; flex-wrap: wrap; gap: .45rem; margin: 1rem 0 0; padding: 0; list-style: none; }
-  .ts .ts-gn-meta li { padding: 6px 11px; border-radius: 999px; border: 1px solid var(--ts-line-strong, rgba(255,255,255,.14)); color: var(--ts-text, #f6faf7); font-size: 10.5px; }
-  .ts-gn-filter { display: flex; flex-wrap: wrap; gap: .45rem; margin-top: 1.5rem; }
-  .ts .ts-gn-filter button { padding: 9px 14px; border-radius: 999px; border: 1px solid var(--ts-line-strong, rgba(255,255,255,.14)); background: transparent; color: var(--ts-text, #f6faf7); font: 600 11px/1 var(--ts-font-mono, monospace); letter-spacing: .1em; text-transform: uppercase; cursor: pointer; }
-  .ts .ts-gn-filter button[aria-pressed="true"] { background: #f6faf7; color: #060608; border-color: #f6faf7; }
-  .ts-gn-grid { display: grid; gap: 1rem; margin-top: 1.5rem; grid-template-columns: minmax(0, 1fr); }
-  .ts .ts-gn-card { display: flex; flex-direction: column; border-radius: 22px; overflow: hidden; color: inherit; text-decoration: none; transition: transform .5s var(--ts-ease-out); }
-  .ts .ts-gn-card:hover { transform: translateY(-4px); }
+  /* Geschichten: Karten wie bei Zitronenbande/Zwergenstark – Bild, Titel, Alter · Dauer */
+  .ts-gn-grid { display: grid; gap: clamp(.75rem, 2vw, 1.25rem); margin-top: 1.5rem; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .ts .ts-gn-card { display: flex; flex-direction: column; border-radius: 18px; overflow: hidden; color: inherit; text-decoration: none; border: 1px solid var(--ts-line, rgba(255,255,255,.08)); background: rgba(255,255,255,.025); transition: transform .5s var(--ts-ease-out), border-color .25s; }
+  .ts .ts-gn-card:hover { transform: translateY(-4px); border-color: rgba(110,231,183,.45); }
   .ts-gn-card[hidden] { display: none !important; }
-  .ts .ts-gn-card__img { display: grid; place-items: center; aspect-ratio: 16 / 10; background: radial-gradient(70% 80% at 50% 100%, rgba(46,140,108,.35), transparent 70%), linear-gradient(180deg, rgba(29,77,63,.25), rgba(12,17,15,.4)); }
-  .ts .ts-gn-card__img img { width: 46% !important; height: auto !important; border-radius: 8px; background: #fbf9f4; padding: 5px; transform: rotate(var(--r, -2deg)); box-shadow: 0 30px 50px -26px rgba(0,0,0,.9); }
-  .ts-gn-card__body { display: flex; flex-direction: column; gap: .5rem; flex: 1; padding: 1.2rem 1.35rem 1.4rem; }
-  .ts .ts-gn-card__t { margin: 0; font: 800 clamp(1.2rem, 1.7vw, 1.45rem)/1.1 var(--ts-font-display, 'Syne', sans-serif); letter-spacing: -0.02em; }
-  .ts .ts-gn-card__s { margin: 0; color: var(--ts-muted, #9aaba3); font-size: 14.5px; line-height: 1.6; }
-  .ts .ts-gn-card__m { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: auto; padding-top: .8rem; color: #6ee7b7; }
+  .ts .ts-gn-card img { display: block; width: 100% !important; height: auto !important; aspect-ratio: 4 / 3; object-fit: cover; background: #1f2a44; }
+  .ts-gn-card__body { display: flex; flex-direction: column; gap: .4rem; flex: 1; padding: .85rem 1rem 1rem; }
+  .ts .ts-gn-card__t { margin: 0; font: 700 clamp(.98rem, 1.45vw, 1.18rem)/1.22 var(--ts-font-display, 'Syne', sans-serif); letter-spacing: -0.01em; }
+  .ts .ts-gn-card__m { margin: auto 0 0; color: var(--ts-muted, #9aaba3); font: 500 13px/1.35 var(--ts-font-body, Inter, sans-serif); }
+  /* Übersicht */
+  .ts .ts-gn-intro { max-width: 46rem; margin: 1.25rem 0 0; color: var(--tss-text, rgba(246,250,247,.78)); font-size: clamp(16px, 1.35vw, 18px); line-height: 1.7; }
+  .ts-gn-jump { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1.5rem; }
+  .ts .ts-gn-jump a { padding: 10px 15px; border-radius: 999px; border: 1px solid var(--ts-line-strong, rgba(255,255,255,.14)); color: var(--ts-text, #f6faf7); text-decoration: none; font: 600 13px/1 var(--ts-font-body, Inter, sans-serif); }
+  .ts .ts-gn-jump a:hover { border-color: rgba(110,231,183,.5); }
+  .ts .ts-gn-jump a:first-child { background: #f6faf7; color: #060608; border-color: #f6faf7; }
+  .ts-gn-bar { display: flex; flex-wrap: wrap; align-items: center; gap: .75rem 1.25rem; margin-top: 1.5rem; }
+  .ts-gn-filter { display: flex; flex-wrap: wrap; align-items: center; gap: .45rem; }
+  .ts .ts-gn-filter b { margin-right: .25rem; font: 600 14px/1 var(--ts-font-body, Inter, sans-serif); }
+  .ts .ts-gn-filter button { padding: 9px 14px; border-radius: 999px; border: 1px solid var(--ts-line-strong, rgba(255,255,255,.14)); background: transparent; color: var(--ts-text, #f6faf7); font: 600 13px/1 var(--ts-font-body, Inter, sans-serif); cursor: pointer; }
+  .ts .ts-gn-filter button[aria-pressed="true"] { background: #f6faf7; color: #060608; border-color: #f6faf7; }
+  .ts-gn-search { display: flex; align-items: center; gap: .6rem; flex: 1 1 16rem; max-width: 24rem; padding: .2rem .2rem .2rem 1rem; border-radius: 999px; border: 1px solid var(--ts-line-strong, rgba(255,255,255,.14)); }
+  .ts .ts-gn-search input { flex: 1; min-width: 0; padding: 10px 0; border: 0; background: transparent; color: var(--ts-text, #f6faf7); font: 500 15px/1 var(--ts-font-body, Inter, sans-serif); outline: none; }
+  .ts .ts-gn-search input::placeholder { color: var(--ts-muted, #9aaba3); }
+  .ts .ts-gn-state { margin: 1rem 0 0; color: var(--ts-muted, #9aaba3); font-size: 14px; }
+  .ts .ts-gn-state button { margin-left: .5rem; padding: 0; border: 0; background: none; color: #6ee7b7; font: inherit; text-decoration: underline; cursor: pointer; }
+  .ts-gn-morebtn { display: flex; justify-content: center; margin-top: 2rem; }
+  .ts-gn-figs { display: grid; grid-template-columns: minmax(0, 1fr); gap: .8rem; margin-top: 2rem; }
+  .ts-gn-page .ts-am__h2 { font-size: clamp(1.75rem, 4.6vw, 3.4rem); hyphens: auto; -webkit-hyphens: auto; overflow-wrap: break-word; }
+  .ts .ts-gn-fig { display: grid; grid-template-columns: 64px 1fr; grid-template-rows: auto auto; column-gap: .9rem; align-items: center; text-align: left; padding: .8rem; border-radius: 18px; border: 1px solid var(--ts-line, rgba(255,255,255,.08)); background: rgba(255,255,255,.02); color: inherit; text-decoration: none; transition: border-color .25s, transform .4s var(--ts-ease-out); }
+  .ts .ts-gn-fig:hover { border-color: rgba(110,231,183,.45); transform: translateY(-3px); }
+  .ts .ts-gn-fig img { grid-row: 1 / 3; width: 64px !important; height: 64px !important; object-fit: cover; border-radius: 50%; }
+  .ts .ts-gn-fig b { font: 700 15px/1.2 var(--ts-font-display, 'Syne', sans-serif); }
+  .ts .ts-gn-fig span { color: var(--ts-muted, #9aaba3); font-size: 13px; line-height: 1.4; }
+  .ts .ts-gn-seo { margin-top: 2rem; max-width: 52rem; }
+  .ts .ts-gn-seo h3 { margin: 2rem 0 .6rem; font: 700 1.2rem/1.25 var(--ts-font-display, 'Syne', sans-serif); }
+  .ts .ts-gn-seo h3:first-child { margin-top: 0; }
+  .ts .ts-gn-seo p, .ts .ts-gn-seo li { color: var(--tss-text, rgba(246,250,247,.75)); line-height: 1.75; }
+  .ts .ts-gn-seo p { margin: 0 0 1rem; }
+  .ts .ts-gn-seo ul { margin: 0 0 1rem; padding-left: 1.2rem; }
+  .ts .ts-gn-seo b { color: #f6faf7; }
+  .ts .ts-gn-seo a { color: #6ee7b7; }
   /* Einzelne Geschichte */
-  .ts-gn-story { max-width: 46rem; margin: 0 auto; }
-  .ts .ts-gn-h1 { margin: 1.25rem 0 0; font: 800 clamp(2.2rem, 6vw, 4.6rem)/.98 var(--ts-font-display, 'Syne', sans-serif); letter-spacing: -0.035em; }
+  .ts-gn-story { max-width: 44rem; margin: 0 auto; }
+  .ts .ts-gn-crumb { margin: 0; color: var(--ts-muted, #9aaba3); font-size: 13.5px; line-height: 1.5; }
+  .ts .ts-gn-crumb a { color: inherit; text-decoration: none; }
+  .ts .ts-gn-crumb a:hover { color: #6ee7b7; }
+  .ts .ts-gn-crumb span { margin: 0 .4rem; opacity: .6; }
   .ts .ts-gn-h1 i { font-style: normal; color: #6ee7b7; }
-  .ts .ts-gn-lead { margin-top: 1rem; color: var(--ts-muted, #9aaba3); font-size: clamp(16px, 1.4vw, 19px); line-height: 1.65; }
-  .ts-gn-tools { position: sticky; top: calc(var(--ts-header-space, 96px) - 16px); z-index: 4; display: flex; flex-wrap: wrap; gap: .45rem; margin-top: 1.5rem; padding: .5rem; border-radius: 999px; border: 1px solid var(--ts-line, rgba(255,255,255,.08)); background: rgba(6,6,8,.82); backdrop-filter: blur(12px); width: max-content; max-width: 100%; }
-  .ts .ts-gn-tools button, .ts .ts-gn-tools a { display: inline-flex; align-items: center; gap: .4rem; padding: 9px 13px; border-radius: 999px; border: 1px solid transparent; background: transparent; color: var(--ts-text, #f6faf7); font: 500 13px/1 var(--ts-font-body, Inter, sans-serif); text-decoration: none; cursor: pointer; }
-  .ts .ts-gn-tools button:hover, .ts .ts-gn-tools a:hover { border-color: var(--ts-line-strong, rgba(255,255,255,.14)); }
+  .ts .ts-gn-h1.ts-gn-h1--page { max-width: 18ch; margin-top: 2rem; font-size: clamp(2.3rem, 6.4vw, 5.4rem); }
+  .ts .ts-gn-h1 { margin: 1rem 0 0; font: 800 clamp(2rem, 5.4vw, 3.8rem)/1.02 var(--ts-font-display, 'Syne', sans-serif); letter-spacing: -0.03em; }
+  .ts-gn-by { display: flex; align-items: center; gap: .8rem; margin-top: 1.2rem; }
+  .ts .ts-gn-by img { width: 46px !important; height: 46px !important; border-radius: 50%; object-fit: cover; }
+  .ts .ts-gn-by p { margin: 0; font-size: 15px; line-height: 1.35; }
+  .ts .ts-gn-by small { display: block; color: var(--ts-muted, #9aaba3); font-size: 13px; }
+  .ts .ts-gn-facts { display: flex; flex-wrap: wrap; gap: .5rem 1.4rem; margin: 1.3rem 0 0; padding: .9rem 0; list-style: none; border-top: 1px solid var(--ts-line, rgba(255,255,255,.08)); border-bottom: 1px solid var(--ts-line, rgba(255,255,255,.08)); font-size: 15px; }
+  .ts .ts-gn-facts a { color: inherit; }
+  .ts .ts-gn-hero { display: block; width: 100% !important; height: auto !important; aspect-ratio: 4 / 3; margin-top: 1.5rem; border-radius: 22px; object-fit: cover; }
+  .ts .ts-gn-about { margin-top: 1.5rem; padding: 1.2rem 1.4rem; border-radius: 18px; border-left: 3px solid #6ee7b7; background: rgba(110,231,183,.06); }
+  .ts .ts-gn-about h2 { margin: 0 0 .5rem; font: 700 1.05rem/1.2 var(--ts-font-display, 'Syne', sans-serif); }
+  .ts .ts-gn-about p { margin: 0; color: var(--tss-text, rgba(246,250,247,.8)); line-height: 1.65; }
+  .ts-gn-tools { position: sticky; top: calc(var(--ts-header-space, 96px) - 16px); z-index: 4; display: flex; flex-wrap: wrap; align-items: center; gap: .35rem; margin-top: 1.5rem; padding: .4rem; border-radius: 999px; border: 1px solid var(--ts-line, rgba(255,255,255,.08)); background: rgba(6,6,8,.85); backdrop-filter: blur(12px); width: max-content; max-width: 100%; }
+  .ts .ts-gn-tools button { display: inline-flex; align-items: center; gap: .4rem; padding: 9px 13px; border-radius: 999px; border: 1px solid transparent; background: transparent; color: var(--ts-text, #f6faf7); font: 500 13.5px/1 var(--ts-font-body, Inter, sans-serif); cursor: pointer; }
+  .ts .ts-gn-tools button:hover { border-color: var(--ts-line-strong, rgba(255,255,255,.14)); }
   .ts .ts-gn-tools button[aria-pressed="true"] { background: #f6faf7; color: #060608; }
-  .ts-gn-text { --gn-size: 19px; margin-top: 2.25rem; }
-  .ts .ts-gn-text p { margin: 0 0 1.15em; font: 400 var(--gn-size)/1.85 var(--ts-font-body, Inter, sans-serif); color: #e7ece9; }
-  .ts .ts-gn-text p:first-child::first-letter { float: left; margin: .08em .12em 0 0; font: 800 3.4em/.8 var(--ts-font-display, 'Syne', sans-serif); color: #6ee7b7; }
-  .ts .ts-gn-night { display: flex; align-items: center; gap: 1rem; margin: 2.5rem 0 0; padding: 1.4rem 1.5rem; border-radius: 22px; font: 700 clamp(1.15rem, 2vw, 1.45rem)/1.35 var(--ts-font-display, 'Syne', sans-serif); letter-spacing: -0.01em; }
+  .ts .ts-gn-tools span { padding: 0 .2rem 0 .5rem; color: var(--ts-muted, #9aaba3); font-size: 13px; }
+  .ts .ts-gn-tools i { width: 1px; height: 20px; margin: 0 .2rem; background: var(--ts-line-strong, rgba(255,255,255,.14)); }
+  @media (max-width: 520px) { .ts-gn-tools { border-radius: 18px; } .ts .ts-gn-tools i { display: none; } }
+  .ts-gn-text { --gn-size: 19px; margin-top: 2rem; }
+  .ts .ts-gn-text > p { margin: 0 0 1.15em; font: 400 var(--gn-size)/1.85 var(--ts-font-body, Inter, sans-serif); color: #e7ece9; }
+  .ts .ts-gn-tip { margin: 1.8em 0; padding: 1rem 1.2rem; border-radius: 14px; border: 1px dashed var(--ts-line-strong, rgba(255,255,255,.18)); font-size: 15px; line-height: 1.55; color: var(--tss-text, rgba(246,250,247,.8)); }
+  .ts .ts-gn-tip b { margin-right: .5rem; padding: 3px 8px; border-radius: 6px; background: #6ee7b7; color: #060608; font: 700 11px/1 var(--ts-font-mono, monospace); letter-spacing: .1em; vertical-align: 1px; }
+  .ts .ts-gn-tip a { color: #6ee7b7; }
+  .ts .ts-gn-night { display: flex; align-items: center; gap: 1rem; margin: 2.25rem 0 0; padding: 1.3rem 1.5rem; border-radius: 22px; font: 700 clamp(1.1rem, 2vw, 1.4rem)/1.35 var(--ts-font-display, 'Syne', sans-serif); }
   .ts .ts-gn-night svg { flex: none; color: #f7d046; }
-  .ts .ts-gn-ask { margin-top: 1.25rem; padding: 1.4rem 1.5rem; border-radius: 22px; }
+  .ts .ts-gn-ask { margin-top: 1.25rem; padding: 1.3rem 1.5rem; border-radius: 22px; }
+  .ts .ts-gn-ask h2 { margin: 0; font: 700 1.05rem/1.2 var(--ts-font-display, 'Syne', sans-serif); }
   .ts .ts-gn-ask ul { margin: .8rem 0 0; padding: 0; list-style: none; display: grid; gap: .55rem; }
   .ts .ts-gn-ask li { position: relative; padding-left: 1.5rem; color: var(--tss-text, rgba(246,250,247,.8)); line-height: 1.55; }
   .ts .ts-gn-ask li::before { content: "?"; position: absolute; left: 0; top: 0; color: #6ee7b7; font-weight: 800; }
-  .ts-gn-motiv { display: grid; gap: 1.25rem; margin-top: 1.25rem; padding: 1.4rem 1.5rem; border-radius: 22px; align-items: center; }
-  .ts .ts-gn-motiv__img { max-width: 220px; padding: .5rem; border-radius: 8px; background: #fbf9f4; transform: rotate(-2deg); box-shadow: 0 30px 50px -26px rgba(0,0,0,.9); }
-  .ts .ts-gn-motiv__img svg { display: block; width: 100% !important; height: auto !important; }
-  .ts .ts-gn-author { display: grid; grid-template-columns: 72px 1fr; gap: 1.1rem; align-items: start; margin-top: 1.25rem; padding: 1.4rem 1.5rem; border-radius: 22px; }
-  .ts .ts-gn-author img { width: 72px !important; height: 72px !important; border-radius: 50%; object-fit: cover; }
-  .ts .ts-gn-author p { margin: 0; color: var(--tss-text, rgba(246,250,247,.75)); line-height: 1.6; font-size: 15px; }
-  .ts .ts-gn-author p + p { margin-top: .45rem; }
-  .ts .ts-gn-author b { color: #f6faf7; }
+  .ts .ts-gn-end { margin: 2.5rem 0 0; text-align: center; color: var(--ts-muted, #9aaba3); font: 600 12px/1 var(--ts-font-mono, monospace); letter-spacing: .3em; }
+  .ts-gn-more { display: flex; justify-content: center; margin-top: 2rem; }
+  .ts .ts-gn-like { margin-top: 2.5rem; padding: clamp(1.3rem, 3vw, 2rem); border-radius: 22px; }
+  .ts .ts-gn-like > h2 { margin: 0; font: 800 clamp(1.4rem, 2.6vw, 1.9rem)/1.1 var(--ts-font-display, 'Syne', sans-serif); letter-spacing: -0.02em; }
+  .ts .ts-gn-book { display: grid; grid-template-columns: 72px 1fr; gap: 1rem; align-items: start; margin-top: 1.25rem; }
+  .ts .ts-gn-book__ico { display: grid; place-items: center; width: 72px; height: 92px; border-radius: 6px 12px 12px 6px; background: linear-gradient(135deg, #2e9e6a, #1d4d3f); box-shadow: inset 6px 0 0 rgba(0,0,0,.25); font-size: 30px; }
+  .ts .ts-gn-book h3 { margin: 0; font: 700 1.1rem/1.25 var(--ts-font-display, 'Syne', sans-serif); }
+  .ts .ts-gn-book p { margin: .4rem 0 0; color: var(--tss-text, rgba(246,250,247,.75)); line-height: 1.6; font-size: 15px; }
+  .ts .ts-gn-share { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem; margin-top: 1.5rem; padding-top: 1.25rem; border-top: 1px solid var(--ts-line, rgba(255,255,255,.08)); }
+  .ts .ts-gn-share > span { margin-right: .4rem; font: 600 14px/1 var(--ts-font-body, Inter, sans-serif); }
   .ts .ts-gn-audio { margin-top: 1.5rem; padding: 1rem 1.2rem; border-radius: 18px; }
   .ts .ts-gn-audio audio { width: 100%; margin-top: .6rem; }
-  .ts .ts-gn-reihe { margin-top: 1.25rem; }
-  .ts .ts-gn-reihe ul { margin: .7rem 0 0; padding: 0; list-style: none; border-top: 1px solid var(--ts-line, rgba(255,255,255,.08)); }
+  .ts .ts-gn-reihe { margin-top: 2rem; }
+  .ts .ts-gn-reihe h2 { margin: 0; font: 700 1.15rem/1.2 var(--ts-font-display, 'Syne', sans-serif); }
+  .ts .ts-gn-reihe ul { margin: .8rem 0 0; padding: 0; list-style: none; border-top: 1px solid var(--ts-line, rgba(255,255,255,.08)); }
   .ts .ts-gn-reihe li { display: flex; justify-content: space-between; gap: 1rem; padding: .85rem 0; border-bottom: 1px solid var(--ts-line, rgba(255,255,255,.08)); }
-  .ts .ts-gn-reihe a { color: #f6faf7; font: 700 1.05rem/1.3 var(--ts-font-display, 'Syne', sans-serif); text-decoration: none; }
+  .ts .ts-gn-reihe a { color: #f6faf7; font: 600 1rem/1.3 var(--ts-font-body, Inter, sans-serif); text-decoration: none; }
   .ts .ts-gn-reihe a:hover { color: #6ee7b7; }
-  .ts .ts-gn-reihe .ts-label { color: var(--ts-muted, #9aaba3); white-space: nowrap; }
-  /* Nachtmodus: dunkler, wärmer, größer – zum Vorlesen im abgedunkelten Kinderzimmer */
+  .ts .ts-gn-reihe span { color: var(--ts-muted, #9aaba3); white-space: nowrap; font-size: 14px; }
+  .ts-gn-glance { display: grid; gap: 1.5rem; margin-top: 1.75rem; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .ts .ts-gn-glance h3 { margin: 0 0 .7rem; color: var(--ts-muted, #9aaba3); font: 600 11px/1.3 var(--ts-font-mono, monospace); letter-spacing: .14em; text-transform: uppercase; }
+  .ts .ts-gn-glance ul { margin: 0; padding: 0; list-style: none; display: grid; gap: .5rem; }
+  .ts .ts-gn-glance a { color: var(--ts-text, #f6faf7); text-decoration: none; font-size: 15px; }
+  .ts .ts-gn-glance a:hover { color: #6ee7b7; }
+  /* Nachtmodus: dunkler, wärmer – zum Vorlesen im abgedunkelten Kinderzimmer */
   html.ts-gn-dark .ts-gn-page { background: #050505; }
-  html.ts-gn-dark .ts .ts-gn-text p { color: #e9dcc0; }
-  html.ts-gn-dark .ts .ts-gn-text p:first-child::first-letter { color: #f7d046; }
-  html.ts-gn-dark .ts-gn-dim { opacity: .25; transition: opacity .4s; }
+  html.ts-gn-dark .ts .ts-gn-text > p { color: #e9dcc0; }
+  html.ts-gn-dark .ts-gn-dim, html.ts-gn-dark .ts-gn-tip { opacity: .25; transition: opacity .4s; }
+  html.ts-gn-dark .ts-gn-hero { filter: brightness(.45); }
   html.ts-gn-dark .ts-khr, html.ts-gn-dark .ts-header { opacity: .25; }
   @media (min-width: 640px) {
     .ts-am-gal { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-    .ts-am-packs, .ts-gn-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .ts-am-packs { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .ts-gn-glance { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .ts-gn-figs { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (min-width: 900px) {
+    .ts-gn-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .ts-gn-grid--4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .ts-gn-figs { grid-template-columns: repeat(4, minmax(0, 1fr)); }
   }
   @media (min-width: 1024px) {
     .ts-am-gal { grid-template-columns: repeat(5, minmax(0, 1fr)); }
-    .ts-am-packs, .ts-gn-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-    .ts-gn-today { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 3rem; }
-    .ts-gn-motiv { grid-template-columns: 220px minmax(0, 1fr); }
+    .ts-am-packs { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   }
   @media print {
-    .ts-khr, .ts-gn-tools, .ts-gn-noprint, header, footer, #footer-sections, .ts-header { display: none !important; }
-    .ts .ts-gn-text p { color: #111 !important; font-size: 13pt !important; }
-    .ts .ts-gn-h1, .ts .ts-gn-night, .ts .ts-gn-ask, .ts .ts-gn-ask li { color: #111 !important; background: none !important; border: 0 !important; }
-    .ts-gn-motiv { page-break-before: always; }
+    .ts-khr, .ts-gn-tools, .ts-gn-noprint, .ts-gn-tip, .ts-gn-hero, header, footer, #footer-sections, .ts-header { display: none !important; }
+    .ts .ts-gn-text > p { color: #111 !important; font-size: 13pt !important; }
+    .ts .ts-gn-h1, .ts .ts-gn-night, .ts .ts-gn-ask, .ts .ts-gn-ask li, .ts .ts-gn-about, .ts .ts-gn-about p, .ts .ts-gn-facts { color: #111 !important; background: none !important; }
     body, .ts-gn-page { background: #fff !important; }
   }
 </style>
@@ -248,65 +303,53 @@
   <div class="ts-am__orb ts-gn-dim" aria-hidden="true"></div>
   <div class="ts-container tss--top">
     <div class="ts-gn-story">
-      <div class="tss-kicker ts-gn-dim"><p class="ts-label ts-muted"><a href="/gute-nacht-geschichten" style="color:inherit">← Alle Gute-Nacht-Geschichten</a></p><p class="ts-label ts-muted">Geschichte 16 / 24</p></div>
-      <ul class="ts-gn-meta ts-gn-dim"><li class="ts-label">Tiergeschichte</li><li class="ts-label">Ab 3 Jahren</li><li class="ts-label">4 Min. Vorlesezeit</li><li class="ts-label">Hafen</li><li class="ts-label">Einschlafen</li><li class="ts-label">Familie</li></ul>
-      <h1 id="ts-gn-h" class="ts-gn-h1">Mats und die Sternschnuppe<i>.</i></h1>
-      <p class="ts-gn-lead ts-gn-dim">In einer klaren Nacht saust eine Sternschnuppe über den Hafen. Mats darf sich etwas wünschen – aber was nur?</p>
+      <nav class="ts-gn-crumb ts-gn-dim" aria-label="Brotkrumen"><a href="/kreativhafen">Kreativhafen</a><span>›</span><a href="/gute-nacht-geschichten">Gute-Nacht-Geschichten</a><span>›</span>Mats und die Sternschnuppe</nav>
+      <h1 id="ts-gn-h" class="ts-gn-h1">Mats und die Sternschnuppe</h1>
+      <div class="ts-gn-by ts-gn-dim"><img src="https://images.squarespace-cdn.com/content/v1/6869717aa7c996116c8c8a56/ffc25dc6-15ea-4d07-ab0d-6173fde95edf/IMG_3686.jpeg?format=300w" alt="" width="46" height="46" loading="lazy"><p>von <b>Trutz Stähler</b><small>Papa aus Hamburg · schreibt Kinderbücher</small></p></div>
+      <ul class="ts-gn-facts ts-gn-dim"><li>🎯 ab 3 Jahren</li><li>🕔 ca. 4 Minuten Vorlesedauer</li><li>📚 Reihe: <a href="/gute-nacht-geschichten?suche=Mats#ts-gn-alle">Möwe Mats</a></li></ul>
+      <img class="ts-gn-hero" src="https://raw.githubusercontent.com/trutzstaehler/stream-daten/main/kreativhafen/geschichten/bilder/mats-und-die-sternschnuppe.webp" alt="Illustration zur Gute-Nacht-Geschichte „Mats und die Sternschnuppe“" width="800" height="600">
+      <div class="ts-gn-about ts-gn-dim"><h2>Darum geht’s</h2><p>In einer klaren Nacht saust eine Sternschnuppe über den Hafen. Mats darf sich etwas wünschen – aber was nur?</p></div>
       <div class="ts-gn-tools" role="toolbar" aria-label="Lesehilfen">
-        <button type="button" data-gn="night" aria-pressed="false"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg>Nachtmodus</button>
+        <button type="button" data-gn="speak" aria-pressed="false"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><path d="M11 5 6 9H2v6h4l5 4V5Z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M19 5a10 10 0 0 1 0 14"/></svg>Vorlesen</button>
+        <i aria-hidden="true"></i><span>Schrift</span>
         <button type="button" data-gn="minus" aria-label="Schrift kleiner">A−</button>
         <button type="button" data-gn="plus" aria-label="Schrift größer">A+</button>
-        <button type="button" data-gn="speak" aria-pressed="false"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><path d="M11 5 6 9H2v6h4l5 4V5Z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M19 5a10 10 0 0 1 0 14"/></svg>Vorlesen lassen</button>
-        <button type="button" data-gn="print"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><path d="M6 9V3h12v6"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><path d="M6 14h12v7H6z"/></svg>Drucken</button>
+        <i aria-hidden="true"></i>
+        <button type="button" data-gn="night" aria-pressed="false"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg>Nachtmodus</button>
       </div>
       
-      <div class="ts-gn-text"><p>Es ist eine klare Nacht am Hamburger Hafen. Keine einzige Wolke ist am Himmel. Dafür so viele Sterne, dass Mats sie gar nicht zählen kann.</p><p>Mats sitzt mit Mama Möwe im Nest auf dem Dach des Lagerhauses. Sie schauen zusammen nach oben.</p><p>„Mama, was ist das für ein Stern, der so hell ist?“</p><p>„Das ist der Abendstern“, sagt Mama. „Der kommt immer als Erster.“</p><p>Unten im Hafen ist es schon still. Kran Karl steht ganz ruhig da. Fähre Frieda schaukelt am Anleger. Nur Leuchtturm Lotte blinkt. Blink. Pause. Blink.</p><p>Und plötzlich – wusch! – saust ein leuchtender Streifen über den Himmel. Mit einem langen, glitzernden Schweif.</p><p>„Mama! Was war das?“</p><p>„Eine Sternschnuppe“, flüstert Mama. „Wenn man eine Sternschnuppe sieht, darf man sich etwas wünschen.“</p><p>„Wirklich?“ Mats ist ganz aufgeregt. „Was soll ich mir denn wünschen?“</p><p>„Das musst du selbst herausfinden“, sagt Mama. „Und du darfst es niemandem verraten.“</p><p>Mats denkt nach. Ganz doll.</p><p>Sie kneift die Augen zusammen. Sie wackelt mit dem Schnabel. Sie zupft an einer Feder. So denkt eine Möwe nämlich besonders gut nach.</p><p>Vielleicht wünscht sie sich einen Berg aus Fischbrötchen? So hoch wie das Lagerhaus?</p><p>Hmm. Aber davon bekäme sie bestimmt Bauchweh.</p><p>Vielleicht wünscht sie sich, so groß zu sein wie Kran Karl? Dann könnte sie über den ganzen Hafen gucken.</p><p>Hmm. Aber dann würde sie nicht mehr ins Nest passen.</p><p>Vielleicht wünscht sie sich, so hell zu leuchten wie Leuchtturm Lotte? Dann würden alle Schiffe sie sehen.</p><p>Hmm. Aber dann könnte sie nachts gar nicht schlafen.</p><p>Vielleicht wünscht sie sich, so weit fahren zu können wie Fähre Frieda? Hin und her, den ganzen Tag?</p><p>Hmm. Aber dann wäre sie den ganzen Tag weg von zu Hause.</p><p>Mats seufzt. „Mama, das ist schwer.“</p><p>„Lass dir Zeit“, sagt Mama und streicht ihr mit dem Flügel über den Kopf.</p><p>„Hast du dir als kleine Möwe auch mal etwas gewünscht?“, fragt Mats.</p><p>„Oh ja“, sagt Mama. „Ich habe mir ein kleines Küken gewünscht, das mit mir im Nest Sterne guckt.“</p><p>„Und? Ist dein Wunsch in Erfüllung gegangen?“</p><p>Mama lächelt nur und schaut Mats ganz lange an.</p><p>Mats kuschelt sich an Mama. Die Federn sind weich und warm. Unten gluckert die Elbe. Gluck, gluck. Ein Schiff tutet ganz weit weg. Tuuut. Lotte blinkt. Und über allem leuchten die Sterne.</p><p>Da merkt Mats etwas.</p><p>Sie hat ein warmes Nest. Sie hat eine Mama, die sie zudeckt. Sie hat Karl, Frieda und Lotte, die auf den Hafen aufpassen. Und sie hat einen Himmel voller Sterne direkt über dem Kopf.</p><p>„Mama“, flüstert Mats, „ich glaube, ich brauche gar keinen neuen Wunsch.“</p><p>„Nein?“</p><p>„Nein. Mein Wunsch ist schon da. Genau hier.“</p><p>Mama sagt nichts. Sie drückt Mats nur ein kleines bisschen fester.</p><p>Da saust noch eine Sternschnuppe über den Himmel. Ganz leise. Wusch.</p><p>„Und die?“, fragt Mama lächelnd.</p><p>Mats überlegt kurz. Dann flüstert sie: „Die schenke ich dir.“</p><p>Mama lacht leise. Mats gähnt. Ihre Augen werden schwer. Ganz schwer.</p><p>Die Sterne funkeln. Lotte blinkt. Die Elbe gluckert. Und Mats schläft ein, mitten in ihrem schönsten Wunsch.</p></div>
+      <div class="ts-gn-text"><p>Es ist eine klare Nacht am Hamburger Hafen. Keine einzige Wolke ist am Himmel. Dafür so viele Sterne, dass Mats sie gar nicht zählen kann.</p><p>Mats sitzt mit Mama Möwe im Nest auf dem Dach des Lagerhauses. Sie schauen zusammen nach oben.</p><p>„Mama, was ist das für ein Stern, der so hell ist?“</p><p>„Das ist der Abendstern“, sagt Mama. „Der kommt immer als Erster.“</p><p>Unten im Hafen ist es schon still. Kran Karl steht ganz ruhig da. Fähre Frieda schaukelt am Anleger. Nur Leuchtturm Lotte blinkt. Blink. Pause. Blink.</p><p>Und plötzlich – wusch! – saust ein leuchtender Streifen über den Himmel. Mit einem langen, glitzernden Schweif.</p><p>„Mama! Was war das?“</p><p>„Eine Sternschnuppe“, flüstert Mama. „Wenn man eine Sternschnuppe sieht, darf man sich etwas wünschen.“</p><p>„Wirklich?“ Mats ist ganz aufgeregt. „Was soll ich mir denn wünschen?“</p><p>„Das musst du selbst herausfinden“, sagt Mama. „Und du darfst es niemandem verraten.“</p><p>Mats denkt nach. Ganz doll.</p><p>Sie kneift die Augen zusammen. Sie wackelt mit dem Schnabel. Sie zupft an einer Feder. So denkt eine Möwe nämlich besonders gut nach.</p><p>Vielleicht wünscht sie sich einen Berg aus Fischbrötchen? So hoch wie das Lagerhaus?</p><p>Hmm. Aber davon bekäme sie bestimmt Bauchweh.</p><p>Vielleicht wünscht sie sich, so groß zu sein wie Kran Karl? Dann könnte sie über den ganzen Hafen gucken.</p><p>Hmm. Aber dann würde sie nicht mehr ins Nest passen.</p><p>Vielleicht wünscht sie sich, so hell zu leuchten wie Leuchtturm Lotte? Dann würden alle Schiffe sie sehen.</p><p>Hmm. Aber dann könnte sie nachts gar nicht schlafen.</p><p>Vielleicht wünscht sie sich, so weit fahren zu können wie Fähre Frieda? Hin und her, den ganzen Tag?</p><aside class="ts-gn-tip ts-gn-noprint"><b>TIPP</b>Diese Geschichte gehört zur Reihe <a href="/gute-nacht-geschichten?suche=Mats#ts-gn-alle">„Möwe Mats“</a> – es gibt noch mehr Abenteuer mit der kleinen Möwe.</aside><p>Hmm. Aber dann wäre sie den ganzen Tag weg von zu Hause.</p><p>Mats seufzt. „Mama, das ist schwer.“</p><p>„Lass dir Zeit“, sagt Mama und streicht ihr mit dem Flügel über den Kopf.</p><p>„Hast du dir als kleine Möwe auch mal etwas gewünscht?“, fragt Mats.</p><p>„Oh ja“, sagt Mama. „Ich habe mir ein kleines Küken gewünscht, das mit mir im Nest Sterne guckt.“</p><p>„Und? Ist dein Wunsch in Erfüllung gegangen?“</p><p>Mama lächelt nur und schaut Mats ganz lange an.</p><p>Mats kuschelt sich an Mama. Die Federn sind weich und warm. Unten gluckert die Elbe. Gluck, gluck. Ein Schiff tutet ganz weit weg. Tuuut. Lotte blinkt. Und über allem leuchten die Sterne.</p><p>Da merkt Mats etwas.</p><p>Sie hat ein warmes Nest. Sie hat eine Mama, die sie zudeckt. Sie hat Karl, Frieda und Lotte, die auf den Hafen aufpassen. Und sie hat einen Himmel voller Sterne direkt über dem Kopf.</p><p>„Mama“, flüstert Mats, „ich glaube, ich brauche gar keinen neuen Wunsch.“</p><p>„Nein?“</p><p>„Nein. Mein Wunsch ist schon da. Genau hier.“</p><p>Mama sagt nichts. Sie drückt Mats nur ein kleines bisschen fester.</p><p>Da saust noch eine Sternschnuppe über den Himmel. Ganz leise. Wusch.</p><p>„Und die?“, fragt Mama lächelnd.</p><p>Mats überlegt kurz. Dann flüstert sie: „Die schenke ich dir.“</p><p>Mama lacht leise. Mats gähnt. Ihre Augen werden schwer. Ganz schwer.</p><p>Die Sterne funkeln. Lotte blinkt. Die Elbe gluckert. Und Mats schläft ein, mitten in ihrem schönsten Wunsch.</p></div>
       <p class="ts-gn-night ts-glass" data-gn-night><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg><span>Gute Nacht, Mats. Gute Nacht, Sterne. Gute Nacht, du.</span></p>
       
-      <div class="ts-gn-motiv ts-glass ts-gn-dim">
-        <div class="ts-gn-motiv__img"><svg role='img' aria-label='Ausmalbild Sternschnuppe' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1100" width="1000" height="1100"><g stroke="#111111" stroke-linecap="round" stroke-linejoin="round"><g transform="translate(60 0) scale(.88)"><path d="M170 130 Q174 166 210 170 Q174 174 170 210 Q166 174 130 170 Q166 166 170 130 Z" fill="#fff" stroke-width="7" /><path d="M858 779 Q860 776 862 779 L871 800 Q872 803 876 803 L898 806 Q902 806 899 809 L883 824 Q880 826 881 830 L885 852 Q886 856 883 854 L863 843 Q860 841 857 843 L837 854 Q834 856 835 852 L839 830 Q840 826 837 824 L821 809 Q818 806 822 806 L844 803 Q848 803 849 800 Z" fill="#fff" stroke-width="11" /><path d="M560 830 Q563 857 590 860 Q563 863 560 890 Q557 863 530 860 Q557 857 560 830 Z" fill="#fff" stroke-width="7" /><circle cx="880" cy="120" r="22" fill="#fff" stroke-width="7"/><path d="M548 316 L539 319 L529 322 L519 325 L510 328 L500 332 L490 335 L480 339 L471 343 L461 346 L452 350 L442 354 L432 358 L423 362 L413 366 L404 370 L394 374 L385 378 L376 383 L366 387 L357 391 L347 396 L338 400 L328 405 L319 410 L310 415 L300 420 L291 424 L282 429 L272 434 L263 440 L254 445 L245 450 L236 455 L226 461 L217 466 L208 472 L199 477 L190 483 L181 489 L172 494 L162 500 L153 506 L144 512 L135 518 L126 524 L117 531 L108 537 L99 543 Q80 579 121 577 L121 577 L130 572 L140 566 L149 561 L158 556 L168 551 L177 546 L186 542 L196 537 L205 532 L214 527 L224 523 L233 518 L243 514 L252 510 L261 505 L271 501 L280 497 L290 493 L299 489 L308 485 L318 481 L327 478 L336 474 L346 470 L355 467 L365 463 L374 460 L384 456 L393 453 L402 450 L412 447 L421 444 L430 441 L440 438 L449 435 L459 432 L468 430 L478 427 L487 424 L496 422 L506 420 L515 417 L525 415 L534 413 L543 410 L553 408 L562 406 L572 404 Z" fill="#fff" stroke-width="11" /><path d="M538 425 L529 430 L519 436 L510 441 L500 446 L491 452 L482 458 L472 463 L463 469 L454 475 L444 480 L435 486 L426 492 L417 498 L408 504 L400 510 L391 517 L382 523 L373 529 L364 536 L356 542 L347 548 L339 555 L330 562 L322 568 L313 575 L305 582 L297 588 L288 595 L280 602 L272 609 L264 616 L256 623 L248 630 L240 638 L232 645 L224 652 L217 660 L209 667 L201 674 L194 682 L186 690 L178 697 L171 705 L164 713 L156 721 L149 728 L142 736 L134 744 Q122 788 166 776 L166 776 L173 769 L181 762 L189 755 L197 748 L205 742 L213 735 L221 728 L229 722 L237 715 L245 709 L254 703 L262 696 L270 690 L278 684 L287 678 L295 672 L304 666 L312 660 L320 655 L329 649 L337 643 L346 638 L355 632 L363 627 L372 622 L381 616 L390 611 L398 606 L407 601 L416 596 L425 590 L434 586 L443 581 L452 576 L461 571 L470 566 L479 562 L488 557 L497 553 L506 548 L516 544 L525 540 L534 535 L544 531 L553 527 L563 523 L572 519 L582 515 Z" fill="#fff" stroke-width="11" /><path d="M588 526 L582 533 L576 539 L570 546 L564 553 L558 559 L553 566 L547 573 L541 580 L535 587 L530 594 L524 600 L519 608 L513 615 L508 622 L502 629 L497 636 L492 643 L486 651 L481 658 L476 665 L471 673 L466 680 L461 688 L456 696 L451 703 L446 711 L441 718 L437 726 L432 734 L427 742 L423 750 L418 758 L414 766 L409 774 L405 782 L400 790 L396 798 L392 806 L388 815 L384 823 L380 831 L375 840 L371 848 L368 857 L364 865 L360 874 L356 882 L352 891 Q354 932 388 909 L388 909 L392 901 L397 893 L402 885 L407 878 L411 870 L416 862 L421 855 L426 847 L431 840 L436 832 L441 825 L446 818 L451 810 L456 803 L461 796 L466 789 L472 782 L477 775 L482 768 L487 761 L493 754 L498 748 L504 741 L509 734 L515 728 L520 722 L526 715 L531 709 L537 702 L543 696 L548 690 L554 684 L560 678 L566 672 L572 666 L578 660 L584 654 L590 648 L596 643 L602 637 L608 631 L614 626 L620 620 L626 615 L632 609 L639 604 L645 599 L652 594 Z" fill="#fff" stroke-width="11" /><path d="M586 160 Q592 139 605 157 L686 271 Q699 289 721 288 L861 282 Q883 281 870 299 L787 411 Q774 429 781 450 L830 580 Q838 601 817 594 L684 550 Q663 543 646 557 L537 644 Q519 657 520 635 L521 495 Q521 473 502 461 L386 384 Q368 372 389 365 L522 323 Q543 316 549 295 Z" fill="#fff" stroke-width="11" /><ellipse cx="554" cy="420" rx="27" ry="35" fill="#111111" stroke-width="0"/><circle cx="545" cy="407" r="11" fill="#fff" stroke="none"/><circle cx="563" cy="432" r="5" fill="#fff" stroke="none"/><ellipse cx="726" cy="420" rx="27" ry="35" fill="#111111" stroke-width="0"/><circle cx="717" cy="407" r="11" fill="#fff" stroke="none"/><circle cx="735" cy="432" r="5" fill="#fff" stroke="none"/><path d="M611 464 Q640 456 669 464 Q666 508 640 508 Q614 508 611 464 Z" fill="#fff" stroke-width="9.1" /><path d="M627 497 Q640 485 653 497" fill="none" stroke-width="6.5"/><ellipse cx="510" cy="464" rx="25" ry="13" fill="#fff" stroke-width="6.5"/><ellipse cx="770" cy="464" rx="25" ry="13" fill="#fff" stroke-width="6.5"/></g><g transform="translate(38.5 1027.1) scale(0.10859 -0.10859)" fill="#fff" stroke="#111111" stroke-width="221.00" stroke-linejoin="round" paint-order="stroke"><path transform="translate(0 0)" d="M271 -19Q210 -19 168 -4Q125 11 98 32Q71 52 57 69Q43 86 40 90Q20 115 16 135Q11 155 22 175Q32 195 57 219Q80 241 102 244Q124 246 146 234Q167 222 187 199Q211 172 228 162Q245 153 267 153Q294 153 311 160Q328 166 336 180Q344 193 344 214Q344 231 327 240Q310 250 282 257Q255 264 221 272Q187 281 154 295Q134 303 115 315Q96 327 80 342Q63 358 51 380Q39 401 32 428Q26 455 26 489Q26 550 56 598Q87 646 140 674Q194 702 262 702Q311 702 346 694Q381 686 404 675Q426 664 438 654Q450 645 453 642Q486 612 489 590Q492 569 465 529Q435 486 406 480Q377 475 339 499Q331 505 323 512Q315 520 302 526Q288 531 261 531Q251 531 241 528Q231 524 224 518Q217 513 212 505Q208 497 208 488Q208 467 224 456Q240 444 266 438Q293 432 325 426Q357 420 390 410Q417 401 442 387Q467 373 486 351Q505 329 516 296Q528 264 528 217Q528 152 503 106Q478 61 438 34Q399 6 354 -6Q310 -19 271 -19Z"/><path transform="translate(582 0)" d="M549 692Q568 692 585 689Q602 686 614 670Q625 654 625 615Q625 577 614 560Q602 544 584 541Q567 538 548 538H410V80Q410 58 406 38Q402 17 384 4Q365 -9 319 -9Q275 -9 256 4Q237 18 234 38Q230 59 230 81V538H91Q73 538 56 542Q38 545 26 561Q15 577 15 616Q15 654 26 670Q38 686 56 689Q74 692 92 692Z"/><path transform="translate(1262 0)" d="M129 -9Q84 -9 65 4Q46 18 42 40Q38 61 38 83V600Q38 652 58 672Q79 691 132 691H498Q521 691 542 687Q562 683 576 664Q589 645 589 599Q589 554 576 535Q562 516 541 512Q520 508 497 508H221V419H406Q429 419 447 416Q465 412 476 396Q487 380 487 340Q487 302 476 286Q465 269 446 266Q427 263 404 263H221V174H498Q521 174 542 170Q562 166 576 147Q589 128 589 82Q589 37 576 18Q562 -1 541 -5Q520 -9 497 -9Z"/><path transform="translate(1905 0)" d="M126 -8Q81 -8 62 6Q43 19 39 40Q35 62 35 84V600Q35 622 39 643Q43 664 62 678Q81 691 127 691H328Q366 691 410 676Q454 660 493 628Q532 596 557 548Q582 500 582 434Q582 388 568 348Q555 308 528 276Q502 243 464 218Q427 194 379 180H218V83Q218 61 214 40Q210 19 191 6Q172 -8 126 -8ZM545 16Q500 -18 474 -12Q448 -5 418 35L234 285L442 311L566 144Q586 115 592 95Q597 75 586 57Q575 39 545 16ZM218 362H328Q337 362 350 366Q362 369 373 378Q384 386 392 400Q399 414 399 435Q399 456 389 472Q379 489 362 498Q346 508 326 508H218Z"/><path transform="translate(2549 0)" d="M118 -9Q74 -9 55 4Q36 18 32 39Q28 60 28 83V602Q28 624 32 644Q36 664 56 677Q75 690 120 690Q164 690 180 679Q196 668 209 651L459 315V602Q459 624 464 644Q468 664 487 677Q506 690 551 690Q597 690 616 676Q634 663 638 642Q642 621 642 598V82Q642 60 638 39Q634 18 615 4Q596 -9 550 -9Q516 -9 498 -4Q481 2 469 18L210 360V82Q210 60 206 39Q202 18 183 4Q164 -9 118 -9Z"/><path transform="translate(3259 0)" d="M271 -19Q210 -19 168 -4Q125 11 98 32Q71 52 57 69Q43 86 40 90Q20 115 16 135Q11 155 22 175Q32 195 57 219Q80 241 102 244Q124 246 146 234Q167 222 187 199Q211 172 228 162Q245 153 267 153Q294 153 311 160Q328 166 336 180Q344 193 344 214Q344 231 327 240Q310 250 282 257Q255 264 221 272Q187 281 154 295Q134 303 115 315Q96 327 80 342Q63 358 51 380Q39 401 32 428Q26 455 26 489Q26 550 56 598Q87 646 140 674Q194 702 262 702Q311 702 346 694Q381 686 404 675Q426 664 438 654Q450 645 453 642Q486 612 489 590Q492 569 465 529Q435 486 406 480Q377 475 339 499Q331 505 323 512Q315 520 302 526Q288 531 261 531Q251 531 241 528Q231 524 224 518Q217 513 212 505Q208 497 208 488Q208 467 224 456Q240 444 266 438Q293 432 325 426Q357 420 390 410Q417 401 442 387Q467 373 486 351Q505 329 516 296Q528 264 528 217Q528 152 503 106Q478 61 438 34Q399 6 354 -6Q310 -19 271 -19Z"/><path transform="translate(3841 0)" d="M376 -19Q337 -19 289 -6Q241 6 192 33Q144 60 104 103Q63 146 38 206Q14 266 14 345Q14 421 38 479Q63 537 103 579Q143 621 192 647Q240 673 289 686Q338 698 379 698Q430 698 469 686Q508 673 532 660Q557 646 563 642Q583 629 600 614Q618 598 618 572Q618 559 612 545Q607 531 596 516Q576 488 558 475Q541 462 524 462Q511 462 499 468Q487 474 470 485Q463 490 452 496Q441 503 422 508Q403 514 372 514Q346 514 316 504Q285 495 258 474Q231 454 214 420Q197 387 197 340Q197 292 214 259Q232 226 259 206Q286 185 316 176Q347 166 372 166Q398 166 416 170Q434 175 448 183Q463 191 475 199Q486 207 499 213Q512 219 525 219Q542 219 559 205Q576 191 595 162Q606 145 612 130Q617 116 617 104Q617 79 600 64Q582 49 562 37Q555 33 532 19Q509 5 470 -7Q431 -19 376 -19Z"/><path transform="translate(4512 0)" d="M530 -8Q485 -8 466 6Q447 19 443 40Q439 62 439 84V600Q439 622 443 643Q447 664 466 678Q485 691 531 691Q577 691 596 678Q614 664 618 643Q622 622 622 599V83Q622 61 618 40Q614 19 595 6Q576 -8 530 -8ZM119 -8Q74 -8 55 6Q36 19 32 40Q28 62 28 84V600Q28 622 32 643Q36 664 55 678Q74 691 120 691Q166 691 184 678Q203 664 207 643Q211 622 211 599V83Q211 61 207 40Q203 19 184 6Q165 -8 119 -8ZM195 263V419H455V263Z"/><path transform="translate(5202 0)" d="M118 -9Q74 -9 55 4Q36 18 32 39Q28 60 28 83V602Q28 624 32 644Q36 664 56 677Q75 690 120 690Q164 690 180 679Q196 668 209 651L459 315V602Q459 624 464 644Q468 664 487 677Q506 690 551 690Q597 690 616 676Q634 663 638 642Q642 621 642 598V82Q642 60 638 39Q634 18 615 4Q596 -9 550 -9Q516 -9 498 -4Q481 2 469 18L210 360V82Q210 60 206 39Q202 18 183 4Q164 -9 118 -9Z"/><path transform="translate(5912 0)" d="M336 -20Q260 -20 202 10Q145 41 106 91Q67 141 48 201Q28 261 28 320V600Q28 623 32 644Q36 665 55 678Q74 692 120 692Q166 692 185 678Q204 665 208 644Q212 623 212 599V320Q212 287 223 251Q234 215 262 190Q289 164 339 164Q377 164 405 184Q433 203 448 238Q464 274 464 321V605Q464 627 468 646Q473 666 492 679Q511 692 556 692Q602 692 620 678Q639 664 643 643Q647 622 647 599V318Q647 258 627 198Q607 139 568 90Q528 40 470 10Q412 -20 336 -20Z"/><path transform="translate(6627 0)" d="M126 -8Q81 -8 62 6Q43 19 39 40Q35 62 35 84V600Q35 622 39 643Q43 664 62 678Q81 691 127 691H326Q364 691 408 676Q452 660 492 628Q531 596 556 548Q581 500 581 434Q581 369 556 321Q531 273 492 242Q452 210 408 194Q364 179 325 179H218V83Q218 61 214 40Q210 19 191 6Q172 -8 126 -8ZM218 362H326Q339 362 356 368Q373 375 386 391Q399 407 399 435Q399 456 389 472Q379 489 362 498Q346 508 325 508H218Z"/><path transform="translate(7262 0)" d="M126 -8Q81 -8 62 6Q43 19 39 40Q35 62 35 84V600Q35 622 39 643Q43 664 62 678Q81 691 127 691H326Q364 691 408 676Q452 660 492 628Q531 596 556 548Q581 500 581 434Q581 369 556 321Q531 273 492 242Q452 210 408 194Q364 179 325 179H218V83Q218 61 214 40Q210 19 191 6Q172 -8 126 -8ZM218 362H326Q339 362 356 368Q373 375 386 391Q399 407 399 435Q399 456 389 472Q379 489 362 498Q346 508 325 508H218Z"/><path transform="translate(7897 0)" d="M129 -9Q84 -9 65 4Q46 18 42 40Q38 61 38 83V600Q38 652 58 672Q79 691 132 691H498Q521 691 542 687Q562 683 576 664Q589 645 589 599Q589 554 576 535Q562 516 541 512Q520 508 497 508H221V419H406Q429 419 447 416Q465 412 476 396Q487 380 487 340Q487 302 476 286Q465 269 446 266Q427 263 404 263H221V174H498Q521 174 542 170Q562 166 576 147Q589 128 589 82Q589 37 576 18Q562 -1 541 -5Q520 -9 497 -9Z"/></g></g></svg></div>
-        <div><p class="ts-label ts-muted">[ Das Ausmalbild zur Geschichte ]</p>
-          <h2 class="ts-am__h2" style="font-size:clamp(1.5rem,3vw,2.2rem);margin-top:.8rem">Morgen früh: Sternschnuppe ausmalen<i>.</i></h2>
-          <div class="ts-am__ctas ts-gn-noprint">
-            <button type="button" class="ts-am-mini ts-am-mini--hi" data-gn="motiv" data-name="Sternschnuppe" data-titel="Mats und die Sternschnuppe">Ausmalbild drucken</button>
-            <a class="ts-am-mini" href="/ausmalbilder?motiv=wr08#ts-am-malen">Online ausmalen</a>
-          </div></div>
+      <p class="ts-gn-end ts-gn-dim" aria-hidden="true">✦ ENDE ✦</p>
+      <div class="ts-gn-more ts-gn-noprint"><a href="/gute-nacht-geschichten" class="ts-btn ts-btn--primary ts-magnetic"><span class="ts-btn__inner"><span class="ts-roll"><span data-text="Mehr Geschichten lesen">Mehr Geschichten lesen</span></span><svg class="ts-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></div>
+      <div class="ts-gn-like ts-glass ts-gn-dim ts-gn-noprint">
+        <h2>Hat dir die Geschichte gefallen<i style="font-style:normal;color:#6ee7b7">?</i></h2>
+        <div class="ts-gn-book"><span class="ts-gn-book__ico" aria-hidden="true">✏️</span>
+          <div><h3>Die Kritzelbücher</h3><p>Zum Kritzeln, Malen und Weiterdenken – die Malbücher von Trutz für kleine Künstlerinnen und Künstler.</p>
+            <div class="ts-am__ctas" style="margin-top:.9rem"><a class="ts-am-mini ts-am-mini--hi" href="/malbuecher">Mehr dazu</a></div></div></div>
+        <div class="ts-gn-share"><span>Mit Freunden teilen</span>
+          <button type="button" class="ts-am-mini" data-gn="share">Link teilen</button>
+          <a class="ts-am-mini" data-gn="wa" href="https://wa.me/" target="_blank" rel="noopener">WhatsApp</a></div>
       </div>
-      <div class="ts-gn-author ts-glass ts-gn-dim ts-gn-noprint">
-        <img src="https://images.squarespace-cdn.com/content/v1/6869717aa7c996116c8c8a56/ffc25dc6-15ea-4d07-ab0d-6173fde95edf/IMG_3686.jpeg?format=300w" alt="Trutz Stähler" width="72" height="72" loading="lazy">
-        <div><p class="ts-label ts-muted">[ Aus dem Kreativhafen ]</p>
-          <p><b>Trutz Stähler</b> – Papa aus Hamburg, Autor der Kritzelbücher und des Kinderkrimis „Maria Holm“. Im Kreativhafen entstehen Geschichten zum Vorlesen und Ausmalbilder zum Weitermalen.</p>
-          <div class="ts-am__ctas" style="margin-top:.9rem">
-            <button type="button" class="ts-am-mini" data-gn="share">Mit Freunden teilen</button>
-            <a class="ts-am-mini" href="/malbuecher">Die Kritzelbücher ansehen</a>
-          </div></div>
-      </div>
-      <div class="ts-gn-reihe ts-gn-dim ts-gn-noprint"><p class="ts-label ts-muted">[ Mehr aus der Reihe „Möwe Mats“ ]</p><ul><li><a href="/geschichten/mats-und-das-schietwetter">Mats und das Schietwetter</a><span class="ts-label">4 Min.</span></li><li><a href="/geschichten/mats-sucht-ihre-lieblingsfeder">Mats sucht ihre Lieblingsfeder</a><span class="ts-label">4 Min.</span></li><li><a href="/geschichten/mats-hat-geburtstag">Mats hat Geburtstag</a><span class="ts-label">4 Min.</span></li></ul></div>
+      <div class="ts-gn-reihe ts-gn-dim ts-gn-noprint"><h2>Alle Geschichten der Reihe „Möwe Mats“</h2><ul><li><a href="/geschichten/mats-und-das-schietwetter">Mats und das Schietwetter</a><span>ca. 4 Min.</span></li><li><a href="/geschichten/mats-sucht-ihre-lieblingsfeder">Mats sucht ihre Lieblingsfeder</a><span>ca. 4 Min.</span></li><li><a href="/geschichten/mats-hat-geburtstag">Mats hat Geburtstag</a><span>ca. 4 Min.</span></li><li><b>Mats und die Sternschnuppe</b><span>du liest gerade</span></li></ul></div>
     </div>
   </div>
-  <section class="ts-container ts-am__block ts-am__end ts-gn-noprint ts-gn-dim" aria-label="Weitere Geschichten">
-    <div class="ts-am__blockhead"><p class="ts-label ts-muted">[ Noch eine? ]</p><p class="ts-label ts-muted"><a href="/gute-nacht-geschichten" style="color:inherit">Alle Geschichten →</a></p></div>
-    <div class="ts-gn-grid" style="margin-top:1.5rem"><a class="ts-gn-card ts-glass" href="/geschichten/die-faehre-frieda-faehrt-nach-hause" data-gn-card data-themen="Hafen,Familie,Einschlafen" data-zeit="4" data-alter="3" data-form="Hafengeschichte" data-saison="" data-suche="die fähre frieda fährt nach hause es ist die letzte fahrt des tages: hafenfähre frieda bringt alle nach hause – müde menschen, einen schnarchenden hund und ein kind mit einer roten mütze. hafen,familie,einschlafen  im hamburger hafen fährt eine fähre hin und her. sie ist weiß und grün und hat viele runde fenster. sie heißt frieda. den ganzen tag bringt frieda menschen über die elbe. von einem anleger zum nächsten. hin und her, hin und her. tuuut, ruft frieda, wenn sie ablegt. jetzt ist es abend. die sonne ist schon untergegangen, und die hafenlichter leuchten. es ist friedas letzte fahrt für heute." data-titel="Die Fähre Frieda fährt nach Hause" data-teaser="Es ist die letzte Fahrt des Tages: Hafenfähre Frieda bringt alle nach Hause – müde Menschen, einen schnarchenden Hund und ein Kind mit einer roten Mütze."><div class="ts-gn-card__img"><img src="https://raw.githubusercontent.com/trutzstaehler/stream-daten/main/kreativhafen/ausmalbilder/bilder/bunt/hf06.webp" alt="" loading="lazy" width="360" height="396" style="--r:-2deg"></div><div class="ts-gn-card__body"><h3 class="ts-gn-card__t">Die Fähre Frieda fährt nach Hause</h3><p class="ts-gn-card__s">Es ist die letzte Fahrt des Tages: Hafenfähre Frieda bringt alle nach Hause – müde Menschen, einen schnarchenden Hund und ein Kind mit einer roten Mütze.</p><p class="ts-label ts-gn-card__m">4 Min. · ab 3 J. · Hafengeschichte</p></div></a><a class="ts-gn-card ts-glass" href="/geschichten/moewe-mats-will-nicht-schlafen" data-gn-card data-themen="Hafen,Tiere,Einschlafen" data-zeit="4" data-alter="3" data-form="Tiergeschichte" data-saison="" data-suche="möwe mats will nicht schlafen im hafen ist abends noch so viel los – da kann möwe mats doch unmöglich schlafen gehen! oder leuchtet der hafen vielleicht auch ohne sie weiter? hafen,tiere,einschlafen  am hamburger hafen wohnt eine kleine möwe. sie heißt mats. mats hat weiße federn, graue flügel und gelbe füße, die immer ein bisschen tapsen. tap, tap, tap. am liebsten sitzt mats auf einem dicken poller direkt an der elbe. von dort kann sie alles sehen: die großen schiffe, die kleinen boote, die kräne und die menschen, die winken. eines abends wird der himmel orange, dann rosa, dann lila. die sonne sinkt langsam hinter die kräne." data-titel="Möwe Mats will nicht schlafen" data-teaser="Im Hafen ist abends noch so viel los – da kann Möwe Mats doch unmöglich schlafen gehen! Oder leuchtet der Hafen vielleicht auch ohne sie weiter?"><div class="ts-gn-card__img"><img src="https://raw.githubusercontent.com/trutzstaehler/stream-daten/main/kreativhafen/ausmalbilder/bilder/bunt/hf03.webp" alt="" loading="lazy" width="360" height="396" style="--r:1.5deg"></div><div class="ts-gn-card__body"><h3 class="ts-gn-card__t">Möwe Mats will nicht schlafen</h3><p class="ts-gn-card__s">Im Hafen ist abends noch so viel los – da kann Möwe Mats doch unmöglich schlafen gehen! Oder leuchtet der Hafen vielleicht auch ohne sie weiter?</p><p class="ts-label ts-gn-card__m">4 Min. · ab 3 J. · Tiergeschichte</p></div></a></div>
+  <section class="ts-container ts-am__block ts-gn-noprint ts-gn-dim" aria-labelledby="ts-gn-weitere-t">
+    <h2 id="ts-gn-weitere-t" class="ts-am__h2">Weitere Gute-Nacht-Geschichten</h2>
+    <p class="ts-am__sub">Mehr Einschlafgeschichten findest du in unserer Sammlung: <a href="/gute-nacht-geschichten" style="color:#6ee7b7">Alle Gute-Nacht-Geschichten →</a></p>
+    <div class="ts-gn-grid ts-gn-grid--4"><a class="ts-gn-card" href="/geschichten/die-faehre-frieda-faehrt-nach-hause"><img src="https://raw.githubusercontent.com/trutzstaehler/stream-daten/main/kreativhafen/geschichten/bilder/die-faehre-frieda-faehrt-nach-hause.webp" alt="" loading="lazy" width="800" height="600"><div class="ts-gn-card__body"><h3 class="ts-gn-card__t">Die Fähre Frieda fährt nach Hause</h3><p class="ts-gn-card__m">ab 3 Jahren · ca. 4 Min.</p></div></a><a class="ts-gn-card" href="/geschichten/moewe-mats-will-nicht-schlafen"><img src="https://raw.githubusercontent.com/trutzstaehler/stream-daten/main/kreativhafen/geschichten/bilder/moewe-mats-will-nicht-schlafen.webp" alt="" loading="lazy" width="800" height="600"><div class="ts-gn-card__body"><h3 class="ts-gn-card__t">Möwe Mats will nicht schlafen</h3><p class="ts-gn-card__m">ab 3 Jahren · ca. 4 Min.</p></div></a><a class="ts-gn-card" href="/geschichten/ein-schlaflied-fuer-kran-karl"><img src="https://raw.githubusercontent.com/trutzstaehler/stream-daten/main/kreativhafen/geschichten/bilder/ein-schlaflied-fuer-kran-karl.webp" alt="" loading="lazy" width="800" height="600"><div class="ts-gn-card__body"><h3 class="ts-gn-card__t">Ein Schlaflied für Kran Karl</h3><p class="ts-gn-card__m">ab 3 Jahren · ca. 4 Min.</p></div></a><a class="ts-gn-card" href="/geschichten/teddy-haelt-wache"><img src="https://raw.githubusercontent.com/trutzstaehler/stream-daten/main/kreativhafen/geschichten/bilder/teddy-haelt-wache.webp" alt="" loading="lazy" width="800" height="600"><div class="ts-gn-card__body"><h3 class="ts-gn-card__t">Teddy hält Wache</h3><p class="ts-gn-card__m">ab 3 Jahren · ca. 4 Min.</p></div></a></div>
+  </section>
+  <section class="ts-container ts-am__block ts-am__end ts-gn-noprint ts-gn-dim" aria-labelledby="ts-gn-glance-t">
+    <h2 id="ts-gn-glance-t" class="ts-am__h2">Geschichten auf einen Blick</h2>
+    <div class="ts-gn-glance"><div><h3>Nach Dauer</h3><ul><li><a href="/gute-nacht-geschichten?dauer=kurz#ts-gn-alle">Kurz (1–3 Minuten)</a></li><li><a href="/gute-nacht-geschichten?dauer=mittel#ts-gn-alle">Mittel (4–6 Minuten)</a></li><li><a href="/gute-nacht-geschichten?dauer=lang#ts-gn-alle">Lang (ab 7 Minuten)</a></li></ul></div><div><h3>Nach Alter</h3><ul><li><a href="/gute-nacht-geschichten?alter=2#ts-gn-alle">Für 2-Jährige</a></li><li><a href="/gute-nacht-geschichten?alter=3#ts-gn-alle">Für 3- bis 4-Jährige</a></li><li><a href="/gute-nacht-geschichten?alter=5#ts-gn-alle">Ab 5 Jahren</a></li></ul></div><div><h3>Nach Thema</h3><ul><li><a href="/gute-nacht-geschichten?thema=Hafen#ts-gn-alle">Hamburger Hafen</a></li><li><a href="/gute-nacht-geschichten?thema=Jahreszeiten#ts-gn-alle">Jahreszeiten</a></li><li><a href="/gute-nacht-geschichten?thema=Fahrzeuge#ts-gn-alle">Fahrzeuge</a></li><li><a href="/gute-nacht-geschichten?thema=Weltraum#ts-gn-alle">Weltraum</a></li><li><a href="/gute-nacht-geschichten?thema=Gefühle#ts-gn-alle">Mut &amp; Gefühle</a></li><li><a href="/gute-nacht-geschichten?thema=Freundschaft#ts-gn-alle">Freundschaft</a></li></ul></div><div><h3>Nach Figur</h3><ul><li><a href="/gute-nacht-geschichten?suche=Mats#ts-gn-alle">Möwe Mats</a></li><li><a href="/gute-nacht-geschichten?suche=Funki#ts-gn-alle">Funki, der Drache</a></li><li><a href="/gute-nacht-geschichten?suche=Lotte#ts-gn-alle">Leuchtturm Lotte</a></li><li><a href="/gute-nacht-geschichten?suche=Bruno#ts-gn-alle">Bagger Bruno</a></li></ul></div></div>
   </section>
 </article>
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "ShortStory", "name": "Mats und die Sternschnuppe", "headline": "Mats und die Sternschnuppe", "description": "In einer klaren Nacht saust eine Sternschnuppe über den Hafen. Mats darf sich etwas wünschen – aber was nur?", "inLanguage": "de", "author": {"@type": "Person", "name": "Trutz Stähler", "url": "https://trutzstaehler.de/ueber-mich"}, "publisher": {"@type": "Organization", "name": "Kreativhafen"}, "isAccessibleForFree": true, "typicalAgeRange": "3-6", "timeRequired": "PT4M", "genre": "Gute-Nacht-Geschichte", "keywords": "Hafen, Einschlafen, Familie", "image": "https://raw.githubusercontent.com/trutzstaehler/stream-daten/main/kreativhafen/ausmalbilder/bilder/bunt/wr08.webp", "url": "https://trutzstaehler.de/geschichten/mats-und-die-sternschnuppe", "wordCount": 502}</script>
-<script>
-/* Ein Motiv als A4-Seite drucken (öffnet ein Druckfenster) */
-window.tsKhPrint = (svg, name, paket) => {
-  const w = window.open('', '_blank');
-  if (!w) { alert('Bitte Pop-ups für diese Seite erlauben, um zu drucken.'); return; }
-  w.document.write('<!doctype html><html lang="de"><head><meta charset="utf-8"><title>' + name + ' – Ausmalbild</title>' +
-    '<style>@page{size:A4;margin:12mm}html,body{margin:0;background:#fff}body{display:flex;flex-direction:column;align-items:center;justify-content:center;height:96vh;font:500 9pt Arial,sans-serif;color:#888}' +
-    'svg{width:100%;max-height:88vh}p{margin:3mm 0 0;letter-spacing:.12em;text-transform:uppercase}</style></head><body>' + svg +
-    '<p>' + (paket ? paket + ' · ' : '') + 'trutzstaehler.de/ausmalbilder</p></body></html>');
-  w.document.close();
-  w.onafterprint = () => w.close();
-  setTimeout(() => { w.focus(); w.print(); }, 350);
-};
-</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "ShortStory", "name": "Mats und die Sternschnuppe", "headline": "Mats und die Sternschnuppe", "description": "In einer klaren Nacht saust eine Sternschnuppe über den Hafen. Mats darf sich etwas wünschen – aber was nur?", "inLanguage": "de", "author": {"@type": "Person", "name": "Trutz Stähler", "url": "https://trutzstaehler.de/ueber-mich"}, "publisher": {"@type": "Organization", "name": "Kreativhafen"}, "isAccessibleForFree": true, "typicalAgeRange": "3-7", "timeRequired": "PT4M", "genre": "Gute-Nacht-Geschichte", "keywords": "Hafen, Einschlafen, Familie", "image": "https://raw.githubusercontent.com/trutzstaehler/stream-daten/main/kreativhafen/geschichten/bilder/mats-und-die-sternschnuppe.webp", "url": "https://trutzstaehler.de/geschichten/mats-und-die-sternschnuppe", "wordCount": 502}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Kreativhafen", "item": "https://trutzstaehler.de/kreativhafen"}, {"@type": "ListItem", "position": 2, "name": "Gute-Nacht-Geschichten", "item": "https://trutzstaehler.de/gute-nacht-geschichten"}, {"@type": "ListItem", "position": 3, "name": "Mats und die Sternschnuppe"}]}</script>
 
 <script>
-/* Geschichte: Nachtmodus, Schriftgröße, Vorlesen lassen, Drucken, Ausmalbild drucken */
+/* Geschichte: Vorlesen lassen, Schriftgröße, Nachtmodus, Teilen */
 (() => {
   const root = document.querySelector('[data-gn-story]'); if (!root) return;
   const txt = root.querySelector('.ts-gn-text'), h = document.documentElement;
@@ -319,24 +362,26 @@ window.tsKhPrint = (svg, name, paket) => {
   setSize(size);
   root.querySelector('[data-gn="plus"]').addEventListener('click', () => setSize(size + 2));
   root.querySelector('[data-gn="minus"]').addEventListener('click', () => setSize(size - 2));
-  root.querySelector('[data-gn="print"]').addEventListener('click', () => window.print());
   /* Vorlesen lassen (Computerstimme des Geräts, falls vorhanden) */
   const sp = root.querySelector('[data-gn="speak"]');
   if (!('speechSynthesis' in window)) sp.hidden = true;
-  else sp.addEventListener('click', () => {
-    if (speechSynthesis.speaking) { speechSynthesis.cancel(); sp.setAttribute('aria-pressed', 'false'); return; }
-    const t = [...txt.querySelectorAll('p')].map(p => p.textContent).join(' ') + ' ' + ((root.querySelector('[data-gn-night]') || {}).textContent || '');
-    const u = new SpeechSynthesisUtterance(t); u.lang = 'de-DE'; u.rate = .85; u.pitch = 1;
-    const v = speechSynthesis.getVoices().find(v => /^de/i.test(v.lang)); if (v) u.voice = v;
-    u.onend = () => sp.setAttribute('aria-pressed', 'false');
-    speechSynthesis.speak(u); sp.setAttribute('aria-pressed', 'true');
-  });
+  else {
+    addEventListener('pagehide', () => speechSynthesis.cancel());
+    sp.addEventListener('click', () => {
+      if (speechSynthesis.speaking) { speechSynthesis.cancel(); sp.setAttribute('aria-pressed', 'false'); return; }
+      const t = root.querySelector('.ts-gn-h1').textContent + '. ' + [...txt.querySelectorAll(':scope > p')].map(p => p.textContent).join(' ') + ' ' + ((root.querySelector('[data-gn-night]') || {}).textContent || '');
+      const u = new SpeechSynthesisUtterance(t); u.lang = 'de-DE'; u.rate = .85; u.pitch = 1;
+      const v = speechSynthesis.getVoices().find(v => /^de/i.test(v.lang)); if (v) u.voice = v;
+      u.onend = () => sp.setAttribute('aria-pressed', 'false');
+      speechSynthesis.speak(u); sp.setAttribute('aria-pressed', 'true');
+    });
+  }
   const sh = root.querySelector('[data-gn="share"]');
   if (sh) sh.addEventListener('click', async () => {
     const data = { title: document.title, text: 'Eine Gute-Nacht-Geschichte zum Vorlesen:', url: location.href };
     try { if (navigator.share) await navigator.share(data); else { await navigator.clipboard.writeText(location.href); sh.textContent = 'Link kopiert ✓'; } } catch (e) {}
   });
-  const mp = root.querySelector('[data-gn="motiv"]');
-  if (mp) mp.addEventListener('click', () => window.tsKhPrint(root.querySelector('.ts-gn-motiv__img').innerHTML, mp.dataset.name, mp.dataset.titel));
+  const wa = root.querySelector('[data-gn="wa"]');
+  if (wa) wa.href = 'https://wa.me/?text=' + encodeURIComponent('Eine schöne Gute-Nacht-Geschichte zum Vorlesen: ' + location.href);
 })();
 </script>

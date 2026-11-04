@@ -1,0 +1,53 @@
+# Trutz Stähler
+
+> Persönliche Website von Trutz Stähler – Papa, Kinderbuchautor, Läufer und Twitch-Streamer aus Hamburg. Leitsatz: „Echt sein statt perfekt wirken.“ Drei Welten: Kinderbücher aus dem Kreativhafen, Laufberichte aus Hamburg und World-of-Warcraft-Forever-Streams als „Trutz Stahl“ (Kanal: einfach_trutz).
+
+Die Website ist auf Deutsch. Bücher werden über Amazon verkauft, Stream-Widgets für OBS direkt im Shop der Website. Außerdem bietet Trutz Stähler Webdesign an: Websites und Online-Shops zum Festpreis sowie Website-Wartung im Monats-Abo.
+
+## Kreativhafen (Kinderbücher)
+
+- [Kreativhafen](https://trutzstaehler.de/kreativhafen): Überblick über alle Bücher und Gratis-Angebote
+- [Mila Holm und das Geheimnis der verschwundenen Perle](https://trutzstaehler.de/mila-holm-und-das-geheimnis-der-verschwundenen-perle): Kinderkrimi ab 8 Jahren – Mila Holm und die Loki-Detektive folgen der Spur einer gestohlenen schwarzen Perle vom Niendorfer Gehege über die Speicherstadt bis in den Hansahafen. Kapitel 1 gratis lesen, Buch und Kindle bei Amazon.
+- [Mein erstes Tiere-Kritzelbuch](https://trutzstaehler.de/mein-tiere-kritzelbuch): Malbuch ab 1 Jahr, 50 Tiere mit dicken Linien
+- [Große Dinomotive zum Ausmalen](https://trutzstaehler.de/mein-dino-kritzelbuch): Malbuch ab 1 Jahr, 50 freundliche Dinos
+- [Malbücher](https://trutzstaehler.de/malbuecher) und [Kinderromane](https://trutzstaehler.de/romane): Übersichtsseiten
+
+## Running
+
+- [Running](https://trutzstaehler.de/running): Laufberichte aus Hamburg (Alster, Niendorfer Gehege)
+- [Hella Half Marathon 2025](https://trutzstaehler.de/hella-half-marathon-2025): Rennbericht vom Halbmarathon in Hamburg
+
+## Twitch (World of Warcraft Forever)
+
+- [Stream-Zentrale](https://trutzstaehler.de/twitch-startseite): Infos zum Stream, Ruf-Stufen der „Stahlgarde“ und Helden aus dem Chat
+- [Live](https://trutzstaehler.de/live): ob gerade gestreamt wird (keine festen Sendezeiten)
+- [Mitspielen](https://trutzstaehler.de/mitspielen): alle Chat-Befehle für das Chat-Spiel
+- [Bestenliste](https://trutzstaehler.de/bestenliste), [Statistiken](https://trutzstaehler.de/statistiken), [Charakter](https://trutzstaehler.de/charakter)
+
+## Shop
+
+- [Shop](https://trutzstaehler.de/shop): Stream-Widgets für OBS, Bücher und Homepages (Webdesign)
+- [Stream-Widgets für OBS](https://trutzstaehler.de/shop/stream-widgets) und [WoW-Stream-Widgets](https://trutzstaehler.de/shop/stream-widgets/world-of-warcraft)
+- [Hilfe zum Shop](https://trutzstaehler.de/shop/hilfe): Fragen und Antworten
+
+## Homepages (Webdesign aus Hamburg)
+
+- [Homepages](https://trutzstaehler.de/shop/homepages): Überblick – Websites erstellen und pflegen lassen, auf Squarespace, WordPress, Wix, Webflow oder Shopify
+- [Neue Website](https://trutzstaehler.de/shop/homepages/neue-website): Festpreis-Pakete – persönliche Website für Privatleute („Kajüte“, z. B. Hochzeit oder Bewerbung) 490 €, Onepager 1.190 €, Website bis 5 Seiten 2.490 €, große Website mit Blog 4.890 €, Online-Shop 4.590 €, Website-Tag 1.290 €, Maßanfertigung ab 8.900 € (Endpreise, § 19 UStG)
+- [Wartung](https://trutzstaehler.de/shop/homepages/wartung): Wartungs-Abos für Unternehmen 49 €, 99 € und 249 € im Monat, für private Websites „Kajüten-Pflege“ 12 € im Monat – alle monatlich kündbar
+- [Kajüte – persönliche Website](https://trutzstaehler.de/shop/homepages/neue-website#privat): für Privatleute, z. B. Hochzeitswebsite, Bewerbungsseite, Familien- oder Reiseblog – 490 €, drei Stile, fertig in rund 7 Werktagen
+- [Einzelleistungen](https://trutzstaehler.de/shop/homepages/einzelleistungen): Website-Check, SEO, Google-Unternehmensprofil, Logo, Barrierefreiheits-Check, zweite Sprache und mehr
+- [Projekt-Planer](https://trutzstaehler.de/shop/homepages/planer): Website-Projekt zusammenstellen und Preis sofort sehen
+
+## Über Trutz
+
+- [Über mich](https://trutzstaehler.de/ueber-mich)
+- [Entdecken](https://trutzstaehler.de/entdecken): gezeichnete Hamburg-Karte als zweiter Weg durch die Website
+- [Kontakt](https://trutzstaehler.de/kontakt)
+- [Verträge hier kündigen](https://trutzstaehler.de/vertraege-kuendigen): Abos online kündigen
+
+## Optional
+
+- [Impressum](https://trutzstaehler.de/impressum)
+- [Datenschutzerklärung](https://trutzstaehler.de/datenschutzerklaerung)
+- Profile: [Instagram](https://www.instagram.com/trutzstaehler/), [Twitch](https://www.twitch.tv/einfach_trutz), [LinkedIn](https://www.linkedin.com/in/trutz-st%C3%A4hler)

@@ -1,0 +1,772 @@
+{
+ "stand": "2026-11-11",
+ "pakete": [
+  {
+   "id": "winter",
+   "name": "Winterzeit",
+   "sub": "Schneemann, Eisbär, Pinguin und ein Weihnachtsbaum",
+   "farbe": "#9fd8ff",
+   "saison": "1101-0228",
+   "neu": false,
+   "buecher": [
+    "entdecker",
+    "tiere",
+    "prinzessin"
+   ],
+   "pdf": "pakete/Malpaket-Winterzeit.pdf",
+   "pdfKb": 369,
+   "bilder": [
+    {
+     "buch": "entdecker",
+     "nr": 33,
+     "name": "Schneemann",
+     "datei": "entdecker/33-schneemann.png",
+     "klein": "entdecker/klein/33-schneemann.png"
+    },
+    {
+     "buch": "entdecker",
+     "nr": 41,
+     "name": "Eisbär",
+     "datei": "entdecker/41-eisbaer.png",
+     "klein": "entdecker/klein/41-eisbaer.png"
+    },
+    {
+     "buch": "tiere",
+     "nr": 17,
+     "name": "Pinguin",
+     "datei": "tiere/17-pinguin.png",
+     "klein": "tiere/klein/17-pinguin.png"
+    },
+    {
+     "buch": "prinzessin",
+     "nr": 25,
+     "name": "Winterprinzessin",
+     "datei": "prinzessin/25-winterprinzessin.png",
+     "klein": "prinzessin/klein/25-winterprinzessin.png"
+    },
+    {
+     "buch": "entdecker",
+     "nr": 32,
+     "name": "Weihnachtsbaum",
+     "datei": "entdecker/32-weihnachtsbaum.png",
+     "klein": "entdecker/klein/32-weihnachtsbaum.png"
+    }
+   ]
+  },
+  {
+   "id": "zoo",
+   "name": "Zoo",
+   "sub": "Giraffe, Zebra, Elefant, Löwe und Affe",
+   "farbe": "#f6c445",
+   "saison": null,
+   "neu": false,
+   "buecher": [
+    "entdecker",
+    "tiere"
+   ],
+   "pdf": "pakete/Malpaket-Zoo.pdf",
+   "pdfKb": 311,
+   "bilder": [
+    {
+     "buch": "tiere",
+     "nr": 26,
+     "name": "Giraffe",
+     "datei": "tiere/26-giraffe.png",
+     "klein": "tiere/klein/26-giraffe.png"
+    },
+    {
+     "buch": "tiere",
+     "nr": 25,
+     "name": "Zebra",
+     "datei": "tiere/25-zebra.png",
+     "klein": "tiere/klein/25-zebra.png"
+    },
+    {
+     "buch": "entdecker",
+     "nr": 25,
+     "name": "Elefant",
+     "datei": "entdecker/25-elefant.png",
+     "klein": "entdecker/klein/25-elefant.png"
+    },
+    {
+     "buch": "entdecker",
+     "nr": 30,
+     "name": "Löwe",
+     "datei": "entdecker/30-loewe.png",
+     "klein": "entdecker/klein/30-loewe.png"
+    },
+    {
+     "buch": "entdecker",
+     "nr": 19,
+     "name": "Affe",
+     "datei": "entdecker/19-affe.png",
+     "klein": "entdecker/klein/19-affe.png"
+    }
+   ]
+  },
+  {
+   "id": "bauernhof",
+   "name": "Bauernhof",
+   "sub": "Kuh, Ziege, Pony, Schwein und Schaf",
+   "farbe": "#e0915e",
+   "saison": null,
+   "neu": false,
+   "buecher": [
+    "entdecker",
+    "tiere"
+   ],
+   "pdf": "pakete/Malpaket-Bauernhof.pdf",
+   "pdfKb": 297,
+   "bilder": [
+    {
+     "buch": "entdecker",
+     "nr": 39,
+     "name": "Kuh",
+     "datei": "entdecker/39-kuh.png",
+     "klein": "entdecker/klein/39-kuh.png"
+    },
+    {
+     "buch": "entdecker",
+     "nr": 45,
+     "name": "Ziege",
+     "datei": "entdecker/45-ziege.png",
+     "klein": "entdecker/klein/45-ziege.png"
+    },
+    {
+     "buch": "entdecker",
+     "nr": 27,
+     "name": "Pony",
+     "datei": "entdecker/27-pony.png",
+     "klein": "entdecker/klein/27-pony.png"
+    },
+    {
+     "buch": "tiere",
+     "nr": 35,
+     "name": "Schwein",
+     "datei": "tiere/35-schwein.png",
+     "klein": "tiere/klein/35-schwein.png"
+    },
+    {
+     "buch": "tiere",
+     "nr": 34,
+     "name": "Schaf",
+     "datei": "tiere/34-schaf.png",
+     "klein": "tiere/klein/34-schaf.png"
+    }
+   ]
+  },
+  {
+   "id": "meer",
+   "name": "Unterwasserwelt",
+   "sub": "Delfin, Wal, Krake, Seepferdchen und Fisch",
+   "farbe": "#5ec8e5",
+   "saison": null,
+   "neu": false,
+   "buecher": [
+    "tiere",
+    "entdecker"
+   ],
+   "pdf": "pakete/Malpaket-Unterwasserwelt.pdf",
+   "pdfKb": 278,
+   "bilder": [
+    {
+     "buch": "tiere",
+     "nr": 16,
+     "name": "Delfin",
+     "datei": "tiere/16-delfin.png",
+     "klein": "tiere/klein/16-delfin.png"
+    },
+    {
+     "buch": "tiere",
+     "nr": 15,
+     "name": "Wal",
+     "datei": "tiere/15-wal.png",
+     "klein": "tiere/klein/15-wal.png"
+    },
+    {
+     "buch": "tiere",
+     "nr": 14,
+     "name": "Krake",
+     "datei": "tiere/14-krake.png",
+     "klein": "tiere/klein/14-krake.png"
+    },
+    {
+     "buch": "tiere",
+     "nr": 13,
+     "name": "Seepferdchen",
+     "datei": "tiere/13-seepferdchen.png",
+     "klein": "tiere/klein/13-seepferdchen.png"
+    },
+    {
+     "buch": "entdecker",
+     "nr": 11,
+     "name": "Fisch",
+     "datei": "entdecker/11-fisch.png",
+     "klein": "entdecker/klein/11-fisch.png"
+    }
+   ]
+  },
+  {
+   "id": "wald",
+   "name": "Wald & Wiese",
+   "sub": "Fuchs, Igel, Eichhörnchen, Schmetterling und Marienkäfer",
+   "farbe": "#9ccc7f",
+   "saison": null,
+   "neu": false,
+   "buecher": [
+    "tiere",
+    "entdecker"
+   ],
+   "pdf": "pakete/Malpaket-Wald-Und-Wiese.pdf",
+   "pdfKb": 310,
+   "bilder": [
+    {
+     "buch": "entdecker",
+     "nr": 43,
+     "name": "Fuchs",
+     "datei": "entdecker/43-fuchs.png",
+     "klein": "entdecker/klein/43-fuchs.png"
+    },
+    {
+     "buch": "tiere",
+     "nr": 41,
+     "name": "Igel",
+     "datei": "tiere/41-igel.png",
+     "klein": "tiere/klein/41-igel.png"
+    },
+    {
+     "buch": "tiere",
+     "nr": 40,
+     "name": "Eichhörnchen",
+     "datei": "tiere/40-eichhoernchen.png",
+     "klein": "tiere/klein/40-eichhoernchen.png"
+    },
+    {
+     "buch": "tiere",
+     "nr": 7,
+     "name": "Schmetterling",
+     "datei": "tiere/07-schmetterling.png",
+     "klein": "tiere/klein/07-schmetterling.png"
+    },
+    {
+     "buch": "tiere",
+     "nr": 5,
+     "name": "Marienkäfer",
+     "datei": "tiere/05-marienkaefer.png",
+     "klein": "tiere/klein/05-marienkaefer.png"
+    }
+   ]
+  },
+  {
+   "id": "haustiere",
+   "name": "Haustiere",
+   "sub": "Hund, Katze, Hase, Hamster und Meerschweinchen",
+   "farbe": "#b9a0f0",
+   "saison": null,
+   "neu": false,
+   "buecher": [
+    "tiere",
+    "entdecker"
+   ],
+   "pdf": "pakete/Malpaket-Haustiere.pdf",
+   "pdfKb": 291,
+   "bilder": [
+    {
+     "buch": "entdecker",
+     "nr": 5,
+     "name": "Hund",
+     "datei": "entdecker/05-hund.png",
+     "klein": "entdecker/klein/05-hund.png"
+    },
+    {
+     "buch": "tiere",
+     "nr": 50,
+     "name": "Katze",
+     "datei": "tiere/50-katze.png",
+     "klein": "tiere/klein/50-katze.png"
+    },
+    {
+     "buch": "tiere",
+     "nr": 48,
+     "name": "Hase",
+     "datei": "tiere/48-hase.png",
+     "klein": "tiere/klein/48-hase.png"
+    },
+    {
+     "buch": "tiere",
+     "nr": 46,
+     "name": "Hamster",
+     "datei": "tiere/46-hamster.png",
+     "klein": "tiere/klein/46-hamster.png"
+    },
+    {
+     "buch": "tiere",
+     "nr": 47,
+     "name": "Meerschweinchen",
+     "datei": "tiere/47-meerschweinchen.png",
+     "klein": "tiere/klein/47-meerschweinchen.png"
+    }
+   ]
+  },
+  {
+   "id": "dino-babys",
+   "name": "Dino-Babys",
+   "sub": "Kleine Dinos, die gerade aus dem Ei schlüpfen",
+   "farbe": "#6fd1c6",
+   "saison": null,
+   "neu": false,
+   "buecher": [
+    "dino"
+   ],
+   "pdf": "pakete/Malpaket-Dino-Babys.pdf",
+   "pdfKb": 208,
+   "bilder": [
+    {
+     "buch": "dino",
+     "nr": 6,
+     "name": "Dino im Ei",
+     "datei": "dino/06-dino-im-ei.png",
+     "klein": "dino/klein/06-dino-im-ei.png"
+    },
+    {
+     "buch": "dino",
+     "nr": 10,
+     "name": "Dino schlüpft",
+     "datei": "dino/10-dino-schluepft.png",
+     "klein": "dino/klein/10-dino-schluepft.png"
+    },
+    {
+     "buch": "dino",
+     "nr": 14,
+     "name": "Hallo, Welt!",
+     "datei": "dino/14-hallo-welt.png",
+     "klein": "dino/klein/14-hallo-welt.png"
+    },
+    {
+     "buch": "dino",
+     "nr": 21,
+     "name": "Baby-Triceratops",
+     "datei": "dino/21-baby-triceratops.png",
+     "klein": "dino/klein/21-baby-triceratops.png"
+    },
+    {
+     "buch": "dino",
+     "nr": 24,
+     "name": "Dino-Zwillinge",
+     "datei": "dino/24-dino-zwillinge.png",
+     "klein": "dino/klein/24-dino-zwillinge.png"
+    }
+   ]
+  },
+  {
+   "id": "dinos",
+   "name": "Große Dinos",
+   "sub": "T-Rex, Triceratops, Stegosaurus, Langhals und Flugsaurier",
+   "farbe": "#3fbf9f",
+   "saison": null,
+   "neu": false,
+   "buecher": [
+    "dino"
+   ],
+   "pdf": "pakete/Malpaket-Grosse-Dinos.pdf",
+   "pdfKb": 187,
+   "bilder": [
+    {
+     "buch": "dino",
+     "nr": 8,
+     "name": "T-Rex",
+     "datei": "dino/08-t-rex.png",
+     "klein": "dino/klein/08-t-rex.png"
+    },
+    {
+     "buch": "dino",
+     "nr": 3,
+     "name": "Triceratops",
+     "datei": "dino/03-triceratops.png",
+     "klein": "dino/klein/03-triceratops.png"
+    },
+    {
+     "buch": "dino",
+     "nr": 2,
+     "name": "Stegosaurus",
+     "datei": "dino/02-stegosaurus.png",
+     "klein": "dino/klein/02-stegosaurus.png"
+    },
+    {
+     "buch": "dino",
+     "nr": 12,
+     "name": "Langhals",
+     "datei": "dino/12-langhals.png",
+     "klein": "dino/klein/12-langhals.png"
+    },
+    {
+     "buch": "dino",
+     "nr": 7,
+     "name": "Flugsaurier",
+     "datei": "dino/07-flugsaurier.png",
+     "klein": "dino/klein/07-flugsaurier.png"
+    }
+   ]
+  },
+  {
+   "id": "party",
+   "name": "Party & Geburtstag",
+   "sub": "Torte, Geburtstagstisch und feiernde Dinos",
+   "farbe": "#f08a76",
+   "saison": null,
+   "neu": false,
+   "buecher": [
+    "dino",
+    "entdecker"
+   ],
+   "pdf": "pakete/Malpaket-Party-Und-Geburtstag.pdf",
+   "pdfKb": 324,
+   "bilder": [
+    {
+     "buch": "entdecker",
+     "nr": 17,
+     "name": "Geburtstagstorte",
+     "datei": "entdecker/17-geburtstagstorte.png",
+     "klein": "entdecker/klein/17-geburtstagstorte.png"
+    },
+    {
+     "buch": "entdecker",
+     "nr": 16,
+     "name": "Geburtstagsparty",
+     "datei": "entdecker/16-geburtstagsparty.png",
+     "klein": "entdecker/klein/16-geburtstagsparty.png"
+    },
+    {
+     "buch": "dino",
+     "nr": 31,
+     "name": "Dino mit Partyhut",
+     "datei": "dino/31-dino-mit-partyhut.png",
+     "klein": "dino/klein/31-dino-mit-partyhut.png"
+    },
+    {
+     "buch": "dino",
+     "nr": 32,
+     "name": "Dino mit Luftballon",
+     "datei": "dino/32-dino-mit-luftballon.png",
+     "klein": "dino/klein/32-dino-mit-luftballon.png"
+    },
+    {
+     "buch": "dino",
+     "nr": 33,
+     "name": "Tanzender Dino",
+     "datei": "dino/33-tanzender-dino.png",
+     "klein": "dino/klein/33-tanzender-dino.png"
+    }
+   ]
+  },
+  {
+   "id": "gespenster",
+   "name": "Kleine Gespenster",
+   "sub": "Freundliche Gespenster und ein Spukhaus – kein bisschen gruselig",
+   "farbe": "#c7b8ff",
+   "saison": "0901-1031",
+   "neu": false,
+   "buecher": [
+    "halloween"
+   ],
+   "pdf": "pakete/Malpaket-Kleine-Gespenster.pdf",
+   "pdfKb": 208,
+   "bilder": [
+    {
+     "buch": "halloween",
+     "nr": 38,
+     "name": "Gespenst",
+     "datei": "halloween/38-gespenst.png",
+     "klein": "halloween/klein/38-gespenst.png"
+    },
+    {
+     "buch": "halloween",
+     "nr": 33,
+     "name": "Gespenst mit Luftballon",
+     "datei": "halloween/33-gespenst-mit-luftballon.png",
+     "klein": "halloween/klein/33-gespenst-mit-luftballon.png"
+    },
+    {
+     "buch": "halloween",
+     "nr": 17,
+     "name": "Drei Gespenster",
+     "datei": "halloween/17-drei-gespenster.png",
+     "klein": "halloween/klein/17-drei-gespenster.png"
+    },
+    {
+     "buch": "halloween",
+     "nr": 49,
+     "name": "Gespenst im Auto",
+     "datei": "halloween/49-gespenst-im-auto.png",
+     "klein": "halloween/klein/49-gespenst-im-auto.png"
+    },
+    {
+     "buch": "halloween",
+     "nr": 19,
+     "name": "Spukhaus",
+     "datei": "halloween/19-spukhaus.png",
+     "klein": "halloween/klein/19-spukhaus.png"
+    }
+   ]
+  },
+  {
+   "id": "hexen",
+   "name": "Hexen & Kürbisse",
+   "sub": "Kleine Hexe, Hexenkatze, Zauberkessel und Kürbisse",
+   "farbe": "#ffa23a",
+   "saison": "0901-1031",
+   "neu": false,
+   "buecher": [
+    "halloween"
+   ],
+   "pdf": "pakete/Malpaket-Hexen-Und-Kuerbisse.pdf",
+   "pdfKb": 208,
+   "bilder": [
+    {
+     "buch": "halloween",
+     "nr": 9,
+     "name": "Kleine Hexe",
+     "datei": "halloween/09-kleine-hexe.png",
+     "klein": "halloween/klein/09-kleine-hexe.png"
+    },
+    {
+     "buch": "halloween",
+     "nr": 40,
+     "name": "Hexenkatze",
+     "datei": "halloween/40-hexenkatze.png",
+     "klein": "halloween/klein/40-hexenkatze.png"
+    },
+    {
+     "buch": "halloween",
+     "nr": 21,
+     "name": "Zauberkessel",
+     "datei": "halloween/21-zauberkessel.png",
+     "klein": "halloween/klein/21-zauberkessel.png"
+    },
+    {
+     "buch": "halloween",
+     "nr": 1,
+     "name": "Kürbis",
+     "datei": "halloween/01-kuerbis.png",
+     "klein": "halloween/klein/01-kuerbis.png"
+    },
+    {
+     "buch": "halloween",
+     "nr": 39,
+     "name": "Kürbishaus",
+     "datei": "halloween/39-kuerbishaus.png",
+     "klein": "halloween/klein/39-kuerbishaus.png"
+    }
+   ]
+  },
+  {
+   "id": "einhorn",
+   "name": "Prinzessin & Einhorn",
+   "sub": "Einhorn, Fee, Sternenkleid, Seifenblasen und Regenbogen",
+   "farbe": "#f4a7c3",
+   "saison": null,
+   "neu": false,
+   "buecher": [
+    "prinzessin"
+   ],
+   "pdf": "pakete/Malpaket-Prinzessin-Und-Einhorn.pdf",
+   "pdfKb": 237,
+   "bilder": [
+    {
+     "buch": "prinzessin",
+     "nr": 29,
+     "name": "Prinzessin auf dem Einhorn",
+     "datei": "prinzessin/29-prinzessin-auf-dem-einhorn.png",
+     "klein": "prinzessin/klein/29-prinzessin-auf-dem-einhorn.png"
+    },
+    {
+     "buch": "prinzessin",
+     "nr": 30,
+     "name": "Prinzessin mit Fee",
+     "datei": "prinzessin/30-prinzessin-mit-fee.png",
+     "klein": "prinzessin/klein/30-prinzessin-mit-fee.png"
+    },
+    {
+     "buch": "prinzessin",
+     "nr": 43,
+     "name": "Sternenkleid",
+     "datei": "prinzessin/43-sternenkleid.png",
+     "klein": "prinzessin/klein/43-sternenkleid.png"
+    },
+    {
+     "buch": "prinzessin",
+     "nr": 5,
+     "name": "Seifenblasen",
+     "datei": "prinzessin/05-seifenblasen.png",
+     "klein": "prinzessin/klein/05-seifenblasen.png"
+    },
+    {
+     "buch": "prinzessin",
+     "nr": 24,
+     "name": "Regenbogen",
+     "datei": "prinzessin/24-regenbogen.png",
+     "klein": "prinzessin/klein/24-regenbogen.png"
+    }
+   ]
+  },
+  {
+   "id": "schloss",
+   "name": "Märchenschloss",
+   "sub": "Schloss, Froschkönig, goldener Schlüssel und Hündchen",
+   "farbe": "#c98fe0",
+   "saison": null,
+   "neu": false,
+   "buecher": [
+    "prinzessin"
+   ],
+   "pdf": "pakete/Malpaket-Maerchenschloss.pdf",
+   "pdfKb": 210,
+   "bilder": [
+    {
+     "buch": "prinzessin",
+     "nr": 32,
+     "name": "Vor dem Schloss",
+     "datei": "prinzessin/32-vor-dem-schloss.png",
+     "klein": "prinzessin/klein/32-vor-dem-schloss.png"
+    },
+    {
+     "buch": "prinzessin",
+     "nr": 39,
+     "name": "Märchenschloss",
+     "datei": "prinzessin/39-maerchenschloss.png",
+     "klein": "prinzessin/klein/39-maerchenschloss.png"
+    },
+    {
+     "buch": "prinzessin",
+     "nr": 19,
+     "name": "Froschkönig",
+     "datei": "prinzessin/19-froschkoenig.png",
+     "klein": "prinzessin/klein/19-froschkoenig.png"
+    },
+    {
+     "buch": "prinzessin",
+     "nr": 38,
+     "name": "Goldener Schlüssel",
+     "datei": "prinzessin/38-goldener-schluessel.png",
+     "klein": "prinzessin/klein/38-goldener-schluessel.png"
+    },
+    {
+     "buch": "prinzessin",
+     "nr": 2,
+     "name": "Prinzessin mit Hündchen",
+     "datei": "prinzessin/02-prinzessin-mit-huendchen.png",
+     "klein": "prinzessin/klein/02-prinzessin-mit-huendchen.png"
+    }
+   ]
+  },
+  {
+   "id": "ostern",
+   "name": "Ostern & Frühling",
+   "sub": "Osterhasen, Osterkorb, Blumenwiese und Sonnenblume",
+   "farbe": "#f7d046",
+   "saison": "0301-0430",
+   "neu": false,
+   "buecher": [
+    "entdecker",
+    "dino",
+    "prinzessin"
+   ],
+   "pdf": "pakete/Malpaket-Ostern-Und-Fruehling.pdf",
+   "pdfKb": 424,
+   "bilder": [
+    {
+     "buch": "entdecker",
+     "nr": 36,
+     "name": "Ostersuche",
+     "datei": "entdecker/36-ostersuche.png",
+     "klein": "entdecker/klein/36-ostersuche.png"
+    },
+    {
+     "buch": "entdecker",
+     "nr": 37,
+     "name": "Hasenfamilie",
+     "datei": "entdecker/37-hasenfamilie.png",
+     "klein": "entdecker/klein/37-hasenfamilie.png"
+    },
+    {
+     "buch": "dino",
+     "nr": 40,
+     "name": "Dino mit Osterkorb",
+     "datei": "dino/40-dino-mit-osterkorb.png",
+     "klein": "dino/klein/40-dino-mit-osterkorb.png"
+    },
+    {
+     "buch": "prinzessin",
+     "nr": 20,
+     "name": "Blumenwiese",
+     "datei": "prinzessin/20-blumenwiese.png",
+     "klein": "prinzessin/klein/20-blumenwiese.png"
+    },
+    {
+     "buch": "entdecker",
+     "nr": 7,
+     "name": "Sonnenblume",
+     "datei": "entdecker/07-sonnenblume.png",
+     "klein": "entdecker/klein/07-sonnenblume.png"
+    }
+   ]
+  }
+ ],
+ "buecher": [
+  {
+   "id": "tiere",
+   "titel": "Mein tierisches Kritzelbuch",
+   "kurz": "Tiere",
+   "slug": "mein-tiere-kritzelbuch",
+   "preis": "7,99",
+   "motive": 50,
+   "cover": "https://raw.githubusercontent.com/trutzstaehler/stream-daten/main/kreativhafen/kritzelbuecher/cover-tiere.jpg?v=2",
+   "farbe": "#9ccc7f",
+   "gratis": 17
+  },
+  {
+   "id": "dino",
+   "titel": "Mein Dinosaurier Kritzelbuch",
+   "kurz": "Dinos",
+   "slug": "mein-dino-kritzelbuch",
+   "preis": "7,99",
+   "motive": 50,
+   "cover": "https://raw.githubusercontent.com/trutzstaehler/stream-daten/main/kreativhafen/kritzelbuecher/cover-dino.jpg",
+   "farbe": "#6fd1c6",
+   "gratis": 14
+  },
+  {
+   "id": "entdecker",
+   "titel": "Mein buntes Entdecker Kritzelbuch",
+   "kurz": "Entdecker",
+   "slug": "mein-entdecker-kritzelbuch",
+   "preis": "7,99",
+   "motive": 50,
+   "cover": "https://raw.githubusercontent.com/trutzstaehler/stream-daten/main/kreativhafen/kritzelbuecher/cover-entdecker.jpg",
+   "farbe": "#7fd3cb",
+   "gratis": 17
+  },
+  {
+   "id": "halloween",
+   "titel": "Mein Halloween Kritzelbuch",
+   "kurz": "Halloween",
+   "slug": "mein-halloween-kritzelbuch",
+   "preis": "7,99",
+   "motive": 50,
+   "cover": "https://raw.githubusercontent.com/trutzstaehler/stream-daten/main/kreativhafen/kritzelbuecher/cover-halloween.jpg",
+   "farbe": "#ffa23a",
+   "gratis": 10
+  },
+  {
+   "id": "prinzessin",
+   "titel": "Mein Prinzessinnen Kritzelbuch",
+   "kurz": "Prinzessinnen",
+   "slug": "mein-prinzessinnen-kritzelbuch",
+   "preis": "7,99",
+   "motive": 50,
+   "cover": "https://raw.githubusercontent.com/trutzstaehler/stream-daten/main/kreativhafen/kritzelbuecher/cover-prinzessin.jpg?v=2",
+   "farbe": "#f4a7c3",
+   "gratis": 12
+  }
+ ]
+}

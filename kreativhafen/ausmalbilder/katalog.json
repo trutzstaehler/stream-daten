@@ -1,9 +1,163 @@
 {
- "stand": "2026-11-11",
+ "stand": "2026-11-12",
  "pakete": [
+  {
+   "id": "weihnachtsmann",
+   "name": "Weihnachtsmann & Rentier",
+   "anzeige": "Weihnachts­mann & Rentier",
+   "sub": "Weihnachtsmann, Rentierschlitten, Wichtel und ein Blick durch den Schornstein",
+   "farbe": "#ff6b5e",
+   "saison": "1101-1226",
+   "neu": true,
+   "buecher": [
+    "weihnachten"
+   ],
+   "pdf": "pakete/Malpaket-Weihnachtsmann-Und-Rentier.pdf",
+   "pdfKb": 252,
+   "bilder": [
+    {
+     "buch": "weihnachten",
+     "nr": 2,
+     "name": "Weihnachtsmann mit Sack",
+     "datei": "weihnachten/02-weihnachtsmann-mit-sack.png",
+     "klein": "weihnachten/klein/02-weihnachtsmann-mit-sack.png"
+    },
+    {
+     "buch": "weihnachten",
+     "nr": 4,
+     "name": "Rentierschlitten",
+     "datei": "weihnachten/04-rentierschlitten.png",
+     "klein": "weihnachten/klein/04-rentierschlitten.png"
+    },
+    {
+     "buch": "weihnachten",
+     "nr": 5,
+     "name": "Rentier mit Glöckchen",
+     "datei": "weihnachten/05-rentier-mit-gloeckchen.png",
+     "klein": "weihnachten/klein/05-rentier-mit-gloeckchen.png"
+    },
+    {
+     "buch": "weihnachten",
+     "nr": 29,
+     "name": "Weihnachtsmann im Schornstein",
+     "datei": "weihnachten/29-weihnachtsmann-im-schornstein.png",
+     "klein": "weihnachten/klein/29-weihnachtsmann-im-schornstein.png"
+    },
+    {
+     "buch": "weihnachten",
+     "nr": 7,
+     "name": "Wichtel",
+     "datei": "weihnachten/07-wichtel.png",
+     "klein": "weihnachten/klein/07-wichtel.png"
+    }
+   ]
+  },
+  {
+   "id": "advent",
+   "name": "Advent & Plätzchen",
+   "anzeige": null,
+   "sub": "Adventskranz, Kerze, Lebkuchenmann, Lebkuchenhaus und Plätzchenbacken",
+   "farbe": "#f2c14e",
+   "saison": "1101-1226",
+   "neu": true,
+   "buecher": [
+    "weihnachten"
+   ],
+   "pdf": "pakete/Malpaket-Advent-Und-Plaetzchen.pdf",
+   "pdfKb": 249,
+   "bilder": [
+    {
+     "buch": "weihnachten",
+     "nr": 34,
+     "name": "Adventskranz",
+     "datei": "weihnachten/34-adventskranz.png",
+     "klein": "weihnachten/klein/34-adventskranz.png"
+    },
+    {
+     "buch": "weihnachten",
+     "nr": 8,
+     "name": "Kerze",
+     "datei": "weihnachten/08-kerze.png",
+     "klein": "weihnachten/klein/08-kerze.png"
+    },
+    {
+     "buch": "weihnachten",
+     "nr": 43,
+     "name": "Lebkuchenmann",
+     "datei": "weihnachten/43-lebkuchenmann.png",
+     "klein": "weihnachten/klein/43-lebkuchenmann.png"
+    },
+    {
+     "buch": "weihnachten",
+     "nr": 44,
+     "name": "Lebkuchenhaus",
+     "datei": "weihnachten/44-lebkuchenhaus.png",
+     "klein": "weihnachten/klein/44-lebkuchenhaus.png"
+    },
+    {
+     "buch": "weihnachten",
+     "nr": 46,
+     "name": "Plätzchen backen",
+     "datei": "weihnachten/46-plaetzchen-backen.png",
+     "klein": "weihnachten/klein/46-plaetzchen-backen.png"
+    }
+   ]
+  },
+  {
+   "id": "wintertiere",
+   "name": "Wintertiere",
+   "anzeige": null,
+   "sub": "Pinguin, Eisbär, Fuchs, Eule und Schneehase",
+   "farbe": "#7fd48f",
+   "saison": "1101-0228",
+   "neu": true,
+   "buecher": [
+    "weihnachten"
+   ],
+   "pdf": "pakete/Malpaket-Wintertiere.pdf",
+   "pdfKb": 258,
+   "bilder": [
+    {
+     "buch": "weihnachten",
+     "nr": 20,
+     "name": "Pinguin auf dem Eis",
+     "datei": "weihnachten/20-pinguin-auf-dem-eis.png",
+     "klein": "weihnachten/klein/20-pinguin-auf-dem-eis.png"
+    },
+    {
+     "buch": "weihnachten",
+     "nr": 21,
+     "name": "Eisbär",
+     "datei": "weihnachten/21-eisbaer.png",
+     "klein": "weihnachten/klein/21-eisbaer.png"
+    },
+    {
+     "buch": "weihnachten",
+     "nr": 22,
+     "name": "Fuchs",
+     "datei": "weihnachten/22-fuchs.png",
+     "klein": "weihnachten/klein/22-fuchs.png"
+    },
+    {
+     "buch": "weihnachten",
+     "nr": 24,
+     "name": "Eule",
+     "datei": "weihnachten/24-eule.png",
+     "klein": "weihnachten/klein/24-eule.png"
+    },
+    {
+     "buch": "weihnachten",
+     "nr": 25,
+     "name": "Schneehase",
+     "datei": "weihnachten/25-schneehase.png",
+     "klein": "weihnachten/klein/25-schneehase.png"
+    }
+   ]
+  },
   {
    "id": "winter",
    "name": "Winterzeit",
+   "anzeige": null,
    "sub": "Schneemann, Eisbär, Pinguin und ein Weihnachtsbaum",
    "farbe": "#9fd8ff",
    "saison": "1101-0228",
@@ -56,6 +210,7 @@
   {
    "id": "zoo",
    "name": "Zoo",
+   "anzeige": null,
    "sub": "Giraffe, Zebra, Elefant, Löwe und Affe",
    "farbe": "#f6c445",
    "saison": null,
@@ -107,6 +262,7 @@
   {
    "id": "bauernhof",
    "name": "Bauernhof",
+   "anzeige": null,
    "sub": "Kuh, Ziege, Pony, Schwein und Schaf",
    "farbe": "#e0915e",
    "saison": null,
@@ -158,6 +314,7 @@
   {
    "id": "meer",
    "name": "Unterwasserwelt",
+   "anzeige": "Unterwasser­welt",
    "sub": "Delfin, Wal, Krake, Seepferdchen und Fisch",
    "farbe": "#5ec8e5",
    "saison": null,
@@ -209,6 +366,7 @@
   {
    "id": "wald",
    "name": "Wald & Wiese",
+   "anzeige": null,
    "sub": "Fuchs, Igel, Eichhörnchen, Schmetterling und Marienkäfer",
    "farbe": "#9ccc7f",
    "saison": null,
@@ -260,6 +418,7 @@
   {
    "id": "haustiere",
    "name": "Haustiere",
+   "anzeige": null,
    "sub": "Hund, Katze, Hase, Hamster und Meerschweinchen",
    "farbe": "#b9a0f0",
    "saison": null,
@@ -311,6 +470,7 @@
   {
    "id": "dino-babys",
    "name": "Dino-Babys",
+   "anzeige": null,
    "sub": "Kleine Dinos, die gerade aus dem Ei schlüpfen",
    "farbe": "#6fd1c6",
    "saison": null,
@@ -361,6 +521,7 @@
   {
    "id": "dinos",
    "name": "Große Dinos",
+   "anzeige": null,
    "sub": "T-Rex, Triceratops, Stegosaurus, Langhals und Flugsaurier",
    "farbe": "#3fbf9f",
    "saison": null,
@@ -411,6 +572,7 @@
   {
    "id": "party",
    "name": "Party & Geburtstag",
+   "anzeige": null,
    "sub": "Torte, Geburtstagstisch und feiernde Dinos",
    "farbe": "#f08a76",
    "saison": null,
@@ -462,6 +624,7 @@
   {
    "id": "gespenster",
    "name": "Kleine Gespenster",
+   "anzeige": null,
    "sub": "Freundliche Gespenster und ein Spukhaus – kein bisschen gruselig",
    "farbe": "#c7b8ff",
    "saison": "0901-1031",
@@ -512,6 +675,7 @@
   {
    "id": "hexen",
    "name": "Hexen & Kürbisse",
+   "anzeige": null,
    "sub": "Kleine Hexe, Hexenkatze, Zauberkessel und Kürbisse",
    "farbe": "#ffa23a",
    "saison": "0901-1031",
@@ -562,6 +726,7 @@
   {
    "id": "einhorn",
    "name": "Prinzessin & Einhorn",
+   "anzeige": null,
    "sub": "Einhorn, Fee, Sternenkleid, Seifenblasen und Regenbogen",
    "farbe": "#f4a7c3",
    "saison": null,
@@ -612,6 +777,7 @@
   {
    "id": "schloss",
    "name": "Märchenschloss",
+   "anzeige": "Märchen­schloss",
    "sub": "Schloss, Froschkönig, goldener Schlüssel und Hündchen",
    "farbe": "#c98fe0",
    "saison": null,
@@ -662,6 +828,7 @@
   {
    "id": "ostern",
    "name": "Ostern & Frühling",
+   "anzeige": null,
    "sub": "Osterhasen, Osterkorb, Blumenwiese und Sonnenblume",
    "farbe": "#f7d046",
    "saison": "0301-0430",
@@ -767,6 +934,17 @@
    "cover": "https://raw.githubusercontent.com/trutzstaehler/stream-daten/main/kreativhafen/kritzelbuecher/cover-prinzessin.jpg?v=2",
    "farbe": "#f4a7c3",
    "gratis": 12
+  },
+  {
+   "id": "weihnachten",
+   "titel": "Mein Weihnachts Kritzelbuch",
+   "kurz": "Weihnachten",
+   "slug": "mein-weihnachts-kritzelbuch",
+   "preis": "7,99",
+   "motive": 50,
+   "cover": "https://raw.githubusercontent.com/trutzstaehler/stream-daten/main/kreativhafen/kritzelbuecher/cover-weihnachten.jpg",
+   "farbe": "#ff6b5e",
+   "gratis": 15
   }
  ]
 }

@@ -64,7 +64,7 @@
     "weihnachten"
    ],
    "pdf": "pakete/Malpaket-Advent-Und-Plaetzchen.pdf",
-   "pdfKb": 985,
+   "pdfKb": 948,
    "bilder": [
     {
      "buch": "weihnachten",
@@ -376,7 +376,7 @@
     "entdecker"
    ],
    "pdf": "pakete/Malpaket-Wald-Und-Wiese.pdf",
-   "pdfKb": 1005,
+   "pdfKb": 956,
    "bilder": [
     {
      "buch": "entdecker",
@@ -735,7 +735,7 @@
     "prinzessin"
    ],
    "pdf": "pakete/Malpaket-Prinzessin-Und-Einhorn.pdf",
-   "pdfKb": 977,
+   "pdfKb": 1035,
    "bilder": [
     {
      "buch": "prinzessin",
@@ -889,6 +889,7 @@
    "motive": 50,
    "cover": "https://raw.githubusercontent.com/trutzstaehler/stream-daten/main/kreativhafen/kritzelbuecher/cover-tiere.jpg?v=2",
    "farbe": "#9ccc7f",
+   "druck": "#4f7a41",
    "gratis": 17
   },
   {
@@ -900,6 +901,7 @@
    "motive": 50,
    "cover": "https://raw.githubusercontent.com/trutzstaehler/stream-daten/main/kreativhafen/kritzelbuecher/cover-dino.jpg",
    "farbe": "#6fd1c6",
+   "druck": "#2f7d74",
    "gratis": 14
   },
   {
@@ -911,6 +913,7 @@
    "motive": 50,
    "cover": "https://raw.githubusercontent.com/trutzstaehler/stream-daten/main/kreativhafen/kritzelbuecher/cover-entdecker.jpg",
    "farbe": "#7fd3cb",
+   "druck": "#3a7d78",
    "gratis": 17
   },
   {
@@ -922,6 +925,7 @@
    "motive": 50,
    "cover": "https://raw.githubusercontent.com/trutzstaehler/stream-daten/main/kreativhafen/kritzelbuecher/cover-halloween.jpg",
    "farbe": "#ffa23a",
+   "druck": "#d9780a",
    "gratis": 10
   },
   {
@@ -933,6 +937,7 @@
    "motive": 50,
    "cover": "https://raw.githubusercontent.com/trutzstaehler/stream-daten/main/kreativhafen/kritzelbuecher/cover-prinzessin.jpg?v=2",
    "farbe": "#f4a7c3",
+   "druck": "#a24d70",
    "gratis": 12
   },
   {
@@ -944,6 +949,7 @@
    "motive": 50,
    "cover": "https://raw.githubusercontent.com/trutzstaehler/stream-daten/main/kreativhafen/kritzelbuecher/cover-weihnachten.jpg",
    "farbe": "#ff6b5e",
+   "druck": "#d63a35",
    "gratis": 15
   }
  ]

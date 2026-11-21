@@ -139,6 +139,8 @@ def main():
     ap.add_argument("--autor", help="Name der Autorin (Standard: Vorname aus user.json)")
     ap.add_argument("--reise-name", help="Teil des Polarsteps-Reisenamens, falls der Export mehrere Reisen enthält")
     ap.add_argument("--slug", default=None)
+    try: sys.stdout.reconfigure(encoding="utf-8", errors="replace")  # Windows-Konsole: Umlaute/Pfeile nicht abstürzen lassen
+    except Exception: pass
     a = ap.parse_args()
 
     root = find_root(a.export)

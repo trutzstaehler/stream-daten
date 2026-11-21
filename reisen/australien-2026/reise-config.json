@@ -23,5 +23,6 @@
       "color": "#4FA3A5"
     }
   ],
-  "pageUrl": "https://trutzstaehler.de/down-under"
+  "pageUrl": "https://trutzstaehler.de/down-under",
+  "routeVerzoegerungStunden": 24
 }

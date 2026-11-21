@@ -162,7 +162,7 @@ def main():
         cfg = json.load(open(cfg_path, encoding="utf-8"))
     else:
         sd, ed = num(trip.get("start_date")), num(trip.get("end_date"))
-        cfg = {"slug": slug, "title": "Insa & Wiebke", "subtitle": "in Australien", "pageUrl": "https://trutzstaehler.de/down-under",
+        cfg = {"slug": slug, "title": "Insa & Wiebke", "subtitle": "in Australien", "pageUrl": "https://trutzstaehler.de/down-under", "routeVerzoegerungStunden": 24,
                "lead": "Zwei Schwestern, ein Sommer am anderen Ende der Welt. Jeder Eintrag ist ein Schritt auf der Karte – von Hamburg bis ans Riff.",
                "start": iso(sd)[:10] if sd else datetime.date.today().isoformat(),
                "end": iso(ed)[:10] if ed else "", "home": {"name": "Hamburg", "lat": 53.55, "lng": 9.99}, "plan": [],
@@ -197,6 +197,7 @@ def main():
         loc = s.get("location") or {}
         lat, lng = num(loc.get("lat")), num(loc.get("lon", loc.get("lng")))
         ts = num(s.get("start_time")) or num(s.get("creation_time")) or 0
+        if not ts: print(f"  Hinweis: Step {sid} hat keine Zeitangabe und erscheint nicht auf der Website.")
         tz = tz_for(lat, lng) if lat is not None and lng is not None else None
         tz = tz or s.get("timezone_id") or "Australia/Sydney"
         photos = []
@@ -218,7 +219,9 @@ def main():
             "photos": photos, "visibility": "public", "hearts": 0,
         })
 
-    # Route: nur Punkte in Australien (Zuhause in Hamburg bleibt privat), ausgedünnt (≥ 2 km Abstand)
+    # Route: nur Punkte in Australien (Zuhause in Hamburg bleibt privat), ausgedünnt (≥ 2 km Abstand),
+    # auf ~1 km gerundet, Zeit nur auf den Tag genau und erst nach einer Verzögerung (Schutz der Reisenden)
+    cut = datetime.datetime.now(datetime.timezone.utc).timestamp() - float(cfg.get("routeVerzoegerungStunden", 24)) * 3600
     lp = os.path.join(tdir, "locations.json")
     track = []
     if os.path.exists(lp):
@@ -226,9 +229,9 @@ def main():
         arr = raw.get("locations", []) if isinstance(raw, dict) else raw
         pts = sorted(([num(p.get("lat")), num(p.get("lon", p.get("lng"))), num(p.get("time"))] for p in arr if isinstance(p, dict)), key=lambda p: p[2] or 0)
         for p in pts:
-            if None in p or not in_au(p[0], p[1]): continue
+            if None in p or not in_au(p[0], p[1]) or p[2] > cut: continue
             if track and hav(track[-1], p) < 2: continue
-            track.append([round(p[0], 3), round(p[1], 3), int(p[2])])
+            track.append([round(p[0], 2), round(p[1], 2), int(p[2]) // 86400 * 86400])
     tracks = old.get("tracks", {}); tracks[trav["id"]] = track
     merged_track = sorted((pt for t in tracks.values() for pt in t), key=lambda p: p[2])
 

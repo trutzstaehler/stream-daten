@@ -160,13 +160,16 @@ def main():
         cfg = json.load(open(cfg_path, encoding="utf-8"))
     else:
         sd, ed = num(trip.get("start_date")), num(trip.get("end_date"))
-        cfg = {"slug": slug, "title": "Insa & Wiebke", "subtitle": "Down Under",
+        cfg = {"slug": slug, "title": "Insa & Wiebke", "subtitle": "in Australien", "pageUrl": "https://trutzstaehler.de/down-under",
                "lead": "Zwei Schwestern, ein Sommer am anderen Ende der Welt. Jeder Eintrag ist ein Schritt auf der Karte – von Hamburg bis ans Riff.",
                "start": iso(sd)[:10] if sd else datetime.date.today().isoformat(),
                "end": iso(ed)[:10] if ed else "", "home": {"name": "Hamburg", "lat": 53.55, "lng": 9.99}, "plan": [],
                "travelers": [{"id": "t_insa", "name": "Insa", "color": "#E0793F"}, {"id": "t_wiebke", "name": "Wiebke", "color": "#4FA3A5"}]}
         json.dump(cfg, open(cfg_path, "w", encoding="utf-8"), ensure_ascii=False, indent=2)
 
+    if not cfg.get("end"):  # Rückflug nicht von Hand eingetragen → geplantes Ende aus Polarsteps
+        ed = num(trip.get("end_date"))
+        if ed: cfg["end"] = iso(ed)[:10]
     trav = next((t for t in cfg["travelers"] if t["name"].lower() == autor.lower()), None)
     if not trav:
         trav = {"id": "t_" + re.sub(r"\W", "", autor.lower()), "name": autor, "color": "#E9C58F"}
@@ -228,7 +231,7 @@ def main():
     merged_track = sorted((pt for t in tracks.values() for pt in t), key=lambda p: p[2])
 
     all_entries = sorted(keep + entries, key=lambda e: e.get("createdAt") or "", reverse=True)
-    trip_out = {k: cfg[k] for k in ("slug", "title", "subtitle", "lead", "start", "end", "home", "plan", "travelers") if k in cfg}
+    trip_out = {k: cfg[k] for k in ("slug", "title", "subtitle", "lead", "start", "end", "home", "plan", "travelers", "pageUrl") if k in cfg}
     out = {"trip": trip_out, "entries": all_entries, "track": merged_track, "tracks": tracks, "weather": None,
            "generated": datetime.datetime.now(datetime.timezone.utc).isoformat(timespec="seconds"), "quelle": "polarsteps"}
     json.dump(out, open(out_path, "w", encoding="utf-8"), ensure_ascii=False, separators=(",", ":"))
@@ -246,7 +249,7 @@ def main():
                      f"<guid isPermaLink=\"false\">{e['id']}</guid><pubDate>{d}</pubDate><dc:creator>{escape(e['author']['name'])}</dc:creator>"
                      f"<description>{escape(img + body)}</description></item>")
     feed = ('<?xml version="1.0" encoding="UTF-8"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/"><channel>'
-            f"<title>{escape(cfg['title'] + ' – ' + cfg.get('subtitle', ''))}</title><link>{escape(page)}</link><language>de</language>"
+            f"<title>{escape((cfg['title'] + ' ' + cfg.get('subtitle', '')).strip())}</title><link>{escape(page)}</link><language>de</language>"
             f"<description>{escape(cfg.get('lead', ''))}</description>" + "".join(items) + "</channel></rss>")
     open(os.path.join(a.ziel, "feed.xml"), "w", encoding="utf-8").write(feed)
 

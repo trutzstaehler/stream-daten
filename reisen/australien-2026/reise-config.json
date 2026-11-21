@@ -1,0 +1,27 @@
+{
+  "slug": "australien-2026",
+  "title": "Insa & Wiebke",
+  "subtitle": "Down Under",
+  "lead": "Zwei Schwestern, ein Sommer am anderen Ende der Welt. Jeder Eintrag ist ein Schritt auf der Karte – von Hamburg bis ans Riff.",
+  "start": "2026-11-21",
+  "end": "",
+  "home": {
+    "name": "Hamburg",
+    "lat": 53.55,
+    "lng": 9.99
+  },
+  "plan": [],
+  "travelers": [
+    {
+      "id": "t_insa",
+      "name": "Insa",
+      "color": "#E0793F"
+    },
+    {
+      "id": "t_wiebke",
+      "name": "Wiebke",
+      "color": "#4FA3A5"
+    }
+  ],
+  "pageUrl": "https://trutzstaehler.de/down-under"
+}
